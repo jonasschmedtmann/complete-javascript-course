@@ -53,8 +53,6 @@ body {
   transition: all .2s; }
   .btn:hover, .btn-small:hover {
     transform: scale(1.05); }
-  .btn:focus, .btn-small:focus {
-    outline: none; }
   .btn > *:first-child, .btn-small > *:first-child {
     margin-right: 1rem; }
 
@@ -96,8 +94,6 @@ body {
   .btn-inline:hover {
     color: #F48982;
     background-color: #F2EFEE; }
-  .btn-inline:focus {
-    outline: none; }
 
 .btn-tiny {
   height: 1.75rem;
@@ -110,8 +106,6 @@ body {
     width: 100%;
     fill: #F59A83;
     transition: all .3s; }
-  .btn-tiny:focus {
-    outline: none; }
   .btn-tiny:hover svg {
     fill: #F48982;
     transform: translateY(-1px); }
@@ -183,8 +177,6 @@ body {
     color: inherit;
     font-size: 1.7rem;
     width: 30rem; }
-    .search__field:focus {
-      outline: none; }
     .search__field::placeholder {
       color: #DAD0CC; }
 
@@ -385,8 +377,6 @@ body {
     justify-content: center; }
     .recipe__love:hover {
       transform: scale(1.07); }
-    .recipe__love:focus {
-      outline: none; }
     .recipe__love svg {
       height: 2.75rem;
       width: 2.75rem;
@@ -468,7 +458,6 @@ body {
       width: 3.7rem;
       border-radius: 3px; }
       .shopping__count input:focus {
-        outline: none;
         background-color: #F2EFEE; }
     .shopping__count p {
       font-size: 1.2rem; }

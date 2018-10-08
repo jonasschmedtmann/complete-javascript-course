@@ -122,10 +122,6 @@ button {
 button:hover { font-weight: 600; }
 button:hover i { margin-right: 20px; }
 
-button:focus {
-    outline: none;
-}
-
 i {
     color: #EB4D4D;
     display: inline-block;

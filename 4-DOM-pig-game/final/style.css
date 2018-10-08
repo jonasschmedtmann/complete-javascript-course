@@ -16,8 +16,6 @@
     text-transform: uppercase;
 }
 
-.final-score:focus { outline: none; }
-
 #dice-1 { top: 120px; }
 #dice-2 { top: 250px; }
 
@@ -141,10 +139,6 @@ button {
 
 button:hover { font-weight: 600; }
 button:hover i { margin-right: 20px; }
-
-button:focus {
-    outline: none;
-}
 
 i {
     color: #EB4D4D;
