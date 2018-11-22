@@ -37,7 +37,7 @@ For each of the extensions, read the overview page in order to learn how to use 
 
 ### Settings
 
-If you want your editor to work and look exactly the same way as mine does in the course videos, you can copy these settings to your own settings file. Just go to settings in VSCode, and on the right side, you can paste this code.
+If you want your editor to work and look exactly the same way as mine does in the course videos, you can copy these settings to your own settings file. Just go to settings in VSCode and on the right side you can paste this code.
 
 ```
 {
