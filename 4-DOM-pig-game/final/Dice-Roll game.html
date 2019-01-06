@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)http://rajeshroyalwp.co.nf/project/dice-roll/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <!--<link href="https://fonts.googleapis.com/css?family=Lato:100,300,600" rel="stylesheet" type="text/css">-->
+        <link href="./Dice-Roll game_files/css" rel="stylesheet">
+        <link href="./Dice-Roll game_files/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link type="text/css" rel="stylesheet" href="./Dice-Roll game_files/style.css">
+		<!--dice 3d roll css -->
+		  <link rel="stylesheet" href="./Dice-Roll game_files/dice.css">
+
+        <title>Dice-Roll game</title>
+    </head>
+
+    <body>
+        <!--dice roll sound -->
+        
+        <audio id="myAudio">
+  <source src="http://rajeshroyalwp.co.nf/project/dice-roll/dice-roll.wav" type="audio/ogg">
+  <source src="http://rajeshroyalwp.co.nf/project/dice-roll/dice-roll.wav" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+ 
+
+<script>
+var x = document.getElementById("myAudio"); 
+
+function playAudio() { 
+    x.play(); 
+} 
+
+function pauseAudio() { 
+    x.pause(); 
+} 
+</script>
+        
+                
+        
+        
+        <!--winner animation and overlay on main entry screen-->
+        <div class="overlay">
+            <div class="congrats">
+	           <h1>Winner!</h1>
+                <h1 id="wn" style="font-size: 20px;margin-top: 90px;color: orange;">Player Name</h1>
+                
+                <div id="pointsTiming"><!--not using now -->
+                    <p>Points&nbsp;:-<span id="points">00</span></p>
+                    <p>&nbsp;Timing&nbsp;:-<span id="timing">00</span></p>
+                </div>
+                <button id="restartGame" onclick="window.location.reload();"><i class="fa fa-repeat"></i>Restart</button>
+            </div>
+            
+        </div>
+        
+        <div id="entryScreen" onclick="playAudio()">
+            <label>Choose Player Type:</label>
+            <select onchange="playerType()" id="selectPlayer">
+                
+                <option value="Multi Player">Multi Player</option>
+                <option value="Single Player">Single Player</option>
+            </select>
+            <form>
+                <label>First player name:</label><br>
+                <input type="text" maxlength="8" id="p0"><br>
+                <label class="p1">Second player name:</label><br>
+                <input type="text" maxlength="8" id="p1"><br>
+            </form>
+                <button id="btn-start">Start Game</button>
+        </div>
+
+        <div class="wrapper clearfix">
+            <div class="player-0-panel active">
+                <div class="player-name" id="name-0"></div>
+                <div class="player-score" id="score-0">0</div>
+                <div class="player-current-box">
+                    <div class="player-current-label">Current</div>
+                    <div class="player-current-score" id="current-0">0</div>
+                </div>
+            </div>
+
+            <div class="player-1-panel">
+                <div class="player-name" id="name-1"></div>
+                <div class="player-score" id="score-1">0</div>
+                <div class="player-current-box">
+                    <div class="player-current-label">Current</div>
+                    <div class="player-current-score" id="current-1">0</div>
+                </div>
+            </div>
+
+            <button class="btn-new"><i class="fa fa-plus"></i>New game</button>
+            <button class="btn-roll" id="clickMe" onclick="playAudio();"><i class="fa fa-repeat"></i>Roll dice</button>
+            <button class="btn-hold" id="clickAgain"><i class="fa fa-download"></i>Transfer</button>
+            <button class="btn-back"><i class="fa fa-arrow-left"></i>Back</button>
+            <input id="battle-point" type="number" placeholder="Final-score" onchange="textChange()">
+
+
+            <!--<img src="dice-5.png" alt="Dice" class="dice">-->
+            <!-- 3d dice -->
+			<div class="container">
+		<div class="dice">
+			<div class="one" onfocus="playAudio();">
+				<span></span>
+			</div>
+			<div class="two" onfocus="playAudio();">
+				<span></span>
+				<span></span>
+			</div>
+			<div class="three" onfocus="playAudio();">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<div class="four" onfocus="playAudio();">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<div class="five" onfocus="playAudio();">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<div class="six" onfocus="playAudio();">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+	</div>
+			
+	
+        </div>
+
+
+
+<!-- winner animation-->
+<script src="./Dice-Roll game_files/jquery.min.js.download"></script>
+<script src="./Dice-Roll game_files/TweenMax.min.js.download"></script>
+<script src="./Dice-Roll game_files/underscore-min.js.download"></script>
+       
+
+<script src="./Dice-Roll game_files/app.js.download"></script>
+    
+
+</body></html>
