@@ -14,7 +14,7 @@ console.log("Is Mark's BMI higher than John's BMI? " + higherBMI);*/
 /*************************
  CC #2
  *************************/
-teamJohn = (89 + 120 + 193)/3;
+teamJohn = (89 + 120 + 103)/3;
 teamMike = (116 + 94+ 123)/3;
 teamMary = (97 + 134+ 105)/3;
 
