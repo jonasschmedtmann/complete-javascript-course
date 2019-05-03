@@ -63,7 +63,7 @@ function objectReference() {
         a = 30;
         b.age = 30;
     }
-    change(age, jakub)                                  // primitive not changed, object changed
+    change(age, jakub);                                 // primitive not changed, object changed
     console.log(age, martin);
 }
-objectReference()
+
