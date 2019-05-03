@@ -46,3 +46,24 @@ function repeatObjectCreate() {
  * Result: Object.create has better performance results for
  * creating big data structures that function constructor pattern.
  */
+
+// Lecture: Object reference - do not confuse with inheritence
+function objectReference() {
+    let jakub = {
+        name: 'Jakub',
+        age: 26
+    }
+    // works as assignment for primitives not objects
+    let martin = jakub;
+    martin.name = 'Martin';
+    console.log(jakub, martin);                         // same name
+
+    let age = 26;
+    function change(a, b) {
+        a = 30;
+        b.age = 30;
+    }
+    change(age, jakub)                                  // primitive not changed, object changed
+    console.log(age, martin);
+}
+objectReference()
