@@ -67,3 +67,56 @@ function objectReference() {
     console.log(age, martin);
 }
 
+// Lecture: First Class Function
+function repearFirstClassFunction() {
+    let years = [1990, 1965, 1937, 2005, 1998];
+
+    function arrCalc(arr, fn) {
+        let arrResult = [];
+        for (let i = 0; i < arr.length; i++)
+            arrResult.push(fn(arr[i]));
+        return arrResult;
+    }
+
+    function calculateAge(el) {
+        return 2019 - el;
+    }
+
+    function isFullAge(el) {
+        return el >= 18;
+    }
+
+    function maxHeartRate(el) {
+        if (el >= 18 && el <= 81)
+            return Math.round(206.9 - (0.67 * el));
+        else
+            return -1;
+    }
+
+    let ages = arrCalc(years, calculateAge);
+    let fullAges = arrCalc(ages, isFullAge);
+    let rates = arrCalc(ages, maxHeartRate);
+    // console.log(ages, fullAges, rates);
+
+    function interviewQuestion(job) {
+        if (job === 'designer') {
+            return (name) => {
+                console.log(name + ', can you please explain what UX design is?');
+            }
+        } else if (job === 'teacher') {
+            return (name) => {
+                console.log('What subject do you teach, ' + name + '?');
+            }
+        } else {
+            return (name) => {
+                console.log('Hello ' + name + ', what do you do?');
+            }
+        }
+    }
+    let teacherQuestion = interviewQuestion('teacher');
+    let designerQuestion = interviewQuestion('designer');
+    teacherQuestion('John');
+    designerQuestion('John');
+    interviewQuestion('developer')('Mark');
+}
+repearFirstClassFunction();
