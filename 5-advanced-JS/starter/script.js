@@ -96,7 +96,7 @@ function repearFirstClassFunction() {
     let ages = arrCalc(years, calculateAge);
     let fullAges = arrCalc(ages, isFullAge);
     let rates = arrCalc(ages, maxHeartRate);
-    // console.log(ages, fullAges, rates);
+    console.log(ages, fullAges, rates);
 
     function interviewQuestion(job) {
         if (job === 'designer') {
@@ -119,4 +119,3 @@ function repearFirstClassFunction() {
     designerQuestion('John');
     interviewQuestion('developer')('Mark');
 }
-repearFirstClassFunction();
