@@ -1,3 +1,4 @@
+"use strict";
 // Lecture: Function constructor, Prototypes, Objects
 function repeatProtoypes() {
     let Person = function (name, yearOfBirth) {
@@ -164,4 +165,47 @@ function repeatClosures() {
     }
     interviewQuestion('developer')('Mark');
     interviewQuestion('teacher')('Tom');
+}
+
+// Lecture: Bind, call and appply
+function repeatBindCallApply() {
+    let john = {
+        name: 'John',
+        age: 26,
+        job: 'teacher',
+        presentation: function (style, timeOfDay) {
+            if (style === 'formal') {
+                console.log('Good ' + timeOfDay +
+                    ', Ladies and gentlemen! I\'m ' +
+                    this.name + ', I\'m a ' +
+                    this.job + ' and I\'m ' +
+                    this.age + ' years old.');
+            } else if (style === 'friendly') {
+                console.log('Hey! What\'s up? I\'m ' +
+                    this.name + ', I\'m a ' +
+                    this.job + ' and I\'m ' +
+                    this.age + ' years old. Have a nice ' +
+                    timeOfDay + '.');
+            }
+        }
+    };
+
+    let emily = {
+        name: 'Emily',
+        age: 35,
+        job: 'designer'
+    }
+
+    john.presentation('formal', 'morning');
+    // Copy johns function for emily and use arguments separately.
+    john.presentation.call(emily, 'friendly', 'afternoon');
+
+    // Same, but arguments as an array.
+    // john.presentation.apply(emily, ['friendly', 'afternoon']);
+
+    // Store function separatetely for chosen parameters.
+    // Currying - Don't repeat same parameters while calling.
+    let johnFriendly = john.presentation.bind(john, 'friendly');
+    johnFriendly('morning');
+
 }
