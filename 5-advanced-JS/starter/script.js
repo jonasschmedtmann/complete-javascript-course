@@ -132,3 +132,36 @@ function repeatIIFE() {
         console.log(score >= 5 - goodLuck);
     })(5);
 }
+
+// Lecture: Closures
+function repeatClosures() {
+    function retirement(retirementAge) {
+        let a = ' years left until retirement.';
+        return (yearOfBirth) => {
+            let age = 2016 - yearOfBirth;
+            console.log((retirementAge - age) + a)
+        }
+    }
+    let retirementUS = retirement(66);
+    // Inner function has access to the vars and params
+    // of outer function, even after the outher function
+    // has returned.
+    retirementUS(1990); // same as retirement(66)(1990);
+    retirement(65)(1990);
+    retirement(67)(1990);
+
+    // Cleaner way than previous one.
+    function interviewQuestion(job) {
+        return (name) => {
+            if (job === 'designer') {
+                console.log(name + ', can you please explain what UX design is?');
+            } else if (job === 'teacher') {
+                console.log('What subject do you teach, ' + name + '?');
+            } else {
+                console.log('Hello ' + name + ', what do you do?');
+            }
+        }
+    }
+    interviewQuestion('developer')('Mark');
+    interviewQuestion('teacher')('Tom');
+}
