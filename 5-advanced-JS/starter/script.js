@@ -119,3 +119,16 @@ function repearFirstClassFunction() {
     designerQuestion('John');
     interviewQuestion('developer')('Mark');
 }
+
+// Lecture: Immediately Invoked Function Expressions(IIFE)
+function repeatIIFE() {
+    function game() {
+        let score = Math.random() * 10;
+        console.log(score >= 5);
+    }
+    // Code in parentheses like this cannot be a statement.
+    ((goodLuck) => {
+        let score = Math.random() * 10;
+        console.log(score >= 5 - goodLuck);
+    })(5);
+}
