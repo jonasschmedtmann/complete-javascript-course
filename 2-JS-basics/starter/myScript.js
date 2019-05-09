@@ -162,35 +162,74 @@
  * The ternary Operator and Switch Statements
  */
 //Ternary operator
- var firstName = 'John';
- var age = 19;
- 
-  var drink = age >= 18 ? 'beer' : 'juice';
-    //use of the ternary operator and object literals
- age >= 18 ? console.log(`${firstName} drinks ${drink}.`) : console.log(`${firstName} drinks ${drink}.`);
+// var firstName = 'John';
+// var age = 19;
 
- //Switch Statement
+// var drink = age >= 18 ? 'beer' : 'juice';
+// //use of the ternary operator and object literals
+// age >= 18 ? console.log(`${firstName} drinks ${drink}.`) : console.log(`${firstName} drinks ${drink}.`);
 
- var job = 'designer';
- switch (job) {
-     case 'teacher':
-     console.log(`${firstName} teaches kids how to code`);
-     break;
-     case 'driver':
-     console.log(`${firstName} drives and uber in Lisbon`)
-     break;
-     case 'designer':
-     console.log(`${firstName} designs beautiful websites`)
-     break;
-     default:
-     console.log(`${firstName} does something else`) 
- }  
+// //Switch Statement
 
+// var job = 'guide';
+// switch (job) {
+//     case 'teacher':
+//         console.log(`${firstName} teaches kids how to code`);
+//         break;
+//     case 'driver':
+//         console.log(`${firstName} drives and uber in Lisbon`)
+//         break;
+//     case 'designer':
+//         console.log(`${firstName} designs beautiful websites`)
+//         break;
+//     default:
+//         console.log(`${firstName} does something else`)
+// }
+/********************************************************
+ * turn into a switch statement
+ */
+// if (age < 13) {
+//     console.log(`${firstName} is a boy`);
+// } else if (age >= 13 && age < 20) {
+//     console.log(`${firstName} is a teenager.`)
+// } else if (age >= 20 && age < 30) {
+//     console.log(`${firstName} is a young man.`)
+// } else {
+//     console.log(`${firstName} is a man.`);
+// }
+//  age = 30
+// switch(true) {
+//     case age < 13:
+//     console.log(`${firstName} is a boy.`)
+//     break;
+//     case age > 13 && age < 20:
+//     console.log(`${firstName} is a teenager.`)
+//     break;
+//     case age >= 20 && age < 30:
+//     console.log(`${firstName} is a young man.`)
+//     break;
+//     default:
+//     console.log(`${firstName} is an man.`)
 
+// }
 
+/*******************************
+ * truth and falsy values and equality operators
+ * falsy values: undefined, null, 0, NaN, '' empty string
+ * truthy values: NOT falsy values
+ */
 
- 
+ var height;
+height = 0;
+ if (height || height === 0) {
+     console.log('Variable is defined');
+ } else {
+     console.log('Variable has Not been defined.');
+ }
 
+ if ( height === '23') {
+     console.log( 'The == opertor does type coercion!')
+ }
 
 
 
