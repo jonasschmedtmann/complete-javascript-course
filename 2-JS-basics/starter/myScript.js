@@ -236,11 +236,11 @@
  */
 
 //  let teamJohnAverage, teamMikeAverage, teamMaryAverage;
- 
+
 //  teamJohnAverage = (100 + 100 + 100) / 3; 
 //  teamMikeAverage = (100 + 100 + 100) / 3;
 //  teamMaryAverage = (100+ 100 + 100) / 3;
- 
+
 //  if (teamJohnAverage > teamMikeAverage && teamJohnAverage > teamMaryAverage) {
 //      console.log(`John's team wins with a team average of ${teamJohnAverage}`)
 //  } else if (teamMikeAverage > teamJohnAverage && teamMikeAverage > teamMaryAverage) {
@@ -286,8 +286,8 @@
 
 //function declaration looks like this *** function whatDoYouDo(job, firstName){} there is no equality operator****
 
- //function expressions
- //set a function equal to a variable
+//function expressions
+//set a function equal to a variable
 
 //  var whatDoYouDo = function(job, firstName) {
 //     switch (job) {
@@ -351,28 +351,94 @@
 /**********************************************************************************
  * Coding challenge 2
  */
+
+//  let tipCalculator = (bill) => {
+//     if(bill < 50){
+//         tip = .2
+//     }   else if (bill > 50 && bill < 200){
+//         tip = .15
+//     } else {
+//         tip = .1
+//     }
+//     return tip * bill;
+// }
+// //Take the totals and use the tipcalculator on them and push the value into the array
+// let bills = [124, 48, 268]
+
+// let arrayOfTips = [tipCalculator(bills[0]), tipCalculator(bills[1]), tipCalculator(bills[2])];
+//  let arrayOfTotals = [bills[0] + arrayOfTips[0], bills[1] + arrayOfTips[1], bills[2] + arrayOfTips[2]];
+
+
+
+// console.log(tipCalculator(100))
+// console.log(arrayOfTips)
+// console.log(arrayOfTotals)
+
+/*******************************************************8
+ * Objects and properties
+ * Key Value Pairs
+ */
+
+//Object literal
+//  var john = {
+//     firstName: 'John',
+//     lastName: 'Smith',
+//     birthYear: 1990,
+//     family: ['Jane', 'Mark', 'Bob', 'Emily'],
+//     job: 'teacher',
+//     isMarried: false
+//  };
+
+//  console.log(john.firstName);
+//  console.log(john['firstName']);
+// var x = 'birthYear';
+// console.log(john[x])
+
+// john.job = 'designer';
+// john['isMarried'] = true;
+
+// console.log(john);
+
+// //New Object Syntax
+// var jane = new Object();
+// jane.firstName = 'Jane';
+// jane.birthYear = '1969';
+// jane['lastName'] = 'Smith';
+// console.log(jane)
+
+/*******************************************************
+ * Objects and methods
+ * When a function is used on an object is called a Method
+ */
+
+// var john = {
+//         firstName: 'John',
+//         lastName: 'Smith',
+//         birthYear: 1985,
+//         family: ['Jane', 'Mark', 'Bob', 'Emily'],
+//         job: 'teacher',
+//         isMarried: false,
+//         calcAge: function(birthYear) { //this is a method
+//             this.age = 2019 - this.birthYear;   // a function inside an object is a ***METHOD***
+//         } //used **this** keyword to access the object john and then dot notation to access the value from the key.
+//      };
+// //Calling Method in john Object
+// john.calcAge();
+
+// console.log(john)
+
+/***********************************************************************
+ *Coding Challenge 4 
+ *
+ */
+
+// 
+
+/**************************************************************88
+ * Loops and iteration
+ */
+
  
- let tipCalculator = (bill) => {
-    if(bill < 50){
-        tip = .2
-    }   else if (bill > 50 && bill < 200){
-        tip = .15
-    } else {
-        tip = .1
-    }
-    return tip * bill;
-}
-//Take the totals and use the tipcalculator on them and push the value into the array
-let bills = [124, 48, 268]
-
-let arrayOfTips = [tipCalculator(bills[0]), tipCalculator(bills[1]), tipCalculator(bills[2])];
- let arrayOfTotals = [bills[0] + arrayOfTips[0], bills[1] + arrayOfTips[1], bills[2] + arrayOfTips[2]];
-
-
-
-console.log(tipCalculator(100))
-console.log(arrayOfTips)
-console.log(arrayOfTotals)
 
 
 
