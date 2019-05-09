@@ -204,8 +204,35 @@ function repeatBindCallApply() {
     // john.presentation.apply(emily, ['friendly', 'afternoon']);
 
     // Store function separatetely for chosen parameters.
-    // Currying - Don't repeat same parameters while calling.
+    // Currying - Don't repeat same parameters while calling function.
     let johnFriendly = john.presentation.bind(john, 'friendly');
     johnFriendly('morning');
 
+    let emilyFormal = john.presentation.bind(emily, 'formal');
+    emilyFormal('afternoon');
+
+
+    // Another bind example
+    let years = [1990, 1965, 1937, 2005, 1998];
+
+    function arrCalc(arr, fn) {
+        let arrResult = [];
+        for (let i = 0; i < arr.length; i++)
+            arrResult.push(fn(arr[i]));
+        return arrResult;
+    }
+
+    function calculateAge(el) {
+        return 2019 - el;
+    }
+
+    function isFullAge(limit, el) {
+        return el >= limit;
+    }
+
+    let ages = arrCalc(years, calculateAge);
+    var fullJapan = arrCalc(ages, isFullAge.bind(this, 20));
+    console.log(ages);
+    console.log(fullJapan);
 }
+repeatBindCallApply();
