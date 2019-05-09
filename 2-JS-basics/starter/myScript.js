@@ -255,29 +255,127 @@
  * Functions
  */
 
- function calculateAge(birthYear) {
-     return 2019 - birthYear;
- }
+//  function calculateAge(birthYear) {
+//      return 2019 - birthYear;
+//  }
 
- var ageJohn = calculateAge(1985);
- var ageMike = calculateAge(1948);
- var ageJane = calculateAge(1969);
-console.log(ageJohn)
-console.log(ageMike)
-console.log(ageJane)
+//  var ageJohn = calculateAge(1985);
+//  var ageMike = calculateAge(1948);
+//  var ageJane = calculateAge(1969);
+// console.log(ageJohn)
+// console.log(ageMike)
+// console.log(ageJane)
 
-function yearsUntilRetirement(year, firstName) {
-    var age = calculateAge(year);
-    var retirement = 65 - age;
-    if (retirement > 0){
-        
+// function yearsUntilRetirement(year, firstName) {
+//     var age = calculateAge(year);
+//     var retirement = 65 - age;
+//     if (retirement > 0){
+
+//     }
+//     console.log(`${firstName} retires in ${retirement} years`);
+// }
+
+// yearsUntilRetirement(1985, 'Jared');
+// yearsUntilRetirement(1995, 'John');
+// yearsUntilRetirement(1975, 'Mary');
+
+
+/*****************************************************************************
+ * Function Statements and Expressions
+ */
+
+//function declaration looks like this *** function whatDoYouDo(job, firstName){} there is no equality operator****
+
+ //function expressions
+ //set a function equal to a variable
+
+//  var whatDoYouDo = function(job, firstName) {
+//     switch (job) {
+//         case 'teacher':
+//             return `${firstName} teaches kids how to code.`
+//         case 'driver':
+//             return `${firstName} drives a cab in Lisbon.`
+//         case 'designer':
+//             return `${firstName} designs beautiful websites.`
+//         default:
+//             return `${firstName} does something else.`
+//     }
+//  }
+
+//  console.log(whatDoYouDo('teacher', 'Jared'))
+
+
+/********************************************************
+ * ARRAYS
+ * 
+ */
+
+//  //intialize new array
+//  var names = ['John', 'Mark', 'Jane'];
+//  var years = [1990, 1969, 1948];
+// //mutate array data
+// console.log(names.length);
+// console.log(names[names.length -1]);
+// names[names.length] = 'Mary';
+
+
+// console.log(names);
+
+// //different data types
+// var john = ['John', 'Smith', 1990, 'teacher', false];
+
+// john.push('blue');
+// john.unshift('Mr.');
+
+
+
+// console.log(john)
+
+// john.pop();
+// john.pop();
+// john.shift()
+// console.log(john)
+
+// //used to test if an element is in an array
+// //if an element is in the array. It will return the position of that element.
+// console.log(john.indexOf(1990))
+// //If the element being queried is not in the array then it will return a -1
+// console.log(john.indexOf(98))
+
+// // using the ternary operator to test if an element is in the array. Returns true if it is not in the array and returns not a designer
+// //or if it is in the array returns false and the else reeturns that john is a designer
+// let isDesigner = john.indexOf('designer') === -1 ? 'John is not a designer' : 'John is a designer';
+
+// console.log(isDesigner)
+
+/**********************************************************************************
+ * Coding challenge 2
+ */
+ 
+ let tipCalculator = (bill) => {
+    if(bill < 50){
+        tip = .2
+    }   else if (bill > 50 && bill < 200){
+        tip = .15
+    } else {
+        tip = .1
     }
-    console.log(`${firstName} retires in ${retirement} years`);
+    return tip * bill;
 }
+//Take the totals and use the tipcalculator on them and push the value into the array
+let bills = [124, 48, 268]
 
-yearsUntilRetirement(1985, 'Jared');
-yearsUntilRetirement(1995, 'John');
-yearsUntilRetirement(1975, 'Mary');
+let arrayOfTips = [tipCalculator(bills[0]), tipCalculator(bills[1]), tipCalculator(bills[2])];
+ let arrayOfTotals = [bills[0] + arrayOfTips[0], bills[1] + arrayOfTips[1], bills[2] + arrayOfTips[2]];
+
+
+
+console.log(tipCalculator(100))
+console.log(arrayOfTips)
+console.log(arrayOfTotals)
+
+
+
 
 
 
