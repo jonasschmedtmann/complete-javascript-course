@@ -219,19 +219,37 @@
  * truthy values: NOT falsy values
  */
 
- var height;
-height = 0;
- if (height || height === 0) {
-     console.log('Variable is defined');
- } else {
-     console.log('Variable has Not been defined.');
- }
+//  var height;
+// height = 23;
+//  if (height || height === 0) {
+//      console.log('Variable is defined');
+//  } else {
+//      console.log('Variable has Not been defined.');
+//  }
+// //equality operators
+//  if ( height == '23') {
+//      console.log( 'The == opertor does type coercion!')
+//  }
 
- if ( height === '23') {
-     console.log( 'The == opertor does type coercion!')
- }
+/*****************************************************************
+ * Coding Challenge 2
+ */
 
+ let teamJohnAverage, teamMikeAverage, teamMaryAverage, ;
+ 
+ teamJohnAverage = (80 + 120 + 103) / 3; 
+ teamMikeAverage = (116 + 94 + 123) / 3;
+ teamMaryAverage = (97+ 134 + 105) / 3;
+ 
+ if (teamJohnAverage > teamMikeAverage && teamJohnAverage > teamMaryAverage) {
+     console.log(`John's team wins with a team average of ${teamJohnAverage}`)
+ } else if (teamMikeAverage > teamJohnAverage && teamMikeAverage > teamMaryAverage) {
+     console.log(`Mike's team wins with an average team score of ${teamMikeAverage}`)
+ } else if (teamJohnAverage === teamMikeAverage){
 
+ } else  {
+     console.log(`Mary's team wins with an average team score of ${teamMaryAverage}`)
+ } 
 
 
 
