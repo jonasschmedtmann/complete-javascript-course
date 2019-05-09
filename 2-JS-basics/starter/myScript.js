@@ -115,43 +115,105 @@
  * If / else statements
  */
 
-var firstName = 'John';
-var civilStatus = 'single';
+// var firstName = 'John';
+// var civilStatus = 'single';
 
-var isMarried = true;
+// var isMarried = true;
 
-if (isMarried) {
-    console.log(`${firstName} is married`)
-} else {
-    console.log(`${firstName} will hopefully marry soon :)`)
-}
+// if (isMarried) {
+//     console.log(`${firstName} is married`)
+// } else {
+//     console.log(`${firstName} will hopefully marry soon :)`)
+// }
 
-var markMass, johnMass, marlHeight, johnHeight, markBmi, JohnBmi, markHigherBmi;
+// var markMass, johnMass, marlHeight, johnHeight, markBmi, JohnBmi, markHigherBmi;
 
-markMass = 100;
-johnMass = 110;
-markHeight = 1.5;
-johnHeight = 2;
-markBmi = markMass / (markHeight * 2);
-johnBmi = johnMass / (johnHeight * 2);
+// markMass = 100;
+// johnMass = 110;
+// markHeight = 1.5;
+// johnHeight = 2;
+// markBmi = markMass / (markHeight * 2);
+// johnBmi = johnMass / (johnHeight * 2);
 
-if (markBmi > johnBmi) {
-    console.log(`Marks bmi of ${markBmi} is higher than Johns bmi of ${johnBmi}.`)
-} else {
-    console.log(`Marks bmi is lower than Johns`)
-}
+// if (markBmi > johnBmi) {
+//     console.log(`Marks bmi of ${markBmi} is higher than Johns bmi of ${johnBmi}.`)
+// } else {
+//     console.log(`Marks bmi is lower than Johns`)
+// }
 
 /***************************************************
  * Boolean Logic
  */
 
-var firstName = 'John';
-var age = 16;
+// var firstName = 'John';
+// var age = 20;
 
-if (age < 13) {
-    console.log(`${firstName} is a boy`);
-} else if (age >= 13 || age < 20) {
-    console.log(`${firstName} is a teenager.`)
-} else {
-    console.log(`${firstName} is a man.`);
-}
+// if (age < 13) {
+//     console.log(`${firstName} is a boy`);
+// } else if (age >= 13 && age < 20) {
+//     console.log(`${firstName} is a teenager.`)
+// } else if (age >= 20 && age < 30) {
+//     console.log(`${firstName} is a young man.`)
+// } else {
+//     console.log(`${firstName} is a man.`);
+// }
+
+/***************************************************************
+ * The ternary Operator and Switch Statements
+ */
+//Ternary operator
+ var firstName = 'John';
+ var age = 19;
+ 
+  var drink = age >= 18 ? 'beer' : 'juice';
+    //use of the ternary operator and object literals
+ age >= 18 ? console.log(`${firstName} drinks ${drink}.`) : console.log(`${firstName} drinks ${drink}.`);
+
+ //Switch Statement
+
+ var job = 'designer';
+ switch (job) {
+     case 'teacher':
+     console.log(`${firstName} teaches kids how to code`);
+     break;
+     case 'driver':
+     console.log(`${firstName} drives and uber in Lisbon`)
+     break;
+     case 'designer':
+     console.log(`${firstName} designs beautiful websites`)
+     break;
+     default:
+     console.log(`${firstName} does something else`) 
+ }  
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
