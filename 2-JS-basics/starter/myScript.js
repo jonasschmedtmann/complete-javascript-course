@@ -235,25 +235,49 @@
  * Coding Challenge 2
  */
 
- let teamJohnAverage, teamMikeAverage, teamMaryAverage, ;
+//  let teamJohnAverage, teamMikeAverage, teamMaryAverage;
  
- teamJohnAverage = (80 + 120 + 103) / 3; 
- teamMikeAverage = (116 + 94 + 123) / 3;
- teamMaryAverage = (97+ 134 + 105) / 3;
+//  teamJohnAverage = (100 + 100 + 100) / 3; 
+//  teamMikeAverage = (100 + 100 + 100) / 3;
+//  teamMaryAverage = (100+ 100 + 100) / 3;
  
- if (teamJohnAverage > teamMikeAverage && teamJohnAverage > teamMaryAverage) {
-     console.log(`John's team wins with a team average of ${teamJohnAverage}`)
- } else if (teamMikeAverage > teamJohnAverage && teamMikeAverage > teamMaryAverage) {
-     console.log(`Mike's team wins with an average team score of ${teamMikeAverage}`)
- } else if (teamJohnAverage === teamMikeAverage){
+//  if (teamJohnAverage > teamMikeAverage && teamJohnAverage > teamMaryAverage) {
+//      console.log(`John's team wins with a team average of ${teamJohnAverage}`)
+//  } else if (teamMikeAverage > teamJohnAverage && teamMikeAverage > teamMaryAverage) {
+//      console.log(`Mike's team wins with an average team score of ${teamMikeAverage}`)
+//  } else if (teamJohnAverage === teamMikeAverage && teamJohnAverage === teamMaryAverage){
+//     console.log('We have a tie')
+//  } else  {
+//      console.log(`Mary's team wins with an average team score of ${teamMaryAverage}`)
+//  } 
 
- } else  {
-     console.log(`Mary's team wins with an average team score of ${teamMaryAverage}`)
- } 
+/**************************************************************
+ * Functions
+ */
 
+ function calculateAge(birthYear) {
+     return 2019 - birthYear;
+ }
 
+ var ageJohn = calculateAge(1985);
+ var ageMike = calculateAge(1948);
+ var ageJane = calculateAge(1969);
+console.log(ageJohn)
+console.log(ageMike)
+console.log(ageJane)
 
+function yearsUntilRetirement(year, firstName) {
+    var age = calculateAge(year);
+    var retirement = 65 - age;
+    if (retirement > 0){
+        
+    }
+    console.log(`${firstName} retires in ${retirement} years`);
+}
 
+yearsUntilRetirement(1985, 'Jared');
+yearsUntilRetirement(1995, 'John');
+yearsUntilRetirement(1975, 'Mary');
 
 
 
