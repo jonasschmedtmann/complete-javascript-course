@@ -437,28 +437,79 @@
 /**************************************************************88
  * Loops and iteration
  */
+//For loops
+//  for (let i = 0; i < 20; i++){
+//      console.log(i);
+//  }
 
- 
+// var john = ['John', 'Smith', 1990, 'designer', false];
+// //for loop
+// for (let i = 0; i < john.length; i++) {
+//     console.log(john[i])
+// }
+// // while loop
+// let i = 0;
+// while(i < john.length) {
+//     console.log(john[i]);
+//     i++
+// }
+
+//continue and break statements
+
+var john = ['John', 'Smith', 1990, 'designer', false];
+
+// for (let i = 0; i < john.length; i++) {
+//     if (typeof john[i] !== 'string') continue;
+//     console.log(john[i])
+// }
+
+// for (let i = 0; i < john.length; i++) {
+//     if (typeof john[i] !== 'string') break; 
+//     console.log(john[i])
+// }
+
+//looping backward
+
+// for (let i = john.length -1; i >= 0; i--) {
+//     console.log(john[i])
+// }
+
+// for (let i = john.length -1; i >=0; i--){
+//     console.log(john[i])
+// }
+
+/************************************************************888
+ * 
+challenge 5
+ * 
+ */
+
+var john = {
+    bills: [124, 48, 268, 180, 42],
+    tipCalc: function () {
+        this.tips = [];
+        this.finalValues = [];
+        for (let i = 0; i < this.bills.length; i++) {
 
 
+            let percentage;
+            let bill = this.bills[i];
 
+            if (bill < 50) {
+                percentage = .2;
+            } else if (bill >= 50 && bill < 200) {
+                percentage = .15;
+            } else {
+                percentage = .1;
+            }
 
+            this.tips[i] = bill * percentage;
+            this.finalValues = bill[i] + bill * percentage;
+        }
 
+    }
 
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+john.tipCalc();
+console.log(john)
