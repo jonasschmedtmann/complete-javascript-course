@@ -272,6 +272,10 @@ function repeatBindCallApply() {
         }
     ];
 
+    function generateArrayIndex(array) {
+        return Math.floor(Math.random() * (array.length - 1)) + 0;
+    }
+
     // Solution 1
 
     /*
@@ -332,11 +336,13 @@ function repeatBindCallApply() {
     // Run a quiz for pre-set questions
 
     function askQuestion(array, result = 0) {
-        let i = Math.floor(Math.random() * (array.length - 1)) + 0;
+        let i = generateArrayIndex(array);
         let question = new Question(array[i]);
+
         let answer = question.answerQuestion();
         if (question.checkAnswer(answer)) result++;
         console.log('Actual result:' + result);
+
         if (!question.isExit(answer)) askQuestion(array, result)
     }
     askQuestion(questions);
