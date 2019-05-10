@@ -276,6 +276,19 @@ function repeatBindCallApply() {
         return Math.floor(Math.random() * (array.length - 1)) + 0;
     }
 
+    function score() {
+        let sc = 0;
+        return function (correct) {
+            if (correct) {
+                sc++;
+            }
+            console.log('Actual result:' + sc);
+            return score;
+        }
+    }
+
+    let keepScore = score();
+
     // Solution 1
 
     /*
@@ -322,8 +335,10 @@ function repeatBindCallApply() {
         return answer;
     }
 
-    Question.prototype.checkAnswer = function (answer) {
+    Question.prototype.checkAnswer = function (answer, callback) {
         let response = Number(answer) === this.correct;
+        if (response) callback(true)
+        else callback(false);
         console.log(response);
         return response;
     }
@@ -335,15 +350,14 @@ function repeatBindCallApply() {
 
     // Run a quiz for pre-set questions
 
-    function askQuestion(array, result = 0) {
+    function askQuestion(array) {
         let i = generateArrayIndex(array);
         let question = new Question(array[i]);
 
         let answer = question.answerQuestion();
-        if (question.checkAnswer(answer)) result++;
-        console.log('Actual result:' + result);
+        question.checkAnswer(answer, keepScore);
 
-        if (!question.isExit(answer)) askQuestion(array, result)
+        if (!question.isExit(answer)) askQuestion(array)
     }
     askQuestion(questions);
 })()
