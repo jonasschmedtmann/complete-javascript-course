@@ -235,66 +235,118 @@ function repeatBindCallApply() {
     console.log(ages);
     console.log(fullJapan);
 }
+/**
+ * Coding Challange
+ */
+(() => {
+    function shuffle(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
 
-// Coding Challange
-class Question {
-    constructor({ content, answers, correct }) {
-        this.content = content;
-        this.answers = answers;
-        this.correct = correct;
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
     }
-    printAnswers() {
+
+    // Solution 1
+
+    /*
+    class Question {
+        constructor({ content, answers, correct }) {
+            this.content = content;
+            this.answers = answers;
+            this.correct = correct;
+        }
+        printAnswers() {
+            let result = '';
+            for (let i = 0; i < this.answers.length; i++) {
+                result += '\n ' + i + ': ' + this.answers[i];
+            };
+            return result;
+        }
+        askQuestion() {
+            let answer = window.prompt(this.content
+                + this.printAnswers(this.answers), '');
+            return Number(answer) === this.correct;
+        }
+    };
+    */
+
+    // Solution 2
+
+    function Question(params) {
+        this.content = params.content;
+        this.answers = params.answers;
+        this.correct = params.correct;
+    }
+
+    Question.prototype.printAnswers = function () {
         let result = '';
         for (let i = 0; i < this.answers.length; i++) {
             result += '\n ' + i + ': ' + this.answers[i];
         };
         return result;
     }
-    askQuestion() {
+
+    Question.prototype.askQuestion = function () {
         let answer = window.prompt(this.content
             + this.printAnswers(this.answers), '');
         return Number(answer) === this.correct;
     }
-}
 
-let questions = [
-    {
-        content: 'What is a waste of time?',
-        answers: [
-            'Learning',
-            'Watching TV',
-            'Family'
-        ],
-        correct: 1
-    },
-    {
-        content: 'What does the fox say?',
-        answers: [
-            'Woof',
-            'Tweet',
-            'Meow'
-        ],
-        correct: 2
-    },
-    {
-        content: 'What does Sandor Clegane say?',
-        answers: [
-            'Bring me another one of those chickens.',
-            'You will win game of thrones or you will die.',
-            'You know nothing John Snow'
-        ],
-        correct: 0
-    }
-];
+    // Data structure of objects
 
-function runQuiz(array) {
-    let result = 0;
-    for (let i = 0; i < array.length; i++) {
-        let currentQuestion = new Question(array[i]);
-        let response = currentQuestion.askQuestion();
-        console.log(response);
-        if (response) result++;
-        console.log('Actual result:' + result);
+    let questions = [
+        {
+            content: 'What is a waste of time?',
+            answers: [
+                'Learning',
+                'Watching TV',
+                'Family'
+            ],
+            correct: 1
+        },
+        {
+            content: 'What does the fox say?',
+            answers: [
+                'Woof',
+                'Tweet',
+                'Meow'
+            ],
+            correct: 2
+        },
+        {
+            content: 'What does Sandor Clegane say?',
+            answers: [
+                'Bring me another one of those chickens.',
+                'You will win game of thrones or you will die.',
+                'You know nothing John Snow'
+            ],
+            correct: 0
+        }
+    ];
+
+    // Run a quiz for pre-set questions
+
+    function runQuiz(array) {
+        let result = 0;
+        array = shuffle(array);
+        for (let i = 0; i < array.length; i++) {
+            let response = new Question(array[i]).askQuestion();
+            console.log(response);
+            if (response) result++;
+            console.log('Actual result:' + result);
+        }
     }
-}
-runQuiz(questions)
+    runQuiz(questions);
+})()
