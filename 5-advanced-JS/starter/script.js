@@ -239,24 +239,38 @@ function repeatBindCallApply() {
  * Coding Challange
  */
 (() => {
-    function shuffle(array) {
-        var currentIndex = array.length, temporaryValue, randomIndex;
 
-        // While there remain elements to shuffle...
-        while (0 !== currentIndex) {
+    // Data structure of objects
 
-            // Pick a remaining element...
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex -= 1;
-
-            // And swap it with the current element.
-            temporaryValue = array[currentIndex];
-            array[currentIndex] = array[randomIndex];
-            array[randomIndex] = temporaryValue;
+    let questions = [
+        {
+            content: 'What is a waste of time?',
+            answers: [
+                'Learning',
+                'Watching TV',
+                'Family'
+            ],
+            correct: 1
+        },
+        {
+            content: 'What does the fox say?',
+            answers: [
+                'Woof',
+                'Tweet',
+                'Meow'
+            ],
+            correct: 2
+        },
+        {
+            content: 'What does Sandor Clegane say?',
+            answers: [
+                'Bring me another one of those chickens.',
+                'You will win game of thrones or you will die.',
+                'You know nothing John Snow'
+            ],
+            correct: 0
         }
-
-        return array;
-    }
+    ];
 
     // Solution 1
 
@@ -298,55 +312,32 @@ function repeatBindCallApply() {
         return result;
     }
 
-    Question.prototype.askQuestion = function () {
+    Question.prototype.answerQuestion = function () {
         let answer = window.prompt(this.content
             + this.printAnswers(this.answers), '');
-        return Number(answer) === this.correct;
+        return answer;
     }
 
-    // Data structure of objects
+    Question.prototype.checkAnswer = function (answer) {
+        let response = Number(answer) === this.correct;
+        console.log(response);
+        return response;
+    }
 
-    let questions = [
-        {
-            content: 'What is a waste of time?',
-            answers: [
-                'Learning',
-                'Watching TV',
-                'Family'
-            ],
-            correct: 1
-        },
-        {
-            content: 'What does the fox say?',
-            answers: [
-                'Woof',
-                'Tweet',
-                'Meow'
-            ],
-            correct: 2
-        },
-        {
-            content: 'What does Sandor Clegane say?',
-            answers: [
-                'Bring me another one of those chickens.',
-                'You will win game of thrones or you will die.',
-                'You know nothing John Snow'
-            ],
-            correct: 0
-        }
-    ];
+    Question.prototype.isExit = function (answer) {
+        console.log('Answer: ' + answer)
+        return answer === 'exit';
+    }
 
     // Run a quiz for pre-set questions
 
-    function runQuiz(array) {
-        let result = 0;
-        array = shuffle(array);
-        for (let i = 0; i < array.length; i++) {
-            let response = new Question(array[i]).askQuestion();
-            console.log(response);
-            if (response) result++;
-            console.log('Actual result:' + result);
-        }
+    function askQuestion(array, result = 0) {
+        let i = Math.floor(Math.random() * (array.length - 1)) + 0;
+        let question = new Question(array[i]);
+        let answer = question.answerQuestion();
+        if (question.checkAnswer(answer)) result++;
+        console.log('Actual result:' + result);
+        if (!question.isExit(answer)) askQuestion(array, result)
     }
-    runQuiz(questions);
+    askQuestion(questions);
 })()
