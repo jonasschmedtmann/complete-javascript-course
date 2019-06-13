@@ -16,7 +16,7 @@ Plus, I made all the [course slides available for download](slides-students-C03.
 
 **A:** Have you extensively tried fixing the problem on your own? If you failed at fixing it, please **post a detailled description of the problem to the Q&A area of that video over at Udemy**, along with a [codepen](https://codepen.io/pen/) containing your code. You will get help as fast as possible! Please don't send me a personal message or email to fix coding problems.
 
-### Q3: Brackets show me errors, but my code works. Why is that?
+### Q3: Brackets shows me errors, but my code works. Why is that?
 
 **A:** These are _not_ errors in your code, and you can simply ignore them (they just come from so-called linters that are not correctly set up).
 
