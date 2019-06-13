@@ -36,7 +36,7 @@ Plus, I made all the [course slides available for download](slides-students-C03.
 
 **A:** Unfortunately, there is nothing I can do about it. The course is hosted on Udemy's platform, and sometimes they have small technical issues like this one. Please just come back a bit later or [contact their support team](https://support.udemy.com/hc/en-us).
 
-## Q8: Videos are blurred / have low quality, can you fix it?
+### Q8: Videos are blurred / have low quality, can you fix it?
 
 **A:** Please open video settings and change the quality from 'Auto' to another value, for example 720p. If that doesn't help, please [contact the Udemy support team](https://support.udemy.com/hc/en-us).
 
