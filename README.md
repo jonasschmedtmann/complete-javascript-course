@@ -2,9 +2,9 @@
 
 This repo contains starter files and the finished project files for all the projects contained in the course.
 
-Plus, I made all the course slides available for download, to make it easier to follow along the conceptual videos.
+Plus, I made all the [course slides available for download](slides-students-C03.pdf), to make it easier to follow along the conceptual videos.
 
-👇 ***Please read the following Frequently Asked Questions (FAQ) carefully before starting the course*** 👇
+👇 **_Please read the following Frequently Asked Questions (FAQ) carefully before starting the course_** 👇
 
 ## FAQ
 
@@ -16,34 +16,42 @@ Plus, I made all the course slides available for download, to make it easier to 
 
 **A:** Have you extensively tried fixing the problem on your own? If you failed at fixing it, please **post a detailled description of the problem to the Q&A area of that video over at Udemy**, along with a [codepen](https://codepen.io/pen/) containing your code. You will get help as fast as possible! Please don't send me a personal message or email to fix coding problems.
 
-### Q3: You keep mentioning your resources page. Where can I find it?
+### Q3: Brackets show me errors, but my code works. Why is that?
+
+**A:** These are _not_ errors in your code, and you can simply ignore them (they just come from so-called linters that are not correctly set up).
+
+### Q4: You keep mentioning your resources page. Where can I find it?
 
 **A:** It's on my website at <http://codingheroes.io/resources>. You can subscribe for updates 😉
 
-### Q4: What Brackets and VSCode themes are you using?
+### Q5: What Brackets and VSCode themes are you using?
 
 **A:** I use the theme "OS X Style | Flat & Dark" in Brackets and "Oceanic Next (dimmed bg)" in VSCode. [Here is the complete setup](editors-setup.md).
 
-### Q5: can I see a final version of the course projects?
+### Q6: Can I see a final version of the course projects?
 
 **A:** Sure, I have an online version of all three. Here they are: [Pig Game](https://piggame2.netlify.com/) (DOM manipulation), [Budgety](http://budgety2.netlify.com/) (advanced JavaScript) and [Forkify](https://forkify.netlify.com/) (modern JavaScript and AJAX).
 
-### Q6: The videos don't load, can you fix it?
+### Q7: Videos don't load, can you fix it?
 
-**A:** Unfortunately, there is nothing I can do about it. The course is hosted on Udemy's platform, and sometimes they have small technical issues like this one. Please just come back a bit later or [contact their support team](https://support.udemy.com/hc/en-us). Also, don't forget to select the HD option in the video player.
+**A:** Unfortunately, there is nothing I can do about it. The course is hosted on Udemy's platform, and sometimes they have small technical issues like this one. Please just come back a bit later or [contact their support team](https://support.udemy.com/hc/en-us).
 
-### Q7: Are the videos downloadable as well?
+## Q8: Videos are blurred / have low quality, can you fix it?
+
+**A:** Please open video settings and change the quality from 'Auto' to another value, for example 720p. If that doesn't help, please [contact the Udemy support team](https://support.udemy.com/hc/en-us).
+
+### Q9: Are the videos downloadable?
 
 **A:** Yes, I made all videos downloadable on the Udemy platform so you can learn even without an internet connection. To download a video, use the settings icon in the right bottom corner of the video player.
 
-### Q8: I love your courses and want to get updates on new courses. How?
+### Q10: I love your courses and want to get updates on new courses. How?
 
 **A:** First, you can subscribe to my email list [at my website](http://codingheroes.io/newsletter). Plus, I make important announcements on twitter [@jonasschmedtman](https://twitter.com/jonasschmedtman), so you should definitely follow me there 🔥
 
-### Q9: Can I connect with your other students in some way?
+### Q11: How do I get my certificate of completion?
 
-**A:** Yep, I thought about this! I started quite an active Discord chatroom for you to chat with other students, help each other out or just hang out with like-minded people. You can [join using this invite](https://discord.gg/0ocsLcmnIZqxMSYD).
+**A:** A certificate of completion is provided by Udemy after you complete 100% of the course. After completing the course, just click on the "Your progress" indicator in the top right-hand corner of the course page. If you want to change your name on the certificate, please [contact the Udemy support team](https://support.udemy.com/hc/en-us).
 
-### Q10: How do I get my certificate of completion?
+### Q12: Do you accept pull requests?
 
-**A:** A certificate of completion is provided by Udemy after you complete 100% of the course. After completing the course, just click on the small trophy icon on the course overview page. If you want to change your name on the certificate, please [contact the Udemy support team](https://support.udemy.com/hc/en-us).
+**A:** No, for the simple reason that I want this repository to contain the _exact_ same code that is shown in the videos. However, please feel free to add an issue if you found one.
