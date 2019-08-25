@@ -1,11 +1,11 @@
 
 /* Todo: 
-    - Add Event Handler
-    - Get Input Values
-    - Add the new item to our data structure
-    - Add the new item to the UI
-    - Calculate budget
-    - Update the UI
+    - Add Event Handler (done)
+    - Get Input Values  (done)
+    - Add the new item to our data structure  (done)
+    - Add the new item to the UI  (done)
+    - Calculate budget  (done)
+    - Update the UI  (done)
 */
 
 /* Code Structure:
