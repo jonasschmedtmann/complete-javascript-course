@@ -176,7 +176,7 @@ body {
 .add__btn:focus { outline: none; }
 
 /***** LISTS *****/
-.container {
+.xxcontainer {
     width: 1000px;
     margin: 60px auto;
 }

@@ -124,7 +124,7 @@ var uiController = (function(){
         budgetTitle: `.budget__title`,
         incomeContainer: `.income__list`,
         expenseContainer: `.expenses__list`,
-        container: `.container`,
+        container: `.xxcontainer`,
         expensePercentLabel: `.item__percentage`
     };
 
