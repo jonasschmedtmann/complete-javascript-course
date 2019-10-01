@@ -90,3 +90,33 @@ age >= 18 ? console.log(firstName + 'drinks beer.')
 
 var drink = age >= 18 ? 'beer' : 'juice';
 console.log (drink);
+
+// SWitch
+
+var job = 'teacher';
+switch job { 
+    case 'teacher':
+        console.log(firstName + 'teaches kids to code.');
+        break;
+    case "driver":
+        console.log(firstName + 'drives an Uber in Lisbon');
+        break;
+    default:
+        console.log(firstNmae + 'does something else');
+}
+
+//truthy vs falsy
+
+var height;
+
+height = 23;
+if (height || height === 0) {
+    console.log('Variable is defined');
+} else {
+    console.log('Variable has NOT been defined');
+}
+
+//double equals does type coersion
+//so 23 == '23' are the same
+//but 23 === '23' are not the same
+
