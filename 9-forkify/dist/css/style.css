@@ -24,7 +24,7 @@ body {
   background-repeat: no-repeat;
   min-height: calc(100vh - 2 * 4vw); }
 
-.container {
+.container-forkify {
   max-width: 120rem;
   margin: 4vw auto;
   background-color: #fff;
@@ -36,12 +36,12 @@ body {
   grid-template-columns: 1.1fr 2fr 1.1fr;
   grid-template-areas: "head head head" "list recipe shopping"; }
   @media only screen and (max-width: 68.75em) {
-    .container {
+    .container-forkify {
       width: 100%;
       margin: 0;
       border-radius: 0; } }
 
-.btn, .btn-small, .btn-small:link, .btn-small:visited {
+.fbtn, .fbtn-small, .fbtn-small:link, .fbtn-small:visited {
   background-image: linear-gradient(to right bottom, #FBDB89, #F48982);
   border-radius: 10rem;
   border: none;
@@ -51,31 +51,31 @@ body {
   display: flex;
   align-items: center;
   transition: all .2s; }
-  .btn:hover, .btn-small:hover {
+  .fbtn:hover, .fbtn-small:hover {
     transform: scale(1.05); }
-  .btn:focus, .btn-small:focus {
+  .fbtn:focus, .fbtn-small:focus {
     outline: none; }
-  .btn > *:first-child, .btn-small > *:first-child {
+  .fbtn > *:first-child, .fbtn-small > *:first-child {
     margin-right: 1rem; }
 
-.btn {
+.fbtn {
   padding: 1.3rem 3rem;
   font-size: 1.4rem; }
-  .btn svg {
+  .fbtn svg {
     height: 2.25rem;
     width: 2.25rem;
     fill: currentColor; }
 
-.btn-small, .btn-small:link, .btn-small:visited {
+.fbtn-small, .fbtn-small:link, .fbtn-small:visited {
   font-size: 1.3rem;
   padding: 1rem 1.75rem;
   text-decoration: none; }
-  .btn-small svg, .btn-small:link svg, .btn-small:visited svg {
+  .fbtn-small svg, .fbtn-small:link svg, .fbtn-small:visited svg {
     height: 1.5rem;
     width: 1.5rem;
     fill: currentColor; }
 
-.btn-inline {
+.fbtn-inline {
   color: #F59A83;
   font-size: 1.2rem;
   border: none;
@@ -86,39 +86,39 @@ body {
   display: flex;
   align-items: center;
   transition: all .2s; }
-  .btn-inline svg {
+  .fbtn-inline svg {
     height: 1.5rem;
     width: 1.5rem;
     fill: currentColor;
     margin: 0 .2rem; }
-  .btn-inline span {
+  .fbtn-inline span {
     margin: 0 .4rem; }
-  .btn-inline:hover {
+  .fbtn-inline:hover {
     color: #F48982;
     background-color: #F2EFEE; }
-  .btn-inline:focus {
+  .fbtn-inline:focus {
     outline: none; }
 
-.btn-tiny {
+.fbtn-tiny {
   height: 1.75rem;
   width: 1.75rem;
   border: none;
   background: none;
   cursor: pointer; }
-  .btn-tiny svg {
+  .fbtn-tiny svg {
     height: 100%;
     width: 100%;
     fill: #F59A83;
     transition: all .3s; }
-  .btn-tiny:focus {
+  .fbtn-tiny:focus {
     outline: none; }
-  .btn-tiny:hover svg {
+  .fbtn-tiny:hover svg {
     fill: #F48982;
     transform: translateY(-1px); }
-  .btn-tiny:active svg {
+  .fbtn-tiny:active svg {
     fill: #F48982;
     transform: translateY(0); }
-  .btn-tiny:not(:last-child) {
+  .fbtn-tiny:not(:last-child) {
     margin-right: .3rem; }
 
 .heading-2 {
@@ -318,7 +318,7 @@ body {
       top: 0;
       left: 0;
       background-image: linear-gradient(to right bottom, #FBDB89, #F48982);
-      opacity: .6; }
+      opacity: .3; }
   .recipe__img {
     width: 100%;
     display: block;
@@ -436,57 +436,56 @@ body {
   .recipe__by {
     font-weight: 700; }
 
-.shopping {
-  padding: 3rem 4rem;
-  display: flex;
-  flex-direction: column; }
-  .shopping__list {
-    list-style: none;
-    max-height: 77rem;
-    overflow: scroll; }
-  .shopping__item {
-    display: flex;
-    align-items: flex-start;
-    padding: 1.3rem 0;
-    border-bottom: 1px solid #F2EFEE;
-    position: relative; }
-  .shopping__count {
-    flex: 0 0 7.5rem;
-    padding: .4rem .5rem;
-    border: 1px solid #F2EFEE;
-    border-radius: 3px;
-    margin-right: 2rem;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between; }
-    .shopping__count input {
-      color: inherit;
-      font-family: inherit;
-      font-size: 1.2rem;
-      text-align: center;
-      border: none;
-      width: 3.7rem;
-      border-radius: 3px; }
-      .shopping__count input:focus {
-        outline: none;
-        background-color: #F2EFEE; }
-    .shopping__count p {
-      font-size: 1.2rem; }
-  .shopping__description {
-    flex: 1;
-    font-size: 1.3rem;
-    margin-top: .4rem;
-    margin-right: 1.5rem; }
-  .shopping__delete {
-    margin-top: .5rem;
-    position: absolute;
-    right: 0;
-    background-image: linear-gradient(to right, transparent 0%, #fff 40%, #fff 100%);
-    width: 3.75rem;
-    padding-left: 2rem;
-    visibility: hidden;
-    opacity: 0;
-    transition: all .5s; }
-  .shopping__item:hover .shopping__delete {
-    opacity: 1;
-    visibility: visible; }
+    .shopping {
+      padding: 3rem 4rem;
+      display: flex;
+      flex-direction: column; }
+      .shopping__list {
+        list-style: none;
+        max-height: 77rem;
+        overflow: scroll; }
+      .shopping__item {
+        display: flex;
+        align-items: flex-start;
+        padding: 1.3rem 0;
+        border-bottom: 1px solid #F2EFEE;
+        position: relative; }
+      .shopping__count {
+        flex: 0 0 7.5rem;
+        padding: .4rem .5rem;
+        border: 1px solid #F2EFEE;
+        border-radius: 3px;
+        margin-right: 2rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between; }
+        .shopping__count input {
+          color: inherit;
+          font-size: 1.2rem;
+          text-align: center;
+          border: none;
+          width: 3.7rem;
+          border-radius: 3px; }
+          .shopping__count input:focus {
+            outline: none;
+            background-color: #F2EFEE; }
+        .shopping__count p {
+          font-size: 1.2rem; }
+      .shopping__description {
+        flex: 1;
+        font-size: 1.3rem;
+        margin-top: .4rem;
+        margin-right: 1.5rem; }
+      .shopping__delete {
+        margin-top: .5rem;
+        position: absolute;
+        right: 0;
+        background-image: linear-gradient(to right, transparent 0%, #fff 40%, #fff 100%);
+        width: 3.75rem;
+        padding-left: 2rem;
+        visibility: hidden;
+        opacity: 0;
+        transition: all .5s; }
+      .shopping__item:hover .shopping__delete {
+        opacity: 1;
+        visibility: visible; }
