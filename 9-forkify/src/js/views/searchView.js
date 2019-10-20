@@ -14,6 +14,17 @@ export const clearResults = () => {
     elements.searchResPages.innerHTML = '';
 }
 
+export const highlightSelected = (id) => {
+    const resultsArr = Array.from(document.querySelectorAll('.results__link'));
+    resultsArr.forEach((el) => {
+        el.classList.remove('results__link--active');
+    });
+    const el = document.querySelector(`.results__link[href*="${id}"]`);
+    if(el){
+        el.classList.add('results__link--active');
+    }
+}
+
 export const renderResults = (recipes, page = 1, resPerPage = 10) => {
     // render results of current page
     const start = (page - 1) * resPerPage;
