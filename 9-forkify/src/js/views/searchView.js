@@ -31,7 +31,7 @@ export const renderResults = (recipes, page = 1, resPerPage = 10) => {
     const end = page * resPerPage;
 
     recipes.slice(start, end).forEach(currentItem => {
-        currentItem.title = limitReciptTitle(currentItem.title);
+        //currentItem.title = limitReciptTitle(currentItem.title);
         elements.searchResList.insertAdjacentHTML('beforeend', getResultHtml(currentItem));
     })
 
