@@ -6,11 +6,11 @@ export const clearRecipe = () => {
     elements.recipe.innerHTML = '';
 }
 
-export const renderRecipe = (recipe) => {
-    elements.recipe.innerHTML = getRecipeHtml(recipe);
+export const renderRecipe = (recipe, isLiked) => {
+    elements.recipe.innerHTML = getRecipeHtml(recipe, isLiked);
 }
 
-const getRecipeHtml = (recipe) => {
+const getRecipeHtml = (recipe, isLiked) => {
     return `
     <figure class="recipe__fig">
         <img src="${recipe.img}" alt="Tomato" class="recipe__img">
@@ -49,7 +49,7 @@ const getRecipeHtml = (recipe) => {
         </div>
         <button class="recipe__love">
             <svg class="header__likes">
-                <use href="${path}img/forkify_icons.svg#icon-heart-outlined"></use>
+                <use href="${path}img/forkify_icons.svg#icon-heart${isLiked ? '' : '-outlined'}"></use>
             </svg>
         </button>
     </div>
@@ -108,13 +108,14 @@ const formatCount = (count) => {
     if (count) {
         // count == 2.5 --> 2 1/2
         // count = 0.5 --> 1/2
-        const [int, dec] = count.toString().split('.').map(el => parseInt(el, 10));
-        if (!dec) return count;
+        const newCount = Math.round(count * 100) / 100;
+        const [int, dec] = newCount.toString().split('.').map(el => parseInt(el, 10));
+        if (!dec) return newCount;
         if (int === 0) {
-            const fr = new Fraction(count);
+            const fr = new Fraction(newCount);
             return `${fr.numerator}/${fr.denominator}`;
         } else {
-            const fr = new Fraction(count - int);
+            const fr = new Fraction(newCount - int);
             return `${int} ${fr.numerator}/${fr.denominator}`;
         }
     }
