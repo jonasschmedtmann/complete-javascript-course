@@ -84,7 +84,7 @@ const controlRecipe = async () => {
         // 3. Prepare UI for changes 
         recipeView.clearRecipe();
         renderLoader(elements.recipe);
-
+        searchView.highlightSelected(id);
         try {
             // 4. Search for recipe, and parse ingredients
             await state.recipe.getRecipe();
@@ -116,7 +116,7 @@ const controlShoppingList = () => {
         // Add each ingredient to the list
         state.recipe.ingredients.forEach((el) => {
             const item = state.shoppingList.addItem(el.count, el.unit, el.ingredient);
-            ShoppingListView.renderItem(item);
+            shoppingListView.renderItem(item);
         });
     }
 }
@@ -147,6 +147,21 @@ const controlLikes = () => {
     }
     likesView.toggleLikeMenu(state.likes.getNumLikes());
 }
+
+// Restore liked recipes on page load
+window.addEventListener('load', () => {
+    state.likes = new Likes();
+    // Restore likes
+    state.likes.readStorage();
+    
+    // Toggle likes menu button
+    likesView.toggleLikeMenu(state.likes.getNumLikes());
+
+    state.likes.likes.forEach((like) => {
+        likesView.renderLike(like);
+    })
+})
+
 // Handle delete and update list item events
 elements.shopping.addEventListener('click', e => {
     const id = e.target.closest('.shopping__item').dataset.itemid;
@@ -155,12 +170,12 @@ elements.shopping.addEventListener('click', e => {
         // Delete from state
         state.shoppingList.deleteItem(id);
         // Delete from UI
-        ShoppingListView.deleteItem(id);
+        shoppingListView.deleteItem(id);
         // Handle the count update
     } else if (e.target.matches('.shopping__count-value')) {
         // Read the data from the interface
         const val = parseFloat(e.target.value, 10);
-        if(val < 0){
+        if (val < 0) {
             e.target.value = 0;
         } else {
             state.shoppingList.updateCount(id, val);
