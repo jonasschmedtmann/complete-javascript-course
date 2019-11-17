@@ -46,50 +46,109 @@ if (teamJohnAvg > teamMikeAvg) {
 
 /* SOLUTION 2 (with bonus): swith statements */
 
-var teamJohnAvg = 89 + 120 + 103 / 3;
-var teamMikeAvg = 116 + 94 + 123 / 3;
-var teamMaryAvg = 97 + 134 + 105 / 3;
+// var teamJohnAvg = 89 + 120 + 103 / 3;
+// var teamMikeAvg = 116 + 94 + 123 / 3;
+// var teamMaryAvg = 97 + 134 + 105 / 3;
 
 /*
 var teamJohnAvg = 210;
 var teamMikeAvg = 209;
 var teamMaryAvg = 208;
 */
-var roundJohnAvg = Math.round(teamJohnAvg);
-var roundMikeAvg = Math.round(teamMikeAvg);
-var roundMaryAvg = Math.round(teamMaryAvg);
+// var roundJohnAvg = Math.round(teamJohnAvg);
+// var roundMikeAvg = Math.round(teamMikeAvg);
+// var roundMaryAvg = Math.round(teamMaryAvg);
 
-console.log('John\'s team\'s average: ' + teamJohnAvg)
-console.log('Mike\'s team\'s average: ' + teamMikeAvg)
-console.log('Mary\'s team\'s average: ' + teamMaryAvg)
+// console.log('John\'s team\'s average: ' + teamJohnAvg)
+// console.log('Mike\'s team\'s average: ' + teamMikeAvg)
+// console.log('Mary\'s team\'s average: ' + teamMaryAvg)
 
-switch (true) {
+// switch (true) {
   // John wins
-  case ((teamJohnAvg > teamMikeAvg) && (teamJohnAvg > teamMaryAvg)):
-    console.log('John\'s team is the winner with ' + teamJohnAvg + ' points!');
-    break;
+  // case ((teamJohnAvg > teamMikeAvg) && (teamJohnAvg > teamMaryAvg)):
+  //   console.log('John\'s team is the winner with ' + teamJohnAvg + ' points!');
+  //   break;
   // Mike wins
-  case ((teamMikeAvg > teamJohnAvg) && (teamMikeAvg > teamMaryAvg)):
-    console.log('Mike\'s team is the winner with ' + teamMikeAvg + ' points!');
-    break;
+  // case ((teamMikeAvg > teamJohnAvg) && (teamMikeAvg > teamMaryAvg)):
+  //   console.log('Mike\'s team is the winner with ' + teamMikeAvg + ' points!');
+  //   break;
   // Mary wins
-  case ((teamMaryAvg > teamJohnAvg) && (teamMaryAvg > teamMikeAvg)):
-    console.log('Mary\'s team is the winner with ' + teamMaryAvg + ' points!');
-    break;
+  // case ((teamMaryAvg > teamJohnAvg) && (teamMaryAvg > teamMikeAvg)):
+  //   console.log('Mary\'s team is the winner with ' + teamMaryAvg + ' points!');
+  //   break;
   // John and Mike tied
-  case ((teamJohnAvg === teamMikeAvg && teamJohnAvg > teamMaryAvg)):
-    console.log('John\'s team and Mike\'s team are tied with ' + teamJohnAvg + ' points!');
-    break;
+  // case ((teamJohnAvg === teamMikeAvg && teamJohnAvg > teamMaryAvg)):
+  //   console.log('John\'s team and Mike\'s team are tied with ' + teamJohnAvg + ' points!');
+  //   break;
   // John and Mary tied
-  case ((teamJohnAvg === teamMaryAvg && teamJohnAvg > teamMikeAvg)):
-    console.log('John\'s team and Mary\'s team are tied with ' + teamJohnAvg + ' points!');
-    break;
+  // case ((teamJohnAvg === teamMaryAvg && teamJohnAvg > teamMikeAvg)):
+  //   console.log('John\'s team and Mary\'s team are tied with ' + teamJohnAvg + ' points!');
+  //   break;
   // Mike and Mary tied
-  case ((teamMikeAvg === teamMaryAvg && teamMikeAvg > teamJohnAvg)):
-    console.log('Mike\'s team and Mary\'s team are tied with ' + teamMikeAvg + ' points!');
-    break;
+  // case ((teamMikeAvg === teamMaryAvg && teamMikeAvg > teamJohnAvg)):
+  //   console.log('Mike\'s team and Mary\'s team are tied with ' + teamMikeAvg + ' points!');
+  //   break;
   // 3-way tie
-  case ((teamMikeAvg === teamMaryAvg && teamMikeAvg === teamJohnAvg)):
-    console.log('All three teams are tied with ' + teamJohnAvg + ' points!');
-    break;
+  // case ((teamMikeAvg === teamMaryAvg && teamMikeAvg === teamJohnAvg)):
+  //   console.log('All three teams are tied with ' + teamJohnAvg + ' points!');
+  //   break;
+// }
+
+
+/*****************************
+* CODING CHALLENGE 3
+*/
+
+/*
+John and his family went on a holiday and went to 3 different restaurants. The bills were $124, $48 and $268.
+
+To tip the waiter a fair amount, John created a simple tip calculator (as a function). 
+He likes to tip 20% of the bill when the bill is less than $50, 15% when the bill is between $50 and $200, 
+and 10% if the bill is more than $200.
+
+In the end, John would like to have 2 arrays:
+1) Containing all three tips (one for each bill)
+2) Containing all three final paid amounts (bill + tip).
+
+(NOTE: To calculate 20% of a value, simply multiply it with 20/100 = 0.2)
+
+GOOD LUCK 😀
+*/
+/* Pseudocode:
+1. Make a fcn that takes in a single bill amount.
+2. The function will calculate one value: the tip
+3. The function will return the tip amount
+4. The function will be called three times - once for each bill - and the output will be stored in a different 
+variable each time (e.g., tip1, tip2, and tip3)
+5. The total amount paid will be calculated for each bill (amtPaid1, amtPaid2, and amtPaid3).
+6. The tip array will be created using 'push' method.
+7. The amt paid array will be created using 'push' method.
+*/
+
+var bills = [124, 48, 268];
+
+var tipCalc = function(bill) {
+  switch(true) {
+    case bill < 50:
+      tip = .2 * bill;
+      break;
+    case bill <= 200:
+      tip = .15 * bill;
+      break;
+    case bill > 200:
+      tip = .1 * bill;
+  }
+  return tip;
 }
+
+var tips = [tipCalc(bills[0]), 
+            tipCalc(bills[1]),
+            tipCalc(bills[2])];
+
+console.log('The tips array is: ' + tips);
+
+var amtsPaid = [bills[0] + tips[0], 
+                bills[1] + tips[1], 
+                bills[2] + tips[2]];
+                
+console.log('The amounts Paid array is: ' + amtsPaid);
