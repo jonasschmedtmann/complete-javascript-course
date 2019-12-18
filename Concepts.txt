@@ -1,3 +1,5 @@
 Variabe Mutation and Type Coercion
 Input Prompt
-Operator Precedence
+Operator Precedence 
+Falsy values : undefined, null, 0 , NaN
+Truthy values : NOT falsy values
