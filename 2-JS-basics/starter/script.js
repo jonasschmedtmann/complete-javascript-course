@@ -47,3 +47,4 @@ console.log("John's BMI is "+ john.calcBMI())
 console.log(john)
 console.log("Mark's BMI is " + mark.calcBMI())
 console.log(mark)
+
