@@ -1,3 +1,14 @@
 Variabe Mutation and Type Coercion
 Input Prompt
 Operator Precedence
+Function expression vs Function decleration
+    //This is a function decleration
+    function whatDoYouDo(job, firstName){}
+
+    //This is a function expression
+    var whatDoYouDo = funtion(job, firstName){}
+
+-> Expressions always produces a result
+-> Statements do not produce any immediate value until they are called
+-> Hoisting
+-> Method Borrowing
