@@ -19,9 +19,11 @@ activePlayer = 0;
  document.querySelector('.dice').style.display = 'none';
 
  //Initalizing Total Scores at the begining to ZERO
- var totalScore0 = document.querySelector('#score-0').innerHTML = 0;
- var totalScore1 = document.querySelector('#score-1').innerHTML = 0;
-
+ var totalScore0 = document.querySelector('#score-0');
+ var totalScore1 = document.querySelector('#score-1');
+ totalScore0.innerHTML = 0;
+ totalScore1.innerHTML = 0;
+ 
 //Initalizing Round Scores at the begining to ZERO
  var current0 = document.querySelector('#current-0') ;
  var current1 = document.querySelector('#current-1') ;
@@ -29,7 +31,7 @@ activePlayer = 0;
  current1.innerHTML = 0;
 
 //Roll Dice Button Event listener
- document.querySelector('.btn-roll').addEventListener('click', function () {
+document.querySelector('.btn-roll').addEventListener('click', function () {
 
     //1. Rolling a dice
     var dice = Math.floor( Math.random()  * 6 ) + 1;
@@ -47,6 +49,7 @@ activePlayer = 0;
         document.querySelector('#current-' + activePlayer).textContent = roundScore;
     }
     else{
+        // If  the current dice number IS 1
         roundScore = 0;
 
         //Making round scores of both the players to ZERO
@@ -54,23 +57,44 @@ activePlayer = 0;
         current1.innerHTML = 0;
         
         //Making current active player as non-active
-        document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
+        document.querySelector('.player-' + activePlayer + '-panel').classList.toggle('active');
 
         //Changing active player 
         activePlayer = activePlayer=== 0 ? 1 : 0;
         
         //Making current active player as active
-        document.querySelector('.player-' + activePlayer + '-panel').classList.add('active');
+        document.querySelector('.player-' + activePlayer + '-panel').classList.toggle('active');
 
         //Hiding dice 
-        diceDOM.style.display = 'none';
+        //diceDOM.style.display = 'none';
     }
 
  })
 
 
+ //Hold Dice Button Event Listener
+ document.querySelector('.btn-hold').addEventListener('click', function(){
+    document.querySelector('.player-' + activePlayer + '-panel').classList.toggle('active');
+    if (activePlayer === 0){
+        totalScore0.innerHTML = String(Number(totalScore0.innerHTML) + Number(roundScore)); 
+         current0.innerHTML = 0;
+         activePlayer = 1;
+         
+    } else {
+        totalScore1.innerHTML = String (Number(totalScore1.innerHTML) + Number(roundScore));
+        current1.innerHTML = 0;
+        activePlayer = 0;
+    }
+    if(Number(totalScore0.innerHTML) > 99 ){
+        alert("Player 0 won");
+    } else if(Number(totalScore1.innerHTML) > 99){
+        alert("Player 1 won");
+    } else{
+        roundScore = 0;
+        document.querySelector('.player-' + activePlayer + '-panel').classList.toggle('active');      
+    }
+    document.querySelector('.dice').style.display = 'none'; 
 
- // document.querySelector('#current-' + activePlayer).textContent = dice;
- 
- //  var x = document.querySelector('#score-0').textContent;
- //  console.log(x);
+ });
+
+
