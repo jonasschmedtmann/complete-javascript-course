@@ -1,5 +1,6 @@
 Variabe Mutation and Type Coercion
 Input Prompt
+<<<<<<< HEAD
 Operator Precedence
 Function expression vs Function decleration
     //This is a function decleration
@@ -12,3 +13,8 @@ Function expression vs Function decleration
 -> Statements do not produce any immediate value until they are called
 -> Hoisting
 -> Method Borrowing
+=======
+Operator Precedence 
+Falsy values : undefined, null, 0 , NaN
+Truthy values : NOT falsy values
+>>>>>>> 1dce379e0696ab9befa30831e48957943f4bd2ef
