@@ -10,25 +10,37 @@ GAME RULES:
 */
 
 var scores, currentScore, activePlayer;
-scores = [0,0];
-roundScore = 0;
-activePlayer = 0;
+var totalScore0,totalScore1;
+var current0,current1;
+var diceDOM = document.querySelector('.dice');
+
+function initialize(){
+    scores = [0,0];
+    roundScore = 0;
+    activePlayer = 0;
+
+    //Initally hiding the dice
+    document.querySelector('.dice').style.display = 'none';
+
+    //Initalizing Total Scores at the begining to ZERO
+    totalScore0 = document.querySelector('#score-0');
+    totalScore1 = document.querySelector('#score-1');
+    totalScore0.innerHTML = 0;
+    totalScore1.innerHTML = 0;
+    
+    //Initalizing Round Scores at the begining to ZERO
+    current0 = document.querySelector('#current-0') ;
+    current1 = document.querySelector('#current-1') ;
+    current0.innerHTML = 0;
+    current1.innerHTML = 0;
+}
+
+initialize();
 
 
-//Initally hiding the dice
- document.querySelector('.dice').style.display = 'none';
-
- //Initalizing Total Scores at the begining to ZERO
- var totalScore0 = document.querySelector('#score-0');
- var totalScore1 = document.querySelector('#score-1');
- totalScore0.innerHTML = 0;
- totalScore1.innerHTML = 0;
- 
-//Initalizing Round Scores at the begining to ZERO
- var current0 = document.querySelector('#current-0') ;
- var current1 = document.querySelector('#current-1') ;
- current0.innerHTML = 0;
- current1.innerHTML = 0;
+document.querySelector('.btn-new').addEventListener('click', function () {
+    initialize();
+});
 
 //Roll Dice Button Event listener
 document.querySelector('.btn-roll').addEventListener('click', function () {
@@ -37,7 +49,7 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
     var dice = Math.floor( Math.random()  * 6 ) + 1;
 
     //2. Display the dice
-    var diceDOM = document.querySelector('.dice');
+    
     diceDOM.style.display = 'block';
 
     //3. Chnage the dice image
@@ -71,30 +83,56 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
 
  })
 
+function nextPlayer (){
+    activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+    document.querySelector('.player-0-panel').classList.toggle('active');
+    document.querySelector('.player-1-panel').classList.toggle('active');
+    current0.innerHTML = current1.innerHTML = roundScore = 0;
+    totalScore0.innerHTML = scores[0];
+    totalScore1.innerHTML = scores[1];
 
- //Hold Dice Button Event Listener
- document.querySelector('.btn-hold').addEventListener('click', function(){
-    document.querySelector('.player-' + activePlayer + '-panel').classList.toggle('active');
-    if (activePlayer === 0){
-        totalScore0.innerHTML = String(Number(totalScore0.innerHTML) + Number(roundScore)); 
-         current0.innerHTML = 0;
-         activePlayer = 1;
-         
+
+}
+//Hold Dice Button Event Listener
+document.querySelector('.btn-hold').addEventListener('click', function(){
+    scores[activePlayer] += roundScore;
+    
+    if(scores[activePlayer] > 9){
+        diceDOM.style.display = 'none';
+        document.querySelector('#name-' + activePlayer).textContent = 'Winner!';   
+        document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
+        document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active')
     } else {
-        totalScore1.innerHTML = String (Number(totalScore1.innerHTML) + Number(roundScore));
-        current1.innerHTML = 0;
-        activePlayer = 0;
+        nextPlayer();
     }
-    if(Number(totalScore0.innerHTML) > 99 ){
-        alert("Player 0 won");
-    } else if(Number(totalScore1.innerHTML) > 99){
-        alert("Player 1 won");
-    } else{
-        roundScore = 0;
-        document.querySelector('.player-' + activePlayer + '-panel').classList.toggle('active');      
-    }
-    document.querySelector('.dice').style.display = 'none'; 
 
+    // document.querySelector('.player-' + activePlayer + '-panel').classList.toggle('active');
+    // if (activePlayer === 0){
+    //     totalScore0.innerHTML = String(Number(totalScore0.innerHTML) + Number(roundScore)); 
+    //      current0.innerHTML = 0;
+    //      activePlayer = 1;         
+    // } else {
+    //     totalScore1.innerHTML = String (Number(totalScore1.innerHTML) + Number(roundScore));
+    //     current1.innerHTML = 0;
+    //     activePlayer = 0;
+    // }
+
+
+
+    // if(Number(totalScore0.innerHTML) > 99 ){
+    //     alert("Player 0 won");
+    //     document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
+    //     initialize();
+    //     document.querySelector('.player-0-panel').classList.toggle('active');  
+    // } else if(Number(totalScore1.innerHTML) > 99){
+    //     alert("Player 1 won");
+    //     initialize();
+    //     document.querySelector('.player-1-panel').classList.toggle('active');
+    // } else{
+    //     roundScore = 0;
+    //     document.querySelector('.player-' + activePlayer + '-panel').classList.toggle('active');      
+    // }
+    // document.querySelector('.dice').style.display = 'none'; 
  });
 
 
