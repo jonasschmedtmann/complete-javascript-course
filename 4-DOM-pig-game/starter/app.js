@@ -16,7 +16,7 @@ var totalScore0,totalScore1;
 var current0,current1;
 var prevDiceNum;
 var diceDOM = document.querySelector('.dice');
-var winScore, input;
+var winScore;
 
 function initialize(){
     scores = [0,0];
@@ -134,7 +134,14 @@ document.querySelector('.btn-hold').addEventListener('click', function(){
         totalScore0.innerHTML = scores[0];
         totalScore1.innerHTML = scores[1];
         input = document.querySelector('.final-score').value;
-        if(scores[activePlayer] > input - 1 ){
+        if(input){
+            winScore = input;
+        }
+        else{
+            winScore = 100;
+        }
+
+        if(scores[activePlayer] > winScore - 1 ){
             diceDOM.style.display = 'none';
             document.querySelector('#name-' + activePlayer).textContent = 'Winner!';   
             document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
@@ -183,10 +190,10 @@ function nextPlayer (){
     current0.innerHTML = current1.innerHTML = roundScore = 0;
 }
 
-function setWinScore() {
-    winScore = Number (window.prompt("Please enter the winning score number above 1 : "));
-    if(winScore < 2 ){
-        setWinScore()
-    }
-    console.log("Winning score " + winScore + " Type of winScore " + typeof winScore)
-}
+// function setWinScore() {
+//     winScore = Number (window.prompt("Please enter the winning score number above 1 : "));
+//     if(winScore < 2 ){
+//         setWinScore()
+//     }
+//     console.log("Winning score " + winScore + " Type of winScore " + typeof winScore)
+// }
