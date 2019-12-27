@@ -13,7 +13,85 @@ Truthy values : NOT falsy values
 
 -> Expressions always produces a result
 -> Statements do not produce any immediate value until they are called
--> Hoisting
--> Method Borrowing
+-> Hoisting : All the variables will be assigned as undefined initally
+==========================================================================================
+-> Method Borrowing : 
+    Example
+            var objA = {
+                name: "object A",
+                say: function(greet) {
+                    alert(greet + ", " + this.name);
+                }
+            }
+
+            objA.say("Hi"); // Displays: Hi, object A
+
+            var objB = {
+                name: "object B"
+            }
+
+            /* The objB doesn't have say() method, but it can borrow it from objA */
+            objA.say.call(objB, "Hello"); // Displays: Hello, object B
+==========================================================================================
 
 
+==> Everything in javascript is an object (Almost Everything)
+    -> Except Primitives everything else in javascript is an object
+    -> Primitives :
+        - Numbers
+        - Strings
+        - Booleans
+        - Undefined
+        - Null
+    -> Everything else :
+        - Arrays
+        - Functions
+        - Object
+        - Dates 
+        - Wrapper for Numbers, Strings, Booleans
+
+
+-> In javascript a constructor is same or similar to class in other OOP languages
+-> Every Object has a property called 'Prototype'
+-> In order for an object to inhert a method or properties, the parent class has to add it to it's own Prototype property so that clid instances can inherit it
+-> The constructor's prototype property is NOT the prototype of the constructor itself, but the prototype of all the instances created through it
+
+Prototype chaining : 
+    - johnObject is an instance of Person constructor
+    - so the Prototype chain will be as  below
+
+    johnObject -> PersonObject -> Object Object -> null
+
+    - Whenever a method is called on johnObject, interpreter will look for that object on johnObject's prototype property
+    - If it couldn't find it there it will go up in the prototype chain and look there, in this case Person's prototype
+    - It will continue to look for that object in the prototype chain until it finds that method or null 
+    - Object Object is the only Object having null in its prototype property 
+-> console.info() : We will get that object's complete info
+    eg : x = [1, 2, 3]; console.log(x) will only give values 1, 2, 3
+        console.info(x) will print all the information including its prototype information
+
+
+Objects vs Primitives
+
+    -> Primitives store data assigend to them inside them
+    -> Objects just hold a reference to where the data is stored
+
+    eg: 
+    // Primitives
+            var a = 23;
+            var b = a;
+            a = 46;
+            console.log(a); //prints 46
+            console.log(b); // prints 23 as it just  copied the value of a not its reference
+
+
+
+    // Objects
+            var obj1 = {
+                name: 'John',
+                age: 26
+            };
+            var obj2 = obj1;
+            obj1.age = 30;
+            console.log(obj1.age); // prints 30
+            console.log(obj2.age); // prints 30 as it copied the reference of obj1 and not its value
