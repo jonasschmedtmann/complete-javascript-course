@@ -95,3 +95,13 @@ Objects vs Primitives
             obj1.age = 30;
             console.log(obj1.age); // prints 30
             console.log(obj2.age); // prints 30 as it copied the reference of obj1 and not its value
+
+
+
+
+
+
+
+-> Immediately Invoked Function Expressions
+-> Closures
+-> Modules
