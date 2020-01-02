@@ -1,22 +1,53 @@
+====================================================================================================================================================
 Variabe Mutation and Type Coercion
-Input Prompt
-Operator Precedence
-Function expression vs Function decleration
-    //This is a function decleration
-    function whatDoYouDo(job, firstName){}
+----------------------------------------------------------------------------------------------------------------------------------------------------
+Varibale Mutation   :   
+        An immutable value is one that, once created, can never be changed. In JavaScript, primitive values such as numbers, strings and booleans are always immutable. However, data structures like objects and arrays are not. By mutation I mean changing or affecting a source element.
 
-    //This is a function expression
-    var whatDoYouDo = funtion(job, firstName){}
+Type Coercion   :   
+        Type coercion is the process of converting value from one type to another (such as string to number, object to boolean, and so on). Any type, be it primitive or an object, is a valid subject for type coercion. To recall, primitives are: number, string, boolean, null, undefined + Symbol (added in ES6).
 
-Falsy values : undefined, null, 0 , NaN
-Truthy values : NOT falsy values
+====================================================================================================================================================
+Shallow Copy vs Deep Copy : 
+----------------------------------------------------------------------------------------------------------------------------------------------------
+    Shallow Copy   :   only copies the references to variables/objects/Arrays
+    Deep Copy      :   creates a complete brand new copy of your array
+====================================================================================================================================================
 
--> Expressions always produces a result
--> Statements do not produce any immediate value until they are called
+-> Input Prompt
+
+-> Operator Precedence  :   https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
+
+====================================================================================================================================================
+Function expression vs Function decleration : 
+----------------------------------------------------------------------------------------------------------------------------------------------------
+    function decleration    :   function whatDoYouDo(job, firstName){}
+    function expression     :   var whatDoYouDo = funtion(job, firstName){}
+
+
+====================================================================================================================================================
+Falsy values vs Truthy values
+----------------------------------------------------------------------------------------------------------------------------------------------------
+Falsy values    : undefined, null, 0 , NaN
+Truthy values   : all those which are NOT Falsy values
+
+
+====================================================================================================================================================
+Expressions vs Statements
+----------------------------------------------------------------------------------------------------------------------------------------------------
+Expressions     :   always produces a result
+Statements      :   do not produce any immediate value until they are called
+
+
+
 -> Hoisting : All the variables will be assigned as undefined initally
-==========================================================================================
--> Method Borrowing : 
-    Example
+
+
+====================================================================================================================================================
+Method Borrowing 
+    syntax :    sourceObj._functionName_.call(targetObj, _inputParams_)
+----------------------------------------------------------------------------------------------------------------------------------------------------
+    Example:
             var objA = {
                 name: "object A",
                 say: function(greet) {
@@ -32,31 +63,53 @@ Truthy values : NOT falsy values
 
             /* The objB doesn't have say() method, but it can borrow it from objA */
             objA.say.call(objB, "Hello"); // Displays: Hello, object B
-==========================================================================================
+====================================================================================================================================================
 
 
 ==> Everything in javascript is an object (Almost Everything)
     -> Except Primitives everything else in javascript is an object
+    
     -> Primitives :
         - Numbers
         - Strings
         - Booleans
         - Undefined
         - Null
+
     -> Everything else :
         - Arrays
         - Functions
         - Object
         - Dates 
         - Wrapper for Numbers, Strings, Booleans
-
-
+====================================================================================================================================================
+Constructor : 
+----------------------------------------------------------------------------------------------------------------------------------------------------
+In the example, function Person() is an object constructor function.
+-> Objects of the same type are created by calling the constructor function with the new keyword:
 -> In javascript a constructor is same or similar to class in other OOP languages
+
+    Example
+        function Person(first, last, age, eye) {
+        this.firstName = first;
+        this.lastName = last;
+        this.age = age;
+        this.eyeColor = eye;
+        }
+
+        var myFather = new Person("John", "Doe", 50, "blue");
+        var myMother = new Person("Sally", "Rally", 48, "green");
+====================================================================================================================================================
+
+
 -> Every Object has a property called 'Prototype'
 -> In order for an object to inhert a method or properties, the parent class has to add it to it's own Prototype property so that clid instances can inherit it
 -> The constructor's prototype property is NOT the prototype of the constructor itself, but the prototype of all the instances created through it
 
+
+====================================================================================================================================================
 Prototype chaining : 
+----------------------------------------------------------------------------------------------------------------------------------------------------
     - johnObject is an instance of Person constructor
     - so the Prototype chain will be as  below
 
@@ -66,13 +119,16 @@ Prototype chaining :
     - If it couldn't find it there it will go up in the prototype chain and look there, in this case Person's prototype
     - It will continue to look for that object in the prototype chain until it finds that method or null 
     - Object Object is the only Object having null in its prototype property 
+====================================================================================================================================================
+
 -> console.info() : We will get that object's complete info
     eg : x = [1, 2, 3]; console.log(x) will only give values 1, 2, 3
         console.info(x) will print all the information including its prototype information
 
 
-Objects vs Primitives
-
+====================================================================================================================================================
+Objects vs Primitives vs Functions
+----------------------------------------------------------------------------------------------------------------------------------------------------
     -> Primitives store data assigend to them inside them
     -> Objects just hold a reference to where the data is stored
 
@@ -96,8 +152,13 @@ Objects vs Primitives
             console.log(obj1.age); // prints 30
             console.log(obj2.age); // prints 30 as it copied the reference of obj1 and not its value
 
-
-
+    //Functions
+    -> A function is an instance of an Object type;
+    -> A function behaves like any other Object
+    -> We can store function in a variable
+    -> We can pass function as an argument to another function
+    -> We can also return a function from a function
+====================================================================================================================================================
 
 
 
