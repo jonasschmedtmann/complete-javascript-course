@@ -166,3 +166,5 @@ Objects vs Primitives vs Functions
 -> Immediately Invoked Function Expressions
 -> Closures
 -> Modules
+-> Key Codes
+-> DRY principle - Don't repeat yourself principle
