@@ -88,6 +88,9 @@ Constructor :
 In the example, function Person() is an object constructor function.
 -> Objects of the same type are created by calling the constructor function with the new keyword:
 -> In javascript a constructor is same or similar to class in other OOP languages
+-> A function constructor name usually starts with a CAPITAL LETTER so that it can be easily distinguishable from other functions
+-> While creating objects of function constructor we use new keyword
+-> The new keyword will first create an empty object first and sets the this keyword on this object 
 
     Example
         function Person(first, last, age, eye) {
