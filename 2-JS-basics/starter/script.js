@@ -102,3 +102,20 @@ console.log(average);
 var x, y;
 x = y = (3 + 5) * 4 - 6; // 26
 console.log(x, y);
+
+// More operators
+// x = x * 2; is the same thing as x *= 2;
+
+x *=2; // 26 * 2 = 52
+console.log(x);
+x +=10; // 52 + 10
+console.log(x);
+
+//all 3 below examples are same
+// x = x + 1;
+// x += 1;
+// x++
+x++; // 62 + 1
+console.log(x);
+x--; // 63 - 1
+console.log(x);
