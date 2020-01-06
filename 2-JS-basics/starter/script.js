@@ -20,33 +20,31 @@
 
 // Variable mutation and type coercion LESSON 2
 
-//2 diff data types, string and number. but if we print them to console, what happens?
-var firstName = 'Zachary';
-var age = 22;
-console.log(firstName + ' ' + age)
+// //2 diff data types, string and number. but if we print them to console, what happens?
+// var firstName = 'Zachary';
+// var age = 22;
+// console.log(firstName + ' ' + age)
 
-// How does this work? It prints it all in the same format it appears...
-        // age was logged as a string, thanks to type coercion
+// // How does this work? It prints it all in the same format it appears...
+//         // age was logged as a string, thanks to type coercion
 
-var job, isMarried;
-job = 'student';
-isMarried = false;
+// var job, isMarried;
+// job = 'student';
+// isMarried = false;
 
-console.log(firstName + ' is a ' + age + ' year old ' + job + '. Is he married? ' + isMarried);
+// console.log(firstName + ' is a ' + age + ' year old ' + job + '. Is he married? ' + isMarried);
 
-// Variable mutation (redefining variables)
-job = 'developer';
-age = 'twenty two';
+// // Variable mutation (redefining variables)
+// job = 'developer';
+// age = 'twenty two';
 
-// instead of console logging it, we are going to use alert
-alert(firstName + ' is a ' + age + ' year old ' + job + '. Is he married? ' + isMarried);
+// // instead of console logging it, we are going to use alert
+// alert(firstName + ' is a ' + age + ' year old ' + job + '. Is he married? ' + isMarried);
 
-// we can also ask a question using prompt
+// // we can also ask a question using prompt
 
-var lastName = prompt('What is his last name?');
-console.log(firstName + ' ' + lastName)
-
-
+// var lastName = prompt('What is his last name?');
+// console.log(firstName + ' ' + lastName)
 
 
 
@@ -55,4 +53,52 @@ console.log(firstName + ' ' + lastName)
 
 
 
-// Basic Operators LESSON 3
+
+
+// // Basic Operators LESSON 3
+
+// var year = 2020
+// var ageZack = 22;
+// var ageBran = 21;
+
+// yearZack = year - ageZack - 1;
+// yearBran = year - ageBran - 1;
+
+// console.log(yearZack, yearBran);
+// console.log(year + 11);
+// console.log(year / 3);
+// console.log(year * 1.5);
+
+// // Logical Operators
+// var branOlder = ageZack < ageBran;
+// console.log('is brandon older? ' + branOlder);
+
+// // typeOf operator (will tell us data type of variable)
+// console.log(typeof branOlder);
+
+
+
+
+
+
+
+
+// Operator Precedence LESSON 4
+
+var now = 2020;
+var yearZack = 1997;
+var fullAge = 18;
+
+var isFullAge = now - yearZack >= fullAge; // true
+console.log(isFullAge);
+
+var ageZack = now - yearZack;
+var ageMark = 35;
+var average = (ageZack + ageMark) / 2;
+console.log(average);
+
+
+// Multiple assignments
+var x, y;
+x = y = (3 + 5) * 4 - 6; // 26
+console.log(x, y);
