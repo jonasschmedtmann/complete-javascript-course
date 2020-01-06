@@ -85,37 +85,74 @@
 
 // Operator Precedence LESSON 4
 
-var now = 2020;
-var yearZack = 1997;
-var fullAge = 18;
+// var now = 2020;
+// var yearZack = 1997;
+// var fullAge = 18;
 
-var isFullAge = now - yearZack >= fullAge; // true
-console.log(isFullAge);
+// var isFullAge = now - yearZack >= fullAge; // true
+// console.log(isFullAge);
 
-var ageZack = now - yearZack;
-var ageMark = 35;
-var average = (ageZack + ageMark) / 2;
-console.log(average);
+// var ageZack = now - yearZack;
+// var ageMark = 35;
+// var average = (ageZack + ageMark) / 2;
+// console.log(average);
 
 
-// Multiple assignments
-var x, y;
-x = y = (3 + 5) * 4 - 6; // 26
-console.log(x, y);
+// // Multiple assignments
+// var x, y;
+// x = y = (3 + 5) * 4 - 6; // 26
+// console.log(x, y);
 
-// More operators
-// x = x * 2; is the same thing as x *= 2;
+// // More operators
+// // x = x * 2; is the same thing as x *= 2;
 
-x *=2; // 26 * 2 = 52
-console.log(x);
-x +=10; // 52 + 10
-console.log(x);
+// x *=2; // 26 * 2 = 52
+// console.log(x);
+// x +=10; // 52 + 10
+// console.log(x);
 
-//all 3 below examples are same
-// x = x + 1;
-// x += 1;
-// x++
-x++; // 62 + 1
-console.log(x);
-x--; // 63 - 1
-console.log(x);
+// //all 3 below examples are same
+// // x = x + 1;
+// // x += 1;
+// // x++
+// x++; // 62 + 1
+// console.log(x);
+// x--; // 63 - 1
+// console.log(x);
+
+
+
+
+
+
+
+// CODING CHALLENGE 1
+
+/*
+Mark and John are trying to compare their BMU which is calculated using the formula: BMI = mass / height^2 or the same as BMI = mass / (height * height)
+
+1. Store Mark's and John's mass and height in variables
+2. Calculate both their BMIs
+3. Create a boolean variable containing information about whether Mark has as higher BMI than John
+4. Print a string to the console containing the variable from step 3. (Something like "Is Mark's BMI higher than John's? true")
+*/
+
+var markHeight, markWeight, johnHeight, johnWeight;
+
+//heights
+markHeight = 6;
+johnHeight = 5.7;
+
+//weights
+markWeight = 203;
+johnWeight = 192;
+
+var markBMI, johnBMI;
+
+//BMIs
+markBMI = 203 / (6*6);
+johnBMI = 192 / (5.7*5.7);
+console.log(johnBMI, markBMI);
+
+var johnLowerBMI = johnBMI < markBMI;
+console.log('Is Johns BMI lower than Marks? ' + johnLowerBMI);
