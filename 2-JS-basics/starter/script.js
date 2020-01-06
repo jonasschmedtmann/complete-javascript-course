@@ -126,6 +126,8 @@
 
 
 
+
+
 // CODING CHALLENGE 1
 
 /*
@@ -136,6 +138,52 @@ Mark and John are trying to compare their BMU which is calculated using the form
 3. Create a boolean variable containing information about whether Mark has as higher BMI than John
 4. Print a string to the console containing the variable from step 3. (Something like "Is Mark's BMI higher than John's? true")
 */
+
+// var markHeight, markWeight, johnHeight, johnWeight;
+
+// //heights
+// markHeight = 6;
+// johnHeight = 5.7;
+
+// //weights
+// markWeight = 203;
+// johnWeight = 192;
+
+// var markBMI, johnBMI;
+
+// //BMIs
+// markBMI = 203 / (6*6);
+// johnBMI = 192 / (5.7*5.7);
+// console.log(johnBMI, markBMI);
+
+// var johnLowerBMI = johnBMI < markBMI;
+// console.log('Is John\'s BMI lower than Mark\'s? ' + johnLowerBMI);
+
+
+
+
+
+
+// If / else Statements LESSON 5
+
+var firstName = 'Zack';
+var civilStatus = 'single';
+
+if (civilStatus === 'married'){
+    console.log(firstName + ' is married!');
+} else {
+    console.log(firstName + ' is single!');    
+}
+
+var isMarried = true;
+if (isMarried){
+    console.log(firstName + ' is married!');
+} else {
+    console.log(firstName + ' will hopefully marry soon!');
+}
+
+
+
 
 var markHeight, markWeight, johnHeight, johnWeight;
 
@@ -155,4 +203,12 @@ johnBMI = 192 / (5.7*5.7);
 console.log(johnBMI, markBMI);
 
 var johnLowerBMI = johnBMI < markBMI;
-console.log('Is Johns BMI lower than Marks? ' + johnLowerBMI);
+console.log('Is John\'s BMI lower than Mark\'s? ' + johnLowerBMI);
+
+
+
+if (markBMI > johnBMI) {
+    console.log('Mark\'s BMI is higher than John\'s');
+} else {
+    console.log('John\'s BMI is higher than Mark\'s');
+}
