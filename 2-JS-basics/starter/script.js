@@ -438,19 +438,76 @@ John and Mike both play basketball in different teams. In the latest 3 games, Jo
 
 
 //Function expression
-var whatDoYouDo = function(job, firstName){
-    switch(job){
-        case 'teacher':
-            return firstName + ' teaches kids how to code';
-        case 'driver':
-            return firstName + ' drives a Lyft in South Dakota';
-        case 'student':
-            return firstName + ' learns how to code';
-        default:
-            return firstName + ' does something else';
-    }
-}
+// var whatDoYouDo = function(job, firstName){
+//     switch(job){
+//         case 'teacher':
+//             return firstName + ' teaches kids how to code';
+//         case 'driver':
+//             return firstName + ' drives a Lyft in South Dakota';
+//         case 'student':
+//             return firstName + ' learns how to code';
+//         default:
+//             return firstName + ' does something else';
+//     }
+// }
 
-console.log(whatDoYouDo('student', 'Zack'));
+// console.log(whatDoYouDo('student', 'Zack'));
 
 
+
+
+
+
+
+
+
+
+
+
+// Arrays LESSON 11
+//Initialize new array
+var names = ['Zack', 'Brandon', 'Mom', 'Dad'];
+var years = new Array(1997, 1998, 1970, 1973);
+
+// how to access elements in an array
+console.log(names[0, 1, 2, 3]); // arrays are 0 based, so Zack is element 0 in names array
+console.log(names.length); // length of array using .length method
+
+console.log(years[3]);
+console.log(years.length);
+
+//mutate the data in the array
+names[2] = 'Debbi';
+console.log(names);
+
+// we can add data to array, even accessing a position that is not there
+// names[5] = 'Mary';
+// console.log(names);
+names[names.length] = 'Mary';
+console.log(names);
+console.log(names.length)
+
+
+// Different data types
+var zack = ['Zack', 'Bumpous', (1997 + 1 - 1) * 0 + 1997, 'student', false];
+console.log(zack);
+
+zack.push('blue'); // push method puts the string blue into the end of the zack array
+console.log(zack);
+
+zack.unshift('Mr.'); // unshift method puts the string Mr. into the beginning of the zack array
+console.log(zack);
+
+zack.pop(); // pop method removes the data at the end of the zack array
+
+zack.shift(); // shift method removes the data at the beginning of the zack array
+console.log(zack);
+
+console.log(zack.indexOf('student')); // tells me the index of what i am searching for inside the zack array (should return 3 in console, and it does)
+
+
+//lets use ternary operator we learned about before
+// if we have student, it returns the index, if not it will return -1
+//we are searching for 'student' and if we don't have it, it will return -1 and will return zack is not a student, otherwise will return zack is a student. (should return he is a student and does)
+var isStudent = zack.indexOf('student') === -1 ? 'Zack is not a student' : 'Zack is a student';
+console.log(isStudent);
