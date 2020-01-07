@@ -392,3 +392,30 @@ John and Mike both play basketball in different teams. In the latest 3 games, Jo
 
 
 // Functions LESSON 9
+
+function calculateAge(birthYear){
+    return 2020 - birthYear;
+}
+
+var ageZack = calculateAge(1997 + 1);
+var ageMom = calculateAge(1970 + 1);
+var ageDad = calculateAge(1973 + 1);
+var ageBran = calculateAge(1998 + 1);
+console.log(ageZack, ageMom, ageDad, ageBran);
+
+
+function yearsToRetire(year, firstName){
+    var age = calculateAge(year);
+    var retirement = 65 - age;
+
+    if (retirement > 0) {
+        console.log(firstName + ' retires in ' + retirement + ' years.');
+    } else {
+        console.log(firstName + ' is already retired.')
+    }
+}
+
+yearsToRetire(1997 + 1, 'Zack')
+yearsToRetire(1970 + 1, 'Debbi')
+yearsToRetire(1973 + 1, 'Jeff')
+yearsToRetire(1998 + 1, 'Brandon')
