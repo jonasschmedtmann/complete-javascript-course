@@ -592,34 +592,65 @@ In the end, John would like to have 2 arrays:
 // Objects and Properties Lesson 12
 
 // Object literal
+// var zack = {
+//     firstName: 'Zack', // firstName is the key, 'Zack' is the value, together they are a key value pair. Also firstName is a property of the zack object
+//     lastName: 'Bumpous',
+//     birthYear: 1997,
+//     // we can put all sorts of data types in an object. We can even put an array!! Even another object inside of the object. An array can also have an object or another array or really whatever inside it
+//     family: ['Brandon', 'Debbi', 'Jeff'],
+//     job: 'student',
+//     isMarried: false
+// };
+
+// //retrieving/seeing diff data in the object below!! until line 610
+// //log the object to see the different properties
+// console.log(zack);
+// console.log(zack.firstName); // to get a specific property, use the dot notation .firstName or .lastName
+// console.log(zack['lastName']);
+// var x = 'birthYear';
+// console.log(zack[x]);
+
+// //mutate the data, two diff ways
+// zack.job = 'full stack dev'; // dot notation
+// zack['isMarried'] = true; // brackets notation
+// console.log(zack);
+
+// // two ways to initialize/create an array, some w object
+
+// //new Object Syntax
+// var debbi = new Object();
+// debbi.name = 'Debbi';
+// debbi.birthYear = 1970;
+// debbi['lastName'] = 'Bumpous';
+// console.log(debbi);
+
+
+
+
+
+
+
+
+
+
+
+// Objects and Methods LESSON 13
+
+// 1. we want to add a method in order to calculate the age of Zack, we dont want it hard coded because it changes every year, but birthYear is constant
 var zack = {
-    firstName: 'Zack', // firstName is the key, 'Zack' is the value, together they are a key value pair. Also firstName is a property of the zack object
+    firstName: 'Zack', 
     lastName: 'Bumpous',
     birthYear: 1997,
-    // we can put all sorts of data types in an object. We can even put an array!! Even another object inside of the object. An array can also have an object or another array or really whatever inside it
     family: ['Brandon', 'Debbi', 'Jeff'],
     job: 'student',
-    isMarried: false
+    isMarried: false,
+// 2. We need to define another key. We are going to give the key a value of a function expression
+    calcAge: function(){
+        this.age = 2020 - this.birthYear - 1; // instead of passing in birthYear as argument, this.birthYear means zack object's birthYear key's value
+        // this.age = 2020 is defining a key and a value inside this object, zack and then using it inside the function
+    }
 };
 
-//retrieving/seeing diff data in the object below!! until line 610
-//log the object to see the different properties
+// 3. call this, and lets store it right into the zack object
+zack.calcAge();
 console.log(zack);
-console.log(zack.firstName); // to get a specific property, use the dot notation .firstName or .lastName
-console.log(zack['lastName']);
-var x = 'birthYear';
-console.log(zack[x]);
-
-//mutate the data, two diff ways
-zack.job = 'full stack dev'; // dot notation
-zack['isMarried'] = true; // brackets notation
-console.log(zack);
-
-// two ways to initialize/create an array, some w object
-
-//new Object Syntax
-var debbi = new Object();
-debbi.name = 'Debbi';
-debbi.birthYear = 1970;
-debbi['lastName'] = 'Bumpous';
-console.log(debbi);
