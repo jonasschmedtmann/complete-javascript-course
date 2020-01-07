@@ -242,78 +242,153 @@ Mark and John are trying to compare their BMU which is calculated using the form
 
 
 
-// The Ternary Operator (Conditional Operator) and Switch Statements LESSON 7 
+// // The Ternary Operator (Conditional Operator) and Switch Statements LESSON 7 
 
-var firstName = 'Zack';
-var age = 22;
+// var firstName = 'Zack';
+// var age = 22;
 
-//this ? : sequence is the ternary operator
-age >= 21 ? console.log(firstName + ' drinks beer')
-: console.log(firstName + ' drinks juice')
+// //this ? : sequence is the ternary operator
+// age >= 21 ? console.log(firstName + ' drinks beer')
+// : console.log(firstName + ' drinks juice')
 
-// another ternary
-var drink = age >= 21 ? 'beer' : 'juice';
-console.log(drink);
-
-
-// lets do this with an if else statement to see the difference
-
-if (age >= 21) {
-    var drink = 'beer';
-} else {
-    var drink = 'juice';
-}
-
-// THE TERNARY OPERATOR LOOKS WAY BETTER in this situation
+// // another ternary
+// var drink = age >= 21 ? 'beer' : 'juice';
+// console.log(drink);
 
 
-// Switch Statement below
+// // lets do this with an if else statement to see the difference
 
-var job = 'student';
-switch(job){
-    case 'student':
-    case 'pupil':
-        console.log(firstName + ' learns how to be a fullstack dev');
-        break;
-    case 'driver':
-        console.log(firstName + ' drive a lyft in south dakota');
-        break;
-    case 'designer':
-        console.log(firstName + ' designs amazing websites');
-        break;
-    default:
-        console.log(firstName + ' does something else');
-}
-
-// change this to a switch statement
-
-// var firstName = 'zack';
-// var age = '22';
-
-// if (age < 13) {
-//     console.log(firstName + ' is a boy.');
-// } else if (age >= 13 && age < 20){ // between 13 and 20
-//     console.log(firstName + ' is a teenager.');
-// } else if (age > 20 && age < 30){ // between 13 and 20
-//     console.log(firstName + ' is a young man.');
+// if (age >= 21) {
+//     var drink = 'beer';
 // } else {
-//     console.log(firstName + ' is a grown ass man.')
+//     var drink = 'juice';
 // }
 
-switch (!false){
-    case age < 13:
-        console.log(firstName + ' is a boy.');
-    break;
+// // THE TERNARY OPERATOR LOOKS WAY BETTER in this situation
 
-    case age >= 13 && age < 20:
-        console.log(firstName + ' is a teenager.');
-    break;
 
-    case age > 20 && age < 30:
-        console.log(firstName + ' is a young man.');
-    break;
+// // Switch Statement below
 
-    default:
-        console.log(firstName + ' is a grown ass man.')
+// var job = 'student';
+// switch(job){
+//     case 'student':
+//     case 'pupil':
+//         console.log(firstName + ' learns how to be a fullstack dev');
+//         break;
+//     case 'driver':
+//         console.log(firstName + ' drive a lyft in south dakota');
+//         break;
+//     case 'designer':
+//         console.log(firstName + ' designs amazing websites');
+//         break;
+//     default:
+//         console.log(firstName + ' does something else');
+// }
 
-}
+// // change this to a switch statement
+
+// // var firstName = 'zack';
+// // var age = '22';
+
+// // if (age < 13) {
+// //     console.log(firstName + ' is a boy.');
+// // } else if (age >= 13 && age < 20){ // between 13 and 20
+// //     console.log(firstName + ' is a teenager.');
+// // } else if (age > 20 && age < 30){ // between 13 and 20
+// //     console.log(firstName + ' is a young man.');
+// // } else {
+// //     console.log(firstName + ' is a grown ass man.')
+// // }
+
+// switch (!false){
+//     case age < 13:
+//         console.log(firstName + ' is a boy.');
+//     break;
+
+//     case age >= 13 && age < 20:
+//         console.log(firstName + ' is a teenager.');
+//     break;
+
+//     case age > 20 && age < 30:
+//         console.log(firstName + ' is a young man.');
+//     break;
+
+//     default:
+//         console.log(firstName + ' is a grown ass man.')
+
+// }
+
+
+
+
+
+
+// Truthy and Falsy Values and Equality Operators LESSON 8
+// falsy values: undefined, null, 0, '', NaN
+// truthy values: NOT falsy values
+
+// var height;
+// height = 23;
+
+// if (height || height === 0){
+//     console.log('Variable is defined');
+// } else {
+//     console.log('Variable has NOT been defined')
+// }
+
+// // equality operators
+// // === strict equals, no type coercion
+// // == type coercion, so data types dont have to match
+// if (height == '23'){
+//     console.log('The == operator does type coercion!');
+// }
+
+
+
+
+
+
+
+
+// CODING CHALLENGE 2
+/*
+John and Mike both play basketball in different teams. In the latest 3 games, Johns team scored 89, 120, and 103 points, while Mikes team scored 116, 94, and 123 points.
+
+1. Calculate the average score for each team
+2. Decide which team wins in average (highest average score), and print the winner to the console. Also include the average score in the output.
+3. Then change the scores to show different winners. Don't forget to take into account there might be a draw (same avg score)
+4. EXTRA: Mary also plays basketball, and her team scored 97, 134, and 105 point. Like before, log the average winner to the console. HINT: you will need the && operator to take the decision. If you can't solve this one just watch the solution.
+5. Like before, change the scores to generate different winners, keeping in mind there might be draws.
+*/
+
+//1.
+// johnAvg = (100 + 100 + 100) / 3;
+// mikeAvg = (300 + 0 + 0) / 3;
+// maryAvg = (110 + 90 + 100) / 3;
+// console.log(johnAvg, mikeAvg, maryAvg)
+
+// //2.
+// if (johnAvg > mikeAvg && johnAvg > maryAvg){
+//     console.log('John has a highest average score')
+// } else if (mikeAvg > johnAvg && mikeAvg > maryAvg) {
+//     console.log('Mike has a highest average score')
+// }else if (maryAvg > johnAvg && maryAvg > mikeAvg) {
+//     console.log('Mary has the highest average score')
+// }else if (mikeAvg === johnAvg && johnAvg === maryAvg){
+//     console.log('John and Mike and Mary, have equal averages, draw')
+// } else {
+//     console.log('Something is wrong, very wrong. This is a test essentially.')
+// }
+
+//3. I changed the scores. I made sure it did everything, I even broke it to go to the last console.log
+
+//4. Data for Mary exists
+
+
+
+
+
+
+
+
+// Functions LESSON 9
