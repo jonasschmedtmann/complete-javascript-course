@@ -234,3 +234,86 @@ Mark and John are trying to compare their BMU which is calculated using the form
 // } else {
 //     console.log(firstName + ' is a grown ass man.')
 // }
+
+
+
+
+
+
+
+
+// The Ternary Operator (Conditional Operator) and Switch Statements LESSON 7 
+
+var firstName = 'Zack';
+var age = 22;
+
+//this ? : sequence is the ternary operator
+age >= 21 ? console.log(firstName + ' drinks beer')
+: console.log(firstName + ' drinks juice')
+
+// another ternary
+var drink = age >= 21 ? 'beer' : 'juice';
+console.log(drink);
+
+
+// lets do this with an if else statement to see the difference
+
+if (age >= 21) {
+    var drink = 'beer';
+} else {
+    var drink = 'juice';
+}
+
+// THE TERNARY OPERATOR LOOKS WAY BETTER in this situation
+
+
+// Switch Statement below
+
+var job = 'student';
+switch(job){
+    case 'student':
+    case 'pupil':
+        console.log(firstName + ' learns how to be a fullstack dev');
+        break;
+    case 'driver':
+        console.log(firstName + ' drive a lyft in south dakota');
+        break;
+    case 'designer':
+        console.log(firstName + ' designs amazing websites');
+        break;
+    default:
+        console.log(firstName + ' does something else');
+}
+
+// change this to a switch statement
+
+// var firstName = 'zack';
+// var age = '22';
+
+// if (age < 13) {
+//     console.log(firstName + ' is a boy.');
+// } else if (age >= 13 && age < 20){ // between 13 and 20
+//     console.log(firstName + ' is a teenager.');
+// } else if (age > 20 && age < 30){ // between 13 and 20
+//     console.log(firstName + ' is a young man.');
+// } else {
+//     console.log(firstName + ' is a grown ass man.')
+// }
+
+switch (!false){
+    case age < 13:
+        console.log(firstName + ' is a boy.');
+    break;
+
+    case age >= 13 && age < 20:
+        console.log(firstName + ' is a teenager.');
+    break;
+
+    case age > 20 && age < 30:
+        console.log(firstName + ' is a young man.');
+    break;
+
+    default:
+        console.log(firstName + ' is a grown ass man.')
+
+}
