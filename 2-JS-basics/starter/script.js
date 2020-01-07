@@ -534,48 +534,92 @@ In the end, John would like to have 2 arrays:
     (NOTE: To calculate 20% of a value, simply multiply it with 20/100 = 0.2)
 */
 
-function tipCalculator(bill){
-    if (bill < 50) {
-        bill + (bill * .20);
-    } else if (bill >= 50 && bill <= 200) {
-        bill + (bill * .15);
-    } else if (bill > 200) {
-        bill + (bill * .1);
-    } else {
-        return 'are you sure you went out to eat?'
-    }
-}
+// function tipCalculator(bill){
+//     if (bill < 50) {
+//         bill + (bill * .20);
+//     } else if (bill >= 50 && bill <= 200) {
+//         bill + (bill * .15);
+//     } else if (bill > 200) {
+//         bill + (bill * .1);
+//     } else {
+//         return 'are you sure you went out to eat?'
+//     }
+// }
 
-var totals = console.log(tipCalculator(124));
+// var totals = console.log(tipCalculator(124));
 
 
-function tipCalculator(bill){
-    var percentage;
-    // if else statement for bill percentage
-    if (bill < 50) {
-        percentage = .2;
-    } else if (bill >= 50 && bill < 200) {
-        percentage = .15;
-    } else {
-        percentage = .1;
-    } 
-    return percentage * bill;
-}
+// function tipCalculator(bill){
+//     var percentage;
+//     // if else statement for bill percentage
+//     if (bill < 50) {
+//         percentage = .2;
+//     } else if (bill >= 50 && bill < 200) {
+//         percentage = .15;
+//     } else {
+//         percentage = .1;
+//     } 
+//     return percentage * bill;
+// }
 
-console.log(tipCalculator(124));
-console.log(tipCalculator(48));
-console.log(tipCalculator(268));
+// console.log(tipCalculator(124));
+// console.log(tipCalculator(48));
+// console.log(tipCalculator(268));
 
-var bills = [124, 48, 268];
+// var bills = [124, 48, 268];
 
-// below is an array that uses our tipCalculator function and the values from our bills array and calculates the tip by how much the bill costs
-var tips = [tipCalculator(bills[0]),
-            tipCalculator(bills[1]),
-            tipCalculator(bills[2])];
-console.log(tips);
+// // below is an array that uses our tipCalculator function and the values from our bills array and calculates the tip by how much the bill costs
+// var tips = [tipCalculator(bills[0]),
+//             tipCalculator(bills[1]),
+//             tipCalculator(bills[2])];
+// console.log(tips);
 
-var finalAmounts = [bills[0] + tips[0],
-                    bills[1] + tips[1],
-                    bills[2] + tips[2]];
+// var finalAmounts = [bills[0] + tips[0],
+//                     bills[1] + tips[1],
+//                     bills[2] + tips[2]];
 
-console.log (tips, finalAmounts);
+// console.log (tips, finalAmounts);
+
+
+
+
+
+
+
+
+
+
+// Objects and Properties Lesson 12
+
+// Object literal
+var zack = {
+    firstName: 'Zack', // firstName is the key, 'Zack' is the value, together they are a key value pair. Also firstName is a property of the zack object
+    lastName: 'Bumpous',
+    birthYear: 1997,
+    // we can put all sorts of data types in an object. We can even put an array!! Even another object inside of the object. An array can also have an object or another array or really whatever inside it
+    family: ['Brandon', 'Debbi', 'Jeff'],
+    job: 'student',
+    isMarried: false
+};
+
+//retrieving/seeing diff data in the object below!! until line 610
+//log the object to see the different properties
+console.log(zack);
+console.log(zack.firstName); // to get a specific property, use the dot notation .firstName or .lastName
+console.log(zack['lastName']);
+var x = 'birthYear';
+console.log(zack[x]);
+
+//mutate the data, two diff ways
+zack.job = 'full stack dev'; // dot notation
+zack['isMarried'] = true; // brackets notation
+console.log(zack);
+
+// two ways to initialize/create an array, some w object
+
+//new Object Syntax
+var debbi = new Object();
+debbi.name = 'Debbi';
+debbi.birthYear = 1970;
+debbi['lastName'] = 'Bumpous';
+console.log(debbi);
