@@ -466,48 +466,116 @@ John and Mike both play basketball in different teams. In the latest 3 games, Jo
 
 // Arrays LESSON 11
 //Initialize new array
-var names = ['Zack', 'Brandon', 'Mom', 'Dad'];
-var years = new Array(1997, 1998, 1970, 1973);
+// var names = ['Zack', 'Brandon', 'Mom', 'Dad'];
+// var years = new Array(1997, 1998, 1970, 1973);
 
-// how to access elements in an array
-console.log(names[0, 1, 2, 3]); // arrays are 0 based, so Zack is element 0 in names array
-console.log(names.length); // length of array using .length method
+// // how to access elements in an array
+// console.log(names[0, 1, 2, 3]); // arrays are 0 based, so Zack is element 0 in names array
+// console.log(names.length); // length of array using .length method
 
-console.log(years[3]);
-console.log(years.length);
+// console.log(years[3]);
+// console.log(years.length);
 
-//mutate the data in the array
-names[2] = 'Debbi';
-console.log(names);
-
-// we can add data to array, even accessing a position that is not there
-// names[5] = 'Mary';
+// //mutate the data in the array
+// names[2] = 'Debbi';
 // console.log(names);
-names[names.length] = 'Mary';
-console.log(names);
-console.log(names.length)
+
+// // we can add data to array, even accessing a position that is not there
+// // names[5] = 'Mary';
+// // console.log(names);
+// names[names.length] = 'Mary';
+// console.log(names);
+// console.log(names.length)
 
 
-// Different data types
-var zack = ['Zack', 'Bumpous', (1997 + 1 - 1) * 0 + 1997, 'student', false];
-console.log(zack);
+// // Different data types
+// var zack = ['Zack', 'Bumpous', (1997 + 1 - 1) * 0 + 1997, 'student', false];
+// console.log(zack);
 
-zack.push('blue'); // push method puts the string blue into the end of the zack array
-console.log(zack);
+// zack.push('blue'); // push method puts the string blue into the end of the zack array
+// console.log(zack);
 
-zack.unshift('Mr.'); // unshift method puts the string Mr. into the beginning of the zack array
-console.log(zack);
+// zack.unshift('Mr.'); // unshift method puts the string Mr. into the beginning of the zack array
+// console.log(zack);
 
-zack.pop(); // pop method removes the data at the end of the zack array
+// zack.pop(); // pop method removes the data at the end of the zack array
 
-zack.shift(); // shift method removes the data at the beginning of the zack array
-console.log(zack);
+// zack.shift(); // shift method removes the data at the beginning of the zack array
+// console.log(zack);
 
-console.log(zack.indexOf('student')); // tells me the index of what i am searching for inside the zack array (should return 3 in console, and it does)
+// console.log(zack.indexOf('student')); // tells me the index of what i am searching for inside the zack array (should return 3 in console, and it does)
 
 
-//lets use ternary operator we learned about before
-// if we have student, it returns the index, if not it will return -1
-//we are searching for 'student' and if we don't have it, it will return -1 and will return zack is not a student, otherwise will return zack is a student. (should return he is a student and does)
-var isStudent = zack.indexOf('student') === -1 ? 'Zack is not a student' : 'Zack is a student';
-console.log(isStudent);
+// //lets use ternary operator we learned about before
+// // if we have student, it returns the index, if not it will return -1
+// //we are searching for 'student' and if we don't have it, it will return -1 and will return zack is not a student, otherwise will return zack is a student. (should return he is a student and does)
+// var isStudent = zack.indexOf('student') === -1 ? 'Zack is not a student' : 'Zack is a student';
+// console.log(isStudent);
+
+
+
+
+
+
+
+
+
+/*
+Coding Challenge 3!
+
+John and his family went on a holiday and went to 3 diff. restaurants. The bills were $124, $48, and $268.
+
+To tip the waiter a fair amount, John created a simple tip calculator (as a function). He likes to tip 20% of the bill when the bill is less than $50, 15% when the bill is between $50 and $200, and 10% if the bill is more than $200.
+
+In the end, John would like to have 2 arrays:
+    1) Containing all three tips (one for each bill)
+    2) Containing all three final paid amounts (bill + tip)
+
+    (NOTE: To calculate 20% of a value, simply multiply it with 20/100 = 0.2)
+*/
+
+function tipCalculator(bill){
+    if (bill < 50) {
+        bill + (bill * .20);
+    } else if (bill >= 50 && bill <= 200) {
+        bill + (bill * .15);
+    } else if (bill > 200) {
+        bill + (bill * .1);
+    } else {
+        return 'are you sure you went out to eat?'
+    }
+}
+
+var totals = console.log(tipCalculator(124));
+
+
+function tipCalculator(bill){
+    var percentage;
+    // if else statement for bill percentage
+    if (bill < 50) {
+        percentage = .2;
+    } else if (bill >= 50 && bill < 200) {
+        percentage = .15;
+    } else {
+        percentage = .1;
+    } 
+    return percentage * bill;
+}
+
+console.log(tipCalculator(124));
+console.log(tipCalculator(48));
+console.log(tipCalculator(268));
+
+var bills = [124, 48, 268];
+
+// below is an array that uses our tipCalculator function and the values from our bills array and calculates the tip by how much the bill costs
+var tips = [tipCalculator(bills[0]),
+            tipCalculator(bills[1]),
+            tipCalculator(bills[2])];
+console.log(tips);
+
+var finalAmounts = [bills[0] + tips[0],
+                    bills[1] + tips[1],
+                    bills[2] + tips[2]];
+
+console.log (tips, finalAmounts);
