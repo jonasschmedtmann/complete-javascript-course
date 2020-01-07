@@ -9,7 +9,64 @@
 <body>
     <h1>Asynchronous JavaScript</h1>
     <script>
-        
+        // const second = () => {
+        //     setTimeout(() =>{
+        //         console.log('Async hey there');
+        //     }, 2000);
+        // }
+        // const first = () => {
+        //     console.log('Hey there');
+        //     second();
+        //     console.log('The end');
+        // }
+        // first();
+
+        // function getRecipe() {
+        //     setTimeout(()=>{
+        //         const recipeID = [523, 883, 432, 974];
+        //         console.log(recipeID);
+
+        //         setTimeout((id) => {
+        //             const recipe = {
+        //                 title: 'Fresh tomato pasta', 
+        //                 publisher: 'Jonas'};
+        //                 console.log(`${id}: ${recipe.title}`)
+                        
+        //                 setTimeout(publisher => {
+        //                     const recipe2 = {title: 'Italian Pizza', publisher: 'Jonas'};
+        //                     console.log(recipe);
+        //                 }, 1500, recipe.publisher);
+                        
+                
+        //         }, 1000, recipeID[2]);
+        //     }, 1500);
+        // }
+        // getRecipe();
+
+        const getIDs = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve([523, 883, 432, 974]);
+            }, 1500);
+        });
+
+        const getRecipe = recID => {
+            return new Promise(resolve, reject => { 
+                setTimeout(ID => {
+                const recipe = {title: 'Fresh tomato pasta', 
+                publisher: 'Jonas'};
+                resolve (console.log(`${id}: ${recipe.title}`));
+                }, 1500, recID);    
+            });
+        }
+        getIDs
+        .then(IDs => {
+            console.log(IDs);
+            getRecipe(ID)
+        })
+        .catch(error => {
+            console.log('Error!!');
+        });
+
     </script>
 </body>
 </html>
