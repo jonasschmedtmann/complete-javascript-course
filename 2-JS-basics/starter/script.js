@@ -637,20 +637,73 @@ In the end, John would like to have 2 arrays:
 // Objects and Methods LESSON 13
 
 // 1. we want to add a method in order to calculate the age of Zack, we dont want it hard coded because it changes every year, but birthYear is constant
-var zack = {
-    firstName: 'Zack', 
-    lastName: 'Bumpous',
-    birthYear: 1997,
-    family: ['Brandon', 'Debbi', 'Jeff'],
-    job: 'student',
-    isMarried: false,
-// 2. We need to define another key. We are going to give the key a value of a function expression
-    calcAge: function(){
-        this.age = 2020 - this.birthYear - 1; // instead of passing in birthYear as argument, this.birthYear means zack object's birthYear key's value
-        // this.age = 2020 is defining a key and a value inside this object, zack and then using it inside the function
-    }
-};
+// var zack = {
+//     firstName: 'Zack', 
+//     lastName: 'Bumpous',
+//     birthYear: 1997,
+//     family: ['Brandon', 'Debbi', 'Jeff'],
+//     job: 'student',
+//     isMarried: false,
+// // 2. We need to define another key. We are going to give the key a value of a function expression
+//     calcAge: function(){
+//         this.age = 2020 - this.birthYear - 1; // instead of passing in birthYear as argument, this.birthYear means zack object's birthYear key's value
+//         // this.age = 2020 is defining a key and a value inside this object, zack and then using it inside the function
+//     }
+// };
 
-// 3. call this, and lets store it right into the zack object
-zack.calcAge();
-console.log(zack);
+// // 3. call this, and lets store it right into the zack object
+// zack.calcAge();
+// console.log(zack);
+
+
+
+
+
+
+
+
+
+
+
+/*
+Coding Challenge 4!
+
+Let's remember the first coding challenge where Mark and John compared their BMIs. Let's now implement the same functionality with objects and methods
+    1. For each of them, create an object with properties for their full name, mass, and height
+    2. Then, add a method to each object to calculate the BMI. Save the BMI to the object and also return it from the method.
+    3. In the end, log to the console who has the highest bMI, together with the full name and the respective BMI. Don't forget they might have the same bMI.
+
+    BMI = mass / height ^2 = mass / (height * height)
+*/
+
+var mark = {
+    fullName: 'Mark Doe',
+    mass: 91.6,
+    height: 1.75,
+    calcBmi: function(){
+       this.bmi = this.mass / (this.height * this.height);
+       return this.bmi;
+    }
+}
+
+var john = {
+    fullName: 'John Doe',
+    mass: 99.7,
+    height: 1.85,
+    calcBmi: function(){
+       this.bmi = this.mass / (this.height * this.height);
+       return this.bmi;
+    }
+}
+
+
+console.log(mark, john);
+
+if (john.calcBmi() > mark.calcBmi()) {
+    console.log(john.fullName + ' has a higher BMI of ' + john.bmi);
+} else if (mark.bmi > john.bmi) {
+    console.log(mark.fullName + ' has a higher BMI of ' + mark.bmi);
+} else {
+    console.log('they have same bmi')
+}
+
