@@ -665,6 +665,7 @@ In the end, John would like to have 2 arrays:
 
 
 
+
 /*
 Coding Challenge 4!
 
@@ -676,34 +677,117 @@ Let's remember the first coding challenge where Mark and John compared their BMI
     BMI = mass / height ^2 = mass / (height * height)
 */
 
-var mark = {
-    fullName: 'Mark Doe',
-    mass: 91.6,
-    height: 1.75,
-    calcBmi: function(){
-       this.bmi = this.mass / (this.height * this.height);
-       return this.bmi;
-    }
+// var mark = {
+//     fullName: 'Mark Doe',
+//     mass: 91.6,
+//     height: 1.75,
+//     calcBmi: function(){
+//        this.bmi = this.mass / (this.height * this.height);
+//        return this.bmi;
+//     }
+// }
+
+// var john = {
+//     fullName: 'John Doe',
+//     mass: 99.7,
+//     height: 1.85,
+//     calcBmi: function(){
+//        this.bmi = this.mass / (this.height * this.height);
+//        return this.bmi;
+//     }
+// }
+
+
+// console.log(mark, john);
+
+// if (john.calcBmi() > mark.calcBmi()) {
+//     console.log(john.fullName + ' has a higher BMI of ' + john.bmi);
+// } else if (mark.bmi > john.bmi) {
+//     console.log(mark.fullName + ' has a higher BMI of ' + mark.bmi);
+// } else {
+//     console.log('they have same bmi')
+// }
+
+
+
+
+
+
+
+
+
+
+
+// Loops and Iteration LESSON 14
+
+// console.log(1); // 1. to do this from 1 thru 10 would suck
+
+// 2. lets use a for loop
+// 3. a for loop has three parts.. initial value
+// 4. ex: for ([initialization (usually a counter)]; [condition]; [final-expression])              
+//                statement
+/* 
+for (var i = 0; i < 10; i++) {
+    //what should happen in each of the loops.. statement
+    console.log(i);
 }
 
-var john = {
-    fullName: 'John Doe',
-    mass: 99.7,
-    height: 1.85,
-    calcBmi: function(){
-       this.bmi = this.mass / (this.height * this.height);
-       return this.bmi;
-    }
+// i = 0, then we say i must be < 10 for the loop to run or be true, i++ (i + 1), log i to console
+
+
+// 5. lets say we have an app where we want to display the five values below contained in the array to the console
+var zack = ['Zack', 'Bumpous', (1997 + 1 - 1) * 0 + 1997, 'student', false];
+*/
+
+// 6. okay well we could console.log(john[0]); all the way until the last index
+// 7. the solution is to use a loop (for loop)
+// 8. we need the var i = 0 counter variable in order to be able to count through the array to console log all of the i's (indexes) of the array, starting from beginning (0) until the end of the loop we declare
+// 9. We want the loop to run to specifications, so we said i++ (i + 1) so it will go over every index in the array without skipping any. of course we could put diff. logic in here to get a diff pattern
+// 10. We run the loop as long as the counter variable is less than our condition we had stated, which is i < zack.length; or basically what it means is that i (the index value) is less not going to be larger than the highest index number in the array. So it won't be searching for the 6th index if there are only 5 indexes. It is also nice bc if we add something to the array we don't have to change the condition
+/*
+for (var i = 0; i < zack.length; i++) {
+    console.log(zack[i]) // log to the console zack at position i
 }
 
+// 11. While loop - in the while-loop, all we have to pass into it is the condition
+// 12. while loop below is basically saying:
+//          
+//          defined var, if a counter usually set to 0
+//          while (this condition true){
+//              execute this code
+//          }
 
-console.log(mark, john);
-
-if (john.calcBmi() > mark.calcBmi()) {
-    console.log(john.fullName + ' has a higher BMI of ' + john.bmi);
-} else if (mark.bmi > john.bmi) {
-    console.log(mark.fullName + ' has a higher BMI of ' + mark.bmi);
-} else {
-    console.log('they have same bmi')
+// 13. while loop example that does the same thing as example above
+var i = 0;
+while(i < zack.length) {
+    console.log(zack[i]); // this console log prints everything in the array line by line
+    i++; // this makes sure the loop doesn't run endlessly
 }
 
+console.log(i); // this console log tells me number of items in the array
+*/
+
+// 13. continue and break statements
+// 14. use the continue iteration to stop, and then continue again
+
+var zack = ['Zack', 'Bumpous', (1997 + 1 - 1) * 0 + 1997, 'student', false];
+for (var i = 0; i < zack.length; i++) {
+    // 15. lets say we only want to log stuff down from the array that data type is a string, so if it is not a string it will quit with the current iteration and then continue on next
+    // 16. if (datatype of array at where ever i is, !== (strictly different) from a string, then we want to continue)
+    if (typeof zack[i] !== 'string') continue;
+    console.log(zack[i]);
+}
+
+// 17. Break statement, it cancels the iteration, and does not continue
+// 18. notice the only real diff in the continue and break statements we made (above and below) are that we changed the keyword continue to the keyword break
+// 19. Once the break statement we created encounters a string, it will break, because we said if i !== which means i has to be === to a string in order for the loop to keep working
+for (var i = 0; i < zack.length; i++) {
+    
+    if (typeof zack[i] !== 'string') break;
+    console.log(zack[i]);
+}
+
+// 20. Looping through an array from back to beginning!
+for (var i = zack.length -1; i >= 0; i--) {
+    console.log(zack[i]);
+}
