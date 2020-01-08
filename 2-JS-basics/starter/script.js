@@ -770,24 +770,91 @@ console.log(i); // this console log tells me number of items in the array
 // 13. continue and break statements
 // 14. use the continue iteration to stop, and then continue again
 
-var zack = ['Zack', 'Bumpous', (1997 + 1 - 1) * 0 + 1997, 'student', false];
-for (var i = 0; i < zack.length; i++) {
-    // 15. lets say we only want to log stuff down from the array that data type is a string, so if it is not a string it will quit with the current iteration and then continue on next
-    // 16. if (datatype of array at where ever i is, !== (strictly different) from a string, then we want to continue)
-    if (typeof zack[i] !== 'string') continue;
-    console.log(zack[i]);
-}
+// var zack = ['Zack', 'Bumpous', (1997 + 1 - 1) * 0 + 1997, 'student', false];
+// for (var i = 0; i < zack.length; i++) {
+//     // 15. lets say we only want to log stuff down from the array that data type is a string, so if it is not a string it will quit with the current iteration and then continue on next
+//     // 16. if (datatype of array at where ever i is, !== (strictly different) from a string, then we want to continue)
+//     if (typeof zack[i] !== 'string') continue;
+//     console.log(zack[i]);
+// }
 
-// 17. Break statement, it cancels the iteration, and does not continue
-// 18. notice the only real diff in the continue and break statements we made (above and below) are that we changed the keyword continue to the keyword break
-// 19. Once the break statement we created encounters a string, it will break, because we said if i !== which means i has to be === to a string in order for the loop to keep working
-for (var i = 0; i < zack.length; i++) {
+// // 17. Break statement, it cancels the iteration, and does not continue
+// // 18. notice the only real diff in the continue and break statements we made (above and below) are that we changed the keyword continue to the keyword break
+// // 19. Once the break statement we created encounters a string, it will break, because we said if i !== which means i has to be === to a string in order for the loop to keep working
+// for (var i = 0; i < zack.length; i++) {
     
-    if (typeof zack[i] !== 'string') break;
-    console.log(zack[i]);
-}
+//     if (typeof zack[i] !== 'string') break;
+//     console.log(zack[i]);
+// }
 
-// 20. Looping through an array from back to beginning!
-for (var i = zack.length -1; i >= 0; i--) {
-    console.log(zack[i]);
+// // 20. Looping through an array from back to beginning!
+// for (var i = zack.length -1; i >= 0; i--) {
+//     console.log(zack[i]);
+// }
+
+
+
+
+
+
+
+
+
+
+
+/*
+Coding Challenge 5!
+
+Remember the tip calculator challenge? Let's create a more advanced version using everything we learned!
+
+This time, John and his family went to 5 different resaurants. The bills were $124, $48, $268, $180, and $42.
+
+John likes to tip 20% when bill is < $50, 15% when bill is >= 50 && bill is <= 200, and %10 if the bill is > 200
+
+Implement a tip calculator using objects and loops:
+    1. Create an object with an array for the bill values
+    2. Add a method to calculate the tip
+    3. This method should include a loop to iterate over all the paid bills and do the tip calculations
+    4. As an output, create 1) a new array containing final paid amounts (bill + tip). HINT: Start with two empty arrays [] as properties and then fill them up in the loop
+*/
+
+// 1. Create the johnData object, it has some info
+var johnData = {
+    fullName: 'John Smith',
+    // 1B. The object has an array storing bill values
+    bills: [
+        124,
+        48,
+        268,
+        180,
+        42
+    ],
+    // 2. Add a method to calculate the tip
+    calcTip: function(){
+        this.tips = [];
+        this.finalValues = [];
+
+    // 3. This method should include a loop to iterate over all the paid bills
+        for (var i = 0; i < this.bills.length; i++){
+            // Determine % based on tipping rules
+            var percentage;
+            var bill = this.bills[i];
+    // 3B. And method should do tip calculations as array is being iterated over
+            if (bill[i] < 50) {
+                percentage = .2;
+            } else if (bill[i] >= 50 && bill[i] < 200) {
+                percentage = .15;
+            } else {
+                percentage = .1;
+            }
+
+
+            // 4. Add the results to the corresponding arrays (empty ones)
+
+            this.tips[i] = bill * percentage;
+            this.finalValues[i] = bill + bill * percentage;
+        }
+    }  
 }
+johnData.calcTip();
+console.log(johnData);
