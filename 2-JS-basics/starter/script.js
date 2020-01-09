@@ -412,23 +412,43 @@ console.log(isDesigner); */
 */ 
 
  /* 
- John and Mike both play basketball in different teams.  In the latest
- 3 games, John's team scored 89, 120, and 103 points, while Mike's team
- scored 116, 94, and 123 points.
+John and his family went on a holiday and went to 3 different restaraunts.  
+The bills were $124, $48, and $268.  To tip the waiter a fair amount, John
+created a simple tip calculator (as a function).  He likes to tip 20% when 
+the bill is less than $50, 15% when the bill is between $50 and $200, and 
+10% if the bill is more than $200.
 
- 1. Calculate the average score for each team.
- 2. Decide which teams wins in the average (highest average score),
-    and print the winner to the console.
-3.  Change the scores to show different winners.  Donte forget to take
-    into account there might be a draw (the same average score).
-
-4.  EXTRA: Mary also plays basketball, and her team scired 97, 134, and 105
-    points.  Like before, log the average winner to the console. HINT: you 
-    will need the && operator to take the decision.  If you cant solve this
-    one, just watch the solution, it's not problem.
-5.  Like before, change the scores to generate different winners, keeping 
-    in mind there might be draws.
+In the end, John would like to have 2 arrays:
+1) Containing all three tips (one for each bill)
+2) Containing all three paid amounts (bill + tip)
+(NOTE: To calculate 20% of the value, multiply it with 20/100 = 0.2)
  */
+
+/*  var bills = [124, 48, 268];
+ var tips = [];
+ var paidAmounts = [];
+
+ function calculateAmounts (bills) {
+    bills.forEach(bill => {
+        if (bill < 50) {
+            tips.push(bill * 0.2);
+            paidAmounts.push(bill * 1.2);
+        } else if (bill >= 50 && bill <= 200) {
+            tips.push(bill * 0.15);
+            paidAmounts.push(bill * 1.15);
+        } else {
+            tips.push(bill * 0.1);
+            paidAmounts.push(bill * 1.1);
+        }
+    });
+ }
+
+ calculateTips(bills);
+ console.log(tips);
+ console.log(paidAmounts); */
+
+
+
  
  
  
