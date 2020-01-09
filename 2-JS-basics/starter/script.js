@@ -819,107 +819,117 @@ Implement a tip calculator using objects and loops:
 */
 
 // 1. Create the johnData object, it has some info
-var johnData = {
-    fullName: 'John Smith',
-    // 1B. The object has an array storing bill values
-    bills: [
-        124,
-        48,
-        268,
-        180,
-        42
-    ],
-    // 2. Add a method to calculate the tip
-    calcTip: function(){
-        this.tips = [];
-        this.finalValues = [];
+// var johnData = {
+//     fullName: 'John Smith',
+//     // 1B. The object has an array storing bill values
+//     bills: [
+//         124,
+//         48,
+//         268,
+//         180,
+//         42
+//     ],
+//     // 2. Add a method to calculate the tip
+//     calcTip: function(){
+//         this.tips = [];
+//         this.finalValues = [];
 
-    // 3. This method should include a loop to iterate over all the paid bills
-        for (var i = 0; i < this.bills.length; i++){
-            // Determine % based on tipping rules
-            var percentage;
-            var bill = this.bills[i];
-    // 3B. And method should do tip calculations as array is being iterated over
-            if (bill[i] < 50) {
-                percentage = .2;
-            } else if (bill[i] >= 50 && bill[i] < 200) {
-                percentage = .15;
-            } else {
-                percentage = .1;
-            }
-
-
-            // 4. Add the results to the corresponding arrays (empty ones)
-
-            this.tips[i] = bill * percentage;
-            this.finalValues[i] = bill + bill * percentage;
-        }
-    }  
-}
-johnData.calcTip();
-console.log(johnData);
+//     // 3. This method should include a loop to iterate over all the paid bills
+//         for (var i = 0; i < this.bills.length; i++){
+//             // Determine % based on tipping rules
+//             var percentage;
+//             var bill = this.bills[i];
+//     // 3B. And method should do tip calculations as array is being iterated over
+//             if (bill[i] < 50) {
+//                 percentage = .2;
+//             } else if (bill[i] >= 50 && bill[i] < 200) {
+//                 percentage = .15;
+//             } else {
+//                 percentage = .1;
+//             }
 
 
-// Challenge 5 Part Two!!!
-// 1. Create the johnData object, it has some info
-var markData = {
-    fullName: 'Mark Malarky',
-    // 1B. The object has an array storing bill values
-    bills: [
-        189,
-        148,
-        368,
-        99,
-        65,
-        117
-    ],
-    // 2. Add a method to calculate the tip
-    calcTip: function(){
-        this.tips = [];
-        this.finalValues = [];
+//             // 4. Add the results to the corresponding arrays (empty ones)
 
-    // 3. This method should include a loop to iterate over all the paid bills
-        for (var i = 0; i < this.bills.length; i++){
-            // Determine % based on tipping rules
-            var percentage;
-            var bill = this.bills[i];
-    // 3B. And method should do tip calculations as array is being iterated over
-            if (bill[i] < 100) {
-                percentage = .2;
-            } else if (bill[i] >= 100 && bill[i] <= 300) {
-                percentage = .1;
-            } else {
-                percentage = .25;
-            }
+//             this.tips[i] = bill * percentage;
+//             this.finalValues[i] = bill + bill * percentage;
+//         }
+//     }  
+// }
+// johnData.calcTip();
+// console.log(johnData);
 
 
-            // 4. Add the results to the corresponding arrays (empty ones)
+// // Challenge 5 Part Two!!!
+// // 1. Create the johnData object, it has some info
+// var markData = {
+//     fullName: 'Mark Malarky',
+//     // 1B. The object has an array storing bill values
+//     bills: [
+//         189,
+//         148,
+//         368,
+//         99,
+//         65,
+//         117
+//     ],
+//     // 2. Add a method to calculate the tip
+//     calcTip: function(){
+//         this.tips = [];
+//         this.finalValues = [];
 
-            this.tips[i] = bill * percentage;
-            this.finalValues[i] = bill + bill * percentage;
-        }
-    }  
-}
-
-function calcAverage(tips) {
-    var sum = 0;
-    for (var i = 0; i < tips.length; i++){
-        sum = sum + tips[i];
-    }
-    return sum / tips.length;
-}
-
-// Do the calculations
-johnData.calcTip();
-markData.calcTip();
+//     // 3. This method should include a loop to iterate over all the paid bills
+//         for (var i = 0; i < this.bills.length; i++){
+//             // Determine % based on tipping rules
+//             var percentage;
+//             var bill = this.bills[i];
+//     // 3B. And method should do tip calculations as array is being iterated over
+//             if (bill[i] < 100) {
+//                 percentage = .2;
+//             } else if (bill[i] >= 100 && bill[i] <= 300) {
+//                 percentage = .1;
+//             } else {
+//                 percentage = .25;
+//             }
 
 
-johnData.average = calcAverage(johnData.tips);
-markData.average = calcAverage(markData.tips);
-console.log(johnData, markData)
+//             // 4. Add the results to the corresponding arrays (empty ones)
 
-if (johnData.average > markData.average) {
-    console.log(johnData.fullName + '\'s family pays higher tips, with an average of $' + johnData.average);
-} else if (markData.average > johnData.average) {
-    console.log(markData.fullName + '\'s family pays higher tips, with an average of $' + markData.average);
-}
+//             this.tips[i] = bill * percentage;
+//             this.finalValues[i] = bill + bill * percentage;
+//         }
+//     }  
+// }
+
+// function calcAverage(tips) {
+//     var sum = 0;
+//     for (var i = 0; i < tips.length; i++){
+//         sum = sum + tips[i];
+//     }
+//     return sum / tips.length;
+// }
+
+// // Do the calculations
+// johnData.calcTip();
+// markData.calcTip();
+
+
+// johnData.average = calcAverage(johnData.tips);
+// markData.average = calcAverage(markData.tips);
+// console.log(johnData, markData)
+
+// if (johnData.average > markData.average) {
+//     console.log(johnData.fullName + '\'s family pays higher tips, with an average of $' + johnData.average);
+// } else if (markData.average > johnData.average) {
+//     console.log(markData.fullName + '\'s family pays higher tips, with an average of $' + markData.average);
+// }
+
+
+
+
+
+
+
+
+
+
