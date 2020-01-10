@@ -406,7 +406,6 @@ var isDesigner = shawn.indexOf('designer') === -1 ? 'shawn is not a designer' : 
 console.log(isDesigner); */
 
 
-
 /********************************************************************
  * CODING CHALLENGE 3
 */ 
@@ -448,10 +447,152 @@ In the end, John would like to have 2 arrays:
  console.log(paidAmounts); */
 
 
+/********************************************************************
+ * Objects and Properties
+*/ 
+ 
+/* // object literal
+var shawn = {
+    firstName: 'Shawn',
+    lastName: 'Bash',
+    birthYear: 1980,
+    family: ['Michelle', 'Delaney', 'Hendrix'],
+    job: 'consultant',
+    isMarried: true
+};
 
- 
- 
- 
+console.log(shawn.firstName);
+console.log(shawn['lastName']);
+var x = 'birthYear'
+console.log(shawn[x]);
+
+shawn.job = 'teacher';
+shawn['isMarried'] = false;
+console.log(shawn);
+
+// new object syntax
+var michelle = new Object();
+michelle.name = 'Michelle';
+michelle.birthYear = 1978;
+michelle['lastName'] = 'Bash';
+console.log(michelle); */
+
+
+/********************************************************************
+ * Objects and Methods
+*/ 
+
+/* var shawn = {
+    firstName: 'Shawn',
+    lastName: 'Bash',
+    birthYear: 1980,
+    family: ['Michelle', 'Delaney', 'Hendrix'],
+    job: 'consultant',
+    isMarried: true,
+    calcAge: function() {
+        this.age = 2020 - this.birthYear;
+    }
+};
+
+shawn.calcAge();
+console.log(shawn); */
+
+
+/********************************************************************
+ * CODING CHALLENGE 4
+*/ 
+
+/* 
+Let's rememver the first coding challenge where Mark and John compared their BMIs.
+Let's now implement the same functionality with objects and methods.
+
+1. For each of them, create an object with properties for their full name, mass, 
+   and height.
+2. Then, add a method to each object to calculate the BMI.  Save the BMI to teh object
+   and also return it from the method.
+3. In the end, log to the console who has the highest BMI, together with the full anme 
+   and the respective BMI.  Don't forget they might have the same BMI.
+
+Remember: BMI = mass / (height * height)
+
+var massMark = 85;
+var massJohn = 80;
+var heightMark = 2.0;
+var heightJohn = 1.8;
+*/
+
+/* // 1-2.
+var mark = {
+    fullName: 'Mark Miller',
+    mass: 85,
+    height: 2.0,
+    calcBmi: function() {
+        this.bmi = this.mass / (this.height * this.height);
+        return this.bmi;
+    }
+}
+
+var john = {
+    fullName: 'John Smith',
+    mass: 80,
+    height: 1.8,
+    calcBmi: function() {
+        this.bmi = this.mass / (this.height * this.height);
+        return this.bmi;
+    }
+}
+
+// 3.
+if(john.calcBmi() > mark.calcBmi()) {
+    console.log(`${john.fullName} has a higher BMI of ${john.bmi}`);
+} else if (mark.bmi > john.bmi) {
+    console.log(`${mark.fullName} has a higher BMI of ${mark.bmi}`);
+} else {
+    console.log(`Both ${mark.fullName} and ${john.fullName} have the same BMI.`);
+}
+ */
+
+
+ /********************************************************************
+ * Loops and Iteration
+*/ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
