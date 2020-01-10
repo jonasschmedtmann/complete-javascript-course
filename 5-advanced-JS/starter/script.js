@@ -272,5 +272,60 @@ console.log(interviewQuestion('teacher')('John'));
 ///////////////////////////////////
 //BIND, CALL, AND APPLY
 
+var john = {
+    name: 'John',
+    age: 26,
+    job: 'teacher', 
+    presentation: function(style, timeOfDay) {
+        if (style === 'formal') {
+            console.log('Good ' + timeOfDay + ', Ladies and Gentlemen! I\'m '+ this.name +', I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old.');
+        } else if (style === 'friendly') {
+            console.log('Hey! What\'s up? I\'m ' + this.name +', I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old. Have a nice ' + timeOfDay + '.'); 
+        }
+    }
+}
+
+var emily = {
+    name: 'Emily',
+    age: 35,
+    job: 'designer'
+}
+
+john.presentation('formal', 'morning');
+
+john.presentation.call(emily, 'friendly', 'afternoon');//Method borrowing. "Call" let's us use John's presentation method for Emily. This is the Call Method. The Apply method is similar. 
+
+//john.presentation.apply(emily, ['friendly', 'afternoon']);//won't work bc function isn't expecting to receive an array but apply uses arrays 
 
 
+//bind doesn't immediately call function, but creates a copy that can be stored 
+var johnFriendly = john.presentation.bind(john, 'friendly');
+
+johnFriendly('morning');
+
+var emilyFormal = john.presentation.bind(emily, 'formal');
+emilyFormal('afternoon');
+
+
+var years = [1990, 1965, 1937, 2005, 1998];
+
+function arrayCalc(arr, fn) {
+    var arrRes = [];
+    for (var i = 0; i < arr.length; i++) {
+        arrRes.push(fn(arr[i]));
+    }
+    return arrRes;
+}
+
+function calculateAge(element) {
+    return 2016 - element;
+}
+
+function isFullAge(limit, element){
+    return element >= limit;
+}
+
+var ages = arrayCalc(years, calculateAge);
+var fullJapan =  arrayCalc(ages, isFullAge.bind(this, 20));//bind always needs this keyword first.
+console.log(ages);
+console.log(fullJapan);
