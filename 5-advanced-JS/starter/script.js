@@ -252,80 +252,110 @@ console.log(obj.city); //pass a refernce that points to object then change
 // retirementIceland(1990);
 
 
-//Question from last lecture
-function interviewQuestion(job){
-    return function(name) {
-        if (job === 'designer') {
-            console.log(name + ', can use please explain what UX design is?');
-        } else if (job === 'teacher') {
-            console.log('What subject do you teach, ' + name + '?');
-        } else {
-            console.log('Hello ' +name+ ', what do you do?');
-        }
-    }
-}//No need to have the returns like in the previous example due to the power of closures. 
-//only return at the beginning that requires name because we will be able to use the job argument even after the interview function has returned 
+// //Question from last lecture
+// function interviewQuestion(job){
+//     return function(name) {
+//         if (job === 'designer') {
+//             console.log(name + ', can use please explain what UX design is?');
+//         } else if (job === 'teacher') {
+//             console.log('What subject do you teach, ' + name + '?');
+//         } else {
+//             console.log('Hello ' +name+ ', what do you do?');
+//         }
+//     }
+// }//No need to have the returns like in the previous example due to the power of closures. 
+// //only return at the beginning that requires name because we will be able to use the job argument even after the interview function has returned 
 
-console.log(interviewQuestion('teacher')('John'));
+// console.log(interviewQuestion('teacher')('John'));
 
 
-///////////////////////////////////
-//BIND, CALL, AND APPLY
+// ///////////////////////////////////
+// //BIND, CALL, AND APPLY
 
-var john = {
-    name: 'John',
-    age: 26,
-    job: 'teacher', 
-    presentation: function(style, timeOfDay) {
-        if (style === 'formal') {
-            console.log('Good ' + timeOfDay + ', Ladies and Gentlemen! I\'m '+ this.name +', I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old.');
-        } else if (style === 'friendly') {
-            console.log('Hey! What\'s up? I\'m ' + this.name +', I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old. Have a nice ' + timeOfDay + '.'); 
-        }
-    }
+// var john = {
+//     name: 'John',
+//     age: 26,
+//     job: 'teacher', 
+//     presentation: function(style, timeOfDay) {
+//         if (style === 'formal') {
+//             console.log('Good ' + timeOfDay + ', Ladies and Gentlemen! I\'m '+ this.name +', I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old.');
+//         } else if (style === 'friendly') {
+//             console.log('Hey! What\'s up? I\'m ' + this.name +', I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old. Have a nice ' + timeOfDay + '.'); 
+//         }
+//     }
+// }
+
+// var emily = {
+//     name: 'Emily',
+//     age: 35,
+//     job: 'designer'
+// }
+
+// john.presentation('formal', 'morning');
+
+// john.presentation.call(emily, 'friendly', 'afternoon');//Method borrowing. "Call" let's us use John's presentation method for Emily. This is the Call Method. The Apply method is similar. 
+
+// //john.presentation.apply(emily, ['friendly', 'afternoon']);//won't work bc function isn't expecting to receive an array but apply uses arrays 
+
+
+// //bind doesn't immediately call function, but creates a copy that can be stored 
+// var johnFriendly = john.presentation.bind(john, 'friendly');
+
+// johnFriendly('morning');
+
+// var emilyFormal = john.presentation.bind(emily, 'formal');
+// emilyFormal('afternoon');
+
+
+// var years = [1990, 1965, 1937, 2005, 1998];
+
+// function arrayCalc(arr, fn) {
+//     var arrRes = [];
+//     for (var i = 0; i < arr.length; i++) {
+//         arrRes.push(fn(arr[i]));
+//     }
+//     return arrRes;
+// }
+
+
+// function calculateAge(element) {
+//     return 2016 - element;
+// }
+
+// function isFullAge(limit, element){
+//     return element >= limit;
+// }
+
+// var ages = arrayCalc(years, calculateAge);
+// var fullJapan =  arrayCalc(ages, isFullAge.bind(this, 20));//bind always needs this keyword first.
+// console.log(ages);
+// console.log(fullJapan);
+
+
+
+//////////////////////////////////////
+//CODING CHALLENGE
+
+function Question(question, answers, correct) {
+    this.question = question;
+    this.answers = answers;
+    this.correct = correct;
+}//this is the function constructor
+
+Question.prototype.displayQuestion() {
+    console.log(this.question);
 }
 
-var emily = {
-    name: 'Emily',
-    age: 35,
-    job: 'designer'
-}
+var question1 = new Question('Is JavaScript the coolest programming language in the world?', ['Yes', 'No'], 0); //new operator Question creates a new empty object that it calls the question function and sets the this variable to new empty object that was just created. 
+var question2 = new Question('What is the name of this course\'s teacher?', ['John', 'Michael', 'Jonas'], 2);
+var question3 = new Question('What does best describe coding?', ['Boring', 'Hard', 'Fun', 'Tedious'], 2);
 
-john.presentation('formal', 'morning');
+var questions = [question1, question2, question3];
 
-john.presentation.call(emily, 'friendly', 'afternoon');//Method borrowing. "Call" let's us use John's presentation method for Emily. This is the Call Method. The Apply method is similar. 
+var n = Math.floor(Math.random() * questions.length);
 
-//john.presentation.apply(emily, ['friendly', 'afternoon']);//won't work bc function isn't expecting to receive an array but apply uses arrays 
+questions[n]
 
 
-//bind doesn't immediately call function, but creates a copy that can be stored 
-var johnFriendly = john.presentation.bind(john, 'friendly');
-
-johnFriendly('morning');
-
-var emilyFormal = john.presentation.bind(emily, 'formal');
-emilyFormal('afternoon');
 
 
-var years = [1990, 1965, 1937, 2005, 1998];
-
-function arrayCalc(arr, fn) {
-    var arrRes = [];
-    for (var i = 0; i < arr.length; i++) {
-        arrRes.push(fn(arr[i]));
-    }
-    return arrRes;
-}
-
-function calculateAge(element) {
-    return 2016 - element;
-}
-
-function isFullAge(limit, element){
-    return element >= limit;
-}
-
-var ages = arrayCalc(years, calculateAge);
-var fullJapan =  arrayCalc(ages, isFullAge.bind(this, 20));//bind always needs this keyword first.
-console.log(ages);
-console.log(fullJapan);
