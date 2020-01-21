@@ -1,0 +1,20 @@
+{
+  "name": "complete-javascript-course",
+  "version": "1.0.0",
+  "description": "course",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcbhass/complete-javascript-course.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jcbhass/complete-javascript-course/issues"
+  },
+  "homepage": "https://github.com/jcbhass/complete-javascript-course#readme"
+}
