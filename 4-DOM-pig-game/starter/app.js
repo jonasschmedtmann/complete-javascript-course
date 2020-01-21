@@ -56,22 +56,7 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
         document.querySelector('#current-' + activePlayer).textContent = roundScore;
     } else {
         // next player
-        activePlayer === 0 ? activePlayer = 1 : activePlayer = 0; // if activePlayer = 0 then activePlayer should = 1, else activePlayer = 0
-        roundScore = 0;
-
-        document.getElementById('current-0').textContent = '0';
-        document.getElementById('current-1').textContent = '0';
-
-        document.querySelector('.player-0-panel').classList.toggle('active');
-        document.querySelector('.player-1-panel').classList.toggle('active');
-
-        // // Removing classes
-            // document.querySelector('.player-0-panel').classList.remove('active');
-
-        // // Add a class
-            // document.querySelector('.player-1-panel').classList.add('active');
-
-        document.querySelector('.dice').style.display = 'none';
+        nextPlayer();
     }
 });
 
@@ -80,7 +65,46 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
 // document.querySelector('#current-' + activePlayer).innerHTML = '<em>' + dice + '<em>';
 // var x = document.querySelector('#score-0').textContent; 
 
+// Implementing our 'Hold' function and the DRY Principle LESSON 20
+
+document.querySelector('.btn-hold').addEventListener('click', function() {
+    // add current score to players global score once we have clicked on the btn hold
+    scores[activePlayer] += roundScore;
+
+    // update the UI
+document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer]
+    
+ // check if player won game
+ if (scores[activePlayer] >= 20){
+     document.querySelector('#name-' + activePlayer).textContent = 'Winner!!';
+     document.querySelector('.dice').classList.toggle = 'none';
+     document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
+     document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
+
+ } else {
+     // Next Player
+     nextPlayer();
+ }
+})
 
 
 
+function nextPlayer() {
+    activePlayer === 0 ? activePlayer = 1 : activePlayer = 0; // if activePlayer = 0 then activePlayer should = 1, else activePlayer = 0
+    roundScore = 0;
+
+    document.getElementById('current-0').textContent = '0';
+    document.getElementById('current-1').textContent = '0';
+
+    document.querySelector('.player-0-panel').classList.toggle('active');
+    document.querySelector('.player-1-panel').classList.toggle('active');
+
+        // // Removing classes
+            // document.querySelector('.player-0-panel').classList.remove('active');
+
+        // // Add a class
+            // document.querySelector('.player-1-panel').classList.add('active');
+
+    document.querySelector('.dice').style.display = 'none';
+}
 
