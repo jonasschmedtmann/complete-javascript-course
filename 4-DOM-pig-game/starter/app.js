@@ -19,32 +19,34 @@ GAME RULES:
 
 // First DOM Access and Manipulation, LESSON 18
 // 1. declare variables
-var scores, roundScore, activePlayer;
+var scores, roundScore, activePlayer, gamePlaying;
 
 init();
 
 document.querySelector('.btn-roll').addEventListener('click', function() {
-    // Do something here
-    //  Random number
-    var dice = Math.floor(Math.random() * 6) + 1;
+    if(gamePlaying){
+        // Do something here
+        //  Random number
+        var dice = Math.floor(Math.random() * 6) + 1;
 
-    //  Display the result, we set the display to none
-    var diceDOM = document.querySelector('.dice');
-    diceDOM.style.display = 'block';
-    //  update the dice image src to the dice number rolled
-    diceDOM.src = 'dice-' + dice + '.png';
-    
+        //  Display the result, we set the display to none
+        var diceDOM = document.querySelector('.dice');
+        diceDOM.style.display = 'block';
+        //  update the dice image src to the dice number rolled
+        diceDOM.src = 'dice-' + dice + '.png';
+        
 
-  // LESSON 19 Events and Event Handling (instruction orders continue from lesson 18)  
+    // LESSON 19 Events and Event Handling (instruction orders continue from lesson 18)  
 
-    //  Update the round score IF the rolled number was NOT a 1 (!== means it doesnt do type coercion, != does)
-    if (dice !== 1) {
-        // add score
-        roundScore += dice; // roundScore = roundScore + dice
-        document.querySelector('#current-' + activePlayer).textContent = roundScore;
-    } else {
-        // next player
-        nextPlayer();
+        //  Update the round score IF the rolled number was NOT a 1 (!== means it doesnt do type coercion, != does)
+        if (dice !== 1) {
+            // add score
+            roundScore += dice; // roundScore = roundScore + dice
+            document.querySelector('#current-' + activePlayer).textContent = roundScore;
+        } else {
+            // next player
+            nextPlayer();
+        }
     }
 });
 
@@ -68,6 +70,7 @@ document.querySelector('#score-' + activePlayer).textContent = scores[activePlay
      document.querySelector('.dice').classList.toggle = 'none';
      document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
      document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
+     gamePlaying = false;
 
  } else {
      // Next Player
@@ -105,6 +108,7 @@ function init(){
     scores = [0, 0];
     roundScore = 0;
     activePlayer = 0;
+    gamePlaying = true;
 
     document.querySelector('.dice').style.display = 'none';
 
@@ -121,3 +125,6 @@ function init(){
     document.querySelector('.player-0-panel').classList.add('active'); // removing and adding so we don't add 2 active classes, because then if we did want to remove later, we would have to remove twice. its like it stacks
     document.querySelector('.player-1-panel').classList.remove('active');
 }
+
+// Finishing Touches: State Variables LESSON 22
+// we need to remember something, the state of something, in this case, is our game playing or is our game not playing
