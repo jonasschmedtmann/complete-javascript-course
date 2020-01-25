@@ -20,6 +20,15 @@
 
 .final-score:focus { outline: none}
 
+/* Challenge 3, need to edit the individual dice by id so not overlapping*/
+#dice-1 {
+    top: 120px;
+}
+
+#dice-2 {
+    top: 250px;
+}
+
 
 * {
     margin: 0;
