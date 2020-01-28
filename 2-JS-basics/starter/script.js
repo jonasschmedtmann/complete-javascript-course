@@ -618,9 +618,78 @@ Mark likes to tip 20% of the bill when the bill is less than $100, 10% when the 
 8. Log to the console which family paid the highest tips on average
 */
 
-// 1
+// 1-4
+var shawn = {
+    fullName: 'Shawn Bash',
+    bills: [124,48,268,180,42],
+    calcTips: function() {
+        this.tips = [];
+        this.finalValues = [];
+        for(i = 0; i < this.bills.length; i++) {
+            // determine percentage based on tipping rules
+            var percentage;
+            var bill = this.bills[i];
+            if (bill < 50) {
+                percentage = .2;
+            } else if (bill >= 50 && bill <= 200) {
+                percentage = .15;
+            } else {
+                percentage = .1;
+            }
 
+            // add results to corresponding arrays
+            this.tips[i] = bill * percentage;
+            this.finalValues[i] = bill + bill * percentage;
+        }
+    }
+}
 
+// 5-8
+var michelle = {
+    fullName: 'Michelle Bash',
+    bills: [77,375,110,45],
+    calcTips: function() {
+        this.tips = [];
+        this.finalValues = [];
+        for(i = 0; i < this.bills.length; i++) {
+            var percentage;
+            var bill = this.bills[i];
+            if (bill < 100) {
+                percentage = .2;
+            } else if (bill >= 100 && bill <= 300) {
+                percentage = .1;
+            } else {
+                percentage = .25;
+            }
+
+            // add results to corresponding arrays
+            this.tips[i] = bill * percentage;
+            this.finalValues[i] = bill + bill * percentage;
+
+        };
+    }
+}
+
+function calcAverage(tips) {
+    var sum = 0;
+    tips.forEach(tip => {
+        sum += tip;
+    });
+    return sum / tips.length;
+}
+
+shawn.calcTips();
+michelle.calcTips();
+shawn.average = calcAverage(shawn.tips);
+michelle.average = calcAverage(michelle.tips);
+
+console.log(shawn, michelle);
+
+if (shawn.average > michelle.average) {
+    console.log(`${shawn.fullName}\'s family pays higher tips with an average of ${shawn.average}`);
+} else {
+    console.log(`${michelle.fullName}\'s family pays higher tips with an average of ${michelle.average}`);
+}
 
 
 
