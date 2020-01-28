@@ -57,6 +57,7 @@ console.log(mama.lastName);
 // 63. Creating Objects: Object.create
     // first define an object that will act as a prototype, then create a new object based on that very prototype
 
+/*
 var personPrototype = {
     calculateAge: function(){
         console.log(2020 -
@@ -75,3 +76,54 @@ var dad = Object.create(personPrototype,
         yearOfBirth: { value: 1973 },
         job: { value: 'BNSF' }
     });
+    */
+
+
+
+
+
+
+// 64. Primitives vs Objects
+
+// Primitives
+var a = 23;
+var b = a;
+a = 46;
+console.log(a); // should be 46
+console.log(b); // should be 23 since we mutated a on a later line than we defined b
+
+
+
+
+// Objects
+var object1 = {
+    name: 'Zack',
+    age: 22
+};
+
+var object2 = object1;
+object1.age = 23;
+
+console.log(object1.age); // should be 23 since we mutated
+console.log(object1.age); // should be 23 since our object2 only has a reference to the object1 in storage. So basically whatever object1 is, regardless of placement, it can come before/after
+
+
+
+
+// Lastly, lets see what happens when we pass a primitive and an object into a function
+// Functions
+var age = 27;
+var obj = {
+    name: 'Bran',
+    city: 'Aberdeen'
+};
+
+function dataMutater(a, b){
+    a = 30; 
+    b.city = 'San Francisco';
+}
+
+dataMutater(age, obj);
+
+console.log(age); // primitive should remain unchanged. When we created the original primitive, a simple copy was made, we can change a as much as we want it will never change on the outside
+console.log(obj.city); // should change to San Fran because we changed the reference that points to the object
