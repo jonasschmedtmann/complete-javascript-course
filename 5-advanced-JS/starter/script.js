@@ -112,6 +112,7 @@ console.log(object1.age); // should be 23 since our object2 only has a reference
 
 // Lastly, lets see what happens when we pass a primitive and an object into a function
 // Functions
+/*
 var age = 27;
 var obj = {
     name: 'Bran',
@@ -127,3 +128,47 @@ dataMutater(age, obj);
 
 console.log(age); // primitive should remain unchanged. When we created the original primitive, a simple copy was made, we can change a as much as we want it will never change on the outside
 console.log(obj.city); // should change to San Fran because we changed the reference that points to the object
+*/
+
+
+
+// 65. First Class Functions: Passing Functions as Arguments
+    // functions accepting functions as other arguments... we actually did this with our event listeners
+
+
+var years = [1990, 1965, 1937, 2005, 1998];
+
+function arrayCalc(arr, fn) {
+    var arrRes = [];
+    for (var i = 0; i < arr.length; i++) {
+        arrRes.push(fn(arr[i]));
+    }
+    return arrRes;
+}
+
+function calculateAge(el) {
+    return 2020 - el;
+}
+
+
+function isFullAge(el) {
+    return el >= 18;
+}
+
+function maxHeartRate(el) {
+    if (el >= 18 && el <= 81){
+        return Math.round(206.9 - (0.67 * el));
+    } else {
+        return -1;
+    }
+}
+
+
+// Callback function! aka argument in the function is a function
+var ages = arrayCalc(years, calculateAge);
+var fullAges = arrayCalc(ages, isFullAge);
+var maxHeart = arrayCalc(ages, maxHeartRate);
+
+console.log(ages);
+console.log(fullAges);
+console.log(maxHeart);
