@@ -84,7 +84,7 @@ var dad = Object.create(personPrototype,
 
 
 // 64. Primitives vs Objects
-
+/*
 // Primitives
 var a = 23;
 var b = a;
@@ -106,7 +106,7 @@ object1.age = 23;
 
 console.log(object1.age); // should be 23 since we mutated
 console.log(object1.age); // should be 23 since our object2 only has a reference to the object1 in storage. So basically whatever object1 is, regardless of placement, it can come before/after
-
+*/
 
 
 
@@ -135,7 +135,7 @@ console.log(obj.city); // should change to San Fran because we changed the refer
 // 65. First Class Functions: Passing Functions as Arguments
     // functions accepting functions as other arguments... we actually did this with our event listeners
 
-
+/*
 var years = [1990, 1965, 1937, 2005, 1998];
 
 function arrayCalc(arr, fn) {
@@ -172,3 +172,34 @@ var maxHeart = arrayCalc(ages, maxHeartRate);
 console.log(ages);
 console.log(fullAges);
 console.log(maxHeart);
+*/
+
+
+
+// 66. First Class Functions: Functions Returning Functions
+function interviewQuestion(job) { 
+    if (job === 'designer'){
+        return function(name) { // anonymous function bc no name
+            console.log(name + ', can you please explain what UX design is?');
+        }
+    } else if (job === 'teacher'){
+        return function(name){
+            console.log('What subject do you teach, ' + name + '?');
+        }
+    } else  {
+        return function(name) {
+            console.log('Hello ' + name + ', what do you do?');
+        }
+    }
+}
+
+var teacherQuestion = interviewQuestion('teacher');
+var designerQuestion = interviewQuestion('designer');
+
+teacherQuestion('Zack');
+teacherQuestion('Debbi');
+designerQuestion('Brandon');
+
+
+interviewQuestion('teacher')('Mr. Northrup');
+interviewQuestion('designer')('Kanye West');
