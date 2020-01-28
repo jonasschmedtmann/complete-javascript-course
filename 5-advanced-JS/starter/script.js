@@ -1,5 +1,5 @@
 // Creating Objects using the Function Constructor
-
+/*
 var zack = {
     name: 'Zack',
     yearOfBirth: 1997,
@@ -42,7 +42,7 @@ mama.calculateAge();
 console.log(zack.lastName);
 console.log(bran.lastName);
 console.log(mama.lastName);
-
+*/
 
 
 
@@ -55,3 +55,23 @@ console.log(mama.lastName);
 
 // 62. The Prototype Chain in the Console
 // 63. Creating Objects: Object.create
+    // first define an object that will act as a prototype, then create a new object based on that very prototype
+
+var personPrototype = {
+    calculateAge: function(){
+        console.log(2020 -
+            this.yearOfBirth - 1);
+    }
+};
+
+var zack = Object.create(personPrototype);
+zack.name = 'Zack';
+zack.yearOfBirth = 1997;
+zack.job = 'engineer';
+
+var dad = Object.create(personPrototype,
+    {
+        name: { value: 'Jeff' },
+        yearOfBirth: { value: 1973 },
+        job: { value: 'BNSF' }
+    });
