@@ -42,3 +42,16 @@ mama.calculateAge();
 console.log(zack.lastName);
 console.log(bran.lastName);
 console.log(mama.lastName);
+
+
+
+
+
+
+
+
+
+
+
+// 62. The Prototype Chain in the Console
+// 63. Creating Objects: Object.create
