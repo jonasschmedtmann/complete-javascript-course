@@ -177,6 +177,7 @@ console.log(maxHeart);
 
 
 // 66. First Class Functions: Functions Returning Functions
+/*
 function interviewQuestion(job) { 
     if (job === 'designer'){
         return function(name) { // anonymous function bc no name
@@ -203,3 +204,33 @@ designerQuestion('Brandon');
 
 interviewQuestion('teacher')('Mr. Northrup');
 interviewQuestion('designer')('Kanye West');
+*/
+
+
+
+
+// 67. Immediately Invoked Function Expressions (IIFE)
+// Basically creating a new scope that is hidden from the outside scope. Data privacy, and dont interfere with other variables in our execution context
+// function game(){
+//     var score = Math.random() * 10;
+//     console.log(score >= 5);
+// }
+// game();
+
+/*
+(function () {
+    var score = Math.random() * 10;
+    console.log(score >= 5);
+})();
+
+//console.log(score);
+
+
+
+(function (goodLuck) {
+    var score = Math.random() * 10;
+    console.log(score >= 5 - goodLuck);
+})(5);
+
+// console.log(score);
+*/
