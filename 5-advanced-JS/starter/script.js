@@ -360,6 +360,16 @@ function calculateAge(el) {
 }
 
 
-function isFullAge(el) {
-    return el >= 18;
+function isFullAge(limit, el) {
+    return el >= limit;
 }
+
+var ages = arrayCalc(years, calculateAge)
+// we need to bind isFullAge with a preset argument
+var fullAgeJapan = arrayCalc(ages, isFullAge.bind(this, 20));
+var fullAgeUSA = arrayCalc(ages, isFullAge.bind(this, 18));
+var fullAgeAlcUSA = arrayCalc(ages, isFullAge.bind(this, 21));
+console.log(ages);
+console.log(fullAgeJapan);
+console.log(fullAgeUSA);
+console.log(fullAgeAlcUSA);
