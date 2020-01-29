@@ -241,6 +241,7 @@ interviewQuestion('designer')('Kanye West');
 // 68. Closures
 // GOAL: write/create a small function that returns a function that calculates how many years we have less until retirement
 
+/*
 function retirement(retirementAge){
     var a = ' years left until retirement.';
     return function(yearOfBirth){
@@ -262,23 +263,23 @@ retirementIceland(1997);
 
 
 
-/*
-function interviewQuestion(job) { 
-    if (job === 'designer'){
-        return function(name) { // anonymous function bc no name
-            console.log(name + ', can you please explain what UX design is?');
-        }
-    } else if (job === 'teacher'){
-        return function(name){
-             console.log(name + ', can you please explain what UX design is?');
-        }
-    } else  {
-        return function(name) {
-             console.log(name + ', can you please explain what UX design is?');
-        }
-    }
-}
-*/
+
+// function interviewQuestion(job) { 
+//     if (job === 'designer'){
+//         return function(name) { // anonymous function bc no name
+//             console.log(name + ', can you please explain what UX design is?');
+//         }
+//     } else if (job === 'teacher'){
+//         return function(name){
+//              console.log(name + ', can you please explain what UX design is?');
+//         }
+//     } else  {
+//         return function(name) {
+//              console.log(name + ', can you please explain what UX design is?');
+//         }
+//     }
+// }
+
 
 function interviewQuestion(job){
     return function(name){
@@ -296,3 +297,69 @@ function interviewQuestion(job){
 interviewQuestion('teacher')('Zack');
 interviewQuestion('designer')('Brandon');
 interviewQuestion('other')('Debbi');
+*/
+
+
+
+
+// 69. Bind, Call and Apply
+var zack = {
+    name: 'Zack',
+    age: 22,
+    job: 'software engineer',
+    // we want zack to say a sentence in which he presents himself, with a method
+    presentation: function(style, timeOfDay){
+        if (style === 'formal'){
+            console.log('Good ' + timeOfDay + ', Ladies and Gentleman! I\'m ' + this.name + ', I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old.');
+        } else if (style === 'friendly'){
+            console.log('Hey! What\'s up? I\'m ' + this.name + ', I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old. Have a nice ' + timeOfDay + '.');
+        }
+    }
+}
+
+var emily = {
+    name: 'Emily',
+    age: 35,
+    job: 'designer'
+    // we can use the preseention methody in Emily object using the  call method to grab that presentation in the zack object
+}
+
+
+zack.presentation('formal', 'morning');
+// Using call method, also known as method borrowing
+zack.presentation.call(emily, 'friendly', 'afternoon')
+// The apply method is similar, only diff is the apply accepts the arguments as an array
+// zack.presentation.apply(emily, ['friendly', 'afternoon']); // shouldn't work since our presentation isn't expecting to receive an array 
+// Using the bind method, is similar to call, allows us to set this variable explicity, but it doesn't immediately call the function, instead generating a copy so we can save it or store it. Good for creating a function with preset arguments
+var zackFriendly = zack.presentation.bind(zack, 'friendly');
+zackFriendly('afternoon');
+
+// more practice
+
+var emilyFormal = zack.presentation.bind(emily, 'formal');
+emilyFormal('Winter')
+
+
+
+
+
+
+
+var years = [1990, 1965, 1937, 2005, 1998];
+
+function arrayCalc(arr, fn) {
+    var arrRes = [];
+    for (var i = 0; i < arr.length; i++) {
+        arrRes.push(fn(arr[i]));
+    }
+    return arrRes;
+}
+
+function calculateAge(el) {
+    return 2020 - el;
+}
+
+
+function isFullAge(el) {
+    return el >= 18;
+}
