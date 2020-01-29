@@ -234,3 +234,65 @@ interviewQuestion('designer')('Kanye West');
 
 // console.log(score);
 */
+
+
+
+
+// 68. Closures
+// GOAL: write/create a small function that returns a function that calculates how many years we have less until retirement
+
+function retirement(retirementAge){
+    var a = ' years left until retirement.';
+    return function(yearOfBirth){
+       var age = 2020 - yearOfBirth;
+        console.log((retirementAge - age) + a)
+    }
+}
+
+// call function
+var retirementUSA = retirement(66);
+// or can call it this way
+// retirement(66)(1997)
+var retirementGermany = retirement(65);
+var retirementIceland = retirement(67);
+
+retirementUSA(1997);
+retirementGermany(1997);
+retirementIceland(1997);
+
+
+
+/*
+function interviewQuestion(job) { 
+    if (job === 'designer'){
+        return function(name) { // anonymous function bc no name
+            console.log(name + ', can you please explain what UX design is?');
+        }
+    } else if (job === 'teacher'){
+        return function(name){
+             console.log(name + ', can you please explain what UX design is?');
+        }
+    } else  {
+        return function(name) {
+             console.log(name + ', can you please explain what UX design is?');
+        }
+    }
+}
+*/
+
+function interviewQuestion(job){
+    return function(name){
+      if (job === 'designer' ){
+        console.log(name + ', can you please explain what UX design is?');
+      } else if (job === 'teacher'){
+        console.log(name + ', can you please explain what UX design is?');
+      } else {
+        console.log(name + ', can you please explain what you do?');
+      }
+    }
+}
+
+// Call it for a teacher
+interviewQuestion('teacher')('Zack');
+interviewQuestion('designer')('Brandon');
+interviewQuestion('other')('Debbi');
