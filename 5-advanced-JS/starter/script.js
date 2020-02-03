@@ -404,8 +404,23 @@ c) correct answer (I would use a number for this)
 
 // 1. Build a function constructor to describe a question. question must include the ? itself, the answers a person can choose, and the correct answer
 
-(function QuestionConstructor(question, answers, correctAnswer){
+function QuestionConstructor(question, answers, correctAnswer){
     this.question = question;
     this.answers = answers;
     this.correctAnswer = correctAnswer;
-})
+}
+
+// 2. Create a couple of questions using the costructor
+var q1 = new QuestionConstructor('Is JavaScript the coolest programming language in the world?',
+['Yes', 'No'],
+0);
+
+var q2 = new QuestionConstructor('What is the name of this course\'s teacher?',
+['John', 'Zack', 'Jonas'],
+2);
+
+var q3 = new QuestionConstructor('Which of the following best describes coding?',['Hard', 'Boring', 'Fun', 'Lame'],
+2);
+
+// 3. Store all the questions we created inside an array
+var allQuestions = [q1, q2, q3];
