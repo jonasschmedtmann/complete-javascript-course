@@ -404,47 +404,71 @@ c) correct answer (I would use a number for this)
 
 // 1. Build a function constructor to describe a question. question must include the ? itself, the answers a person can choose, and the correct answer
 
-function QuestionConstructor(question, answers, correctAnswer){
-    this.question = question;
-    this.answers = answers;
-    this.correctAnswer = correctAnswer;
-}
-// 4. Writing a method to log random question to console
-// QuestionConstructor.prototype.displayQuestion() = function() {
-//     console.log(this.question);
 
-//     // we need to loop through all the answers and display all of them
-//     for (var i = 0; i < this.answers.length; i++){
-//         console.log(i + '; ' + this.answers[i])
-//     }
-// }
+// 7. Suppose this code would be a plugin for other programmers to use in their code. So make sure that all your code is private and doesn't interfere with the other programmers code (Hint: we learned a special technique to do exactly that).
 
-QuestionConstructor.prototype.displayQuestion = function() {
-    console.log(this.question);
-
-    for (var i = 0; i < this.answers.length; i++) {
-        console.log(i + ': ' + this.answers[i]);
+// for step 7 we are going to create an immediately invoked function expression and put all our code inside it
+(function() {
+    function QuestionConstructor(question, answers, correctAnswer){
+        this.question = question;
+        this.answers = answers;
+        this.correctAnswer = correctAnswer;
     }
-}
+    // 4. Writing a method to log random question to console
+    // QuestionConstructor.prototype.displayQuestion() = function() {
+    //     console.log(this.question);
+    
+    //     // we need to loop through all the answers and display all of them
+    //     for (var i = 0; i < this.answers.length; i++){
+    //         console.log(i + '; ' + this.answers[i])
+    //     }
+    // }
+    
+    QuestionConstructor.prototype.displayQuestion = function() {
+        console.log(this.question);
+    
+        for (var i = 0; i < this.answers.length; i++) {
+            console.log(i + ': ' + this.answers[i]);
+        }
+    }
+    
+    // 6. Check if the answer is correct and print to the console whether the answer is correct ot nor (Hint: write another method for this).
+    QuestionConstructor.prototype.checkAnswer = function(ans) {
+        if (ans === this.correctAnswer){
+            console.log('Correct answer!');
+        } else {
+            console.log('Wrong answer. Try again.')
+        }
+    }
+    
+    
+    // 2. Create a couple of questions using the costructor
+    var q1 = new QuestionConstructor('Is JavaScript the coolest programming language in the world?',
+    ['Yes', 'No'],
+    0);
+    
+    var q2 = new QuestionConstructor('What is the name of this course\'s teacher?',
+    ['John', 'Zack', 'Jonas'],
+    2);
+    
+    var q3 = new QuestionConstructor('Which of the following best describes coding?',['Hard', 'Boring', 'Fun', 'Lame'],
+    2);
+    
+    // 3. Store all the questions we created inside an array
+    var questions = [q1, q2, q3];
+    
+    // 4. Select one random question and log it on the console, together with the possible answers (each question should have a number) (Hint: write a method for the Question objects for this task).
+    
+    var randomQuestionLogger = Math.floor(Math.random() * questions.length);
+    questions[randomQuestionLogger].displayQuestion();
+    
+    // 5. Use the 'prompt' function to ask the user for the correct answer. The user should input the number of the correct answer such as you displayed it on Task 4.
+    
+    // since our answers are numbers, but the console is turning them to strings, we need to parseInt our answer so that it makes it a number
+    
+    var answer = parseInt(prompt('Please select the correct answer'));
+    
+    // 6. Call the method
+    questions[randomQuestionLogger].checkAnswer(answer);
+})();
 
-
-
-// 2. Create a couple of questions using the costructor
-var q1 = new QuestionConstructor('Is JavaScript the coolest programming language in the world?',
-['Yes', 'No'],
-0);
-
-var q2 = new QuestionConstructor('What is the name of this course\'s teacher?',
-['John', 'Zack', 'Jonas'],
-2);
-
-var q3 = new QuestionConstructor('Which of the following best describes coding?',['Hard', 'Boring', 'Fun', 'Lame'],
-2);
-
-// 3. Store all the questions we created inside an array
-var questions = [q1, q2, q3];
-
-// 4. Select one random question and log it on the console, together with the possible answers (each question should have a number) (Hint: write a method for the Question objects for this task).
-
-var randomQuestionLogger = Math.floor(Math.random() * questions.length);
-questions[randomQuestionLogger].displayQuestion();
