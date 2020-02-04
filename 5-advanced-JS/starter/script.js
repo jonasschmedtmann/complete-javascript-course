@@ -409,6 +409,25 @@ function QuestionConstructor(question, answers, correctAnswer){
     this.answers = answers;
     this.correctAnswer = correctAnswer;
 }
+// 4. Writing a method to log random question to console
+// QuestionConstructor.prototype.displayQuestion() = function() {
+//     console.log(this.question);
+
+//     // we need to loop through all the answers and display all of them
+//     for (var i = 0; i < this.answers.length; i++){
+//         console.log(i + '; ' + this.answers[i])
+//     }
+// }
+
+QuestionConstructor.prototype.displayQuestion = function() {
+    console.log(this.question);
+
+    for (var i = 0; i < this.answers.length; i++) {
+        console.log(i + ': ' + this.answers[i]);
+    }
+}
+
+
 
 // 2. Create a couple of questions using the costructor
 var q1 = new QuestionConstructor('Is JavaScript the coolest programming language in the world?',
@@ -423,4 +442,9 @@ var q3 = new QuestionConstructor('Which of the following best describes coding?'
 2);
 
 // 3. Store all the questions we created inside an array
-var allQuestions = [q1, q2, q3];
+var questions = [q1, q2, q3];
+
+// 4. Select one random question and log it on the console, together with the possible answers (each question should have a number) (Hint: write a method for the Question objects for this task).
+
+var randomQuestionLogger = Math.floor(Math.random() * questions.length);
+questions[randomQuestionLogger].displayQuestion();
