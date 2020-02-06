@@ -518,14 +518,29 @@ c) correct answer (I would use a number for this)
     }
     
     // 6. Check if the answer is correct and print to the console whether the answer is correct ot nor (Hint: write another method for this).
-    QuestionConstructor.prototype.checkAnswer = function(ans) {
+    // 10. need to add a parameter, callback
+    QuestionConstructor.prototype.checkAnswer = function(ans, callback) {
+        var sc;
         if (ans === this.correctAnswer){
             console.log('Correct answer!');
+            // 10. Cont'd we can call the function we just wrote, but need to pass the function into this method here
+            sc = callback(true); // this is the callback to our keepScore function and pass in true bc if ans === correctAnswer, the ans will be correct, and remember using our closure (function inside of function score), it accepts a correct parameter and will update score if answer is correct or just return what it was previously if not correct
         } else {
-            console.log('Wrong answer. Try again.')
+            console.log('Wrong answer. Try again.');
+            sc = callback(false); // returns current score
         }
+        //11. call the method here
+        this.displayScore(sc)
+    }
+
+    // 11. Display the score in the console. Use yet another method for this.
+
+    QuestionConstructor.prototype.displayScore = function(score){
+        console.log('Your current score is: ' + score);
+        console.log('-----------------------------------') // separates lines between ?s
     }
     
+
     
     // 2. Create a couple of questions using the costructor
     var q1 = new QuestionConstructor('Is JavaScript the coolest programming language in the world?',
@@ -542,6 +557,20 @@ c) correct answer (I would use a number for this)
 
       // 3. Store all the questions we created inside an array
       var questions = [q1, q2, q3];
+
+
+      // 10. Track the user's score to make the game more fun! So each time an answer is correct, add 1 point to the score (Hint: I'm going to use the power of closures for this, but you don't have to, just do this with the tools you feel more comfortable at this point).
+      function score(){
+          var sc = 0;
+          return function(correct){
+            if (correct) {
+                sc++;
+            }
+            return sc;
+          }
+      }
+
+      var keepScore = score();
         
 
     // 8. After you display the result, display the next random question, so that the game never ends (Hint: write a function for this and call it right after displaying the result)
@@ -563,7 +592,8 @@ c) correct answer (I would use a number for this)
         // 9. Be careful: after Task 8, the game literally never ends. So include the option to quit the game if the user writes 'exit' instead of the answer. In this case, DON'T call the function from task 8.
         if(answer !== 'exit'){
             // 6. Call the method
-            questions[randomQuestionLogger].checkAnswer(parseInt(answer));
+            // 10. pass keepScore into the method
+            questions[randomQuestionLogger].checkAnswer(parseInt(answer), keepScore);
 
             nextQuestion();
         }
