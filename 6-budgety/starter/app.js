@@ -88,7 +88,6 @@ var UIController = (function () {
 var controller = (function (budgetCtrl, UICtrl) {
 
     var setupEventListeners = function() {
-
         var DOM = UICtrl.getDOMstrings();
 
         document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem); // callback so auto called back when needed (someone pressing button)
@@ -117,5 +116,14 @@ var controller = (function (budgetCtrl, UICtrl) {
        // console.log('It works.') // tests for clicking button or key down on ENTER key
     };
     
+
+    return {
+        init: function() {
+            console.log('Application has started.');
+            setupEventListeners();
+        }
+    };
     
 })(budgetController, UIController);
+
+controller.init();
