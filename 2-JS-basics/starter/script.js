@@ -16,8 +16,8 @@ job = "philanthropist";
 console.log(job);
 */
 
-/****************************
- * Variable mutation and type coercion
+/**********************************************
+ * Variable Mutation and Type Coercion
  */
 
 var firstName = "Joshua";
@@ -83,8 +83,8 @@ console.log(typeof "Job is younger than MArk");
 var x;
 console.log(typeof x);
 
-/********************************
- * Operator precedence
+/************************************************
+ * Operator Precedence
  */
 
 var current = 2020;
@@ -118,7 +118,7 @@ a++;
 // decrement
 a--;
 
-/**********************
+/********************************************
  * Code Challenge
  */
 
@@ -133,3 +133,55 @@ console.log(johnBMI, markBMI);
 
 var greater = markBMI > johnBMI;
 console.log("Is Mark's BMI higher than John's?" + greater);
+
+/********************************************
+ * If/Else Statements
+ */
+
+var firstLady = "Bailey";
+var civilStatus = "married";
+
+if (civilStatus === "single") {
+  console.log(firstLady + " is single");
+} else {
+  console.log(firstLady + " is married");
+}
+
+var isMarried = true;
+if (isMarried) {
+  console.log(firstLady + " is married");
+} else {
+  console.log(firstLady + " is single");
+}
+
+// Code challenge using if/else statement
+var markWeight = 100;
+var johnWeight = 95;
+var markHeight = 1.8;
+var johnHeight = 1.9;
+
+var markBMI = markWeight / (markHeight ^ 2);
+var johnBMI = johnWeight / (johnHeight ^ 2);
+
+if (markBMI > johnBMI) {
+  console.log("Mark's BMI is higher than John's");
+} else {
+  console.log("John's BMI is higher than Mark's");
+}
+
+/***************************************************
+ * Boolean Logic
+ */
+// && operator, both conditions must be true
+// || operator, one of the conditions must be true
+// ! operator, changes true to false and false to true
+var childOne = "Joshua";
+var age = 29;
+
+if (age < 19) {
+  console.log(childOne + " is a teenager");
+} else if (age >= 19 && age < 30) {
+  console.log(childOne + " is becoming a man");
+} else {
+  console.log(childOne + " has reached manhood");
+}
