@@ -201,3 +201,35 @@ age >= 18
 
 var drink = age >= 18 ? " wine" : "juice";
 console.log(drink);
+
+// Switch Statements
+var job = "instructor";
+switch (job) {
+  case "teacher":
+  case "instructor":
+    console.log(firstGuy + " teaches kids how to code");
+    break;
+  case "driver":
+    console.log(firstGuy + " drives people around");
+    break;
+  case "designer":
+    console.log(firstGuy + " designs beautiful websites");
+    break;
+  default:
+    console.log(firstGuy + " does something else");
+}
+
+age = 29;
+switch (true) {
+  case age <= 12:
+    console.log(childOne + " is the kid");
+    break;
+  case age <= 19 && age >= 13:
+    console.log(childOne + " is a teen");
+    break;
+  case age >= 19 && age < 30:
+    console.log(childOne + " is becoming a man");
+    break;
+  default:
+    console.log(childOne + " is the man");
+}
