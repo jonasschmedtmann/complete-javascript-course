@@ -185,3 +185,19 @@ if (age < 19) {
 } else {
   console.log(childOne + " has reached manhood");
 }
+
+/*********************************************
+ * The Ternary Operator aka Conditional Operator
+ * and Switch Statements
+ */
+
+// Ternary Operator
+var firstGuy = "John";
+var age = 18;
+
+age >= 18
+  ? console.log(firstGuy + " drinks wine.")
+  : console.log(firstGuy + " drinks juice");
+
+var drink = age >= 18 ? " wine" : "juice";
+console.log(drink);
