@@ -242,9 +242,39 @@ switch (true) {
 // Truthy values: NOT a falsy value
 
 var height;
-height = 0;
+height = 23;
 if (height || height === 0) {
   console.log("Variable is defined");
 } else {
   console.log("Variable has not been defined");
 }
+
+// Equality operators
+if (height == "23") {
+  console.log("The == operator does type coercion Ex; 23 == '23' is true");
+} else {
+  console.log("The === is best practice");
+}
+
+/***********************************************
+ * Code Challenge 2
+ */
+
+var avgJohn = (89 + 120 + 103) / 3;
+var avgMike = (116 + 94 + 123) / 3;
+var avgMary = (120 + 123 + 97) / 3;
+console.log(avgJohn, avgMary, avgMike);
+
+if (avgJohn > avgMike && avgJohn > avgMary) {
+  console.log("John's team scored the most");
+} else if (avgMike > avgJohn && avgMike > avgMary) {
+  console.log("Mike's team scored the most");
+} else if (avgMary > avgJohn && avgMary > avgMike) {
+  console.log("Mary's team scored the most");
+} else {
+  console.log("There was a draw");
+}
+
+/*****************************************************
+ * Functions
+ */
