@@ -233,3 +233,18 @@ switch (true) {
   default:
     console.log(childOne + " is the man");
 }
+
+/**************************************************
+ * Truthy and Falsy values & Equality Operators
+ */
+
+// Falsy Values: undefined, null, 0, '', NaN(Not a Number)
+// Truthy values: NOT a falsy value
+
+var height;
+height = 0;
+if (height || height === 0) {
+  console.log("Variable is defined");
+} else {
+  console.log("Variable has not been defined");
+}
