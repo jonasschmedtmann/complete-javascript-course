@@ -326,3 +326,10 @@ var whatDoYouDo = function(job, name) {
 console.log(whatDoYouDo("teacher", "John"));
 console.log(whatDoYouDo("designer", "Jane"));
 console.log(whatDoYouDo("retired", "Mark"));
+
+/*********************************************
+ * Arrays
+ */
+
+var names = ["John", "Mark", "Jane"]; // most often used
+var years = new Array("1990", "1969", "1948"); // another way to create an array
