@@ -333,3 +333,32 @@ console.log(whatDoYouDo("retired", "Mark"));
 
 var names = ["John", "Mark", "Jane"]; // most often used
 var years = new Array("1990", "1969", "1948"); // another way to create an array
+console.log(names[0]);
+console.log(names.length);
+
+// How to add to change elements in an array
+names[1] = "Ben";
+names[names.length] = "Mary";
+console.log(names);
+
+// Different data types
+var john = ["John", "Smith", 1990, "designer", false];
+// push() adds an element to the end of the array
+john.push("blue");
+// unshift() adds to the beginning of the array
+john.unshift("Mr.");
+console.log(john);
+// pop() deletes element from end of array
+john.pop();
+console.log(john);
+// shift() deletes element from beginning of array
+john.shift();
+console.log(john);
+
+console.log(john.indexOf(1990));
+
+var isDesigner =
+  john.indexOf("designer") === -1
+    ? "John is not a designer"
+    : "John is a designer";
+console.log(isDesigner);
