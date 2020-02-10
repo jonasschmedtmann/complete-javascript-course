@@ -301,3 +301,28 @@ function yearsToRetirement(year, firstName) {
 yearsToRetirement(1989, "John");
 yearsToRetirement(1930, "Maury");
 yearsToRetirement(1999, "James");
+
+/**********************************************
+ * Function Statements and Expressions
+ */
+
+// Function Declaration
+// function whatDoYouDo(job, firstName) {}
+
+// Function Expression
+var whatDoYouDo = function(job, name) {
+  switch (job) {
+    case "teacher":
+      return name + " teaches kids how to code";
+    case "driver":
+      return name + " drives a cab in Lisbon";
+    case "designer":
+      return name + " designs beautiful websites";
+    default:
+      return name + " does something else";
+  }
+};
+
+console.log(whatDoYouDo("teacher", "John"));
+console.log(whatDoYouDo("designer", "Jane"));
+console.log(whatDoYouDo("retired", "Mark"));
