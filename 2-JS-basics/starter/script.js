@@ -278,3 +278,26 @@ if (avgJohn > avgMike && avgJohn > avgMary) {
 /*****************************************************
  * Functions
  */
+
+function calculateAge(birthYear) {
+  return 2020 - birthYear;
+}
+
+var ageJohn = calculateAge(1991);
+var ageMace = calculateAge(1989);
+var ageJane = calculateAge(1995);
+console.log(ageJohn, ageMace, ageJane);
+
+function yearsToRetirement(year, firstName) {
+  var age = calculateAge(year);
+  var retirement = 65 - age;
+  if (retirement > 0) {
+    console.log(firstName + " retires in " + retirement + " years.");
+  } else {
+    console.log(firstName + " is already retired.");
+  }
+}
+
+yearsToRetirement(1989, "John");
+yearsToRetirement(1930, "Maury");
+yearsToRetirement(1999, "James");
