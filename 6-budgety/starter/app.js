@@ -69,13 +69,36 @@ const circle = new Circle(1);
 
 // BUDGETY APP
 // the x and add variables are private bc inside of IIFE, publicTest is public even though it is in IIFE bc it is in the closure, and publicTest has access to x and add because it is inside of that IIFE
-/*
+
 
 // 1. BUDGET CONTROLLER // module1
 var budgetController = (function () {
 
-    
+    var Expense = function(id, description, value){
+        this.id = id;
+        this.description = description;
+        this.value = value;
+    };
    
+    var Income = function(id, description, value){
+        this.id = id;
+        this.description = description;
+        this.value = value;
+    };
+
+
+
+    var data = {
+        // where we will store expenses and incomes
+        allItems: {
+            expenses: [],
+            incomes: []
+        },
+        totals: {
+            expenses: 0,
+            incomes: 0
+        }
+    }
 
 })();
 
@@ -157,9 +180,13 @@ var controller = (function (budgetCtrl, UICtrl) {
 })(budgetController, UIController);
 
 controller.init();
-*/
 
 
+
+
+
+
+// Below is messing around w/ the flat() method
 /*
 console.log({});
 console.log([]);
