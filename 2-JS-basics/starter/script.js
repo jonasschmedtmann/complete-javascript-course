@@ -362,3 +362,24 @@ var isDesigner =
     ? "John is not a designer"
     : "John is a designer";
 console.log(isDesigner);
+
+/************************************
+ * Code Challenge 3
+ */
+
+function billTip(price) {
+  var percentage;
+  if (price < 50) {
+    percentage = 0.2;
+  } else if (price >= 50 && price <= 200) {
+    percentage = 0.15;
+  } else {
+    percentage = 0.1;
+  }
+  return percentage * price;
+}
+
+var bill = [124, 48, 268];
+var tips = [billTip(bill[0]), billTip(bill[1]), billTip(bill[2])];
+var finalValue = [bill[0] + tips[0], bill[1] + tips[1], bill[2] + tips[2]];
+console.log(tips, finalValue);
