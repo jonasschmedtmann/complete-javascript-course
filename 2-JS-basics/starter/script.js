@@ -412,3 +412,22 @@ jane.name = "Jane";
 jane.birthYear = 1989;
 jane["lastName"] = "Smith";
 console.log(jane);
+
+/********************************************
+ * Objects and Methods
+ */
+
+var john = {
+  firstName: "John",
+  lastName: "Smith",
+  birthYear: 1991,
+  family: ["Jane", "Mark", "Bob", "Emily"],
+  job: "teacher",
+  isMarried: false,
+  calcAge: function(birthYear) {
+    this.age = 2020 - this.birthYear;
+  }
+};
+
+john.calcAge();
+console.log(john);
