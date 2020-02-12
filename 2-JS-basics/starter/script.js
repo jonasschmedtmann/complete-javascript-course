@@ -431,3 +431,37 @@ var john = {
 
 john.calcAge();
 console.log(john);
+
+/*************************************
+ * Code Challenge 4
+ */
+
+var aaron = {
+  firstName: "Aaron Khan",
+  height: 75,
+  weight: 220,
+  calcBMI: function() {
+    this.Bmi = this.weight / (this.height ^ 2);
+    return this.Bmi;
+  }
+};
+
+var hank = {
+  fullName: "Hank Raoan",
+  height: 75,
+  weight: 210,
+  calcBMI: function() {
+    this.Bmi = this.weight / (this.height ^ 2);
+    return this.Bmi;
+  }
+};
+
+aaron.calcBMI();
+hank.calcBMI();
+console.log(aaron, hank);
+
+if (aaron.Bmi > hank.Bmi) {
+  console.log("John has the higher BMI");
+} else {
+  console.log("Mark has the higher BMI");
+}
