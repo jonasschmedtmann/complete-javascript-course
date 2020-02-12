@@ -383,3 +383,32 @@ var bill = [124, 48, 268];
 var tips = [billTip(bill[0]), billTip(bill[1]), billTip(bill[2])];
 var finalValue = [bill[0] + tips[0], bill[1] + tips[1], bill[2] + tips[2]];
 console.log(tips, finalValue);
+
+/*************************************************
+ * Objects and Properties
+ */
+
+var john = {
+  firstName: "John",
+  lastName: "Smith",
+  birthYear: 1990,
+  family: ["Jane", "Mark", "Bob", "Emily"],
+  job: "teacher",
+  isMarried: false
+};
+// Can call and change properties using dot or bracket notation
+console.log(john.firstName);
+console.log(john["lastName"]);
+
+john.job = "designer";
+john["isMarried"] = true;
+console.log(john);
+// or use a variable
+var x = "birthYear";
+console.log(john[x]);
+
+var jane = new Object();
+jane.name = "Jane";
+jane.birthYear = 1989;
+jane["lastName"] = "Smith";
+console.log(jane);
