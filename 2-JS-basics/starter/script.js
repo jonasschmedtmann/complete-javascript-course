@@ -437,7 +437,7 @@ console.log(john);
  */
 
 var aaron = {
-  firstName: "Aaron Khan",
+  fullName: "Aaron Khan",
   height: 75,
   weight: 220,
   calcBMI: function() {
@@ -461,7 +461,13 @@ hank.calcBMI();
 console.log(aaron, hank);
 
 if (aaron.Bmi > hank.Bmi) {
-  console.log("John has the higher BMI");
+  console.log(aaron.fullName + " has the higher BMI.");
+} else if (hank.Bmi > aaron.Bmi) {
+  console.log(hank.fullName + " has the higher BMI.");
 } else {
-  console.log("Mark has the higher BMI");
+  console.log("They have the same BMI.");
 }
+
+/*******************************************
+ * Loops and Iteration
+ */
