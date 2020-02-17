@@ -8,3 +8,85 @@ GAME RULES:
 - The first player to reach 100 points on GLOBAL score wins the game
 
 */
+var scores, roundScore, activePlayer;
+
+scores = [0, 0];
+roundScore = 0;
+activePlayer = 0;
+
+//document.querySelector("#current-" + activePlayer).textContent = dice;
+
+//document.querySelector('#current-' + activePlayer).innerHTML = '<em>' + dice + '</em>';
+
+var x = document.querySelector("#score-" + activePlayer).textContent; //read content in the id and store it into the variable 'x'
+console.log(x);
+
+//using query selector to change the css of an object (hide the die)
+//document.querySelector(".dice").style.display = "none";
+
+//set all the scores to zero
+document.getElementById("score-0").textContent = "0";
+document.getElementById("score-1").textContent = "0";
+document.getElementById("current-0").textContent = "0";
+document.getElementById("current-1").textContent = "0";
+
+//when the mouse is clicked on the "roll dice" button, do this:
+document.querySelector(".btn-roll").addEventListener("click", function() {
+  //1. get a random number
+  var dice = Math.floor(Math.random() * 6) + 1;
+
+  //2. display the result
+  var diceDOM = document.querySelector(".dice");
+  diceDOM.style.display = "block";
+  diceDOM.src = "dice-" + dice + ".png";
+
+  //3. update the round score IF the the rolled number is NOT a 1
+  if (dice !== 1) {
+    //add score
+    roundScore += dice;
+    document.querySelector("#current-" + activePlayer).textContent = roundScore;
+  } else {
+    changePlayer();
+  }
+});
+
+function changePlayer() {
+  //next player
+  activePlayer === 0 ? (activePlayer = 1) : (activePlayer = 0);
+  //set round score to 0
+  roundScore = 0;
+
+  //display 0 as the round score
+  document.querySelector("#current-0").textContent = "0";
+  document.querySelector("#current-1").textContent = "0";
+
+  //switch the styling of the players to reflect who is 'active'
+  document.querySelector(".player-0-panel").classList.toggle("active");
+  document.querySelector(".player-1-panel").classList.toggle("active");
+
+  //hide the die when a '1' is rolled
+  document.querySelector(".dice").style.display = "none";
+}
+
+document.querySelector(".btn-hold").addEventListener("click", function() {
+  //add the current score to player's global score
+  scores[activePlayer] += roundScore;
+
+  //update the UI
+  document.querySelector("#score-" + activePlayer).textContent =
+    scores[activePlayer];
+
+  //check if the player won the game
+  if (scores[activePlayer] >= 20) {
+    document.querySelector("#name-" + activePlayer).textContent = "WINNER!";
+    document.querySelector(".dice").style.display = "none";
+    document
+      .querySelector(".player-" + activePlayer + "-panel")
+      .classList.add("winner");
+    document
+      .querySelector(".player-" + activePlayer + "-panel")
+      .classList.remove("active");
+  } else {
+    changePlayer();
+  }
+});
