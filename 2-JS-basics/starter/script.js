@@ -470,11 +470,11 @@ if (aaron.calcBMI() > hank.calcBMI()) {
 /*******************************************
  * Loops and Iteration
  */
-
+/*
 // for loop
-// for (var i = 0; i < 10; i++) {
-//   console.log(i);
-// }
+for (var i = 0; i < 10; i++) {
+  console.log(i);
+}
 
 // i = 0, 0 < 10 true, log i to console, i++
 // i = 1, 1 < 10 true, log i to console, i++
@@ -482,10 +482,10 @@ if (aaron.calcBMI() > hank.calcBMI()) {
 // i = 9, 9 < 10 true, log i to console, i++
 // i = 10, 10 < 10 false, exit loop
 
-// var jake = ["Jake", "Mike", 2900, "model", false, "red"];
-// for (var i = 0; i < jake.length; i++) {
-//   console.log(jake[i]);
-// }
+var jake = ["Jake", "Mike", 2900, "model", false, "red"];
+for (var i = 0; i < jake.length; i++) {
+  console.log(jake[i]);
+}
 
 // while loop
 var i = 0;
@@ -493,10 +493,23 @@ while (i < jake.length) {
   console.log(jake[i]);
   i++;
 }
-
+*/
 // continue ad break statements
-// var jake = ["Jake", "Mike", 2900, "model", false, "red"];
-// for (var i = 0; i < jake.length; i++) {
-//   if(typeof jake[i] !== 'string') continue;
-//   console.log(jake[i]);
-// }
+var jake = ["Jake", "Mike", 2900, "model", false, "red"];
+for (var i = 0; i < jake.length; i++) {
+  if (typeof jake[i] !== "string") continue;
+  console.log(jake[i]);
+}
+
+var jake = ["Jake", "Mike", 2900, "model", false, "red"];
+for (var i = 0; i < jake.length; i++) {
+  // break exits loop after you run into element thats not a string
+  if (typeof jake[i] !== "string") break;
+  console.log(jake[i]);
+}
+
+// looping from the end of the array
+var jake = ["Jake", "Mike", 2900, "model", false, "red"];
+for (var i = jake.length - 1; i >= 0; i--) {
+  console.log(jake[i]);
+}
