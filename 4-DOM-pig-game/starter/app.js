@@ -46,22 +46,22 @@ console.log(x);
 document.querySelector(".btn-roll").addEventListener("click", function() {
   if (gamePlaying) {
     //1. get a random number
-    var dice = Math.floor(Math.random() * 6) + 1;
+    var dice1 = Math.floor(Math.random() * 6) + 1;
     var dice2 = Math.floor(Math.random() * 6) + 1;
 
     //2. display the result
-    var diceDOM = document.querySelector(".dice");
+    var diceDOM = document.getElementById("dice-1");
     diceDOM.style.display = "block";
-    diceDOM.src = "dice-" + dice + ".png";
+    diceDOM.src = "dice-" + dice1 + ".png";
 
-    var diceDOM = document.querySelector(".dice2");
-    diceDOM.style.display = "block";
-    diceDOM.src = "dice-" + dice + ".png";
+    var diceDOM2 = document.getElementById("dice-2");
+    diceDOM2.style.display = "block";
+    diceDOM2.src = "dice-" + dice2 + ".png";
 
     //3. update the round score IF the the rolled number is NOT a 1
-    if (dice !== 1 && dice2 !== 1) {
+    if (dice1 !== 1 && dice2 !== 1) {
       //add score
-      roundScore += dice + dice2;
+      roundScore += dice1 + dice2;
       document.querySelector(
         "#current-" + activePlayer
       ).textContent = roundScore;
@@ -86,8 +86,8 @@ function changePlayer() {
   document.querySelector(".player-1-panel").classList.toggle("active");
 
   //hide the die when a '1' is rolled
-  document.querySelector(".dice").style.display = "none";
-  document.querySelector(".dice2").style.display = "none";
+  document.getElementById("dice-1").style.display = "none";
+  document.getElementById("dice-2").style.display = "none";
 }
 
 document.querySelector(".btn-hold").addEventListener("click", function() {
@@ -113,8 +113,8 @@ document.querySelector(".btn-hold").addEventListener("click", function() {
     //check if the player won the game
     if (scores[activePlayer] >= winningScore) {
       document.querySelector("#name-" + activePlayer).textContent = "WINNER!";
-      document.querySelector(".dice").style.display = "none";
-      document.querySelector(".dice2").style.display = "none";
+      document.getElementById("dice-1").style.display = "none";
+      document.getElementById("dice-2").style.display = "none";
 
       document
         .querySelector(".player-" + activePlayer + "-panel")
