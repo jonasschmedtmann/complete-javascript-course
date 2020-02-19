@@ -47,16 +47,21 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
   if (gamePlaying) {
     //1. get a random number
     var dice = Math.floor(Math.random() * 6) + 1;
+    var dice2 = Math.floor(Math.random() * 6) + 1;
 
     //2. display the result
     var diceDOM = document.querySelector(".dice");
     diceDOM.style.display = "block";
     diceDOM.src = "dice-" + dice + ".png";
 
+    var diceDOM = document.querySelector(".dice2");
+    diceDOM.style.display = "block";
+    diceDOM.src = "dice-" + dice + ".png";
+
     //3. update the round score IF the the rolled number is NOT a 1
-    if (dice !== 1) {
+    if (dice !== 1 && dice2 !== 1) {
       //add score
-      roundScore += dice;
+      roundScore += dice + dice2;
       document.querySelector(
         "#current-" + activePlayer
       ).textContent = roundScore;
@@ -82,6 +87,7 @@ function changePlayer() {
 
   //hide the die when a '1' is rolled
   document.querySelector(".dice").style.display = "none";
+  document.querySelector(".dice2").style.display = "none";
 }
 
 document.querySelector(".btn-hold").addEventListener("click", function() {
@@ -93,10 +99,23 @@ document.querySelector(".btn-hold").addEventListener("click", function() {
     document.querySelector("#score-" + activePlayer).textContent =
       scores[activePlayer];
 
+    //set custom winning score
+    var input = document.querySelector(".final-score").value;
+    var winningScore;
+    //if winning score is invalid set it to 100
+    //Undefined, 0, null, o " " are coerced to false
+    if (input) {
+      winningScore = input;
+    } else {
+      winningScore = 100;
+    }
+
     //check if the player won the game
-    if (scores[activePlayer] >= 100) {
+    if (scores[activePlayer] >= winningScore) {
       document.querySelector("#name-" + activePlayer).textContent = "WINNER!";
       document.querySelector(".dice").style.display = "none";
+      document.querySelector(".dice2").style.display = "none";
+
       document
         .querySelector(".player-" + activePlayer + "-panel")
         .classList.add("winner");
