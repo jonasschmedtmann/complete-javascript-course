@@ -493,7 +493,7 @@ while (i < jake.length) {
   console.log(jake[i]);
   i++;
 }
-*/
+
 // continue ad break statements
 var jake = ["Jake", "Mike", 2900, "model", false, "red"];
 for (var i = 0; i < jake.length; i++) {
@@ -513,3 +513,79 @@ var jake = ["Jake", "Mike", 2900, "model", false, "red"];
 for (var i = jake.length - 1; i >= 0; i--) {
   console.log(jake[i]);
 }
+*/
+
+/***************************************************
+ * Code Challenge 5
+ */
+
+var john = {
+  bills: [124, 43, 268, 180, 42],
+  calcTip: function() {
+    this.tips = [];
+    this.finalValue = [];
+
+    for (var i = 0; i < this.bills.length; i++) {
+      // gets percent based off of tipping rules
+      var percent;
+      var bill = this.bills[i];
+
+      if (bill < 50) {
+        percent = 0.2;
+      } else if (bill >= 50 && bill <= 200) {
+        percent = 0.15;
+      } else {
+        percent = 0.1;
+      }
+      // results of tip added to bill
+      this.tips[i] = bill * percent;
+      this.finalValue[i] = bill + bill * percent;
+    }
+  }
+};
+
+var mark = {
+  bills: [77, 477, 110, 45],
+  calcTip: function() {
+    this.tips = [];
+    this.finalValue = [];
+
+    for (var i = 0; i < this.bills.length; i++) {
+      // gets percent based off of tipping rules
+      var percent;
+      var bill = this.bills[i];
+
+      if (bill < 100) {
+        percent = 0.2;
+      } else if (bill >= 100 && bill <= 300) {
+        percent = 0.1;
+      } else {
+        percent = 0.26;
+      }
+      // results of tip added to bill
+      this.tips[i] = bill * percent;
+      this.finalValue[i] = bill + bill * percent;
+    }
+  }
+};
+
+function calcAverage(tips) {
+  var sum = 0;
+  for (var i = 0; i < tips.length; i++) {
+    sum = sum + tips[i];
+  }
+  return sum / tips.length;
+}
+mark.calcTip();
+john.calcTip();
+
+john.average = calcAverage(john.tips);
+mark.average = calcAverage(mark.tips);
+
+if (john.average > mark.average) {
+  console.log("John's family paid more in tips than Mark's family");
+} else if (mark.average > john.average) {
+  console.log("Mark's family paid more in tips than John's family");
+}
+console.log(mark);
+console.log(john);
