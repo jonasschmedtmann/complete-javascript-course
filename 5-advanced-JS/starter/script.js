@@ -123,7 +123,7 @@ neo("Mr. Anderson");*/
 //================================
 //Bind, call, & apply - EXPLICIT BINDING
 //================================
-
+/*
 var neo = {
   name: "Neo",
   age: 26,
@@ -170,4 +170,4 @@ neo.presentation.call(trinity, "casual", "morning"); //CALL, first argument spec
 
 var trinityCasual = neo.presentation.bind(trinity, "casual"); //BIND for one version of the function - creates a new function that binds to "trinityCasual"
 
-trinityCasual("day");
+trinityCasual("day");*/
