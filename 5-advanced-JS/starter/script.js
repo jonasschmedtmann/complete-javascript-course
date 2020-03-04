@@ -70,7 +70,7 @@ console.log(mike.year, brandon.year, gary.year);
 */
 
 // Create object with Object create
-
+/*
 var personProto = {
   calcAge: function() {
     console.log(2020 - this.yearOfBirth);
@@ -91,3 +91,42 @@ var jane = Object.create(personProto, {
   yearOfBirth: { value: 1969 },
   job: { value: "designer" }
 });
+*/
+
+// Primitives vs Objects
+
+// Primitives
+var a = 23;
+var b = a;
+a = 46;
+// I expected b to be 46 too but its 23 because its a copy of a
+console.log(a);
+console.log(b);
+
+// Objects
+var obj1 = {
+  name: "John",
+  age: 28
+};
+var obj2 = obj1;
+obj1.age = 30;
+// objects are different because they are the exact same object or referencing the
+// same object, same with functions
+console.log(obj1);
+console.log(obj2);
+
+// Functions
+var age = 22;
+var obj = {
+  name: "Joshua",
+  city: "Vacaville"
+};
+
+function change(a, b) {
+  a = 29;
+  b.city = "San Francisco";
+}
+
+change(age, obj);
+console.log(age);
+console.log(obj.city);
