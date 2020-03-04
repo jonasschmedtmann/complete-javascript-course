@@ -1,5 +1,5 @@
 // function constructor
-
+/*
 var john = {
   name: "John",
   yearOfBirth: 1990,
@@ -67,3 +67,27 @@ brandon.fanChant();
 gary.fanChant();
 
 console.log(mike.year, brandon.year, gary.year);
+*/
+
+// Create object with Object create
+
+var personProto = {
+  calcAge: function() {
+    console.log(2020 - this.yearOfBirth);
+  }
+};
+
+// create an object with no properties except the calcAge method
+var john = Object.create(personProto);
+
+// added properties to the object
+john.name = "John";
+john.yearOfBirth = 1990;
+john.job = "teacher";
+
+// created an object with the properties in the initial creation of the object
+var jane = Object.create(personProto, {
+  name: { value: "Jane" },
+  yearOfBirth: { value: 1969 },
+  job: { value: "designer" }
+});
