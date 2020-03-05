@@ -191,4 +191,34 @@ function interviewQuestion(job) {
 
 var teacherQuestion = interviewQuestion("teacher");
 
+var designerQuestion = interviewQuestion("designer");
+
 teacherQuestion("John");
+designerQuestion("John");
+
+// looks weird but works because its evaluated from left to right
+interviewQuestion("teacher")("Mark");
+
+function saleahSayings(word) {
+  if (word === "hey") {
+    return function(name) {
+      console.log("Hey I'm hungry, please feed me " + name);
+    };
+  } else if (word === "jaja") {
+    return function(name) {
+      console.log("Jaja " + name + " may I have something to drink?");
+    };
+  } else {
+    return function() {
+      console.log("My name is Saleah!");
+    };
+  }
+}
+
+var jaja = saleahSayings("jaja");
+var hey = saleahSayings("hey");
+
+jaja("Fred");
+jaja("Margaret");
+hey("Auntie Grace");
+hey("Uncle Jonathan");
