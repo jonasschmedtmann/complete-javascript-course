@@ -172,7 +172,7 @@ console.log(rates);
 
 /////////////////////////////////////////////
 // Lecture: Functions returning functions
-
+/*
 function interviewQuestion(job) {
   if (job === "designer") {
     return function(name) {
@@ -222,3 +222,19 @@ jaja("Fred");
 jaja("Margaret");
 hey("Auntie Grace");
 hey("Uncle Jonathan");
+*/
+
+///////////////////////////////////////
+// Lecture: IIFE(Immediately Invoked Function Expressions)
+
+function game() {
+  var score = Math.random() * 10;
+  console.log(score >= 5);
+}
+game();
+
+// mainly used for data privacy
+(function() {
+  var score = Math.random() * 10;
+  console.log(score >= 5);
+})();
