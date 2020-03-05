@@ -184,7 +184,7 @@ function interviewQuestion(job) {
     };
   } else {
     return function(name) {
-      console.log("Hello " + name) + "what do you do?";
+      console.log("Hello " + name + " what do you do?");
     };
   }
 }
@@ -226,7 +226,7 @@ hey("Uncle Jonathan");
 
 ///////////////////////////////////////
 // Lecture: IIFE(Immediately Invoked Function Expressions)
-
+/*
 function game() {
   var score = Math.random() * 10;
   console.log(score >= 5);
@@ -238,3 +238,40 @@ game();
   var score = Math.random() * 10;
   console.log(score >= 5);
 })();
+*/
+
+///////////////////////////////////////////
+// Lecture: Closures
+
+function retirement(retirementAge) {
+  return function(yearOfBirth) {
+    var a = " years left until retirement.";
+    var age = 2020 - yearOfBirth;
+    console.log(retirementAge - age + a);
+  };
+}
+var retirementUS = retirement(66);
+retirementUS(1990);
+
+var retirementGermany = retirement(65);
+retirementGermany(1990);
+
+var retirementIceland = retirement(67);
+retirementIceland(1990);
+
+retirement(50)(1990);
+
+// reformatted a function that returned many functions into a closure
+function interviewQuestion(job) {
+  return function(name) {
+    if (job === "designer") {
+      console.log(name + ", can you please explain what UX design is?");
+    } else if (job === "teacher") {
+      console.log("What subject do you teach, " + name + "?");
+    } else {
+      console.log("Hello " + name + " what do you do?");
+    }
+  };
+}
+
+interviewQuestion("designer")("John");
