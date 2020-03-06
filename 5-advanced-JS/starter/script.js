@@ -335,3 +335,28 @@ johnFriendly("evening");
 
 var emilyFormal = john.presentation.bind(emily, "formal");
 emilyFormal("morning");
+
+var years = [1990, 1991, 1992, 1993, 1994];
+
+function arrayCalc(arr, fn) {
+  var arrRes = [];
+  for (var i = 0; i < arr.length; i++) {
+    arrRes.push(fn(arr[i]));
+  }
+  return arrRes;
+}
+
+function calcAge(el) {
+  return 2020 - el;
+}
+
+function isFullAge(limit, el) {
+  return el >= limit;
+}
+
+var ages = arrayCalc(years, calcAge);
+
+var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20));
+
+console.log(ages);
+console.log(fullJapan);
