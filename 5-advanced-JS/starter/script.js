@@ -305,7 +305,9 @@ var john = {
           this.job +
           " and I'm " +
           this.age +
-          " years old."
+          " years old. Have a nice " +
+          timeOfDay +
+          "!"
       );
     }
   }
@@ -325,3 +327,11 @@ john.presentation.call(emily, "friendly", "afternoon");
 
 // "apply" does the same thing but accepts an array for its arguments
 // ex: john.presentation.apply(emily, ['friendly', 'afternoon'])
+
+// the 'bind' allows you to create preset arguments
+var johnFriendly = john.presentation.bind(john, "friendly");
+johnFriendly("afternoon");
+johnFriendly("evening");
+
+var emilyFormal = john.presentation.bind(emily, "formal");
+emilyFormal("morning");
