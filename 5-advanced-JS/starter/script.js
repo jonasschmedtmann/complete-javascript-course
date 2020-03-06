@@ -322,3 +322,6 @@ john.presentation("formal", "morning");
 // the "call" method allows us to set the this variable to the emily object
 // then input the necessary arguments
 john.presentation.call(emily, "friendly", "afternoon");
+
+// "apply" does the same thing but accepts an array for its arguments
+// ex: john.presentation.apply(emily, ['friendly', 'afternoon'])
