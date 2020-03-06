@@ -242,7 +242,7 @@ game();
 
 ///////////////////////////////////////////
 // Lecture: Closures
-
+/*
 function retirement(retirementAge) {
   return function(yearOfBirth) {
     var a = " years left until retirement.";
@@ -275,3 +275,50 @@ function interviewQuestion(job) {
 }
 
 interviewQuestion("designer")("John");
+*/
+
+////////////////////////////////////////
+// Lecture: Bind, Call and Apply
+
+var john = {
+  name: "John",
+  age: 29,
+  job: "teacher",
+  presentation: function(style, timeOfDay) {
+    if (style === "formal") {
+      console.log(
+        "Good " +
+          timeOfDay +
+          ", ladies and gentlemen! I'm " +
+          this.name +
+          ", I'm a " +
+          this.job +
+          " and I'm " +
+          this.age +
+          " years old."
+      );
+    } else if (style === "friendly") {
+      console.log(
+        "Hey what's up? I'm " +
+          this.name +
+          ", I'm a " +
+          this.job +
+          " and I'm " +
+          this.age +
+          " years old."
+      );
+    }
+  }
+};
+
+var emily = {
+  name: "Emily",
+  age: 35,
+  job: "designer"
+};
+
+john.presentation("formal", "morning");
+
+// the "call" method allows us to set the this variable to the emily object
+// then input the necessary arguments
+john.presentation.call(emily, "friendly", "afternoon");
