@@ -13,6 +13,7 @@ var budgetController = (function() {
         this.description = description;
         this.value = value;
     };
+     
     var allExpenses = [];
     var allIncomes = [];
     var totalExpenses = 0;
