@@ -322,7 +322,7 @@ var emily = {
 john.presentation("formal", "morning");
 
 // the "call" method allows us to set the this keyword/variable to the emily object, replacing
-// the 'this' with 'emily', then input the necessary arguments 
+// the 'this' with 'emily', then inputs the necessary arguments 
 john.presentation.call(emily, "friendly", "afternoon");
 
 // "apply" does the same thing but accepts an array for its arguments
