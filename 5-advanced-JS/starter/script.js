@@ -401,7 +401,21 @@ console.log(fullJapan);
     2
   );
 
-  var questions = [q1, q2, q3];
+  var q4 = new Question(
+    "What is the name of the main character on Altered Carbon",
+    ["Tak", "Dom", "Quell"],
+    0
+  );
+
+  var q5 = new Question("What is the square root of 144", ["8", "12", "9"], 1);
+
+  var q6 = new Question(
+    "What is the capital of California",
+    ["LA", "San Francisco", "Sacramento"],
+    2
+  );
+
+  var questions = [q1, q2, q3, q4, q5, q6];
   var counter = 0;
 
   function gameLoop() {
