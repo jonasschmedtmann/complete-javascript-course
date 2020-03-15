@@ -279,7 +279,7 @@ interviewQuestion("designer")("John");
 
 ////////////////////////////////////////
 // Lecture: Bind, Call and Apply
-
+/*
 var john = {
   name: "John",
   age: 29,
@@ -321,8 +321,8 @@ var emily = {
 
 john.presentation("formal", "morning");
 
-// the "call" method allows us to set the this variable to the emily object
-// then input the necessary arguments
+// the "call" method allows us to set the this keyword/variable to the emily object, replacing
+// the 'this' with 'emily', then input the necessary arguments 
 john.presentation.call(emily, "friendly", "afternoon");
 
 // "apply" does the same thing but accepts an array for its arguments
@@ -360,3 +360,69 @@ var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20));
 
 console.log(ages);
 console.log(fullJapan);
+*/
+
+///////////////////////////////////////////////
+// Coding Challenge
+
+// used IIFE(Immediately Invoked Function Expression) so that if another
+// programmer uses this code it won't interfere with their code or ours
+(function() {
+  class Question {
+    constructor(question, answers, correct) {
+      this.question = question;
+      this.answers = answers;
+      this.correct = correct;
+    }
+  }
+
+  Question.prototype.displayQuestion = function() {
+    console.log(this.question);
+    for (var i = 0; i < this.answers.length; i++) {
+      console.log(i + ": " + this.answers[i]);
+    }
+  };
+
+  var q1 = new Question(
+    "Is JavaScript a highly popular programming language",
+    ["Yes", "No"],
+    0
+  );
+
+  var q2 = new Question(
+    "Who is the instructor of this course",
+    ["Mike", "Joe", "Jonas"],
+    2
+  );
+
+  var q3 = new Question(
+    "What is the latest version of JavaScript",
+    ["ES5", "ES6", "ES9"],
+    2
+  );
+
+  var questions = [q1, q2, q3];
+  var counter = 0;
+
+  function gameLoop() {
+    var n = Math.floor(Math.random() * questions.length);
+    questions[n].displayQuestion();
+    answer = prompt(
+      "Select your answer by choosing the number associated with it. To leave the game type in 'exit' as your answer."
+    );
+    console.log("Your answer was: " + answer);
+    if (answer !== "exit") {
+      if (answer == questions[n].correct) {
+        console.log("Correct!");
+        counter++;
+        console.log("Correct answers: " + counter);
+        console.log("-------------------------------");
+      } else {
+        console.log("Incorrect");
+        console.log("-------------------------------");
+      }
+      gameLoop();
+    }
+  }
+  gameLoop();
+})();
