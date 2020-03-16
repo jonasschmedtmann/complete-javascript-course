@@ -9,7 +9,7 @@ var budgetController = (function() {
   }
 
   class Income {
-    constructor(is, description, value) {
+    constructor(id, description, value) {
       this.id = id;
       this.description = description;
       this.value = value;
@@ -18,16 +18,46 @@ var budgetController = (function() {
 
   var data = {
     allItems: {
-     exp = [],
-     inc = []
-      
+      exp: [],
+      inc: []
     },
     total: {
       exp: 0,
       inc: 0
     }
-  }
-  
+  };
+
+  return {
+    addItem: function(type, des, val) {
+      var newItem, ID;
+
+      // assigning the new item an ID
+      if (data.allItems[type].length > 0) {
+        ID = data.allItems[type][data.allItems[type].length - 1].id + 1;
+      } else {
+        ID = 0;
+      }
+
+      // creates new item based on type: inc or exp
+      if (type === "exp") {
+        newItem = new Expense(ID, des, val);
+      } else if (type === "inc") {
+        newItem = new Income(ID, des, val);
+      }
+
+      // this line of code gives you access to the data object to
+      // the allItems object and the brackets with type in it gives
+      // you access to the appropriate array and you place the item
+      // in the array with the push method and return the new item to
+      // give the other controllers access to it
+      data.allItems[type].push(newItem);
+      return newItem;
+    },
+
+    testing: function() {
+      console.log(data);
+    }
+  };
 })();
 
 //UI Controller
@@ -67,9 +97,11 @@ var controller = (function(budgetCtrl, UICtrl) {
   };
 
   var ctrlAddItem = function() {
+    var input, newItem;
     // 1. get input data
-    var input = UICtrl.getInput();
+    input = UICtrl.getInput();
     // 2. add item to budget
+    newItem = budgetCtrl.addItem(input.type, input.description, input.value);
     // 3. add item to UI
     // 4. calculate the budget
     // 5. display budget
