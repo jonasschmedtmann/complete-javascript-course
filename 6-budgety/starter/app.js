@@ -1,6 +1,20 @@
 //Budget Controller
 var budgetController = (function() {
-  // code
+  class Expense {
+    constructor(id, description, value) {
+      this.id = id;
+      this.description = description;
+      this.value = value;
+    }
+  }
+
+  class Income {
+    constructor(is, description, value) {
+      this.id = id;
+      this.description = description;
+      this.value = value;
+    }
+  }
 })();
 
 //UI Controller
