@@ -140,6 +140,7 @@ var budgetController = (function() {
 })();
 //
 //
+//
 //UI Controller
 var UIController = (function() {
   var DOMStrings = {
@@ -175,6 +176,14 @@ var UIController = (function() {
     dec = numSplit[1];
 
     return (type === "exp" ? "-" : "+") + int + "." + dec;
+  };
+
+  // created this because nodeList doesn't have forEach
+  // on its prototype, now can reuse for other nodeList
+  var nodeListForEach = function(list, callback) {
+    for (var i = 0; i < list.length; i++) {
+      callback(list[i], i);
+    }
   };
 
   return {
@@ -252,14 +261,6 @@ var UIController = (function() {
     displayPercentages: function(percentage) {
       var fields = document.querySelectorAll(DOMStrings.expensesPercLabel);
 
-      // created this because nodeList doesn't have forEach
-      // on its prototype, now can reuse for other nodeList
-      var nodeListForEach = function(list, callback) {
-        for (var i = 0; i < list.length; i++) {
-          callback(list[i], i);
-        }
-      };
-
       nodeListForEach(fields, function(current, index) {
         if (percentage[index] > 0) {
           current.textContent = percentage[index] + "%";
@@ -292,11 +293,28 @@ var UIController = (function() {
         months[month] + " " + year;
     },
 
+    changeType: function() {
+      var fields = document.querySelectorAll(
+        DOMStrings.inputType +
+          "," +
+          DOMStrings.inputDescription +
+          "," +
+          DOMStrings.inputValue
+      );
+
+      nodeListForEach(fields, function(cur) {
+        cur.classList.toggle("red-focus");
+      });
+
+      document.querySelector(DOMStrings.inputBtn).classList.toggle("red");
+    },
+
     getDOMStrings: function() {
       return DOMStrings;
     }
   };
 })();
+//
 //
 //
 //Global App Controller
@@ -305,15 +323,19 @@ var controller = (function(budgetCtrl, UICtrl) {
     var DOM = UICtrl.getDOMStrings();
     document.querySelector(DOM.inputBtn).addEventListener("click", ctrlAddItem);
 
-    document
-      .querySelector(DOM.container)
-      .addEventListener("click", ctrlDeleteItem);
-
     document.addEventListener("keypress", function(event) {
       if (event.keycode === 13 || event.which === 13) {
         ctrlAddItem();
       }
     });
+
+    document
+      .querySelector(DOM.container)
+      .addEventListener("click", ctrlDeleteItem);
+
+    document
+      .querySelector(DOM.inputType)
+      .addEventListener("change", UICtrl.changeType);
   };
 
   var updateBudget = function() {
