@@ -138,7 +138,8 @@ var budgetController = (function() {
     }
   };
 })();
-
+//
+//
 //UI Controller
 var UIController = (function() {
   var DOMStrings = {
@@ -152,7 +153,8 @@ var UIController = (function() {
     incomeLabel: ".budget__income--value",
     expensesLabel: ".budget__expenses--value",
     percentageLabel: ".budget__expenses--percentage",
-    container: ".container"
+    container: ".container",
+    expensesPercLabel: ".item__percentage"
   };
 
   return {
@@ -217,12 +219,34 @@ var UIController = (function() {
         document.querySelector(DOMStrings.percentageLabel).textContent = "--";
       }
     },
+
+    displayPercentages: function(percentage) {
+      var fields = document.querySelectorAll(DOMStrings.expensesPercLabel);
+
+      // created this because nodeList doesn't have forEach
+      // on its prototype, now can reuse for other nodeList
+      var nodeListForEach = function(list, callback) {
+        for (var i = 0; i < list.length; i++) {
+          callback(list[i], i);
+        }
+      };
+
+      nodeListForEach(fields, function(current, index) {
+        if (percentage[index] > 0) {
+          current.textContent = percentage[index] + "%";
+        } else {
+          current.textContent = "--";
+        }
+      });
+    },
+
     getDOMStrings: function() {
       return DOMStrings;
     }
   };
 })();
-
+//
+//
 //Global App Controller
 var controller = (function(budgetCtrl, UICtrl) {
   var setupEventListeners = function() {
@@ -255,7 +279,7 @@ var controller = (function(budgetCtrl, UICtrl) {
     // 2. read percentages from the budget controller
     var percentages = budgetCtrl.getPercentages();
     // 3. update the UI
-    console.log(percentages);
+    UICtrl.displayPercentages(percentages);
   };
 
   var ctrlAddItem = function() {
@@ -294,6 +318,7 @@ var controller = (function(budgetCtrl, UICtrl) {
       // 3. update UI
       updateBudget();
       // 4. calculate and update percentages
+      updatePercentages();
     }
   };
 
