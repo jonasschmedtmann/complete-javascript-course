@@ -74,7 +74,7 @@ var budgetController = (function() {
       // calculate the budget: income - expenses
       data.budget = data.totals.inc - data.totals.exp;
       // calculate the percentage pf the income that we spend
-      if (data.totals > 0) {
+      if (data.budget > 0) {
         data.percentage = Math.round((data.totals.exp / data.totals.inc) * 100);
       } else {
         data.percentage = -1;
@@ -104,7 +104,11 @@ var UIController = (function() {
     inputValue: ".add__value",
     inputBtn: ".add__btn",
     incomeContainer: ".income__list",
-    expensesContainer: ".expenses__list"
+    expensesContainer: ".expenses__list",
+    budgetLabel: ".budget__value",
+    incomeLabel: ".budget__income--value",
+    expensesLabel: ".budget__expenses--value",
+    percentageLabel: ".budget__expenses--percentage"
   };
 
   return {
@@ -149,6 +153,20 @@ var UIController = (function() {
       // places tab back in description bar, making it easier to input values
       fieldsArray[0].focus();
     },
+
+    displayBudget: function(obj) {
+      document.querySelector(DOMStrings.budgetLabel).textContent = obj.budget;
+      document.querySelector(DOMStrings.incomeLabel).textContent = obj.totalInc;
+      document.querySelector(DOMStrings.expensesLabel).textContent =
+        obj.totalExp;
+
+      if (obj.percentage > 0) {
+        document.querySelector(DOMStrings.percentageLabel).textContent =
+          obj.percentage + "%";
+      } else {
+        document.querySelector(DOMStrings.percentageLabel).textContent = "--";
+      }
+    },
     getDOMStrings: function() {
       return DOMStrings;
     }
@@ -173,9 +191,8 @@ var controller = (function(budgetCtrl, UICtrl) {
     budgetCtrl.calculateBudget();
     // 2. return the budget
     var budget = budgetCtrl.getBudget();
-    console.log(budget);
-    // 2. display budget
-    document.querySelector(".budget__value");
+    // 3. display budget
+    UICtrl.displayBudget(budget);
   };
   var ctrlAddItem = function() {
     var input, newItem;
@@ -197,6 +214,12 @@ var controller = (function(budgetCtrl, UICtrl) {
   return {
     init: function() {
       console.log("App has started");
+      UICtrl.displayBudget({
+        budget: 0,
+        totalInc: 0,
+        totalExp: 0,
+        percentage: -1
+      });
       setupEventListeners();
     }
   };
