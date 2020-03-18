@@ -139,7 +139,7 @@ console.log(ages6);
 
 /////////////////////////////////////////////
 // Lecture: Arrow Functions 2
-
+/*
 //ES5
 var box5 = {
   color: "green",
@@ -198,3 +198,55 @@ Person.prototype.myFriends5 = function(friends) {
 };
 
 new Person("Manuel").myFriends5(friends);
+*/
+
+//////////////////////////////////////////
+// Lecture: Destructuring
+/*
+//ES6
+const [name, age] = ["Mike", 26];
+console.log(name);
+console.log(age);
+
+const obj = {
+  firstName: "Hector",
+  lastName: "Martinez"
+};
+
+// object syntax
+const { firstName, lastName } = obj;
+console.log(firstName, lastName);
+
+const { firstName: a, lastName: b } = obj;
+console.log(a, b);
+
+// function syntax
+function calcAgeRetirement(year) {
+  const age = new Date().getFullYear() - year;
+  return [age, 65 - age];
+}
+
+const [age2, retirement] = calcAgeRetirement(1990);
+console.log(age2, retirement);
+*/
+
+///////////////////////////////////////////////
+// Lecture: Arrays
+
+// querySelector and querySelectorAll return nodeList
+const boxes = document.querySelectorAll(".box");
+
+const boxesArr6 = Array.from(boxes);
+boxesArr6.forEach(cur => (cur.style.background = "dodgerblue"));
+
+for (const cur of boxesArr6) {
+  if (cur.className.includes("blue")) {
+    continue;
+  }
+  cur.textContent = "I changed to blue!";
+}
+
+var ages = [12, 18, 16, 12, 11, 9];
+
+console.log(ages.findIndex(cur => cur >= 18));
+console.log(ages.find(cur => cur >= 18));
