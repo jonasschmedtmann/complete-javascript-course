@@ -57,3 +57,11 @@ for (let i = 0; i < 5; i++) {
 }
 
 console.log(i);
+
+//////////////////////////////////////////////
+// Lecture: Blocks and IIFEs
+
+{
+  const a = 1;
+  let b = 2;
+}
