@@ -302,7 +302,7 @@ isFullAge6(29, 1990, 1999, 1987, 2010);
 
 //////////////////////////////////////////////
 // Lecture: Default parameters
-
+/*
 class SmithPerson {
   constructor(
     firstName,
@@ -321,3 +321,69 @@ var james = new SmithPerson("James", 1999);
 console.log(james);
 var emily = new SmithPerson("Emma", 1997, "Diego", "Spanish");
 console.log(emily);
+*/
+
+///////////////////////////////////////////
+// Lecture: Maps
+/*
+const question = new Map();
+question.set("question", "What is the name of the latest JS version?");
+question.set(1, "ES9");
+question.set(2, "ES5");
+question.set(3, "ES7");
+question.set("correct", 1);
+question.set(true, "Correct");
+question.set(false, "Incorrect");
+
+console.log(question);
+console.log(question.get("question"));
+// console.log(question.size);
+// console.log(question.delete(2));
+
+if (question.has(3)) {
+  // console.log("Answer 3 exist");
+}
+// clears your Map
+// question.clear();
+
+// question.forEach((value, key) =>
+//   console.log(`The key is ${key} and the value is ${value}.`)
+// );
+
+for (let [key, value] of question.entries()) {
+  if (typeof key === "number") {
+    console.log(`Answer ${key}: ${value}`);
+  }
+}
+
+const ans = parseInt(prompt("Write the correct answer"));
+console.log(question.get(ans === question.get("correct")));
+*/
+
+///////////////////////////////////////////
+// Lecture: Classes and subclasses
+
+// can only add methods to classes not properties
+class Person {
+  constructor(name, yearOfBirth, job) {
+    this.name = name;
+    this.yearOfBirth = yearOfBirth;
+    this.job = job;
+  }
+
+  calcAge() {
+    var age = new Date().getFullYear() - this.yearOfBirth;
+    console.log(age);
+  }
+}
+
+// how to connect classes, allows Profile to inherit Person's
+// properties and function
+class Profile extends Person {
+  constructor(name, yearOfBirth, job, age, email, sport) {
+    super(name, yearOfBirth, job);
+    this.age = age;
+    this.email = email;
+    this.sport = sport;
+  }
+}
