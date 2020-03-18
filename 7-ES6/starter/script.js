@@ -280,7 +280,7 @@ Array.from(all).forEach(cur => (cur.style.color = "yellow"));
 
 /////////////////////////////////////////////
 // Lecture: Rest parameters
-
+/*
 //ES5
 function isFullAge5() {
   var argsArr = Array.prototype.slice.call(arguments);
@@ -298,3 +298,26 @@ function isFullAge6(limit, ...years) {
 }
 
 isFullAge6(29, 1990, 1999, 1987, 2010);
+*/
+
+//////////////////////////////////////////////
+// Lecture: Default parameters
+
+class SmithPerson {
+  constructor(
+    firstName,
+    yearOfBirth,
+    lastName = "Smith",
+    nationality = "American"
+  ) {
+    this.firstName = firstName;
+    this.yearOfBirth = yearOfBirth;
+    this.lastName = lastName;
+    this.nationality = nationality;
+  }
+}
+
+var james = new SmithPerson("James", 1999);
+console.log(james);
+var emily = new SmithPerson("Emma", 1997, "Diego", "Spanish");
+console.log(emily);
