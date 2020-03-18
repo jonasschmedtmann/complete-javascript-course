@@ -1,5 +1,5 @@
 // Lecture: let and const
-
+/*
 // ES5
 var name5 = "Jane Smith";
 var age5 = 23;
@@ -50,6 +50,7 @@ driverLicense6(true);
 
 // example of why block scope works well if you used var the
 // console.log(i) would be 5
+
 let i = 23;
 
 for (let i = 0; i < 5; i++) {
@@ -57,11 +58,52 @@ for (let i = 0; i < 5; i++) {
 }
 
 console.log(i);
-
+*/
 //////////////////////////////////////////////
 // Lecture: Blocks and IIFEs
-
+/*
+// creates closure with brackets in ES6
 {
   const a = 1;
   let b = 2;
 }
+*/
+//////////////////////////////////////////////
+// Lecture: Strings
+
+let firstName = "John";
+let lastName = "Smith";
+const yearOfBirth = 1990;
+
+function calcAge(year) {
+  return 2020 - year;
+}
+
+// ES5
+console.log(
+  "This is " +
+    firstName +
+    " " +
+    lastName +
+    ". He was born in " +
+    yearOfBirth +
+    ". Today he is " +
+    calcAge(yearOfBirth) +
+    " years old."
+);
+
+// ES6
+// template literals
+console.log(
+  `This is ${firstName} ${lastName}. He was born in ${yearOfBirth}. Today he is ${calcAge(
+    yearOfBirth
+  )} years old.`
+);
+
+const n = `${firstName} ${lastName}`;
+// capitalization matters
+console.log(n.startsWith("J"));
+console.log(n.endsWith("th"));
+console.log(n.includes("oh"));
+
+console.log(`${firstName} `.repeat(3));
