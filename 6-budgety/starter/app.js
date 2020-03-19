@@ -172,7 +172,7 @@ var UIController = (function () {
             } else if (type === 'exp'){
                 element = DOMstrings.expenseContainer;
 
-                html = '<div class="item clearfix" id="expense-%id%"> <div class="item__description">%description%</div> <div <div class="item__value">%value%</div> <div <div class="item__delete"> <button class="item__delete--btn"> <i class="ion-ios-close-outline"> </i> </button> </div> </div> </div>';
+                html = '<div class="item clearfix" id="exp-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
             }
 
             // Replace the placeholder text with some actual data
@@ -183,6 +183,21 @@ var UIController = (function () {
 
             // Insert the HTML into the DOM
             document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
+        },
+
+        clearFields: function(){
+            var fields, fieldsArr;
+
+            // querySelectorAll returns a List, not an Array, so we don't get a ton of useful methods available to use... but we can use Slice to convert a List into an Array. Normally we use Slice on an array to return another array, but we can kind of trick this method and pass the List in and it will still turn an Array.  
+            fields = document.querySelectorAll(DOMstrings.inputDescription + ', ' + DOMstrings.inputValue);
+            
+            fieldsArr = Array.prototype.slice.call(fields) // tricking the slice method into returning an array when we don't even have one
+
+            fieldsArr.forEach(function(current, index, array) {
+                current.value = "";
+            });
+            
+            fieldsArr[0].focus();
         },
 
         getDOMstrings: function(){ // this exposes DOMstrings to the public so we can use them elsewhere
@@ -224,9 +239,13 @@ var controller = (function (budgetCtrl, UICtrl) {
 
         // 3. Add the item to the UI
         UICtrl.addListItem(newItem, input.type);
-        // 4. Calculate the budget
 
-        // 5. Display the budget on the UI
+        // 4. Clear the fields
+        UICtrl.clearFields();
+
+        // 5. Calculate the budget
+
+        // 6. Display the budget on the UI
        // console.log('It works.') // tests for clicking button or key down on ENTER key
     };
     
