@@ -1,15 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Asynchronous JavaScript</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Asynchronous JavaScript</h1>
     <script>
-        
+      //   const second = () => {
+      //     setTimeout(() => {
+      //       console.log("Aysnc hey there!");
+      //     }, 2000);
+      //   };
+      //   const first = () => {
+      //     console.log("Hey there!");
+      //     second();
+      //     console.log("The end");
+      //   };
+      //   first();
+
+      // callback 'he**' don't want to do this
+      //   function getRecipe() {
+      //     setTimeout(() => {
+      //       const recipeID = [01, 23, 09, 29];
+      //       console.log(recipeID);
+
+      //       setTimeout(
+      //         id => {
+      //           const recipe = {
+      //             title: "Pasta",
+      //             chef: "June"
+      //           };
+      //           console.log(`${id}: ${recipe.title}`);
+
+      //           setTimeout(
+      //             chef => {
+      //               const recipe2 = { title: "Italian Bread", chef: "June" };
+      //               console.log(recipe2);
+      //             },
+      //             1500,
+      //             recipe.chef
+      //           );
+      //         },
+      //         1500,
+      //         recipeID[2]
+      //       );
+      //     }, 1500);
+      //   }
+      //   getRecipe();
+
+      // old promises
+      const getIDs = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve([01, 23, 09, 29]);
+        }, 1500);
+      });
+
+      getIDs
+        .then(IDs => {
+          console.log(IDs);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     </script>
-</body>
+  </body>
 </html>
