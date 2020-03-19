@@ -58,13 +58,20 @@
         }, 1500);
       });
 
-      getIDs
-        .then(IDs => {
-          console.log(IDs);
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      //   getIDs
+      //     .then(IDs => {
+      //       console.log(IDs);
+      //     })
+      //     .catch(err => {
+      //       console.log(err);
+      //     });
+
+      // a async await example
+      async function getRecipeAW() {
+        const IDs = await getIDs;
+        console.log(IDs);
+      }
+      getRecipeAW();
     </script>
   </body>
 </html>
