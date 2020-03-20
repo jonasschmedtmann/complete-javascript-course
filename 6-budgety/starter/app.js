@@ -1,3 +1,9 @@
+// Practice Somthin here
+
+
+
+
+
 // Practicing writing and demonstrating use of a simple closure
 /*
 function Person(pName){
