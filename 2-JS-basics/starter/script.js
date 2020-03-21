@@ -688,68 +688,79 @@ Mark likes to tip 20% of the bill when the bill is less than $100, 10% when the 
 GOOD LUCK 😀
 */
 
-var john = {
-    fullName: 'John Smith',
-    bills: [124,48,268,180,42],
-    tips: [],
-    totalBills: [],
-    calcTip: function(){
-        var tipPercentage;
-        //the . or member access operator reads from left to right
-        for (var i = 0; i < this.bills.length; i++){
-            var amount = this.bills[i];
-            if (amount < 50) {
-                tipPercentage = .20;
-            } else if (amount >= 50 && amount < 200){
-                tipPercentage = .15;
-            } else {
-                tipPercentage = .10;
-            }
-            var tip = amount * tipPercentage;
-            this.tips.push(tip);
-            this.totalBills.push(tip + amount);
-        }
-    }
-}
+// var john = {
+//     fullName: 'John Smith',
+//     bills: [124,48,268,180,42],
+//     tips: [],
+//     totalBills: [],
+//     calcTip: function(){
+//         var tipPercentage;
+//         //the . or member access operator reads from left to right
+//         for (var i = 0; i < this.bills.length; i++){
+//             var amount = this.bills[i];
+//             if (amount < 50) {
+//                 tipPercentage = .20;
+//             } else if (amount >= 50 && amount < 200){
+//                 tipPercentage = .15;
+//             } else {
+//                 tipPercentage = .10;
+//             }
+//             var tip = amount * tipPercentage;
+//             this.tips.push(tip);
+//             this.totalBills.push(tip + amount);
+//         }
+//     }
+// }
 
-john.calcTip();
-console.log(john);
+// john.calcTip();
+// console.log(john);
 
-var Mark = {
-    fullName: 'Mark Johnson',
-    bills: [77,375,110,45],
-    tips: [],
-    totalBills: [],
-    calcTip: function(){
-        var tipPercentage;
-        for (var i = 0; i < this.bills.length; i++){
-            var amount = this.bills[i];
-            if (amount < 100) {
-                tipPercentage = .20;
-            } else if (amount >= 100 && amount < 300){
-                tipPercentage = .10;
-            } else {
-                tipPercentage = .25;
-            }
-            var tip = amount * tipPercentage;
-            this.tips.push(tip);
-            this.totalBills.push(tip + amount);
-        }
-    }
-}
+// var Mark = {
+//     fullName: 'Mark Johnson',
+//     bills: [77,375,110,45],
+//     tips: [],
+//     totalBills: [],
+//     calcTip: function(){
+//         var tipPercentage;
+//         for (var i = 0; i < this.bills.length; i++){
+//             var amount = this.bills[i];
+//             if (amount < 100) {
+//                 tipPercentage = .20;
+//             } else if (amount >= 100 && amount < 300){
+//                 tipPercentage = .10;
+//             } else {
+//                 tipPercentage = .25;
+//             }
+//             var tip = amount * tipPercentage;
+//             this.tips.push(tip);
+//             this.totalBills.push(tip + amount);
+//         }
+//     }
+// }
 
-Mark.calcTip();
-console.log(Mark.tips, Mark.totalBills);
+// Mark.calcTip();
+// console.log(Mark.tips, Mark.totalBills);
 
-function avgBill (bills){
-    var currAmount = 0;
-    for (var i = 0; i < bills.length; i++){
-        currAmount += bills[i];
-    }
-    return currAmount/bills.length;
-}
+// //adding the function outside of the objects that will use the same function is best to avoid duplicating code
+// function avgBill (bills){
+//     var currAmount = 0;
+//     for (var i = 0; i < bills.length; i++){
+//         currAmount += bills[i];
+//     }
+//     return currAmount/bills.length;
+// }
 
-var johnAvgBill = avgBill(john.totalBills);
-var markAvgBill = avgBill(Mark.totalBills);
+// var johnAvgBill = avgBill(john.tips);
+// var markAvgBill = avgBill(Mark.tips);
 
-console.log(john.fullName + ' ' + johnAvgBill, Mark.fullName + ' ' + markAvgBill);
+// console.log(john.fullName + ' ' + johnAvgBill, Mark.fullName + ' ' + markAvgBill);
+
+// john.average = johnAvgBill;
+// Mark.average = markAvgBill;
+
+// console.log(john,Mark);
+
+//ES 5 is fully supported in all browsers
+//ES2015 and greater are not supported in older browsers as of 2018
+//newer versions of ES like ES2015 and greater can be converted back to ES5 using transpiling and polyfilling check ES compatibality page 
+//ES6 has abstractions that hide how javascript really works
