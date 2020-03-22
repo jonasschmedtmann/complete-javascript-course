@@ -29,6 +29,9 @@ var controller = (function(budgetCtrl, UICtrl) {
         }
         //keycode tells which key is pressed when check object in the console. 13 is keycode for enter.
         //which is for older browsers
+
+
+        //Must make sure the changes are taking affect. 
    });
 
    
