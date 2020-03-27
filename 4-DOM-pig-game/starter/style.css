@@ -102,6 +102,27 @@ body {
 .player-current-score {
     font-size: 30px;
 }
+.custom-score{
+    position: absolute;
+    left: 42%;
+    font-size: 20px;
+    padding-top: 20px;
+}
+
+#bt-score {
+    background-color: #EB4D4D;
+    border: none;
+    color: #fff;
+    padding: 5px 10px;
+    text-decoration: none;
+    margin:  0px px;
+    cursor: pointer;
+    transition: padding 0.3s;
+}
+
+#bt-score:hover{
+    padding: 8px 12px;
+}
 
 button {
     position: absolute;
@@ -137,7 +158,7 @@ i {
     transition: margin 0.3s;
 }
 
-.btn-new { top: 45px;}
+.btn-new { top: 90px;}
 .btn-roll { top: 403px;}
 .btn-hold { top: 467px;}
 
@@ -145,6 +166,15 @@ i {
     position: absolute;
     left: 50%;
     top: 178px;
+    transform: translateX(-50%);
+    height: 100px;
+    box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
+}
+
+.dice2 {
+    position: absolute;
+    left: 50%;
+    top: 288px;
     transform: translateX(-50%);
     height: 100px;
     box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);

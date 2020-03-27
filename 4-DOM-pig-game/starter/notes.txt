@@ -1,0 +1,20 @@
+DOM manipulation and and the DOM
+
+* DOM: document object model;
+* Structured representation of an htm document;
+* The DOM is used to connect webpages to scripts like JavaScript;
+* For each HTML box, there is an object in the DOM that we can access and interact with
+* JavaScript and the DOM are two different things
+
+THE OBJECT THAT GIVES US ACCESS TO THE DOM IS THE DOCUMENT OBJECT
+
+**** EVENT HANDLING ****
+Events: Notifications that are sent to notify the code that something happened on the webpage;
+
+Examples: clicking a button, resizing a window, scrolling down or pressing a key;
+
+Event Listeners: a function that performs an action based on a certain event. It waits for a specific event to happen.
+
+* Events are processed only after the execution stack is empty meaning all functions have completed (returened).
+* The message queue is something else that lives in the javascript engine
+* When an event happens and the message is recieved it gets it's own execution context becuase it is a function and this execution context then gets placed on the execution stack

@@ -10,7 +10,13 @@
     </head>
 
     <body>
+
         <div class="wrapper clearfix">
+            <div class="custom-score">            
+                <label for="custom-score">Enter Score to Win:</label><br>
+                <input type="text" id="custom-score" name="custom-score" placeholder="Enter Score to Win" pattern="[0-9]+" title="Numbers Only"/>
+                <input type="button" value="Enter" id="bt-score" />
+            </div>
             <div class="player-0-panel active">
                 <div class="player-name" id="name-0">Player 1</div>
                 <div class="player-score" id="score-0">43</div>
@@ -34,6 +40,8 @@
             <button class="btn-hold"><i class="ion-ios-download-outline"></i>Hold</button>
             
             <img src="dice-5.png" alt="Dice" class="dice">
+            <img src="dice-5.png" alt="Dice" class="dice2">
+
         </div>
         
         <script src="app.js"></script>
