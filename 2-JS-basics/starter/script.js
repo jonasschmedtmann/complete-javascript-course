@@ -642,7 +642,7 @@ GOOD LUCK 😀
 
 // // PRINT ONLY SPECIFIC TYPE OF DATA IN AN ARRAY
 // var john = ['John', 'Smith', 1990, 'designer'];
-// // continue keyword can be used to continue a step in the loop if the condition is met; loop below will loop through the array but only print the types that are strings
+// // continue keyword can be used to continue to next step in the loop if the condition is met; loop below will loop through the array but only print the types that are strings
 // for (var i = 0; i < john.length; i++){
 //    if (typeof john[i] != 'string') continue 
 //         console.log(john[i]);
