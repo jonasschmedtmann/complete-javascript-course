@@ -160,6 +160,8 @@ var budgetController = (function () {
             
         },
 
+
+
         calculateBudget: function(){
 
             // calculate total income and expenses
@@ -177,6 +179,7 @@ var budgetController = (function () {
                 data.percentage = -1;
             }
         },
+
 
         getBudget: function(){
             return {
@@ -313,6 +316,7 @@ var controller = (function (budgetCtrl, UICtrl) {
         document.querySelector(DOM.container).addEventListener('click', ctrlDeleteItem);
     };
 
+
     var updateBudget = function(){
         // 1. Calculate the budget
         budgetCtrl.calculateBudget();
@@ -323,6 +327,14 @@ var controller = (function (budgetCtrl, UICtrl) {
         // 3. Display the budget on the UI
         UICtrl.displayBudget(budget);
         // console.log('It works.') // tests for clicking button or key down on ENTER key
+    };
+
+    var updatePercentages = function(){
+        // 1. Calculate %
+
+        // 2. Return the %
+
+        // 3. Display the % on the UI
     }
 
     var ctrlAddItem = function(){
@@ -333,17 +345,20 @@ var controller = (function (budgetCtrl, UICtrl) {
         // console.log(input);
 
         if (input.description !== "" && !isNaN(input.value) && input.value > 0){
-        // 2. Add the item to the budget controller
-        newItem = budgetCtrl.addItem(input.type, input.description, input.value);
+            // 2. Add the item to the budget controller
+            newItem = budgetCtrl.addItem(input.type, input.description, input.value);
 
-        // 3. Add the item to the UI
-        UICtrl.addListItem(newItem, input.type);
+            // 3. Add the item to the UI
+            UICtrl.addListItem(newItem, input.type);
 
-        // 4. Clear the fields
-        UICtrl.clearFields();
+            // 4. Clear the fields
+            UICtrl.clearFields();
 
-        // 5. Calculate and update budget
-        updateBudget();
+            // 5. Calculate and update budget
+            updateBudget();
+
+            // 6. Calculate and update %'s
+            updatePercentages()
         }      
     };
 
@@ -369,6 +384,9 @@ var controller = (function (budgetCtrl, UICtrl) {
 
             // 3. update and show the new budget
             updateBudget();
+
+            // 4. Calculate and update %'s
+            updatePercentages()
         }
     }
 
