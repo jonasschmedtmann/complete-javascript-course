@@ -292,23 +292,23 @@ MOST POPULAR WAY IS THE FUNCTION CONSTRUCTOR
 
 /**An inner function always has access to the variables and parameters of its outer functoin, even after the outer function has returned and it's execution context removed from the stack; the variable the you assing the function to, will retain all the variables (enclose them), this is closures*/
 
-function retirement(retirementAge){
-    var a = ' years left until retirement.';
-    return function(yearOfBirth){
-        var age = 2020 - yearOfBirth;
-        console.log((retirementAge - age) + a);
-    };
-};
+// function retirement(retirementAge){
+//     var a = ' years left until retirement.';
+//     return function(yearOfBirth){
+//         var age = 2020 - yearOfBirth;
+//         console.log((retirementAge - age) + a);
+//     };
+// };
 
-var usaRetirementAge = retirement(66);
-//retirement(66)(1988);
+// var usaRetirementAge = retirement(66);
+// //retirement(66)(1988);
 
-var retirementAgeGermany = retirement(65);
-var retirementAgeIceland = retirement(67);
+// var retirementAgeGermany = retirement(65);
+// var retirementAgeIceland = retirement(67);
 
-usaRetirementAge(1988);
-retirementAgeGermany(1988);
-retirementAgeIceland(1988);
+// usaRetirementAge(1988);
+// retirementAgeGermany(1988);
+// retirementAgeIceland(1988);
 
 
 /**CODING CHALLENGE */
@@ -331,26 +331,220 @@ retirementAgeIceland(1988);
 // };
 
 
-function interviewQuestions(job){
-    return function(name){
-        //used switch statement just to remember how to do it, can be replaced with if statements
-        switch(job){
-            case 'designer':
-            question =  ', Can you please explain what UX design is?';
-            break;
-            case 'teacher':
-            question = ', What subject do you teach?';
-            break;
-            default:
-            question = ', Hello what do you do?';
+// function interviewQuestions(job){
+//     return function(name){
+//         //used switch statement just to remember how to do it, can be replaced with if statements
+//         switch(job){
+//             case 'designer':
+//             question =  ', Can you please explain what UX design is?';
+//             break;
+//             case 'teacher':
+//             question = ', What subject do you teach?';
+//             break;
+//             default:
+//             question = ', Hello what do you do?';
+//         };
+//         console.log(name + question);
+//     };
+// };
+
+// var question = interviewQuestions('designer');
+// question('Leo');
+// interviewQuestions('teacher')('Fred');
+// interviewQuestions('Dog Whisperer')('Steve');
+
+//check the final version provided on 5-Advanced-JS for the instructor's solution
+
+/** /\\/\\///\/\/\/\/\ BIND, CALL AND APPLY //\/\\/\/\\/\\/\/\\*/
+
+//CALL METHOD allows an object to effectively borrow a method from another object, below object john has a method that the emily object does not have but emily will be able to borrow the method and use it for itself. The call method sets the this variable to another object, see line 381
+
+//APPLY METHOD works very simlar to the call method with the difference being that you use and array to pass in the arguments the function being called requires
+
+//BIND METHOD is also very smilar to the call method, it allows us to set the this variable, however it differs in that it will not run the function immediately it will create a copy of the function so you can use later, you need to store the function in a variable
+
+// var john = {
+//     name: 'john',
+//     age: 28,
+//     job: 'teacher',
+//     presentation: function(style,timeOfDay){
+//         if (style === 'formal'){
+//             console.log('Good ' + timeOfDay + ', ladies and gentleman! I\'m ' + this.name + '. I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old.');
+//         } else if (style === 'friendly'){
+//             console.log('Hey what\'s up I\'m ' + this.name + '. I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old. Have a nice ' + timeOfDay);
+//         }
+//     }
+// };
+
+// var emily = {
+//     name: 'Emily',
+//     age: 35,
+//     job: 'designer'
+// };
+
+// john.presentation('formal','morning');
+
+// //CALL METHOD to borrow methods from other objects, even if they don't exist in the current object, using the call method you set the this keyword to the object you want to use the method in along with any required arguments the function will need see below
+// john.presentation.call(emily,'friendly','afternoon');
+
+// //APPLY METHOD works the same as the call method the diffrence is you pass it an array with the needed arguments
+// john.presentation.apply(emily,['formal','morning']);
+
+// //BIND METHOD allows to preset some of the arguments as well as make a copy of the function. The copy of the function will have a preset argument if you give it one, you can also set the this variable to any object you want. remember to store in a variable since it returns a function. This is a way of currying.
+
+// var johnFriendly = john.presentation.bind(john,'friendly');
+
+// johnFriendly('morning');
+// johnFriendly('night');
+
+// //Currying is a technique used when creating a function based on another function but with some pre-set arguments
+
+//  var years = [1990,1965,1937,2005,1998];
+
+//  function arrayCalc(arr, fn){
+//     var arrRes = [];
+//     for (var i = 0; i < arr.length; i++){
+//         arrRes.push(fn(arr[i]));
+//     };
+//     return arrRes;
+//  };
+
+//  function calculateAge(el){
+//      return 2020 - el;
+//  };
+
+// //This function needs to arguments but on line 406 we only pass in one argument. This can be solved by pre-setting one of the arguments(currying), using the BIND method, in this case presetting limit
+// function isFullAge(limit, el){
+//     return el >= limit;
+// };
+
+// //calculate ages, using callback function
+// var ages = arrayCalc(years, calculateAge);
+// console.log(ages);
+// //using bind on a function to set a preset argument where we don't need to set the this variable; notice we just use 'this' and we set the preset argument to 20
+// var fullJapan = arrayCalc(ages,isFullAge.bind(this, 20));
+// console.log(fullJapan);
+
+
+
+/////////////////////////////
+// CODING CHALLENGE
+
+
+/*
+--- Let's build a fun quiz game in the console! ---
+
+1. Build a function constructor called Question to describe a question. A question should include:
+a) question itself
+b) the answers from which the player can choose the correct one (choose an adequate data structure here, array, object, etc.)
+c) correct answer (I would use a number for this)
+
+2. Create a couple of questions using the constructor
+
+3. Store them all inside an array
+
+4. Select one random question and log it on the console, together with the possible answers (each question should have a number) (Hint: write a method for the Question objects for this task).
+
+5. Use the 'prompt' function to ask the user for the correct answer. The user should input the number of the correct answer such as you displayed it on Task 4.
+
+6. Check if the answer is correct and print to the console whether the answer is correct ot nor (Hint: write another method for this).
+
+7. Suppose this code would be a plugin for other programmers to use in their code. So make sure that all your code is private and doesn't interfere with the other programmers code (Hint: we learned a special technique to do exactly that).
+*/
+
+// (function(){
+//     var Question = function(question,choices,answer){
+//     this.question = question;
+//     this.choices = choices;
+//     this.answer = answer;
+//     this.askQuestoin = function (){
+//         console.log(this.question);
+//         //log answes on their own line
+//         for (var i = 0; i < this.choices.length; i++){
+//             console.log(this.choices[i]);
+//         };
+//         //ask for user answer
+//         this.userAnswer = prompt('Enter number of correct answer:');
+//     };
+//     this.checkAnswer = function (){
+//         if (this.userAnswer == this.answer){
+//             console.log('Correct!');
+//         } else {
+//             console.log('Incorrect')
+//         };
+//     };
+// };
+
+// var q1 = new Question('Who is the best NFL team?',['1. Cowboys','2. Patriots','3. Packers'], 1);
+// var q2 = new Question('How many superbowls have the Cowboys won?',[1, 0, 5], 5);
+// var q3 = new Question('Who won the most Super Bowls for the Cowboys?',['1. Roger Staubach','2. Tony Romo','3. Troy Aikman'], 3);
+
+// var questions = [q1,q2,q3];
+
+// var random = Math.floor(Math.random()*questions.length);
+// var q = questions[random];
+
+// q.askQuestoin();
+// q.checkAnswer();
+// })();0
+
+/*
+--- Expert level ---
+
+8. After you display the result, display the next random question, so that the game never ends (Hint: write a function for this and call it right after displaying the result)
+
+9. Be careful: after Task 8, the game literally never ends. So include the option to quit the game if the user writes 'exit' instead of the answer. In this case, DON'T call the function from task 8.
+
+10. Track the user's score to make the game more fun! So each time an answer is correct, add 1 point to the score (Hint: I'm going to use the power of closures for this, but you don't have to, just do this with the tools you feel more comfortable at this point).
+
+11. Display the score in the console. Use yet another method for this. */
+
+(function(){
+    var userScore = 0;
+    var Question = function(question,choices,answer){
+        this.question = question;
+        this.choices = choices;
+        this.answer = answer;
+        this.askQuestion = function (){
+            console.log(this.question);
+            //log answes on their own line
+            for (var i = 0; i < this.choices.length; i++){
+                console.log(this.choices[i]);
+            };
+            //ask for user answer
+            this.userAnswer = prompt('Enter number of correct answer:');
         };
-        console.log(name + question);
+        this.checkAnswer = function (fn,arr){
+            if (this.userAnswer == this.answer){
+                userScore += 1;
+                console.log('Correct!\nYour current score is ' + userScore + '\n------------------------------------');
+                fn(arr);
+            } else if (this.userAnswer === 'exit'){
+                //exit game
+            }else {
+                console.log('Incorrect Try Again');
+                this.askQuestion();
+                this.checkAnswer(fn,arr);
+            };
+        };
     };
+
+var q1 = new Question('Who is the best NFL team?',['1. Cowboys','2. Patriots','3. Packers'], 1);
+var q2 = new Question('How many superbowls have the Cowboys won?',[1, 0, 5], 5);
+var q3 = new Question('Who won the most Super Bowls for the Cowboys?',['1. Roger Staubach','2. Tony Romo','3. Troy Aikman'], 3);
+
+var questions = [q1,q2,q3];
+
+function random(quesArr){
+    return Math.floor(Math.random()*quesArr.length);
 };
 
-var question = interviewQuestions('designer');
-question('Leo');
-interviewQuestions('teacher')('Fred');
-interviewQuestions('Dog Whisperer')('Steve');
+function nextQuestion(queArr){
+    var q = queArr[random(queArr)];
+    q.askQuestion();
+    q.checkAnswer(nextQuestion,questions);
+};
 
-//check the final version provided on 5-Advanced-JS for the mentor's solution
+nextQuestion(questions);
+
+})();0
