@@ -115,6 +115,7 @@ console.log(c) // value undefined, bc we used an IIFE on an var which is functio
 
 
 // Lecture 3: Strings in ES6 / ES2015
+/*
 
 let firstName = 'Zackychan';
 let lastName = 'DaGoat';
@@ -145,3 +146,41 @@ console.log(firstName.repeat(5)); // will repeat the firstName 5 times in a row.
 
 console.log(`${firstName} `.repeat(5)) // will repeate the firstName 5 times in a row with space between each string.
 
+*/
+
+
+
+
+
+
+
+
+
+// Lecture 4: Arrow Functions - Basics
+// suppose we have an array w birth years and we want to calculate age for each year
+
+const years = [1990, 1967, 1991, 1020, 1440];
+
+// ES5
+var ages5 = years.map(function(el){
+    return 2020 - el;
+});
+console.log(ages5);
+
+// ^^ this does the same as this vv
+
+// ES6
+let ages6 = years.map(el => 2020 - el); 
+console.log(ages6);
+
+// ES6 w/ more than 1 argument
+ages6 = years.map((el, index) => `Age element ${index + 1}: ${2020 - el}.`);
+console.log(ages6);
+
+// ES6 w/ more than 1 argument and more than one line in the return `` or back ticks, and we will need to specify the return bc it is not implicit
+ages6 = years.map((el, index)=> {
+    const now = new Date().getFullYear();
+    const age = now - el;
+    return `Age element ${index + 1}: ${age}.`
+});
+console.log(ages6);
