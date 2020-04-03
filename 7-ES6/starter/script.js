@@ -85,13 +85,9 @@ console.log(i); // will console log 23
 
 
 
-
-
-
-
-
 // Lecture 2: Blocks and IIFEs (iffys)
 
+/*
 // this is a block {}
 {
     const a = 1;
@@ -108,3 +104,44 @@ console.log(d); // function scoped so will be defined
     var c = 3;
 })();
 console.log(c) // value undefined, bc we used an IIFE on an var which is function scoped. A lot more code for data privacy.
+*/
+
+
+
+
+
+
+
+
+
+// Lecture 3: Strings in ES6 / ES2015
+
+let firstName = 'Zackychan';
+let lastName = 'DaGoat';
+const yearOfBirth = 1997;
+function calcAge(year){
+    return 2020 - (1997 + 1);
+}
+
+// ES5 (we want to put all this data together in a big string)
+console.log('This is ' + firstName + ' ' + lastName + '. He was born in ' + yearOfBirth + '. Today, he is ' + calcAge(yearOfBirth) + ' years old.');
+
+
+// ES6 (we want to put all this data together ina  big string)
+    // we will use template literals
+console.log(`This is ${firstName} ${lastName}. He was born in ${yearOfBirth}. Today he is ${calcAge(yearOfBirth)}.`);
+
+
+
+const n = `${firstName} ${lastName}`;
+console.log(n.startsWith('Z')); // returns if the string starts with a Z or not -> should be true. Capitalization matters!!!
+
+console.log(n.endsWith('t')); // returns if the string ends with a t or not -> should be true. Capitalization matters!!!
+
+
+console.log(n.includes(' ')); // returns if the string includes a space -> Should be true. Capitalization matters!
+
+console.log(firstName.repeat(5)); // will repeat the firstName 5 times in a row. If we want spaces between the strings we need to write a template literals
+
+console.log(`${firstName} `.repeat(5)) // will repeate the firstName 5 times in a row with space between each string.
+
