@@ -159,6 +159,8 @@ console.log(`${firstName} `.repeat(5)) // will repeate the firstName 5 times in 
 // Lecture 4: Arrow Functions - Basics
 // suppose we have an array w birth years and we want to calculate age for each year
 
+/*
+
 const years = [1990, 1967, 1991, 1020, 1440];
 
 // ES5
@@ -184,3 +186,97 @@ ages6 = years.map((el, index)=> {
     return `Age element ${index + 1}: ${age}.`
 });
 console.log(ages6);
+
+*/
+
+
+
+
+
+
+
+
+// Lecture 5: Arrow Functions - Lexical 'this' Keyword
+
+// ES5
+var box5 = {
+    color: 'green',
+    position: 1,
+    clickMe: function(){ // this is a method so this.color will return green (but we have another function inside of it so... it won't)
+    var self = this;
+
+        // attach event handler
+        document.querySelector('.green').addEventListener('click', function() { // this is the function that cuts of this.color from knowing it to be defined/assigned to 'green' as well as this.position assigned/defined to 1
+        // use self which we defined just one layer above
+
+            //alert that says color and position of box
+
+            var string = 'This is box number ' + self.position + ' and it is ' + self.color;
+            alert(string);
+        })
+    }
+}
+// box5.clickMe();
+
+
+
+
+
+// ES6 - by using the arrow function, we have access to the this keyword bc the arrow function shares the lexical this keyword to its surroundings
+const box6 = {
+    color: 'green',
+    position: 1,
+    clickMe: function(){
+        document.querySelector('.green').addEventListener('click', () => {
+            var string = 'This is box number ' + this.position + ' and it is ' + this.color;
+            alert(string);
+        })
+    }
+}
+// box6.clickMe();
+
+
+// ES6 w/ both arrow methods.. this should be undefined bc the lexical surroundings of the CLICKME method/arrow function are the global scope (where this.postion and this.color would be undefined) which in turn means that the second arrow function has access to its own lexical surrounding. Well, its lexical surrounding is whatever is above it and that is the clickMe/first arrow function which sees the global scope. So the global scope is inside the second anonymous function as well.
+
+/*
+const secondBox6 = {
+    color: 'green',
+    position: 1,
+    clickMe: () => {
+        document.querySelector('.green').addEventListener('click', () => {
+            var string = 'This is box number ' + this.position + ' and it is ' + this.color;
+            alert(string);
+        })
+    }
+}
+secondBox6.clickMe();
+*/
+
+
+
+// ES5 - Function constructor in order to create a person object in ES5
+function Person(name){
+    this.name = name;
+}
+
+Person.prototype.myFriends5 = function(friends) {
+
+    var arr = friends.map(function(el) {
+        return this.name + ' is friends with ' + el;
+    }.bind(this));
+    console.log(arr);
+}
+
+var friends = ['Bob', 'Jane', 'Mark'];
+new Person('Zack').myFriends5(friends);
+
+
+
+// ES6
+Person.prototype.myFriends6 = function (friends){
+    var arr = friends.map(el => 
+        `${this.name} is friends with ${el}`);
+    console.log(arr);
+}
+
+new Person('Mikey Boy').myFriends6(friends);
