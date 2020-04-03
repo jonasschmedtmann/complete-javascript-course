@@ -199,84 +199,135 @@ console.log(ages6);
 // Lecture 5: Arrow Functions - Lexical 'this' Keyword
 
 // ES5
-var box5 = {
-    color: 'green',
-    position: 1,
-    clickMe: function(){ // this is a method so this.color will return green (but we have another function inside of it so... it won't)
-    var self = this;
+// var box5 = {
+//     color: 'green',
+//     position: 1,
+//     clickMe: function(){ // this is a method so this.color will return green (but we have another function inside of it so... it won't)
+//     var self = this;
 
-        // attach event handler
-        document.querySelector('.green').addEventListener('click', function() { // this is the function that cuts of this.color from knowing it to be defined/assigned to 'green' as well as this.position assigned/defined to 1
-        // use self which we defined just one layer above
+//         // attach event handler
+//         document.querySelector('.green').addEventListener('click', function() { // this is the function that cuts of this.color from knowing it to be defined/assigned to 'green' as well as this.position assigned/defined to 1
+//         // use self which we defined just one layer above
 
-            //alert that says color and position of box
+//             //alert that says color and position of box
 
-            var string = 'This is box number ' + self.position + ' and it is ' + self.color;
-            alert(string);
-        })
-    }
+//             var string = 'This is box number ' + self.position + ' and it is ' + self.color;
+//             alert(string);
+//         })
+//     }
+// }
+// // box5.clickMe();
+
+
+
+
+
+// // ES6 - by using the arrow function, we have access to the this keyword bc the arrow function shares the lexical this keyword to its surroundings
+// const box6 = {
+//     color: 'green',
+//     position: 1,
+//     clickMe: function(){
+//         document.querySelector('.green').addEventListener('click', () => {
+//             var string = 'This is box number ' + this.position + ' and it is ' + this.color;
+//             alert(string);
+//         })
+//     }
+// }
+// // box6.clickMe();
+
+
+// // ES6 w/ both arrow methods.. this should be undefined bc the lexical surroundings of the CLICKME method/arrow function are the global scope (where this.postion and this.color would be undefined) which in turn means that the second arrow function has access to its own lexical surrounding. Well, its lexical surrounding is whatever is above it and that is the clickMe/first arrow function which sees the global scope. So the global scope is inside the second anonymous function as well.
+
+// /*
+// const secondBox6 = {
+//     color: 'green',
+//     position: 1,
+//     clickMe: () => {
+//         document.querySelector('.green').addEventListener('click', () => {
+//             var string = 'This is box number ' + this.position + ' and it is ' + this.color;
+//             alert(string);
+//         })
+//     }
+// }
+// secondBox6.clickMe();
+// */
+
+
+
+// // ES5 - Function constructor in order to create a person object in ES5
+// function Person(name){
+//     this.name = name;
+// }
+
+// Person.prototype.myFriends5 = function(friends) {
+
+//     var arr = friends.map(function(el) {
+//         return this.name + ' is friends with ' + el;
+//     }.bind(this));
+//     console.log(arr);
+// }
+
+// var friends = ['Bob', 'Jane', 'Mark'];
+// new Person('Zack').myFriends5(friends);
+
+
+
+// // ES6
+// Person.prototype.myFriends6 = function (friends){
+//     var arr = friends.map(el => 
+//         `${this.name} is friends with ${el}`);
+//     console.log(arr);
+// }
+
+// new Person('Mikey Boy').myFriends6(friends);
+
+
+
+
+
+
+
+
+
+// Lesson 6: Destructuring
+
+// imagine we have data in a data structure (object or array) in this case an array and now we want to store each elements of that array in a single variable
+
+// ES5
+// var zack = ['Zack', 22];
+// var name = zack[0];
+// var age = john[1];
+
+
+// ES6 - Now destructuring in ES6
+const [name, age] = ['John', 26]; // We destructure this data structure: ['John', 26] using [name, age] so we can just call for the name and age separately
+console.log(name);
+console.log(age);
+
+
+// Destructure object
+const obj = {
+    firstName: 'Margaret',
+    lastName: 'Thatcher'
+};
+
+const{firstName, lastName} = obj;
+console.log(firstName);
+console.log(lastName);
+
+//var names dont have to match key names
+const {firstName: a, lastName: b} = obj;
+console.log(a);
+console.log(b);
+
+
+
+// Returning multiple values from a function --> common use case of destructuring
+function calcAgeRetirement(year){
+    const age = new Date().getFullYear() - year;
+    return [age, 65 - age]
 }
-// box5.clickMe();
 
-
-
-
-
-// ES6 - by using the arrow function, we have access to the this keyword bc the arrow function shares the lexical this keyword to its surroundings
-const box6 = {
-    color: 'green',
-    position: 1,
-    clickMe: function(){
-        document.querySelector('.green').addEventListener('click', () => {
-            var string = 'This is box number ' + this.position + ' and it is ' + this.color;
-            alert(string);
-        })
-    }
-}
-// box6.clickMe();
-
-
-// ES6 w/ both arrow methods.. this should be undefined bc the lexical surroundings of the CLICKME method/arrow function are the global scope (where this.postion and this.color would be undefined) which in turn means that the second arrow function has access to its own lexical surrounding. Well, its lexical surrounding is whatever is above it and that is the clickMe/first arrow function which sees the global scope. So the global scope is inside the second anonymous function as well.
-
-/*
-const secondBox6 = {
-    color: 'green',
-    position: 1,
-    clickMe: () => {
-        document.querySelector('.green').addEventListener('click', () => {
-            var string = 'This is box number ' + this.position + ' and it is ' + this.color;
-            alert(string);
-        })
-    }
-}
-secondBox6.clickMe();
-*/
-
-
-
-// ES5 - Function constructor in order to create a person object in ES5
-function Person(name){
-    this.name = name;
-}
-
-Person.prototype.myFriends5 = function(friends) {
-
-    var arr = friends.map(function(el) {
-        return this.name + ' is friends with ' + el;
-    }.bind(this));
-    console.log(arr);
-}
-
-var friends = ['Bob', 'Jane', 'Mark'];
-new Person('Zack').myFriends5(friends);
-
-
-
-// ES6
-Person.prototype.myFriends6 = function (friends){
-    var arr = friends.map(el => 
-        `${this.name} is friends with ${el}`);
-    console.log(arr);
-}
-
-new Person('Mikey Boy').myFriends6(friends);
+const [age2, retirement] = calcAgeRetirement(1997);
+console.log(age2);
+console.log(retirement);
