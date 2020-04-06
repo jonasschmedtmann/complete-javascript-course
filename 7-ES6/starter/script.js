@@ -300,37 +300,38 @@ console.log(ages6);
 
 
 // ES6 - Now destructuring in ES6
-const [name, age] = ['John', 26]; // We destructure this data structure: ['John', 26] using [name, age] so we can just call for the name and age separately
-console.log(name);
-console.log(age);
+// const [name, age] = ['John', 26]; // We destructure this data structure: ['John', 26] using [name, age] so we can just call for the name and age separately
+// console.log(name);
+// console.log(age);
 
 
 // Destructure object
-const obj = {
-    firstName: 'Margaret',
-    lastName: 'Thatcher'
-};
 
-const{firstName, lastName} = obj;
-console.log(firstName);
-console.log(lastName);
+// const obj = {
+//     firstName: 'Margaret',
+//     lastName: 'Thatcher'
+// };
 
-//var names dont have to match key names
-const {firstName: a, lastName: b} = obj;
-console.log(a);
-console.log(b);
+// const{firstName, lastName} = obj;
+// console.log(firstName);
+// console.log(lastName);
+
+// //var names dont have to match key names
+// const {firstName: a, lastName: b} = obj;
+// console.log(a);
+// console.log(b);
 
 
 
-// Returning multiple values from a function --> common use case of destructuring
-function calcAgeRetirement(year){
-    const age = new Date().getFullYear() - year;
-    return [age, 65 - age]
-}
+// // Returning multiple values from a function --> common use case of destructuring
+// function calcAgeRetirement(year){
+//     const age = new Date().getFullYear() - year;
+//     return [age, 65 - age]
+// }
 
-const [age2, retirement] = calcAgeRetirement(1997);
-console.log(age2);
-console.log(retirement);
+// const [age2, retirement] = calcAgeRetirement(1997);
+// console.log(age2);
+// console.log(retirement);
 
 
 
@@ -342,58 +343,103 @@ console.log(retirement);
 
 // Lesson 7: Arrays in ES6 / ES2015
 
+// const boxes = document.querySelectorAll('.box'); // returns a nodeList not an array
+// // must transform it to an array
 
-const boxes = document.querySelectorAll('.box'); // returns a nodeList not an array
-// must transform it to an array
+// // ES5
+// var boxesArr5 = Array.prototype.slice.call(boxes); // now we have an array (ES5 way)
+// boxesArr5.forEach(function(cur) {
+//     cur.style.backgroundColor = 'dodgerblue'
+// })
+
+// // ES6
+// const boxesArr6 = Array.from(boxes); // transform the nodeList we have in boxes to an array
+// boxesArr6.forEach(cur => cur.style.backgroundColor = 'dodgerblue');
+
+
+// // ES5 loop to continue
+// /*
+// for (var i = 0; i < boxesArr5.length; i++) {
+
+//     if(boxsArr5[i].className === 'box blue'){
+//         continue;
+//     }
+
+//     boxesArr5[i].textContent = 'I changed to blue! ES5 Way.';
+// }
+// */
+
+
+
+// // ES6 way -- for off loop
+// for (const cur of boxesArr6){
+//     if (cur.className.includes('blue')){
+//         continue;
+//     }
+//     cur.textContent = 'I was changed to blue! ES6 Way.'
+// }
+
+
+
+// // new ways to find elements of an array in ES6
+// // ES5 first tho
+
+// var ages = [12, 17, 8, 21, 14, 11];
+
+// var full = ages.map(function(cur) {
+//     return cur >= 18;
+// });
+// console.log(full);
+
+// console.log(full.indexOf(true));
+// console.log(ages[full.indexOf(true)]);
+
+// // ES6 -- doing this with new methods. The findIndex method and the find method.
+// console.log(ages.findIndex(cur => cur >= 18));
+// console.log(ages.find(cur => cur >= 18));
+
+
+
+
+
+
+
+
+
+// Lesson 8: The Spread Operator (expand elements)
+
+function addFourAges (a, b, c, d) {
+    return a + b + c + d;
+}
+
+var sum1 = addFourAges(18, 30, 12, 21);
+console.log(sum1);
+
+// How to pass entire array into that function?
 
 // ES5
-var boxesArr5 = Array.prototype.slice.call(boxes); // now we have an array (ES5 way)
-boxesArr5.forEach(function(cur) {
-    cur.style.backgroundColor = 'dodgerblue'
-})
+var ages = [18, 30, 12, 21]
+
+var sum2 = addFourAges.apply(null, ages);
+console.log(sum2);
+
+
 
 // ES6
-const boxesArr6 = Array.from(boxes); // transform the nodeList we have in boxes to an array
-boxesArr6.forEach(cur => cur.style.backgroundColor = 'dodgerblue');
+const sum3 = addFourAges(...ages);
+console.log(sum3);
+
+// more use cases of spread -- 2 arrays
+
+const familyBumpous = ['Zac', 'Debby', 'Bran', 'Jef'];
+const familySchneider = ['Kleb', 'Dilly Dilly', 'Neal', 'Chleo'];
+const familiesTogether = [...familyBumpous, 'Milo n Diesel', ...familySchneider];
+console.log(familiesTogether);
 
 
-// ES5 loop to continue
-/*
-for (var i = 0; i < boxesArr5.length; i++) {
+const h = document.querySelector('h1');
+const boxes = document.querySelectorAll('.box');
+const all = [h, ...boxes];
+console.log(all);
 
-    if(boxsArr5[i].className === 'box blue'){
-        continue;
-    }
-
-    boxesArr5[i].textContent = 'I changed to blue! ES5 Way.';
-}
-*/
-
-
-
-// ES6 way -- for off loop
-for (const cur of boxesArr6){
-    if (cur.className.includes('blue')){
-        continue;
-    }
-    cur.textContent = 'I was changed to blue! ES6 Way.'
-}
-
-
-
-// new ways to find elements of an array in ES6
-// ES5 first tho
-
-var ages = [12, 17, 8, 21, 14, 11];
-
-var full = ages.map(function(cur) {
-    return cur >= 18;
-});
-console.log(full);
-
-console.log(full.indexOf(true));
-console.log(ages[full.indexOf(true)]);
-
-// ES6 -- doing this with new methods. The findIndex method and the find method.
-console.log(ages.findIndex(cur => cur >= 18));
-console.log(ages.find(cur => cur >= 18));
+Array.from(all).forEach(cur => cur.getElementsByClassName.color = 'purple');
