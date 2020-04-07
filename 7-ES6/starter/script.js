@@ -408,6 +408,7 @@ console.log(ages6);
 
 // Lesson 8: The Spread Operator (expand elements)
 
+/*
 function addFourAges (a, b, c, d) {
     return a + b + c + d;
 }
@@ -443,3 +444,104 @@ const all = [h, ...boxes];
 console.log(all);
 
 Array.from(all).forEach(cur => cur.getElementsByClassName.color = 'purple');
+
+*/
+
+
+
+
+
+
+
+
+
+// Lesson 9: Rest Parameters (pass arbitrary number of arguments in a function and use them in that function)
+/*
+// ES5
+function isFullAge5(){
+    console.log(arguments);
+    var argsArr = Array.prototype.slice.call(arguments);
+
+    argsArr.forEach(function(cur) {
+        console.log((2020 - cur) >= 18)
+    })
+}
+
+// isFullAge5(1990, 1999, 1965, 2016, 2009)
+
+// ES6 -- Rest Parameter Operator
+function isFullAge6(...years){
+    // console.log(years);
+    years.forEach(cur => console.log((2020 - cur) >= 18));
+}
+
+isFullAge6(1990, 1999, 2009);
+*/
+
+
+// ES5
+/*
+function isFullAge5(limit){
+    // console.log(arguments);
+    var argsArr = Array.prototype.slice.call(arguments, 1);
+    console.log(argsArr);
+
+    argsArr.forEach(function(cur) {
+        console.log((2020 - cur) >= limit)
+    })
+}
+
+isFullAge5(16, 1990, 1999, 1965, 2016, 2009)
+
+// ES6 -- Rest Parameter Operator
+function isFullAge6(limit, ...years){
+    // console.log(years);
+    years.forEach(cur => console.log((2020 - cur) >= limit));
+}
+
+isFullAge6(16, 1990, 1999, 2009);
+*/
+
+
+
+
+
+
+
+
+
+// Lesson 10: Default Parameters
+
+// ES5
+/*
+function SmithPerson(firstName, yearOfBirth, lastName, nationality){
+
+    lastName === undefined ? lastName = 'Smith' : lastName = lastName; // default parameter
+
+    nationality === undefined ? nationality = 'Unknown' : nationality = nationality; // default parameter
+
+    this.firstName = firstName;
+    this.yearOfBirth = yearOfBirth;
+    this.lastName = lastName;
+    this.nationality = nationality;
+}
+
+var satoshi = new SmithPerson('Satoshi', 1990);
+
+// over riding default paraeter
+
+var emily = new SmithPerson('Emily', 1983, 'Diaz', 'Spanish');
+*/
+
+
+// ES6
+function SmithPerson(firstName, yearOfBirth, lastName = 'Smith', nationality = 'american'){
+    this.firstName = firstName;
+    this.yearOfBirth = yearOfBirth;
+    this.lastName = lastName;
+    this.nationality = nationality; 
+}
+
+var satoshi = new SmithPerson('Satoshi', 1990);
+
+var emily = new SmithPerson('Emily', 1983, 'Diaz', 'Spanish');
