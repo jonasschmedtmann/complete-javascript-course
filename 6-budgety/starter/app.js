@@ -197,6 +197,26 @@
  * - see @customForEachMehtod
  ****************************************************************************/
 
+   /****************************************************************************
+ * //////////////////\\\\\\\\   CREATE YOU'RE OWN FOREACH FUNCTION     //////////////////\\\\\\\\\\\\
+ * METHODS TO MANIPULATE STRINGS
+ * - .toFixed(number of decimal places) is a method used on numbers which are primitive. However when you use the toFixed() method which is a method of the number prototype, javascript turns the number to an object and is then able to use the method. toFixed() also turns the number to a string. @toFixed()
+ * 
+ * -.split(charToSplitOn): a method that splits a string into an array based on the argument passed in
+ * 
+ * -.length: returns the length of the string
+ * 
+ * 
+ * HOW TO GET THE CURRENT DATE
+ * - use the new Date() constructor to get the current date. after that use the date methods to get the desired date format @date
+ * 
+ * 
+ * 
+ * HOW AND WHEN TO USE 'CHANGE' EVENTS
+ * - change event occurs each time that you click on a dropdown for example and then click on an option that is different to what the default or prior option was; in this example changing from + to - in the dropdown.
+ * 
+ ****************************************************************************/
+
 //BUDGET CONTROLLER Module
 var budgetController = (function(){
     
@@ -373,7 +393,35 @@ var UIController = (function(){
         percentageLabel: '.budget__expenses--percentage',
         container: '.container',
         expensesPercentageLabel: '.item__percentage',
+        dateLabel: '.budget__title--month'
     };
+
+    
+        //public method to format numbers in UI
+        var formatNumber = function(num, type){
+            var numSplit, int, dec;
+            //Math.abs() returns the number as an absolute value: always positive
+            num = Math.abs(num);
+            //@toFixed(): a method of the number prototype; javascript will convert the number primitive to an object;
+            num = num.toFixed(2);
+            //split number on decimal
+            numSplit = num.split('.');
+
+            int = numSplit[0];
+            dec = numSplit[1];
+            //format integer portoin of number
+            if(int.length > 3){
+                int = int.substr(0,int.length - 3) + ',' + int.substr(int.length - 3,int.length-1);
+            };
+            //return the formatted number; ternery function to check and apply proper symbol and concatenate with rest of number
+            return (type === 'exp' ? '-' : '+') + ' ' + int + '.' + dec;
+        };
+
+        var nodeListForEach = function(list, callbackFunction){
+            for (var i = 0; i < list.length; i++){
+                callbackFunction(list[i],i);
+            };
+        };
 
     //Will return an object that contains all the methods and properties we need
     return {
@@ -402,7 +450,7 @@ var UIController = (function(){
             //replace the placeholder text with some actual data
             newHTML = html.replace('%id%', obj.id);
             newHTML = newHTML.replace('%description%', obj.description);
-            newHTML = newHTML.replace('%value%', obj.value);
+            newHTML = newHTML.replace('%value%', formatNumber(obj.value,type));
 
             //insert the html into the DOM @adjacentHTML
             document.querySelector(element).insertAdjacentHTML('beforeend', newHTML);
@@ -437,9 +485,9 @@ var UIController = (function(){
         },
         
         displayBudget: function(obj){
-            document.querySelector(DOMstrings.budgetLabel).textContent = obj.budget;
-            document.querySelector(DOMstrings.incomeLabel).textContent = obj.totalInc;
-            document.querySelector(DOMstrings.expenseLabel).textContent = obj.totalExp;
+            document.querySelector(DOMstrings.budgetLabel).textContent = formatNumber(obj.budget,obj.budget > 0 ? 'inc' : 'exp');
+            document.querySelector(DOMstrings.incomeLabel).textContent = formatNumber(obj.totalInc,'inc');
+            document.querySelector(DOMstrings.expenseLabel).textContent = formatNumber(obj.totalExp,'exp');
 
             if(obj.percentage > 0) {
                 document.querySelector(DOMstrings.percentageLabel).textContent = obj.percentage + '%';
@@ -450,17 +498,12 @@ var UIController = (function(){
         
         //public method to add percentage to appropriate row in UI
         displayPercentages: function(percentages){
-            var fields, nodeListForEach;
+            var fields;
             
             //when you don't know how many elements there will be use queryselectorall; this returns a nodeList
             fields = document.querySelectorAll(DOMstrings.expensesPercentageLabel);
 
             //@customForEachMehtod: is simply a for loop that loops through all the items in the list and calls the function on them; give the function access to the current element and the index by passing in the current item and the index i
-            nodeListForEach = function(list, callbackFunction){
-                for (var i = 0; i < list.length; i++){
-                    callbackFunction(list[i],i);
-                };
-            };
 
             //loop over percentages and add it to the UI if greater than zero
             nodeListForEach(fields,function(current,index){
@@ -471,6 +514,27 @@ var UIController = (function(){
                 };
             });
 
+        },
+
+        //public method to display current month and year in UI
+        displayMonth: function() {
+            var year, now, month;
+            //@date
+            now = new Date();
+            //var christmas = new Date(2015, 11, 25);
+            //get the year by using the getFullYear method from teh date prototype
+            year = now.getFullYear();
+            month = now.toLocaleDateString('default', {month: 'long'});
+            document.querySelector(DOMstrings.dateLabel).textContent = month + ' ' + year;
+        },
+
+        //public method to change input description bar depending on inc or exp
+        changeType: function (){
+            var fields = document.querySelectorAll(DOMstrings.inputType + ',' + DOMstrings.inputDescription + ',' + DOMstrings.inputValue);
+            nodeListForEach(fields,function(cur){
+                cur.classList.toggle('red-focus');
+            });
+            document.querySelector(DOMstrings.inputBtn).classList.toggle('red');
         },
     };
 
@@ -504,6 +568,8 @@ var controller = (function(budgetCtrl, UICtrl){
         });
         //add event listenter to the parent element of all the elements we're interested in
         document.querySelector(DOM.container).addEventListener('click', ctrlDeleteItem);
+
+        document.querySelector(DOM.inputType).addEventListener('change', UIController.changeType);
     };
 
     var updateBudget = function (){
@@ -589,6 +655,8 @@ var controller = (function(budgetCtrl, UICtrl){
                 totalInc: 0,
                 totalExp: 0,
             });
+            //display month
+            UIController.displayMonth();
         },
     };
 
