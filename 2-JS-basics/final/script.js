@@ -734,3 +734,28 @@ if (john.average > mark.average) {
     console.log(mark.fullName + '\'s family pays higher tips, with an average of $' + mark.average);
 }
 */
+  const  pepe = {
+      fullName : 'Pepe Gomez' ,
+       mas     : 92,
+       height: 1.95,
+       calBmi : function (){
+           this.bmi = this.mas /(this.height * this.height)
+           return  this.bmi
+       }
+       
+
+  }
+  const  papo = {
+    fullName : 'Papo Gomez' ,
+     mas     : 78,
+     height: 1.90,
+     calBmi : function (){
+         this.bmi = this.mas / (this.height * this.height)
+         return  this.bmi
+     }
+     
+
+}
+  pepe.calBmi()
+  papo.calBmi()
+  console.log(pepe ,papo)
