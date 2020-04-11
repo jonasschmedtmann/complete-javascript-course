@@ -654,6 +654,7 @@ Person6.greeting();
 // Lesson 13: Classes with Subclasses
 
 // ES5
+
 var Person5 = function (name, yearOfBirth, job){
     this.name = name;
     this.yearOfBirth = yearOfBirth;
@@ -717,3 +718,76 @@ const zackAthlete6 = new Athlete6('zack', 1997, 'swimmer', 2, 7);
 
 zackAthlete6.wonMedal();
 zackAthlete6.calculateAge();
+
+
+
+
+
+
+
+
+
+
+// Coding Challenge 8
+/*
+Suppose you're working in a small town administration, and you're in charge of 2 town elements:
+    1. Parks
+    2. Streets
+
+It is a very small town, so right now there are only 3 parks and 4 streets. All parks and streets have a name and a build year.
+
+At an end-of-year meeting, your boss wants a final report with the following:
+    1. Tree density of each park in the town (number of trees/park area)
+    2. Average age of each of town's park ( sum of all ages/number of parks)
+    3. The name of the park that has more than 1000 trees
+    4. Total and average length of the town's streets
+    5. Size classification of all streets: tiny/small/normal/big/huge. If the size is unknown, the default is normal.
+
+All the report data should be printed to the console.
+
+HINT: Use some of the ES6 features: classes, subclasses, template strings, default parameters, maps, arrow functions, destructuring, etc.
+*/
+
+
+
+
+// A. going to create a class that has shared elements of the subclasses that I will extend from the Element.
+class Element {
+    constructor(name, buildYear){
+        this.name = name;
+        this.buildYear = buildYear;
+    }
+}
+
+// B. created a class that extends the Element class and then adds the area and the number of trees, which we will need to calculate tree density of each park in the town which we will need to add through a method.
+class Park extends Element {
+    constructor(name, buildYear, area, numTrees){
+        super(name, buildYear);
+        this.area = area;
+        this.numTrees = numTrees;
+    }
+    // C. created a method for our Park class that extends the Element class. This method does what it is named, it calculates treeDensity for a certain park.
+    treeDensity(){
+        const density = this.numTrees / this.area;
+        console.log(`The tree density of ${this.name} is ${density} trees per square km.`)
+    }
+}
+
+// D. creates a class Street that extends Element and adds in length, and size, which is default set to 3 bc 3 will be the assigned ID when we create our classifyStreet method. So if there is no data it will just be sized 'normal'.
+class Street extends Element {
+    constructor(name, buildYear, length, size = 3){
+        super(name, buildYear);
+        this.length = length;
+        this.size = size;
+    }
+    
+    classifyStreet(){
+        const streetClassification = new Map();
+        streetClassification.set(1, 'tiny');
+        streetClassification.set(2, 'small');
+        streetClassification.set(3, 'normal');
+        streetClassification.set(4, 'big');
+        streetClassification.set(5, 'huge');
+        console.log(`${this.name}, built in ${this.buildYear}, is a ${streetClassification.get(this.size)} street.`)
+    }
+}
