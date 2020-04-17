@@ -791,3 +791,70 @@ class Street extends Element {
         console.log(`${this.name}, built in ${this.buildYear}, is a ${streetClassification.get(this.size)} street.`)
     }
 }
+
+// E. creates the data of our parks and streets all nicely inside an array
+const allParks = [
+    new Park('Green Park', 1987, 0.2, 618),
+    new Park('Melgaard Park', 1968, 0.8, 4000),
+    new Park('Sunshine Park', 1999, 0.4, 1000),
+    
+]
+
+const allStreets = [
+    new Street('Melgaard Rd', 1965, 20, 4),
+    new Street('Lawson St', 1970, 3),
+    new Street('Sapphire Ave', 2003, 0.8, 2),
+    new Street('Sunset Blvd', 1982, 2.5, 5),
+];
+
+
+// G. Calc based on array we receive (we want total and avg)
+function calc(arr){
+
+    const sum = arr.reduce((prev, cur, index) => prev + cur, 0);
+
+    return [sum, sum / arr.length]
+
+}
+
+
+
+
+// F. Generating a report - writing a function for EACH report and then pass it in our array which contains our data (passing in allParks and allStreets)
+
+function reportParks(p){
+
+    console.log('-----Parks Report-----');
+
+    // Density
+    p.forEach(el => el.treeDensity());
+
+    // Avg Age
+    const d = new Date();
+    const y = d.getFullYear();
+
+    const ages = p.map(el => y - el.buildYear)
+    const [totalAge, avgAge] = calc(ages);
+    console.log(`Our ${p.length} parks have an average of ${avgAge} years.`);
+
+    // Which park has more than 1000 trees (ES6 findIndex method maybe??)
+    // Lets get the number of trees in each park inside an array first though
+    const i = p.map(el => el.numTrees).findIndex(el => el >= 1000);
+    console.log(`${p[i].name} has more than 1000 trees.`)
+
+}
+
+function reportStreets(s){
+
+    console.log('-----Streets Report-----');
+
+    // Total and average length of the town's streets
+    const [totalLength, avgLength] = calc(s.map(el => el.length));
+    console.log(`Our ${s.length} streets have a total length of ${totalLength} km, with an average of ${avgLength} km.`)
+
+    // Size classification of all streets: tiny/small/normal/big/huge. If the size is unknown, the default is normal.
+    s.forEach(el => el.classifyStreet())
+}
+
+reportParks(allParks);
+reportStreets(allStreets)
