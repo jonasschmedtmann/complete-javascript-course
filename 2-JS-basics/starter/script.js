@@ -144,7 +144,7 @@ console.log('Is Vlad\'s BMI higher than Marie\'s? ' + bmiIsHigher);
 /****************************************
 * If / else statements
 */
-
+/*
 var firstName = 'John';
 var civilStatus = 'single';
 
@@ -177,4 +177,23 @@ if (bmiVlad > bmiMarie) {
     console.log('Vlad\'s BMI is higher than Marie\'s.');
 } else {
     console.log('Vlad\'s BMI is lower than Marie\'s.');
+}
+*/
+
+
+/****************************************
+* Boolean logic
+*/
+var firstName = 'John';
+var age = 20;
+
+if (age < 13) {
+    console.log(firstName + ' is a boy.');
+} else if (age >= 13 && age < 20) {
+    console.log(firstName + ' is a teenager.');
+} else if (age >= 20 && age < 30) {
+    console.log(firstName + ' is a young man.');
+}
+else {
+    console.log(firstName + ' is a man.');
 }
