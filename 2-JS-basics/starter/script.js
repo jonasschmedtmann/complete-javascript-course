@@ -82,6 +82,8 @@ console.log(typeof x);
 /****************************************
  * Operator Precedence
  */
+
+/*
 var currentYear = 2020;
 var yearMarie = 1987;
 var fullAge = 18;
@@ -117,4 +119,22 @@ console.log(x);
 x--;
 console.log(x);
 
+*/
 
+/****************************************
+ * CHALLENGE
+ */
+var massMarie, massVlad, heightMarie, heightVlad, bmiMarie, bmiVlad, bmiIsHigher;
+
+massMarie = 63.5;
+heightMarie = 1.72;
+bmiMarie = massMarie / (heightMarie * heightMarie);
+console.log(bmiMarie);
+
+massVlad = 75;
+heightVlad = 1.84;
+bmiVlad = massVlad / (heightVlad * heightVlad);
+console.log(bmiVlad);
+bmiIsHigher = bmiVlad > bmiMarie;
+
+console.log('Is Vlad\'s BMI higher than Marie\'s? ' + bmiIsHigher);
