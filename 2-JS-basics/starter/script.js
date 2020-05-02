@@ -291,7 +291,7 @@ if (height === '23') {
 /****************************************
 * CHALLENGE 2
 */
-
+/*
 var johnTeamScore1 = 89;
 var johnTeamScore2 = 120;
 var johnTeamScore3 = 103;
@@ -327,4 +327,33 @@ if (johnTeamAverage > markTeamAverage && johnTeamAverage > maryTeamAverage) {
 else {
     console.log('It\'s a draw .');
 }
+*/
 
+/****************************************
+* Functions
+*/
+
+function calculateAge(birthYear) {
+    return 2020 - birthYear;
+} 
+ var ageMarie = calculateAge(1987);
+var ageMike = calculateAge(1947);
+var ageJane = calculateAge(1968);
+
+console.log(ageMarie, ageMike, ageJane);
+
+
+function yearsUntilRetirement(year, firstName) {
+    var age = calculateAge(year);
+    var retirement = 72 - age;
+    if (retirement > 0) {
+        console.log(firstName + ' retires in ' + retirement + ' years.');
+    } else {
+        console.log(firstName + ' is already retired.');
+    }
+    
+}
+
+yearsUntilRetirement(1987, 'Marie');
+yearsUntilRetirement(1986, 'Vlad');
+yearsUntilRetirement(1925, 'Rusty');
