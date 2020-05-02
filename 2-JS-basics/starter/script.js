@@ -1,3 +1,7 @@
+/********************************
+* Varibles and data types
+*/
+/*
 var firstName = 'John';
 console.log(firstName);
 
@@ -11,7 +15,35 @@ var job;
 console.log(job);
 
 job = 'Teacher';
-console.log(job);
+
+// Variable naming rules
 
 var $3years = 3;
 var function = 34;
+*/
+
+/********************************
+* Varible mutation and type coercion
+*/
+
+var firstName = 'John';
+var age = 30;
+
+// Type coercion
+console.log(firstName + ' ' + age);
+
+var job, isMarried;
+
+job = 'Teacher';
+isMarried = false;
+
+console.log(firstName + ' is a ' + age + ' year old ' + job + '. Is he marries? ' + isMarried);
+
+// Variable mutation
+age = 'thirty';
+job = 'Driver';
+
+alert(firstName + ' is a ' + age + ' year old ' + job + '. Is he marries? ' + isMarried);
+
+var lastName = prompt('What is his last name');
+console.log(lastName);
