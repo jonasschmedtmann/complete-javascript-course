@@ -52,8 +52,8 @@ console.log(lastName);
 /****************************************
  * Basic Operators
  */
-
- var currentYear, yearJohn, yearMark, ageJohn, ageMark;
+/*
+var currentYear, yearJohn, yearMark, ageJohn, ageMark;
 currentYear = 2020;
 ageJohn = 30;
 ageMark = 35;
@@ -77,4 +77,44 @@ console.log(typeof ageMark);
 
 var x;
 console.log(typeof x);
+*/
+
+/****************************************
+ * Operator Precedence
+ */
+var currentYear = 2020;
+var yearMarie = 1987;
+var fullAge = 18;
+
+// Multiple operators
+var isFullAge = currentYear - yearMarie >= fullAge; // true
+console.log(isFullAge);
+
+
+// Grouping
+var ageMarie = currentYear - yearMarie;
+var ageVlad = 34;
+var average = (ageMarie + ageVlad) / 2;
+console.log(average);
+
+// Multiple assignmens
+var x, y;
+x = y = (3 + 5) * 4 - 6;
+console.log(x, y);
+
+// More operators
+x = x + 2;
+x += 2;
+console.log(x);
+
+x *= 10;
+console.log(x);
+
+x = x + 1;
+console.log(x);
+x++;
+console.log(x);
+x--;
+console.log(x);
+
 
