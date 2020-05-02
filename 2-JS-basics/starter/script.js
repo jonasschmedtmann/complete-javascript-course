@@ -270,7 +270,7 @@ switch (true) {
 
 // falsy values: underfined, null, 0, '', NaN
 // truthy: NOT falsy values
-
+/*
 var height;
 
 height = 23;
@@ -287,3 +287,44 @@ console.log(height);
 if (height === '23') {
     console.log('The == operator does type coercion');
 }
+*/
+/****************************************
+* CHALLENGE 2
+*/
+
+var johnTeamScore1 = 89;
+var johnTeamScore2 = 120;
+var johnTeamScore3 = 103;
+
+var markTeamScore1 = 103;
+var markTeamScore2 = 89;
+var markTeamScore3 = 120;
+
+var maryTeamScore1 = 73;
+var maryTeamScore2 = 134;
+var maryTeamScore3 = 105;
+
+var johnTeamTotalScore = johnTeamScore1 + johnTeamScore2 +johnTeamScore3;
+var markTeamTotalScore = markTeamScore1 + markTeamScore2 + markTeamScore3;
+var maryTeamTotalScore = maryTeamScore1 + maryTeamScore2 + maryTeamScore3;
+
+var johnTeamAverage = johnTeamTotalScore / 3;
+console.log(johnTeamAverage);
+
+var markTeamAverage = markTeamTotalScore / 3;
+console.log(markTeamAverage);
+
+var maryTeamAverage = maryTeamTotalScore / 3;
+console.log(maryTeamAverage);
+
+if (johnTeamAverage > markTeamAverage && johnTeamAverage > maryTeamAverage) {
+    console.log('Winner is John\'s Team. Average score is ' + johnTeamAverage);
+} else if (maryTeamAverage > markTeamAverage && maryTeamAverage > johnTeamAverage) {
+    console.log('Winner is Mary\'s Team. Average score is ' + maryTeamAverage);
+} else if (markTeamAverage > johnTeamAverage && markTeamAverage > maryTeamAverage) {
+    console.log('Winner is Mark\'s Team. Average score is ' + markTeamAverage);
+}
+else {
+    console.log('It\'s a draw .');
+}
+
