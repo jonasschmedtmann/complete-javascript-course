@@ -221,20 +221,64 @@ interviewQuestion('bum')('Joe');*/
 
 // Lecture: Bind, call and apply
 
-var john = {
-    name: 'John',
-    age: 26,
-    job: 'teacher',
-    presentation: function(style, timeOfDay) {
+var shawn = {
+    name: 'Shawn',
+    age: 40,
+    job: 'consultant',
+    presentation: function (style, timeOfDay) {
         if (style === 'formal') {
-            console.log();
+            console.log(`Good ${timeOfDay} Ladies and Gentlemen! I\'m a ${this.name}, I\'m a(n) ${this.job} and I\'m ${this.age} years old`);
         } else if (style === 'friendly') {
-            console.log();
+            console.log(`Hey!! What\'s up? I\'m a ${this.name}, I\'m a(n) ${this.job} and I\'m ${this.age} years old.  Have a nice ${timeOfDay}.`);
         }
     }
 }
 
+var michelle = {
+    name: 'Michelle',
+    age: 41,
+    job: 'stylist'
+}
 
+shawn.presentation('formal', 'morning');
+
+// .call method allows user to set the this variable in first param
+shawn.presentation.call(michelle, 'friendly', 'afternoon');
+// similar to call but takes [] as second param
+//shawn.presentation.apply(michelle, ['friendly', 'evening'])
+
+// bind (aka curoring)
+var shawnFriendly = shawn.presentation.bind(shawn, 'friendly');
+
+shawnFriendly('morning');
+shawnFriendly('night');
+
+var michelleFormal = shawn.presentation.bind(michelle, 'formal');
+michelleFormal('afternoon');
+
+
+var years = [1990, 1965, 1937, 2005, 1998];
+
+function arrayCalc(arr, fn) {
+    var arrRes = [];
+    for (var i = 0; i < arr.length; i++) {
+        arrRes.push(fn(arr[i]));
+    }
+    return arrRes;
+}
+
+function calculateAge(el) {
+    return 2020 - el;
+}
+
+function isFullAge(limit, el) {
+    return el >= limit;
+}
+
+var ages = arrayCalc(years, calculateAge);
+var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20));
+console.log(ages);
+console.log(fullJapan);
 
 
 
