@@ -20,11 +20,39 @@ c) correct answer (I would use a number for this)
 7. Suppose this code would be a plugin for other programmers to use in their code. So make sure that all your code is private and doesn't interfere with the other programmers code (Hint: we learned a special technique to do exactly that).
 */
 
+/*function Question(question, answers, correctAnswer) {
+    this.question = question;
+    this.answers = answers;
+    this.correctAnswer = correctAnswer;
+}
 
+Question.prototype.displayQuestions = function () {
+    console.log(this.question);
 
+    for (let i = 0; i < this.answers.length; i++) {
+        console.log(`${i}: ${this.answers[i]}`)
+    }
+}
 
+Question.prototype.checkAnswer = function (response) {
+    if (response === this.correctAnswer) {
+        console.log('Correct!!  You\'re a genius!!');
+    } else {
+        console.log('Uh...you\'re dumb!!');
+    }
+}
 
+const q1 = new Question('Does pineapple belong on pizza?', ['Ah hell naw!!', 'Damn straight!!'], 1);
+const q2 = new Question('Where\'s the best place to vacation?', ['Jamaica', 'Staycation', 'Hawaii'], 0);
+const q3 = new Question('Who da best?', ['Not you!!', 'You da best!!'], 1);
+let questions = [q1, q2, q3];
 
+var rq = Math.floor(Math.random() * questions.length);
+
+questions[rq].displayQuestions();
+
+var response = prompt('Please provide answer\'s numeric value');
+questions[rq].checkAnswer(parseInt(response));*/
 
 
 /*
@@ -37,3 +65,37 @@ Expert
 
 11. Display the score in the console. Use yet another method for this.
 */
+
+function Question(question, answers, correctAnswer) {
+    this.question = question;
+    this.answers = answers;
+    this.correctAnswer = correctAnswer;
+}
+
+Question.prototype.displayQuestions = function () {
+    console.log(this.question);
+
+    for (let i = 0; i < this.answers.length; i++) {
+        console.log(`${i}: ${this.answers[i]}`)
+    }
+}
+
+Question.prototype.checkAnswer = function (response) {
+    if (response === this.correctAnswer) {
+        console.log('Correct!!  You\'re a genius!!');
+    } else {
+        console.log('Uh...you\'re dumb!!');
+    }
+}
+
+const q1 = new Question('Does pineapple belong on pizza?', ['Ah hell naw!!', 'Damn straight!!'], 1);
+const q2 = new Question('Where\'s the best place to vacation?', ['Jamaica', 'Staycation', 'Hawaii'], 0);
+const q3 = new Question('Who da best?', ['Not you!!', 'You da best!!'], 1);
+let questions = [q1, q2, q3];
+
+var rq = Math.floor(Math.random() * questions.length);
+
+questions[rq].displayQuestions();
+
+var response = prompt('Please provide answer\'s numeric value');
+questions[rq].checkAnswer(parseInt(response));
