@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section 3: Javascript Behind the Scenes</title>
+</head>
+<body>
+    <section>
+        <h1>Section 3: How Javascript Works Behind the Scenes</h1>
+        <h2>
+            Execution Context:
+        </h2>
+        <p>A box, a container or a wrapper which stores variables in which a piece of our code is evaluated and executed</p>
+        <h2>Global Execution Context </h2>
+        <p>
+            <ul>
+                <li>Code is <b>not inside any function</b></li>
+                <li>Associated with the <b>Global Object</b></li>
+                <li>In the browser, that's the window object</li>
+            </ul>
+            lastName === window.lastName 
+            // true
+        </p>
+    </section>
+<section>
+    <h2>The Variable Object</h2>
+    <ul>
+        <li>The argument object is created, containing all the arguments that were passed into  the function.</li>
+        <h3>Hoisting: </h3>
+        <li>Code is scanned for cuntion declarations: for each function, a property is created in the Variable Object, <b>pointing to the function.</b></li>
+        <li>Code is scanned for <b>variable declarations: </b>for each variable, a property is created in the Variable Object, and set to undefined.</li>
+    </ul>
+    <p>Difference between functions and variables: Functions are already defined before the execution starts</p>
+</section>
+<section>
+    <h2>Scoping in JavaScript</h2>
+    <p>
+        <ul>
+            <li>
+                Scoping answers the question "where can we access a certain variable?"
+            </li>
+            <li><b>Each new function creates a scope: </b> the space/environment, in which the variables it defines are accessible.</li>
+            <li>
+                <b>Lexical Scoping:</b> a function that is lexically within another function gets access to the scope of the outer function.
+            </li>
+        </ul>
+    </p>
+</section>
+    <section>
+        <h2>The 'THIS' Variable</h2>
+        <p>
+            <ul>
+                <li><b>Regular Function Call: </b>The this keyword points at a global object (the window object, in the broswer).</li>
+                <li><b>Method Call: </b>The this variable points to the object that is calling the method.</li>
+                <li><em>The </em><b>this </b><em>keyword is not assigned a value until a function where it is defined is actually called.</em></li>
+            </ul>
+        </p>
+    </section>
+
+</body>
+<script src="./script.js"></script>
+</html>
+
