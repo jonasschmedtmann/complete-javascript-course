@@ -158,15 +158,70 @@
 /******************
  * Boolean Logic
  */
+// var firstName, age, gender;
+// firstName = "John";
+// age = 19;
+// gender = "non-binary";
+
+// if (age < 13) {
+//   console.log(`${firstName} is a ${gender} child who is ${age} years old.`);
+// } else if (age >= 13 && age < 20) {
+//   console.log(`${firstName} is a ${gender} teenager who is ${age} years old.`);
+// } else {
+//   console.log(`${firstName} is a ${gender} adult who is ${age} years old.`);
+// }
+
+/******************
+ * The Ternary (Conditional)
+ * Operator and Switch Statements
+ */
+
+var firstName, age;
+firstName = "John";
+age = 16;
+
+// Example (Ternary)
+age >= 21
+  ? console.log(`${firstName} can drink beer.`)
+  : console.log(`${firstName} can't drink beer.`);
+
+// Example assigned to variable (Ternary)
+var drink = age >= 21 ? `beer` : `juice`;
+console.log(drink);
+
+// Example (Switch)
+var job;
+job = "teacher";
+switch (job) {
+  case "teacher":
+    console.log(`${firstName} teaches kids how to code.`);
+    break;
+  case "driver":
+    console.log(`${firstName} is a driver! Vroom vroom.`);
+    break;
+  case "skateboarder":
+    console.log(`${firstName} shreds on a skateboard.`);
+    break;
+  default:
+    console.log(`${firstName} does something entirely different.`);
+}
+
+// Using the If/Else from Boolean Logic
+// Lesson, convert it to a Switch Statement
 var firstName, age, gender;
 firstName = "John";
 age = 19;
 gender = "non-binary";
 
-if (age < 13) {
-  console.log(`${firstName} is a ${gender} child who is ${age} years old.`);
-} else if (age >= 13 && age < 20) {
-  console.log(`${firstName} is a ${gender} teenager who is ${age} years old.`);
-} else {
-  console.log(`${firstName} is a ${gender} adult who is ${age} years old.`);
+switch (true) {
+  case age < 13:
+    console.log(`${firstName} is a ${gender} child who is ${age} years old.`);
+    break;
+  case age >= 13 && age < 20:
+    console.log(
+      `${firstName} is a ${gender} teenager who is ${age} years old.`
+    );
+    break;
+  default:
+    console.log(`${firstName} is a ${gender} adult who is ${age} years old.`);
 }
