@@ -244,25 +244,79 @@
 /******************
  * Coding Challenge 2
  */
-var averageScoreJohn, averageScoreMike, averageScoreMary;
+// var averageScoreJohn, averageScoreMike, averageScoreMary;
 
-averageScoreJohn = (89 + 120 + 103) / 3;
-averageScoreMike = (116 + 94 + 123) / 3;
-averageScoreMary = (97 + 134 + 105) / 3;
+// averageScoreJohn = (89 + 120 + 103) / 3;
+// averageScoreMike = (116 + 94 + 123) / 3;
+// averageScoreMary = (97 + 134 + 105) / 3;
 
-switch (true) {
-  case averageScoreJohn > averageScoreMike &&
-    averageScoreJohn > averageScoreMary:
-    console.log(`John has the highest PPG average, with ${averageScoreJohn}.`);
-    break;
-  case averageScoreMike > averageScoreJohn &&
-    averageScoreMike > averageScoreMary:
-    console.log(`Mike has the highest PPG average, with ${averageScoreMike}.`);
-    break;
-  case averageScoreMary > averageScoreJohn &&
-    averageScoreMary > averageScoreMike:
-    console.log(`Mary has the highest PPG average, with ${averageScoreMary}.`);
-    break;
-  default:
-    console.log(`There is a Draw.`);
-}
+// switch (true) {
+//   case averageScoreJohn > averageScoreMike &&
+//     averageScoreJohn > averageScoreMary:
+//     console.log(`John has the highest PPG average, with ${averageScoreJohn}.`);
+//     break;
+//   case averageScoreMike > averageScoreJohn &&
+//     averageScoreMike > averageScoreMary:
+//     console.log(`Mike has the highest PPG average, with ${averageScoreMike}.`);
+//     break;
+//   case averageScoreMary > averageScoreJohn &&
+//     averageScoreMary > averageScoreMike:
+//     console.log(`Mary has the highest PPG average, with ${averageScoreMary}.`);
+//     break;
+//   default:
+//     console.log(`There is a Draw.`);
+// }
+
+/******************
+ * Functions
+ */
+
+//  Below this lecture is function statements
+// var yearBorn;
+// yearBorn = 1962;
+
+// function calculateAge(birthYear) {
+//   return 2020 - birthYear;
+// }
+
+// // function declaration/statement
+// var agePerson = calculateAge(yearBorn);
+// console.log(agePerson); // 58
+
+// var ageX = calculateAge(1990); // 30
+// var ageY = calculateAge(1892); // 128
+// console.log(ageX, ageY);
+
+// // function declaration/statement
+// function tillRetirement(year, firstName) {
+//   var age = calculateAge(year);
+//   var retirement = 65 - age;
+
+//   if (retirement > 0) {
+//     console.log(firstName + " retires in " + retirement + " years.");
+//   } else {
+//     console.log(firstName + " is retired.");
+//   }
+// }
+
+// tillRetirement(1990, "Jimmy");
+
+/******************
+ * Function Statements
+ * and Expressions
+ */
+
+//  Below is function expression
+var whatJob = function (job, firstName) {
+  switch (job) {
+    case "teacher":
+      return `${firstName} teaches kids to code.`;
+    case "driver":
+      return `${firstName} drives Uber.`;
+    case "designer":
+      return `${firstName} designs websites.`;
+    default:
+      return `${firstName} does unknown work. Maybe they are a spy.`;
+  }
+};
+console.log(whatJob('', 'John'));
