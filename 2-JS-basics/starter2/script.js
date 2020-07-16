@@ -231,12 +231,38 @@
  * Operator and Switch Statements
  */
 
- var height; // if we don't add a value to height (or add a falsey value),
- // we will get the else statement, we should set || height = 0 so that won't be
- // an undefined falsey value
- height = 0;
- if (height || height === 0) {
-     console.log('Variable is defined');
- } else {
-     console.log('Variable has NOT been defined')
- }
+//  var height; // if we don't add a value to height (or add a falsey value),
+//  // we will get the else statement, we should set || height = 0 so that won't be
+//  // an undefined falsey value
+//  height = 0;
+//  if (height || height === 0) {
+//      console.log('Variable is defined');
+//  } else {
+//      console.log('Variable has NOT been defined')
+//  }
+
+/******************
+ * Coding Challenge 2
+ */
+var averageScoreJohn, averageScoreMike, averageScoreMary;
+
+averageScoreJohn = (89 + 120 + 103) / 3;
+averageScoreMike = (116 + 94 + 123) / 3;
+averageScoreMary = (97 + 134 + 105) / 3;
+
+switch (true) {
+  case averageScoreJohn > averageScoreMike &&
+    averageScoreJohn > averageScoreMary:
+    console.log(`John has the highest PPG average, with ${averageScoreJohn}.`);
+    break;
+  case averageScoreMike > averageScoreJohn &&
+    averageScoreMike > averageScoreMary:
+    console.log(`Mike has the highest PPG average, with ${averageScoreMike}.`);
+    break;
+  case averageScoreMary > averageScoreJohn &&
+    averageScoreMary > averageScoreMike:
+    console.log(`Mary has the highest PPG average, with ${averageScoreMary}.`);
+    break;
+  default:
+    console.log(`There is a Draw.`);
+}
