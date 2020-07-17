@@ -161,7 +161,7 @@
 // var firstName, age, gender;
 // firstName = "John";
 // age = 19;
-// gender = "non-binary";
+// gender = "male";
 
 // if (age < 13) {
 //   console.log(`${firstName} is a ${gender} child who is ${age} years old.`);
@@ -208,23 +208,23 @@
 
 // // Using the If/Else from Boolean Logic
 // // Lesson, convert it to a Switch Statement
-// var firstName, age, gender;
-// firstName = "John";
-// age = 19;
-// gender = "non-binary";
+var firstName, age, gender;
+firstName = "John";
+age = 19;
+gender = "male";
 
-// switch (true) {
-//   case age < 13:
-//     console.log(`${firstName} is a ${gender} child who is ${age} years old.`);
-//     break;
-//   case age >= 13 && age < 20:
-//     console.log(
-//       `${firstName} is a ${gender} teenager who is ${age} years old.`
-//     );
-//     break;
-//   default:
-//     console.log(`${firstName} is a ${gender} adult who is ${age} years old.`);
-// }
+switch (true) {
+  case age < 13:
+    console.log(`${firstName} is a ${gender} child who is ${age} years old.`);
+    break;
+  case age >= 13 && age < 20:
+    console.log(
+      `${firstName} is a ${gender} teenager who is ${age} years old.`
+    );
+    break;
+  default:
+    console.log(`${firstName} is a ${gender} adult who is ${age} years old.`);
+}
 
 /******************
  * The Ternary (Conditional)
@@ -319,4 +319,4 @@ var whatJob = function (job, firstName) {
       return `${firstName} does unknown work. Maybe they are a spy.`;
   }
 };
-console.log(whatJob('', 'John'));
+console.log(whatJob("", "John"));
