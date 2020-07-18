@@ -14,7 +14,7 @@ Plus, I made all the [course slides available for download](slides-students-C03.
 
 ### Q2: I'm stuck in one of the projects. Where do I get help?
 
-**A:** Have you extensively tried fixing the problem on your own? If you failed at fixing it, please **post a detailled description of the problem to the Q&A area of that video over at Udemy**, along with a [codepen](https://codepen.io/pen/) containing your code. You will get help as fast as possible! Please don't send me a personal message or email to fix coding problems.
+**A:** Have you extensively tried fixing the problem on your own? If you failed at fixing it, please **post a detailed description of the problem to the Q&A area of that video over at Udemy**, along with a [codepen](https://codepen.io/pen/) containing your code. You will get help as fast as possible! Please don't send me a personal message or email to fix coding problems.
 
 ### Q3: Brackets shows me errors, but my code works. Why is that?
 
