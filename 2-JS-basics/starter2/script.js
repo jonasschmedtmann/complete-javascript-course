@@ -208,23 +208,23 @@
 
 // // Using the If/Else from Boolean Logic
 // // Lesson, convert it to a Switch Statement
-var firstName, age, gender;
-firstName = "John";
-age = 19;
-gender = "male";
+// var firstName, age, gender;
+// firstName = "John";
+// age = 19;
+// gender = "male";
 
-switch (true) {
-  case age < 13:
-    console.log(`${firstName} is a ${gender} child who is ${age} years old.`);
-    break;
-  case age >= 13 && age < 20:
-    console.log(
-      `${firstName} is a ${gender} teenager who is ${age} years old.`
-    );
-    break;
-  default:
-    console.log(`${firstName} is a ${gender} adult who is ${age} years old.`);
-}
+// switch (true) {
+//   case age < 13:
+//     console.log(`${firstName} is a ${gender} child who is ${age} years old.`);
+//     break;
+//   case age >= 13 && age < 20:
+//     console.log(
+//       `${firstName} is a ${gender} teenager who is ${age} years old.`
+//     );
+//     break;
+//   default:
+//     console.log(`${firstName} is a ${gender} adult who is ${age} years old.`);
+// }
 
 /******************
  * The Ternary (Conditional)
@@ -307,16 +307,109 @@ switch (true) {
  */
 
 //  Below is function expression
-var whatJob = function (job, firstName) {
-  switch (job) {
-    case "teacher":
-      return `${firstName} teaches kids to code.`;
-    case "driver":
-      return `${firstName} drives Uber.`;
-    case "designer":
-      return `${firstName} designs websites.`;
-    default:
-      return `${firstName} does unknown work. Maybe they are a spy.`;
-  }
-};
-console.log(whatJob("", "John"));
+// var whatJob = function (job, firstName) {
+//   switch (job) {
+//     case "teacher":
+//       return `${firstName} teaches kids to code.`;
+//     case "driver":
+//       return `${firstName} drives Uber.`;
+//     case "designer":
+//       return `${firstName} designs websites.`;
+//     default:
+//       return `${firstName} does unknown work. Maybe they are a spy.`;
+//   }
+// };
+// console.log(whatJob("", "John"));
+
+
+/******************
+ * Arrays
+ */
+
+ var names = [
+   'John',
+   'Mark',
+   'Jane'
+ ];
+
+ var years = new Array(
+   1990,
+   1969,
+   1948
+ );
+
+ console.log(names[0]);
+ console.log(years[0])
+ console.log(names.length); 
+ console.log(names);
+
+//  Mutate the Data
+names[1] = 'Ben';
+names[5] = 'Wiz'
+names[names.length] = 'Bossman'
+console.log(names)
+
+// Different data types
+var john = [
+  'John',
+  'Smith',
+  1990,
+  'teacher',
+  false
+]; 
+console.log(john);
+
+// array method push
+john.push('blue');
+console.log(john);
+
+// array method unshift 
+john.unshift('Mr.');
+console.log(john);
+
+// array method pop
+john.pop();
+console.log(john);
+
+// array method shift
+john.shift();
+console.log(john);
+
+// index of method, find the location of argument
+console.log(john.indexOf(1990));
+
+// Will look for indexOf designer in john array, won't find it, so its false (=== -1) so john is not a designer will be printed.
+var isDesigner = john.indexOf('designer') === -1 ? 'John is NOT a designer' : 'John is a designer';
+console.log(isDesigner);
+
+
+/******************
+ * Coding Challenge 3
+ */
+
+ function tipCalculator(bill) {
+   var percentage;
+
+   if (bill < 50){
+     percentage = 0.2;
+   } else if (bill >= 50 && bill <= 200){
+     percentage = .15;
+   } else {
+     percentage = .1;
+   }
+   return percentage * bill
+ }
+
+ preTipBillsArray = [
+  124,
+  48,
+  268
+ ];
+
+ var tips = [
+   tipCalculator(preTipBillsArray[0]),
+   tipCalculator(preTipBillsArray[1]),
+   tipCalculator(preTipBillsArray[2])
+ ]
+
+ console.log(tips)
