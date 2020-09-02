@@ -329,3 +329,42 @@ console.log(whatDoYouDo("teacher", "Alec"));
 if (true) {
 	console.log(23);
 }
+
+// Arrays
+
+var names = ["John", "Mark", "Jane"];
+var years = new Array(1990, 1969, 1948);
+
+// accessing array items
+console.log(names[0]);
+console.log(names.length);
+
+// mutating array -> directly changing the original data
+names[1] = "Ben";
+// mary item created at position 5 -> position 3 and 4 are created empty
+// names[5] = "Mary";
+names[names.length] = "Mary"; // adds item dynamically to end of array
+console.log(names);
+
+var john = ["John", "Smith", 1990, "teacher", false];
+
+// add an item to array's end
+john.push("blue");
+// add an item to array's beginning
+john.unshift("Mr.");
+console.log(john);
+
+// remove item from array's end
+john.pop();
+
+// remove item from array's start
+john.shift();
+console.log(john);
+
+// return index position of passed value
+// -1 -> value not found in array
+console.log(john.indexOf(1990));
+
+var isDesigner = john.indexOf("designer") === -1 ? "John is NOT a designer" : "John IS a designer";
+
+console.log(isDesigner);
