@@ -237,3 +237,29 @@ switch (true) {
 	default:
 		console.log(firstName + " is a man.");
 }
+
+// Truthy and Falsy values and equality operators
+
+// falsy values: undefined, null, 0, '', NaN
+// they will return false when evaluated
+
+// truthy values: NOT falsy values (everything not a falsy value)
+
+// unassigned value defaults to undefined
+var height;
+
+// height = 23; // 23 is defined
+height = 23; // 0 is NOT defined -> falsy value
+
+// add OR operator for case height = 0
+if (height || height === 0) {
+	console.log("Variable is defined");
+} else {
+	console.log("Variable has NOT been defined");
+}
+
+// Equality operators
+// == will convert the string to a number for comparison
+if (height == "23") {
+	console.log("The == operator does type coercion!");
+}
