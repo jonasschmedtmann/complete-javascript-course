@@ -291,3 +291,41 @@ if (avgJohn > avgMike && avgJohn > avgMary) {
 } else {
 	console.log("Mary's team won the season! ...with a score of " + avgMary);
 }
+
+// Functions
+
+// function name_of_func (args) { code block }
+function calculateAge(birthYear) {
+	return 2020 - birthYear;
+}
+
+var ageJohn = calculateAge(1990); // 30
+console.log(ageJohn);
+
+// Function Statements and Expressions
+
+// Funciton declaration
+// function whatDoYouDo(job, firstName) {}
+
+// Function expression
+// expression -> returns something
+var whatDoYouDo = function (job, firstName) {
+	switch (job) {
+		case "teacher":
+			return firstName + " teaches kids how to code";
+		case "driver":
+			return firstName + " drives an Uber";
+		case "designer":
+			return firstName + " designs beautiful websites";
+		default:
+			return firstName + " does something else";
+	}
+};
+
+console.log(whatDoYouDo("teacher", "Alec"));
+
+// Statement
+// statements do not produce an immediate result
+if (true) {
+	console.log(23);
+}
