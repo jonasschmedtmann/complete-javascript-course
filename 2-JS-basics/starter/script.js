@@ -19,8 +19,6 @@ console.log(job);
 job = "Teacher";
 console.log(job);
 
-*/
-
 // let's break some rules
 // var 3years = 3; // cannot start the name of variable with number
 // var john/mark = 'John and Mark'; cannot have a forbidden character inside a variable
@@ -51,3 +49,52 @@ alert(firstName + " is " + age + " year old " + job);
 // pop-up user input in browser with input saved to variable
 var lastName = prompt("What is his last Name?");
 console.log(firstName + " " + lastName);
+
+
+
+// Basic operators
+
+// var yearJohn = 2018 - 28;
+
+var year, yearJohn, yearMark;
+now = 2020;
+yearJohn = now - 28;
+yearMark = now - 33;
+
+*/
+
+// Operator precedence
+
+var now = 2018;
+var yearJohn = 1989;
+var fullAge = 18;
+
+var isFullAge = now - yearJohn >= fullAge; // true
+console.log(isFullAge);
+
+// Grouping
+var ageJohn = now - yearJohn;
+var ageMark = 35;
+// need to wrap in () because / has precedence over +
+var average = (ageJohn + ageMark) / 2;
+console.log(average);
+
+// Multiple assignments
+var x, y;
+// with an assignment (=), js reads variable right-to-left so y is defined before x
+x = y = (3 + 5) * 4 - 6; // 8 * 4 - 6 // 32 - 6 // 26
+console.log(x, y);
+
+// More operators
+
+// x = x * 2;
+// same thing as above
+x *= 2;
+x += 10;
+
+// increment
+x += 1;
+// increment by 1
+x++;
+//decrement by 1
+x--;
