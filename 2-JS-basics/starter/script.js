@@ -133,6 +133,31 @@ console.log(markBMI);
 var johnBMI = massJohn / (heightJohn * heightJohn);
 console.log(johnBMI);
 
+// Added conditional statement
+if (markBMI > johnBMI) {
+	console.log("Mark's BMI is higher than John's.");
+} else {
+	console.log("John's BMI is higher than Mark's.");
+}
+
 var markLarger = markBMI > johnBMI;
 
 console.log("Is Mark's BMI higher than John's? " + markLarger);
+
+// if / else statements
+
+var firstName = "John";
+var civilStatus = "single";
+
+if (civilStatus === "married") {
+	console.log(firstName + " is " + civilStatus);
+} else {
+	console.log(firstName + " will hopefully marry soon :)");
+}
+
+// isMarried is a boolean
+var isMarried = false;
+// boolean values are conditional (by being true it exists)
+if (isMarried) {
+	console.log(firstName + " is married ");
+}
