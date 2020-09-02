@@ -329,7 +329,7 @@ console.log(whatDoYouDo("teacher", "Alec"));
 if (true) {
 	console.log(23);
 }
-
+/*
 // Arrays
 
 var names = ["John", "Mark", "Jane"];
@@ -368,6 +368,8 @@ console.log(john.indexOf(1990));
 var isDesigner = john.indexOf("designer") === -1 ? "John is NOT a designer" : "John IS a designer";
 
 console.log(isDesigner);
+
+*/
 
 /*****************************
  * CODING CHALLENGE 3
@@ -426,3 +428,34 @@ var tips = [tipCalculator(bills[0]), tipCalculator(bills[1]), tipCalculator(bill
 var finalValues = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
 
 console.log(bills, tips);
+
+// Objects and properties
+
+// object {
+// key: value,
+// }
+
+// Object literal
+var john = {
+	firstName: "John",
+	lastName: "Smith",
+	birthYear: 1990,
+	family: ["Jane", "Mark", "Bob", "Emily"],
+	job: "teacher",
+	isMarried: false,
+};
+
+console.log(john);
+// dot notation
+console.log(john.firstName);
+// bracket notation
+console.log(john["lastName"]);
+var x = "birthYear";
+console.log(john[x]);
+
+// alternate way to create Objects
+// new Object syntax
+var jane = new Object();
+jane.name = "Jane";
+jane.birthYear = 1969;
+jane[lastName] = "Smith";
