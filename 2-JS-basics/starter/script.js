@@ -435,6 +435,7 @@ console.log(bills, tips);
 // key: value,
 // }
 
+/*
 // Object literal
 var john = {
 	firstName: "John",
@@ -459,3 +460,27 @@ var jane = new Object();
 jane.name = "Jane";
 jane.birthYear = 1969;
 jane[lastName] = "Smith";
+*/
+
+// objects and methods
+
+var john = {
+	firstName: "John",
+	lastName: "Smith",
+	birthYear: 1990,
+	family: ["Jane", "Mark", "Bob", "Emily"],
+	job: "teacher",
+	isMarried: false,
+	// calcAge: function (birthYear) {
+	// 	return 2020 - birthYear;
+	// },
+	calcAge: function () {
+		this.age = 2020 - this.birthYear;
+	},
+};
+
+console.log(john.calcAge()); // calling a function from an object
+console.log(john.calcAge(john.birthYear));
+
+john.calcAge();
+console.log(john);
