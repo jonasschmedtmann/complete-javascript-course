@@ -525,3 +525,11 @@ var mark = {
 };
 mark.calcBMI();
 console.log(john, mark);
+
+if (john.bmi > mark.bmi) {
+	console.log(john.fullName + " has a higher BMI of " + john.bmi);
+} else if (john.bmi < mark.bmi) {
+	console.log(mark.fullName + " has a higher BMI of " + mark.bmi);
+} else {
+	console.log("They have the same BMI");
+}
