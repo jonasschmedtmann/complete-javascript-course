@@ -533,3 +533,44 @@ if (john.bmi > mark.bmi) {
 } else {
 	console.log("They have the same BMI");
 }
+
+// Loops and iteration
+/*
+for (var i = 0; i < 10; i++) {
+	console.log(i);
+}
+
+var michael = ["Michael", "Smith", 1990, "designer", false, "blue"];
+
+// For loop
+// for (var i = 0; i < michael.length; i++) {
+// 	console.log(michael[i]);
+// }
+
+// While loop
+var i = 0;
+while (i < michael.length) {
+	console.log(michael[i]);
+	i++;
+}
+*/
+// continue and break statements
+
+var michael = ["Michael", "Smith", 1990, "designer", false, "blue"];
+
+// only print "strings"
+for (var i = 0; i < michael.length; i++) {
+	if (typeof michael[i] !== "string") continue;
+	console.log(michael[i]);
+}
+
+// stops once something other than a string is encountered
+for (var i = 0; i < michael.length; i++) {
+	if (typeof michael[i] !== "string") break;
+	console.log(michael[i]);
+}
+
+// Looping backward
+for (var i = michael.length - 1; i >= 0; i--) {
+	console.log(michael[i]);
+}
