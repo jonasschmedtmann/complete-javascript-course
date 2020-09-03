@@ -5,7 +5,7 @@
 // available before the "execution phase" of the execution context starts
 
 // Functions
-
+/*
 // function declaration
 calculateAge(1965);
 
@@ -44,7 +44,7 @@ foo();
 // because of that, it overrides the function scope of age (65) with the global
 // scope (23)
 console.log(age); //23
-
+*/
 ///////////////////////////////////////
 // Lecture: Scoping
 
@@ -64,7 +64,7 @@ console.log(age); //23
 // }
 
 // Example to show the differece between execution stack and scope chain
-
+/*
 var a = "Hello!";
 first(); // activates first function
 
@@ -83,6 +83,50 @@ function third() {
 	var d = "John";
 	console.log(a + b + c + d);
 }
+*/
 
 ///////////////////////////////////////
 // Lecture: The this keyword
+
+// the 'this' variable (or keyword)
+// case "regular function call" -> points to global object , (window object in the browser)
+// case "method call" -> points to the object that is calling the method
+// note: 'this' keyword is not assigned a value until a function where it is defined is actually called
+
+// console.log(this); // window object (browser)
+
+// Regular function call -> points to window object
+calculateAge(1985);
+
+function calculateAge(year) {
+	console.log(2016 - year);
+	console.log(this); // regular function call: window object
+}
+
+var john = {
+	name: "John",
+	yearOfBirth: 1990,
+	calculateAge: function () {
+		console.log(this); // method call: john object
+		console.log(2016 - this.yearOfBirth);
+
+		/*
+		function innerFunction() {
+			console.log(this); // regular function call: window object
+		}
+        innerFunction();
+        */
+	},
+};
+
+john.calculateAge();
+
+var mike = {
+	name: "Mike",
+	yearOfBirth: 1984,
+};
+
+// method borrowing
+
+mike.calculateAge = john.calculateAge;
+mike.calculateAge();
