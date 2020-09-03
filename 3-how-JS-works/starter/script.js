@@ -50,42 +50,39 @@ console.log(age); //23
 
 // First scoping example
 
-/*
-var a = 'Hello!';
-first();
+// var a = "Hello!";
+// first();
 
-function first() {
-    var b = 'Hi!';
-    second();
+// function first() {
+// 	var b = "Hi!";
+// 	second();
 
-    function second() {
-        var c = 'Hey!';
-        console.log(a + b + c);
-    }
-}
-*/
+// 	function second() {
+// 		var c = "Hey!";
+// 		console.log(a + b + c);
+// 	}
+// }
 
 // Example to show the differece between execution stack and scope chain
 
-/*
-var a = 'Hello!';
-first();
+var a = "Hello!";
+first(); // activates first function
 
 function first() {
-    var b = 'Hi!';
-    second();
+	var b = "Hi!";
+	second(); // calls second function
 
-    function second() {
-        var c = 'Hey!';
-        third()
-    }
+	function second() {
+		var c = "Hey!";
+		third(); // calls third function (outside of local scope)
+	}
 }
 
+// scope only includes var a(global) & d(function), (not b(another function) & c) -> throws error
 function third() {
-    var d = 'John';
-    console.log(a + b + c + d);
+	var d = "John";
+	console.log(a + b + c + d);
 }
-*/
 
 ///////////////////////////////////////
 // Lecture: The this keyword
