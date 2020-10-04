@@ -9,7 +9,158 @@
 <body>
     <h1>Asynchronous JavaScript</h1>
     <script>
-        
+        /*
+        const second = () => {
+            setTimeout(() => {
+                console.log('Async hey there');
+            }, 2000);
+        };
+
+        const first = () => {
+            console.log('Hey there');
+            second();
+            console.log('The end');
+        }
+
+        first();
+        */
+
+        /*
+        // Callback hell - Triangular shape of cb declarations
+        function getRecipe() {
+            setTimeout(() => {
+                const receipeID = [523, 883, 567, 154];
+                console.log(receipeID);
+
+                setTimeout(id => {
+                    const recipe = {title: 'Pizza', publisher: 'John Smith'};
+                    console.log(`${id}: ${recipe.title}`);
+
+                    setTimeout(publisher => {
+                        console.log(recipe);
+                    }, 1500)
+                }, 1500, receipeID[2]);
+            }, 2500);
+        }
+        getRecipe();
+        */
+
+        /*
+        // Promises
+        const getIDs = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve([897, 567, 125, 925]);
+            }, 3000);
+        });
+
+        const getRecipe = IDs => {
+            return new Promise((resolve, response) => {
+                setTimeout(id => {
+                    const recipe = {title: 'Italian Pizza', publisher: 'Jonas'};
+                    resolve(`${id}: ${recipe.title}`);
+                }, 1500, IDs[3]);
+            });
+        };
+
+        const getRelated = publisher => {
+            return new Promise((resolve, reject) => {
+                setTimeout(pub => {
+                    const recipe2 = {title: 'Cheese Pizza', publisher: pub};
+                    resolve(`${pub}: ${recipe2.title}`);
+                }, 1500, publisher);
+            });
+        };
+
+        // Simple promise consume
+        // getIDs
+        // .then(IDs => {
+        //     console.log(IDs);
+        //     return getRecipe(IDs);
+        // })
+        // .then(recipe => {
+        //     console.log(recipe);
+        //     return getRelated('Jonas');
+        // })
+        // .then(related => {
+        //     console.log(related);
+        // })
+        // .catch(error => {
+        //     console.log('Error!!');
+        // });
+
+        // Async/Await to consume Promises 
+        async function getRecipesAW() {
+            // Promise 1
+            const IDs = await getIDs;
+            console.log(IDs);
+
+            // Promise 2
+            const recipe = await getRecipe(IDs);
+            console.log(recipe);
+
+            // Promise 3
+            const recipe2 = await getRelated('Jonas');
+            console.log(recipe2);
+
+            // optional
+            return recipe2;
+        };
+        // getRecipesAW();
+        getRecipesAW().then(recipe => {
+            console.log(`Optional return from async function ${recipe}`);
+        });
+        */
+        function getWeather(woeid) {
+            fetch(`https://www.metaweather.com/api/location/${woeid}/`)
+            .then(result => {
+                // console.log(result);
+                // Process promise from raw data to json object
+                return result.json();
+            })
+            .then(data => {
+                // console.log(data);
+                const today = data.consolidated_weather[0];
+                console.log(`Temperatures today in ${data.title} stay between ${today.min_temp} and ${today.max_temp}.`);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        }
+        getWeather(2295412);
+        getWeather(2487956);
+        getWeather(44418);
+
+        async function getWeatherAW(woeid) {
+            try {
+                const result = await fetch(`https://www.metaweather.com/api/location/${woeid}/`);
+    
+                const data = await result.json();
+                // console.log(data);
+                
+                const tomorrow = data.consolidated_weather[1];
+                console.log(`Temperatures tomorrow in ${data.title} stay between ${tomorrow.min_temp} and ${tomorrow.max_temp}.`);
+
+                return data;
+            } catch(error) {
+                console.log(error);
+            }
+        }
+        getWeatherAW(2295412);
+
+        // Does not work, because getWeatherAW() returns promise
+        // and console.log gets executed way before promise fullfills
+        // const dataSF = getWeatherAW(2487956);
+        // console.log(dataSF);
+
+        let dataLondon;
+        getWeatherAW(44418).then(data => {
+            dataLondon = data;
+            console.log('London: ', dataLondon);
+        });
+
+
+
+
     </script>
 </body>
 </html>
