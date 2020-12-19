@@ -16,12 +16,13 @@ console.log(typeof population);*/
 language = 'French';
 // console.log(language);
 const halfPop = population / 2;
-console.log(halfPop);
+// console.log(halfPop);
 population++;
-console.log(population);
+// console.log(population);
 const finland = 6_000_000;
-console.log(population > finland);
+// console.log(population > finland);
 const average = 33_000_000;
-console.log(population < average);
-const description = country + " is in " + continent + ", and its " + population + " people speak " + language
+// console.log(population < average);
+// const description = country + " is in " + continent + ", and its " + population + " people speak " + language;
+const description = `${country} 🥸 is in ${continent}, and its ${population} people speak ${language}.`;
 console.log(description);
