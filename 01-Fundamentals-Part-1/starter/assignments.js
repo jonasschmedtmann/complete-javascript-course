@@ -1,6 +1,6 @@
 const country = "Suriname";
 const continent = "Europe";
-let population = 2;
+let population = 130;
 /*console.log(country);
 console.log(continent);
 console.log(population);*/
@@ -13,7 +13,7 @@ console.log(typeof country);
 console.log(typeof continent);
 console.log(typeof population);*/
 
-language = 'English';
+language = 'Spanish';
 // console.log(language);
 const halfPop = population / 2;
 // console.log(halfPop);
@@ -39,8 +39,31 @@ const description = `${country} 🥸 is in ${continent}, and its ${population} p
 // } else {
 // 	console.log('No borders');
 // }
-if (language === "English" && population < 50 && !isIsland){
-	console.log(`You should live in ${country} 😎`);
-} else {
-	console.log(`${country} does not meet your criteria`);
-}
+// if (language === "English" && population < 50 && !isIsland){
+// 	console.log(`You should live in ${country} 😎`);
+// } else {
+// 	console.log(`${country} does not meet your criteria`);
+// }
+// switch (language) {
+// 	case 'Spanish':
+// 		console.log('2nd place in number of native speakers');
+// 		break;
+// 	case 'English':
+// 		console.log('3rd place');
+// 		break;
+// 	case 'Chinese':
+// 	case "Mandarin":
+// 		console.log('MOST number of native speakers!');
+// 		break;
+// 	case "Hindi":
+// 		console.log('Number 4');
+// 		break;
+// 	case "Arabic":
+// 		console.log('5th most spoken language');
+// 		break;
+// 	default:
+// 		console.log('Great language too :D');
+// 		break;
+// }
+
+population > 33 ? console.log(`${country}'s population is above average`) : console.log(`${country}'s population is below average`);
