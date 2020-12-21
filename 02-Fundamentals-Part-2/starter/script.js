@@ -30,3 +30,14 @@ const usa = percentageOfWorld3(332);
 
 // console.log('coucou');
 // console.log(chine + "%", france + "%", usa + "%");
+
+const populations = [1441, 1373, 332, 68];
+console.log(populations.length);
+const percentages = [percentageOfWorld1(populations[0]), percentageOfWorld1(populations[1]), percentageOfWorld1(populations[2]), percentageOfWorld1(populations.length -1)];
+console.log(percentages);
+const friends = ["Thierry", "Lionel", "Jonathan", "Loïc"];
+friends.push("Alta");
+console.log(friends);
+friends.unshift("Ori");
+friends.pop();
+console.log(friends);
