@@ -32,12 +32,37 @@ const usa = percentageOfWorld3(332);
 // console.log(chine + "%", france + "%", usa + "%");
 
 const populations = [1441, 1373, 332, 68];
-console.log(populations.length);
+// console.log(populations.length);
 const percentages = [percentageOfWorld1(populations[0]), percentageOfWorld1(populations[1]), percentageOfWorld1(populations[2]), percentageOfWorld1(populations.length -1)];
-console.log(percentages);
+// console.log(percentages);
 const friends = ["Thierry", "Lionel", "Jonathan", "Loïc"];
 friends.push("Alta");
-console.log(friends);
+// console.log(friends);
 friends.unshift("Ori");
 friends.pop();
-console.log(friends);
+// console.log(friends);
+
+//Basics operation on Array
+const neighbours = ["Suriname", "Brésil", "Argentine", "Colombie"];
+neighbours.push("Utopia");
+neighbours[0] = "Pérou";
+neighbours.pop();
+// console.log(neighbours);
+// if (!neighbours.includes("Germany")){
+// 	console.log(`Probably not a central European country :D`);
+// };
+
+//Introduction Object
+const myCountry = {
+	country: "French-Guiana",
+	capital: "Cayenne",
+	language: "Créole",
+	population: 250_000,
+	neighbours: neighbours
+};
+
+//Dot vs. Bracket Notation
+myCountry.population += 20_000;
+myCountry.population -= 30_000;
+console.log(`${myCountry.country} has ${myCountry.population} ${myCountry.language} people, ${myCountry.neighbours.length} neighbouring countries
+and a capital called ${myCountry.capital}`);
