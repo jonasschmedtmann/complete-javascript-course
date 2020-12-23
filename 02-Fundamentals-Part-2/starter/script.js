@@ -64,5 +64,24 @@ const myCountry = {
 //Dot vs. Bracket Notation
 myCountry.population += 20_000;
 myCountry.population -= 30_000;
-console.log(`${myCountry.country} has ${myCountry.population} ${myCountry.language} people, ${myCountry.neighbours.length} neighbouring countries
-and a capital called ${myCountry.capital}`);
+// console.log(`${myCountry.country} has ${myCountry.population} ${myCountry.language} people, ${myCountry.neighbours.length} neighbouring countries and a capital called ${myCountry.capital}`);
+
+// Loop for
+// for (let i = 1; i <= 50; i++) {
+// 	console.log(`Voter number ${i} is currently voting`);
+// }
+
+const percentages2 = [];
+for(let i = 0; i < populations.length; i++){
+	percentages2.push(percentageOfWorld1(populations[i]));
+}
+
+// console.log(percentages2);
+
+const listOfNeighbours = [['Canada', 'Mexico'], ['Spain'], ['Norway', 'Sweden', 'Russia']];
+console.log(listOfNeighbours.length);
+for(let i = 0; i < listOfNeighbours.length; i++){
+	for (let n = 0; n < listOfNeighbours[i].length; n++) {
+		console.log(`Neighbours: ${listOfNeighbours[i][n]}`);
+	}
+}
