@@ -5,15 +5,15 @@
 
 // LECTURE: VALUES AND VARIABLES//
 
-let country = "United States of America";
-let continent = "North America";
+const country = "United States of America";
+const continent = "North America";
 let population = 328000000;
 //LECTURE: DATA TYPES//
 
-let isIsland = true;
+const isIsland = true;
+isIsland = false;
 // console.log(typeof isIsland);
-
-let language;
+language = "English";
 // console.log(typeof country);
 // console.log(typeof continent);
 // console.log(typeof population);
