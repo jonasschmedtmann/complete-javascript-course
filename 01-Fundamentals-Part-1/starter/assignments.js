@@ -6,10 +6,19 @@
 // LECTURE: VALUES AND VARIABLES//
 
 let country = "United States of America";
-console.log(country);
 let continent = "North America";
-console.log(continent);
 let population = 328000000;
-console.log(population);
-
 //LECTURE: DATA TYPES//
+
+let isIsland = true;
+// console.log(typeof isIsland);
+
+let language;
+// console.log(typeof country);
+// console.log(typeof continent);
+// console.log(typeof population);
+// console.log(typeof language);
+// console.log(typeof isIsland);
+
+//LECTURE: LET, CONST, AND VAR//
+
