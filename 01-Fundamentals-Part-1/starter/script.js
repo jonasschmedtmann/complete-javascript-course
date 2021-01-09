@@ -104,5 +104,22 @@ const isFullAge = ageJonas >= 18;
 
 console.log(now - 1991 > now - 2018)
 
+
+
+//LESSON: OPERATORS PRECEDENCE//
+
+const now = 2037;
+const ageJonas = now - 1991;
+const ageSarah = now - 2018;
+
+console.log(now - 1991 > now - 2018);
+// console.log(25 - 10 - 5); //left to right execution//
+
+let x, y;
+x = y = 25 - 10 - 5; // x = y = 10, x = 10, Ex. right to left
+console.log(x, y)
+const averageAge = (ageJonas + ageSarah) / 2; //use () around operators that might have low precedence than a higher one//
+console.log(ageJonas, ageSarah, averageAge)
+
 */
 
