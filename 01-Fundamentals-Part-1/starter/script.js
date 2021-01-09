@@ -123,3 +123,53 @@ console.log(ageJonas, ageSarah, averageAge)
 
 */
 
+////////////////////////////////////
+// Coding Challenge #1
+
+/*
+Mark and John are trying to compare their BMI (Body Mass Index), which is calculated using the formula: BMI = mass / height ** 2 = mass / (height * height). (mass in kg and height in meter).
+
+1. Store Mark's and John's mass and height in variables
+
+2. Calculate both their BMIs using the formula (you can even implement both versions)
+
+3. Create a boolean variable 'markHigherBMI' containing information about whether Mark has a higher BMI than John.
+
+TEST DATA 1:
+Marks weights 78 kg and is 1.69 m tall.
+John weights 92 kg and is 1.95 m tall.
+
+TEST DATA 2:
+Marks weights 95 kg and is 1.88 m tall.
+John weights 85 kg and is 1.76 m tall.
+*/
+
+//TEST DATA 1//
+
+let marksWeightT1 = 78; //const massMark = 78//
+let marksHeightT1 = 1.69;
+let marksBMIT1 = marksWeightT1 / marksHeightT1 ** 2;
+console.log(marksBMIT1.toFixed(2))
+
+let johnsweightT1 = 92;
+let johnsHeightT1 = 1.95;
+let johnsBMIT1 = johnsweightT1 / (johnsHeightT1 * johnsHeightT1);
+console.log(johnsBMIT1.toFixed(2))
+
+let markHigherBMIT1 = marksBMIT1 > johnsBMIT1;
+console.log(markHigherBMIT1)
+
+//TEST DATA 2//
+
+let marksWeightT2 = 95;
+let marksHeightT2 = 1.88;
+let marksBMIT2 = marksWeightT2 / marksHeightT2 ** 2;
+console.log(marksBMIT2.toFixed(2))
+
+let johnsweightT2 = 85;
+let johnsHeightT2 = 1.76;
+let johnsBMIT2 = johnsweightT2 / johnsHeightT2 ** 2;
+console.log(johnsBMIT2.toFixed(2))
+
+let markHigherBMIT2 = marksBMIT2 > johnsBMIT2;
+console.log(markHigherBMIT2)
