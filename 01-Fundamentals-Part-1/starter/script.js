@@ -142,7 +142,7 @@ John weights 92 kg and is 1.95 m tall.
 TEST DATA 2:
 Marks weights 95 kg and is 1.88 m tall.
 John weights 85 kg and is 1.76 m tall.
-*/
+
 
 //TEST DATA 1//
 
@@ -173,3 +173,16 @@ console.log(johnsBMIT2.toFixed(2))
 
 let markHigherBMIT2 = marksBMIT2 > johnsBMIT2;
 console.log(markHigherBMIT2)
+
+
+////////////////////////////////////
+// Coding Challenge #1 -COMPLETE///////
+*/
+
+const firstName = 'Jonas';
+const job = 'teacher';
+const birthYear = 1991;
+const year = 2037;
+
+const jonas = "I'm" + firstName ', a ' + (year - birthYear) + 'years old' + job + '!';
+console.log(jonas)
