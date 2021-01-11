@@ -142,7 +142,7 @@ John weights 92 kg and is 1.95 m tall.
 TEST DATA 2:
 Marks weights 95 kg and is 1.88 m tall.
 John weights 85 kg and is 1.76 m tall.
-*/
+
 
 //TEST DATA 1//
 
@@ -173,3 +173,55 @@ console.log(johnsBMIT2.toFixed(2))
 
 let markHigherBMIT2 = marksBMIT2 > johnsBMIT2;
 console.log(markHigherBMIT2)
+
+
+////////////////////////////////////
+// Coding Challenge #1 -COMPLETE///////
+
+
+
+//LESSON: STRINGS AND TEMPLATE LITERALS//
+const firstName = 'Jonas';
+const job = 'teacher';
+const birthYear = 1991;
+const year = 2037;
+
+const jonas = "I'm " + firstName + ', a ' + (year - birthYear) + ' years old' + job + '!';
+console.log(jonas);
+//*ES6-THE KEY IS THE  `` ANYTHING CAN BE INSERTED INSIDE  ``//
+const jonasNew = `I'm ${firstName}, a ${year - birthYear} year old ${job}!`;
+console.log(jonasNew);
+
+console.log(`Just a regular string...`)//Much easier to replace with a variable//
+
+console.log('String with \n\
+multiple \n\
+lines');
+
+console.log(`String with
+multiple
+lines`);
+*/
+
+//LESSON: TAKING DECISIONS: IF / ELSE STATEMENTS //
+
+const age = 15;
+
+//*if- else control structor*//
+if (age >= 18) {
+  console.log('Sarah can start driving license 🚘')
+} else {
+  const yearsLeft = 18 - age;
+  console.log(`Sarah is too young. Wait another ${yearsLeft} years 😢`);
+}
+
+const birthYear = 2012;
+
+let century;
+if (birthYear <= 2000) {
+  century = 20;
+} else {
+  century = 21;
+}
+
+console.log(century);
