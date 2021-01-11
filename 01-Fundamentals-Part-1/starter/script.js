@@ -177,7 +177,7 @@ console.log(markHigherBMIT2)
 
 ////////////////////////////////////
 // Coding Challenge #1 -COMPLETE///////
-*/
+
 
 
 //LESSON: STRINGS AND TEMPLATE LITERALS//
@@ -198,9 +198,10 @@ console.log('String with \n\
 multiple \n\
 lines');
 
-console.log(`String with 
-multiple 
+console.log(`String with
+multiple
 lines`);
+*/
 
 //LESSON: TAKING DECISIONS: IF / ELSE STATEMENTS //
 
