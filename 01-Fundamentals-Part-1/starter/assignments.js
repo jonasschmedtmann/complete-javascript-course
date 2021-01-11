@@ -8,6 +8,7 @@ const country = "United States of America";
 const continent = "North America";
 let population = 328000000;
 
+
 // LECTURE: LET, CONST, AND VAR//
 const isIsland = true;
 // isIsland = false;
@@ -19,7 +20,7 @@ language = "English";
 // console.log(typeof language);
 // console.log(typeof isIsland);
 
-//LACTURE: BASIC OPERATORS//
+//LECTURE: BASIC OPERATORS//
 
 let usaHalfPopulation = population / 2; //outputs 164000000
 let finlandTotalPopulation = 6000000;
@@ -36,6 +37,18 @@ usaHalfPopulation++; //increases val by 1; 164000001
 //LESSON: STRINGS AND TEMPLATE LITERALS//
 description = `Portugal is in Europe, 
 and its 11 million people speak portuguese.`
-console.log(description);
+// console.log(description);
 
 
+//LECTURE: Taking Decisions: if / else Statements//
+
+let census = population - averageCountryPopulation;
+
+if (population >= averageCountryPopulation) {
+
+  census = `USA's population is above average.🙀`;
+} else {
+  census = `USA'S population is ${averageCountryPopulation - population} below average`;
+}
+
+console.log(census)
