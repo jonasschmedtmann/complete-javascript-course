@@ -267,4 +267,36 @@ if (BMIMark > BMIJohn) {
 
 ////////////////////////////CODING CHALLENGE # 2-COMPLETE////////////////////////////////////
 
+
+
+//LESSON: TYPE CONVERSION AND COERCION//
+
+//conversion = when we manually convert from one type to another//
+//coercion = when JS converts behind the scenes automatically//
+
+//type convserion//
+const inputYear = '1991';
+console.log(Number(inputYear), inputYear)//converts strings to numbers//
+console.log(Number(inputYear) + 18);//will concatonate to the string (199118)//
+
+console.log(Number('Jonas'))//returns NaN-opperations that produce a non number//
+console.log(typeof NaN);
+
+console.log(String(23), 23);//Returns string 23 in white color//
+
+//type coercion//
+console.log('I am ' + 23 + ' years old')//outputs the same '+' causes coercion//
+console.log('I am ' + '23' + ' years old')
+console.log('23' - '10' - 3); //returns 10( "-" triggers opposite conversion//
+console.log('23' + '10' + 3)//"+" concatonates the numbers together;
+console.log('23' * '2')
+console.log('23' > '18')//returns a boolean-true//
+
+let n = '1' + 1; // concatonates to return '11'//
+n = n - 1; //coverts '11' to a number and subracts 1//
+console.log(n) //returns 10//
 */
+
+//LESSON TRUTHY AND FALSY VALUES//
+
+

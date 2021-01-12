@@ -52,3 +52,14 @@ if (population >= averageCountryPopulation) {
 }
 
 // console.log(census);
+
+//LESSON: TYPE CONVERSION AND COERCION//
+
+console.log('9' - '5'); // prediction: 4
+console.log('19' - '13' + '17'); //prediction '617'
+console.log('19' - '13' + 17); //prediction 23
+console.log('123' < 57); //prediction false
+console.log(5 + 6 + '4' + 9 - 4 - 2) //prediction 117
+    //5 + 6 = 11 + '4' => "114" + 9 => "1149" - 4 => 1145 -2 => 1143//
+
+//LESSION: EQUALITY OPERATORS: == VS. ===// 
