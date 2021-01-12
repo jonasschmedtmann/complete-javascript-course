@@ -51,4 +51,4 @@ if (population >= averageCountryPopulation) {
   census = `USA'S population is ${averageCountryPopulation - population} below average`;
 }
 
-console.log(census)
+// console.log(census);
