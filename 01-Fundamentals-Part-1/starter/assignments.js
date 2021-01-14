@@ -1,3 +1,4 @@
+/*
 // LECTURE: VALUES AND VARIABLES//
 let greeting = "Hello, welcome to a new tommorrow ";
 let firstNameUser = "James "
@@ -7,6 +8,7 @@ let firstNameUser = "James "
 const country = "United States of America";
 const continent = "North America";
 let population = 328000000;
+
 
 
 // LECTURE: LET, CONST, AND VAR//
@@ -35,7 +37,7 @@ usaHalfPopulation++; //increases val by 1; 164000001
 // console.log(description); //outputs "Portugal is in Europe, and its 11 million people speak portuguese"//
 
 //LESSON: STRINGS AND TEMPLATE LITERALS//
-description = `Portugal is in Europe, 
+description = `Portugal is in Europe,
 and its 11 million people speak portuguese.`
 // console.log(description);
 
@@ -53,13 +55,13 @@ and its 11 million people speak portuguese.`
 
 //ANSWER//
 
-if (population > 33000000) {
-  console.log(`${country}'s population is above average`);
-} else {
-  console.log(
-    `${country}'s population is ${33000000 - population} million below average`,
-  );
-}
+// if (population > 33000000) {
+//   console.log(`${country}'s population is above average`);
+// } else {
+//   console.log(
+//     `${country}'s population is ${33000000 - population} million below average`,
+//   );
+// }
 
 
 // console.log(census);
@@ -88,4 +90,19 @@ if (population > 33000000) {
 // }
 // //Note: without the Number(promp) and === strict equality the 1 would log "No borders"
 
-//
+//LESSON: LOGICAL OPERATORS//
+const country = "USA";
+const language = 'english';
+const population = 328000000;
+const idealPopulation = 50000000;
+const isIsland = false;
+
+
+if (population < idealPopulation && language === 'english' && !isIsland) {
+  console.log(`You should live in ${country}`)
+} else {
+  console.log(`${country} does not meet your criteria 😢`)
+}
+*/
+
+//LECTURE: THE SWITCH STATEMENT//

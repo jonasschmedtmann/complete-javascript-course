@@ -346,5 +346,29 @@ if (favorite !== 23) console.log('Why not 23?');
 
 */
 
-//LESSON: BOOLEAN LOGIC//
+//LESSON: LOGICICAL OPERATORS//
 
+// const hasDriversLicense = true; // A
+// const hasGoodVision = true; // B
+
+// console.log(hasDriversLicense && hasGoodVision);
+// console.log(hasDriversLicense || hasGoodVision);
+// console.log(!hasDriversLicense);
+
+// const shouldDrive = hasDriversLicense && hasGoodVision;
+
+// // if (shouldDrive) {
+// //   console.log("Sarah is able to drive!")
+// // } else {
+// //   console.log('Someone else should drive...😫')
+// // }
+
+// const isTired = false; // C
+// console.log(hasDriversLicense && hasGoodVision && isTired);
+
+
+// if (hasDriversLicense && hasGoodVision && !isTired) {
+//   console.log("Sarah is able to drive!")
+// } else {
+//   console.log('Someone else should drive...😫')
+// }
