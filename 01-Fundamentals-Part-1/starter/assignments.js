@@ -42,24 +42,50 @@ and its 11 million people speak portuguese.`
 
 //LECTURE: Taking Decisions: if / else Statements//
 
-let census = population - averageCountryPopulation;
+// let census = population - averageCountryPopulation;
 
-if (population >= averageCountryPopulation) {
+// if (population >= averageCountryPopulation) {
 
-  census = `USA's population is above average.🙀`;
+//   census = `USA's population is above average.🙀`;
+// } else {
+//   census = `USA'S population is ${averageCountryPopulation - population} below average`;
+// }
+
+//ANSWER//
+
+if (population > 33000000) {
+  console.log(`${country}'s population is above average`);
 } else {
-  census = `USA'S population is ${averageCountryPopulation - population} below average`;
+  console.log(
+    `${country}'s population is ${33000000 - population} million below average`,
+  );
 }
+
 
 // console.log(census);
 
 //LESSON: TYPE CONVERSION AND COERCION//
 
-console.log('9' - '5'); // prediction: 4
-console.log('19' - '13' + '17'); //prediction '617'
-console.log('19' - '13' + 17); //prediction 23
-console.log('123' < 57); //prediction false
-console.log(5 + 6 + '4' + 9 - 4 - 2) //prediction 117
-    //5 + 6 = 11 + '4' => "114" + 9 => "1149" - 4 => 1145 -2 => 1143//
+// console.log('9' - '5'); // prediction: 4
+// console.log('19' - '13' + '17'); //prediction '617'
+// console.log('19' - '13' + 17); //prediction 23
+// console.log('123' < 57); //prediction false
+// console.log(5 + 6 + '4' + 9 - 4 - 2) //prediction 117
+//     //5 + 6 = 11 + '4' => "114" + 9 => "1149" - 4 => 1145 -2 => 1143//
 
-//LESSION: EQUALITY OPERATORS: == VS. ===// 
+
+
+//LESSION: EQUALITY OPERATORS: == VS. ===
+
+// const numNeighbors = Number(prompt("How many neighbor countries does your country have? "));
+
+// if (numNeighbors === 1) {
+//   console.log("Only 1 border!");
+// } else if (numNeighbors > 1) {
+//   console.log("More than 1 border")
+// } else {
+//   console.log("No borders")
+// }
+// //Note: without the Number(promp) and === strict equality the 1 would log "No borders"
+
+//
