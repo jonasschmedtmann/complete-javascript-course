@@ -372,3 +372,28 @@ if (favorite !== 23) console.log('Why not 23?');
 // } else {
 //   console.log('Someone else should drive...😫')
 // }
+
+/////////////////////////////CODING CHALLENGE #3//////////////////
+
+// //Data 1//
+// const averageScoreDolphins = (96 + 108 + 89) / 3;
+// const averageScoreKoalas = (88 + 91 + 110) / 3;
+
+// //Data 2//
+// const averageScoreDolphins = (97 + 112 + 101) / 3;
+// const averageScoreKoalas = (109 + 95 + 123) / 3;
+
+//Data 3//
+const averageScoreDolphins = (97 + 112 + 101) / 3;
+const averageScoreKoalas = (109 + 95 + 106) / 3;
+
+console.log(`Dolphins (${averageScoreDolphins.toFixed(2)})`);
+console.log(`Koalas (${averageScoreKoalas.toFixed(2)})`);
+
+if (averageScoreDolphins > averageScoreKoalas) {
+  console.log(`Dolphins ${averageScoreDolphins.toFixed(2)} are the Champions! 🏆`)
+} else if (averageScoreKoalas > averageScoreDolphins) {
+  console.log(`Koalas ${averageScoreKoalas.toFixed(2)} are the Champions! 🏆`)
+} else {
+  console.log(`DRAW! Dolphins (${averageScoreDolphins.toFixed(2)}) & Koalas (${averageScoreKoalas.toFixed(2)}) are tied 🥈🥈`)
+}
