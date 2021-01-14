@@ -9,8 +9,6 @@ const country = "United States of America";
 const continent = "North America";
 let population = 328000000;
 
-
-
 // LECTURE: LET, CONST, AND VAR//
 const isIsland = true;
 // isIsland = false;
@@ -37,12 +35,16 @@ usaHalfPopulation++; //increases val by 1; 164000001
 // console.log(description); //outputs "Portugal is in Europe, and its 11 million people speak portuguese"//
 
 //LESSON: STRINGS AND TEMPLATE LITERALS//
-description = `Portugal is in Europe,
+
+
+description = `Portugal is in Europe, 
+
 and its 11 million people speak portuguese.`
 // console.log(description);
 
 
 //LECTURE: Taking Decisions: if / else Statements//
+
 
 // let census = population - averageCountryPopulation;
 
@@ -75,9 +77,7 @@ and its 11 million people speak portuguese.`
 // console.log(5 + 6 + '4' + 9 - 4 - 2) //prediction 117
 //     //5 + 6 = 11 + '4' => "114" + 9 => "1149" - 4 => 1145 -2 => 1143//
 
-
-
-//LESSION: EQUALITY OPERATORS: == VS. ===
+//LESSON: EQUALITY OPERATORS: == VS. ===
 
 // const numNeighbors = Number(prompt("How many neighbor countries does your country have? "));
 
@@ -106,3 +106,15 @@ if (population < idealPopulation && language === 'english' && !isIsland) {
 */
 
 //LECTURE: THE SWITCH STATEMENT//
+
+let census = population - averageCountryPopulation;
+
+if (population >= averageCountryPopulation) {
+
+  census = `USA's population is above average.🙀`;
+} else {
+  census = `USA'S population is ${averageCountryPopulation - population} below average`;
+}
+
+console.log(census)
+
