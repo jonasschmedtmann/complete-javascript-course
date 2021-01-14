@@ -207,7 +207,9 @@ lines`);
 
 const age = 15;
 
+
 //if- else control structor//
+
 if (age >= 18) {
   console.log('Sarah can start driving license 🚘')
 } else {
@@ -223,6 +225,7 @@ if (birthYear <= 2000) {
 } else {
   century = 21;
 }
+
 
 console.log(century);
 
@@ -372,3 +375,6 @@ if (favorite !== 23) console.log('Why not 23?');
 // } else {
 //   console.log('Someone else should drive...😫')
 // }
+
+console.log(century);
+
