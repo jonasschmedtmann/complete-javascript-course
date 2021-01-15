@@ -494,5 +494,17 @@ console.log(`I like to drink ${age >= 18 ? "wine 🍷🍷" : "water 💧"}`);
 
 */
 
-///////////////CODING CHALLENGE #4//////////////
+// ///////////////CODING CHALLENGE #4//////////////
 
+// // const bill = 275; // bill = 275, tip = 41.25, FV = 316.25//
+// // const bill = Number(40); // bill = 40, tip = 8, FV = 48//
+// const bill = Number(430); //bill = 430, tip = 86, FV = 516//
+// const tip = bill <= 300 && bill >= 50 ? bill * 0.15 : bill * 0.20;
+
+// const finalValue = bill + tip;
+// console.log(bill)
+// console.log(tip)
+
+// console.log(`The bill was (${bill}), the tip was (${tip}), and the final value is (${finalValue}).`)
+
+// ///////////////////CC #4 COMPLETE///////////////////////////////////
