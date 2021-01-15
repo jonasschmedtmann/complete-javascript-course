@@ -376,30 +376,42 @@ if (favorite !== 23) console.log('Why not 23?');
 //   console.log('Someone else should drive...😫')
 // }
 
+/*
 /////////////////////////////CODING CHALLENGE #3//////////////////
 
 // //Data 1//
-// const averageScoreDolphins = (96 + 108 + 89) / 3;
-// const averageScoreKoalas = (88 + 91 + 110) / 3;
+// const averageScoreDolphins = (96 + 108 + 89) / 3; // 97.67 winners
+// const averageScoreKoalas = (88 + 91 + 110) / 3; //96.33
 
-// //Data 2//
-// const averageScoreDolphins = (97 + 112 + 101) / 3;
-// const averageScoreKoalas = (109 + 95 + 123) / 3;
+//Data 2//
+// const averageScoreDolphins = (97 + 112 + 101) / 3; //103.33
+// const averageScoreKoalas = (109 + 95 + 123) / 3; //109.00 winners
+
 
 //Data 3//
-const averageScoreDolphins = (97 + 112 + 101) / 3;
-const averageScoreKoalas = (109 + 95 + 106) / 3;
+// const averageScoreDolphins = (97 + 112 + 101) / 3; //103.33 Draw
+// const averageScoreKoalas = (109 + 95 + 106) / 3; //103.33 Draw
+
+// VIDEO EXAMPLE: NO ONE WINS!//
+const averageScoreDolphins = (97 + 112 + 81) / 3; //96.67 <100 && tied
+const averageScoreKoalas = (109 + 95 + 86) / 3; //96.67 <100 && tied
 
 console.log(`Dolphins (${averageScoreDolphins.toFixed(2)})`);
 console.log(`Koalas (${averageScoreKoalas.toFixed(2)})`);
 
-if (averageScoreDolphins > averageScoreKoalas) {
+if (averageScoreDolphins > averageScoreKoalas && averageScoreDolphins >= 100) {
   console.log(`Dolphins ${averageScoreDolphins.toFixed(2)} are the Champions! 🏆`)
-} else if (averageScoreKoalas > averageScoreDolphins) {
+} else if (averageScoreKoalas > averageScoreDolphins && averageScoreKoalas >= 100) {
   console.log(`Koalas ${averageScoreKoalas.toFixed(2)} are the Champions! 🏆`)
+} else if (averageScoreDolphins === averageScoreKoalas && averageScoreDolphins >= 100 && averageScoreKoalas >= 100) {
+  console.log(`DRAW! Dolphins (${averageScoreDolphins.toFixed(2)}) & Koalas (${averageScoreKoalas.toFixed(2)}) are tied🥈🥈`)
 } else {
-  console.log(`DRAW! Dolphins (${averageScoreDolphins.toFixed(2)}) & Koalas (${averageScoreKoalas.toFixed(2)}) are tied 🥈🥈`)
+  console.log("No team wins the trophy! 🤬🤬🤬");
 }
+
+*/
+
+//LESSON: THE SWITCH STATEMENT//
 
 
 

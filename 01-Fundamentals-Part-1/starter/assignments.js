@@ -37,7 +37,7 @@ usaHalfPopulation++; //increases val by 1; 164000001
 //LESSON: STRINGS AND TEMPLATE LITERALS//
 
 
-description = `Portugal is in Europe, 
+description = `Portugal is in Europe,
 
 and its 11 million people speak portuguese.`
 // console.log(description);
@@ -103,7 +103,7 @@ if (population < idealPopulation && language === 'english' && !isIsland) {
 } else {
   console.log(`${country} does not meet your criteria 😢`)
 }
-*/
+
 
 //LECTURE: THE SWITCH STATEMENT//
 
@@ -118,3 +118,4 @@ if (population >= averageCountryPopulation) {
 
 console.log(census)
 
+*/
