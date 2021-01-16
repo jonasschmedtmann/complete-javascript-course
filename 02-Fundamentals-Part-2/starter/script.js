@@ -71,4 +71,4 @@ console.log(age1, age2)
 // console.log(yearsUntilRetirement(1991, 'Jonas'));
 // console.log(yearsUntilRetirement(1980, 'Bob'));
 
-//LESSON: FUCNTIONS CALLING OTHER FUNCTIONS//
+//LESSON: FUNCTIONS CALLING OTHER FUNCTIONS//
