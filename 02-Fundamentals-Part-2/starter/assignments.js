@@ -1,5 +1,6 @@
 'use strict';
 
+/*
 // //LESSON: FUNCTIONS//
 
 // function describeCountry(country, population, capitalCity) {
@@ -63,7 +64,7 @@
 //   return `${country} has ${population / 7900 * 100} of the world's population!`;
 // }
 
-// //saved calculation within a variable; 
+// //saved calculation within a variable;
 // // const percentageOfWorld3 = (country, population) => {
 // //   const worldPopulation = 7900;
 // //   const calcPopulation = population / worldPopulation * 100;
@@ -78,4 +79,22 @@
 // console.log(russia);
 
 //LESSON: FUNCTIONS CALLING OTHER FUNCTIONS//
+
+
+//Returns countries population / world population * 100
+const percentageOfWorld3 = (population) => {
+  return (population / 7900) * 100;
+};
+
+function describePopulation(country, population) {
+  const percentage = percentageOfWorld3(population).toFixed(4);
+  return `${country} has ${population} million people, which is ${percentage} of the world population.`
+}
+console.log(describePopulation("Greenland", 0.056)); //0.0007%
+console.log(describePopulation("Congo", 86.79)); //1.09865
+console.log(describePopulation("Laos", 7.17));//0.0908%
+
+*/
+
+//LESSON: INTRODUCTION TO ARRAYS//
 
