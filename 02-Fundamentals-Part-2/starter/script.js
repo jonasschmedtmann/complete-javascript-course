@@ -53,7 +53,7 @@ const calcAge2 = function (birthYear) {
 }
 const age2 = calcAge2(1991);
 console.log(age1, age2)
-*/
+
 
 //LESSON: ARROW FUNCTIONS//
 
@@ -72,3 +72,46 @@ console.log(age1, age2)
 // console.log(yearsUntilRetirement(1980, 'Bob'));
 
 //LESSON: FUNCTIONS CALLING OTHER FUNCTIONS//
+
+function cutFruitPieces(fruit) {
+  return fruit * 4; //calling a function helps "Don't repeat yourself!"
+}
+
+function fruitprocessor(apples, oranges) {
+  const applePieces = cutFruitPieces(apples);
+  const orangePieces = cutFruitPieces(oranges);
+  const juice = `Juice with ${applePieces} pieces of apple and ${orangePieces} pieces of orange.`;
+  return juice;
+}
+console.log(fruitprocessor(2, 3));
+
+
+
+//LESSON: REVIEWING FUNCTIONS//
+const calcAge = function (birthYear) {
+  return 2037 - birthYear; //birthyear function is completely unrelated to other functions-local variable to other functions
+}
+
+const yearsUntilRetirement = function (birthYear, firstName) {
+  const age = calcAge(birthYear);
+  const retirement = 65 - age;
+
+  if (retirement > 0) {
+    console.log(`${firstName} has already retired 🎊🎉`)
+    return retirement;
+  } else {
+    console.log(`${firstName} has already retired 🎊🎉`)
+    return -1;
+  }
+
+  return retirement;
+  // return `${firstName} retires in ${retirement} years`
+}
+
+console.log(yearsUntilRetirement(1991, 'Jonas'));
+console.log(yearsUntilRetirement(1950, 'Mike'));
+
+*/
+
+///////////////////////CODING CHALLENGE #1///////////////////////////
+
