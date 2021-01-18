@@ -111,7 +111,7 @@ const yearsUntilRetirement = function (birthYear, firstName) {
 console.log(yearsUntilRetirement(1991, 'Jonas'));
 console.log(yearsUntilRetirement(1950, 'Mike'));
 
-*/
+
 
 ///////////////////////SECTION 2: CODING CHALLENGE #1///////////////////////////
 
@@ -120,26 +120,27 @@ const calcAverage = (scoreOne, scoreTwo, scoreThree) => {
   return (scoreOne + scoreTwo + scoreThree) / 3;
 };
 // Test Data #1
-const avgDolphins = calcAverage(44, 23, 71);
-const winKoalas = calcAverage(65, 54, 49);
+let scoreDolphins = calcAverage(44, 23, 71);
+let scoreKoalas = calcAverage(65, 54, 49);
 
-// //Test Data #2
-// const avgDolphins = calcAverage(85, 54, 41);
-// const avgKoalas = calcAverage(23, 34, 27);
+function checkWinner(avgDolphins, avgKoalas) {
 
-function checkWinner(winDolphins, winKoalas) {
-
-  if (winDolphins >= (winKoalas * 2)) {
-    const avgDolphins = calcAverage(44, 23, 71);
-    console.log(`Dolphins are the champions! (${} vs.${winKoalas})`);
-    return winDolphins;
-  } else if (winKoalas >= (winDolphins * 2)) {
-    const avgKoalas = calcAverage(65, 54, 49);
-    console.log(`Koalas are the winners (${winKoalas} vs.${winDolphins})`);
-    return winKoalas;
+  if (avgDolphins >= (avgKoalas * 2)) {
+    console.log(`Dolphins are the champions! (${avgDolphins} vs.${avgKoalas})`);
+    return avgDolphins;
+  } else if (avgKoalas >= (avgDolphins * 2)) {
+    console.log(`Koalas are the champions! (${avgKoalas} vs.${avgDolphins})`);
+    return avgKoalas;
   } else {
-    return `no winner`
+    console.log("No team wins! 🤬")
   }
 }
 
-console.log(checkWinner(0, 0))
+checkWinner(scoreDolphins, scoreKoalas) //returns "No team wins"
+// //Test Data #2
+scoreDolphins = calcAverage(85, 54, 41); //redefines the variable to Test Data #2//
+scoreKoalas = calcAverage(23, 34, 27);
+checkWinner(scoreDolphins, scoreKoalas) //returns "Dolphins are the champions! (60 vs.28)"
+
+*/
+
