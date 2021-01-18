@@ -113,5 +113,33 @@ console.log(yearsUntilRetirement(1950, 'Mike'));
 
 */
 
-///////////////////////CODING CHALLENGE #1///////////////////////////
+///////////////////////SECTION 2: CODING CHALLENGE #1///////////////////////////
 
+//returns the average score for each game//
+const calcAverage = (scoreOne, scoreTwo, scoreThree) => {
+  return (scoreOne + scoreTwo + scoreThree) / 3;
+};
+// Test Data #1
+const avgDolphins = calcAverage(44, 23, 71);
+const winKoalas = calcAverage(65, 54, 49);
+
+// //Test Data #2
+// const avgDolphins = calcAverage(85, 54, 41);
+// const avgKoalas = calcAverage(23, 34, 27);
+
+function checkWinner(winDolphins, winKoalas) {
+
+  if (winDolphins >= (winKoalas * 2)) {
+    const avgDolphins = calcAverage(44, 23, 71);
+    console.log(`Dolphins are the champions! (${} vs.${winKoalas})`);
+    return winDolphins;
+  } else if (winKoalas >= (winDolphins * 2)) {
+    const avgKoalas = calcAverage(65, 54, 49);
+    console.log(`Koalas are the winners (${winKoalas} vs.${winDolphins})`);
+    return winKoalas;
+  } else {
+    return `no winner`
+  }
+}
+
+console.log(checkWinner(0, 0))
