@@ -182,7 +182,7 @@ console.log(jessica.__proto__ === PersonCl.prototype);
 jessica.greet();
 
 // 1. Classes are NOT hoisted
-// 2. Classes are first-class citizes
+// 2. Classes are first-class citizens
 // 3. Classes are executed in strict mode
 
 const walter = new PersonCl('Walter White', 1965);
@@ -468,11 +468,15 @@ StudentProto.init = function (firstName, birthYear, course) {
 };
 
 StudentProto.introduce = function () {
-  console.log(`My name is ${this.fullName} and I study ${this.course}`);
+  // BUG in video:
+  // console.log(`My name is ${this.fullName} and I study ${this.course}`);
+  
+  // FIX:
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
 };
 
 const jay = Object.create(StudentProto);
-jay.init('Jay', 2010, 'Compuetr Science');
+jay.init('Jay', 2010, 'Computer Science');
 jay.introduce();
 jay.calcAge();
 
@@ -644,4 +648,3 @@ rivian
 
 console.log(rivian.speedUS);
 */
-

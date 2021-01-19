@@ -357,7 +357,11 @@ btnClose.addEventListener('click', function (e) {
 let sorted = false;
 btnSort.addEventListener('click', function (e) {
   e.preventDefault();
-  displayMovements(currentAccount.movements, !sorted);
+  // BUG in video:
+  // displayMovements(currentAccount.movements, !sorted);
+
+  // FIX:
+  displayMovements(currentAccount, !sorted);
   sorted = !sorted;
 });
 
