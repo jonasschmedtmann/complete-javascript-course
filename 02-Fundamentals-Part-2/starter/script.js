@@ -142,5 +142,50 @@ scoreDolphins = calcAverage(85, 54, 41); //redefines the variable to Test Data #
 scoreKoalas = calcAverage(23, 34, 27);
 checkWinner(scoreDolphins, scoreKoalas) //returns "Dolphins are the champions! (60 vs.28)"
 
+
+
+//LESSON: INTRODUCTION TO ARRAYS//
+
+const friend1 = "Michael";
+const friend2 = "Steven";
+const friend3 = "Peter";
+
+const friends = ['Michael', 'Steven', 'Peter'];
+console.log(friends);
+
+const y = new Array(1991, 1984, 2008, 2020);
+
+console.log(friends[0]);
+console.log(friends[2]);
+
+console.log(friends.length)//Object property//3
+console.log(friends[friends.length - 1]); //'Peter' //expression
+
+friends[2] = 'Jay'; //mutate an array
+console.log(friends);//..."Jay"
+// friends = ['Bob', 'Alice']//typeError
+
+const firstName = 'Jonas';
+const jonas = [firstName, "Schmedtmann", 2037 - 1991, 'teacher', friends];
+console.log(jonas);
+console.log(jonas.length);
+
+//Exercise
+
+function calcAge(birthYear) {
+  return 2037 - birthYear;
+}
+const years = [1990, 1967, 2002, 2010, 2018];
+
+console.log(calcAge(years)); //doens't work because it is an array not a single value.//NaN
+
+const age1 = calcAge(years[0]);
+const age2 = calcAge(years[1]);
+const age3 = calcAge(years[years.length - 1]);
+console.log(age1, age2, age3);
+
+const ages = [calcAge(years[0]), calcAge(years[1]), calcAge(years[years.length - 1])];
+console.log(ages);//(3) [47, 70, 19];
+
 */
 
