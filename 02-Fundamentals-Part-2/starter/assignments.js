@@ -94,7 +94,25 @@ console.log(describePopulation("Greenland", 0.056)); //0.0007%
 console.log(describePopulation("Congo", 86.79)); //1.09865
 console.log(describePopulation("Laos", 7.17));//0.0908%
 
-*/
+
 
 //LESSON: INTRODUCTION TO ARRAYS//
 
+const country = ["USA", "China", "Japan", "South Korea"]
+const populations = [328.2, 1441, 126.3, 51.71];
+const percentageOfWorld = function (country, population) {
+  return `${country} has ${population / 7900 * 100} of the world's population!`;
+}
+let length = populations.length === 4;
+
+//by adding another array seperated by a comma, I was able to combine the arguments together to pass through percentageOfWorld function
+const percentages = [
+  percentageOfWorld(country[0], populations[0]),
+  percentageOfWorld(country[1], populations[1]),
+  percentageOfWorld(country[2], populations[2]),
+  percentageOfWorld(country[3], populations[3]),
+]
+
+console.log(percentages, length)
+
+*/
