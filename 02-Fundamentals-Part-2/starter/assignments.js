@@ -132,10 +132,20 @@ if (!usaNeighbors.includes("Germany")) {
 
 usaNeighbors[usaNeighbors.indexOf('Mexico')] = 'United Mexican States';
 console.log(usaNeighbors);
+\
+
+//LESSON: INTRODUCTION TO OBJECTS//
+
+const myCountry = {
+  country: "The United States of American",
+  capital: "Washington D.C.",
+  language: "English",
+  population: 328.2,
+  neighbors: ['Mexico', 'Canada']
+};
+
+console.log(myCountry);
 */
-
-//LESSON: INTRODUCTOIN TO OBJECTS//
-
 
 
 //LESSON: DOT vs. BRACKET NOTATION
