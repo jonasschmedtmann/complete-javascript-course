@@ -187,5 +187,46 @@ console.log(age1, age2, age3);
 const ages = [calcAge(years[0]), calcAge(years[1]), calcAge(years[years.length - 1])];
 console.log(ages);//(3) [47, 70, 19];
 
+
+
+//LESSON: BASIC ARRAY OPERATIONS (METHODS)//
+
+
+//.push() = to add to the end of an Arr
+const friends = ['Michael', 'Steven', 'Peter'];
+const newLength = friends.push("Jay");
+console.log(friends);
+console.log(newLength);
+
+
+//.undshift() = to add to the beginning of an Arr
+
+friends.unshift('John');
+console.log(friends);
+
+//Remove elements
+friends.pop();// Removes last
+const popped = friends.pop(); // Removes 'Peeter'
+console.log(popped);
+console.log(friends);
+
+friends.shift(); // Removes First
+console.log(friends);
+
+console.log(friends.indexOf('Steven')); // element #1
+
+console.log(friends.indexOf('Bob')); //-1 = universal not there
+
+friends.push(23);
+console.log(friends.includes('Steven'));
+console.log(friends.includes('Bob'));
+console.log(friends.includes('23'));// false-checks for 'STRICT EQUALITY'-doesn't do 'TYPE COERCION
+console.log(friends.includes(23)); //true
+
+if (friends.includes('Steven')) {
+  console.log(`You have a freind called Steven`); //
+};
+
 */
 
+///////////////////////SECTION 2: CODING CHALLENGE #2///////////////////////////
