@@ -256,7 +256,21 @@ console.log(bills);
 console.log(tips);
 console.log(total);
 
-*/
+
 ///////////////////////S2 CC #2-COMPLETE///////////////////////////
 
 //LESSON: INTRODUCTION TO OBJECTS//
+
+//"OBJECT LITERAL SYNTAX" define a new object-these are called properties
+const jonas = {
+  firstName: 'Jonas',
+  lastName: 'Schmedtmann',
+  age: 2037 - 1991,
+  job: 'teacher',
+  friends: ['Michael', 'Peter', 'Steven']
+};
+
+*/
+
+//LESSON: DOT VS. BRACKET NOTATION//
+
