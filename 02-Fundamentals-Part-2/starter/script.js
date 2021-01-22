@@ -227,6 +227,36 @@ if (friends.includes('Steven')) {
   console.log(`You have a freind called Steven`); //
 };
 
-*/
+
 
 ///////////////////////SECTION 2: CODING CHALLENGE #2///////////////////////////
+
+
+//My first atempt
+// function calcTip(bill) {
+//   return bill <= 300 && bill >= 50 ? bill * 0.15 : bill * 0.20;
+
+// };
+// const bills = [125, 555, 44];
+// const tips = []
+// // const total = bills + tip;
+// console.log(calcTip(bills[0]));
+
+
+//help from video
+const calcTip = function (bill) {
+  return bill <= 300 && bill >= 50 ? bill * 0.15 : bill * 0.20;
+};
+
+//*hint* use plural variable names that have multi values
+const bills = [125, 555, 44]
+const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
+const totals = [(bills[0] + tips[0]), (bills[1] + tips[1]), (bills[2] + tips[2])];
+console.log(bills);
+console.log(tips);
+console.log(total);
+
+*/
+///////////////////////S2 CC #2-COMPLETE///////////////////////////
+
+//LESSON: INTRODUCTION TO OBJECTS//
