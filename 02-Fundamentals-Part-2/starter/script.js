@@ -270,7 +270,50 @@ const jonas = {
   friends: ['Michael', 'Peter', 'Steven']
 };
 
-*/
 
 //LESSON: DOT VS. BRACKET NOTATION//
+
+const jonas = {
+  firstName: 'Jonas',
+  lastName: 'Schmedtmann',
+  age: 2037 - 1991,
+  job: 'teacher',
+  friends: ['Michael', 'Peter', 'Steven']
+};
+
+console.log(jonas);
+
+//"DOT NOTATION"/
+console.log(jonas.lastName);
+console.log(jonas['lastName']);
+// console.log(jonas.'last' + nameKey) //Doesn't work, needs literal object
+
+//"BRACKET NOTATION" - can use any expression
+const nameKey = 'Name'; //"Name" is in both firstName & lastName
+console.log(jonas['first' + nameKey]);
+console.log(jonas['last' + nameKey]);
+
+const interestedIn = prompt("What do you want to know about Jonas? Choose between firstName, lastName, age, job, and friends");
+
+// TO RETRIEVE FROM AN ELEMENT & if something exists and if it doesn't 'response /
+if (jonas[interestedIn]) {
+  console.log(jonas[interestedIn]);//prompt types answer and shows answer//
+} else {
+  console.log('Wrong request What do you want to know about Jonas? Choose between firstName, lastName, age, job, and friends.')
+};
+
+//How to add new properties to the object/
+
+jonas.location = 'Portugal';
+jonas['twitter'] = "@jonasschmedtman";
+// console.log(jonas);
+
+// Challenge
+// "Jonas has 3 friends, and his best friend is named Michael"
+
+console.log(`${jonas.firstName} has ${jonas["friends"].length} friends, and his best friend is named ${jonas.friends[0]}.`);
+
+*/
+
+//LESSON: OBJECT METHODS//
 
