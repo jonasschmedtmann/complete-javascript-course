@@ -137,7 +137,7 @@ console.log(usaNeighbors);
 //LESSON: INTRODUCTION TO OBJECTS//
 
 const myCountry = {
-  country: "The United States of American",
+  country: "The United States of America",
   capital: "Washington D.C.",
   language: "English",
   population: 328.2,
@@ -145,7 +145,29 @@ const myCountry = {
 };
 
 console.log(myCountry);
-*/
 
 
 //LESSON: DOT vs. BRACKET NOTATION
+
+const myCountry = {
+  country: "The United States of America",
+  capital: "Washington D.C.",
+  language: "English",
+  population: 328.2,
+  neighbors: ['Mexico', 'Canada']
+};
+
+const sumMyCountry = `${myCountry.country} has ${myCountry['population']} million ${myCountry.language}-speaking people, ${myCountry.neighbors.length} neighboring countries and the capital is called ${myCountry.capital}!`;
+
+console.log(sumMyCountry)
+
+myCountry.population += 2; //increases population by 2 million using . notation
+
+console.log(myCountry.population);
+
+myCountry["population"] -= 2; //decreases population by 2 million using [] notation
+console.log(myCountry["population"]);
+
+*/
+
+//LESSON: OBJECT METHODS//
