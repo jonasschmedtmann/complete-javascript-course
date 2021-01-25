@@ -111,7 +111,7 @@ const percentages = [
   percentageOfWorld(country[1], populations[1]),
   percentageOfWorld(country[2], populations[2]),
   percentageOfWorld(country[3], populations[3]),
-]
+];
 
 console.log(percentages, length)
 
@@ -176,6 +176,24 @@ for (let voter = 1; voter <= 50; voter++) {
   console.log(`Voter number ${voter} ✅ is currently voting!`)
 };
 
+
+//LESSON: LOOPING ARRAYS, BREAKING, and CONTINUING//
+
+const populations = [328.2, 1441, 126.3, 51.71];
+const percentages2 = [];
+function percentageOfWorld1(populations) {
+  return populations / 7900 * 100;
+};
+
+for (let i = 0; i < populations.length; i++) {
+  // percentages2.push((populations[i] / 7900 * 100).toFixed(2))// my first solution
+  const perc = percentageOfWorld1(populations[i]).toFixed(2); //create a var to store calculation
+  percentages2.push(perc);
+
+  console.log(percentages2)
+};
+
 */
 
-//LESSON: LOOPING ARRAYS, BREAKING, and CONTINUTING//
+//LESSON: LOOPING BACKWARDS & LOOPS in LOOPS
+
