@@ -168,6 +168,14 @@ console.log(myCountry.population);
 myCountry["population"] -= 2; //decreases population by 2 million using [] notation
 console.log(myCountry["population"]);
 
+
+
+//LESSON: Iteration: The for Loop//
+
+for (let voter = 1; voter <= 50; voter++) {
+  console.log(`Voter number ${voter} ✅ is currently voting!`)
+};
+
 */
 
-//LESSON: OBJECT METHODS//
+//LESSON: LOOPING ARRAYS, BREAKING, and CONTINUTING//

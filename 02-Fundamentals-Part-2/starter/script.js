@@ -414,7 +414,26 @@ console.log(`${mark["firstName"] + " " + mark.lastName}'s BMI (${mark.calcBMI().
 
 ///////////////////////Section-2 CC #3-COMPLETE////////////////////////////////
 
-*/
 
 //LESSON: ITERATION: THE for LOOP//
+
+//************VIOLATED DON'T REPEAT YOURSELF**********
+// console.log('Lifting weights repetition 1 🏋️‍♂️');
+// console.log('Lifting weights repetition 2 🏋️‍♂️');
+// console.log('Lifting weights repetition 3 🏋️‍♂️');
+// console.log('Lifting weights repetition 4 🏋️‍♂️');
+// console.log('Lifting weights repetition 5 🏋️‍♂️');
+// console.log('Lifting weights repetition 6 🏋️‍♂️');
+// console.log('Lifting weights repetition 7 🏋️‍♂️');
+// console.log('Lifting weights repetition 8 🏋️‍♂️');
+// console.log('Lifting weights repetition 9 🏋️‍♂️');
+// console.log('Lifting weights repetition 10 🏋️‍♂️');
+
+//instead use for loops
+// for loop keeps running while condition is TRUE//
+for (let rep = 1; rep <= 10; rep++) {
+  console.log(`Lifting weights  ${rep} 🏋️‍♂️`);
+};
+
+*/
 
