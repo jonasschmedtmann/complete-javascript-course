@@ -511,6 +511,31 @@ for (let exercise = 1; exercise < 4; exercise++) {
   }
 };
 
-*/
 
 //LESSON: THE WHILE LOOP//
+
+// for loop keeps running while condition is TRUE//
+
+
+// for (let rep = 1; rep <= 10; rep++) {
+//   console.log(`Lifting weights  ${rep} 🏋️‍♂️`);
+// };
+
+//run while the condition is true
+let rep = 1; //repetition
+while (rep <= 10) {
+  // console.log(`WHILE: Lifting weights  ${rep} 🏋️‍♂️`);
+  rep++;
+}
+
+let die = Math.trunc(Math.random() * 6) + 1; //Math.trunc rounds without a demicmal //
+
+
+while (die !== 6) {
+  console.log(`You rolled a ${die}`);
+  die = Math.trunc(Math.random() * 6) + 1;
+  if (die === 6) console.log("Loop is about to end...");
+};
+
+*/
+
