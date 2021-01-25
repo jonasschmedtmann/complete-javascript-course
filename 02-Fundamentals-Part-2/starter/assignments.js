@@ -195,5 +195,21 @@ for (let i = 0; i < populations.length; i++) {
 
 */
 
-//LESSON: LOOPING BACKWARDS & LOOPS in LOOPS
+//LESSON: LOOPING BACKWARDS & LOOPS in LOOPS//
 
+const listOfNeighbors = [['Canada', 'Mexico'], ['Spain'], ['Norway', 'Sweden',
+  'Russia']];
+
+for (let i = 0; i < listOfNeighbors.length; i++) {
+  for (let j = 0; j < listOfNeighbors[i].length; j++)
+    console.log(`Neighbors: ${listOfNeighbors[i][j]}`);
+}
+
+  //my first and only attempt
+// for (let neighbor = 0; neighbor < listOfNeighbors.length; neighbor++) {
+//   // console.log(`Neighbor ${listOfNeighbors[neighbor]}`);
+
+//   for (let j = 0; j < 4; j++) {
+//     console.log([j])
+//   }
+// };
