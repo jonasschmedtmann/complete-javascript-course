@@ -313,7 +313,73 @@ jonas['twitter'] = "@jonasschmedtman";
 
 console.log(`${jonas.firstName} has ${jonas["friends"].length} friends, and his best friend is named ${jonas.friends[0]}.`);
 
-*/
+
 
 //LESSON: OBJECT METHODS//
 
+// const jonas = {
+//   firstName: 'Jonas',
+//   lastName: 'Schmedtmann',
+//   birthYear: 1991,
+//   job: 'teacher',
+//   friends: ['Michael', 'Peter', 'Steven'],
+//   hasDriversLicense: true,
+
+//   //*any function attached to an object is called: "METHOD"//
+//   // calcAge: function (birthYear) {
+//   //   return 2037 - birthYear;
+//   // }
+
+//   // calcAge: function () {
+//   //   console.log(this)
+//   //   return 2037 - this.birthYear;
+//   // }
+
+//   calcAge: function () {
+//     this.age = 2037 - this.birthYear;
+//     return this.age;
+//   }
+// };
+// console.log(jonas.calcAge());
+// console.log(jonas.age);
+
+//Challenge//
+//"Jonas is a 46-year old teacher, and has a/no driver's license"
+
+
+const james = {
+  firstName: 'James',
+  lastName: 'King',
+  birthYear: 1990,
+  job: 'programmer',
+  friends: ['Joshua', 'Jessica', 'Max'],
+  hasDriversLicense: true,
+
+  calcAge: function () {
+    this.age = 2037 - this.birthYear;
+    return this.age;
+  },
+
+  getSummary: function () {
+    return `${this.firstName} is a ${this.calcAge()}-year old ${james.job}, and he has ${this.hasDriversLicense ? 'a' : 'no'} driver's license.`
+  }
+  //no need to make a function, just make use ternary operator ___ ? 'a' : 'no'
+
+  // hasDriversLicense: function () {
+  //   if (james.hasDriversLicense = true) {
+  //     console.log('a ')
+  //     return 'a';
+  //   } else (james.hasDriversLicense = false)
+  //   console.log("no ")
+  //   return 'no ';
+  // }
+
+};
+// console.log(`${james.firstName} is a ${james.calcAge()} old ${james.job}, and he has ${james.hasDriversLicense()} driver's license!`)
+
+console.log(james.getSummary());
+
+*/
+
+
+///////////////////////SECTION 2: CODING CHALLENGE #3///////////////////////////
