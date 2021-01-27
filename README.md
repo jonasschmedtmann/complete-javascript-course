@@ -64,7 +64,7 @@ Use starter code to start each section, and **final code to compare it with your
 
 ### Q13: Can you add subtitles in my language?
 
-**A:** No. I provide professional English captions, but Udemy is responsible for subtitles in all other languages (automatic translations). Sp please [contact the Udemy support team](https://support.udemy.com/hc/en-us) to request your own language.
+**A:** No. I provide professional English captions, but Udemy is responsible for subtitles in all other languages (automatic translations). So please [contact the Udemy support team](https://support.udemy.com/hc/en-us) to request your own language.
 
 ### Q14: Do you accept pull requests?
 
