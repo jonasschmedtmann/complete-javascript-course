@@ -1,0 +1,3 @@
+typeof Null = object
+type of NaN = number
+arrow functions dont get     this.
