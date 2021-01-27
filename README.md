@@ -22,7 +22,7 @@ Use starter code to start each section, and **final code to compare it with your
 
 ### Q4: What VSCode theme are you using?
 
-**A:** I use Monokai Pro for all my coding and course production. It's a paid theme, but you can actually use the free demo version forever 😅
+**A:** I use Monokai Pro for all my coding and course production. It's a paid theme (I', **not** affiliated with them), but you can actually use the free demo version forever 😅
 
 ### Q5: Can I see a final version of the course projects?
 
@@ -50,7 +50,7 @@ Use starter code to start each section, and **final code to compare it with your
 
 **A:** Absolutely! Just make sure you actually built them yourself by following the course, and that you understand what you did. What is **not allowed** is that you create your own course/videos/articles based on this course's content!
 
-### Q10: You keep mentioning your resources page. Where can I find it?
+### Q10: You mentioned your resources page. Where can I find it?
 
 **A:** It's on my website at <http://codingheroes.io/resources>. You can subscribe for updates 😉
 
@@ -62,6 +62,10 @@ Use starter code to start each section, and **final code to compare it with your
 
 **A:** A certificate of completion is provided by Udemy after you complete 100% of the course. After completing the course, just click on the "Your progress" indicator in the top right-hand corner of the course page. If you want to change your name on the certificate, please [contact the Udemy support team](https://support.udemy.com/hc/en-us).
 
-### Q13: Do you accept pull requests?
+### Q13: Can you add subtitles in my language?
+
+**A:** No. I provide professional English captions, but Udemy is responsible for subtitles in all other languages (automatic translations). Sp please [contact the Udemy support team](https://support.udemy.com/hc/en-us) to request your own language.
+
+### Q14: Do you accept pull requests?
 
 **A:** No, for the simple reason that I want this repository to contain the _exact_ same code that is shown in the videos. However, please feel free to add an issue if you found one.
