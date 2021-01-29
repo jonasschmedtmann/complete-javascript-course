@@ -28,10 +28,18 @@ const init = function () {
   current1El.textContent = 0;
 
   diceEl.classList.add('hidden');
+  //hide active button for both player
+  activeSign.forEach(item => {
+    item.classList.add('hidden');
+  })
+  
   player0El.classList.remove('player--winner');
   player1El.classList.remove('player--winner');
   player0El.classList.add('player--active');
   player1El.classList.remove('player--active');
+  
+  // display active sign for active player
+  Array.from(activeSign)[activePlayer].classList.remove('hidden');
 };
 init();
 
@@ -42,6 +50,11 @@ const switchPlayer = function () {
   player0El.classList.toggle('player--active');
   player1El.classList.toggle('player--active');
 };
+
+//toggle active sign
+const toggleActiveSign = () => {
+  Array.from(activeSign)[activePlayer].classList.toggle('hidden');
+}
 
 // Rolling dice functionality
 btnRoll.addEventListener('click', function () {
@@ -61,14 +74,20 @@ btnRoll.addEventListener('click', function () {
         `current--${activePlayer}`
       ).textContent = currentScore;
     } else {
+      //toggle active sign
+      toggleActiveSign();
       // Switch to next player
       switchPlayer();
+      //toggle active sign
+      toggleActiveSign();
     }
   }
 });
 
 btnHold.addEventListener('click', function () {
   if (playing) {
+     //toggle active sign
+    toggleActiveSign();
     // 1. Add current score to active player's score
     scores[activePlayer] += currentScore;
     // scores[1] = scores[1] + currentScore
@@ -92,6 +111,8 @@ btnHold.addEventListener('click', function () {
       // Switch to the next player
       switchPlayer();
     }
+     //toggle active sign
+    toggleActiveSign();
   }
 });
 
