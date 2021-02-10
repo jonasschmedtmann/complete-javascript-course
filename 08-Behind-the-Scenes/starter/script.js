@@ -85,3 +85,43 @@ console.log(y === window.y); //returns false
 console.log(z === window.z); //returns false
 
 */
+
+//This keyword in action
+/*
+console.log(this); // returns Window
+
+const calcAge = function (birthYear) {
+  console.log(2037 - birthYear);
+  console.log(this);
+};
+calcAge(1991);
+
+const calcAgeArrow = birthYear => {
+  console.log(2037 - birthYear);
+  console.log(this);
+};
+calcAgeArrow(1980); //=> doesn't get a 'this' keyword and will point to *Window global browser function
+
+//returns jonas(owner) object
+const jonas = {
+  year: 1991,
+  calcAge: function () {
+    console.log(this);
+    console.log(2037 - this.year); //returns normal function
+  },
+};
+
+jonas.calcAge();
+
+const matilda = {
+  year: 2017,
+};
+
+//aka 'Method Borrowning" copy a method from another function to another
+matilda.calcAge = jonas.calcAge;
+matilda.calcAge(); // this keyword will point to matilda if matilda calls the method
+
+const f = jonas.calcAge;
+f(); // is a regular function call, doesn't copy content
+
+*/
