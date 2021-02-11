@@ -193,4 +193,42 @@ friend.age = 27;
 console.log('Friend:', friend); // Returns age: 27
 console.log('Me', me); // Returns age: 27
 
+
+
+//lesson: Primitives vs. Objects in practice
+
+// Primitive Types
+let lastName = 'Williams';
+let oldLastName = lastName;
+lastName = 'Davis';
+console.log(lastName, oldLastName);
+
+//Reference types
+const jessica = {
+  firstName: 'Jesssica',
+  lastName: 'Williams',
+  age: 27,
+};
+const marriedJessica = jessica;
+marriedJessica.lastName = 'Davis';
+console.log('Before marriage:', jessica);
+console.log('After marriage: ', marriedJessica);
+
+// marriedJessica = {}; //Cannot mutate marriedJessica, because it is const
+
+// Copying objects
+const jessica2 = {
+  firstName: 'Jesssica',
+  lastName: 'Williams',
+  age: 27,
+  family: ['Alice', 'Bob'],
+};
+
+const jessicaCopy = Object.assign({}, jessica2); //Still will create a shallow copy && !deepclone
+jessicaCopy.lastName = 'Davis';
+
+jessicaCopy.family.push('Mary');
+jessicaCopy.family.push('John');
+console.log('Before marriage:', jessica2);
+console.log('After marriage: ', jessicaCopy);
 */
