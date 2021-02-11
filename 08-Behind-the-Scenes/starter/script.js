@@ -124,4 +124,54 @@ matilda.calcAge(); // this keyword will point to matilda if matilda calls the me
 const f = jonas.calcAge;
 f(); // is a regular function call, doesn't copy content
 
+
+
+//
+// var firstName = 'Matilda'; //don't use var
+const jonas = {
+  firstName: 'Jonas',
+  year: 1991,
+  calcAge: function () {
+    console.log(this);
+    console.log(2037 - this.year); //returns normal function
+
+    //Solution 1
+    // const self = this;
+    // const isMillenial = function () {
+    //   console.log(self); //self or that
+    //   console.log(self.year >= 1981 && self.year <= 1996);
+    // };
+
+    // Solution 2 arrow function inherits the 'this' keyword from the parent scope
+    const isMillenial = () => {
+      console.log(this); //self or that
+      console.log(this.year >= 1981 && this.year <= 1996);
+    };
+    isMillenial();
+  },
+  greet: () => {
+    console.log(this);
+    console.log(`Hey ${this.firstName}`); //object literal not a block
+  },
+};
+jonas.greet(); //returns 'Hey'  undefined
+jonas.calcAge();
+// console.log(this.firstName); //returns undefined (window obj, no firstName)
+
+//Functions get access to 'arguments' keyword
+
+const addExpr = function (a, b) {
+  console.log(arguments);
+  return a + b;
+};
+addExpr(2, 5);
+addExpr(2, 5, 9, 12);
+
+var addArrow = (a, b) => {
+  console.log(arguments);
+  return a + b;
+};
+addArrow(2, 5, 8);
+
+
 */
