@@ -48,6 +48,38 @@ const restaurant = {
 };
 
 /*
+/////////////////////////////////////////////////////////////////////////
+//LESSON: SHORT CIRCUITING (&& AND || OPERATORS)
+
+//Logical operators: 1. use ANY data type, 2. return ANY data type, 3. short-circuiting (if the 1st value/operand === truthy, than the other operand won't be evaluated by JS)
+console.log(3 || 'jonas'); // => 3
+console.log('' || 'Jonas'); // => 'Jonas'
+console.log(true || 0); // => true
+console.log(undefined || null); // => null
+
+console.log(undefined || 0 || '' || 'Hello' || 23 || null); // Checks Left-to-Right
+
+restaurant.numGuests = 0;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
+
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
+
+console.log('----AND ----');
+console.log(0 && 'Jonas'); //=> 0
+console.log(7 && 'Jonas'); //=> 'Jonas'
+
+console.log('Hello' && 23 && null && 'jonas');
+
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mushrooms', 'spinach');
+}
+
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+*/
+/*
+////////////////////////////////////////////////////////////////////////////
 // 1) Destructuring
 //LESSON: REST PATTERN AND PARAMETERS *rest operator is to pack elements into an [array]
 // SPREAD, because on RIGHT side of =
