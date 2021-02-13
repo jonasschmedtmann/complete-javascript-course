@@ -40,7 +40,50 @@ const restaurant = {
   orderPasta: function (ing1, ing2, ing3) {
     console.log(`here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
   },
+
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
 };
+
+/*
+// 1) Destructuring
+//LESSON: REST PATTERN AND PARAMETERS *rest operator is to pack elements into an [array]
+// SPREAD, because on RIGHT side of =
+const arr = [1, 2, ...[3, 4]];
+
+// REST, because on LEFT side of ==
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(a, b, others);
+//REST operator needs to be at the end and ONLY ONE per ___
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+console.log(pizza, risotto, otherFood); //!return "Pasta"
+
+// Objects
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(weekdays);
+
+// 2) Functions
+const add = function (...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) sum += numbers[i];
+
+  console.log(sum);
+};
+add(2, 3);
+add(5, 3, 7, 2);
+add(8, 2, 5, 3, 2, 1, 4);
+
+const x = [23, 5, 7];
+add(...x);
+
+restaurant.orderPizza('mushrooms', 'bacon', 'jalapenos', 'anchovies');
+restaurant.orderPizza('mushrooms');
+*/
 /*
 // LESSON: SPREAD(...) OPERATOR
 const arr = [7, 8, 9]; //Array literal
