@@ -267,6 +267,7 @@ Suppose we get data from a web service about a certain game ('game' variable on
 next page). In this challenge we're gonna work with that data.
 Your tasks:
 */
+/*
 const game = {
   team1: 'Bayern Munich',
   team2: 'Borrussia Dortmund',
@@ -307,7 +308,7 @@ const game = {
     team2: 6.5,
   },
 };
-
+*/
 /*
 
 // //Before help
@@ -359,37 +360,54 @@ const game = {
 
 //////After help/(┬┬﹏┬┬)(┬┬﹏┬┬)(┬┬﹏┬┬)(┬┬﹏┬┬)///////////////
 
-// 1. Destructoring game.players
-const [players1, players2] = game.players;
-console.log(players1, players2);
+// // 1. Destructoring game.players
+// const [players1, players2] = game.players;
+// console.log(players1, players2);
 
-// 2. Create one variable 'gk', and ...fieldPlayers (rest operator)
-const [gk, ...fieldPlayers] = players1;
-console.log(gk, fieldPlayers);
+// // 2. Create one variable 'gk', and ...fieldPlayers (rest operator)
+// const [gk, ...fieldPlayers] = players1;
+// console.log(gk, fieldPlayers);
 
-// 3. One array with allPlayers using a ...spread operator//
-const allPlayers = [...players1, ...players2].sort();
-console.log(allPlayers);
+// // 3. One array with allPlayers using a ...spread operator//
+// const allPlayers = [...players1, ...players2].sort();
+// console.log(allPlayers);
 
-// 4. players1 + substitutions
-const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+// // 4. players1 + substitutions
+// const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
 
-// 5. Nested destructoring
-const {
-  odds: { team1, x: draw, team2 },
-} = game;
-console.log(team1, draw, team2);
+// // 5. Nested destructoring
+// const {
+//   odds: { team1, x: draw, team2 },
+// } = game;
+// console.log(team1, draw, team2);
 
-// 6. printGoals function with arbitrary players
-const printGoals = function (...players) {
-  console.log(`${players.length} goals were scored`);
-};
+// // 6. printGoals function with arbitrary players
+// const printGoals = function (...players) {
+//   console.log(`${players.length} goals were scored`);
+// };
 
-// printGoals('Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels');
-// printGoals('Davies', 'Muller');
-printGoals(...game.scored); //...sread operator saves so much time
+// // printGoals('Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels');
+// // printGoals('Davies', 'Muller');
+// printGoals(...game.scored); //...sread operator saves so much time
 
-// 7. print lower odds win the game
-team1 < team2 && console.log('Team 1 is more likely to win');
-team1 > team2 && console.log('Team 2 is more likely to win');
-team1 && team2 === draw && console.log('ITS A FU$$ING DRAW');
+// // 7. print lower odds win the game
+// team1 < team2 && console.log('Team 1 is more likely to win');
+// team1 > team2 && console.log('Team 2 is more likely to win');
+// team1 && team2 === draw && console.log('ITS A FU$$ING DRAW');
+/*
+//LESSON: LOOPING ARRAYS-THE FOR-OF LOOP
+
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+for (const item of menu) console.log(item); //for item of menu
+
+//What if we want the current index && not just the current element?
+
+for (const [i, el] of menu.entries()) {
+  console.log(`${i + 1}: ${el}`); //index + element // => (2) [0, "Focaccia"]
+}
+
+// console.log([...menu.entries()]);
+
+*/
+
+//LESSON: ENHANCED OBJECT LITERALS
