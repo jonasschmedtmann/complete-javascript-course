@@ -1,4 +1,23 @@
 'use strict';
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+const storeClosed = `Closed, sorry!`;
+const openingHours = {
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  [weekdays[4]]: {
+    open: 11,
+    close: 23,
+  },
+  [weekdays[5]]: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+  [weekdays[6]]: {
+    storeClosed, // Store closed with message
+  },
+};
 
 const restaurant = {
   name: 'Classico Italiano',
@@ -7,41 +26,24 @@ const restaurant = {
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
-
+  //ES6 enhanced object literals
+  openingHours,
+  //ES6 Doesn't need : function
   order: function (starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
-
-  orderDelivery: function ({
-    starterIndex = 1,
-    mainIndex = 0,
-    time = '20:00',
-    address,
-  }) {
+  //ES6 enhanced function expression
+  orderDelivery({ starterIndex = 1, mainIndex = 0, time = '20:00', address }) {
     console.log(
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
 
-  orderPasta: function (ing1, ing2, ing3) {
+  orderPasta(ing1, ing2, ing3) {
     console.log(`here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
   },
 
-  orderPizza: function (mainIngredient, ...otherIngredients) {
+  orderPizza(mainIngredient, ...otherIngredients) {
     console.log(mainIngredient);
     console.log(otherIngredients);
   },
@@ -409,5 +411,41 @@ for (const [i, el] of menu.entries()) {
 // console.log([...menu.entries()]);
 
 */
-
+/*
 //LESSON: ENHANCED OBJECT LITERALS
+
+//ES6 allows 3 new enhancments to object literals
+//1. function calling
+
+//LESSON: OPTIONANL CHAINING (?.)  if a property doesn't exist "undefined" is returned immediately
+if (restaurant.openingHours && restaurant.openingHours.mon)
+  console.log(restaurant.openingHours.mon.open); //Checks for if the restaurant is open
+// WITH optional chaining
+console.log(restaurant.openingHours.mon?.open);
+console.log(restaurant.openingHours?.mon?.open);
+
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+for (const day of days) {
+  const open = restaurant.openingHours[day]?.open ?? `closed`;
+  console.log(`On ${day}, we open at ${open}`);
+}
+
+// Methods with Optional chaining
+console.log(restaurant.order?.(0, 1) ?? `Method doesn't not exist`);
+console.log(restaurant.orderRisotto?.(0, 1) ?? `Method doesn't not exist`);
+
+// Arrays
+// const users = [];
+
+const users = [
+  {
+    name: 'jonas',
+    email: 'hello@jonas.io',
+  },
+];
+console.log(users[0]?.name ?? `User array is empty`);
+if (users.length > 0) console.log(users[0].name);
+else console.log('user array empty');
+*/
+
+//LESSON: LOOPING OBJECTS (OBJECT KEYS, VALUES, AND ENTRIES)
