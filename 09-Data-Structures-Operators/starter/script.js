@@ -14,9 +14,9 @@ const openingHours = {
     open: 0, // Open 24 hours
     close: 24,
   },
-  [weekdays[6]]: {
-    storeClosed, // Store closed with message
-  },
+  // [weekdays[6]]: {
+  //   storeClosed, // Store closed with message
+  // },
 };
 
 const restaurant = {
@@ -49,6 +49,27 @@ const restaurant = {
   },
 };
 
+const properties = Object.keys(openingHours);
+console.log(properties);
+
+let openStr = `We are open on ${properties.length} days: `;
+
+for (const day of Object.keys(openingHours)) {
+  openStr += `${day}, `;
+}
+console.log(openStr);
+
+// Property VALUES
+
+const values = Object.values(openingHours);
+
+//Entire object
+const entries = Object.entries(openingHours);
+console.log(entries);
+
+for (const [key, { open, close }] of entries) {
+  console.log(`On ${key} we open at ${open} and close at ${close}`);
+}
 /*
 ////////////////////////////////////////////////
 //LESSON: NULLISH COALESCING OPERATOR (??)
