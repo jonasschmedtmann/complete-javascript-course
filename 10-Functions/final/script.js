@@ -265,7 +265,7 @@ const poll = {
     console.log(answer);
 
     // Register answer
-    typeof answer === 'number' &&
+    answer > -1 &&
       answer < this.answers.length &&
       this.answers[answer]++;
 
