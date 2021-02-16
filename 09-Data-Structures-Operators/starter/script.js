@@ -603,6 +603,7 @@ const game = {
     team2: 6.5,
   },
 };
+// 1.
 const goalsOrder = Object.keys(game.scored);
 const [...scored] = game.scored;
 
@@ -614,3 +615,9 @@ for (let i = 0; i < scored.length; i++) {
   Number(goalsOrder[i]++);
   console.log(`Goal ${Number(goalsOrder[i]++)}: ${playersGoal}`);
 }
+// 2.
+
+const { team1, x: draw, team2 } = game.odds;
+team1 < team2 && console.log(`Odd of victory ${game.team1}: ${team1}`);
+team1 > team2 && console.log(`Odd of victory ${game.team2}: ${team2}`);
+team1 === team2 && console.log(`Odd of draw: ${draw}`);
