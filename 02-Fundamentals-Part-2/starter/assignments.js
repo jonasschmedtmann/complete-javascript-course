@@ -41,3 +41,52 @@ function describePopulation(country, population) {
 console.log(describePopulation(`Finland`, 6));
 console.log(describePopulation(`USA`, 330));
 console.log(describePopulation(`Canada`, 30));
+
+const populations = [6, 330, 30, 1441];
+console.log(populations.length === 4);
+
+const percentages = [percentageOfWorld1(populations[0]), percentageOfWorld1(populations[1]), percentageOfWorld1(populations[2]), percentageOfWorld1(populations[3])];
+console.log(percentages);
+
+const neighbors = [`Mexico`, `Canada`];
+console.log(neighbors);
+
+neighbors.push(`Utopia`);
+console.log(neighbors);
+
+neighbors.pop(`Utopia`);
+console.log(neighbors);
+
+if (!neighbors.includes(`Germany`)) {
+    console.log(`Probably not a centeral European country :D`);
+}
+
+neighbors[neighbors.indexOf(`Mexico`)] = `Utopia`;
+console.log(neighbors);
+
+const myCountry = {
+    country: `USA`,
+    capital: `Washington D.C.`,
+    language: `english`,
+    population: 330,
+    neighbors: [`Mexico`, `Canada`],
+    describe: function () {
+        return `${this.country} has ${this.population} million ${this.language}-speaking people, ${this.neighbors.length} neighboring countries and a capital called ${this.capital}`
+    },
+    checkIsland: function () {
+        this.isIsland = this.neighbors.length === 0 ? true : false;
+        return this.isIsland;
+    }
+
+};
+
+console.log(`${myCountry.country} has ${myCountry.population} million ${myCountry.language}-speaking people, ${myCountry.neighbors.length} neighboring countries and a capital called ${myCountry.capital}.`);
+
+myCountry.population += 2
+console.log(myCountry.population);
+
+myCountry[`population`] -= 2
+console.log(myCountry[`population`]);
+
+console.log(myCountry.describe());
+console.log(myCountry.checkIsland());
