@@ -603,6 +603,8 @@ const game = {
     team2: 6.5,
   },
 };
+/*
+// CC #2 BEFORE HELP
 // 1.
 const goalsOrder = Object.keys(game.scored);
 const [...scored] = game.scored;
@@ -621,3 +623,47 @@ const { team1, x: draw, team2 } = game.odds;
 team1 < team2 && console.log(`Odd of victory ${game.team1}: ${team1}`);
 team1 > team2 && console.log(`Odd of victory ${game.team2}: ${team2}`);
 team1 === team2 && console.log(`Odd of draw: ${draw}`);
+
+// 3.
+
+const scorers = {};
+console.log(scorers);
+
+// for (let i = 0; i < scored.length; i++) {
+//   console.log(goalsOrder.entries('lewandoski'));
+// }
+
+for (const [key, value] of Object.entries(scored)) {
+  console.log(`${key}: ${value}`);
+  console.log();
+}
+*/
+/*
+// CC #2 After Help
+
+// 1
+for (const [i, player] of game.scored.entries())
+  console.log(`Goal ${i + 1}: ${player}`);
+
+// 2
+const odds = Object.values(game.odds);
+let average = 0;
+for (const odd of odds) average += odd;
+average /= odds.length;
+console.log(average);
+
+//3.
+for (const [team, odd] of Object.entries(game.odds)) {
+  const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
+  console.log(`Odd of ${teamStr} ${odd}`);
+}
+
+// Bonus (I didn't attempt)
+const scorers = {};
+for (const player of game.scored) {
+  scorers[player] ? scorers[player]++ : (scorers[player] = 1);
+}
+console.log(scorers);
+*/
+
+//LESSON: SETS
