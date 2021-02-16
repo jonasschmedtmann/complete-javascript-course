@@ -48,19 +48,21 @@ const restaurant = {
     console.log(otherIngredients);
   },
 };
+/*
+//LESSON: LOOPING OBJECTS (OBJECT KEYS, VALUES, AND ENTRIES)
 
 const properties = Object.keys(openingHours);
 console.log(properties);
 
-let openStr = `We are open on ${properties.length} days: `;
+let openStr = `We are open for ${properties.length} days: `;
 
 for (const day of Object.keys(openingHours)) {
   openStr += `${day}, `;
 }
 console.log(openStr);
-
+*/
 // Property VALUES
-
+/*
 const values = Object.values(openingHours);
 
 //Entire object
@@ -70,6 +72,7 @@ console.log(entries);
 for (const [key, { open, close }] of entries) {
   console.log(`On ${key} we open at ${open} and close at ${close}`);
 }
+*/
 /*
 ////////////////////////////////////////////////
 //LESSON: NULLISH COALESCING OPERATOR (??)
@@ -469,4 +472,145 @@ if (users.length > 0) console.log(users[0].name);
 else console.log('user array empty');
 */
 
-//LESSON: LOOPING OBJECTS (OBJECT KEYS, VALUES, AND ENTRIES)
+////////////////////////CODING CHALLENGE #1 REDO//////////////////////
+/*
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+
+// 1.
+const [players1, players2] = game.players;
+
+// 2.
+const [gk, ...fieldPlayers] = players1;
+const [goalie, ...otherPlayers] = players2;
+console.log(gk, fieldPlayers);
+console.log(goalie, otherPlayers);
+
+// 3.
+const allPlayers = [...players1, ...players2].sort();
+console.log(allPlayers);
+
+// 4.
+const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+console.log(players1Final);
+
+// 5.
+const { team1, x: draw, team2 } = game.odds;
+
+console.log(team1, draw, team2);
+
+//6.
+const printGoals = function (...players) {
+  console.log(`${players.length}`);
+};
+printGoals('Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'); // 4
+
+// 7.
+
+team1 < team2 &&
+  console.log(
+    `${game.team1} is most likely to win ${team1} is lower than ${game.team2}'s ${team2}.`
+  );
+team1 > team2 &&
+  console.log(
+    `${game.team2} is most likely to win ${team2} is lower than ${game.team1}'s ${team1}.`
+  );
+team1 === team2 &&
+  console.log(
+    `Lame, it's a fucking draw, we all lose! 
+    ${game.team1}: ${team1} / ${game.team2}: ${team2}`
+  );
+*/
+
+////////////////////////CODING CHALLENGE #1 REDO-COMPLETE////////////////
+
+////////////////////////CODING CHALLENGE #2 /////////////////////
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+const goalsOrder = Object.keys(game.scored);
+const [...scored] = game.scored;
+
+for (const key of scored) {
+}
+for (let i = 0; i < scored.length; i++) {
+  const playersGoal = game.scored[i];
+  let goalsOrder = Object.keys(game.scored);
+  Number(goalsOrder[i]++);
+  console.log(`Goal ${Number(goalsOrder[i]++)}: ${playersGoal}`);
+}
