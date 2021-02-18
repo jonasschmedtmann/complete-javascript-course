@@ -665,5 +665,51 @@ for (const player of game.scored) {
 }
 console.log(scorers);
 */
-
+/*
 //LESSON: SETS
+//Sets need an iterable, and can hold mixed data types
+
+const ordersSet = new Set([
+  'Pasta',
+  'Pizza',
+  'Pizza',
+  'Risotto',
+  'Pasta',
+  'Pizza',
+]);
+
+console.log(ordersSet); //Set(3) {"Pasta", "Pizza", "Risotto"}
+console.log(new Set('Jonas'));
+console.log(ordersSet.size); //Same as .length
+console.log(ordersSet.has('Pizza')); //Same as.inlcudes method
+console.log(ordersSet.has('Bread'));
+
+//How to add to a set
+ordersSet.add('Garlic Bread');
+ordersSet.add('Garlic Bread');
+ordersSet.delete('Risotto');
+
+//How to clear everything in a set?
+// ordersSet.clear();
+console.log(ordersSet);
+
+for (const order of ordersSet) console.log(order);
+
+// Example
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+// How to use a spread operator in a set?
+const staffUnique = [...new Set(staff)]; // Works exactly like an array
+console.log(staffUnique);
+//How to check the size of a set?
+console.log(
+  new Set(['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter']).size
+);
+
+console.log(new Set('JamesJeremiahKing').size);
+
+//How to retrieve values out of a set?
+//There is no reason to use a set, because the value is there or not in a set.
+
+*/
+
+//  LESSON: MAPS: FUNDAMENTALS//
