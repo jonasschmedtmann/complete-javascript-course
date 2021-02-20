@@ -769,7 +769,7 @@ console.log(hoursMap);
 //Iteration - Maps are also iterables
 //Quiz app
 console.log(question.get('question'));
-for (const [key, value] of question) {
+for (const [key, value] of question) {r
   if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
 }
 const answer = 3;
@@ -788,3 +788,89 @@ console.log(...question.values());
 */
 
 // LESSON: SUMMARY: WHICH DATA STRUCTURE TO USE? //
+//Notes-check GoodNotes
+
+//////////CODING CHALLENGE #3 //////////////////////////
+const gameEvents = new Map([
+  [17, '⚽️ GOAL'],
+  [36, '🔁 Substitution'],
+  [47, '⚽️ GOAL'],
+  [61, '🔁 Substitution'],
+  [64, '🔶 Yellow card'],
+  [69, '🔴 Red card'],
+  [70, '🔁 Substitution'],
+  [72, '🔁 Substitution'],
+  [76, '⚽️ GOAL'],
+  [80, '⚽️ GOAL'],
+  [92, '🔶 Yellow card'],
+]);
+
+/*
+//Events hard
+const eventsHard = new Set([
+  '⚽ GOAL',
+  '🔁 Substitution',
+  '⚽ GOAL',
+  '🔁 Substitution',
+  '🔶 Yellow card',
+  '🔴 Red card',
+  '🔁 Substitution',
+  '🔁 Substitution',
+  '⚽ GOAL',
+  '⚽ GOAL',
+  '🔶 Yellow card',
+]);
+console.log(eventsHard);
+console.log(eventsHard.size);
+//Events Better way
+const eventsBetter = [...new Set(gameEvents)];
+console.log(eventsBetter);
+*/
+
+//  Math.trunc(Number(...timeMin)) / 10
+// for (const [tMins, el] of gameEvents) {
+//   if (tMins < 45) console.log(`[FIRST HALF] ${tMins}: ${el}`);
+//   if (tMins > 45) console.log(`[FIRST HALF] ${tMins}: ${el}`);
+// }
+
+// /*
+// 1. Create an array 'events' of the different game events that happened (no duplicates)
+// */
+// const events = [...new Set(gameEvents.values())];
+// const timeMins = [...new Set(gameEvents.keys())];
+// // console.log(events[0]);
+// // console.log(timeMins[0]);
+
+// /*
+// 2. After the game has finished, is was found that the yellow card from minute 64 was unfair. So remove this event from the game events log.
+// */
+// //Deletes key:64
+// gameEvents.delete(64);
+// // console.log(gameEvents);
+
+// /*
+// 3. Compute and log the following string to the console: "An event happened, on average, every 9 minutes" (keep in mind that a game has 90 minutes)
+// */
+// console.log(
+//   `An event happened, on average, every ${90 / gameEvents.size} minutes`
+// );
+
+// const time = [...gameEvents.keys()].pop();
+// console.log(time);
+// console.log(
+//   `An event happened, on average, every ${time / gameEvents.size} minutes`
+// );
+
+// /*
+// 4. Loop over 'gameEvents' and log each element to the console, marking
+// whether it's in the first half or second half (after 45 min) of the game, like this: [FIRST HALF] 17: ⚽ GOAL
+// */
+
+// for (const [tMins, event] of gameEvents) {
+//   const half = tMins <= 45 ? 'FIRST' : 'SECOND';
+//   console.log(`[${half} HALF] ${tMins}: ${event}`);
+// }
+
+///////////////////CODING CHALLENGE #3 COMPLETE //////////////////////
+
+// LESSON: WORKING WITH STRINGS - PART #1//
