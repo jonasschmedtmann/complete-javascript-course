@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /*
 ////////////////////////////////
@@ -401,7 +401,7 @@ console.log(`${john.fullName}'s BMI (${john.bmi}) is ${john.bmi > mark.bmi ? `hi
 // console.log(`Lifting weights repetition 9`);
 // console.log(`Lifting weights repetition 10`);
 
-// for loop keeps runnign while condiition is TRUE
+// for loop keeps running while condiition is TRUE
 for (let rep = 1; rep <= 10; rep++) {
     console.log(`Lifting weights repetition ${rep}`);
 }
@@ -515,19 +515,19 @@ const tips = [];
 const totals = [];
 
 const calcTip = function (bill) {
-    if (bill >= 50 && bill <= 300) {
-        const tip = bill * .15;
-        return tip;
-    } else {
-        const tip = bill * .20;
-        return tip;
-    }
-}
+  if (bill >= 50 && bill <= 300) {
+    const tip = bill * 0.15;
+    return tip;
+  } else {
+    const tip = bill * 0.2;
+    return tip;
+  }
+};
 
 for (let i = 0; i < bills.length; i++) {
-    const tip = calcTip(bills[i]);
-    tips.push(tip);
-    totals.push(tip + bills[i]);
+  const tip = calcTip(bills[i]);
+  tips.push(tip);
+  totals.push(tip + bills[i]);
 }
 console.log(bills, tips, totals);
 
@@ -543,11 +543,11 @@ console.log(bills, tips, totals);
 // console.log(calcAverage(totals));
 
 const calcAverage = function (arr) {
-    let sum = 0
-    for (let i = 0; i < arr.length; i++) {
-        sum += arr[i];
-    }
-    return sum / arr.length;
-}
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+  }
+  return sum / arr.length;
+};
 
 console.log(calcAverage(totals));
