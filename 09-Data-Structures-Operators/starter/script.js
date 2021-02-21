@@ -874,7 +874,7 @@ console.log(eventsBetter);
 ///////////////////CODING CHALLENGE #3 COMPLETE //////////////////////
 
 // LESSON: WORKING WITH STRINGS - PART #1//
-
+/*
 const airline = 'TAP Air Portugal';
 const plane = 'A320';
 
@@ -914,5 +914,29 @@ checkMiddleSeat('3E');
 
 console.log(new String('James')); //call a method on a 'string' converted into an object
 console.log(typeof new String('James').slice()); //converts an object back into a string
+*/
 
 // LESSON: WORKING WITH STRINGS-PART 2
+
+const airline = 'TAP Air Portugal';
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+
+/*
+// video example
+// Fix capitalization in name
+const passenger = 'jOnAS'; //Jonas
+const passengerLower = passenger.toLowerCase();
+
+const passengerCorrect =
+  passengerLower[0].toUpperCase() + passengerLower.slice(1);
+  console.log(passengerCorrect);
+*/
+//My function: converts first letter to uppercase and the rest lowercase
+const passengerCorrectName = function (passenger) {
+  const passengerLower = passenger.toLowerCase();
+  const passCorrect = passengerLower[0].toUpperCase() + passengerLower.slice(1);
+  console.log(passCorrect);
+};
+passengerCorrectName('jAmEs');
+passengerCorrectName('yEjIN');
