@@ -932,31 +932,70 @@ const passengerCorrect =
   passengerLower[0].toUpperCase() + passengerLower.slice(1);
   console.log(passengerCorrect);
 */
-//My function: converts first letter to uppercase and the rest lowercase
-const passengerCorrectName = function (passenger) {
-  const passengerLower = passenger.toLowerCase();
-  const passCorrect = passengerLower[0].toUpperCase() + passengerLower.slice(1);
-  console.log(passCorrect);
-};
-// passengerCorrectName('jAmEs');
-// passengerCorrectName('yEjIN');
 
-// Comparing email
-const email = 'hello@jonas.io';
-const loginEmail = ' Hello@Jonas.io \n';
+// //My function: converts first letter to uppercase and the rest lowercase
+// const passengerCorrectName = function (passenger) {
+//   const passengerLower = passenger.toLowerCase();
+//   const passCorrect = passengerLower[0].toUpperCase() + passengerLower.slice(1);
+//   console.log(passCorrect);
+// };
+// // passengerCorrectName('jAmEs');
+// // passengerCorrectName('yEjIN');
 
-// const lowerEmail = loginEmail.toLowerCase();
-//removes leading and trailing (whitespaces)
-// const trimmedEmail = lowerEmail.trim();
-//Video example
-// const normalizedEmail = loginEmail.toLowerCase().trim();
-// console.log(normalizedEmail);
-// console.log(email === normalizedEmail);
+// // Comparing email
+// const email = 'hello@jonas.io';
+// const loginEmail = ' Hello@Jonas.io \n';
 
-//Compare email function-no help
-const compareEmail = function (enteredEmail, checkedEmail) {
-  const normalizedEmail = checkedEmail.toLowerCase().trim();
-  console.log(enteredEmail === normalizedEmail ? true : false);
-};
-compareEmail('asjfalkdf@gajljg.com', 'asjfalkdf@gajljg.com');
-compareEmail(email, loginEmail);
+// // const lowerEmail = loginEmail.toLowerCase();
+// //removes leading and trailing (whitespaces)
+// // const trimmedEmail = lowerEmail.trim();
+// //Video example
+// // const normalizedEmail = loginEmail.toLowerCase().trim();
+// // console.log(normalizedEmail);
+// // console.log(email === normalizedEmail);
+
+// //Compare email function-no help
+// const compareEmail = function (enteredEmail, checkedEmail) {
+//   const normalizedEmail = checkedEmail.toLowerCase().trim();
+//   console.log(enteredEmail === normalizedEmail ? true : false);
+// };
+// compareEmail('asjfalkdf@gajljg.com', 'asjfalkdf@gajljg.com');
+// compareEmail(email, loginEmail);
+
+// // replacing
+// const priceGB = '288,97£'; //alt- 0163 £
+// const priceUS = priceGB.replace('£', '$').replace(',', '.');
+// console.log(priceUS);
+
+// const announcement = 'All passengers to boarding door 23. Boarding door 23!';
+
+// console.log(announcement.replace('door', 'gate')); //Only replaceing the first occurence
+
+// console.log(announcement.replaceAll('door', 'gate')); //New function
+// //REGEX-regular expressions-case sensative
+// console.log(announcement.replace(/door/g, 'gate'));
+
+// // Booleans
+// const plane = 'Airbus A320neo';
+// console.log(plane.includes('A320'));
+// console.log(plane.includes('Boeing'));
+// console.log(plane.includes('Air'));
+
+// if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+//   console.log('Part of the NEW Airbus family');
+// }
+
+// // Practive exercise
+// const checkBaggage = function (items) {
+//   const baggage = items.toLowerCase();
+//   if (baggage.includes('knife') || baggage.includes('gun')) {
+//     console.log('You are NOT allowed on board');
+//   } else {
+//     console.log('Welcome aboard!');
+//   }
+// };
+// checkBaggage('I hava a laptop, some Food and a pocket knife');
+// checkBaggage('Socks and camera');
+// checkBaggage('Got soe snacks and a gun for protection');
+
+// LESSON: WORKING WITH STRINGS - PART 3
