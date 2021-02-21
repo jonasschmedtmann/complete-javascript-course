@@ -918,9 +918,9 @@ console.log(typeof new String('James').slice()); //converts an object back into 
 
 // LESSON: WORKING WITH STRINGS-PART 2
 
-const airline = 'TAP Air Portugal';
-console.log(airline.toLowerCase());
-console.log(airline.toUpperCase());
+// const airline = 'TAP Air Portugal';
+// console.log(airline.toLowerCase());
+// console.log(airline.toUpperCase());
 
 /*
 // video example
@@ -938,5 +938,25 @@ const passengerCorrectName = function (passenger) {
   const passCorrect = passengerLower[0].toUpperCase() + passengerLower.slice(1);
   console.log(passCorrect);
 };
-passengerCorrectName('jAmEs');
-passengerCorrectName('yEjIN');
+// passengerCorrectName('jAmEs');
+// passengerCorrectName('yEjIN');
+
+// Comparing email
+const email = 'hello@jonas.io';
+const loginEmail = ' Hello@Jonas.io \n';
+
+// const lowerEmail = loginEmail.toLowerCase();
+//removes leading and trailing (whitespaces)
+// const trimmedEmail = lowerEmail.trim();
+//Video example
+// const normalizedEmail = loginEmail.toLowerCase().trim();
+// console.log(normalizedEmail);
+// console.log(email === normalizedEmail);
+
+//Compare email function-no help
+const compareEmail = function (enteredEmail, checkedEmail) {
+  const normalizedEmail = checkedEmail.toLowerCase().trim();
+  console.log(enteredEmail === normalizedEmail ? true : false);
+};
+compareEmail('asjfalkdf@gajljg.com', 'asjfalkdf@gajljg.com');
+compareEmail(email, loginEmail);
