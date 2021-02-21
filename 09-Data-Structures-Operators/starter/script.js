@@ -874,3 +874,45 @@ console.log(eventsBetter);
 ///////////////////CODING CHALLENGE #3 COMPLETE //////////////////////
 
 // LESSON: WORKING WITH STRINGS - PART #1//
+
+const airline = 'TAP Air Portugal';
+const plane = 'A320';
+
+console.log(plane[0]);
+console.log(plane[1]);
+console.log(plane[2]);
+console.log(typeof plane[0]);
+console.log('B737'[0]);
+
+console.log(airline.length);
+console.log('B737'.length);
+//Finding the location of 'string'
+console.log(airline.indexOf('r'));
+console.log(airline.lastIndexOf('r'));
+console.log(airline.indexOf('Portugal'));
+
+// .slice method returns a new "string"
+console.log(airline.slice(4)); // (substring) => "Air Portugal"
+console.log(airline.slice(4, 7)); // 7-4 = 3; => Air
+
+console.log(airline.slice(0, airline.indexOf(' '))); //to find the first string
+console.log(airline.slice(airline.lastIndexOf(' ') + 1)); // to find the last string
+
+console.log(airline.slice(-2)); // extract from the end => al
+console.log(airline.slice(1, -1)); // => AP Air Portuga
+
+const checkMiddleSeat = function (seat) {
+  //B and E are middle seats
+  const s = seat.slice('-1');
+  if (s === 'B' || s === 'E') console.log('You got the middle seat 😒');
+  else console.log('You got lucky 👳🏾‍♂️👳🏾‍♀️');
+};
+
+checkMiddleSeat('11B');
+checkMiddleSeat('23C');
+checkMiddleSeat('3E');
+
+console.log(new String('James')); //call a method on a 'string' converted into an object
+console.log(typeof new String('James').slice()); //converts an object back into a string
+
+// LESSON: WORKING WITH STRINGS-PART 2
