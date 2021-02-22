@@ -1055,3 +1055,36 @@ and convert them to camelCase.
 The input will come from a textarea inserted into the DOM (see code below to
 insert the elements), and conversion will happen when the button is pressed
 */
+/*
+Test data (pasted to textarea, including spaces):
+underscore_case
+first_name
+Some_Variable
+ calculate_AGE
+delayed_departure
+*/
+/*
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+//creates the function when the btn is clicked
+document.querySelector('button').addEventListener('click', function () {
+  const text = document.querySelector('textarea').value;
+  const rows = text.split('\n');
+  console.log(rows);
+//destructures rows and creates a key for checkmarks
+  for (const [i, row] of rows.entries()) {
+    const [first, second] = row.toLowerCase().trim().split('_'); // main code for converting to lowerCase
+    //accesses the [0] after (_) and converts it to camelCase
+    const output = `${first}${second.replace(
+      second[0],
+      second[0].toUpperCase()
+    )}`;
+    console.log(`${output.padEnd(20)}${'✅'.repeat(i + 1)}`);
+  }
+});
+
+document.querySelector('textarea').style.backgroundColor = 'yellow';
+document.querySelector('button').style.backgroundColor = 'blue';
+*/
+///////////CODING CHALLENGE #4-complete ///////////////
