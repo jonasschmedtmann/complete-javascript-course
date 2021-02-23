@@ -119,7 +119,7 @@ const greetArr = greeting => name => console.log(`${greeting} ${name}`);
 
 greetArr('Sup')('James');
 */
-
+/*
 // LESSON: THE CALL AND APPLY METHODS-THIS KEYWORD
 
 const lufthansa = {
@@ -158,7 +158,7 @@ book.call(lufthansa, 239, 'Mary Cooper');
 console.log(lufthansa);
 
 const swiss = {
-  ariline: 'Swiss Airlines',
+  airline: 'Swiss Airlines',
   iataCode: 'LX',
   bookings: [],
 };
@@ -172,3 +172,60 @@ book.apply(swiss, flightData);
 console.log(swiss);
 
 book.call(swiss, ...flightData);
+
+//LESSON: THE BIND METHOD -returns a new function where the 'this' keyword is set
+
+// book.call(eurowings, 23, 'Sarah Williams');
+
+const bookEW = book.bind(eurowings);
+const bookLH = book.bind(lufthansa);
+const bookLX = book.bind(swiss);
+
+bookEW(23, 'Steven Williams');
+
+const bookEW23 = book.bind(eurowings, 23);
+bookEW23('James King');
+bookEW23('Martha Cooper');
+
+// With event listeners
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  console.log(this);
+
+  this.planes++;
+  console.log(this.planes);
+};
+// lufthansa.buyPlane();
+
+document
+  .querySelector('.buy')
+  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+// Partial application
+
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 200));
+
+// const addVAT = value => value + value * rate
+const addVAT = addTax.bind(null, 0.23);
+
+console.log(addVAT(100));
+console.log(addVAT(23));
+
+const addVAt = addTax.call(null, 0.23, 100);
+console.log(addVAt);
+
+const addVat = [0.23, 100];
+addTax.apply();
+console.log(addVat);
+
+const addTaxRate = function (rate) {
+  return function (value) {
+    return value + value * rate;
+  };
+};
+
+const addVAT2 = addTaxRate(0.23);
+console.log(addVAT2(100));
+console.log(addVAT2(23));
+*/
