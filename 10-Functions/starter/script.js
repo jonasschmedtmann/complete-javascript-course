@@ -99,5 +99,25 @@ document.body.addEventListener('click', high5);
 
 ['Jonas', 'Martha', 'Adam'].forEach(high5);
 */
-
+/*
 // LESSON: FUCNTIONS => FUNCTIONS
+
+// const greet = function (greeting) {
+//   return function (name) {
+//     console.log(`${greeting} ${name}`);
+//   };
+// };
+
+// const greeterHey = greet('Hey ');
+// greeterHey('Jonas');
+// greeterHey('James');
+
+// greet('Hello')('James');
+
+//Challenge arrow function
+const greetArr = greeting => name => console.log(`${greeting} ${name}`);
+
+greetArr('Sup')('James');
+*/
+
+// LESSON: THE CALL AND APPLY METHODS-THIS KEYWORD
