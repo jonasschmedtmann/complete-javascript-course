@@ -121,3 +121,54 @@ greetArr('Sup')('James');
 */
 
 // LESSON: THE CALL AND APPLY METHODS-THIS KEYWORD
+
+const lufthansa = {
+  airline: 'Luthansa',
+  iataCode: 'LH',
+  bookings: [],
+  // book: function(){}
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+    );
+    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+  },
+};
+
+lufthansa.book(239, 'James Jeremiah King');
+lufthansa.book(635, 'Yejin King');
+console.log(lufthansa);
+const eurowings = {
+  airline: 'Eurowing',
+  iataCode: 'EW',
+  bookings: [],
+};
+
+const book = lufthansa.book;
+console.log(book);
+//Cannot function call, because the copy points to undefined
+// book(23, 'Sarah Williams');//doesn't work
+
+//How to get the this keyword to point to the correct object?
+// 1. call 2. apply 3. bind are the answers
+book.call(eurowings, 23, 'Sarah Williams');
+console.log(eurowings);
+
+book.call(lufthansa, 239, 'Mary Cooper');
+console.log(lufthansa);
+
+const swiss = {
+  ariline: 'Swiss Airlines',
+  iataCode: 'LX',
+  bookings: [],
+};
+
+book.call(swiss, 583, 'Mary Cooper');
+console.log(swiss);
+
+// 2. Apply method- not used a lot in modern JS
+const flightData = [583, 'George Cooper'];
+book.apply(swiss, flightData);
+console.log(swiss);
+
+book.call(swiss, ...flightData);
