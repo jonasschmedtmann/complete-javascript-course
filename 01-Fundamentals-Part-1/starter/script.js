@@ -50,3 +50,12 @@ age === 18 ? console.log(`true`) : console.log(`false`);
 
 const userinput = Number(prompt(`whast your favorite number`));
 userinput === 18 ? console.log(`nice`) : console.log(`not nice`);
+
+const day = `monday`;
+switch (day) {
+  case `monday`:
+    console.log("Monday switch hit");
+    break;
+  default:
+    console.log("Monday switch Not hit");
+}
