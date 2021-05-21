@@ -4,7 +4,9 @@ let number = document.querySelector('.number');
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
 let highscore = 0;
+let cheatCode = [];
 
+// FUNCTIONS
 let backgroundColor = function (color) {
   document.querySelector('body').style.backgroundColor = color;
 };
@@ -24,8 +26,10 @@ let updateScore = function () {
     displaySecretNumber();
   }
   document.querySelector('.score').textContent = score;
+  document.querySelector('.guess').value = '';
 };
 
+// GAME LOGIC
 let gameEngine = function () {
   const guess = Number(document.querySelector('.guess').value);
 
@@ -56,6 +60,11 @@ let gameEngine = function () {
 };
 
 document.querySelector('.check').addEventListener('click', gameEngine);
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Enter') {
+    gameEngine();
+  }
+});
 
 //// GAME RESET /////
 document.querySelector('.again').addEventListener('click', function () {
@@ -67,10 +76,34 @@ document.querySelector('.again').addEventListener('click', function () {
   number.textContent = '?';
   document.querySelector('.score').textContent = score;
   displayMessage('Start guessing...');
+  cheatCode = [];
 });
 
+/// KONAMI CHEAT CODE ///
 let cheat = false;
-
-if (cheat) {
-  document.querySelector('.number').textContent = secretNumber;
-}
+const cheatKey = [
+  'ArrowUp',
+  'ArrowUp',
+  'ArrowDown',
+  'ArrowDown',
+  'ArrowLeft',
+  'ArrowRight',
+  'ArrowLeft',
+  'ArrowRight',
+  'b',
+  'a',
+];
+document.addEventListener('keydown', function (e) {
+  cheatCode.push(e.key);
+  if (cheatCode.length === 10) {
+    let i = 0;
+    while (i < 10) {
+      if (cheatCode[i] === cheatKey[i]) {
+        i++;
+      }
+    }
+    cheat = true;
+    document.querySelector('.number').textContent = secretNumber;
+    backgroundColor('blue');
+  }
+});
