@@ -28,34 +28,21 @@ const restaurant = {
       close: 24,
     },
   },
+
+  orderDelivery: function ({
+    starterIndex = 1,
+    mainIndex = 0,
+    time = '20:00',
+    address,
+  }) {
+    console.log(
+      `Order Received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}.`
+    );
+  },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(
+      `Here is your delicious pasta with ${ing1}, ${ing2}, and ${ing3}.`
+    );
+  },
 };
-
-const { name, openingHours, categories } = restaurant;
-
-console.log(name, openingHours, categories);
-const {
-  name: restaurantName,
-  openingHours: hours,
-  categories: tags,
-} = restaurant;
-console.log(restaurantName, hours, tags);
-
-const { menu = [], starterMenu: starters = [] } = restaurant;
-
-console.log(menu, starters);
-
-// // const [starter, mainCourse] = restaurant.order(2, 0);
-
-// // console.log(starter, mainCourse);
-
-// // const nested = [2, 4, [5, 6]];
-// // // const [i, , j] = nested;
-// // // console.log(i, j);
-
-// // const [i, , [j, k]] = nested;
-// // console.log(i, j, k);
-
-// // Default Values
-
-// const [p = 1, q = 1, r = 1] = [8];
-// console.log(p, q, r);
