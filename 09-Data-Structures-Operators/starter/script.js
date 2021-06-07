@@ -45,4 +45,73 @@ const restaurant = {
       `Here is your delicious pasta with ${ing1}, ${ing2}, and ${ing3}.`
     );
   },
+
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
 };
+
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+const players1 = [...game.players[0]];
+console.log(players1);
+const players2 = [...game.players[1]];
+console.log(players2);
+const [gk1, ...fieldPlayers] = [...players1];
+console.log(gk1, fieldPlayers);
+const allPlayers = [...players1, ...players2];
+console.log(allPlayers);
+
+const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+
+const team1 = game.odds[0];
+const draw = game.odds[1];
+const team2 = game.odds[2];
+
+console.log(team1, draw, team2);
+const printGoals = function (...x) {
+  for (let i = 0; i < x.length; i++) {
+    let sum = [];
+    sum.push(x[i]);
+    console.log(`Goals were scored by ${sum}!`);
+  }
+};
+printGoals(game.scored);
