@@ -115,9 +115,3 @@ const printGoals = function (...x) {
   }
 };
 printGoals(game.scored);
-
-// here is a line of code
-// i will mess this up to see how version control works.
-
-// here is an alternate line of code
-// these will be different to see how pushed changes work.
