@@ -115,3 +115,6 @@ const printGoals = function (...x) {
   }
 };
 printGoals(game.scored);
+
+// here is an alternate line of code
+// these will be different to see how pushed changes work.
