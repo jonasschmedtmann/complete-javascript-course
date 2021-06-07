@@ -115,6 +115,3 @@ const printGoals = function (...x) {
   }
 };
 printGoals(game.scored);
-
-// Git sync test!
-// Here is a second line for testing purposes.
