@@ -115,3 +115,5 @@ const printGoals = function (...x) {
   }
 };
 printGoals(game.scored);
+
+// Git sync test!
