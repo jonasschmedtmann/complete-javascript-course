@@ -60,14 +60,14 @@ const restaurant = {
   },
 };
 
-const properties = Object.keys(openingHours);
+/* const properties = Object.keys(openingHours);
 let openStr = `We are open on ${properties.length} days: `;
 
 for (const day of properties) {
   openStr += `${day}, `;
 }
 
-console.log(openStr);
+// console.log(openStr);
 
 const values = Object.values(openingHours);
 console.log(values);
@@ -76,7 +76,7 @@ const entries = Object.entries(openingHours);
 
 for (const [key, { open, close }] of entries) {
   console.log(`On ${key} we open at ${open} and close at ${close}.`);
-}
+} */
 
 /* // Looping Arrays: The For-Of Loop
 
@@ -88,7 +88,7 @@ for (const [i, el] of menu.entries()) {
 }
  */
 
-/* // CODING CHALLENGE #1
+// CODING CHALLENGES
 // PROVIDED DATA
 const game = {
   team1: 'Bayern Munich',
@@ -130,7 +130,8 @@ const game = {
   },
 };
 
-// BEGIN CHALLENGE
+/* 
+// BEGIN CHALLENGE #1
 const [players1, players2] = game.players;
 const [gk, ...fieldPlayers] = players1;
 const allPlayers = [...players1, ...players2];
@@ -155,4 +156,29 @@ printGoals(...game.scored);
 
 // 7.
 
-// END CODING CHALLENGE #1 */
+// END CODING CHALLENGE #1 
+*/
+
+// BEGIN CODING CHALLENGE #2
+
+// 1. Loop over the game.scored array & print each player name & goal number
+
+for (const [goal, player] of game.scored.entries()) {
+  console.log(`Goal ${goal + 1}: ${player}!`);
+}
+
+// 2. Use a loop to calculate the average odd and log it.
+let average = 0;
+for (const odd of Object.values(game.odds)) {
+  average += odd;
+}
+average /= Object.values(game.odds).length;
+console.log(average);
+
+// 3. Print the odds to the console.
+const oddResults = Object.entries(game.odds);
+
+console.log(oddResults);
+
+for (const [results, chances] of oddResults)
+  console.log(`Odds of ${game.results}: ${chances}`);
