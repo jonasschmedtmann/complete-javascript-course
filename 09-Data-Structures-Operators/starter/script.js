@@ -60,25 +60,116 @@ const restaurant = {
   },
 };
 
-/* const properties = Object.keys(openingHours);
-let openStr = `We are open on ${properties.length} days: `;
+// LEARNING ABOUT MAPS
+/* 
+// Maps can have keys of any type, not just strings.
+// They're basically more powerful Objects
+// the .set() method returns the Map, so we can chain it.
 
-for (const day of properties) {
-  openStr += `${day}, `;
+const rest = new Map();
+rest.set('name', 'Classico Italiano');
+rest.set(1, 'Firenze, Italy');
+// console.log(rest.set(2, 'Lisbon, Portugal'));
+
+// Chaining .set() methods
+rest
+  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'We are open :D')
+  .set(false, 'We are closed :(');
+
+// Retrieving data with .get() method
+// console.log(rest.get('name'));
+// console.log(rest.get(true));
+
+const time = 21;
+// console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+
+// Other Map methods: .has(), .delete(), .size(), and .clear();
+
+// console.log(rest.has('categories'));
+rest.delete(2);
+// console.log(rest.size);
+
+rest.set(document.querySelector('h1'), 'Heading');
+
+const arr = [1, 2];
+rest.set(arr, 'Test');
+// console.log(rest);
+
+// console.log(rest.get(arr));
+
+const question = new Map([
+  ['question', 'What is the best programming language in the world?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'JavaScript'],
+  ['correct', 3],
+  [true, 'Correct!'],
+  [false, 'Try again.'],
+]);
+// console.log(question);
+
+// Convert Object to Map
+const hoursMap = new Map(Object.entries(openingHours));
+// console.log(hoursMap);
+
+console.log(question.get('question'));
+for (const [k, v] of question) {
+  if (typeof k === 'number') console.log(`Answer ${k}: ${v}`);
 }
+const answer = Number(prompt('Your Answer'));
+console.log(question.get(answer === 3));
 
-// console.log(openStr);
+// Convert Map to Array
+console.log([...question]); */
 
-const values = Object.values(openingHours);
-console.log(values);
+// LEARNING ABOUT SETS
+/* 
+// A set is a collection of unique values: it cannot have duplicates.
+// Sets can hold mixed data types.
+// Sets are iterables.
+// Sets aren't indexable, thus there's no way to retrieve data from a Set.
 
-const entries = Object.entries(openingHours);
+const ordersSet = new Set([
+  'Pasta',
+  'Pizza',
+  'Pizza',
+  'Risotto',
+  'Pasta',
+  'Pizza',
+]);
 
-for (const [key, { open, close }] of entries) {
-  console.log(`On ${key} we open at ${open} and close at ${close}.`);
-} */
+console.log(ordersSet);
+// This only has 3 items
 
-/* // Looping Arrays: The For-Of Loop
+console.log(ordersSet.size);
+console.log(ordersSet.has('Pizza'));
+console.log(ordersSet.has('Bread'));
+
+ordersSet.add('Garlic Bread');
+ordersSet.add('Garlic Bread');
+ordersSet.delete('Risotto');
+// ordersSet.clear();
+console.log(ordersSet);
+
+// for (const order of ordersSet) console.log(order);
+
+////////////////////////////////
+// Example
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+
+const staffUnique = [...new Set(staff)];
+// Make 'staffUnique' an Array (from a Set) by adding brackets and using the spread operator to deconstruct the Set and make it an Array.
+console.log(staffUnique);
+// End Example
+/////////////////////////////////////
+ */
+
+// Looping Arrays: The For-Of Loop
+/*
+////////////////////////////////////////////
 
 const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 for (const item of menu) console.log(item);
@@ -161,13 +252,22 @@ printGoals(...game.scored);
 
 // BEGIN CODING CHALLENGE #2
 
-// 1. Loop over the game.scored array & print each player name & goal number
+/* const challenge1 =
+    '=====1. Loop over the game.scored array & print each player name & goal number=====',
+  challenge2 =
+    '=====2. Use a loop to calculate the average odd and log it.=====',
+  challenge3 = '=====3. Print the odds to the console.=====',
+  challenge4 =
+    '=====4. Create an object("scorers") that has names of players who scored and the number of goals they scored.=====';
 
+// 1.
+console.log(challenge1);
 for (const [goal, player] of game.scored.entries()) {
   console.log(`Goal ${goal + 1}: ${player}!`);
 }
 
-// 2. Use a loop to calculate the average odd and log it.
+// 2.
+console.log(challenge2);
 let average = 0;
 for (const odd of Object.values(game.odds)) {
   average += odd;
@@ -175,10 +275,71 @@ for (const odd of Object.values(game.odds)) {
 average /= Object.values(game.odds).length;
 console.log(average);
 
-// 3. Print the odds to the console.
-const oddResults = Object.entries(game.odds);
+// 3.
+console.log(challenge3);
+for (const [results, chances] of Object.entries(game.odds)) {
+  console.log(`${game[results]}`);
+  const teamStr = results === 'x' ? 'draw' : `victory ${game[results]}`;
+  console.log(`Odds of ${teamStr}: ${chances}`);
+}
 
-console.log(oddResults);
+// 4.
+console.log(challenge4);
 
-for (const [results, chances] of oddResults)
-  console.log(`Odds of ${game.results}: ${chances}`);
+const scorers = {};
+
+for (const player of game.scored) {
+  scorers[player] ? scorers[player]++ : (scorers[player] = 1);
+}
+
+console.log(scorers);
+
+ */
+
+// END CODING CHALLENGE #2
+
+// BEGIN CODING CHALLENGE #3
+
+const gameEvents = new Map([
+  [17, '⚽️ GOAL'],
+  [36, '🔁 Substitution'],
+  [47, '⚽️ GOAL'],
+  [61, '🔁 Substitution'],
+  [64, '🔶 Yellow card'],
+  [69, '🔴 Red card'],
+  [70, '🔁 Substitution'],
+  [72, '🔁 Substitution'],
+  [76, '⚽️ GOAL'],
+  [80, '⚽️ GOAL'],
+  [92, '🔶 Yellow card'],
+]);
+
+// 1. Create an 'events' array  of unqiue events during the game
+console.log('=====1. Unique Game Events=====');
+const events = [...new Set(gameEvents.values())];
+console.log(events);
+
+// 2. Remove the Yellow from 64th minute
+console.log('=====2. Remove 64th min Yellow=====');
+gameEvents.delete(64);
+console.log(gameEvents);
+
+// 3. Compute average time between events and log to console
+console.log(
+  '=====3. Compute average time between events and log to console====='
+);
+console.log(
+  `An event happened, on average, every ${90 / gameEvents.size} minutes`
+);
+
+// 4. Loop over Map and log each eleemnt to the console and which half it occurs in
+console.log(
+  '=====4. Loop over Map and log each eleemnt to the console and which half it occurs in====='
+);
+
+for (const [time, event] of gameEvents) {
+  const half = time <= 45 ? 'FIRST' : 'SECOND';
+  console.log(`[${half} HALF] ${time}: ${event}`);
+}
+
+// END CODING CHALLENGE #3
