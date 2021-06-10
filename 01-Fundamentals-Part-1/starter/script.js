@@ -62,3 +62,29 @@ console.log(String(23), 23);
 // Type Coercion 
 console.log('I am  ' + 23 + 'years old');
 console.log('23' - '10' - 3);
+
+// Eg. 2
+let n = '1' + 1
+n = n - 1;
+console.log(n);
+
+
+//Truthy Values Vrs Falsy Values 
+// Falsy values are not necessarily false but will become false after being converted into a boolean
+// Ther are only 5 Falsy values 
+// 0,
+//'',
+//undefined, 
+//null
+//NaN
+
+//Anything else is a truthy value
+// Eg.
+console.log(Boolean(0));
+console.log(Boolean(undefined));
+console.log(Boolean('Samuel'));
+console.log(Boolean({}));
+console.log(Boolean(''));
+
+
+// ********************************** EQUALITY OPERATORS *****************
