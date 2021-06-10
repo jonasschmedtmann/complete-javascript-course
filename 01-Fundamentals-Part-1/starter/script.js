@@ -27,3 +27,38 @@ if (age >= 18) {
     const yearsleft = 18 - age;
     console.log(`Sarah is too young. Wait another ${yearsleft} years`);
 }
+
+// Coding Challenge #2
+const massMark = 95;
+const heightMark = 1.88;
+const massJohn = 85;
+const heightJohn = 85;
+
+const BMIMark = massMark / heightMark ** 2;
+const BMIJohn = massJohn / heightJohn ** 2;
+const markHigherBMI = BMIMark > BMIJohn;
+
+console.log(BMIMark, BMIJohn, markHigherBMI);
+
+if (BMIMark > BMIJohn) {
+    console.log(`"Mark's BMI ${BMIMark}is higher than John's"`)
+} else {
+    console.log(`John's BMI ${BMIJohn}is higher than Mark's!"`)
+}
+
+
+// *************************** TYPE CONVERSION & TYPE COERCION ***********
+// Eg.
+// TYPE conversion 
+// 1. Converting Strings to Numbers 
+const inputYear = '1991';
+console.log(Number(inputYear), inputYear);
+console.log(Number(inputYear) + 18);
+
+// 2. Converting Numbers to Strings
+console.log(String(23), 23);
+
+
+// Type Coercion 
+console.log('I am  ' + 23 + 'years old');
+console.log('23' - '10' - 3);
