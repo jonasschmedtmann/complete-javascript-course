@@ -159,3 +159,28 @@ switch (day) {
 
 // A statement is a bigger piece of code that does not neccearily produce a value
 // Eg. if (23 > 10) { const str = '23 is bigger';
+
+
+
+
+// ********** 💎💎 THE CONDITIONAL (TERNARY) OPERATOR  💎💎 *************
+//It allows us to write a conditional statement in one line
+// It is known as the ternary operator because it has 3 parts
+
+const age = 23;
+age >= 18 //Part 1. THe condition 
+    ?
+    console.log('I like to drink wine 🍷') : //the If part 
+    console.log('I like to drink juice!') // Else part
+
+
+const drink = age >= 18 ? 'wine🍷' : 'water🧂';
+console.log(drink);
+
+// Coding Challenge
+// TEST DATA: Test for bill values: 275, 40 and 430
+// Tips are calculated if the bill is between 50 and 300 = 15%. If it is more than that, tip is calculated at 20%
+
+const bill = 275;
+
+const tip = bill >= 50 && bill <= 300 ? `The bill was ${bill} and the tip was ${bill * 0.15}, total value ${bill +(bill * 0.15)}` : `The bill was ${bill} and the tip was ${bill * 0.25}, total value ${bill +(bill * 0.15)}`;
