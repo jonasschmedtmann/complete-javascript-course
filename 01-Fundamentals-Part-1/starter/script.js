@@ -88,3 +88,74 @@ console.log(Boolean(''));
 
 
 // ********************************** EQUALITY OPERATORS *****************
+// == VS ===
+//EG.
+// === is the strict equality opeartor. It does not do any type coersion 
+const aged = 18;
+if (aged === 18) console.log('You just became an adult');
+
+
+// == [The Double Equal] is the loose equal. It performs type coersion. 
+//EG. 
+const ageInput = 18;
+if (ageInput == '18') console.log('You just became an adult');
+
+
+
+
+// CODEING CHALLENGE #3 
+// Caclculate the average score for each team, using the test data below.
+//Compare the team's average scores to deterine the winner of the competition, and print it to the console. Don't forget that there can be a draw, so test for that as well (draw means they have the same average score).
+
+// TEST DATA: 
+//Dolphins score 96, 118 and 80. 
+//Koalas score 88, 91 and 110.
+
+let dolpScore = 96 + 118 + 80;
+let KoaScore = 88 + 91 + 110;
+
+const dolpAvg = dolpScore / 3;
+const KoaAvg = KoaScore / 3;
+
+if (dolpAvg > KoaAvg) {
+    console.log(`Dophins are the winners with an avg score of ${dolpAvg} 💎`)
+} else if (KoaAvg > dolpAvg) {
+    console.log(`Koalas are the winners with an avg score of ${KoaAvg}`)
+} else console.log("It was a tie :😊  ");
+
+
+
+// ************** 💎💎 SWITCH STATEMENTS 💎💎 *******************
+// Switch staements use Strict comparisions === 
+const day = 'monday';
+
+switch (day) {
+    case 'monday':
+        console.log('Plan course structure');
+        console.log('Go to coding meetup')
+        break;
+    case 'tuesday':
+        console.log('Prepare theory vidoes');
+        break;
+    case 'wednesday':
+    case 'thursday':
+        console.log('Write code examples');
+    case 'friday':
+        console.log('Record vides ');
+        break;
+    case 'saturday':
+    case 'sunday':
+        console.log('Enjoy the weekend');
+        break;
+    default:
+        console.log('Not a valid day!');
+}
+
+
+
+// ************** 💎💎 STATEMENTS AND EXPRESSIONS 💎💎 ******************
+// An expression is a piece of code that produces a value
+// Eg. 3+4, true && true
+
+// A statement is a bigger piece of code that does not neccearily produce a value
+// Eg. if (23 > 10) { const str = '23 is bigger';
