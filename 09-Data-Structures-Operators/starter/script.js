@@ -4,6 +4,105 @@
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
+// Working with Strings
+// BEGIN PART 1
+/*
+const airline = 'TAP Air Portugal';
+const plane = 'A320';
+
+
+// .slice() needs strings
+// Using .slice creates substrings that must be stored to be used
+// Strings are primitives and thus, immutable
+// .slice([start value],[end value]), and the length is always the end value - start value
+
+console.log(airline.slice(4, 7));
+
+// Extracting the first word uses 0 index and first instance of a space
+console.log(airline.slice(0, airline.indexOf(' ')));
+// Extract the last word
+console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+
+// Negative values reverse the extraction process
+console.log(airline.slice(-2));
+// Here we slice off the first and last letters
+console.log(airline.slice(1, -1));
+
+const checkMiddleSeat = function (seat) {
+  // B and E are middle seats
+  if (seat.slice(-1) === 'B' || seat.slice(-1) === 'E') {
+    console.log('you got a middle seat');
+  } else {
+    console.log('You got lucky!');
+  }
+};
+
+checkMiddleSeat('11B');
+checkMiddleSeat('23C');
+checkMiddleSeat('3E');*/
+// END PART 1
+
+// BEGIN PART 2
+/*
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+
+const passenger = 'jOnAS';
+const passengerLower = passenger.toLowerCase();
+const passengerCorrect =
+  passengerLower[0].toUpperCase() + passengerLower.slice(1);
+console.log(passengerCorrect);
+
+// Comparing email Input
+
+const email = 'hello@jonas.io';
+const loginEmail = '  Hello@Jonas.io \n';
+
+const lowerEmail = loginEmail.toLowerCase();
+const trimmedEmail = lowerEmail.trim();
+console.log(trimmedEmail);
+
+const normalizedEmail = loginEmail.toLowerCase().trim();
+console.log(normalizedEmail);
+console.log(email === normalizedEmail);
+
+
+// Replacing Part of Strings
+// .replace() only operates on the first occurence
+const priceGB = '288,97£';
+const priceUS = priceGB.replace('£', '$').replace(',', '.');
+console.log(priceUS);
+
+const announcement =
+  'All passengers come to boarding door 23. Boarding door 23.';
+console.log(announcement.replace(/door/g, 'gate')); // Use Regex to find all (g for global) instances of the door string
+console.log(announcement.replaceAll('door', 'gate'));
+
+// Booleans
+const plane = 'Airbus A320neo';
+console.log(plane.includes('A320'));
+
+if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+  console.log('Part of the New Airbus family');
+}
+
+// Practice Exercise
+
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+  if (baggage.includes('knife' || baggage.includes('gun'))) {
+    console.log("You aren't allowed on board.");
+  } else {
+    console.log('Weclome aboard!');
+  }
+};
+
+checkBaggage('I have a laptop, some food, and a pocket Knife.');
+checkBaggage('Socks and camera');
+checkBaggage('Got some snacks and a gun for protection');
+*/
+// END PART 2
+
 // Data needed for first part of the section
 
 const weekdays = [
@@ -221,8 +320,8 @@ const game = {
   },
 };
 
-/* 
 // BEGIN CHALLENGE #1
+/* 
 const [players1, players2] = game.players;
 const [gk, ...fieldPlayers] = players1;
 const allPlayers = [...players1, ...players2];
@@ -245,13 +344,10 @@ const printGoals = function (...players) {
 printGoals(...game.scored);
 // printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
 
-// 7.
-
-// END CODING CHALLENGE #1 
-*/
+// 7.*/
+// END CODING CHALLENGE #1
 
 // BEGIN CODING CHALLENGE #2
-
 /* const challenge1 =
     '=====1. Loop over the game.scored array & print each player name & goal number=====',
   challenge2 =
@@ -292,14 +388,11 @@ for (const player of game.scored) {
   scorers[player] ? scorers[player]++ : (scorers[player] = 1);
 }
 
-console.log(scorers);
-
- */
-
+console.log(scorers);*/
 // END CODING CHALLENGE #2
 
 // BEGIN CODING CHALLENGE #3
-
+/* 
 const gameEvents = new Map([
   [17, '⚽️ GOAL'],
   [36, '🔁 Substitution'],
@@ -340,6 +433,5 @@ console.log(
 for (const [time, event] of gameEvents) {
   const half = time <= 45 ? 'FIRST' : 'SECOND';
   console.log(`[${half} HALF] ${time}: ${event}`);
-}
-
+} */
 // END CODING CHALLENGE #3
