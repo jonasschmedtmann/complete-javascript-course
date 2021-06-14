@@ -103,6 +103,65 @@ checkBaggage('Got some snacks and a gun for protection');
 */
 // END PART 2
 
+// BEGIN PART 3
+/*
+console.log('a+very+nice+string'.split('+'));
+console.log('KJ Roelke'.split(' '));
+
+const [firstName, lastName] = 'Kaleb Roelke'.split(' ');
+console.log(firstName, lastName);
+
+const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+console.log(newName);
+
+const capitalizeName = function (name) {
+  const names = name.split(' ');
+  const namesUpper = [];
+  for (const n of names) {
+    //namesUpper.push(n[0].toUpperCase() + n.slice(1));
+    namesUpper.push(n.replace(n[0], n[0].toUpperCase()));
+  }
+  console.log(namesUpper.join(' '));
+};
+const passenger = 'Jessica ann smith davis';
+
+capitalizeName(passenger);
+capitalizeName('jonas schmedtmann');
+capitalizeName('kaleb roelke');
+
+// Padding strings
+// Adding characters until the string reaches a certain length
+
+const message = 'Go to gate 23!';
+console.log(message.padStart(25, '+'));
+console.log('Jonas'.padStart(25, '+'));
+console.log('Jonas'.padEnd(25, '+'));
+
+// Example: Credit Card Number Masking
+
+const maskCreditCard = function (number) {
+  const str = number + '';
+  const last = str.slice(-4);
+  return last.padStart(str.length, '*');
+};
+
+console.log(maskCreditCard(1234123412345678));
+console.log(maskCreditCard('12341234123456782234829123'));
+
+// .repeat()
+
+const message2 = 'Bad weather...All departures delayed... \n';
+
+console.log(message2.repeat(5));
+
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in line ${':/  '.repeat(n)}`);
+};
+
+planesInLine(5);
+*/
+// END PART 3
+
 // Data needed for first part of the section
 
 const weekdays = [
@@ -435,3 +494,24 @@ for (const [time, event] of gameEvents) {
   console.log(`[${half} HALF] ${time}: ${event}`);
 } */
 // END CODING CHALLENGE #3
+
+// BEGIN CODING CHALLENGE #4
+
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+const camelCase = function (text) {
+  console.log(text);
+};
+camelCase(document.getElementsByName('textarea'));
+
+/*
+PASTE ME INTO TEXT AREA
+underscore_case
+ first_name
+Some_Variable 
+  calculate_AGE
+delayed_departure
+*/
+
+// END CODING CHAllENGE #4
