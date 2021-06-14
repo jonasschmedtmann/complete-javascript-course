@@ -380,7 +380,7 @@ const game = {
 };
 
 // BEGIN CHALLENGE #1
-/* 
+/*
 const [players1, players2] = game.players;
 const [gk, ...fieldPlayers] = players1;
 const allPlayers = [...players1, ...players2];
@@ -451,8 +451,7 @@ console.log(scorers);*/
 // END CODING CHALLENGE #2
 
 // BEGIN CODING CHALLENGE #3
-/* 
-const gameEvents = new Map([
+/* const gameEvents = new Map([
   [17, '⚽️ GOAL'],
   [36, '🔁 Substitution'],
   [47, '⚽️ GOAL'],
@@ -500,10 +499,9 @@ for (const [time, event] of gameEvents) {
 document.body.append(document.createElement('textarea'));
 document.body.append(document.createElement('button'));
 
-const camelCase = function (text) {
-  console.log(text);
-};
-camelCase(document.getElementsByName('textarea'));
+document.querySelector('button').addEventListener('click', function () {
+  console.log(document.querySelector('textarea'));
+});
 
 /*
 PASTE ME INTO TEXT AREA
