@@ -66,3 +66,28 @@ function fruitProcessor(apples, oranges) {
     return juice;
 }
 console.log(fruitProcessor(2, 3));
+
+/////////////////////////////////////////////////////////////////////////
+// Coding Challenge #1 Functions 
+/* 
+There is a new gymnastics discipline, which works differently. 
+Each team competes 3 times, and then the average of teh 3 teams is calculated (so one average score per team).
+A team ONLY wins if it has at least DOUBLE the average  score of the other team. Otherwise, no team wins!
+
+1. Create an arrow function 'calcAverage' to calculate the average of 3 scores. 
+2. Use the function to calculate the average for both teams. 
+3. Create a function 'checkWinner' that takes the average score of each team as paarmeters 9'avgDolphins' and 'avgKoalas'), and then logs the winner to the console, together with the victory points, according to teh rule above. Example: "Koalas win (30 vs. 13)".
+4. Use the 'checkWinner' function to determine the winner for both DATA 1 and DATA 2. 
+5. Ignore draws. 
+
+TEST DATA 1: Dolphins score 44, 23 and 71. 
+             Koalas score 65, 54 and 49.
+             
+TEST DATA 2: Dolphins score 85, 54 and 41. 
+             Koalas score 23, 34 and 27. 
+*/
+
+const calcAverage = (score1, score2, score3) => {
+    const avgScore = (score1 + score2 + score3) / calcAverage.length;
+    return avgScore;
+}
