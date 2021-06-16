@@ -51,3 +51,18 @@ const calcAge2 = function(birthyear) {
 const calcAge3 = birthyear => 2037 - birthyear;
 const age3 = calcAge3(1991);
 console.log(age3);
+
+
+// *****  💎💎 Functions calling other functions💎💎 *****************
+function cutFruitPieces(fruit) {
+    return fruit * 4;
+}
+
+function fruitProcessor(apples, oranges) {
+    const applePieces = cutFruitPieces(apples);
+    const orangePieces = cutFruitPieces(oranges);
+
+    const juice = `Juice with ${applePieces} piece of apple and ${orangePieces} pieces of orange`;
+    return juice;
+}
+console.log(fruitProcessor(2, 3));
