@@ -98,3 +98,5 @@ const checkWinner = (DolpAverage, KoalAverage) => {
         console.log(`Dolphins win with (${DolpAverage} vs ${KoalAverage})`);
     } else console.log(`Koalas win with (${KoalAverage} vs ${DolpAverage})`);
 }
+
+//successfully published to github
