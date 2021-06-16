@@ -85,6 +85,7 @@ TEST DATA 1: Dolphins score 44, 23 and 71.
 
 TEST DATA 2: Dolphins score 85, 54 and 41. 
              Koalas score 23, 34 and 27. 
+    The Team only wins if they get at least 2 times the score of the other
 */
 //Solution 1
 const calcAverage = (score1, score2, score3) => (score1 + score2 + score3) / 3;
@@ -100,3 +101,20 @@ const checkWinner = (DolpAverage, KoalAverage) => {
 }
 
 //successfully published to github
+
+// Solutin with TEST DATA 2
+const avgDolph = calcAverage(85, 54, 41);
+const avgKoala = calcAverage(23, 34, 27);
+
+const checkWinner2 = (avgDolph, avgKoala) => {
+    if (avgDolph >= 2 * avgKoala) {
+        console.log(`Dolphins win with (${avgDolph} vs ${avgKoala})`);
+    } else if (avgKoala >= 2 * avgDolph) {
+        console.log(`Koala's win with (${avgKoala} vs ${avgDolph})`);
+    }
+}
+
+
+
+
+// ******************  💎💎 JS ARRAYS 💎💎 ********************
