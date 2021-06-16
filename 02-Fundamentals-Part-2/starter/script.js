@@ -82,12 +82,19 @@ A team ONLY wins if it has at least DOUBLE the average  score of the other team.
 
 TEST DATA 1: Dolphins score 44, 23 and 71. 
              Koalas score 65, 54 and 49.
-             
+
 TEST DATA 2: Dolphins score 85, 54 and 41. 
              Koalas score 23, 34 and 27. 
 */
+//Solution 1
+const calcAverage = (score1, score2, score3) => (score1 + score2 + score3) / 3;
+//Solution 2
+const DolpAverage = calcAverage(44, 23, 71);
+const KoalAverage = calcAverage(65, 54, 49);
 
-const calcAverage = (score1, score2, score3) => {
-    const avgScore = (score1 + score2 + score3) / calcAverage.length;
-    return avgScore;
+// Solution 3
+const checkWinner = (DolpAverage, KoalAverage) => {
+    if (DolpAverage > KoalAverage) {
+        console.log(`Dolphins win with (${DolpAverage} vs ${KoalAverage})`);
+    } else console.log(`Koalas win with (${KoalAverage} vs ${DolpAverage})`);
 }
