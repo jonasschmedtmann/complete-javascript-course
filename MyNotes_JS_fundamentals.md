@@ -139,4 +139,25 @@ DRY principle [DO_NOT_REPEAT_YOURSELF]
 - friends.shift(); => removes the first and shifts
 - friends.indexOf('data');
 - friends.includes('data'); Boolean || `ES6 feature` || implements strict equality conditional
+
+# Objects
+
+- define <key:val> pairs
+- unstructured data
+- can get `obj` properties 2 ways
+  - `.` method
+  - `['name'+variableK]` method
+  - for dynamic properties, better use of `[]`
+  - function value prop
+
+# [this]
+
+- when method and prop in same object, usign [this] will utilise object prop
+
+# FOR loops
+
+- for(let i=0;i<10;i++) usual syntax
+
+# CSSbox model
+
 -
