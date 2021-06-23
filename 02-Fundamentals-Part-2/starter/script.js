@@ -118,3 +118,145 @@ const checkWinner2 = (avgDolph, avgKoala) => {
 
 
 // ******************  💎💎 JS ARRAYS 💎💎 ********************
+//Arrays can be defined in the following methods below;
+const friends = ['Michael', 'Steven', 'Peter'];
+
+const years = new Array(1991, 1994, 2008, 2020);
+
+//Arrays can also contain expressions, other arrays etc... 
+const firstName = 'Samuel'
+const samuel = [firstName, 'Agbo', 2037 - 1990, friends];
+
+const age1 = calcAge3(years[0]);
+const age2 = calcAge3(years[1]);
+const age3 = calcAge3(years[years.length - 1]);
+console.log(age1, age2, age3);
+
+const ages = [calcAge3(years[0]), calcAge3(years[0]), calcAge3(years[years.length - 1])];
+
+console.log(ages);
+
+// ****************  💎 BASIC ARRAY METHODS 💎 ******************
+// 1. The push method : Adds elements to the end of the array
+const friends = ['Michael', 'Steven', 'Peter'];
+friends.push('Jay');
+// The push method also returns the lenght of the array
+
+//2. Unshift: Adds an element to the start of the array
+friends.unshift('John');
+console.log(friends)
+
+
+//Remove Elements 
+//1. pop: Removes the last element in the array
+//The pop() method also returns the popped element which can also be used / stored in a variable
+friends.pop();
+const popped = friends.pop();
+console.log(friends);
+
+//2. shift: Removes the first element in the array
+// shift also returns the removed element
+friends.shift();
+
+//indexOf shows the position
+console.log(friends.indexOf('Steven'));
+
+//includes uses strict equality. THe includes methods can be used to right conditinals. It returns 'true' or 'false'
+console.log(friends.includes('Bob'));
+
+
+//Coding Challeng #2
+/*
+Steven is building his tip calculator, using the same rules as before:
+Tip 15% of the bill if the bill value is between 50 and 300, and if the value is different, the tip is 20%. 
+
+1. Write a function 'calcTip' that takes any bill value as an input and returns the correspondig tip, cacluated based on the rules above. Test the function using a bill value of 100. 
+
+2. Create an array 'bills' containing the test data below. 
+
+3. Create an array 'tips' containing the tip value for each bill, calculated from the function you created before. 
+
+4. BONUS: Create an array 'total' containing the total values, hence; bill + tip. 
+
+TEST DATA: 125, 555 and 44
+
+*/
+
+
+
+const calcTip = function(bill) {
+    return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+}
+
+const calcTip2 = bill => bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+
+const bills = [125, 55, 44];
+
+const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
+
+console.log(bills, tips);
+
+const totals = [bills[0] + tips[0], bills[1] + tips[1], bills[1] + tips[1], bills[2] + tips[2]];
+
+
+
+// ****************  💎💎 OBJECTS 💎💎 ******************
+const samuel = {
+    firstName: 'Samuel',
+    lastName: 'Agbo',
+    age: 2037 - 1991,
+    job: 'web developer',
+    friends: ['Michael', 'Peter', 'Steven']
+};
+
+//we can use the dot operator to get the last name property value
+console.log(samuel.lastName);
+
+//the bracket notation can also be used as follows;
+console.log(samuel['lastName']); //we do not necessary put the property here
+
+const nameKey = 'Name'; //extracting the first and last name
+console.log(samuel['first' + nameKey]);
+console.log(samuel['last' + nameKey]);
+
+const ageKey = 'age'
+console.log(samuel[ageKey]);
+
+// Another cool example of a use-case of the bracket notation
+const interestedIn = prompt('What do you want to know about Samuel? Choose between firstName, lastName, age, job and friends');
+//points to remember: prompt() always returns a string value, in this case we are using the string value to obtain the property name that we want to see the value of
+if (samuel[interestedIn]) {
+    console.log(samuel[interestedIn]);
+} else {
+    console.log('Wrong input, Please try again')
+}
+
+//Adding elements to an Object
+//1. Using the dot notation
+samuel.location = 'Accra'
+
+//2. Using the bracket notation 
+samuel['twitter'] = '@agbostone';
+
+// Challenge 
+// "Samuel has 3 friends, and his best friend is Michael"
+
+console.log(samuel.firstName + samuel.friends.length + 'and his best friend is called' + samuel.friends[0]);
+
+console.log(`${samuel.firstName} has ${samuel.friends.length} friends, his best friend is ${samuel.friends[0]}`);
+
+
+
+
+
+
+/******************💎💎💎 OBJECT METHODS 💎💎💎|**************** */
+const stone = {
+    firstName: 'Samuel',
+    lastName: 'Agbo',
+    birthYear: 1990,
+    job: 'web developer',
+    friends: ['Ambruce', 'James', 'Maxwell'],
+    hasDriversLicense: true,
+
+}
