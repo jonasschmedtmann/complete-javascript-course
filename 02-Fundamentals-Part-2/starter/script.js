@@ -259,4 +259,11 @@ const stone = {
     friends: ['Ambruce', 'James', 'Maxwell'],
     hasDriversLicense: true,
 
+    // we can put in a function expression in a object. A function declaration cannot be used here
+    //This is called a method. A method is literally a property of an object that holds a function 
+    calcAge: function(birthYear) {
+        return 2037 - birthYear;
+    }
 }
+
+console.log(stone.calcAge(1990));
