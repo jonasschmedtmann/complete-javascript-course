@@ -261,9 +261,98 @@ const stone = {
 
     // we can put in a function expression in a object. A function declaration cannot be used here
     //This is called a method. A method is literally a property of an object that holds a function 
-    calcAge: function(birthYear) {
-        return 2037 - birthYear;
-    }
-}
 
-console.log(stone.calcAge(1990));
+    //version 1
+    // calcAge: function(birthYear) {
+    //     return 2037 - birthYear;
+
+
+    //version 2
+    // calcAge: function() {
+    //     return 2037 - this.birthYear;
+
+    //     //The 'this' keyword is used to reference the object calling the method. 
+    // }
+
+    //version 3
+    //Instead of computing the age with the calcAge function everytime, we can compute the age once and store the result in a variable
+
+    calcAge: function() {
+        this.age = 2037 - this.birthYear;
+        return this.age;
+    },
+
+    hasLicense: function() {
+        if (this.hasDriversLicense === true) {
+            return this.licenseStatus = 'a';
+        } else { return 'no' };
+    },
+
+    getsummary: function() {
+        return `${this.firstName} is a ${this.calcAge()}-year old ${stone.job}, and has ${this.hasDriversLicense ? 'a' : 'no'} driver's license. `
+    }
+
+};
+
+//using the dot notation
+console.log(stone.calcAge());
+
+//using the bracket notation 
+console.log(stone['calcAge'](1990));
+
+//using the last function 
+console.log(stone.age);
+
+
+// Challenge
+// "Stone is a 47-year old web developer and he has a driver's license"
+
+console.log(`${stone.firstName} is a ${stone.age}-year old ${stone.job} with ${stone.hasLicense()} driver's license`)
+
+
+
+/*********** Coding Challenge #3 **********  
+Mark and John are comparing their BMIs. This time, let's use objects to implement the calculations. Note: BMI = mass / height **2 = mass/(height * height). (mass in kg and height in meter)
+
+1. For each of them, create an object with properties for their full name, mass and height (Mark Miller and John Smith)
+2. Create a 'calcBMI' method on each object to calculate the BMI (the same method on both objects). Store the BMI value to a property, and also retun it from the method. 
+3. Log to the console who has the higher BMI, together with the full name and the respective BMI. 
+Example: "John's BMI (28.3) is higher than Mark's (23.9)!"
+
+TEST DATA: Marks weighs 78 kg and is 1.69m tall
+John weights 92 kg and is 1.95m tall. 
+*/
+
+const mark = {
+    firstName: 'Mark',
+    lastName: 'Miller',
+    mass: 78,
+    height: 1.69,
+
+    calcBMI: function() {
+        this.BMI = this.mass / (this.height ** 2);
+        return this.BMI;
+
+    }
+
+};
+
+const john = {
+    firstName: 'John',
+    lastName: 'Smith',
+    mass: 92,
+    height: 1.95,
+
+    calcBMI: function() {
+        this.BMI = this.mass / (this.height ** 2);
+        return this.BMI;
+
+    }
+
+};
+
+const higherBMI = () => {
+    if (mark.BMI > john.BMI) {
+        console.log(`${mark.firstName} ${mark.lastName}'s BMI (${mark.BMI})is higher than ${john.firstName} ${john.lastName}'s BMI (${john.BMI}) `);
+    } else(console.log(`${john.firstName} ${john.lastName}'s BMI (${john.BMI})is higher than ${mark.firstName} ${mark.lastName}'s BMI (${mark.BMI}) `));
+}
