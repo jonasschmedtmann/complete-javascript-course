@@ -356,3 +356,171 @@ const higherBMI = () => {
         console.log(`${mark.firstName} ${mark.lastName}'s BMI (${mark.BMI})is higher than ${john.firstName} ${john.lastName}'s BMI (${john.BMI}) `);
     } else(console.log(`${john.firstName} ${john.lastName}'s BMI (${john.BMI})is higher than ${mark.firstName} ${mark.lastName}'s BMI (${mark.BMI}) `));
 }
+
+
+
+// *********************  💎💎 THE FOR LOOP💎💎 ************************
+console.log('Lifting weights repetition 1 🏋️‍♂️');
+console.log('Lifting weights repetition 2 🏋️‍♂️');
+console.log('Lifting weights repetition 3 🏋️‍♂️');
+console.log('Lifting weights repetition 4 🏋️‍♂️');
+console.log('Lifting weights repetition 5 🏋️‍♂️');
+console.log('Lifting weights repetition 6 🏋️‍♂️');
+console.log('Lifting weights repetition 7 🏋️‍♂️');
+console.log('Lifting weights repetition 8 🏋️‍♂️');
+console.log('Lifting weights repetition 9 🏋️‍♂️');
+console.log('Lifting weights repetition 10 🏋️‍♂️');
+
+// For loop keeps running while condition is TRUE 
+for (let rep = 1; rep <= 10; rep++) {
+    console.log(`Lifting weights repetition ${rep} 🏋️‍♂️`);
+}
+
+
+
+/*********💎 Looping Arrays, Breaking and Continuing 💎******** */
+const samuelArray = [
+    'Samuel',
+    'Agbo',
+    2037 - 1990,
+    'web developer', ['Michael', 'Peter', 'Steven']
+];
+
+const types = [];
+
+for (let i = 0; i < samuelArray.length; i++) {
+    //reading from samuelArray
+    console.log(samuelArray[i], typeof samuelArray[i]);
+
+    //Creating an array to hold the new array that will hold the types
+    //Filling the empty types array
+    types[i] = typeof samuelArray[i];
+
+    //Using the push method
+    types.push(typeof samuelArray[i]);
+}
+
+
+// Example 2 
+const years = [1991, 2007, 1969, 2020];
+const ages = [];
+
+//using the for loop to compute the ages 
+
+for (let i = 0; i < years.length; i++) {
+    ages.push(2037 - years[i]);
+}
+console.log(ages);
+
+
+//***** */ continue and break **************************************
+const samuelArray = [
+    'Samuel',
+    'Agbo',
+    2037 - 1990,
+    'web developer', ['Michael', 'Peter', 'Steven']
+];
+
+console.log('---- ONLY STRING----')
+for (let i = 0; i < samuelArray.length; i++) {
+    if (typeof samuelArray[i] !== 'string') continue;
+
+    console.log(samuelArray[i], typeof samuelArray[i]);
+
+
+}
+
+
+console.log('---- BREAK WITH NUMBER----')
+for (let i = 0; i < samuelArray.length; i++) {
+    if (typeof samuelArray[i] === 'number') break;
+
+    console.log(samuelArray[i], typeof samuelArray[i]);
+
+
+}
+
+
+// ************✨✨ Looping Backwards & Loops in Loops ✨✨ *******/
+const samuelArray2 = [
+    'Samuel',
+    'Agbo',
+    2037 - 1990,
+    'web developer', ['Michael', 'Peter', 'Steven']
+];
+
+//looping backwards
+
+for (let i = samuelArray2.length - 1; i >= 0; i--) {
+    console.log(i, samuelArray2[i])
+}
+
+
+// Looping in Loops
+
+for (let exercise = 1; exercise < 4; exercise++) {
+    console.log(`----------- Starting exercise ${exercise}`);
+
+    for (let rep = 1; rep < 6; rep++) {
+        console.log(`Lifting weight repetition ${rep} 🏋️‍♂️`);
+    }
+}
+
+
+
+
+// ************✨✨ THE WHILE LOOP ✨✨ *******/
+// The while loop handles the looping a little differently; 
+//The while loop doesn't really need the counter. All it needs it the condition to keep it running. 
+
+let rep = 1; //The repetition 
+while (rep <= 10) {
+    console.log(`Lifting weights repetition ${rep} 🏋️‍♂️`);
+    rep++;
+}
+
+// Another example 
+let dice = Math.trunc(Math.random() * 6) + 1;
+
+while (dice !== 6) {
+    console.log(`You rolled a ${dice}`);
+    // re-assigning the dice values
+    dice = Math.trunc(Math.random() * 6) + 1;
+    if (dice === 6) console.log('Loop is about to end...')
+}
+
+// //////////////////////////////////////////////////////
+// Coding Challenge #4
+/*
+1. Create an array 'bills' containing all 10 test bill values
+2. Create empty arrays for the tips and the totals ('tips' and 'totals')
+3. Use the 'calcTip' function we wrote before (no need to repeat) to calculate tips and total values (bill + tip) for every bill value in the bills array. 
+Use a for loop to perform the 10 calculations.
+
+TEST DATA: 22, 295, 176, 440, 37, 105, 10, 1100, 86 and 52
+
+HINT: Call calcTip in the loop and use the push method to add values to the tips and totals arrays. 
+
+4. BONUS: Write a function 'calcAverage' which takes an array called 'arr' as an argument. This function calculates the average of all numbers in the given array.
+*/
+
+// 1.
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+
+const tips = [];
+
+const totals = [];
+
+// 2.
+const calcTip2 = bill => bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+
+for (i = 0; i < bills.length; i++) {
+    tips.push(calcTip2(bills[i]));
+    totals.push(bills[i] + tips[i]);
+
+    console.log(`This ${bills[i]} bill's tip is ${tips[i]}, Total is ${totals[i]}`);
+}
+
+/*
+Tip 15% of the bill if the bill value is between 50 and 300, and if the value is different, the tip is 20%. 
+*/
