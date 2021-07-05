@@ -518,9 +518,29 @@ for (i = 0; i < bills.length; i++) {
     tips.push(calcTip2(bills[i]));
     totals.push(bills[i] + tips[i]);
 
+    // // using the DRY approach, 
+    // const tips = calcTip2(bills[i]);
+    // tips.push(tips);
+    // totals.push(bills[i] + tips);
+
     console.log(`This ${bills[i]} bill's tip is ${tips[i]}, Total is ${totals[i]}`);
 }
 
 /*
 Tip 15% of the bill if the bill value is between 50 and 300, and if the value is different, the tip is 20%. 
 */
+
+// 4
+const calcAverage = function(arr) {
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++) {
+        // sum = sum + arr[i];
+        sum += arr[i];
+    }
+    console.log(sum);
+    return sum / arr.length;
+}
+
+console.log(calcAverage([2, 3, 6]));
+console.log(calcAverage(totals));
+console.log(calcAverage(tips));
