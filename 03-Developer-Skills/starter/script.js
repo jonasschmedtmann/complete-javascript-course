@@ -36,3 +36,82 @@ calcTempAplitude = function(temps) {
 
 const amplitude = calcTempAplitude(temperature);
 console.log(amplitude);
+
+
+
+
+// Debugging Your Code
+
+const measureKelvin = function() {
+    const measurement = {
+        type: 'temp',
+        unit: 'celsius',
+
+        // FIX
+        value: Number(prompt('Degrees celsius:'))
+    };
+
+    console.table(measurement);
+    // console.log(measurement.value);
+    // console.warn(measurement.value);
+    // console.error(measurement.value);
+
+    const kelvin = measurement.value + 273;
+    return kelvin;
+}
+
+console.log(measureKelvin());
+
+
+// /////////////////////////////////////////////////
+// Coding Challenge #1
+
+/*
+Given an array of forecasted maximum temperatures, the thermometer displays a string with these temperatures.
+
+Example: [17, 21, 23] will print "... 17C in 1 days..... 21C in 2 days...23C in 3 days..."
+
+Create a function 'printForecast' which takes in an array 'arr' and logs a string like the aboe to the console. 
+
+Use the problem-solving framework: Understand the problem and break it up into sub-problems!
+
+TEST DATA 1: [17, 21, 23]
+TESTE DATA 2: -12, 5, -5, 0, 4]
+*/
+
+// 1. Understanding the question 
+
+// My Solution 
+array1 = [17, 21, 23];
+
+array2 = [-12, 5, -5, 0, 4];
+
+const printForecast = (arr) => {
+
+    for (i = 0; i < arr.length; i++) {
+        const curTemp = arr[i];
+        const forecastDay = i + 1;
+        // const day = forecastDay++;
+
+        console.log(`....${curTemp}C in ${forecastDay} days`);
+    }
+
+}
+
+
+//Instructor's solution 
+// A. Transform the Array into a string 
+// B. Strings needs to contain day (index + 1)
+
+const data1 = [17, 21, 23];
+const data2 = [-12, 5, -5, 0, 4];
+
+const printForecast = function(arr) {
+    let str = '';
+    for (let i = 0; i < arr.length; i++) {
+        str = str + `${arr[i]}C in ${i + 1} days ... `
+            // str += `${arr[i]}C in ${i + 1} days ... `
+
+    }
+    console.log('...' + str);
+}
