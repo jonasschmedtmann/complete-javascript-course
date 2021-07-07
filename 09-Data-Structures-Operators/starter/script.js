@@ -1,15 +1,10 @@
 'use strict';
 
-// Data needed for a later exercise
-const flights =
-  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
-
 // Working with Strings
 // BEGIN PART 1
 /*
 const airline = 'TAP Air Portugal';
-const plane = 'A320';
-
+const plane2 = 'A320';
 
 // .slice() needs strings
 // Using .slice creates substrings that must be stored to be used
@@ -44,6 +39,7 @@ checkMiddleSeat('3E');*/
 
 // BEGIN PART 2
 /*
+const airline = 'TAP Air Portugal';
 console.log(airline.toLowerCase());
 console.log(airline.toUpperCase());
 
@@ -65,7 +61,6 @@ console.log(trimmedEmail);
 const normalizedEmail = loginEmail.toLowerCase().trim();
 console.log(normalizedEmail);
 console.log(email === normalizedEmail);
-
 
 // Replacing Part of Strings
 // .replace() only operates on the first occurence
@@ -495,21 +490,51 @@ for (const [time, event] of gameEvents) {
 // END CODING CHALLENGE #3
 
 // BEGIN CODING CHALLENGE #4
-
+/*
 document.body.append(document.createElement('textarea'));
 document.body.append(document.createElement('button'));
-
 document.querySelector('button').addEventListener('click', function () {
-  console.log(document.querySelector('textarea'));
+  const text = document.querySelector('textarea').value;
+  // split lines at line break with Regex character
+  const rows = text.split('\n');
+  // Destructure rows into nested array with index and content
+  for (const [i, row] of rows.entries()) {
+    // Destructure entries into first & second words, set to lower case, remove whitespace
+    const [first, second] = row.toLowerCase().trim().split('_');
+    // Create camelCase
+    const output = `${first}${second.replace(
+      second[0],
+      second[0].toUpperCase()
+    )}`;
+    // Output to the console with same
+    console.log(output.padEnd(5, '. '));
+  }
 });
 
-/*
+
 PASTE ME INTO TEXT AREA
 underscore_case
  first_name
 Some_Variable 
   calculate_AGE
 delayed_departure
-*/
 
+*/
 // END CODING CHAllENGE #4
+
+// CODING CHALLENGE #5
+
+const flights =
+  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+
+const airportCode = str => str.slice(0, 3).toUpperCase();
+for (const flight of flights.split('+')) {
+  const [type, from, to, time] = flight.split(';');
+  const output = `${
+    type.startsWith('_Delayed') ? '⚠️  ' : ''
+  } ${type.replaceAll('_', ' ')} from ${airportCode(from)} to ${airportCode(
+    to
+  )} (${time.replace(':', 'h')})`.padStart(40);
+
+  console.log(output);
+}
