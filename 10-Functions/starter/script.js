@@ -258,6 +258,94 @@ displayResults.call(bonus1, 'String');
 */
 // END CODING CHALLENGE #1
 
-// START SECTION 4: IIFE
+// START SECTION 4: IIFEs & Closures
+/*
+// Immediately Invoked Function Expression
+// (function () {
+//   console.log('This will never run again.');
+//   const isPrivate = 23;
+// })();
 
+// // Arrow function version
+// (() => console.log('This will also never run again.'))();
+
+// // All data inside a scope is 'private,' or 'encapsulated.'
+
+// // Using blocks is a better way to declare private variables
+// {
+//   const isPrivate = 23;
+//   var notPrivate = 46;
+// }
+
+// Closures
+// Makes a function remember all the variables at a function's birthplace, even when the birth environment itself disappears
+// A Closure is the variable environment attached to a function exactly as it was at the time and place of the function in which it was created
+// Closures have priority over the scope chain.
+// const secureBooking = function () {
+//   let passengerCount = 0;
+//   return function () {
+//     passengerCount++;
+//     console.log(`${passengerCount} passengers`);
+//   };
+// };
+
+// const booker = secureBooking();
+
+// booker();
+// booker();
+// booker();
+
+// // A closure makes sure that a function doesn't lose connections to variables that existed at the function's birth place.
+// // A closure is like a backpack that a function carries around wherever it goes. The backpack has all the variables that were present in the enviornment where the function was created.
+// // Closures are not tangible JS objects, and they are created automatically.
+
+// console.dir(booker);
+
+// Example 1
+let f;
+
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+const h = function () {
+  const b = 777;
+  f = function () {
+    console.log(b * 2);
+  };
+};
+
+g();
+f();
+h();
+f();
+
+// Example 2
+
+const boardPassengers = function (n, wait) {
+  const perGroup = n / 3;
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers.`);
+    console.log(`There are 3 groups, each with ${perGroup} passengers.`);
+  }, wait * 1000);
+
+  console.log(`Will start boarding in ${wait} seconds`);
+};
+const perGroup = 1000;
+boardPassengers(180, 3);
+*/
 // END SECTION 4
+
+// START CODING CHALLENGE #2
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+  document.querySelector('button').addEventListener('click', function () {
+    header.style.color = 'blue';
+  });
+})();
+
+// END CODING CHALLENG #2
