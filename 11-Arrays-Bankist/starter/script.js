@@ -84,6 +84,23 @@ const calcDisplayBalance = function (movements) {
 
 calcDisplayBalance(account1.movements)
 
+function calcDisplaySummary(movements) {
+  const incomes = movements.filter(mov => mov > 0).reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes}€`;
+  
+  const out = movements.filter(mov => mov < 0).reduce((acc, mov) => acc - mov, 0);
+  labelSumOut.textContent = `${out}€`;
+
+  const interest = movements
+    .filter(mov => mov > 0)
+    .map(deposit => deposit * .012)
+    .filter(int => int >= 1)
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `${interest}€`;
+}
+
+calcDisplaySummary(account1.movements);
+
 const createUsernames = function (accs) {
   accs.forEach(acc => {
     acc.username = acc.owner
@@ -256,6 +273,25 @@ currenciesUnique.forEach(function (v, _,) {
 // }, 0)
 // console.log(maxValue);
 
+// Chaining Methods Together
+// const eurToUsd = 1.1;
+// const totalDepositsUSD = movements
+//   .filter(mov => mov > 0)
+//   // Using the arr parameter is useful for debugging
+//   .map((mov, i, arr) => {
+//     // console.log(arr);
+//     return mov * eurToUsd
+//   })
+//   .reduce((acc, mov) => acc + mov, 0);
+
+// console.log(totalDepositsUSD);
+
+
+// END SECTION 4
+
+
+
+
 ///////////////////////////////////////
 // Coding Challenge #1
 
@@ -311,6 +347,7 @@ TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
 
 GOOD LUCK 😀
 */
+////////////////////
 
 
 const dataSet1 = [5, 2, 4, 1, 15, 8, 3];
@@ -324,6 +361,19 @@ const calcAverageHumanAge = function (ages) {
   const averageAge = underEighteen.reduce((acc, age) => (acc + age), 0) / underEighteen.length;
   return averageAge
 }
-const set1 = calcAverageHumanAge(dataSet1);
-const set2 = calcAverageHumanAge(dataSet2)
+let set1 = calcAverageHumanAge(dataSet1);
+let set2 = calcAverageHumanAge(dataSet2)
+console.log(set1, set2);
+
+
+// END CODING CHALLENGE #2
+
+// START CODING CHALLENGE #3
+
+const calcAverageHumanAgeChain = ages =>
+  ages.map(dogAge => dogAge <= 2 ? dogAge * 2 : 16 + dogAge * 4).filter(age => age >= 18)
+.reduce((acc, age, i, arr) => acc + age / arr.length, 0);
+
+set1 = calcAverageHumanAgeChain(dataSet1);
+set2 = calcAverageHumanAgeChain(dataSet2)
 console.log(set1, set2);
