@@ -315,13 +315,15 @@ GOOD LUCK 😀
 
 const dataSet1 = [5, 2, 4, 1, 15, 8, 3];
 const dataSet2 = [16, 6, 10, 5, 6, 1, 4];
-const calcAverageHumanAge = function(ages) {
-  // 1. Dog Age -> Human Age
-  if (ages <= 2) {
-    const humanAge = 2 * dogAge
-  } else if (ages > 2) { humanAge = 16 + dogAge * 4 }
-  // 2. No Dogs > 18yrs old
-  // Calc average human age of Adult Dogs
+const calcAverageHumanAge = function (ages) {
+  // 1. Convert Ages
+  const humanAge = ages.map(dogAge => dogAge <= 2 ? dogAge * 2 : 16 + dogAge * 4)
+  // 2. Filter out Adults
+  const underEighteen = humanAge.filter(age => age >= 18)
+  // 3. Averae the Ages
+  const averageAge = underEighteen.reduce((acc, age) => (acc + age), 0) / underEighteen.length;
+  return averageAge
 }
-
-console.log(calcAverageHumanAge(dataSet1))
+const set1 = calcAverageHumanAge(dataSet1);
+const set2 = calcAverageHumanAge(dataSet2)
+console.log(set1, set2);
