@@ -81,7 +81,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // Functions
 
-const displayMovements = function (movements, sort = false) {
+function displayMovements(movements, sort = false) {
   containerMovements.innerHTML = '';
 
   const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
@@ -94,42 +94,42 @@ const displayMovements = function (movements, sort = false) {
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-        <div class="movements__value">${mov}€</div>
+        <div class="movements__value">${mov.toFixed(2)}€</div>
       </div>
     `;
 
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
-};
+}
 
-const calcDisplayBalance = function (acc) {
+function calcDisplayBalance(acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${acc.balance}€`;
-};
+  labelBalance.textContent = `${acc.balance.toFixed(2)}€`;
+}
 
-const calcDisplaySummary = function (acc) {
+function calcDisplaySummary(acc) {
   const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${incomes}€`;
+  labelSumIn.textContent = `${incomes.toFixed(2)}€`;
 
   const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(out)}€`;
+  labelSumOut.textContent = `${Math.abs(out).toFixed(2)}€`;
 
   const interest = acc.movements
     .filter(mov => mov > 0)
     .map(deposit => (deposit * acc.interestRate) / 100)
-    .filter((int, i, arr) => {
-      // console.log(arr);
+    .filter(int => {
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest}€`;
-};
+  labelSumInterest.textContent = `${interest.toFixed(2)}€`;
+}
 
-const createUsernames = function (accs) {
+createUsernames(accounts);
+function createUsernames(accs) {
   accs.forEach(function (acc) {
     acc.username = acc.owner
       .toLowerCase()
@@ -137,10 +137,9 @@ const createUsernames = function (accs) {
       .map(name => name[0])
       .join('');
   });
-};
-createUsernames(accounts);
+}
 
-const updateUI = function (acc) {
+function updateUI(acc) {
   // Display movements
   displayMovements(acc.movements);
 
@@ -149,22 +148,15 @@ const updateUI = function (acc) {
 
   // Display summary
   calcDisplaySummary(acc);
-};
+}
 
-///////////////////////////////////////
-// Event handlers
-let currentAccount;
-
-btnLogin.addEventListener('click', function (e) {
-  // Prevent form from submitting
-  e.preventDefault();
-
+function logIn() {
   currentAccount = accounts.find(
     acc => acc.username === inputLoginUsername.value
   );
   console.log(currentAccount);
 
-  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+  if (currentAccount?.pin === +inputLoginPin.value) {
     // Display UI and message
     labelWelcome.textContent = `Welcome back, ${
       currentAccount.owner.split(' ')[0]
@@ -178,11 +170,10 @@ btnLogin.addEventListener('click', function (e) {
     // Update UI
     updateUI(currentAccount);
   }
-});
+}
 
-btnTransfer.addEventListener('click', function (e) {
-  e.preventDefault();
-  const amount = Number(inputTransferAmount.value);
+function transferFunds() {
+  const amount = +inputTransferAmount.value;
   const receiverAcc = accounts.find(
     acc => acc.username === inputTransferTo.value
   );
@@ -201,12 +192,10 @@ btnTransfer.addEventListener('click', function (e) {
     // Update UI
     updateUI(currentAccount);
   }
-});
+}
 
-btnLoan.addEventListener('click', function (e) {
-  e.preventDefault();
-
-  const amount = Number(inputLoanAmount.value);
+function getLoan() {
+  const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     // Add movement
@@ -216,14 +205,11 @@ btnLoan.addEventListener('click', function (e) {
     updateUI(currentAccount);
   }
   inputLoanAmount.value = '';
-});
-
-btnClose.addEventListener('click', function (e) {
-  e.preventDefault();
-
+}
+function closeAccount() {
   if (
     inputCloseUsername.value === currentAccount.username &&
-    Number(inputClosePin.value) === currentAccount.pin
+    +inputClosePin.value === currentAccount.pin
   ) {
     const index = accounts.findIndex(
       acc => acc.username === currentAccount.username
@@ -239,10 +225,35 @@ btnClose.addEventListener('click', function (e) {
   }
 
   inputCloseUsername.value = inputClosePin.value = '';
+}
+
+///////////////////////////////////////
+// Event handlers
+let currentAccount;
+let sorted = false;
+
+btnLogin.addEventListener('click', e => {
+  // Prevent form from submitting
+  e.preventDefault();
+  logIn();
 });
 
-let sorted = false;
-btnSort.addEventListener('click', function (e) {
+btnTransfer.addEventListener('click', e => {
+  e.preventDefault();
+  transferFunds();
+});
+
+btnLoan.addEventListener('click', e => {
+  e.preventDefault();
+  getLoan();
+});
+
+btnClose.addEventListener('click', e => {
+  e.preventDefault();
+  closeAccount();
+});
+
+btnSort.addEventListener('click', e => {
   e.preventDefault();
   displayMovements(currentAccount.movements, !sorted);
   sorted = !sorted;
@@ -251,3 +262,112 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+
+/////////////////////////////////////////////////
+// 168. Converting and Checking Numbers
+
+// console.log(23 === 23.0);
+
+// // Numbers are represented in 64base2 format (binary)
+// // Base 10 | 0 to 9
+// // Binary = Base 2 | 0 to 1
+// console.log(0.1 + 0.2);
+// console.log(0.1 + 0.2 === 0.3);
+
+// console.log(Number('23')); // forced coercion
+// console.log(+'23'); // typed coercion
+
+// // Parsing (must start with number)
+// console.log(Number.parseInt('30px', 10)); // Converts to Number
+// console.log(Number.parseInt('e30', 10)); // Returns with NaN
+
+// console.log(Number.parseFloat('2.6rem')); // Returns 2.6
+// console.log(Number.parseInt('2.6rem')); // Returns 2
+
+// // Only use to check if value is NaN
+// console.log('Using .isNaN()');
+// console.log(Number.isNaN(20));
+// console.log(Number.isNaN('20'));
+// console.log(Number.isNaN(+'20X'));
+// console.log(Number.isNaN(23 / 0));
+
+// // Use to check if Number or not
+// console.log('Using .isFinite()');
+// console.log(Number.isFinite(20));
+// console.log(Number.isFinite('20'));
+// console.log(Number.isFinite(+'20'));
+// console.log(Number.isFinite(20 / 0));
+
+// console.log('Using .isInteger()');
+// console.log(Number.isInteger(23));
+// console.log(Number.isInteger(23.0));
+// console.log(Number.isInteger(23 / 0));
+
+/////////////////////////////////////////////////
+// 169. Math and Rounding
+
+// console.log(Math.sqrt(25));
+// console.log(25 ** (1 / 2));
+// console.log(8 ** (1 / 3));
+
+// console.log(Math.max(5, 10, 23, 11, 2)); // 23
+// console.log(Math.max(5, 10, '23', 11, 2)); // 23
+// console.log(Math.max(5, 10, '23px', 11, 2)); // NaN
+
+// console.log(Math.min(5, 10, '23', 11, 2)); // 2
+
+// console.log(Math.PI * Number.parseFloat('10px') ** 2);
+
+// console.log(Math.trunc(Math.random() * 6) + 1); // 6-sided Die Roll
+
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min) + 1) + min;
+
+// console.log(randomInt(10, 20));
+
+// Rounding Integers
+
+// console.log('.round()');
+// console.log(Math.round(23.9)); // 24
+// console.log(Math.round(23.2)); // 23
+
+// console.log('.ceil()');
+// console.log(Math.ceil(23.9)); // 24
+// console.log(Math.ceil(23.2)); // 24
+
+// console.log('.floor()');
+// console.log(Math.floor(23.9)); // 23
+// console.log(Math.floor('23.2')); // 23
+// console.log(Math.floor(-23.2)); // 23
+
+// console.log('.trunc()');
+// console.log(Math.trunc(23.9)); // 23
+// console.log(Math.trunc(23.2)); // 23
+// console.log(Math.trunc(-23.2)); // 23
+
+// // Rounding Decimals
+
+// console.log('.toFixed()');
+// console.log((23.9).toFixed(0)); // 24, string
+// console.log((23.9).toFixed(3)); // 23.900, string
+// console.log(-(23.9).toFixed(3)); // -23.900, Number
+// console.log(+(23.9).toFixed(3)); // 23.900, Number
+
+/////////////////////////////////////////////////
+// 170. The Modulo Operation
+
+console.log(5 % 2); // Returns 1
+console.log(5 / 2); // Returns 2.5
+console.log(8 % 3); // Returns 2
+console.log(8 / 3); // Returns 2.6666666
+
+const isEven = n => n % 2 === 0;
+labelBalance.addEventListener('Click', () => {
+  [...document.querySelectorAll('.movements__row')].forEach((row, i) => {
+    if (i % 2 === 0) row.style.backgroundColor = 'orangered';
+    if (i % 3 === 0) row.style.backgroundColor = 'blue';
+  });
+});
+
+/////////////////////////////////////////////////
+// 171. Working with BigInt
