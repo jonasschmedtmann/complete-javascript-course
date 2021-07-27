@@ -4,6 +4,7 @@
 /////////////////////////////////////////////////
 // BANKIST APP
 
+///////////////////////////////////////
 // Data
 const account1 = {
   owner: 'Jonas Schmedtmann',
@@ -35,6 +36,7 @@ const account4 = {
 
 const accounts = [account1, account2, account3, account4];
 
+///////////////////////////////////////
 // Elements
 const labelWelcome = document.querySelector('.welcome');
 const labelDate = document.querySelector('.date');
@@ -61,9 +63,14 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-function displayMovements(moves) {
+let currentAccount;
+createUsernames(accounts);
+///////////////////////////////////////
+// Brains
+function displayMovements(movements, sort = false) {
   containerMovements.innerHTML = '';
-  moves.forEach(function (move, i) {
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+  movs.forEach(function (move, i) {
     const type = move > 0 ? 'deposit' : 'withdrawal';
     const html = `
     <div class="movements__row">
@@ -110,19 +117,13 @@ function createUsernames(accs) {
   });
 }
 
-createUsernames(accounts);
-
-let currentAccount;
-
 function updateUI(acc) {
   calcDisplayBalance(acc);
   calcDisplaySummary(acc);
   displayMovements(acc.movements);
 }
-// Event Handlers
-btnLogin.addEventListener('click', e => {
-  // Prevent form from submitting
-  e.preventDefault();
+
+function logIn() {
   currentAccount = accounts.find(
     acc => acc.username === inputLoginUsername.value
   );
@@ -138,10 +139,19 @@ btnLogin.addEventListener('click', e => {
 
     updateUI(currentAccount);
   }
-});
+}
 
-btnTransfer.addEventListener('click', e => {
-  e.preventDefault();
+function getLoan() {
+  const amount = Number(inputLoanAmount.value);
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    currentAccount.movements.push(amount);
+    updateUI(currentAccount);
+  }
+
+  inputLoanAmount.value = '';
+}
+
+function transferFunds() {
   const amount = Number(inputTransferAmount.value);
   const receiverAcc = accounts.find(
     acc => acc.username === inputTransferTo.value
@@ -158,6 +168,61 @@ btnTransfer.addEventListener('click', e => {
     receiverAcc.movements.push(amount);
     updateUI(currentAccount);
   }
+}
+
+function closeAccount() {
+  if (
+    currentAccount.username === inputCloseUsername.value &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    const index = accounts.findIndex(
+      // Returns index of item that matches the true/false
+      acc =>
+        // Do something that returns true/false
+        acc.username === currentAccount.username
+    );
+    accounts.splice(index, 1);
+    containerApp.style.opacity = 0;
+  }
+  inputCloseUsername.value = inputClosePin.value = '';
+  labelWelcome.textContent = 'Log in to get started';
+}
+
+///////////////////////////////////////
+// Event Handlers
+
+// Log User In
+btnLogin.addEventListener('click', e => {
+  // Prevent form from submitting
+  e.preventDefault();
+  logIn();
+});
+
+// Handling Loans
+
+btnLoan.addEventListener('click', e => {
+  e.preventDefault();
+  getLoan();
+});
+
+// Transfer Money to Other Account
+btnTransfer.addEventListener('click', e => {
+  e.preventDefault();
+  transferFunds();
+});
+
+// Close Account
+btnClose.addEventListener('click', e => {
+  e.preventDefault();
+  closeAccount();
+});
+
+let sortState = false;
+// Sort Entries
+btnSort.addEventListener('click', e => {
+  e.preventDefault();
+  sortState = displayMovements(currentAccount.movements, !sortState);
+  sortState = !sortState;
 });
 
 /////////////////////////////////////////////////
@@ -342,6 +407,82 @@ currenciesUnique.forEach(function (v, _,) {
 // const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 // console.log(account);
 
+///////////////////////////////////////
+// 158. Some and Every
+
+// Practicing with .some()
+// console.log(movements);
+// // includes() checks equality
+// console.log(movements.includes(-130));
+
+// // some() checks a condition
+// const anyDeposits = movements.some(mov => mov > 1500);
+// console.log(anyDeposits);
+
+// Practicing with .every()
+// console.log(movements.every(mov => mov > 0));
+
+// // Callback fn
+
+// const deposit = mov => mov > 0;
+// console.log(movements.every(deposit));
+// console.log(movements.some(deposit));
+// console.log(movements.filter(deposit));
+
+///////////////////////////////////////
+// 158. .flat() and .flatMap()
+// .flat() depth starts at 1 level, so adding a number as an argument will set it to go deeper
+// const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+// console.log(arr.flat());
+
+// const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+// console.log(arrDeep.flat(2));
+
+// const accountMovements = accounts.map(acc => acc.movements);
+// console.log(accountMovements);
+// const allMovements = accountMovements.flat();
+// console.log(allMovements);
+// const overallBalance = allMovements.reduce((acc, mov) => acc + mov, 0);
+// console.log(overallBalance);
+
+// const overallBalance = accounts
+//   .map(acc => acc.movements)
+//   .flat()
+//   .reduce((acc, mov) => acc + mov, 0);
+// console.log(overallBalance);
+
+// // Using .flatMap();
+// // .flatMap() only goes 1 level deep, so if you need to go deeper you will have to spread out & chain the methods together
+
+// const overallBalance2 = accounts
+//   .flatMap(acc => acc.movements)
+//   .reduce((acc, mov) => acc + mov, 0);
+// console.log(overallBalance2);
+
+///////////////////////////////////////
+// 159. Sorting Arrays
+
+// .sort() mutates the original array
+
+// const owners = ['Jonas', 'Zach', 'Adam', 'Martha'];
+// console.log(owners.sort());
+
+// // .sort() also expects strings and so will type coerce non-string entries
+// console.log(movements);
+
+// // if return < 0, a -> b
+// // if return > 0, b -> a
+// movements.sort((a, b) => {
+//   if (a > b) return 1;
+//   if (a < b) return -1;
+// });
+// console.log(movements);
+
+// movements.sort((a, b) => a - b);
+// console.log(movements);
+
+// movements.sort((a, b) => b - a);
+// console.log(movements);
 // END SECTION 4
 
 ///////////////////////////////////////
