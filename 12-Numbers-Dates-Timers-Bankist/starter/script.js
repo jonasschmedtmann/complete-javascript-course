@@ -1,6 +1,5 @@
 'use strict';
-const testDate = new Date() - new Date(0);
-console.log(testDate);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // BANKIST APP
@@ -23,7 +22,7 @@ const account1 = {
     '2020-04-01T10:17:24.185Z',
     '2020-05-08T14:11:59.604Z',
     '2021-05-27T17:01:17.194Z',
-    '2021-07-11T23:36:17.929Z',
+    '2021-07-27T23:36:17.929Z',
     '2021-07-28T10:51:36.790Z',
   ],
   currency: 'EUR',
@@ -95,13 +94,17 @@ function updateUI(acc) {
 
 function formatMovementDate(date) {
   const calcDaysPassed = (date1, date2) =>
-    Math.round(Math.abs((date2 - date1) / (1000 * 60 * 60 * 24)));
-  const daysPassed = calcDaysPassed((new Date(), date));
-  console.log(daysPassed);
-  const day = `${date.getDate()}`.padStart(2, 0);
-  const month = `${date.getMonth() + 1}`.padStart(2, 0);
-  const year = date.getFullYear();
-  return `${day}/${month}/${year}`;
+    Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
+  const daysPassed = calcDaysPassed(new Date(), date);
+  if (daysPassed === 0) return 'Today';
+  if (daysPassed === 1) return 'Yesterday';
+  if (daysPassed <= 7) return `${daysPassed} days ago`;
+  else {
+    const day = `${date.getDate()}`.padStart(2, 0);
+    const month = `${date.getMonth() + 1}`.padStart(2, 0);
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  }
 }
 function displayMovements(acc, sort = false) {
   containerMovements.innerHTML = '';
@@ -178,13 +181,19 @@ function logIn() {
     containerApp.style.opacity = 100;
 
     const now = new Date();
-    const day = `${now.getDate()}`.padStart(2, 0);
-    const month = `${now.getMonth() + 1}`.padStart(2, 0);
-    const year = now.getFullYear();
-    const hour = `${now.getHours()}`.padStart(2, 0);
-    const min = `${now.getMinutes()}`.padStart(2, 0);
-
-    labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
+    const options = {
+      hour: 'numeric',
+      minute: 'numeric',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+      weekday: 'long',
+    };
+    const locale = navigator.language;
+    labelDate.textContent = new Intl.DateTimeFormat(
+      currentAccount.locale,
+      options
+    ).format(now);
 
     // Clear input fields
     inputLoginUsername.value = inputLoginPin.value = '';
@@ -233,6 +242,7 @@ function getLoan() {
   }
   inputLoanAmount.value = '';
 }
+
 function closeAccount() {
   if (
     inputCloseUsername.value === currentAccount.username &&
@@ -260,9 +270,9 @@ let currentAccount;
 let sorted = false;
 
 // Fake Always Logged In
-// currentAccount = account1;
-// updateUI(currentAccount);
-// containerApp.style.opacity = 100;
+currentAccount = account1;
+updateUI(currentAccount);
+containerApp.style.opacity = 100;
 // End Dummy Code
 
 btnLogin.addEventListener('click', e => {
@@ -479,3 +489,6 @@ const randomInt = (min, max) =>
 // const days1 = calcDaysPassed(new Date(2037, 3, 14), new Date(2037, 3, 24));
 
 // For advanced calculations, use a library like moment.js
+
+/////////////////////////////////////////////////
+// 175. Internationalization API with Dates and Numbers
