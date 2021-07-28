@@ -92,6 +92,18 @@ function updateUI(acc) {
   calcDisplaySummary(acc);
 }
 
+function hideUI() {
+  containerApp.style.opacity = 0;
+  labelWelcome.textContent = 'Log in to get started';
+}
+
+function formatCur(value, locale, currency) {
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: currency,
+  }).format(value);
+}
+
 function formatMovementDate(date, locale) {
   const calcDaysPassed = (date1, date2) =>
     Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
@@ -103,6 +115,7 @@ function formatMovementDate(date, locale) {
     return new Intl.DateTimeFormat(locale).format(date);
   }
 }
+
 function displayMovements(acc, sort = false) {
   containerMovements.innerHTML = '';
 
@@ -114,13 +127,14 @@ function displayMovements(acc, sort = false) {
     const date = new Date(acc.movementsDates[i]);
     const displayDate = formatMovementDate(date, acc.locale);
     const type = mov > 0 ? 'deposit' : 'withdrawal';
+    const formattedMov = formatCur(mov, acc.locale, acc.currency);
     const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
         <div class="movements__date">${displayDate}</div>
-        <div class="movements__value">${mov.toFixed(2)}€</div>
+        <div class="movements__value">${formattedMov}</div>
       </div>
     `;
 
@@ -130,19 +144,20 @@ function displayMovements(acc, sort = false) {
 
 function calcDisplayBalance(acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${acc.balance.toFixed(2)}€`;
+  const formattedMov = formatCur(acc.balance, acc.locale, acc.currency);
+  labelBalance.textContent = `${formattedMov}`;
 }
 
 function calcDisplaySummary(acc) {
   const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${incomes.toFixed(2)}€`;
+  labelSumIn.textContent = formatCur(incomes, acc.locale, acc.currency);
 
   const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(out).toFixed(2)}€`;
+  labelSumOut.textContent = formatCur(out, acc.locale, acc.currency);
 
   const interest = acc.movements
     .filter(mov => mov > 0)
@@ -151,7 +166,7 @@ function calcDisplaySummary(acc) {
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest.toFixed(2)}€`;
+  labelSumInterest.textContent = formatCur(interest, acc.locale, acc.currency);
 }
 
 createUsernames(accounts);
@@ -176,6 +191,7 @@ function logIn() {
       currentAccount.owner.split(' ')[0]
     }`;
     containerApp.style.opacity = 100;
+    timer ? resetTimer() : startLogOutTimer();
 
     const now = new Date();
     const options = {
@@ -221,6 +237,7 @@ function transferFunds() {
 
     // Update UI
     updateUI(currentAccount);
+    resetTimer();
   }
 }
 
@@ -228,12 +245,15 @@ function getLoan() {
   const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
-    // Add movement
-    currentAccount.movements.push(amount);
-    currentAccount.movementsDates.push(new Date().toISOString());
+    setTimeout(() => {
+      // Add movement
+      currentAccount.movements.push(amount);
+      currentAccount.movementsDates.push(new Date().toISOString());
 
-    // Update UI
-    updateUI(currentAccount);
+      // Update UI
+      updateUI(currentAccount);
+      resetTimer();
+    }, 2500);
   }
   inputLoanAmount.value = '';
 }
@@ -246,29 +266,48 @@ function closeAccount() {
     const index = accounts.findIndex(
       acc => acc.username === currentAccount.username
     );
-    console.log(index);
     // .indexOf(23)
 
     // Delete account
     accounts.splice(index, 1);
 
     // Hide UI
-    containerApp.style.opacity = 0;
+    hideUI();
   }
 
   inputCloseUsername.value = inputClosePin.value = '';
 }
 
+function startLogOutTimer() {
+  // set timer to 5 minutes
+  let time = 120;
+  function tick() {
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(time % 60).padStart(2, 0);
+    // print remaining time to UI
+    labelTimer.textContent = `${min}:${sec}`;
+
+    // When tiemr runs out, stop the timer and log out the user.
+    if (time === 0) {
+      clearInterval(timer);
+      hideUI();
+    }
+    time--;
+  }
+  // call timer every second
+  tick();
+  timer = setInterval(tick, 1000);
+  return timer;
+}
+function resetTimer() {
+  clearInterval(timer);
+  timer = startLogOutTimer();
+}
+
 ///////////////////////////////////////
 // Event handlers
-let currentAccount;
+let currentAccount, timer;
 let sorted = false;
-
-// Fake Always Logged In
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 100;
-// End Dummy Code
 
 btnLogin.addEventListener('click', e => {
   // Prevent form from submitting
@@ -486,4 +525,62 @@ const randomInt = (min, max) =>
 // For advanced calculations, use a library like moment.js
 
 /////////////////////////////////////////////////
-// 175. Internationalization API with Dates and Numbers
+// 176. Internationalization API with Dates and Numbers
+
+// const num = 3884764.23;
+// const options = {
+//   style: 'currency',
+//   unit: 'celsius',
+//   currency: 'EUR',
+//   // useGrouping: false,
+// };
+
+// console.log('US:      ', new Intl.NumberFormat('en-US', options).format(num));
+// console.log(
+//   'Germany:      ',
+//   new Intl.NumberFormat('de-DE', options).format(num)
+// );
+// console.log(
+//   'Syria:      ',
+//   new Intl.NumberFormat('ar-SY', options).format(num)
+// );
+// console.log(
+//   'Great Britain:      ',
+//   new Intl.NumberFormat('en-GB', options).format(num)
+// );
+
+/////////////////////////////////////////////////
+// 177. setTimeout and Timers
+
+// setTimeout only lets things run once
+// const ingredients = ['olives', 'spinach'];
+// const pizzaTimer = setTimeout(
+//   (ing1, ing2) => console.log(`Here is your pizza with ${ing1} and ${ing2}🎉`),
+//   3000,
+//   ...ingredients
+// );
+
+// console.log('Waiting.....');
+
+// if (ingredients.includes('spinach')) clearTimeout(pizzaTimer);
+
+// // .setInterval()
+// // setInterval(() => {
+// //   const now = new Date();
+// //   console.log(now);
+// // }, 3000);
+
+// // Create a Clock that logs hours, minutes and seconds.
+
+// setInterval(() => {
+//   const now = new Date();
+//   console.log(
+//     `Clock: ${now.getHours()}`.padStart(2, 0) +
+//       ` hours, ${now.getMinutes()}`.padStart(2, 0) +
+//       ` minutes, ${now.getSeconds()}`.padStart(2, 0) +
+//       ` seconds.`
+//   );
+// }, 1000);
+
+/////////////////////////////////////////////////
+// 178. Countdown Timer
