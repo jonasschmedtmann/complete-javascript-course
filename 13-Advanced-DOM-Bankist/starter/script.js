@@ -43,15 +43,16 @@ document.addEventListener('keydown', function (e) {
 // Button Scrolling
 
 btnScrollTo.addEventListener('click', e => {
+  // super modern method
+  section1.scrollIntoView({ behavior: 'smooth' });
+
+  // Older Method
   // const s1coords = section1.getBoundingClientRect();
   // window.scrollTo({
   //   left: s1coords.left + window.pageXOffset,
   //   top: s1coords.top + window.pageYOffset,
   //   behavior: 'smooth', // doesn't work in Safari
   // });
-
-  // super modern method
-  section1.scrollIntoView({ behavior: 'smooth' });
 });
 
 //
@@ -165,6 +166,8 @@ function revealSection(entries, observer) {
   const [entry] = entries;
   if (!entry.isIntersecting) return;
   entry.target.classList.remove('section--hidden');
+  console.log(entry);
+  observer.unobserve(entry.target);
 }
 
 const sectionObserver = new IntersectionObserver(revealSection, {
