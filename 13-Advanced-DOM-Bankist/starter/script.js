@@ -18,6 +18,7 @@ const nav = document.querySelector('.nav');
 const header = document.querySelector('.header');
 const allButtons = document.getElementsByTagName('button');
 const allSections = document.querySelectorAll('section');
+const featImages = document.querySelectorAll('img[data-src]');
 
 function openModal(e) {
   e.preventDefault();
@@ -30,6 +31,8 @@ function closeModal() {
   overlay.classList.add('hidden');
 }
 
+///////////////////////////////////////
+// Event Listeners
 btnsOpenModal.forEach(btn => btn.addEventListener('click', openModal));
 btnCloseModal.addEventListener('click', closeModal);
 overlay.addEventListener('click', closeModal);
@@ -40,6 +43,7 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+///////////////////////////////////////
 // Button Scrolling
 
 btnScrollTo.addEventListener('click', e => {
@@ -166,7 +170,6 @@ function revealSection(entries, observer) {
   const [entry] = entries;
   if (!entry.isIntersecting) return;
   entry.target.classList.remove('section--hidden');
-  console.log(entry);
   observer.unobserve(entry.target);
 }
 
@@ -179,6 +182,30 @@ allSections.forEach(section => {
   section.classList.add('section--hidden');
 });
 
+///////////////////////////////////////
+// Lazy-Loading Images
+// 1. Grab Images (In Selectors)
+
+// 2. Swap Images
+function imgSwap(entries, observer) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) return;
+  entry.target.src = entry.target.dataset.src;
+  // 3. Remove lazy CSS
+  entry.target.addEventListener('load', () =>
+    entry.target.classList.remove('lazy-img')
+  );
+  observer.unobserve(entry.target);
+}
+// 4. Watch for Viewport Intersection
+// Create Observer
+const imgObserver = new IntersectionObserver(imgSwap, {
+  root: null,
+  threshold: 0,
+  rootMargin: '200px',
+});
+// Call Observer on each image
+featImages.forEach(i => imgObserver.observe(i));
 ///////////////////////////////////////
 // Lectures
 
