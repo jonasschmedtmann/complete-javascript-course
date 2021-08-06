@@ -109,7 +109,7 @@ tabsContainer.addEventListener('click', function (e) {
 // Menu Fade Animation
 function handleHover(e) {
   if (e.target.classList.contains('nav__link')) {
-    console.log(this);
+    // console.log(this);
     const link = e.target;
     const siblings = link.closest('.nav').querySelectorAll('.nav__link');
     const logo = link.closest('.nav').querySelector('img');
@@ -179,7 +179,7 @@ const sectionObserver = new IntersectionObserver(revealSection, {
 });
 allSections.forEach(section => {
   sectionObserver.observe(section);
-  section.classList.add('section--hidden');
+  // section.classList.add('section--hidden');
 });
 
 ///////////////////////////////////////
@@ -206,6 +206,78 @@ const imgObserver = new IntersectionObserver(imgSwap, {
 });
 // Call Observer on each image
 featImages.forEach(i => imgObserver.observe(i));
+
+///////////////////////////////////////
+// Build the Slider
+function slider() {
+  // Selectors
+  const slides = document.querySelectorAll('.slide');
+  const slider = document.querySelector('.slider');
+  const sliderBtnLeft = document.querySelector('.slider__btn--left');
+  const sliderBtnRight = document.querySelector('.slider__btn--right');
+  const dotContainer = document.querySelector('.dots');
+  let currentSlide = 1;
+
+  // Functions
+  function init() {
+    goToSlide(0);
+    createDots();
+    activateDot(0);
+  }
+
+  function goToSlide(slide) {
+    slides.forEach((s, i) => {
+      s.style.transform = `translateX(${100 * (i - slide)}%)`;
+    });
+  }
+
+  function nextSlide() {
+    currentSlide === slides.length - 1 ? (currentSlide = 0) : currentSlide++;
+    goToSlide(currentSlide);
+    activateDot(currentSlide);
+  }
+
+  function prevSlide() {
+    currentSlide === 0 ? (currentSlide = 3) : currentSlide--;
+    goToSlide(currentSlide);
+    activateDot(currentSlide);
+  }
+
+  function createDots() {
+    slides.forEach((_, i) => {
+      dotContainer.insertAdjacentHTML(
+        'beforeend',
+        `<button class="dots__dot" data-slide=${i}></button>`
+      );
+    });
+  }
+
+  function activateDot(slide) {
+    document.querySelectorAll('.dots__dot').forEach(dot => {
+      dot.classList.remove('dots__dot--active');
+    });
+    document
+      .querySelector(`.dots__dot[data-slide="${slide}"]`)
+      .classList.add('dots__dot--active');
+  }
+
+  // Event Handlers
+  sliderBtnRight.addEventListener('click', () => nextSlide());
+  sliderBtnLeft.addEventListener('click', () => prevSlide());
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') prevSlide();
+    e.key === 'ArrowRight' && nextSlide();
+  });
+  dotContainer.addEventListener('click', e => {
+    if (e.target.classList.contains('dots__dot')) {
+      const { slide } = e.target.dataset;
+      goToSlide(slide);
+      activateDot(slide);
+    }
+  });
+  init();
+}
+slider();
 ///////////////////////////////////////
 // Lectures
 
@@ -394,4 +466,23 @@ const link = document.querySelector('.nav__link--btn');
 // console.log(h1.parentElement.children);
 // [...h1.parentElement.children].forEach(function (el) {
 //   if (el !== h1) el.style.transform = 'scale(0.5)';
+// });
+
+///////////////////////////////////////
+// 199. DOM Lifecycle
+
+// HTML needs to be parsed
+
+document.addEventListener('DOMContentLoaded', e =>
+  console.log('HTML Parsed and DOM Tree built', e)
+);
+
+// Load event is fired when the window is ready && external resources are loaded
+
+window.addEventListener('load', e => console.log('Page fully loaded.', e));
+// Confirm before leaving site (like stupid facebook creator studio)
+// window.addEventListener('beforeunload', e => {
+//   e.preventDefault();
+//   console.log('Created before the user leaves.', e);
+//   e.returnValue = '';
 // });
