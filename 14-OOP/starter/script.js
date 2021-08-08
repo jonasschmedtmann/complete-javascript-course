@@ -294,45 +294,151 @@
 ////////////////////////////////////////////////////////
 // 219. Another Class Example
 
-class Account {
-  constructor(owner, currency, pin) {
-    this.owner = owner;
-    this.currency = currency;
-    this.pin = pin;
-    this.movements = [];
-    this.locale = navigator.language;
+// class Account {
+//   constructor(owner, currency, pin) {
+//     this.owner = owner;
+//     this.currency = currency;
+//     this.pin = pin;
+//     this.movements = [];
+//     this.locale = navigator.language;
 
-    console.log(`Thanks for opening an account, ${owner}!`);
-  }
+//     console.log(`Thanks for opening an account, ${owner}!`);
+//   }
 
-  // These methods are the API of the Class
-  deposit(value) {
-    this.movements.push(value);
-  }
-  // This method abstracts that a withdrawl = a negative deposit
-  withdrawal(value) {
-    this.deposit(-value);
-  }
-  // this is an internal method that should be hidden from the public
-  approveLoan(value) {
-    return true;
-  }
-  requestLoan(value) {
-    if (this.approveLoan(value)) {
-      this.deposit(value);
-      console.log(`Your loan of ${value} was approved.`);
-    }
-  }
-}
-const acc1 = new Account('Jonas', 'Eur', 1111);
-acc1.deposit(250);
-acc1.withdrawal(140);
-acc1.requestLoan(1000);
-console.log(acc1);
-console.log(acc1.pin); // this shouldn't be able to be publically accessed
+//   // These methods are the API of the Class
+//   deposit(value) {
+//     this.movements.push(value);
+//   }
+//   // This method abstracts that a withdrawl = a negative deposit
+//   withdrawal(value) {
+//     this.deposit(-value);
+//   }
+//   // this is an internal method that should be hidden from the public
+//   approveLoan(value) {
+//     return true;
+//   }
+//   requestLoan(value) {
+//     if (this.approveLoan(value)) {
+//       this.deposit(value);
+//       console.log(`Your loan of ${value} was approved.`);
+//     }
+//   }
+// }
+// const acc1 = new Account('Jonas', 'Eur', 1111);
+// acc1.deposit(250);
+// acc1.withdrawal(140);
+// acc1.requestLoan(1000);
+// console.log(acc1);
+// console.log(acc1.pin); // this shouldn't be able to be publically accessed
 
 ////////////////////////////////////////////////////////
 // 220. Encapsulation: Protected Properties & Methods
+
+// Faking Encapsulation with _Code Convention
+// class Account {
+//   constructor(owner, currency, pin) {
+//     this.owner = owner;
+//     this.currency = currency;
+//     this._pin = pin;
+//     // 'Protected' Property
+//     this._movements = [];
+//     this.locale = navigator.language;
+
+//     console.log(`Thanks for opening an account, ${owner}!`);
+//   }
+
+//   // this is an internal method that should be hidden from the public
+//   _approveLoan(value) {
+//     return true;
+//   }
+//   // These methods are the API of the Class
+//   getMovements() {
+//     return this._movements;
+//   }
+
+//   deposit(value) {
+//     this._movements.push(value);
+//   }
+//   // This method abstracts that a withdrawl = a negative deposit
+//   withdrawal(value) {
+//     this.deposit(-value);
+//   }
+//   requestLoan(value) {
+//     if (this._approveLoan(value)) {
+//       this.deposit(value);
+//       console.log(`Your loan of ${value} was approved.`);
+//     }
+//   }
+// }
+// const acc1 = new Account('Jonas', 'Eur', 1111);
+// acc1.deposit(250);
+// acc1.withdrawal(140);
+// acc1.requestLoan(1000);
+
+// console.log(acc1);
+// console.log(acc1.pin); // this shouldn't be able to be publically accessed
+// console.log(acc1.getMovements());
+
+////////////////////////////////////////////////////////
+// 221. Encapsulation: Private Class Fields & Methods
+
+// In actual OOP languages, properties are called 'fields'
+
+// 4 types of Fields/Methods
+// Public/Private Fields, Public/Private Methods
+// There are also Static versions of the above
+
+// class Account {
+//   // Defining Public Fields on instances
+//   locale = navigator.language;
+
+//   // Defining Private Fields
+//   #movements = [];
+//   #pin;
+
+//   // Defining Private Methods (Aug 2021 unsupported in Safari)
+//   // #approveLoan(value) {
+//   //   if (value) {
+//   //     this.deposit(value);
+//   //     console.log(`Your loan of ${value} was approved.`);
+//   //   }
+//   // }
+//   constructor(owner, currency, pin) {
+//     this.owner = owner;
+//     this.currency = currency;
+//     this.#pin = pin;
+//     console.log(`Thanks for opening an account, ${owner}!`);
+//   }
+
+//   // These methods are the API of the Class
+//   getMovements() {
+//     return this.#movements;
+//   }
+
+//   deposit(value) {
+//     this.#movements.push(value);
+//   }
+//   // This method abstracts that a withdrawl = a negative deposit
+//   withdrawal(value) {
+//     this.deposit(-value);
+//   }
+//   requestLoan(value) {
+//     // this.#approveLoan(value);
+//   }
+// }
+// const acc1 = new Account('Jonas', 'Eur', 1111);
+// const acc2 = new Account('KJ', 'USD', 7109);
+// acc1.deposit(250);
+// acc1.withdrawal(140);
+// // acc1.requestLoan(1000);
+
+// console.log(acc1);
+// console.log(acc2);
+// // console.log(acc1.#movements);
+// // console.log(acc1.#pin);
+// console.log(Account);
+// // console.log(acc1.pin); // this shouldn't be able to be publically accessed
+// console.log(acc1.getMovements());
 
 ///////////////////////////////////////
 // Coding Challenge #1
