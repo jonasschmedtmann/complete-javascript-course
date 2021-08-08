@@ -388,59 +388,59 @@
 // Public/Private Fields, Public/Private Methods
 // There are also Static versions of the above
 
-class Account {
-  // Defining Public Fields on instances
-  locale = navigator.language;
+// class Account {
+//   // Defining Public Fields on instances
+//   locale = navigator.language;
 
-  // Defining Private Fields
-  #movements = [];
-  #pin;
+//   // Defining Private Fields
+//   #movements = [];
+//   #pin;
 
-  // Defining Private Methods (Aug 2021 unsupported in Safari)
-  // #approveLoan(value) {
-  //   if (value) {
-  //     this.deposit(value);
-  //     console.log(`Your loan of ${value} was approved.`);
-  //   }
-  // }
-  constructor(owner, currency, pin) {
-    this.owner = owner;
-    this.currency = currency;
-    this.#pin = pin;
-    console.log(`Thanks for opening an account, ${owner}!`);
-  }
+//   // Defining Private Methods (Aug 2021 unsupported in Safari)
+//   // #approveLoan(value) {
+//   //   if (value) {
+//   //     this.deposit(value);
+//   //     console.log(`Your loan of ${value} was approved.`);
+//   //   }
+//   // }
+//   constructor(owner, currency, pin) {
+//     this.owner = owner;
+//     this.currency = currency;
+//     this.#pin = pin;
+//     console.log(`Thanks for opening an account, ${owner}!`);
+//   }
 
-  // These methods are the API of the Class
-  getMovements() {
-    console.log(this.#movements);
-    return this.#movements;
-  }
+//   // These methods are the API of the Class
+//   getMovements() {
+//     console.log(this.#movements);
+//     return this.#movements;
+//   }
 
-  deposit(value) {
-    this.#movements.push(value);
-    return this;
-  }
-  // This method abstracts that a withdrawl = a negative deposit
-  withdrawal(value) {
-    this.deposit(-value);
-    return this;
-  }
-  requestLoan(value) {
-    // this.#approveLoan(value);
-    if (value) {
-      this.deposit(value);
-      console.log(`Your loan of ${value} was approved.`);
-    }
-    return this;
-  }
-  getBalance() {
-    const balance = this.#movements.reduce((acc, v) => acc + v);
-    console.log(`Your account has a balance of ${balance}`);
-    return this;
-  }
-}
-const acc1 = new Account('Jonas', 'Eur', 1111);
-const acc2 = new Account('KJ', 'USD', 7109);
+//   deposit(value) {
+//     this.#movements.push(value);
+//     return this;
+//   }
+//   // This method abstracts that a withdrawl = a negative deposit
+//   withdrawal(value) {
+//     this.deposit(-value);
+//     return this;
+//   }
+//   requestLoan(value) {
+//     // this.#approveLoan(value);
+//     if (value) {
+//       this.deposit(value);
+//       console.log(`Your loan of ${value} was approved.`);
+//     }
+//     return this;
+//   }
+//   getBalance() {
+//     const balance = this.#movements.reduce((acc, v) => acc + v);
+//     console.log(`Your account has a balance of ${balance}`);
+//     return this;
+//   }
+// }
+// const acc1 = new Account('Jonas', 'Eur', 1111);
+// const acc2 = new Account('KJ', 'USD', 7109);
 // acc1.deposit(250);
 // acc1.withdrawal(140);
 // // acc1.requestLoan(1000);
@@ -453,16 +453,16 @@ const acc2 = new Account('KJ', 'USD', 7109);
 // console.log(acc1.getMovements());
 
 // In order to chain methods, you have to return the object at the end of each method.
-acc1
-  .deposit(300)
-  .withdrawal(35)
-  .deposit(500)
-  .requestLoan(2500)
-  .withdrawal(4000);
-acc1.getMovements();
-acc1.getBalance();
+// acc1
+//   .deposit(300)
+//   .withdrawal(35)
+//   .deposit(500)
+//   .requestLoan(2500)
+//   .withdrawal(4000);
+// acc1.getMovements();
+// acc1.getBalance();
 
-console.log(acc1);
+// console.log(acc1);
 
 ///////////////////////////////////////
 // Coding Challenge #1
@@ -605,3 +605,109 @@ GOOD LUCK 😀
 //     tesla.charge * 100
 //   }%`
 // );
+
+///////////////////////////////////////
+// Coding Challenge #4
+
+/* 
+1. Re-create challenge #3, but this time using ES6 classes: create an 'EVCl' child class of the 'CarCl' class
+2. Make the 'charge' property private;
+3. Implement the ability to chain the 'accelerate' and 'chargeBattery' methods of this class, and also update the 'brake' method in the 'CarCl' class. They experiment with chining!
+
+DATA CAR 1: 'Rivian' going at 120 km/h, with a charge of 23%
+
+GOOD LUCK 😀
+*/
+
+class CarCl {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+  acclerate() {
+    this.speed += 10;
+    console.log(`${this.make} is going at ${this.speed} km/h`);
+  }
+  brake(hardBrake = false) {
+    hardBrake && this.speed > 0
+      ? (this.speed -= 20) &&
+        console.log(`${this.make} is going at ${this.speed} km/h`)
+      : this.speed > 0
+      ? (this.speed -= 5) &&
+        console.log(`${this.make} is going at ${this.speed} km/h`)
+      : console.log('The car is stopped.');
+    return this;
+  }
+  brakeHard() {
+    this.brake(true);
+    return this;
+  }
+}
+
+class EV1 extends CarCl {
+  #charge;
+  constructor(make, speed, charge) {
+    super(make, speed);
+    this.#charge = charge / 100;
+  }
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo / 100;
+    console.log(
+      `${this.make}'s battery has been charged to ${this.#charge * 100}%.`
+    );
+    return this;
+  }
+  accelerate(fast = false) {
+    if (this.#charge > 0 && !fast) {
+      this.speed += 20;
+      this.#charge -= 0.01;
+      console.log(
+        `${this.make} is going ${this.speed} km/h with a charge of ${
+          this.#charge * 100
+        }%`
+      );
+      return this;
+    } else if (this.#charge > 0 && fast) {
+      this.speed += 40;
+      this.#charge -= 0.1;
+      console.log(
+        `${this.make} is going ${this.speed} km/h with a charge of ${
+          this.#charge * 100
+        }%`
+      );
+      return this;
+    } else console.log(`Your ${this.make} needs to be charged!`);
+    return this;
+  }
+  accerlateFast() {
+    this.#charge > 0
+      ? this.accelerate(true)
+      : console.log(`Your ${this.make} needs to be charged!`);
+    return this;
+  }
+}
+const rivian = new EV1('Rivian', 120, 23);
+console.log(rivian);
+rivian
+  .brake()
+  .brakeHard()
+  .accelerate()
+  .accelerate()
+  .accelerate()
+  .brakeHard()
+  .accerlateFast()
+  .accerlateFast()
+  .accerlateFast()
+  .brakeHard()
+  .brakeHard()
+  .brakeHard()
+  .brakeHard()
+  .brakeHard()
+  .brakeHard()
+  .brakeHard()
+  .brakeHard()
+  .brakeHard()
+  .brakeHard()
+  .brakeHard()
+  .brakeHard()
+  .brakeHard();
