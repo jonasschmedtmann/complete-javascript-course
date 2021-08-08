@@ -388,57 +388,81 @@
 // Public/Private Fields, Public/Private Methods
 // There are also Static versions of the above
 
-// class Account {
-//   // Defining Public Fields on instances
-//   locale = navigator.language;
+class Account {
+  // Defining Public Fields on instances
+  locale = navigator.language;
 
-//   // Defining Private Fields
-//   #movements = [];
-//   #pin;
+  // Defining Private Fields
+  #movements = [];
+  #pin;
 
-//   // Defining Private Methods (Aug 2021 unsupported in Safari)
-//   // #approveLoan(value) {
-//   //   if (value) {
-//   //     this.deposit(value);
-//   //     console.log(`Your loan of ${value} was approved.`);
-//   //   }
-//   // }
-//   constructor(owner, currency, pin) {
-//     this.owner = owner;
-//     this.currency = currency;
-//     this.#pin = pin;
-//     console.log(`Thanks for opening an account, ${owner}!`);
-//   }
+  // Defining Private Methods (Aug 2021 unsupported in Safari)
+  // #approveLoan(value) {
+  //   if (value) {
+  //     this.deposit(value);
+  //     console.log(`Your loan of ${value} was approved.`);
+  //   }
+  // }
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    this.#pin = pin;
+    console.log(`Thanks for opening an account, ${owner}!`);
+  }
 
-//   // These methods are the API of the Class
-//   getMovements() {
-//     return this.#movements;
-//   }
+  // These methods are the API of the Class
+  getMovements() {
+    console.log(this.#movements);
+    return this.#movements;
+  }
 
-//   deposit(value) {
-//     this.#movements.push(value);
-//   }
-//   // This method abstracts that a withdrawl = a negative deposit
-//   withdrawal(value) {
-//     this.deposit(-value);
-//   }
-//   requestLoan(value) {
-//     // this.#approveLoan(value);
-//   }
-// }
-// const acc1 = new Account('Jonas', 'Eur', 1111);
-// const acc2 = new Account('KJ', 'USD', 7109);
+  deposit(value) {
+    this.#movements.push(value);
+    return this;
+  }
+  // This method abstracts that a withdrawl = a negative deposit
+  withdrawal(value) {
+    this.deposit(-value);
+    return this;
+  }
+  requestLoan(value) {
+    // this.#approveLoan(value);
+    if (value) {
+      this.deposit(value);
+      console.log(`Your loan of ${value} was approved.`);
+    }
+    return this;
+  }
+  getBalance() {
+    const balance = this.#movements.reduce((acc, v) => acc + v);
+    console.log(`Your account has a balance of ${balance}`);
+    return this;
+  }
+}
+const acc1 = new Account('Jonas', 'Eur', 1111);
+const acc2 = new Account('KJ', 'USD', 7109);
 // acc1.deposit(250);
 // acc1.withdrawal(140);
 // // acc1.requestLoan(1000);
 
-// console.log(acc1);
 // console.log(acc2);
 // // console.log(acc1.#movements);
 // // console.log(acc1.#pin);
 // console.log(Account);
 // // console.log(acc1.pin); // this shouldn't be able to be publically accessed
 // console.log(acc1.getMovements());
+
+// In order to chain methods, you have to return the object at the end of each method.
+acc1
+  .deposit(300)
+  .withdrawal(35)
+  .deposit(500)
+  .requestLoan(2500)
+  .withdrawal(4000);
+acc1.getMovements();
+acc1.getBalance();
+
+console.log(acc1);
 
 ///////////////////////////////////////
 // Coding Challenge #1
