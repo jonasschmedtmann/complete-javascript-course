@@ -200,6 +200,140 @@
 // Student.prototype.constructor = Student;
 // console.dir(Student.prototype.constructor);
 
+////////////////////////////////////////////////////////
+// 217. Inheritance between "Classes": ES6 Classes
+
+// // Class Declaration
+// class PersonCl {
+//   constructor(fullName, birthYear) {
+//     this.fullName = fullName;
+//     this.birthYear = birthYear;
+//   }
+
+//   // This declares methods on the prototype, not the instance itself
+//   calcAge() {
+//     console.log(2037 - this.birthYear);
+//   }
+//   //   // Static Method Declaration in Classes
+//   static hey() {
+//     console.log('Hey there! 😀');
+//   }
+
+//   get age() {
+//     return 2037 - this.birthYear;
+//   }
+//   //   // Setting a Property that already exists
+//   set fullName(name) {
+//     if (name.includes(' ')) {
+//       this._fullName = name;
+//     } else alert(`${name} is not a full name!`);
+//   }
+//   get fullName() {
+//     return this._fullName;
+//   }
+// }
+
+// // Extends links the prototypes
+// class StudentCl extends PersonCl {
+//   // if no new properties, no constructorFn needed
+//   constructor(fullName, birthYear, course) {
+//     // Super keyword acts like .call() method
+//     // Must always happen first
+//     super(fullName, birthYear);
+//     this.course = course;
+//   }
+//   introduce() {
+//     console.log(`My name is ${this.fullName} and I study ${this.course}.`);
+//   }
+//   calcAge() {
+//     console.log(
+//       `I'm ${
+//         2037 - this.birthYear
+//       } years old, but as a student I feel more like ${
+//         2037 - this.birthYear + 10
+//       }!`
+//     );
+//   }
+// }
+
+// // const martha = new StudentCl('Martha Jones', 2012);
+// const martha = new StudentCl('Martha Jones', 2012, 'Computer Science');
+// console.log(martha);
+// martha.introduce();
+// martha.calcAge();
+
+////////////////////////////////////////////////////////
+// 218. Inheritance between "Classes": Object.create()
+
+// const PersonProto = {
+//   calcAge() {
+//     console.log(2037 - this.birthYear);
+//   },
+//   init(firstName, birthYear) {
+//     this.firstName = firstName;
+//     this.birthYear = birthYear;
+//   },
+// };
+
+// const steven = Object.create(PersonProto);
+
+// const StudentProto = Object.create(PersonProto);
+// StudentProto.init = function (firstName, birthYear, course) {
+//   PersonProto.init.call(this, firstName, birthYear);
+//   this.course = course;
+// };
+// StudentProto.introduce = function () {
+//   console.log(`My name is ${this.firstName} and I study ${this.course}.`);
+// };
+// const jay = Object.create(StudentProto);
+// jay.init('Jay', 2010, 'Computer Science');
+// console.log(jay);
+// jay.introduce();
+// jay.calcAge();
+
+////////////////////////////////////////////////////////
+// 219. Another Class Example
+
+class Account {
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    this.pin = pin;
+    this.movements = [];
+    this.locale = navigator.language;
+
+    console.log(`Thanks for opening an account, ${owner}!`);
+  }
+
+  // These methods are the API of the Class
+  deposit(value) {
+    this.movements.push(value);
+  }
+  // This method abstracts that a withdrawl = a negative deposit
+  withdrawal(value) {
+    this.deposit(-value);
+  }
+  // this is an internal method that should be hidden from the public
+  approveLoan(value) {
+    return true;
+  }
+  requestLoan(value) {
+    if (this.approveLoan(value)) {
+      this.deposit(value);
+      console.log(`Your loan of ${value} was approved.`);
+    }
+  }
+}
+const acc1 = new Account('Jonas', 'Eur', 1111);
+acc1.deposit(250);
+acc1.withdrawal(140);
+acc1.requestLoan(1000);
+console.log(acc1);
+console.log(acc1.pin); // this shouldn't be able to be publically accessed
+
+////////////////////////////////////////////////////////
+// 220. Encapsulation: Protected Properties & Methods
+
 ///////////////////////////////////////
 // Coding Challenge #1
 
@@ -294,70 +428,50 @@ DATA CAR 1: 'Tesla' going at 120 km/h, with a charge of 23%
 GOOD LUCK 😀
 */
 
-const Car = function (make, speed) {
-  this.make = make;
-  this.speed = speed;
-};
+// const Car = function (make, speed) {
+//   this.make = make;
+//   this.speed = speed;
+// };
 
-Car.prototype.accelerate = function () {
-  this.speed += 10;
-  console.log(`${this.make} is going at ${this.speed} km/h`);
-};
+// Car.prototype.accelerate = function () {
+//   this.speed += 10;
+//   console.log(`${this.make} is going at ${this.speed} km/h`);
+// };
 
-Car.prototype.brake = function (hardBrake = false) {
-  hardBrake && this.speed > 0
-    ? (this.speed -= 20) &&
-      console.log(`${this.make} is going at ${this.speed} km/h`)
-    : this.speed > 0
-    ? (this.speed -= 5) &&
-      console.log(`${this.make} is going at ${this.speed} km/h`)
-    : console.log('The car is stopped.');
-};
-const EV = function (make, speed, charge) {
-  Car.call(this, make, speed);
-  this.charge = charge / 100;
-};
+// Car.prototype.brake = function (hardBrake = false) {
+//   hardBrake && this.speed > 0
+//     ? (this.speed -= 20) &&
+//       console.log(`${this.make} is going at ${this.speed} km/h`)
+//     : this.speed > 0
+//     ? (this.speed -= 5) &&
+//       console.log(`${this.make} is going at ${this.speed} km/h`)
+//     : console.log('The car is stopped.');
+// };
+// const EV = function (make, speed, charge) {
+//   Car.call(this, make, speed);
+//   this.charge = charge / 100;
+// };
 
-EV.prototype = Object.create(Car.prototype);
-EV.prototype.chargeBattery = function (chargeTo) {
-  this.charge = chargeTo / 100;
-  console.log(
-    `${this.make}'s battery has been charged to ${this.charge * 100}%.`
-  );
-};
-EV.prototype.accelerate = function () {
-  this.speed += 20;
-  this.charge -= 0.01;
-  console.log(
-    `${this.make} is going ${this.speed} km/h with a charge of ${
-      this.charge * 100
-    }%`
-  );
-};
+// EV.prototype = Object.create(Car.prototype);
+// EV.prototype.chargeBattery = function (chargeTo) {
+//   this.charge = chargeTo / 100;
+//   console.log(
+//     `${this.make}'s battery has been charged to ${this.charge * 100}%.`
+//   );
+// };
+// EV.prototype.accelerate = function () {
+//   this.speed += 20;
+//   this.charge -= 0.01;
+//   console.log(
+//     `${this.make} is going ${this.speed} km/h with a charge of ${
+//       this.charge * 100
+//     }%`
+//   );
+// };
 
-const tesla = new EV('Tesla', 120, 23);
-console.log(
-  `Initial State: ${tesla.make} is going ${tesla.speed} km/h with a charge of ${
-    tesla.charge * 100
-  }%`
-);
-tesla.accelerate();
-tesla.brake();
-tesla.brake();
-tesla.brake();
-tesla.accelerate();
-tesla.brake();
-tesla.brake();
-tesla.brake(true);
-tesla.brake(true);
-tesla.brake(true);
-tesla.brake(true);
-tesla.brake(true);
-tesla.brake(true);
-tesla.brake(true);
-tesla.brake(true);
-tesla.chargeBattery(90);
-tesla.accelerate();
-tesla.accelerate();
-tesla.accelerate();
-tesla.accelerate();
+// const tesla = new EV('Tesla', 120, 23);
+// console.log(
+//   `Initial State: ${tesla.make} is going ${tesla.speed} km/h with a charge of ${
+//     tesla.charge * 100
+//   }%`
+// );
