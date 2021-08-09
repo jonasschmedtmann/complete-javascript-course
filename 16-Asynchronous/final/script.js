@@ -124,7 +124,7 @@ setTimeout(() => {
   }, 1000);
 }, 1000);
 
-
+*/
 ///////////////////////////////////////
 // Consuming Promises
 // Chaining Promises
@@ -213,8 +213,7 @@ btn.addEventListener('click', function () {
   getCountryData('portugal');
 });
 
-// getCountryData('australia');
-*/
+// // getCountryData('australia');
 
 ///////////////////////////////////////
 // Coding Challenge #1
