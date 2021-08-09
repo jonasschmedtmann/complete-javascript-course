@@ -61,11 +61,11 @@ function getCountryData(country) {
     })
     .finally(() => {
       // this only works on promises
-      //   countriesContainer.style.opacity = 1;
+      countriesContainer.style.opacity = 1;
     });
 }
 
-// btn.addEventListener('click', () => getCountryData('portugal'));
+btn.addEventListener('click', () => getCountryData('portugal'));
 
 ///////////////////////////////////////
 // Coding Challenge #1
@@ -94,22 +94,21 @@ TEST COORDINATES 2: -33.933, 18.474
 GOOD LUCK 😀
 */
 
-function whereAmI(lat, lng) {
-  countriesContainer.style.opacity = 1;
-  fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
-    .then(response => {
-      if (!response.ok || response.status === 403)
-        throw new Errror('Something went wrong.');
-      return response.json();
-    })
-    .then(data => {
-      console.log(`You are in ${data.city}, ${data.country}`);
-      return getCountryData(`${data.country}`);
-    })
-    .catch(err => console.log(err));
-  // do reverse geocoding
-}
+// function whereAmI(lat, lng) {
+//   countriesContainer.style.opacity = 1;
+//   fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
+//     .then(response => {
+//       if (!response.ok || response.status === 403)
+//         throw new Errror('Something went wrong.');
+//       return response.json();
+//     })
+//     .then(data => {
+//       console.log(`You are in ${data.city}, ${data.country}`);
+//       return getCountryData(`${data.country}`);
+//     })
+//     .catch(err => console.log(err));
+// }
 
 // whereAmI(52.508, 13.381); // test 1
 // whereAmI(19.037, 72.873); // test 2
-whereAmI(-33.933, 18.474); // test 3
+// whereAmI(-33.933, 18.474); // test 3
