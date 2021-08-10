@@ -65,7 +65,86 @@ function getCountryData(country) {
     });
 }
 
-btn.addEventListener('click', () => getCountryData('portugal'));
+// btn.addEventListener('click', () => getCountryData('portugal'));
+
+///////////////////////////////////////
+// 254. The Event Loop in Pracitce
+
+// console.log('Test Start'); // 1st Log
+// setTimeout(() => console.log('0 Second Timer'), 0); // Last Log
+// Promise.resolve('Resolved Promise #1') // Create a promise that is immediately resolved
+//   .then(res => console.log(res)); // 3rd Log
+
+// console.log('Test End'); // 2nd Log
+
+///////////////////////////////////////
+// 255. Building a Simple Promise
+
+// const lotteryPromise = new Promise(function (resolve, reject) {
+//   console.log('Lottery is drawing numbers...');
+//   const lottoNumber = Math.random();
+//   setTimeout(() => {
+//     if (lottoNumber >= 0.5) {
+//       resolve('You Win!');
+//     }
+//     if (lottoNumber <= 0.5) {
+//       resolve('You lose....');
+//     } else {
+//       reject(new Error('Are you sure you bought a ticket?'));
+//     }
+//   }, 2000);
+// });
+
+// lotteryPromise.then(res => console.log(res)).catch(err => console.log(err));
+
+// // 'Promisifying' is to wrap callback functions into promises
+const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+// wait(2000)
+//   .then(() => {
+//     console.log('I waited for 2 seconds');
+//     return wait(1000);
+//   })
+//   .then(() => console.log('I waited for 1 second after the first wait().'));
+
+// Promise.resolve('abc').then(x => console.log(x));
+// Promise.reject(new Error('Problem!')).catch(x => console.log(x));
+
+///////////////////////////////////////
+// 256. Promisifying the Geolocation API
+
+// function getPosition() {
+//   return new Promise(function (resolve, reject) {
+//     // navigator.geolocation.getCurrentPosition(
+//     //   position => resolve(position),
+//     //   err => reject(err)
+//     // );
+//     navigator.geolocation.getCurrentPosition(resolve, reject);
+//   });
+// }
+// getPosition().then(pos => console.log(pos));
+
+// function whereAmI() {
+//   getPosition()
+//     .then(pos => {
+//       const { latitude: lat, longitude: lng } = pos.coords;
+
+//       return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+//     })
+//     .then(response => {
+//       if (!response.ok || response.status === 403)
+//         throw new Errror('Something went wrong.');
+//       return response.json();
+//     })
+//     .then(data => {
+//       console.log(`You are in ${data.city}, ${data.country}`);
+//       return getCountryData(`${data.country}`);
+//     })
+
+//     .catch(err => console.log(err));
+// }
+
+// btn.addEventListener('click', whereAmI);
 
 ///////////////////////////////////////
 // Coding Challenge #1
@@ -112,3 +191,74 @@ GOOD LUCK 😀
 // whereAmI(52.508, 13.381); // test 1
 // whereAmI(19.037, 72.873); // test 2
 // whereAmI(-33.933, 18.474); // test 3
+
+///////////////////////////////////////
+// Coding Challenge #2
+
+/* 
+Build the image loading functionality that I just showed you on the screen.
+
+Tasks are not super-descriptive this time, so that you can figure out some stuff on your own. Pretend you're working on your own 😉
+
+PART 1
+1. Create a function 'createImage' which receives imgPath as an input. This function returns a promise which creates a new image (use document.createElement('img')) and sets the .src attribute to the provided image path. When the image is done loading, append it to the DOM element with the 'images' class, and resolve the promise. The fulfilled value should be the image element itself. In case there is an error loading the image ('error' event), reject the promise.
+
+If this part is too tricky for you, just watch the first part of the solution.
+
+PART 2
+2. Comsume the promise using .then and also add an error handler;
+3. After the image has loaded, pause execution for 2 seconds using the wait function we created earlier;
+4. After the 2 seconds have passed, hide the current image (set display to 'none'), and load a second image (HINT: Use the image element returned by the createImage promise to hide the current image. You will need a global variable for that 😉);
+5. After the second image has loaded, pause execution for 2 seconds again;
+6. After the 2 seconds have passed, hide the current image.
+
+TEST DATA: Images in the img folder. Test the error handler by passing a wrong image path. Set the network speed to 'Fast 3G' in the dev tools Network tab, otherwise images load too fast.
+
+GOOD LUCK 😀
+*/
+
+const newImage = document.createElement('img');
+function createImage(imgPath) {
+  return new Promise(function (resolve, reject) {
+    newImage.src = imgPath;
+    resolve(newImage), reject(new Error('Something went wrong'));
+  });
+}
+createImage('img/img-1.jpg')
+  .then(res => {
+    // console.log(res);
+    document.querySelector('.images').append(res);
+  })
+  .then(() => {
+    wait(2000)
+      .then(() => (newImage.style.display = 'none'))
+      .then(() => {
+        wait(2000)
+          .then(() => {
+            newImage.src = 'img/img-2.jpg';
+            newImage.style.display = 'block';
+          })
+          .then(() => wait(2000).then(() => (newImage.style.display = 'none')));
+      });
+  })
+  .catch(err => console.log(err));
+
+///////////////////////////////////////
+// Coding Challenge #3
+
+/* 
+PART 1
+Write an async function 'loadNPause' that recreates Coding Challenge #2, this time using async/await (only the part where the promise is consumed). Compare the two versions, think about the big differences, and see which one you like more.
+Don't forget to test the error handler, and to set the network speed to 'Fast 3G' in the dev tools Network tab.
+
+PART 2
+1. Create an async function 'loadAll' that receives an array of image paths 'imgArr';
+2. Use .map to loop over the array, to load all the images with the 'createImage' function (call the resulting array 'imgs')
+3. Check out the 'imgs' array in the console! Is it like you expected?
+4. Use a promise combinator function to actually get the images from the array 😉
+5. Add the 'paralell' class to all the images (it has some CSS styles).
+
+TEST DATA: ['img/img-1.jpg', 'img/img-2.jpg', 'img/img-3.jpg']. To test, turn off the 'loadNPause' function.
+
+GOOD LUCK 😀
+*/
