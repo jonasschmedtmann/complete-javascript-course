@@ -200,30 +200,30 @@ const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 ///////////////////////////////////////////////
 // 260. Returning Values from Async Functions
 
-function getPosition() {
-  return new Promise(function (resolve, reject) {
-    navigator.geolocation.getCurrentPosition(resolve, reject);
-  });
-}
+// function getPosition() {
+//   return new Promise(function (resolve, reject) {
+//     navigator.geolocation.getCurrentPosition(resolve, reject);
+//   });
+// }
 
 // Async/Await is simply Syntactic Sugar
-async function whereAmI() {
-  // async always returns promises
-  try {
-    const pos = await getPosition();
-    const { latitude: lat, longitude: lng } = pos.coords;
-    const geo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
-    if (!geo.ok) throw new Error('Problem getting location data.');
-    const geoRes = await geo.json();
-    getCountryData(geoRes.country);
-  } catch (err) {
-    console.error(err);
-    renderError(`${err.message}`);
+// async function whereAmI() {
+//   // async always returns promises
+//   try {
+//     const pos = await getPosition();
+//     const { latitude: lat, longitude: lng } = pos.coords;
+//     const geo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+//     if (!geo.ok) throw new Error('Problem getting location data.');
+//     const geoRes = await geo.json();
+//     getCountryData(geoRes.country);
+//   } catch (err) {
+//     console.error(err);
+//     renderError(`${err.message}`);
 
-    // Reject Promise returned from async function
-    throw err;
-  }
-}
+//     // Reject Promise returned from async function
+//     throw err;
+//   }
+// }
 
 // console.log(`1: Will get location.`);
 
@@ -370,6 +370,7 @@ GOOD LUCK 😀
 */
 
 // const imgContainer = document.querySelector('.images');
+
 // function createImage(imgPath) {
 //   return new Promise(function (resolve, reject) {
 //     const newImage = document.createElement('img');
@@ -424,3 +425,73 @@ TEST DATA: ['img/img-1.jpg', 'img/img-2.jpg', 'img/img-3.jpg']. To test, turn of
 
 GOOD LUCK 😀
 */
+
+function createImage(imgPath) {
+  const imgContainer = document.querySelector('.images');
+  return new Promise(function (resolve, reject) {
+    const newImage = document.createElement('img');
+    newImage.src = imgPath;
+
+    newImage.addEventListener('load', () => {
+      imgContainer.append(newImage);
+      resolve(newImage);
+    }),
+      newImage.addEventListener('error', () =>
+        reject(new Error('Someone broke something somewhere.'))
+      );
+  });
+}
+/////////////////
+// Rewrite me!
+/*
+createImage('img/img-1.jpg')
+//   .then(img => {
+//     currentImg = img;
+//     return wait(2000);
+//   })
+//   .then(() => {
+//     currentImg.style.display = 'none';
+//     return createImage('img/img-2.jpg');
+//   })
+//   .then(img => {
+//     currentImg = img;
+//     return wait(2000);
+//   })
+//   .then(() => {
+//     currentImg.style.display = 'block';
+//     return wait(2000);
+//   })
+//   .then(() => (currentImg.style.display = 'none'))
+//   .catch(err => console.log(err));
+*/
+
+//// Part 1
+/*
+async function loadNPause() {
+  try {
+    let img = await createImage('img/img-1.jpg');
+    await wait(2000); // No resolved value, no reason to store
+    img.style.display = 'none';
+    img = await createImage('img/img-2.jpg');
+    await wait(2000);
+    img.style.display = 'block';
+    await wait(2000);
+    img.style.display = 'none';
+  } catch (err) {
+    console.error(err);
+  }
+}
+loadNPause();
+*/
+
+async function loadAll(imgArr) {
+  try {
+    const imgs = imgArr.map(async i => await createImage(i));
+    const imgEl = await Promise.all(imgs);
+    imgEl.forEach(i => i.classList.add('parallel'));
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+loadAll(['img/img-1.jpg', 'img/img-2.jpg', 'img/img-3.jpg']);
