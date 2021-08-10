@@ -225,36 +225,78 @@ async function whereAmI() {
   }
 }
 
-console.log(`1: Will get location.`);
+// console.log(`1: Will get location.`);
 
-(async function () {
-  try {
-    const resp = await whereAmI();
-    console.log(resp);
-    console.log(`You are in ${resp}.`);
-  } catch (err) {
-    console.log(`2: ${err.message}`);
-  }
-  console.log(`3: Finished getting location.`);
-})();
+// (async function () {
+//   try {
+//     const resp = await whereAmI();
+//     console.log(resp);
+//     console.log(`You are in ${resp}.`);
+//   } catch (err) {
+//     console.log(`2: ${err.message}`);
+//   }
+//   console.log(`3: Finished getting location.`);
+// })();
 
 ///////////////////////////////////////////////
 // 261. Runing Promises in Parallel
 
-async function get3Countries(c1, c2, c3) {
-  try {
-    const data = await Promise.all([
-      // short circuits if 1 promise rejects
-      _getJSON(`https://restcountries.eu/rest/v2/name/${c1}`),
-      _getJSON(`https://restcountries.eu/rest/v2/name/${c2}`),
-      _getJSON(`https://restcountries.eu/rest/v2/name/${c3}`),
-    ]);
-    console.log(data.map(d => d[0].capital));
-  } catch (err) {
-    console.error(err);
-  }
-}
-get3Countries('portugal', 'canada', 'tanzania');
+// async function get3Countries(c1, c2, c3) {
+//   try {
+//     const data = await Promise.all([
+//       // short circuits if 1 promise rejects
+//       _getJSON(`https://restcountries.eu/rest/v2/name/${c1}`),
+//       _getJSON(`https://restcountries.eu/rest/v2/name/${c2}`),
+//       _getJSON(`https://restcountries.eu/rest/v2/name/${c3}`),
+//     ]);
+//     console.log(data.map(d => d[0].capital));
+//   } catch (err) {
+//     console.error(err);
+//   }
+// }
+// get3Countries('portugal', 'canada', 'tanzania');
+
+///////////////////////////////////////
+// 262. Other Promise Combinators
+
+// Promise.race returns first
+// (async function () {
+//   const res = await Promise.race([
+//     _getJSON(`https://restcountries.eu/rest/v2/name/italy`),
+//     _getJSON(`https://restcountries.eu/rest/v2/name/egypt`),
+//     _getJSON(`https://restcountries.eu/rest/v2/name/mexico`),
+//   ]);
+//   console.log(res[0]);
+// })();
+
+// const timeout = sec =>
+//   new Promise((_, reject) =>
+//     setTimeout(() => reject(new Error('Request took too long!')), sec * 1000)
+//   );
+
+// Promise.race([
+//   _getJSON(`https://restcountries.eu/rest/v2/name/tanzania`),
+//   timeout(0.01),
+// ])
+//   .then(data => console.log(data[0]))
+//   .catch(err => console.log(err));
+// Returns winning API call
+// Short circuits whenever a Promise is settled (regardless of fulfilled/fail)
+
+// Promise.allSettled like Promise.all but never short-circuits
+// Promise.allSettled([
+//   Promise.resolve('success'),
+//   Promise.resolve('success 2'),
+//   Promise.reject('ERROR'),
+// ]).then(data => console.log(data));
+
+// // Promise.any (ES2021)
+// // returns value of first *fulfilled* promise (ignores failures) as a string
+// Promise.any([
+//   Promise.resolve('success'),
+//   Promise.resolve('success 2'),
+//   Promise.reject('ERROR'),
+// ]).then(data => console.log(data));
 
 ///////////////////////////////////////
 // Coding Challenge #1
