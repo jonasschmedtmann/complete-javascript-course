@@ -97,9 +97,15 @@ function getCountryData(country) {
 
 // lotteryPromise.then(res => console.log(res)).catch(err => console.log(err));
 
-// // 'Promisifying' is to wrap callback functions into promises
-const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+// 'Promisifying' is to wrap callback functions into promises
 
+// wait() takes ms and returns
+// // Promise thats calls resolve function
+// function wait(ms) {
+//   return new Promise(resolve => setTimeout(resolve, ms));
+// }
+
+const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 // wait(2000)
 //   .then(() => {
 //     console.log('I waited for 2 seconds');
@@ -145,6 +151,110 @@ const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 // }
 
 // btn.addEventListener('click', whereAmI);
+
+///////////////////////////////////////
+// 258. Consuming Prmises with Async/Await
+
+// function getPosition() {
+//   return new Promise(function (resolve, reject) {
+//     navigator.geolocation.getCurrentPosition(resolve, reject);
+//   });
+// }
+
+// // Async/Await is simply Syntactic Sugar
+// const whereAmI = async function () {
+//   const pos = await getPosition();
+//   const { latitude: lat, longitude: lng } = pos.coords;
+//   const geo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+//   console.log(geo);
+//   const geoRes = await geo.json();
+//   console.log(geoRes);
+//   getCountryData(geoRes.country);
+// };
+// btn.addEventListener('click', whereAmI);
+
+///////////////////////////////////////
+// 259. Error Handling with try...catch
+
+// function getPosition() {
+//   return new Promise(function (resolve, reject) {
+//     navigator.geolocation.getCurrentPosition(resolve, reject);
+//   });
+// }
+
+// // Async/Await is simply Syntactic Sugar
+// const whereAmI = async function () {
+//   try {
+//     const pos = await getPosition();
+//     const { latitude: lat, longitude: lng } = pos.coords;
+//     const geo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+//     if (!geo.ok) throw new Error('Problem getting location data.');
+//     const geoRes = await geo.json();
+//     getCountryData(geoRes.country);
+//   } catch (err) {
+//     console.error(err);
+//     renderError(`${err.message}`);
+//   }
+// };
+
+///////////////////////////////////////////////
+// 260. Returning Values from Async Functions
+
+function getPosition() {
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+}
+
+// Async/Await is simply Syntactic Sugar
+async function whereAmI() {
+  // async always returns promises
+  try {
+    const pos = await getPosition();
+    const { latitude: lat, longitude: lng } = pos.coords;
+    const geo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+    if (!geo.ok) throw new Error('Problem getting location data.');
+    const geoRes = await geo.json();
+    getCountryData(geoRes.country);
+  } catch (err) {
+    console.error(err);
+    renderError(`${err.message}`);
+
+    // Reject Promise returned from async function
+    throw err;
+  }
+}
+
+console.log(`1: Will get location.`);
+
+(async function () {
+  try {
+    const resp = await whereAmI();
+    console.log(resp);
+    console.log(`You are in ${resp}.`);
+  } catch (err) {
+    console.log(`2: ${err.message}`);
+  }
+  console.log(`3: Finished getting location.`);
+})();
+
+///////////////////////////////////////////////
+// 261. Runing Promises in Parallel
+
+async function get3Countries(c1, c2, c3) {
+  try {
+    const data = await Promise.all([
+      // short circuits if 1 promise rejects
+      _getJSON(`https://restcountries.eu/rest/v2/name/${c1}`),
+      _getJSON(`https://restcountries.eu/rest/v2/name/${c2}`),
+      _getJSON(`https://restcountries.eu/rest/v2/name/${c3}`),
+    ]);
+    console.log(data.map(d => d[0].capital));
+  } catch (err) {
+    console.error(err);
+  }
+}
+get3Countries('portugal', 'canada', 'tanzania');
 
 ///////////////////////////////////////
 // Coding Challenge #1
@@ -217,31 +327,41 @@ TEST DATA: Images in the img folder. Test the error handler by passing a wrong i
 GOOD LUCK 😀
 */
 
-const newImage = document.createElement('img');
-function createImage(imgPath) {
-  return new Promise(function (resolve, reject) {
-    newImage.src = imgPath;
-    resolve(newImage), reject(new Error('Something went wrong'));
-  });
-}
-createImage('img/img-1.jpg')
-  .then(res => {
-    // console.log(res);
-    document.querySelector('.images').append(res);
-  })
-  .then(() => {
-    wait(2000)
-      .then(() => (newImage.style.display = 'none'))
-      .then(() => {
-        wait(2000)
-          .then(() => {
-            newImage.src = 'img/img-2.jpg';
-            newImage.style.display = 'block';
-          })
-          .then(() => wait(2000).then(() => (newImage.style.display = 'none')));
-      });
-  })
-  .catch(err => console.log(err));
+// const imgContainer = document.querySelector('.images');
+// function createImage(imgPath) {
+//   return new Promise(function (resolve, reject) {
+//     const newImage = document.createElement('img');
+//     newImage.src = imgPath;
+
+//     newImage.addEventListener('load', () => {
+//       imgContainer.append(newImage);
+//       resolve(newImage);
+//     }),
+//       newImage.addEventListener('error', () =>
+//         reject(new Error('Someone broke something somewhere.'))
+//       );
+//   });
+// }
+// let currentImg;
+// createImage('img/img-1.jpg')
+//   .then(img => {
+//     currentImg = img;
+//     return wait(2000);
+//   })
+//   .then(() => {
+//     currentImg.style.display = 'none';
+//     return createImage('img/img-2.jpg');
+//   })
+//   .then(img => {
+//     currentImg = img;
+//     return wait(2000);
+//   })
+//   .then(() => {
+//     currentImg.style.display = 'block';
+//     return wait(2000);
+//   })
+//   .then(() => (currentImg.style.display = 'none'))
+//   .catch(err => console.log(err));
 
 ///////////////////////////////////////
 // Coding Challenge #3
