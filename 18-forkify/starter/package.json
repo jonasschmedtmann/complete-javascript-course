@@ -14,5 +14,9 @@
     "@parcel/transformer-image": "^2.0.0-rc.0",
     "@parcel/transformer-sass": "^2.0.0-rc.0",
     "parcel": "^2.0.0-rc.0"
+  },
+  "dependencies": {
+    "core-js": "^3.16.1",
+    "regenerator-runtime": "^0.13.9"
   }
 }
