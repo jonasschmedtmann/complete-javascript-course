@@ -10,7 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "regenerator-runtime": "^0.13.9"
   },
   "devDependencies": {
     "parcel": "^2.0.0-rc.0"

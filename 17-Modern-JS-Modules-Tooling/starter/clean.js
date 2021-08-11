@@ -1,4 +1,4 @@
-var budget = [
+const budget = [
   { value: 250, description: 'Sold old TV 📺', user: 'jonas' },
   { value: -45, description: 'Groceries 🥑', user: 'jonas' },
   { value: 3500, description: 'Monthly salary 👩‍💻', user: 'jonas' },
@@ -9,16 +9,16 @@ var budget = [
   { value: -1800, description: 'New Laptop 💻', user: 'jonas' },
 ];
 
-var limits = {
+const limits = {
   jonas: 1500,
   matilda: 100,
 };
 
-var add = function (value, description, user) {
+const add = function (value, description, user) {
   if (!user) user = 'jonas';
   user = user.toLowerCase();
 
-  var lim;
+  const lim;
   if (limits[user]) {
     lim = limits[user];
   } else {
@@ -34,9 +34,9 @@ add(100, 'Going to movies 🍿', 'Matilda');
 add(200, 'Stuff', 'Jay');
 console.log(budget);
 
-var check = function () {
-  for (var el of budget) {
-    var lim;
+const check = function () {
+  for (const el of budget) {
+    const lim;
     if (limits[el.user]) {
       lim = limits[el.user];
     } else {
@@ -52,9 +52,9 @@ check();
 
 console.log(budget);
 
-var bigExpenses = function (limit) {
-  var output = '';
-  for (var el of budget) {
+const bigExpenses = function (limit) {
+  const output = '';
+  for (const el of budget) {
     if (el.value <= -limit) {
       output += el.description.slice(-2) + ' / '; // Emojis are 2 chars
     }
