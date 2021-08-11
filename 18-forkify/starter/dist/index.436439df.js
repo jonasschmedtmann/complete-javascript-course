@@ -456,19 +456,12 @@ function hmrAcceptRun(bundle, id) {
 
 },{}],"jKMjS":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _coreJs = require("core-js");
 var _stable = require("core-js/stable");
 var _runtime = require("regenerator-runtime/runtime");
 var _model = require("./model");
 var _recipeView = require("./views/recipeView");
 var _recipeViewDefault = parcelHelpers.interopDefault(_recipeView);
-const recipeContainer = document.querySelector('.recipe');
-const timeout = function(s) {
-    return new Promise(function(_, reject) {
-        setTimeout(function() {
-        }, s * 1000);
-        reject(new Error(`Request took too long! Timeout after ${s} second`));
-    });
-};
 // https://forkify-api.herokuapp.com/v2
 ///////////////////////////////////////
 async function controlRecipes() {
@@ -481,48 +474,15 @@ async function controlRecipes() {
         // Render Recipe
         _recipeViewDefault.default.render(_model.state.recipe);
     } catch (err) {
-        alert(err);
+        console.error(err);
     }
 }
-[
-    'hashchange',
-    'load'
-].forEach((ev)=>window.addEventListener(ev, controlRecipes)
-);
+function init() {
+    _recipeViewDefault.default.addHandlerRender(controlRecipes);
+}
+init();
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","core-js/stable":"eIyVg","regenerator-runtime/runtime":"cH8Iq","./model":"6Yfb5","./views/recipeView":"9q0mt"}],"JacNc":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, '__esModule', {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === 'default' || key === '__esModule') return;
-        // Skip duplicate re-exports when they have the same value.
-        if (key in dest && dest[key] === source[key]) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"eIyVg":[function(require,module,exports) {
+},{"core-js/stable":"eIyVg","regenerator-runtime/runtime":"cH8Iq","./model":"6Yfb5","./views/recipeView":"9q0mt","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","core-js":"a7Bhj"}],"eIyVg":[function(require,module,exports) {
 require('../modules/es.symbol');
 require('../modules/es.symbol.description');
 require('../modules/es.symbol.async-iterator');
@@ -12784,15 +12744,16 @@ parcelHelpers.export(exports, "state", ()=>state
 );
 parcelHelpers.export(exports, "loadRecipe", ()=>loadRecipe
 );
+var _regeneratorRuntime = require("regenerator-runtime");
+var _config = require("./config");
+var _helpers = require("./helpers");
 const state = {
     recipe: {
     }
 };
 async function loadRecipe(id) {
     try {
-        const res = await fetch(`https://forkify-api.herokuapp.com/api/v2/recipes/${id}`);
-        const data = await res.json();
-        if (data.status === 'fail') throw new Error(`${data.message}`);
+        const data = await _helpers.getJSON(`${_config.API_URL}/${id}`);
         const { recipe  } = data.data;
         state.recipe = {
             id: recipe.id,
@@ -12805,11 +12766,80 @@ async function loadRecipe(id) {
             ingredients: recipe.ingredients
         };
     } catch (err) {
-        console.log(err);
+        console.error(`You stupid idiot. Love, model. ${err}`);
     }
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"9q0mt":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","./config":"beA2m","regenerator-runtime":"cH8Iq","./helpers":"9l3Yy"}],"JacNc":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule') return;
+        // Skip duplicate re-exports when they have the same value.
+        if (key in dest && dest[key] === source[key]) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"beA2m":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "API_URL", ()=>API_URL
+);
+parcelHelpers.export(exports, "TIMEOUT_SEC", ()=>TIMEOUT_SEC
+);
+const API_URL = `https://forkify-api.herokuapp.com/api/v2/recipes`;
+const TIMEOUT_SEC = 10;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"9l3Yy":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "getJSON", ()=>getJSON
+);
+var _regeneratorRuntime = require("regenerator-runtime");
+var _configJs = require("./config.js");
+function timeout(s) {
+    return new Promise(function(_, reject) {
+        setTimeout(function() {
+        }, s * 1000);
+        reject(new Error(`Request took too long! Timeout after ${s} second`));
+    });
+}
+const getJSON = async function(url) {
+    try {
+        // const promiseRace = [fetch(url), timeout(TIMEOUT_SEC)];
+        // const res = await Promise.race(promiseRace);
+        const res = await fetch(url);
+        const data = await res.json();
+        if (data.status === 'fail') throw new Error(`${data.message}`);
+        return data;
+    } catch (err) {
+        throw err;
+    }
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","regenerator-runtime":"cH8Iq","./config.js":"beA2m"}],"9q0mt":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _iconsSvg = require("url:../../img/icons.svg");
@@ -12828,6 +12858,15 @@ class RecipeView {
      #generateMarkupIngredients(ing) {
         return `\n            <li class="recipe__ingredient">\n              <svg class="recipe__icon">\n                <use href="${_iconsSvgDefault.default}#icon-check"></use>\n              </svg>\n              <div class="recipe__quantity">${ing.quantity ? new _fractionalDefault.default.Fraction(ing.quantity) : ''}</div>\n              <div class="recipe__description">\n                <span class="recipe__unit">${ing.unit ? ing.unit : ''}</span>\n                ${ing.description ? ing.description : ''}\n              </div>\n            </li>\n            `;
     }
+    addHandlerRender(handler) {
+        [
+            'hashchange',
+            'load'
+        ].forEach((ev)=>window.addEventListener(ev, handler)
+        );
+    // window.addEventListener('load', controlRecipes);
+    // window.addEventListener('hashchange', controlRecipes);
+    }
     render(data) {
         this.#data = data;
         const markup = this.#generateMarkup();
@@ -12842,7 +12881,7 @@ class RecipeView {
 }
 exports.default = new RecipeView();
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","url:../../img/icons.svg":"iwCpK","fractional":"40qvl"}],"iwCpK":[function(require,module,exports) {
+},{"url:../../img/icons.svg":"iwCpK","fractional":"40qvl","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"iwCpK":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('8LZRF') + "icons.c097e590.svg";
 
 },{"./helpers/bundle-url":"8YnfL"}],"8YnfL":[function(require,module,exports) {
@@ -13133,6 +13172,4315 @@ Fraction.primeFactors = function(n) {
 };
 module.exports.Fraction = Fraction;
 
-},{}]},["drOo7","jKMjS"], "jKMjS", "parcelRequire7e89")
+},{}],"a7Bhj":[function(require,module,exports) {
+module.exports = require('./features');
+
+},{"./features":"0jBL1"}],"0jBL1":[function(require,module,exports) {
+require('../modules/es.symbol');
+require('../modules/es.symbol.description');
+require('../modules/es.symbol.async-iterator');
+require('../modules/es.symbol.has-instance');
+require('../modules/es.symbol.is-concat-spreadable');
+require('../modules/es.symbol.iterator');
+require('../modules/es.symbol.match');
+require('../modules/es.symbol.match-all');
+require('../modules/es.symbol.replace');
+require('../modules/es.symbol.search');
+require('../modules/es.symbol.species');
+require('../modules/es.symbol.split');
+require('../modules/es.symbol.to-primitive');
+require('../modules/es.symbol.to-string-tag');
+require('../modules/es.symbol.unscopables');
+require('../modules/es.aggregate-error');
+require('../modules/es.array.concat');
+require('../modules/es.array.copy-within');
+require('../modules/es.array.every');
+require('../modules/es.array.fill');
+require('../modules/es.array.filter');
+require('../modules/es.array.find');
+require('../modules/es.array.find-index');
+require('../modules/es.array.flat');
+require('../modules/es.array.flat-map');
+require('../modules/es.array.for-each');
+require('../modules/es.array.from');
+require('../modules/es.array.includes');
+require('../modules/es.array.index-of');
+require('../modules/es.array.is-array');
+require('../modules/es.array.iterator');
+require('../modules/es.array.join');
+require('../modules/es.array.last-index-of');
+require('../modules/es.array.map');
+require('../modules/es.array.of');
+require('../modules/es.array.reduce');
+require('../modules/es.array.reduce-right');
+require('../modules/es.array.reverse');
+require('../modules/es.array.slice');
+require('../modules/es.array.some');
+require('../modules/es.array.sort');
+require('../modules/es.array.species');
+require('../modules/es.array.splice');
+require('../modules/es.array.unscopables.flat');
+require('../modules/es.array.unscopables.flat-map');
+require('../modules/es.array-buffer.constructor');
+require('../modules/es.array-buffer.is-view');
+require('../modules/es.array-buffer.slice');
+require('../modules/es.data-view');
+require('../modules/es.date.get-year');
+require('../modules/es.date.now');
+require('../modules/es.date.set-year');
+require('../modules/es.date.to-gmt-string');
+require('../modules/es.date.to-iso-string');
+require('../modules/es.date.to-json');
+require('../modules/es.date.to-primitive');
+require('../modules/es.date.to-string');
+require('../modules/es.escape');
+require('../modules/es.function.bind');
+require('../modules/es.function.has-instance');
+require('../modules/es.function.name');
+require('../modules/es.global-this');
+require('../modules/es.json.stringify');
+require('../modules/es.json.to-string-tag');
+require('../modules/es.map');
+require('../modules/es.math.acosh');
+require('../modules/es.math.asinh');
+require('../modules/es.math.atanh');
+require('../modules/es.math.cbrt');
+require('../modules/es.math.clz32');
+require('../modules/es.math.cosh');
+require('../modules/es.math.expm1');
+require('../modules/es.math.fround');
+require('../modules/es.math.hypot');
+require('../modules/es.math.imul');
+require('../modules/es.math.log10');
+require('../modules/es.math.log1p');
+require('../modules/es.math.log2');
+require('../modules/es.math.sign');
+require('../modules/es.math.sinh');
+require('../modules/es.math.tanh');
+require('../modules/es.math.to-string-tag');
+require('../modules/es.math.trunc');
+require('../modules/es.number.constructor');
+require('../modules/es.number.epsilon');
+require('../modules/es.number.is-finite');
+require('../modules/es.number.is-integer');
+require('../modules/es.number.is-nan');
+require('../modules/es.number.is-safe-integer');
+require('../modules/es.number.max-safe-integer');
+require('../modules/es.number.min-safe-integer');
+require('../modules/es.number.parse-float');
+require('../modules/es.number.parse-int');
+require('../modules/es.number.to-fixed');
+require('../modules/es.number.to-precision');
+require('../modules/es.object.assign');
+require('../modules/es.object.create');
+require('../modules/es.object.define-getter');
+require('../modules/es.object.define-properties');
+require('../modules/es.object.define-property');
+require('../modules/es.object.define-setter');
+require('../modules/es.object.entries');
+require('../modules/es.object.freeze');
+require('../modules/es.object.from-entries');
+require('../modules/es.object.get-own-property-descriptor');
+require('../modules/es.object.get-own-property-descriptors');
+require('../modules/es.object.get-own-property-names');
+require('../modules/es.object.get-prototype-of');
+require('../modules/es.object.is');
+require('../modules/es.object.is-extensible');
+require('../modules/es.object.is-frozen');
+require('../modules/es.object.is-sealed');
+require('../modules/es.object.keys');
+require('../modules/es.object.lookup-getter');
+require('../modules/es.object.lookup-setter');
+require('../modules/es.object.prevent-extensions');
+require('../modules/es.object.seal');
+require('../modules/es.object.set-prototype-of');
+require('../modules/es.object.to-string');
+require('../modules/es.object.values');
+require('../modules/es.parse-float');
+require('../modules/es.parse-int');
+require('../modules/es.promise');
+require('../modules/es.promise.all-settled');
+require('../modules/es.promise.any');
+require('../modules/es.promise.finally');
+require('../modules/es.reflect.apply');
+require('../modules/es.reflect.construct');
+require('../modules/es.reflect.define-property');
+require('../modules/es.reflect.delete-property');
+require('../modules/es.reflect.get');
+require('../modules/es.reflect.get-own-property-descriptor');
+require('../modules/es.reflect.get-prototype-of');
+require('../modules/es.reflect.has');
+require('../modules/es.reflect.is-extensible');
+require('../modules/es.reflect.own-keys');
+require('../modules/es.reflect.prevent-extensions');
+require('../modules/es.reflect.set');
+require('../modules/es.reflect.set-prototype-of');
+require('../modules/es.reflect.to-string-tag');
+require('../modules/es.regexp.constructor');
+require('../modules/es.regexp.dot-all');
+require('../modules/es.regexp.exec');
+require('../modules/es.regexp.flags');
+require('../modules/es.regexp.sticky');
+require('../modules/es.regexp.test');
+require('../modules/es.regexp.to-string');
+require('../modules/es.set');
+require('../modules/es.string.code-point-at');
+require('../modules/es.string.ends-with');
+require('../modules/es.string.from-code-point');
+require('../modules/es.string.includes');
+require('../modules/es.string.iterator');
+require('../modules/es.string.match');
+require('../modules/es.string.match-all');
+require('../modules/es.string.pad-end');
+require('../modules/es.string.pad-start');
+require('../modules/es.string.raw');
+require('../modules/es.string.repeat');
+require('../modules/es.string.replace');
+require('../modules/es.string.replace-all');
+require('../modules/es.string.search');
+require('../modules/es.string.split');
+require('../modules/es.string.starts-with');
+require('../modules/es.string.substr');
+require('../modules/es.string.trim');
+require('../modules/es.string.trim-end');
+require('../modules/es.string.trim-start');
+require('../modules/es.string.anchor');
+require('../modules/es.string.big');
+require('../modules/es.string.blink');
+require('../modules/es.string.bold');
+require('../modules/es.string.fixed');
+require('../modules/es.string.fontcolor');
+require('../modules/es.string.fontsize');
+require('../modules/es.string.italics');
+require('../modules/es.string.link');
+require('../modules/es.string.small');
+require('../modules/es.string.strike');
+require('../modules/es.string.sub');
+require('../modules/es.string.sup');
+require('../modules/es.typed-array.float32-array');
+require('../modules/es.typed-array.float64-array');
+require('../modules/es.typed-array.int8-array');
+require('../modules/es.typed-array.int16-array');
+require('../modules/es.typed-array.int32-array');
+require('../modules/es.typed-array.uint8-array');
+require('../modules/es.typed-array.uint8-clamped-array');
+require('../modules/es.typed-array.uint16-array');
+require('../modules/es.typed-array.uint32-array');
+require('../modules/es.typed-array.copy-within');
+require('../modules/es.typed-array.every');
+require('../modules/es.typed-array.fill');
+require('../modules/es.typed-array.filter');
+require('../modules/es.typed-array.find');
+require('../modules/es.typed-array.find-index');
+require('../modules/es.typed-array.for-each');
+require('../modules/es.typed-array.from');
+require('../modules/es.typed-array.includes');
+require('../modules/es.typed-array.index-of');
+require('../modules/es.typed-array.iterator');
+require('../modules/es.typed-array.join');
+require('../modules/es.typed-array.last-index-of');
+require('../modules/es.typed-array.map');
+require('../modules/es.typed-array.of');
+require('../modules/es.typed-array.reduce');
+require('../modules/es.typed-array.reduce-right');
+require('../modules/es.typed-array.reverse');
+require('../modules/es.typed-array.set');
+require('../modules/es.typed-array.slice');
+require('../modules/es.typed-array.some');
+require('../modules/es.typed-array.sort');
+require('../modules/es.typed-array.subarray');
+require('../modules/es.typed-array.to-locale-string');
+require('../modules/es.typed-array.to-string');
+require('../modules/es.unescape');
+require('../modules/es.weak-map');
+require('../modules/es.weak-set');
+require('../modules/esnext.aggregate-error');
+require('../modules/esnext.array.at');
+require('../modules/esnext.array.filter-out');
+require('../modules/esnext.array.filter-reject');
+require('../modules/esnext.array.find-last');
+require('../modules/esnext.array.find-last-index');
+require('../modules/esnext.array.group-by');
+require('../modules/esnext.array.is-template-object');
+require('../modules/esnext.array.last-index');
+require('../modules/esnext.array.last-item');
+require('../modules/esnext.array.unique-by');
+require('../modules/esnext.async-iterator.constructor');
+require('../modules/esnext.async-iterator.as-indexed-pairs');
+require('../modules/esnext.async-iterator.drop');
+require('../modules/esnext.async-iterator.every');
+require('../modules/esnext.async-iterator.filter');
+require('../modules/esnext.async-iterator.find');
+require('../modules/esnext.async-iterator.flat-map');
+require('../modules/esnext.async-iterator.for-each');
+require('../modules/esnext.async-iterator.from');
+require('../modules/esnext.async-iterator.map');
+require('../modules/esnext.async-iterator.reduce');
+require('../modules/esnext.async-iterator.some');
+require('../modules/esnext.async-iterator.take');
+require('../modules/esnext.async-iterator.to-array');
+require('../modules/esnext.bigint.range');
+require('../modules/esnext.composite-key');
+require('../modules/esnext.composite-symbol');
+require('../modules/esnext.global-this');
+require('../modules/esnext.iterator.constructor');
+require('../modules/esnext.iterator.as-indexed-pairs');
+require('../modules/esnext.iterator.drop');
+require('../modules/esnext.iterator.every');
+require('../modules/esnext.iterator.filter');
+require('../modules/esnext.iterator.find');
+require('../modules/esnext.iterator.flat-map');
+require('../modules/esnext.iterator.for-each');
+require('../modules/esnext.iterator.from');
+require('../modules/esnext.iterator.map');
+require('../modules/esnext.iterator.reduce');
+require('../modules/esnext.iterator.some');
+require('../modules/esnext.iterator.take');
+require('../modules/esnext.iterator.to-array');
+require('../modules/esnext.map.delete-all');
+require('../modules/esnext.map.emplace');
+require('../modules/esnext.map.every');
+require('../modules/esnext.map.filter');
+require('../modules/esnext.map.find');
+require('../modules/esnext.map.find-key');
+require('../modules/esnext.map.from');
+require('../modules/esnext.map.group-by');
+require('../modules/esnext.map.includes');
+require('../modules/esnext.map.key-by');
+require('../modules/esnext.map.key-of');
+require('../modules/esnext.map.map-keys');
+require('../modules/esnext.map.map-values');
+require('../modules/esnext.map.merge');
+require('../modules/esnext.map.of');
+require('../modules/esnext.map.reduce');
+require('../modules/esnext.map.some');
+require('../modules/esnext.map.update');
+require('../modules/esnext.map.update-or-insert');
+require('../modules/esnext.map.upsert');
+require('../modules/esnext.math.clamp');
+require('../modules/esnext.math.deg-per-rad');
+require('../modules/esnext.math.degrees');
+require('../modules/esnext.math.fscale');
+require('../modules/esnext.math.iaddh');
+require('../modules/esnext.math.imulh');
+require('../modules/esnext.math.isubh');
+require('../modules/esnext.math.rad-per-deg');
+require('../modules/esnext.math.radians');
+require('../modules/esnext.math.scale');
+require('../modules/esnext.math.seeded-prng');
+require('../modules/esnext.math.signbit');
+require('../modules/esnext.math.umulh');
+require('../modules/esnext.number.from-string');
+require('../modules/esnext.number.range');
+require('../modules/esnext.object.has-own');
+require('../modules/esnext.object.iterate-entries');
+require('../modules/esnext.object.iterate-keys');
+require('../modules/esnext.object.iterate-values');
+require('../modules/esnext.observable');
+require('../modules/esnext.promise.all-settled');
+require('../modules/esnext.promise.any');
+require('../modules/esnext.promise.try');
+require('../modules/esnext.reflect.define-metadata');
+require('../modules/esnext.reflect.delete-metadata');
+require('../modules/esnext.reflect.get-metadata');
+require('../modules/esnext.reflect.get-metadata-keys');
+require('../modules/esnext.reflect.get-own-metadata');
+require('../modules/esnext.reflect.get-own-metadata-keys');
+require('../modules/esnext.reflect.has-metadata');
+require('../modules/esnext.reflect.has-own-metadata');
+require('../modules/esnext.reflect.metadata');
+require('../modules/esnext.set.add-all');
+require('../modules/esnext.set.delete-all');
+require('../modules/esnext.set.difference');
+require('../modules/esnext.set.every');
+require('../modules/esnext.set.filter');
+require('../modules/esnext.set.find');
+require('../modules/esnext.set.from');
+require('../modules/esnext.set.intersection');
+require('../modules/esnext.set.is-disjoint-from');
+require('../modules/esnext.set.is-subset-of');
+require('../modules/esnext.set.is-superset-of');
+require('../modules/esnext.set.join');
+require('../modules/esnext.set.map');
+require('../modules/esnext.set.of');
+require('../modules/esnext.set.reduce');
+require('../modules/esnext.set.some');
+require('../modules/esnext.set.symmetric-difference');
+require('../modules/esnext.set.union');
+require('../modules/esnext.string.at');
+require('../modules/esnext.string.code-points');
+require('../modules/esnext.string.match-all');
+require('../modules/esnext.string.replace-all');
+require('../modules/esnext.symbol.async-dispose');
+require('../modules/esnext.symbol.dispose');
+require('../modules/esnext.symbol.matcher');
+require('../modules/esnext.symbol.metadata');
+require('../modules/esnext.symbol.observable');
+require('../modules/esnext.symbol.pattern-match');
+require('../modules/esnext.symbol.replace-all');
+require('../modules/esnext.typed-array.at');
+require('../modules/esnext.typed-array.filter-out');
+require('../modules/esnext.typed-array.filter-reject');
+require('../modules/esnext.typed-array.find-last');
+require('../modules/esnext.typed-array.find-last-index');
+require('../modules/esnext.typed-array.group-by');
+require('../modules/esnext.typed-array.unique-by');
+require('../modules/esnext.weak-map.delete-all');
+require('../modules/esnext.weak-map.from');
+require('../modules/esnext.weak-map.of');
+require('../modules/esnext.weak-map.emplace');
+require('../modules/esnext.weak-map.upsert');
+require('../modules/esnext.weak-set.add-all');
+require('../modules/esnext.weak-set.delete-all');
+require('../modules/esnext.weak-set.from');
+require('../modules/esnext.weak-set.of');
+require('../modules/web.dom-collections.for-each');
+require('../modules/web.dom-collections.iterator');
+require('../modules/web.immediate');
+require('../modules/web.queue-microtask');
+require('../modules/web.timers');
+require('../modules/web.url');
+require('../modules/web.url.to-json');
+require('../modules/web.url-search-params');
+module.exports = require('../internals/path');
+
+},{"../modules/es.symbol":"h82Ta","../modules/es.symbol.description":"k6qTH","../modules/es.symbol.async-iterator":"4gQKh","../modules/es.symbol.has-instance":"6rypY","../modules/es.symbol.is-concat-spreadable":"8cPMJ","../modules/es.symbol.iterator":"54Wkt","../modules/es.symbol.match":"fci7y","../modules/es.symbol.match-all":"LEHqP","../modules/es.symbol.replace":"emMne","../modules/es.symbol.search":"1pJ8K","../modules/es.symbol.species":"aUPm6","../modules/es.symbol.split":"h3StJ","../modules/es.symbol.to-primitive":"jiMen","../modules/es.symbol.to-string-tag":"2Dw1B","../modules/es.symbol.unscopables":"dad1W","../modules/es.aggregate-error":"iQYvV","../modules/es.array.concat":"12BiX","../modules/es.array.copy-within":"6Qlz9","../modules/es.array.every":"isBXe","../modules/es.array.fill":"48CiI","../modules/es.array.filter":"cKRrG","../modules/es.array.find":"eHU6M","../modules/es.array.find-index":"kfYJb","../modules/es.array.flat":"am9Da","../modules/es.array.flat-map":"cMHMc","../modules/es.array.for-each":"aTBjZ","../modules/es.array.from":"fUGae","../modules/es.array.includes":"X9Fp2","../modules/es.array.index-of":"gpPtE","../modules/es.array.is-array":"9vHDR","../modules/es.array.iterator":"8YPvt","../modules/es.array.join":"fcdvD","../modules/es.array.last-index-of":"bVRYF","../modules/es.array.map":"g11io","../modules/es.array.of":"hwsFe","../modules/es.array.reduce":"iTsnC","../modules/es.array.reduce-right":"dTOyk","../modules/es.array.reverse":"4H4sw","../modules/es.array.slice":"1Qy0K","../modules/es.array.some":"3MKkN","../modules/es.array.sort":"6yoc0","../modules/es.array.species":"5m0CI","../modules/es.array.splice":"65ZuR","../modules/es.array.unscopables.flat":"hIgzb","../modules/es.array.unscopables.flat-map":"2lymx","../modules/es.array-buffer.constructor":"4p0zL","../modules/es.array-buffer.is-view":"30MAW","../modules/es.array-buffer.slice":"ktSH3","../modules/es.data-view":"6n7Um","../modules/es.date.get-year":"e1hhS","../modules/es.date.now":"lGf1w","../modules/es.date.set-year":"4GJ8v","../modules/es.date.to-gmt-string":"dNoww","../modules/es.date.to-iso-string":"7mzsp","../modules/es.date.to-json":"ay4bx","../modules/es.date.to-primitive":"fObwG","../modules/es.date.to-string":"7pcaU","../modules/es.escape":"7stNY","../modules/es.function.bind":"jrjf4","../modules/es.function.has-instance":"9on83","../modules/es.function.name":"2tRvX","../modules/es.global-this":"JI3Gz","../modules/es.json.stringify":"2B2ps","../modules/es.json.to-string-tag":"6YcXi","../modules/es.map":"dgMLm","../modules/es.math.acosh":"6Q3zo","../modules/es.math.asinh":"d1XOI","../modules/es.math.atanh":"5D0SG","../modules/es.math.cbrt":"l5TVA","../modules/es.math.clz32":"bJrnh","../modules/es.math.cosh":"6w8zd","../modules/es.math.expm1":"9DJbl","../modules/es.math.fround":"6tufR","../modules/es.math.hypot":"aSB3F","../modules/es.math.imul":"5Tpna","../modules/es.math.log10":"bTcHD","../modules/es.math.log1p":"jNyU5","../modules/es.math.log2":"2m7Uz","../modules/es.math.sign":"7yRUV","../modules/es.math.sinh":"loaKI","../modules/es.math.tanh":"dwPS4","../modules/es.math.to-string-tag":"96Wzg","../modules/es.math.trunc":"31xhu","../modules/es.number.constructor":"5DN40","../modules/es.number.epsilon":"6N90G","../modules/es.number.is-finite":"hI7wQ","../modules/es.number.is-integer":"57kzb","../modules/es.number.is-nan":"aJ0lS","../modules/es.number.is-safe-integer":"2sa8K","../modules/es.number.max-safe-integer":"ceCFQ","../modules/es.number.min-safe-integer":"cfRrX","../modules/es.number.parse-float":"9MahJ","../modules/es.number.parse-int":"lJYd7","../modules/es.number.to-fixed":"THlev","../modules/es.number.to-precision":"kVGGb","../modules/es.object.assign":"6ZqF3","../modules/es.object.create":"2xLMD","../modules/es.object.define-getter":"606Pz","../modules/es.object.define-properties":"fJ9J2","../modules/es.object.define-property":"59EGR","../modules/es.object.define-setter":"cFhpw","../modules/es.object.entries":"e5Xxq","../modules/es.object.freeze":"312H3","../modules/es.object.from-entries":"e3o3h","../modules/es.object.get-own-property-descriptor":"ihm1S","../modules/es.object.get-own-property-descriptors":"9OScw","../modules/es.object.get-own-property-names":"iic1E","../modules/es.object.get-prototype-of":"e7kbe","../modules/es.object.is":"5qpSm","../modules/es.object.is-extensible":"5Df9G","../modules/es.object.is-frozen":"jrP45","../modules/es.object.is-sealed":"9946V","../modules/es.object.keys":"boYMK","../modules/es.object.lookup-getter":"TD7HT","../modules/es.object.lookup-setter":"chseq","../modules/es.object.prevent-extensions":"YDDty","../modules/es.object.seal":"81CbY","../modules/es.object.set-prototype-of":"kDpCL","../modules/es.object.to-string":"bBRVN","../modules/es.object.values":"gTDYu","../modules/es.parse-float":"iXVt6","../modules/es.parse-int":"dHCty","../modules/es.promise":"kYha9","../modules/es.promise.all-settled":"iKqpp","../modules/es.promise.any":"8inPk","../modules/es.promise.finally":"bPigD","../modules/es.reflect.apply":"lncJ8","../modules/es.reflect.construct":"ff1SM","../modules/es.reflect.define-property":"dW0sW","../modules/es.reflect.delete-property":"7DsVb","../modules/es.reflect.get":"jaVFn","../modules/es.reflect.get-own-property-descriptor":"kVW26","../modules/es.reflect.get-prototype-of":"hBOtV","../modules/es.reflect.has":"gTbyP","../modules/es.reflect.is-extensible":"VG7RE","../modules/es.reflect.own-keys":"8moRG","../modules/es.reflect.prevent-extensions":"gMzOv","../modules/es.reflect.set":"9isA9","../modules/es.reflect.set-prototype-of":"6hNd3","../modules/es.reflect.to-string-tag":"99fpE","../modules/es.regexp.constructor":"dwe4v","../modules/es.regexp.dot-all":"1u6bJ","../modules/es.regexp.exec":"lySIs","../modules/es.regexp.flags":"ecNn9","../modules/es.regexp.sticky":"j9bjG","../modules/es.regexp.test":"iP2j2","../modules/es.regexp.to-string":"7sKSf","../modules/es.set":"5wbk0","../modules/es.string.code-point-at":"fviUF","../modules/es.string.ends-with":"i8dBj","../modules/es.string.from-code-point":"kP5Lw","../modules/es.string.includes":"c28Iv","../modules/es.string.iterator":"79oCt","../modules/es.string.match":"3bQbi","../modules/es.string.match-all":"jEeAs","../modules/es.string.pad-end":"fEFFM","../modules/es.string.pad-start":"coZy7","../modules/es.string.raw":"d9wUa","../modules/es.string.repeat":"7f2Bv","../modules/es.string.replace":"2k8lL","../modules/es.string.replace-all":"8IJOq","../modules/es.string.search":"9LcVn","../modules/es.string.split":"5yIFY","../modules/es.string.starts-with":"5IlYf","../modules/es.string.substr":"ffj2Y","../modules/es.string.trim":"1UwM0","../modules/es.string.trim-end":"67bv8","../modules/es.string.trim-start":"cbyCh","../modules/es.string.anchor":"h582X","../modules/es.string.big":"gSDtA","../modules/es.string.blink":"lTrep","../modules/es.string.bold":"kk4wr","../modules/es.string.fixed":"kdH1X","../modules/es.string.fontcolor":"412V5","../modules/es.string.fontsize":"7TWRa","../modules/es.string.italics":"iOrbm","../modules/es.string.link":"3BgXC","../modules/es.string.small":"7usyq","../modules/es.string.strike":"6sGtc","../modules/es.string.sub":"k998D","../modules/es.string.sup":"a5Yf5","../modules/es.typed-array.float32-array":"f9m3z","../modules/es.typed-array.float64-array":"ky6XR","../modules/es.typed-array.int8-array":"lEs7k","../modules/es.typed-array.int16-array":"5EyRk","../modules/es.typed-array.int32-array":"cDL8j","../modules/es.typed-array.uint8-array":"2HsmO","../modules/es.typed-array.uint8-clamped-array":"dFa8q","../modules/es.typed-array.uint16-array":"aykHi","../modules/es.typed-array.uint32-array":"2oUhq","../modules/es.typed-array.copy-within":"3ktIi","../modules/es.typed-array.every":"5DxE6","../modules/es.typed-array.fill":"fqjtk","../modules/es.typed-array.filter":"1uzjz","../modules/es.typed-array.find":"d7VSQ","../modules/es.typed-array.find-index":"llIwb","../modules/es.typed-array.for-each":"Wrhx0","../modules/es.typed-array.from":"fgrPV","../modules/es.typed-array.includes":"afXwJ","../modules/es.typed-array.index-of":"ffWJN","../modules/es.typed-array.iterator":"dWqIW","../modules/es.typed-array.join":"30Fjw","../modules/es.typed-array.last-index-of":"fUt12","../modules/es.typed-array.map":"abKo8","../modules/es.typed-array.of":"aASoo","../modules/es.typed-array.reduce":"cw3bd","../modules/es.typed-array.reduce-right":"fIIbY","../modules/es.typed-array.reverse":"aYS8V","../modules/es.typed-array.set":"4UlXb","../modules/es.typed-array.slice":"fmByv","../modules/es.typed-array.some":"adzA5","../modules/es.typed-array.sort":"7J6wI","../modules/es.typed-array.subarray":"ghLDl","../modules/es.typed-array.to-locale-string":"kaAyh","../modules/es.typed-array.to-string":"4lkfC","../modules/es.unescape":"gnnik","../modules/es.weak-map":"7VYon","../modules/es.weak-set":"kMVCu","../modules/esnext.aggregate-error":"6st0C","../modules/esnext.array.at":"9zzzq","../modules/esnext.array.filter-out":"6xpwA","../modules/esnext.array.filter-reject":"cSSxU","../modules/esnext.array.find-last":"9ISDl","../modules/esnext.array.find-last-index":"gmgjb","../modules/esnext.array.group-by":"8NhV0","../modules/esnext.array.is-template-object":"cTSRv","../modules/esnext.array.last-index":"8FWkY","../modules/esnext.array.last-item":"hRS3k","../modules/esnext.array.unique-by":"eVgWn","../modules/esnext.async-iterator.constructor":"kgd8y","../modules/esnext.async-iterator.as-indexed-pairs":"6Tw8P","../modules/esnext.async-iterator.drop":"3MTRj","../modules/esnext.async-iterator.every":"3TmsD","../modules/esnext.async-iterator.filter":"3O0Jr","../modules/esnext.async-iterator.find":"d2BfV","../modules/esnext.async-iterator.flat-map":"2vanm","../modules/esnext.async-iterator.for-each":"3PDaf","../modules/esnext.async-iterator.from":"SEq6s","../modules/esnext.async-iterator.map":"7d2FT","../modules/esnext.async-iterator.reduce":"ewoio","../modules/esnext.async-iterator.some":"gFmBF","../modules/esnext.async-iterator.take":"8iLxH","../modules/esnext.async-iterator.to-array":"4qKYL","../modules/esnext.bigint.range":"dGFnn","../modules/esnext.composite-key":"lfA0J","../modules/esnext.composite-symbol":"g8XDT","../modules/esnext.global-this":"2UfOS","../modules/esnext.iterator.constructor":"kgwoF","../modules/esnext.iterator.as-indexed-pairs":"2D47X","../modules/esnext.iterator.drop":"8NtAX","../modules/esnext.iterator.every":"ei4gm","../modules/esnext.iterator.filter":"61432","../modules/esnext.iterator.find":"6yEHl","../modules/esnext.iterator.flat-map":"729HZ","../modules/esnext.iterator.for-each":"38iKK","../modules/esnext.iterator.from":"2PgHb","../modules/esnext.iterator.map":"dm46h","../modules/esnext.iterator.reduce":"5jqQ2","../modules/esnext.iterator.some":"15uou","../modules/esnext.iterator.take":"kvbGp","../modules/esnext.iterator.to-array":"97DUz","../modules/esnext.map.delete-all":"frSFJ","../modules/esnext.map.emplace":"3OeAW","../modules/esnext.map.every":"kmBt9","../modules/esnext.map.filter":"fwzYJ","../modules/esnext.map.find":"bro4k","../modules/esnext.map.find-key":"35dDl","../modules/esnext.map.from":"axVA9","../modules/esnext.map.group-by":"drt8f","../modules/esnext.map.includes":"aEwrt","../modules/esnext.map.key-by":"hfe69","../modules/esnext.map.key-of":"15qyF","../modules/esnext.map.map-keys":"bOGHT","../modules/esnext.map.map-values":"3Qxbu","../modules/esnext.map.merge":"1aX9J","../modules/esnext.map.of":"lCzOX","../modules/esnext.map.reduce":"6RYs9","../modules/esnext.map.some":"aI6zg","../modules/esnext.map.update":"i3wjO","../modules/esnext.map.update-or-insert":"d0SXP","../modules/esnext.map.upsert":"IOzQk","../modules/esnext.math.clamp":"ajlW7","../modules/esnext.math.deg-per-rad":"8CdDE","../modules/esnext.math.degrees":"5Spn2","../modules/esnext.math.fscale":"gXrSR","../modules/esnext.math.iaddh":"aDtzr","../modules/esnext.math.imulh":"2Dt0T","../modules/esnext.math.isubh":"gA5kl","../modules/esnext.math.rad-per-deg":"ggibb","../modules/esnext.math.radians":"f22rG","../modules/esnext.math.scale":"aKAtJ","../modules/esnext.math.seeded-prng":"47XLy","../modules/esnext.math.signbit":"dMBtP","../modules/esnext.math.umulh":"hv1bC","../modules/esnext.number.from-string":"9vMMd","../modules/esnext.number.range":"iO4Ka","../modules/esnext.object.has-own":"ixptT","../modules/esnext.object.iterate-entries":"h1heJ","../modules/esnext.object.iterate-keys":"ec9BX","../modules/esnext.object.iterate-values":"kS0zb","../modules/esnext.observable":"6pMm9","../modules/esnext.promise.all-settled":"2NfUQ","../modules/esnext.promise.any":"kckYS","../modules/esnext.promise.try":"2BrfX","../modules/esnext.reflect.define-metadata":"llXEW","../modules/esnext.reflect.delete-metadata":"yli2D","../modules/esnext.reflect.get-metadata":"8Xbyk","../modules/esnext.reflect.get-metadata-keys":"6NMq2","../modules/esnext.reflect.get-own-metadata":"cBShm","../modules/esnext.reflect.get-own-metadata-keys":"kc0Ev","../modules/esnext.reflect.has-metadata":"vzLf5","../modules/esnext.reflect.has-own-metadata":"hOiZZ","../modules/esnext.reflect.metadata":"iRxO4","../modules/esnext.set.add-all":"4b0AZ","../modules/esnext.set.delete-all":"htGaI","../modules/esnext.set.difference":"c1hV1","../modules/esnext.set.every":"1XTrr","../modules/esnext.set.filter":"dhxsc","../modules/esnext.set.find":"4pg19","../modules/esnext.set.from":"lkG2b","../modules/esnext.set.intersection":"fiyAj","../modules/esnext.set.is-disjoint-from":"587rv","../modules/esnext.set.is-subset-of":"iGyob","../modules/esnext.set.is-superset-of":"9OjMM","../modules/esnext.set.join":"ezIFh","../modules/esnext.set.map":"8DW3P","../modules/esnext.set.of":"kyqkW","../modules/esnext.set.reduce":"jjsnY","../modules/esnext.set.some":"cUaCp","../modules/esnext.set.symmetric-difference":"SOu0a","../modules/esnext.set.union":"iQQky","../modules/esnext.string.at":"22NRM","../modules/esnext.string.code-points":"dVpuL","../modules/esnext.string.match-all":"6SMMk","../modules/esnext.string.replace-all":"eGhyp","../modules/esnext.symbol.async-dispose":"gibPN","../modules/esnext.symbol.dispose":"8PCoW","../modules/esnext.symbol.matcher":"ejple","../modules/esnext.symbol.metadata":"8us9B","../modules/esnext.symbol.observable":"c37jl","../modules/esnext.symbol.pattern-match":"gineQ","../modules/esnext.symbol.replace-all":"2n22P","../modules/esnext.typed-array.at":"9MFJI","../modules/esnext.typed-array.filter-out":"dUxZl","../modules/esnext.typed-array.filter-reject":"k2CEH","../modules/esnext.typed-array.find-last":"fsneV","../modules/esnext.typed-array.find-last-index":"kpvqo","../modules/esnext.typed-array.group-by":"8j0AK","../modules/esnext.typed-array.unique-by":"cQ5XR","../modules/esnext.weak-map.delete-all":"3JoVW","../modules/esnext.weak-map.from":"6CYFH","../modules/esnext.weak-map.of":"3jtdy","../modules/esnext.weak-map.emplace":"i2YGI","../modules/esnext.weak-map.upsert":"7vsuE","../modules/esnext.weak-set.add-all":"Msx01","../modules/esnext.weak-set.delete-all":"gFUO0","../modules/esnext.weak-set.from":"iEvQZ","../modules/esnext.weak-set.of":"4HGOv","../modules/web.dom-collections.for-each":"917na","../modules/web.dom-collections.iterator":"gC8gE","../modules/web.immediate":"6VxKM","../modules/web.queue-microtask":"kIUUV","../modules/web.timers":"8IM6S","../modules/web.url":"c61iN","../modules/web.url.to-json":"fBskR","../modules/web.url-search-params":"dj0GL","../internals/path":"cV4BF"}],"6st0C":[function(require,module,exports) {
+// TODO: Remove from `core-js@4`
+require('./es.aggregate-error');
+
+},{"./es.aggregate-error":"iQYvV"}],"9zzzq":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var toObject = require('../internals/to-object');
+var toLength = require('../internals/to-length');
+var toInteger = require('../internals/to-integer');
+var addToUnscopables = require('../internals/add-to-unscopables');
+// `Array.prototype.at` method
+// https://github.com/tc39/proposal-relative-indexing-method
+$({
+    target: 'Array',
+    proto: true
+}, {
+    at: function at(index) {
+        var O = toObject(this);
+        var len = toLength(O.length);
+        var relativeIndex = toInteger(index);
+        var k = relativeIndex >= 0 ? relativeIndex : len + relativeIndex;
+        return k < 0 || k >= len ? undefined : O[k];
+    }
+});
+addToUnscopables('at');
+
+},{"../internals/export":"2mZbc","../internals/to-object":"ghTKi","../internals/to-length":"coWuj","../internals/to-integer":"gOCws","../internals/add-to-unscopables":"d20N8"}],"6xpwA":[function(require,module,exports) {
+'use strict';
+// TODO: remove from `core-js@4`
+var $ = require('../internals/export');
+var $filterReject = require('../internals/array-iteration').filterReject;
+var addToUnscopables = require('../internals/add-to-unscopables');
+// `Array.prototype.filterOut` method
+// https://github.com/tc39/proposal-array-filtering
+$({
+    target: 'Array',
+    proto: true
+}, {
+    filterOut: function filterOut(callbackfn /* , thisArg */ ) {
+        return $filterReject(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+    }
+});
+addToUnscopables('filterOut');
+
+},{"../internals/export":"2mZbc","../internals/array-iteration":"ciNJ0","../internals/add-to-unscopables":"d20N8"}],"cSSxU":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var $filterReject = require('../internals/array-iteration').filterReject;
+var addToUnscopables = require('../internals/add-to-unscopables');
+// `Array.prototype.filterReject` method
+// https://github.com/tc39/proposal-array-filtering
+$({
+    target: 'Array',
+    proto: true
+}, {
+    filterReject: function filterReject(callbackfn /* , thisArg */ ) {
+        return $filterReject(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+    }
+});
+addToUnscopables('filterReject');
+
+},{"../internals/export":"2mZbc","../internals/array-iteration":"ciNJ0","../internals/add-to-unscopables":"d20N8"}],"9ISDl":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var $findLast = require('../internals/array-iteration-from-last').findLast;
+var addToUnscopables = require('../internals/add-to-unscopables');
+// `Array.prototype.findLast` method
+// https://github.com/tc39/proposal-array-find-from-last
+$({
+    target: 'Array',
+    proto: true
+}, {
+    findLast: function findLast(callbackfn /* , that = undefined */ ) {
+        return $findLast(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+    }
+});
+addToUnscopables('findLast');
+
+},{"../internals/export":"2mZbc","../internals/array-iteration-from-last":"ceqNG","../internals/add-to-unscopables":"d20N8"}],"ceqNG":[function(require,module,exports) {
+var bind = require('../internals/function-bind-context');
+var IndexedObject = require('../internals/indexed-object');
+var toObject = require('../internals/to-object');
+var toLength = require('../internals/to-length');
+// `Array.prototype.{ findLast, findLastIndex }` methods implementation
+var createMethod = function(TYPE) {
+    var IS_FIND_LAST_INDEX = TYPE == 1;
+    return function($this, callbackfn, that) {
+        var O = toObject($this);
+        var self = IndexedObject(O);
+        var boundFunction = bind(callbackfn, that, 3);
+        var index = toLength(self.length);
+        var value, result;
+        while((index--) > 0){
+            value = self[index];
+            result = boundFunction(value, index, O);
+            if (result) switch(TYPE){
+                case 0:
+                    return value; // findLast
+                case 1:
+                    return index; // findLastIndex
+            }
+        }
+        return IS_FIND_LAST_INDEX ? -1 : undefined;
+    };
+};
+module.exports = {
+    // `Array.prototype.findLast` method
+    // https://github.com/tc39/proposal-array-find-from-last
+    findLast: createMethod(0),
+    // `Array.prototype.findLastIndex` method
+    // https://github.com/tc39/proposal-array-find-from-last
+    findLastIndex: createMethod(1)
+};
+
+},{"../internals/function-bind-context":"1epb9","../internals/indexed-object":"1hg9G","../internals/to-object":"ghTKi","../internals/to-length":"coWuj"}],"gmgjb":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var $findLastIndex = require('../internals/array-iteration-from-last').findLastIndex;
+var addToUnscopables = require('../internals/add-to-unscopables');
+// `Array.prototype.findLastIndex` method
+// https://github.com/tc39/proposal-array-find-from-last
+$({
+    target: 'Array',
+    proto: true
+}, {
+    findLastIndex: function findLastIndex(callbackfn /* , that = undefined */ ) {
+        return $findLastIndex(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+    }
+});
+addToUnscopables('findLastIndex');
+
+},{"../internals/export":"2mZbc","../internals/array-iteration-from-last":"ceqNG","../internals/add-to-unscopables":"d20N8"}],"8NhV0":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var $groupBy = require('../internals/array-group-by');
+var arraySpeciesConstructor = require('../internals/array-species-constructor');
+var addToUnscopables = require('../internals/add-to-unscopables');
+// `Array.prototype.groupBy` method
+// https://github.com/tc39/proposal-array-grouping
+$({
+    target: 'Array',
+    proto: true
+}, {
+    groupBy: function groupBy(callbackfn /* , thisArg */ ) {
+        var thisArg = arguments.length > 1 ? arguments[1] : undefined;
+        return $groupBy(this, callbackfn, thisArg, arraySpeciesConstructor);
+    }
+});
+addToUnscopables('groupBy');
+
+},{"../internals/export":"2mZbc","../internals/array-group-by":"1x0WP","../internals/array-species-constructor":"ipwOm","../internals/add-to-unscopables":"d20N8"}],"1x0WP":[function(require,module,exports) {
+var bind = require('../internals/function-bind-context');
+var IndexedObject = require('../internals/indexed-object');
+var toObject = require('../internals/to-object');
+var toLength = require('../internals/to-length');
+var toPropertyKey = require('../internals/to-property-key');
+var objectCreate = require('../internals/object-create');
+var arrayFromConstructorAndList = require('../internals/array-from-constructor-and-list');
+var push = [].push;
+module.exports = function($this, callbackfn, that, specificConstructor) {
+    var O = toObject($this);
+    var self = IndexedObject(O);
+    var boundFunction = bind(callbackfn, that, 3);
+    var target = objectCreate(null);
+    var length = toLength(self.length);
+    var index = 0;
+    var Constructor, key, value;
+    for(; length > index; index++){
+        value = self[index];
+        key = toPropertyKey(boundFunction(value, index, O));
+        // in some IE10 builds, `hasOwnProperty` returns incorrect result on integer keys
+        // but since it's a `null` prototype object, we can safely use `in`
+        if (key in target) push.call(target[key], value);
+        else target[key] = [
+            value
+        ];
+    }
+    if (specificConstructor) {
+        Constructor = specificConstructor(O);
+        if (Constructor !== Array) for(key in target)target[key] = arrayFromConstructorAndList(Constructor, target[key]);
+    }
+    return target;
+};
+
+},{"../internals/function-bind-context":"1epb9","../internals/indexed-object":"1hg9G","../internals/to-object":"ghTKi","../internals/to-length":"coWuj","../internals/to-property-key":"99Lby","../internals/object-create":"eYZeq","../internals/array-from-constructor-and-list":"eZkfw"}],"cTSRv":[function(require,module,exports) {
+var $ = require('../internals/export');
+var isArray = require('../internals/is-array');
+// eslint-disable-next-line es/no-object-isfrozen -- safe
+var isFrozen = Object.isFrozen;
+var isFrozenStringArray = function(array, allowUndefined) {
+    if (!isFrozen || !isArray(array) || !isFrozen(array)) return false;
+    var index = 0;
+    var length = array.length;
+    var element;
+    while(index < length){
+        element = array[index++];
+        if (!(typeof element === 'string' || allowUndefined && typeof element === 'undefined')) return false;
+    }
+    return length !== 0;
+};
+// `Array.isTemplateObject` method
+// https://github.com/tc39/proposal-array-is-template-object
+$({
+    target: 'Array',
+    stat: true
+}, {
+    isTemplateObject: function isTemplateObject(value) {
+        if (!isFrozenStringArray(value, true)) return false;
+        var raw = value.raw;
+        if (raw.length !== value.length || !isFrozenStringArray(raw, false)) return false;
+        return true;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-array":"kiY2Q"}],"8FWkY":[function(require,module,exports) {
+'use strict';
+var DESCRIPTORS = require('../internals/descriptors');
+var addToUnscopables = require('../internals/add-to-unscopables');
+var toObject = require('../internals/to-object');
+var toLength = require('../internals/to-length');
+var defineProperty = require('../internals/object-define-property').f;
+// `Array.prototype.lastIndex` getter
+// https://github.com/keithamus/proposal-array-last
+if (DESCRIPTORS && !('lastIndex' in [])) {
+    defineProperty(Array.prototype, 'lastIndex', {
+        configurable: true,
+        get: function lastIndex() {
+            var O = toObject(this);
+            var len = toLength(O.length);
+            return len == 0 ? 0 : len - 1;
+        }
+    });
+    addToUnscopables('lastIndex');
+}
+
+},{"../internals/descriptors":"kuDzl","../internals/add-to-unscopables":"d20N8","../internals/to-object":"ghTKi","../internals/to-length":"coWuj","../internals/object-define-property":"iKHmb"}],"hRS3k":[function(require,module,exports) {
+'use strict';
+var DESCRIPTORS = require('../internals/descriptors');
+var addToUnscopables = require('../internals/add-to-unscopables');
+var toObject = require('../internals/to-object');
+var toLength = require('../internals/to-length');
+var defineProperty = require('../internals/object-define-property').f;
+// `Array.prototype.lastIndex` accessor
+// https://github.com/keithamus/proposal-array-last
+if (DESCRIPTORS && !('lastItem' in [])) {
+    defineProperty(Array.prototype, 'lastItem', {
+        configurable: true,
+        get: function lastItem() {
+            var O = toObject(this);
+            var len = toLength(O.length);
+            return len == 0 ? undefined : O[len - 1];
+        },
+        set: function lastItem1(value) {
+            var O = toObject(this);
+            var len = toLength(O.length);
+            return O[len == 0 ? 0 : len - 1] = value;
+        }
+    });
+    addToUnscopables('lastItem');
+}
+
+},{"../internals/descriptors":"kuDzl","../internals/add-to-unscopables":"d20N8","../internals/to-object":"ghTKi","../internals/to-length":"coWuj","../internals/object-define-property":"iKHmb"}],"eVgWn":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var addToUnscopables = require('../internals/add-to-unscopables');
+var uniqueBy = require('../internals/array-unique-by');
+// `Array.prototype.uniqueBy` method
+// https://github.com/tc39/proposal-array-unique
+$({
+    target: 'Array',
+    proto: true
+}, {
+    uniqueBy: uniqueBy
+});
+addToUnscopables('uniqueBy');
+
+},{"../internals/export":"2mZbc","../internals/add-to-unscopables":"d20N8","../internals/array-unique-by":"jczNn"}],"jczNn":[function(require,module,exports) {
+'use strict';
+var toLength = require('../internals/to-length');
+var toObject = require('../internals/to-object');
+var getBuiltIn = require('../internals/get-built-in');
+var arraySpeciesCreate = require('../internals/array-species-create');
+var push = [].push;
+// `Array.prototype.uniqueBy` method
+// https://github.com/tc39/proposal-array-unique
+module.exports = function uniqueBy(resolver) {
+    var that = toObject(this);
+    var length = toLength(that.length);
+    var result = arraySpeciesCreate(that, 0);
+    var Map1 = getBuiltIn('Map');
+    var map = new Map1();
+    var resolverFunction, index, item, key;
+    if (typeof resolver == 'function') resolverFunction = resolver;
+    else if (resolver == null) resolverFunction = function(value) {
+        return value;
+    };
+    else throw new TypeError('Incorrect resolver!');
+    for(index = 0; index < length; index++){
+        item = that[index];
+        key = resolverFunction(item);
+        if (!map.has(key)) map.set(key, item);
+    }
+    map.forEach(function(value) {
+        push.call(result, value);
+    });
+    return result;
+};
+
+},{"../internals/to-length":"coWuj","../internals/to-object":"ghTKi","../internals/get-built-in":"hqegu","../internals/array-species-create":"beybx"}],"kgd8y":[function(require,module,exports) {
+'use strict';
+// https://github.com/tc39/proposal-iterator-helpers
+var $ = require('../internals/export');
+var anInstance = require('../internals/an-instance');
+var createNonEnumerableProperty = require('../internals/create-non-enumerable-property');
+var has = require('../internals/has');
+var wellKnownSymbol = require('../internals/well-known-symbol');
+var AsyncIteratorPrototype = require('../internals/async-iterator-prototype');
+var IS_PURE = require('../internals/is-pure');
+var TO_STRING_TAG = wellKnownSymbol('toStringTag');
+var AsyncIteratorConstructor = function AsyncIterator() {
+    anInstance(this, AsyncIteratorConstructor);
+};
+AsyncIteratorConstructor.prototype = AsyncIteratorPrototype;
+if (!has(AsyncIteratorPrototype, TO_STRING_TAG)) createNonEnumerableProperty(AsyncIteratorPrototype, TO_STRING_TAG, 'AsyncIterator');
+if (!has(AsyncIteratorPrototype, 'constructor') || AsyncIteratorPrototype.constructor === Object) createNonEnumerableProperty(AsyncIteratorPrototype, 'constructor', AsyncIteratorConstructor);
+$({
+    global: true,
+    forced: IS_PURE
+}, {
+    AsyncIterator: AsyncIteratorConstructor
+});
+
+},{"../internals/export":"2mZbc","../internals/an-instance":"gTr5k","../internals/create-non-enumerable-property":"73EkF","../internals/has":"aVEHj","../internals/well-known-symbol":"6sZ59","../internals/async-iterator-prototype":"igaSn","../internals/is-pure":"dlbEd"}],"igaSn":[function(require,module,exports) {
+var global = require('../internals/global');
+var shared = require('../internals/shared-store');
+var getPrototypeOf = require('../internals/object-get-prototype-of');
+var has = require('../internals/has');
+var createNonEnumerableProperty = require('../internals/create-non-enumerable-property');
+var wellKnownSymbol = require('../internals/well-known-symbol');
+var IS_PURE = require('../internals/is-pure');
+var USE_FUNCTION_CONSTRUCTOR = 'USE_FUNCTION_CONSTRUCTOR';
+var ASYNC_ITERATOR = wellKnownSymbol('asyncIterator');
+var AsyncIterator = global.AsyncIterator;
+var PassedAsyncIteratorPrototype = shared.AsyncIteratorPrototype;
+var AsyncIteratorPrototype, prototype;
+if (!IS_PURE) {
+    if (PassedAsyncIteratorPrototype) AsyncIteratorPrototype = PassedAsyncIteratorPrototype;
+    else if (typeof AsyncIterator == 'function') AsyncIteratorPrototype = AsyncIterator.prototype;
+    else if (shared[USE_FUNCTION_CONSTRUCTOR] || global[USE_FUNCTION_CONSTRUCTOR]) try {
+        // eslint-disable-next-line no-new-func -- we have no alternatives without usage of modern syntax
+        prototype = getPrototypeOf(getPrototypeOf(getPrototypeOf(Function('return async function*(){}()')())));
+        if (getPrototypeOf(prototype) === Object.prototype) AsyncIteratorPrototype = prototype;
+    } catch (error) {
+    }
+}
+if (!AsyncIteratorPrototype) AsyncIteratorPrototype = {
+};
+if (!has(AsyncIteratorPrototype, ASYNC_ITERATOR)) createNonEnumerableProperty(AsyncIteratorPrototype, ASYNC_ITERATOR, function() {
+    return this;
+});
+module.exports = AsyncIteratorPrototype;
+
+},{"../internals/global":"a4GR8","../internals/shared-store":"4v8Nf","../internals/object-get-prototype-of":"4Xd6L","../internals/has":"aVEHj","../internals/create-non-enumerable-property":"73EkF","../internals/well-known-symbol":"6sZ59","../internals/is-pure":"dlbEd"}],"6Tw8P":[function(require,module,exports) {
+'use strict';
+// https://github.com/tc39/proposal-iterator-helpers
+var $ = require('../internals/export');
+var anObject = require('../internals/an-object');
+var createAsyncIteratorProxy = require('../internals/async-iterator-create-proxy');
+var AsyncIteratorProxy = createAsyncIteratorProxy(function(arg, Promise1) {
+    var state = this;
+    var iterator = state.iterator;
+    return Promise1.resolve(anObject(state.next.call(iterator, arg))).then(function(step) {
+        if (anObject(step).done) {
+            state.done = true;
+            return {
+                done: true,
+                value: undefined
+            };
+        }
+        return {
+            done: false,
+            value: [
+                state.index++,
+                step.value
+            ]
+        };
+    });
+});
+$({
+    target: 'AsyncIterator',
+    proto: true,
+    real: true
+}, {
+    asIndexedPairs: function asIndexedPairs() {
+        return new AsyncIteratorProxy({
+            iterator: anObject(this),
+            index: 0
+        });
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/an-object":"9unxM","../internals/async-iterator-create-proxy":"jpBrt"}],"jpBrt":[function(require,module,exports) {
+'use strict';
+var path = require('../internals/path');
+var aFunction = require('../internals/a-function');
+var anObject = require('../internals/an-object');
+var create = require('../internals/object-create');
+var createNonEnumerableProperty = require('../internals/create-non-enumerable-property');
+var redefineAll = require('../internals/redefine-all');
+var wellKnownSymbol = require('../internals/well-known-symbol');
+var InternalStateModule = require('../internals/internal-state');
+var getBuiltIn = require('../internals/get-built-in');
+var Promise1 = getBuiltIn('Promise');
+var setInternalState = InternalStateModule.set;
+var getInternalState = InternalStateModule.get;
+var TO_STRING_TAG = wellKnownSymbol('toStringTag');
+var $return = function(value) {
+    var iterator = getInternalState(this).iterator;
+    var $$return = iterator['return'];
+    return $$return === undefined ? Promise1.resolve({
+        done: true,
+        value: value
+    }) : anObject($$return.call(iterator, value));
+};
+var $throw = function(value) {
+    var iterator = getInternalState(this).iterator;
+    var $$throw = iterator['throw'];
+    return $$throw === undefined ? Promise1.reject(value) : $$throw.call(iterator, value);
+};
+module.exports = function(nextHandler, IS_ITERATOR) {
+    var AsyncIteratorProxy = function AsyncIterator(state) {
+        state.next = aFunction(state.iterator.next);
+        state.done = false;
+        setInternalState(this, state);
+    };
+    AsyncIteratorProxy.prototype = redefineAll(create(path.AsyncIterator.prototype), {
+        next: function next(arg) {
+            var state = getInternalState(this);
+            if (state.done) return Promise1.resolve({
+                done: true,
+                value: undefined
+            });
+            try {
+                return Promise1.resolve(anObject(nextHandler.call(state, arg, Promise1)));
+            } catch (error) {
+                return Promise1.reject(error);
+            }
+        },
+        'return': $return,
+        'throw': $throw
+    });
+    if (!IS_ITERATOR) createNonEnumerableProperty(AsyncIteratorProxy.prototype, TO_STRING_TAG, 'Generator');
+    return AsyncIteratorProxy;
+};
+
+},{"../internals/path":"cV4BF","../internals/a-function":"43ldr","../internals/an-object":"9unxM","../internals/object-create":"eYZeq","../internals/create-non-enumerable-property":"73EkF","../internals/redefine-all":"4a8AR","../internals/well-known-symbol":"6sZ59","../internals/internal-state":"ceuiK","../internals/get-built-in":"hqegu"}],"3MTRj":[function(require,module,exports) {
+'use strict';
+// https://github.com/tc39/proposal-iterator-helpers
+var $ = require('../internals/export');
+var anObject = require('../internals/an-object');
+var toPositiveInteger = require('../internals/to-positive-integer');
+var createAsyncIteratorProxy = require('../internals/async-iterator-create-proxy');
+var AsyncIteratorProxy = createAsyncIteratorProxy(function(arg, Promise1) {
+    var state = this;
+    return new Promise1(function(resolve, reject) {
+        var loop = function() {
+            try {
+                Promise1.resolve(anObject(state.next.call(state.iterator, state.remaining ? undefined : arg))).then(function(step) {
+                    try {
+                        if (anObject(step).done) {
+                            state.done = true;
+                            resolve({
+                                done: true,
+                                value: undefined
+                            });
+                        } else if (state.remaining) {
+                            state.remaining--;
+                            loop();
+                        } else resolve({
+                            done: false,
+                            value: step.value
+                        });
+                    } catch (err) {
+                        reject(err);
+                    }
+                }, reject);
+            } catch (error) {
+                reject(error);
+            }
+        };
+        loop();
+    });
+});
+$({
+    target: 'AsyncIterator',
+    proto: true,
+    real: true
+}, {
+    drop: function drop(limit) {
+        return new AsyncIteratorProxy({
+            iterator: anObject(this),
+            remaining: toPositiveInteger(limit)
+        });
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/an-object":"9unxM","../internals/to-positive-integer":"59Bw6","../internals/async-iterator-create-proxy":"jpBrt"}],"3TmsD":[function(require,module,exports) {
+'use strict';
+// https://github.com/tc39/proposal-iterator-helpers
+var $ = require('../internals/export');
+var $every = require('../internals/async-iterator-iteration').every;
+$({
+    target: 'AsyncIterator',
+    proto: true,
+    real: true
+}, {
+    every: function every(fn) {
+        return $every(this, fn);
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/async-iterator-iteration":"598G3"}],"598G3":[function(require,module,exports) {
+'use strict';
+// https://github.com/tc39/proposal-iterator-helpers
+var aFunction = require('../internals/a-function');
+var anObject = require('../internals/an-object');
+var getBuiltIn = require('../internals/get-built-in');
+var Promise1 = getBuiltIn('Promise');
+var push = [].push;
+var createMethod = function(TYPE) {
+    var IS_TO_ARRAY = TYPE == 0;
+    var IS_FOR_EACH = TYPE == 1;
+    var IS_EVERY = TYPE == 2;
+    var IS_SOME = TYPE == 3;
+    return function(iterator, fn) {
+        anObject(iterator);
+        var next = aFunction(iterator.next);
+        var array = IS_TO_ARRAY ? [] : undefined;
+        if (!IS_TO_ARRAY) aFunction(fn);
+        return new Promise1(function(resolve, reject) {
+            var closeIteration = function(method, argument) {
+                try {
+                    var returnMethod = iterator['return'];
+                    if (returnMethod !== undefined) return Promise1.resolve(returnMethod.call(iterator)).then(function() {
+                        method(argument);
+                    }, function(error) {
+                        reject(error);
+                    });
+                } catch (error2) {
+                    return reject(error2);
+                }
+                method(argument);
+            };
+            var onError = function(error) {
+                closeIteration(reject, error);
+            };
+            var loop = function() {
+                try {
+                    Promise1.resolve(anObject(next.call(iterator))).then(function(step) {
+                        try {
+                            if (anObject(step).done) resolve(IS_TO_ARRAY ? array : IS_SOME ? false : IS_EVERY || undefined);
+                            else {
+                                var value = step.value;
+                                if (IS_TO_ARRAY) {
+                                    push.call(array, value);
+                                    loop();
+                                } else Promise1.resolve(fn(value)).then(function(result) {
+                                    if (IS_FOR_EACH) loop();
+                                    else if (IS_EVERY) result ? loop() : closeIteration(resolve, false);
+                                    else result ? closeIteration(resolve, IS_SOME || value) : loop();
+                                }, onError);
+                            }
+                        } catch (error) {
+                            onError(error);
+                        }
+                    }, onError);
+                } catch (error2) {
+                    onError(error2);
+                }
+            };
+            loop();
+        });
+    };
+};
+module.exports = {
+    toArray: createMethod(0),
+    forEach: createMethod(1),
+    every: createMethod(2),
+    some: createMethod(3),
+    find: createMethod(4)
+};
+
+},{"../internals/a-function":"43ldr","../internals/an-object":"9unxM","../internals/get-built-in":"hqegu"}],"3O0Jr":[function(require,module,exports) {
+'use strict';
+// https://github.com/tc39/proposal-iterator-helpers
+var $ = require('../internals/export');
+var aFunction = require('../internals/a-function');
+var anObject = require('../internals/an-object');
+var createAsyncIteratorProxy = require('../internals/async-iterator-create-proxy');
+var AsyncIteratorProxy = createAsyncIteratorProxy(function(arg, Promise1) {
+    var state = this;
+    var filterer = state.filterer;
+    return new Promise1(function(resolve, reject) {
+        var loop = function() {
+            try {
+                Promise1.resolve(anObject(state.next.call(state.iterator, arg))).then(function(step) {
+                    try {
+                        if (anObject(step).done) {
+                            state.done = true;
+                            resolve({
+                                done: true,
+                                value: undefined
+                            });
+                        } else {
+                            var value = step.value;
+                            Promise1.resolve(filterer(value)).then(function(selected) {
+                                selected ? resolve({
+                                    done: false,
+                                    value: value
+                                }) : loop();
+                            }, reject);
+                        }
+                    } catch (err) {
+                        reject(err);
+                    }
+                }, reject);
+            } catch (error) {
+                reject(error);
+            }
+        };
+        loop();
+    });
+});
+$({
+    target: 'AsyncIterator',
+    proto: true,
+    real: true
+}, {
+    filter: function filter(filterer) {
+        return new AsyncIteratorProxy({
+            iterator: anObject(this),
+            filterer: aFunction(filterer)
+        });
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/a-function":"43ldr","../internals/an-object":"9unxM","../internals/async-iterator-create-proxy":"jpBrt"}],"d2BfV":[function(require,module,exports) {
+'use strict';
+// https://github.com/tc39/proposal-iterator-helpers
+var $ = require('../internals/export');
+var $find = require('../internals/async-iterator-iteration').find;
+$({
+    target: 'AsyncIterator',
+    proto: true,
+    real: true
+}, {
+    find: function find(fn) {
+        return $find(this, fn);
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/async-iterator-iteration":"598G3"}],"2vanm":[function(require,module,exports) {
+'use strict';
+// https://github.com/tc39/proposal-iterator-helpers
+var $ = require('../internals/export');
+var aFunction = require('../internals/a-function');
+var anObject = require('../internals/an-object');
+var createAsyncIteratorProxy = require('../internals/async-iterator-create-proxy');
+var getAsyncIteratorMethod = require('../internals/get-async-iterator-method');
+var AsyncIteratorProxy = createAsyncIteratorProxy(function(arg, Promise1) {
+    var state = this;
+    var mapper = state.mapper;
+    var innerIterator, iteratorMethod;
+    return new Promise1(function(resolve, reject) {
+        var outerLoop = function() {
+            try {
+                Promise1.resolve(anObject(state.next.call(state.iterator, arg))).then(function(step) {
+                    try {
+                        if (anObject(step).done) {
+                            state.done = true;
+                            resolve({
+                                done: true,
+                                value: undefined
+                            });
+                        } else Promise1.resolve(mapper(step.value)).then(function(mapped) {
+                            try {
+                                iteratorMethod = getAsyncIteratorMethod(mapped);
+                                if (iteratorMethod !== undefined) {
+                                    state.innerIterator = innerIterator = anObject(iteratorMethod.call(mapped));
+                                    state.innerNext = aFunction(innerIterator.next);
+                                    return innerLoop();
+                                }
+                                reject(TypeError('.flatMap callback should return an iterable object'));
+                            } catch (error2) {
+                                reject(error2);
+                            }
+                        }, reject);
+                    } catch (error1) {
+                        reject(error1);
+                    }
+                }, reject);
+            } catch (error) {
+                reject(error);
+            }
+        };
+        var innerLoop = function() {
+            if (innerIterator = state.innerIterator) try {
+                Promise1.resolve(anObject(state.innerNext.call(innerIterator))).then(function(result) {
+                    try {
+                        if (anObject(result).done) {
+                            state.innerIterator = state.innerNext = null;
+                            outerLoop();
+                        } else resolve({
+                            done: false,
+                            value: result.value
+                        });
+                    } catch (error1) {
+                        reject(error1);
+                    }
+                }, reject);
+            } catch (error) {
+                reject(error);
+            }
+            else outerLoop();
+        };
+        innerLoop();
+    });
+});
+$({
+    target: 'AsyncIterator',
+    proto: true,
+    real: true
+}, {
+    flatMap: function flatMap(mapper) {
+        return new AsyncIteratorProxy({
+            iterator: anObject(this),
+            mapper: aFunction(mapper),
+            innerIterator: null,
+            innerNext: null
+        });
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/a-function":"43ldr","../internals/an-object":"9unxM","../internals/async-iterator-create-proxy":"jpBrt","../internals/get-async-iterator-method":"67p7k"}],"67p7k":[function(require,module,exports) {
+var getIteratorMethod = require('../internals/get-iterator-method');
+var wellKnownSymbol = require('../internals/well-known-symbol');
+var ASYNC_ITERATOR = wellKnownSymbol('asyncIterator');
+module.exports = function(it) {
+    var method = it[ASYNC_ITERATOR];
+    return method === undefined ? getIteratorMethod(it) : method;
+};
+
+},{"../internals/get-iterator-method":"btrxT","../internals/well-known-symbol":"6sZ59"}],"3PDaf":[function(require,module,exports) {
+'use strict';
+// https://github.com/tc39/proposal-iterator-helpers
+var $ = require('../internals/export');
+var $forEach = require('../internals/async-iterator-iteration').forEach;
+$({
+    target: 'AsyncIterator',
+    proto: true,
+    real: true
+}, {
+    forEach: function forEach(fn) {
+        return $forEach(this, fn);
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/async-iterator-iteration":"598G3"}],"SEq6s":[function(require,module,exports) {
+// https://github.com/tc39/proposal-iterator-helpers
+var $ = require('../internals/export');
+var path = require('../internals/path');
+var aFunction = require('../internals/a-function');
+var anObject = require('../internals/an-object');
+var toObject = require('../internals/to-object');
+var createAsyncIteratorProxy = require('../internals/async-iterator-create-proxy');
+var getAsyncIteratorMethod = require('../internals/get-async-iterator-method');
+var AsyncIterator = path.AsyncIterator;
+var AsyncIteratorProxy = createAsyncIteratorProxy(function(arg) {
+    return anObject(this.next.call(this.iterator, arg));
+}, true);
+$({
+    target: 'AsyncIterator',
+    stat: true
+}, {
+    from: function from(O) {
+        var object = toObject(O);
+        var usingIterator = getAsyncIteratorMethod(object);
+        var iterator;
+        if (usingIterator != null) {
+            iterator = aFunction(usingIterator).call(object);
+            if (iterator instanceof AsyncIterator) return iterator;
+        } else iterator = object;
+        return new AsyncIteratorProxy({
+            iterator: iterator
+        });
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/path":"cV4BF","../internals/a-function":"43ldr","../internals/an-object":"9unxM","../internals/to-object":"ghTKi","../internals/async-iterator-create-proxy":"jpBrt","../internals/get-async-iterator-method":"67p7k"}],"7d2FT":[function(require,module,exports) {
+'use strict';
+// https://github.com/tc39/proposal-iterator-helpers
+var $ = require('../internals/export');
+var aFunction = require('../internals/a-function');
+var anObject = require('../internals/an-object');
+var createAsyncIteratorProxy = require('../internals/async-iterator-create-proxy');
+var AsyncIteratorProxy = createAsyncIteratorProxy(function(arg, Promise1) {
+    var state = this;
+    var mapper = state.mapper;
+    return Promise1.resolve(anObject(state.next.call(state.iterator, arg))).then(function(step) {
+        if (anObject(step).done) {
+            state.done = true;
+            return {
+                done: true,
+                value: undefined
+            };
+        }
+        return Promise1.resolve(mapper(step.value)).then(function(value) {
+            return {
+                done: false,
+                value: value
+            };
+        });
+    });
+});
+$({
+    target: 'AsyncIterator',
+    proto: true,
+    real: true
+}, {
+    map: function map(mapper) {
+        return new AsyncIteratorProxy({
+            iterator: anObject(this),
+            mapper: aFunction(mapper)
+        });
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/a-function":"43ldr","../internals/an-object":"9unxM","../internals/async-iterator-create-proxy":"jpBrt"}],"ewoio":[function(require,module,exports) {
+'use strict';
+// https://github.com/tc39/proposal-iterator-helpers
+var $ = require('../internals/export');
+var aFunction = require('../internals/a-function');
+var anObject = require('../internals/an-object');
+var getBuiltIn = require('../internals/get-built-in');
+var Promise1 = getBuiltIn('Promise');
+$({
+    target: 'AsyncIterator',
+    proto: true,
+    real: true
+}, {
+    reduce: function reduce(reducer /* , initialValue */ ) {
+        var iterator = anObject(this);
+        var next = aFunction(iterator.next);
+        var noInitial = arguments.length < 2;
+        var accumulator = noInitial ? undefined : arguments[1];
+        aFunction(reducer);
+        return new Promise1(function(resolve, reject) {
+            var loop = function() {
+                try {
+                    Promise1.resolve(anObject(next.call(iterator))).then(function(step) {
+                        try {
+                            if (anObject(step).done) noInitial ? reject(TypeError('Reduce of empty iterator with no initial value')) : resolve(accumulator);
+                            else {
+                                var value = step.value;
+                                if (noInitial) {
+                                    noInitial = false;
+                                    accumulator = value;
+                                    loop();
+                                } else Promise1.resolve(reducer(accumulator, value)).then(function(result) {
+                                    accumulator = result;
+                                    loop();
+                                }, reject);
+                            }
+                        } catch (err) {
+                            reject(err);
+                        }
+                    }, reject);
+                } catch (error) {
+                    reject(error);
+                }
+            };
+            loop();
+        });
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/a-function":"43ldr","../internals/an-object":"9unxM","../internals/get-built-in":"hqegu"}],"gFmBF":[function(require,module,exports) {
+'use strict';
+// https://github.com/tc39/proposal-iterator-helpers
+var $ = require('../internals/export');
+var $some = require('../internals/async-iterator-iteration').some;
+$({
+    target: 'AsyncIterator',
+    proto: true,
+    real: true
+}, {
+    some: function some(fn) {
+        return $some(this, fn);
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/async-iterator-iteration":"598G3"}],"8iLxH":[function(require,module,exports) {
+'use strict';
+// https://github.com/tc39/proposal-iterator-helpers
+var $ = require('../internals/export');
+var anObject = require('../internals/an-object');
+var toPositiveInteger = require('../internals/to-positive-integer');
+var createAsyncIteratorProxy = require('../internals/async-iterator-create-proxy');
+var AsyncIteratorProxy = createAsyncIteratorProxy(function(arg, Promise1) {
+    var iterator = this.iterator;
+    var returnMethod, result;
+    if (!this.remaining--) {
+        result = {
+            done: true,
+            value: undefined
+        };
+        this.done = true;
+        returnMethod = iterator['return'];
+        if (returnMethod !== undefined) return Promise1.resolve(returnMethod.call(iterator)).then(function() {
+            return result;
+        });
+        return result;
+    }
+    return this.next.call(iterator, arg);
+});
+$({
+    target: 'AsyncIterator',
+    proto: true,
+    real: true
+}, {
+    take: function take(limit) {
+        return new AsyncIteratorProxy({
+            iterator: anObject(this),
+            remaining: toPositiveInteger(limit)
+        });
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/an-object":"9unxM","../internals/to-positive-integer":"59Bw6","../internals/async-iterator-create-proxy":"jpBrt"}],"4qKYL":[function(require,module,exports) {
+'use strict';
+// https://github.com/tc39/proposal-iterator-helpers
+var $ = require('../internals/export');
+var $toArray = require('../internals/async-iterator-iteration').toArray;
+$({
+    target: 'AsyncIterator',
+    proto: true,
+    real: true
+}, {
+    toArray: function toArray() {
+        return $toArray(this);
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/async-iterator-iteration":"598G3"}],"dGFnn":[function(require,module,exports) {
+'use strict';
+/* eslint-disable es/no-bigint -- safe */ var $ = require('../internals/export');
+var NumericRangeIterator = require('../internals/numeric-range-iterator');
+// `BigInt.range` method
+// https://github.com/tc39/proposal-Number.range
+if (typeof BigInt == 'function') $({
+    target: 'BigInt',
+    stat: true
+}, {
+    range: function range(start, end, option) {
+        return new NumericRangeIterator(start, end, option, 'bigint', BigInt(0), BigInt(1));
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/numeric-range-iterator":"e4RMZ"}],"e4RMZ":[function(require,module,exports) {
+'use strict';
+var InternalStateModule = require('../internals/internal-state');
+var createIteratorConstructor = require('../internals/create-iterator-constructor');
+var isObject = require('../internals/is-object');
+var defineProperties = require('../internals/object-define-properties');
+var DESCRIPTORS = require('../internals/descriptors');
+var INCORRECT_RANGE = 'Incorrect Number.range arguments';
+var NUMERIC_RANGE_ITERATOR = 'NumericRangeIterator';
+var setInternalState = InternalStateModule.set;
+var getInternalState = InternalStateModule.getterFor(NUMERIC_RANGE_ITERATOR);
+var $RangeIterator = createIteratorConstructor(function NumericRangeIterator(start, end, option, type, zero, one) {
+    if (typeof start != type || end !== Infinity && end !== -Infinity && typeof end != type) throw new TypeError(INCORRECT_RANGE);
+    if (start === Infinity || start === -Infinity) throw new RangeError(INCORRECT_RANGE);
+    var ifIncrease = end > start;
+    var inclusiveEnd = false;
+    var step;
+    if (option === undefined) step = undefined;
+    else if (isObject(option)) {
+        step = option.step;
+        inclusiveEnd = !!option.inclusive;
+    } else if (typeof option == type) step = option;
+    else throw new TypeError(INCORRECT_RANGE);
+    if (step == null) step = ifIncrease ? one : -one;
+    if (typeof step != type) throw new TypeError(INCORRECT_RANGE);
+    if (step === Infinity || step === -Infinity || step === zero && start !== end) throw new RangeError(INCORRECT_RANGE);
+    // eslint-disable-next-line no-self-compare -- NaN check
+    var hitsEnd = start != start || end != end || step != step || end > start !== step > zero;
+    setInternalState(this, {
+        type: NUMERIC_RANGE_ITERATOR,
+        start: start,
+        end: end,
+        step: step,
+        inclusiveEnd: inclusiveEnd,
+        hitsEnd: hitsEnd,
+        currentCount: zero,
+        zero: zero
+    });
+    if (!DESCRIPTORS) {
+        this.start = start;
+        this.end = end;
+        this.step = step;
+        this.inclusive = inclusiveEnd;
+    }
+}, NUMERIC_RANGE_ITERATOR, function next() {
+    var state = getInternalState(this);
+    if (state.hitsEnd) return {
+        value: undefined,
+        done: true
+    };
+    var start = state.start;
+    var end = state.end;
+    var step = state.step;
+    var currentYieldingValue = start + step * state.currentCount++;
+    if (currentYieldingValue === end) state.hitsEnd = true;
+    var inclusiveEnd = state.inclusiveEnd;
+    var endCondition;
+    if (end > start) endCondition = inclusiveEnd ? currentYieldingValue > end : currentYieldingValue >= end;
+    else endCondition = inclusiveEnd ? end > currentYieldingValue : end >= currentYieldingValue;
+    if (endCondition) return {
+        value: undefined,
+        done: state.hitsEnd = true
+    };
+    return {
+        value: currentYieldingValue,
+        done: false
+    };
+});
+var getter = function(fn) {
+    return {
+        get: fn,
+        set: function() {
+        },
+        configurable: true,
+        enumerable: false
+    };
+};
+if (DESCRIPTORS) defineProperties($RangeIterator.prototype, {
+    start: getter(function() {
+        return getInternalState(this).start;
+    }),
+    end: getter(function() {
+        return getInternalState(this).end;
+    }),
+    inclusive: getter(function() {
+        return getInternalState(this).inclusiveEnd;
+    }),
+    step: getter(function() {
+        return getInternalState(this).step;
+    })
+});
+module.exports = $RangeIterator;
+
+},{"../internals/internal-state":"ceuiK","../internals/create-iterator-constructor":"biz26","../internals/is-object":"d60Kc","../internals/object-define-properties":"4aS77","../internals/descriptors":"kuDzl"}],"lfA0J":[function(require,module,exports) {
+var $ = require('../internals/export');
+var getCompositeKeyNode = require('../internals/composite-key');
+var getBuiltIn = require('../internals/get-built-in');
+var create = require('../internals/object-create');
+var initializer = function() {
+    var freeze = getBuiltIn('Object', 'freeze');
+    return freeze ? freeze(create(null)) : create(null);
+};
+// https://github.com/tc39/proposal-richer-keys/tree/master/compositeKey
+$({
+    global: true
+}, {
+    compositeKey: function compositeKey() {
+        return getCompositeKeyNode.apply(Object, arguments).get('object', initializer);
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/composite-key":"iU571","../internals/get-built-in":"hqegu","../internals/object-create":"eYZeq"}],"iU571":[function(require,module,exports) {
+// TODO: in core-js@4, move /modules/ dependencies to public entries for better optimization by tools like `preset-env`
+var Map1 = require('../modules/es.map');
+var WeakMap1 = require('../modules/es.weak-map');
+var create = require('../internals/object-create');
+var isObject = require('../internals/is-object');
+var Node1 = function() {
+    // keys
+    this.object = null;
+    this.symbol = null;
+    // child nodes
+    this.primitives = null;
+    this.objectsByIndex = create(null);
+};
+Node1.prototype.get = function(key, initializer) {
+    return this[key] || (this[key] = initializer());
+};
+Node1.prototype.next = function(i, it, IS_OBJECT) {
+    var store = IS_OBJECT ? this.objectsByIndex[i] || (this.objectsByIndex[i] = new WeakMap1()) : this.primitives || (this.primitives = new Map1());
+    var entry = store.get(it);
+    if (!entry) store.set(it, entry = new Node1());
+    return entry;
+};
+var root = new Node1();
+module.exports = function() {
+    var active = root;
+    var length = arguments.length;
+    var i, it;
+    // for prevent leaking, start from objects
+    for(i = 0; i < length; i++)if (isObject(it = arguments[i])) active = active.next(i, it, true);
+    if (this === Object && active === root) throw TypeError('Composite keys must contain a non-primitive component');
+    for(i = 0; i < length; i++)if (!isObject(it = arguments[i])) active = active.next(i, it, false);
+    return active;
+};
+
+},{"../modules/es.map":"dgMLm","../modules/es.weak-map":"7VYon","../internals/object-create":"eYZeq","../internals/is-object":"d60Kc"}],"g8XDT":[function(require,module,exports) {
+var $ = require('../internals/export');
+var getCompositeKeyNode = require('../internals/composite-key');
+var getBuiltIn = require('../internals/get-built-in');
+// https://github.com/tc39/proposal-richer-keys/tree/master/compositeKey
+$({
+    global: true
+}, {
+    compositeSymbol: function compositeSymbol() {
+        if (arguments.length === 1 && typeof arguments[0] === 'string') return getBuiltIn('Symbol')['for'](arguments[0]);
+        return getCompositeKeyNode.apply(null, arguments).get('symbol', getBuiltIn('Symbol'));
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/composite-key":"iU571","../internals/get-built-in":"hqegu"}],"2UfOS":[function(require,module,exports) {
+// TODO: Remove from `core-js@4`
+require('./es.global-this');
+
+},{"./es.global-this":"JI3Gz"}],"kgwoF":[function(require,module,exports) {
+'use strict';
+// https://github.com/tc39/proposal-iterator-helpers
+var $ = require('../internals/export');
+var global = require('../internals/global');
+var anInstance = require('../internals/an-instance');
+var createNonEnumerableProperty = require('../internals/create-non-enumerable-property');
+var fails = require('../internals/fails');
+var has = require('../internals/has');
+var wellKnownSymbol = require('../internals/well-known-symbol');
+var IteratorPrototype = require('../internals/iterators-core').IteratorPrototype;
+var IS_PURE = require('../internals/is-pure');
+var ITERATOR = wellKnownSymbol('iterator');
+var TO_STRING_TAG = wellKnownSymbol('toStringTag');
+var NativeIterator = global.Iterator;
+// FF56- have non-standard global helper `Iterator`
+var FORCED = IS_PURE || typeof NativeIterator != 'function' || NativeIterator.prototype !== IteratorPrototype || !fails(function() {
+    NativeIterator({
+    });
+});
+var IteratorConstructor = function Iterator() {
+    anInstance(this, IteratorConstructor);
+};
+if (IS_PURE) {
+    IteratorPrototype = {
+    };
+    createNonEnumerableProperty(IteratorPrototype, ITERATOR, function() {
+        return this;
+    });
+}
+if (!has(IteratorPrototype, TO_STRING_TAG)) createNonEnumerableProperty(IteratorPrototype, TO_STRING_TAG, 'Iterator');
+if (FORCED || !has(IteratorPrototype, 'constructor') || IteratorPrototype.constructor === Object) createNonEnumerableProperty(IteratorPrototype, 'constructor', IteratorConstructor);
+IteratorConstructor.prototype = IteratorPrototype;
+$({
+    global: true,
+    forced: FORCED
+}, {
+    Iterator: IteratorConstructor
+});
+
+},{"../internals/export":"2mZbc","../internals/global":"a4GR8","../internals/an-instance":"gTr5k","../internals/create-non-enumerable-property":"73EkF","../internals/fails":"byxLb","../internals/has":"aVEHj","../internals/well-known-symbol":"6sZ59","../internals/iterators-core":"eCtuD","../internals/is-pure":"dlbEd"}],"2D47X":[function(require,module,exports) {
+'use strict';
+// https://github.com/tc39/proposal-iterator-helpers
+var $ = require('../internals/export');
+var anObject = require('../internals/an-object');
+var createIteratorProxy = require('../internals/iterator-create-proxy');
+var IteratorProxy = createIteratorProxy(function(arg) {
+    var result = anObject(this.next.call(this.iterator, arg));
+    var done = this.done = !!result.done;
+    if (!done) return [
+        this.index++,
+        result.value
+    ];
+});
+$({
+    target: 'Iterator',
+    proto: true,
+    real: true
+}, {
+    asIndexedPairs: function asIndexedPairs() {
+        return new IteratorProxy({
+            iterator: anObject(this),
+            index: 0
+        });
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/an-object":"9unxM","../internals/iterator-create-proxy":"bkRlM"}],"bkRlM":[function(require,module,exports) {
+'use strict';
+var path = require('../internals/path');
+var aFunction = require('../internals/a-function');
+var anObject = require('../internals/an-object');
+var create = require('../internals/object-create');
+var createNonEnumerableProperty = require('../internals/create-non-enumerable-property');
+var redefineAll = require('../internals/redefine-all');
+var wellKnownSymbol = require('../internals/well-known-symbol');
+var InternalStateModule = require('../internals/internal-state');
+var setInternalState = InternalStateModule.set;
+var getInternalState = InternalStateModule.get;
+var TO_STRING_TAG = wellKnownSymbol('toStringTag');
+var $return = function(value) {
+    var iterator = getInternalState(this).iterator;
+    var $$return = iterator['return'];
+    return $$return === undefined ? {
+        done: true,
+        value: value
+    } : anObject($$return.call(iterator, value));
+};
+var $throw = function(value) {
+    var iterator = getInternalState(this).iterator;
+    var $$throw = iterator['throw'];
+    if ($$throw === undefined) throw value;
+    return $$throw.call(iterator, value);
+};
+module.exports = function(nextHandler, IS_ITERATOR) {
+    var IteratorProxy = function Iterator(state) {
+        state.next = aFunction(state.iterator.next);
+        state.done = false;
+        setInternalState(this, state);
+    };
+    IteratorProxy.prototype = redefineAll(create(path.Iterator.prototype), {
+        next: function next() {
+            var state = getInternalState(this);
+            var result = state.done ? undefined : nextHandler.apply(state, arguments);
+            return {
+                done: state.done,
+                value: result
+            };
+        },
+        'return': $return,
+        'throw': $throw
+    });
+    if (!IS_ITERATOR) createNonEnumerableProperty(IteratorProxy.prototype, TO_STRING_TAG, 'Generator');
+    return IteratorProxy;
+};
+
+},{"../internals/path":"cV4BF","../internals/a-function":"43ldr","../internals/an-object":"9unxM","../internals/object-create":"eYZeq","../internals/create-non-enumerable-property":"73EkF","../internals/redefine-all":"4a8AR","../internals/well-known-symbol":"6sZ59","../internals/internal-state":"ceuiK"}],"8NtAX":[function(require,module,exports) {
+'use strict';
+// https://github.com/tc39/proposal-iterator-helpers
+var $ = require('../internals/export');
+var anObject = require('../internals/an-object');
+var toPositiveInteger = require('../internals/to-positive-integer');
+var createIteratorProxy = require('../internals/iterator-create-proxy');
+var IteratorProxy = createIteratorProxy(function(arg) {
+    var iterator = this.iterator;
+    var next = this.next;
+    var result, done;
+    while(this.remaining){
+        this.remaining--;
+        result = anObject(next.call(iterator));
+        done = this.done = !!result.done;
+        if (done) return;
+    }
+    result = anObject(next.call(iterator, arg));
+    done = this.done = !!result.done;
+    if (!done) return result.value;
+});
+$({
+    target: 'Iterator',
+    proto: true,
+    real: true
+}, {
+    drop: function drop(limit) {
+        return new IteratorProxy({
+            iterator: anObject(this),
+            remaining: toPositiveInteger(limit)
+        });
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/an-object":"9unxM","../internals/to-positive-integer":"59Bw6","../internals/iterator-create-proxy":"bkRlM"}],"ei4gm":[function(require,module,exports) {
+'use strict';
+// https://github.com/tc39/proposal-iterator-helpers
+var $ = require('../internals/export');
+var iterate = require('../internals/iterate');
+var aFunction = require('../internals/a-function');
+var anObject = require('../internals/an-object');
+$({
+    target: 'Iterator',
+    proto: true,
+    real: true
+}, {
+    every: function every(fn) {
+        anObject(this);
+        aFunction(fn);
+        return !iterate(this, function(value, stop) {
+            if (!fn(value)) return stop();
+        }, {
+            IS_ITERATOR: true,
+            INTERRUPTED: true
+        }).stopped;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/iterate":"a4R19","../internals/a-function":"43ldr","../internals/an-object":"9unxM"}],"61432":[function(require,module,exports) {
+'use strict';
+// https://github.com/tc39/proposal-iterator-helpers
+var $ = require('../internals/export');
+var aFunction = require('../internals/a-function');
+var anObject = require('../internals/an-object');
+var createIteratorProxy = require('../internals/iterator-create-proxy');
+var callWithSafeIterationClosing = require('../internals/call-with-safe-iteration-closing');
+var IteratorProxy = createIteratorProxy(function(arg) {
+    var iterator = this.iterator;
+    var filterer = this.filterer;
+    var next = this.next;
+    var result, done, value;
+    while(true){
+        result = anObject(next.call(iterator, arg));
+        done = this.done = !!result.done;
+        if (done) return;
+        value = result.value;
+        if (callWithSafeIterationClosing(iterator, filterer, value)) return value;
+    }
+});
+$({
+    target: 'Iterator',
+    proto: true,
+    real: true
+}, {
+    filter: function filter(filterer) {
+        return new IteratorProxy({
+            iterator: anObject(this),
+            filterer: aFunction(filterer)
+        });
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/a-function":"43ldr","../internals/an-object":"9unxM","../internals/iterator-create-proxy":"bkRlM","../internals/call-with-safe-iteration-closing":"cNS8J"}],"6yEHl":[function(require,module,exports) {
+'use strict';
+// https://github.com/tc39/proposal-iterator-helpers
+var $ = require('../internals/export');
+var iterate = require('../internals/iterate');
+var aFunction = require('../internals/a-function');
+var anObject = require('../internals/an-object');
+$({
+    target: 'Iterator',
+    proto: true,
+    real: true
+}, {
+    find: function find(fn) {
+        anObject(this);
+        aFunction(fn);
+        return iterate(this, function(value, stop) {
+            if (fn(value)) return stop(value);
+        }, {
+            IS_ITERATOR: true,
+            INTERRUPTED: true
+        }).result;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/iterate":"a4R19","../internals/a-function":"43ldr","../internals/an-object":"9unxM"}],"729HZ":[function(require,module,exports) {
+'use strict';
+// https://github.com/tc39/proposal-iterator-helpers
+var $ = require('../internals/export');
+var aFunction = require('../internals/a-function');
+var anObject = require('../internals/an-object');
+var getIteratorMethod = require('../internals/get-iterator-method');
+var createIteratorProxy = require('../internals/iterator-create-proxy');
+var iteratorClose = require('../internals/iterator-close');
+var IteratorProxy = createIteratorProxy(function(arg) {
+    var iterator = this.iterator;
+    var mapper = this.mapper;
+    var result, mapped, iteratorMethod, innerIterator;
+    while(true)try {
+        if (innerIterator = this.innerIterator) {
+            result = anObject(this.innerNext.call(innerIterator));
+            if (!result.done) return result.value;
+            this.innerIterator = this.innerNext = null;
+        }
+        result = anObject(this.next.call(iterator, arg));
+        if (this.done = !!result.done) return;
+        mapped = mapper(result.value);
+        iteratorMethod = getIteratorMethod(mapped);
+        if (iteratorMethod === undefined) throw TypeError('.flatMap callback should return an iterable object');
+        this.innerIterator = innerIterator = anObject(iteratorMethod.call(mapped));
+        this.innerNext = aFunction(innerIterator.next);
+    } catch (error) {
+        iteratorClose(iterator);
+        throw error;
+    }
+});
+$({
+    target: 'Iterator',
+    proto: true,
+    real: true
+}, {
+    flatMap: function flatMap(mapper) {
+        return new IteratorProxy({
+            iterator: anObject(this),
+            mapper: aFunction(mapper),
+            innerIterator: null,
+            innerNext: null
+        });
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/a-function":"43ldr","../internals/an-object":"9unxM","../internals/get-iterator-method":"btrxT","../internals/iterator-create-proxy":"bkRlM","../internals/iterator-close":"ljRDT"}],"38iKK":[function(require,module,exports) {
+'use strict';
+// https://github.com/tc39/proposal-iterator-helpers
+var $ = require('../internals/export');
+var iterate = require('../internals/iterate');
+var anObject = require('../internals/an-object');
+$({
+    target: 'Iterator',
+    proto: true,
+    real: true
+}, {
+    forEach: function forEach(fn) {
+        iterate(anObject(this), fn, {
+            IS_ITERATOR: true
+        });
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/iterate":"a4R19","../internals/an-object":"9unxM"}],"2PgHb":[function(require,module,exports) {
+// https://github.com/tc39/proposal-iterator-helpers
+var $ = require('../internals/export');
+var path = require('../internals/path');
+var aFunction = require('../internals/a-function');
+var anObject = require('../internals/an-object');
+var toObject = require('../internals/to-object');
+var createIteratorProxy = require('../internals/iterator-create-proxy');
+var getIteratorMethod = require('../internals/get-iterator-method');
+var Iterator = path.Iterator;
+var IteratorProxy = createIteratorProxy(function(arg) {
+    var result = anObject(this.next.call(this.iterator, arg));
+    var done = this.done = !!result.done;
+    if (!done) return result.value;
+}, true);
+$({
+    target: 'Iterator',
+    stat: true
+}, {
+    from: function from(O) {
+        var object = toObject(O);
+        var usingIterator = getIteratorMethod(object);
+        var iterator;
+        if (usingIterator != null) {
+            iterator = aFunction(usingIterator).call(object);
+            if (iterator instanceof Iterator) return iterator;
+        } else iterator = object;
+        return new IteratorProxy({
+            iterator: iterator
+        });
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/path":"cV4BF","../internals/a-function":"43ldr","../internals/an-object":"9unxM","../internals/to-object":"ghTKi","../internals/iterator-create-proxy":"bkRlM","../internals/get-iterator-method":"btrxT"}],"dm46h":[function(require,module,exports) {
+'use strict';
+// https://github.com/tc39/proposal-iterator-helpers
+var $ = require('../internals/export');
+var aFunction = require('../internals/a-function');
+var anObject = require('../internals/an-object');
+var createIteratorProxy = require('../internals/iterator-create-proxy');
+var callWithSafeIterationClosing = require('../internals/call-with-safe-iteration-closing');
+var IteratorProxy = createIteratorProxy(function(arg) {
+    var iterator = this.iterator;
+    var result = anObject(this.next.call(iterator, arg));
+    var done = this.done = !!result.done;
+    if (!done) return callWithSafeIterationClosing(iterator, this.mapper, result.value);
+});
+$({
+    target: 'Iterator',
+    proto: true,
+    real: true
+}, {
+    map: function map(mapper) {
+        return new IteratorProxy({
+            iterator: anObject(this),
+            mapper: aFunction(mapper)
+        });
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/a-function":"43ldr","../internals/an-object":"9unxM","../internals/iterator-create-proxy":"bkRlM","../internals/call-with-safe-iteration-closing":"cNS8J"}],"5jqQ2":[function(require,module,exports) {
+'use strict';
+// https://github.com/tc39/proposal-iterator-helpers
+var $ = require('../internals/export');
+var iterate = require('../internals/iterate');
+var aFunction = require('../internals/a-function');
+var anObject = require('../internals/an-object');
+$({
+    target: 'Iterator',
+    proto: true,
+    real: true
+}, {
+    reduce: function reduce(reducer /* , initialValue */ ) {
+        anObject(this);
+        aFunction(reducer);
+        var noInitial = arguments.length < 2;
+        var accumulator = noInitial ? undefined : arguments[1];
+        iterate(this, function(value) {
+            if (noInitial) {
+                noInitial = false;
+                accumulator = value;
+            } else accumulator = reducer(accumulator, value);
+        }, {
+            IS_ITERATOR: true
+        });
+        if (noInitial) throw TypeError('Reduce of empty iterator with no initial value');
+        return accumulator;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/iterate":"a4R19","../internals/a-function":"43ldr","../internals/an-object":"9unxM"}],"15uou":[function(require,module,exports) {
+'use strict';
+// https://github.com/tc39/proposal-iterator-helpers
+var $ = require('../internals/export');
+var iterate = require('../internals/iterate');
+var aFunction = require('../internals/a-function');
+var anObject = require('../internals/an-object');
+$({
+    target: 'Iterator',
+    proto: true,
+    real: true
+}, {
+    some: function some(fn) {
+        anObject(this);
+        aFunction(fn);
+        return iterate(this, function(value, stop) {
+            if (fn(value)) return stop();
+        }, {
+            IS_ITERATOR: true,
+            INTERRUPTED: true
+        }).stopped;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/iterate":"a4R19","../internals/a-function":"43ldr","../internals/an-object":"9unxM"}],"kvbGp":[function(require,module,exports) {
+'use strict';
+// https://github.com/tc39/proposal-iterator-helpers
+var $ = require('../internals/export');
+var anObject = require('../internals/an-object');
+var toPositiveInteger = require('../internals/to-positive-integer');
+var createIteratorProxy = require('../internals/iterator-create-proxy');
+var iteratorClose = require('../internals/iterator-close');
+var IteratorProxy = createIteratorProxy(function(arg) {
+    var iterator = this.iterator;
+    if (!this.remaining--) {
+        this.done = true;
+        return iteratorClose(iterator);
+    }
+    var result = anObject(this.next.call(iterator, arg));
+    var done = this.done = !!result.done;
+    if (!done) return result.value;
+});
+$({
+    target: 'Iterator',
+    proto: true,
+    real: true
+}, {
+    take: function take(limit) {
+        return new IteratorProxy({
+            iterator: anObject(this),
+            remaining: toPositiveInteger(limit)
+        });
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/an-object":"9unxM","../internals/to-positive-integer":"59Bw6","../internals/iterator-create-proxy":"bkRlM","../internals/iterator-close":"ljRDT"}],"97DUz":[function(require,module,exports) {
+'use strict';
+// https://github.com/tc39/proposal-iterator-helpers
+var $ = require('../internals/export');
+var iterate = require('../internals/iterate');
+var anObject = require('../internals/an-object');
+var push = [].push;
+$({
+    target: 'Iterator',
+    proto: true,
+    real: true
+}, {
+    toArray: function toArray() {
+        var result = [];
+        iterate(anObject(this), push, {
+            that: result,
+            IS_ITERATOR: true
+        });
+        return result;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/iterate":"a4R19","../internals/an-object":"9unxM"}],"frSFJ":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var collectionDeleteAll = require('../internals/collection-delete-all');
+// `Map.prototype.deleteAll` method
+// https://github.com/tc39/proposal-collection-methods
+$({
+    target: 'Map',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    deleteAll: function deleteAll() {
+        return collectionDeleteAll.apply(this, arguments);
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/collection-delete-all":"3PMSA"}],"3PMSA":[function(require,module,exports) {
+'use strict';
+var anObject = require('../internals/an-object');
+var aFunction = require('../internals/a-function');
+// https://github.com/tc39/collection-methods
+module.exports = function() {
+    var collection = anObject(this);
+    var remover = aFunction(collection['delete']);
+    var allDeleted = true;
+    var wasDeleted;
+    for(var k = 0, len = arguments.length; k < len; k++){
+        wasDeleted = remover.call(collection, arguments[k]);
+        allDeleted = allDeleted && wasDeleted;
+    }
+    return !!allDeleted;
+};
+
+},{"../internals/an-object":"9unxM","../internals/a-function":"43ldr"}],"3OeAW":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var $emplace = require('../internals/map-emplace');
+// `Map.prototype.emplace` method
+// https://github.com/thumbsupep/proposal-upsert
+$({
+    target: 'Map',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    emplace: $emplace
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/map-emplace":"f66HB"}],"f66HB":[function(require,module,exports) {
+'use strict';
+var anObject = require('../internals/an-object');
+// `Map.prototype.emplace` method
+// https://github.com/thumbsupep/proposal-upsert
+module.exports = function emplace(key, handler) {
+    var map = anObject(this);
+    var value = map.has(key) && 'update' in handler ? handler.update(map.get(key), key, map) : handler.insert(key, map);
+    map.set(key, value);
+    return value;
+};
+
+},{"../internals/an-object":"9unxM"}],"kmBt9":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var anObject = require('../internals/an-object');
+var bind = require('../internals/function-bind-context');
+var getMapIterator = require('../internals/get-map-iterator');
+var iterate = require('../internals/iterate');
+// `Map.prototype.every` method
+// https://github.com/tc39/proposal-collection-methods
+$({
+    target: 'Map',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    every: function every(callbackfn /* , thisArg */ ) {
+        var map = anObject(this);
+        var iterator = getMapIterator(map);
+        var boundFunction = bind(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
+        return !iterate(iterator, function(key, value, stop) {
+            if (!boundFunction(value, key, map)) return stop();
+        }, {
+            AS_ENTRIES: true,
+            IS_ITERATOR: true,
+            INTERRUPTED: true
+        }).stopped;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/an-object":"9unxM","../internals/function-bind-context":"1epb9","../internals/get-map-iterator":"6tRAQ","../internals/iterate":"a4R19"}],"6tRAQ":[function(require,module,exports) {
+module.exports = function(it) {
+    // eslint-disable-next-line es/no-map -- safe
+    return Map.prototype.entries.call(it);
+};
+
+},{}],"fwzYJ":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var getBuiltIn = require('../internals/get-built-in');
+var anObject = require('../internals/an-object');
+var aFunction = require('../internals/a-function');
+var bind = require('../internals/function-bind-context');
+var speciesConstructor = require('../internals/species-constructor');
+var getMapIterator = require('../internals/get-map-iterator');
+var iterate = require('../internals/iterate');
+// `Map.prototype.filter` method
+// https://github.com/tc39/proposal-collection-methods
+$({
+    target: 'Map',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    filter: function filter(callbackfn /* , thisArg */ ) {
+        var map = anObject(this);
+        var iterator = getMapIterator(map);
+        var boundFunction = bind(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
+        var newMap = new (speciesConstructor(map, getBuiltIn('Map')))();
+        var setter = aFunction(newMap.set);
+        iterate(iterator, function(key, value) {
+            if (boundFunction(value, key, map)) setter.call(newMap, key, value);
+        }, {
+            AS_ENTRIES: true,
+            IS_ITERATOR: true
+        });
+        return newMap;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/get-built-in":"hqegu","../internals/an-object":"9unxM","../internals/a-function":"43ldr","../internals/function-bind-context":"1epb9","../internals/species-constructor":"6tv7V","../internals/get-map-iterator":"6tRAQ","../internals/iterate":"a4R19"}],"bro4k":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var anObject = require('../internals/an-object');
+var bind = require('../internals/function-bind-context');
+var getMapIterator = require('../internals/get-map-iterator');
+var iterate = require('../internals/iterate');
+// `Map.prototype.find` method
+// https://github.com/tc39/proposal-collection-methods
+$({
+    target: 'Map',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    find: function find(callbackfn /* , thisArg */ ) {
+        var map = anObject(this);
+        var iterator = getMapIterator(map);
+        var boundFunction = bind(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
+        return iterate(iterator, function(key, value, stop) {
+            if (boundFunction(value, key, map)) return stop(value);
+        }, {
+            AS_ENTRIES: true,
+            IS_ITERATOR: true,
+            INTERRUPTED: true
+        }).result;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/an-object":"9unxM","../internals/function-bind-context":"1epb9","../internals/get-map-iterator":"6tRAQ","../internals/iterate":"a4R19"}],"35dDl":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var anObject = require('../internals/an-object');
+var bind = require('../internals/function-bind-context');
+var getMapIterator = require('../internals/get-map-iterator');
+var iterate = require('../internals/iterate');
+// `Map.prototype.findKey` method
+// https://github.com/tc39/proposal-collection-methods
+$({
+    target: 'Map',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    findKey: function findKey(callbackfn /* , thisArg */ ) {
+        var map = anObject(this);
+        var iterator = getMapIterator(map);
+        var boundFunction = bind(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
+        return iterate(iterator, function(key, value, stop) {
+            if (boundFunction(value, key, map)) return stop(key);
+        }, {
+            AS_ENTRIES: true,
+            IS_ITERATOR: true,
+            INTERRUPTED: true
+        }).result;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/an-object":"9unxM","../internals/function-bind-context":"1epb9","../internals/get-map-iterator":"6tRAQ","../internals/iterate":"a4R19"}],"axVA9":[function(require,module,exports) {
+var $ = require('../internals/export');
+var from = require('../internals/collection-from');
+// `Map.from` method
+// https://tc39.github.io/proposal-setmap-offrom/#sec-map.from
+$({
+    target: 'Map',
+    stat: true
+}, {
+    from: from
+});
+
+},{"../internals/export":"2mZbc","../internals/collection-from":"hdOAY"}],"hdOAY":[function(require,module,exports) {
+'use strict';
+// https://tc39.github.io/proposal-setmap-offrom/
+var aFunction = require('../internals/a-function');
+var bind = require('../internals/function-bind-context');
+var iterate = require('../internals/iterate');
+module.exports = function from(source /* , mapFn, thisArg */ ) {
+    var length = arguments.length;
+    var mapFn = length > 1 ? arguments[1] : undefined;
+    var mapping, array, n, boundFunction;
+    aFunction(this);
+    mapping = mapFn !== undefined;
+    if (mapping) aFunction(mapFn);
+    if (source == undefined) return new this();
+    array = [];
+    if (mapping) {
+        n = 0;
+        boundFunction = bind(mapFn, length > 2 ? arguments[2] : undefined, 2);
+        iterate(source, function(nextItem) {
+            array.push(boundFunction(nextItem, n++));
+        });
+    } else iterate(source, array.push, {
+        that: array
+    });
+    return new this(array);
+};
+
+},{"../internals/a-function":"43ldr","../internals/function-bind-context":"1epb9","../internals/iterate":"a4R19"}],"drt8f":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var iterate = require('../internals/iterate');
+var aFunction = require('../internals/a-function');
+// `Map.groupBy` method
+// https://github.com/tc39/proposal-collection-methods
+$({
+    target: 'Map',
+    stat: true
+}, {
+    groupBy: function groupBy(iterable, keyDerivative) {
+        var newMap = new this();
+        aFunction(keyDerivative);
+        var has = aFunction(newMap.has);
+        var get = aFunction(newMap.get);
+        var set = aFunction(newMap.set);
+        iterate(iterable, function(element) {
+            var derivedKey = keyDerivative(element);
+            if (!has.call(newMap, derivedKey)) set.call(newMap, derivedKey, [
+                element
+            ]);
+            else get.call(newMap, derivedKey).push(element);
+        });
+        return newMap;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/iterate":"a4R19","../internals/a-function":"43ldr"}],"aEwrt":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var anObject = require('../internals/an-object');
+var getMapIterator = require('../internals/get-map-iterator');
+var sameValueZero = require('../internals/same-value-zero');
+var iterate = require('../internals/iterate');
+// `Map.prototype.includes` method
+// https://github.com/tc39/proposal-collection-methods
+$({
+    target: 'Map',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    includes: function includes(searchElement) {
+        return iterate(getMapIterator(anObject(this)), function(key, value, stop) {
+            if (sameValueZero(value, searchElement)) return stop();
+        }, {
+            AS_ENTRIES: true,
+            IS_ITERATOR: true,
+            INTERRUPTED: true
+        }).stopped;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/an-object":"9unxM","../internals/get-map-iterator":"6tRAQ","../internals/same-value-zero":"bZm2W","../internals/iterate":"a4R19"}],"bZm2W":[function(require,module,exports) {
+// `SameValueZero` abstract operation
+// https://tc39.es/ecma262/#sec-samevaluezero
+module.exports = function(x, y) {
+    // eslint-disable-next-line no-self-compare -- NaN check
+    return x === y || x != x && y != y;
+};
+
+},{}],"hfe69":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var iterate = require('../internals/iterate');
+var aFunction = require('../internals/a-function');
+// `Map.keyBy` method
+// https://github.com/tc39/proposal-collection-methods
+$({
+    target: 'Map',
+    stat: true
+}, {
+    keyBy: function keyBy(iterable, keyDerivative) {
+        var newMap = new this();
+        aFunction(keyDerivative);
+        var setter = aFunction(newMap.set);
+        iterate(iterable, function(element) {
+            setter.call(newMap, keyDerivative(element), element);
+        });
+        return newMap;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/iterate":"a4R19","../internals/a-function":"43ldr"}],"15qyF":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var anObject = require('../internals/an-object');
+var getMapIterator = require('../internals/get-map-iterator');
+var iterate = require('../internals/iterate');
+// `Map.prototype.includes` method
+// https://github.com/tc39/proposal-collection-methods
+$({
+    target: 'Map',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    keyOf: function keyOf(searchElement) {
+        return iterate(getMapIterator(anObject(this)), function(key, value, stop) {
+            if (value === searchElement) return stop(key);
+        }, {
+            AS_ENTRIES: true,
+            IS_ITERATOR: true,
+            INTERRUPTED: true
+        }).result;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/an-object":"9unxM","../internals/get-map-iterator":"6tRAQ","../internals/iterate":"a4R19"}],"bOGHT":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var getBuiltIn = require('../internals/get-built-in');
+var anObject = require('../internals/an-object');
+var aFunction = require('../internals/a-function');
+var bind = require('../internals/function-bind-context');
+var speciesConstructor = require('../internals/species-constructor');
+var getMapIterator = require('../internals/get-map-iterator');
+var iterate = require('../internals/iterate');
+// `Map.prototype.mapKeys` method
+// https://github.com/tc39/proposal-collection-methods
+$({
+    target: 'Map',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    mapKeys: function mapKeys(callbackfn /* , thisArg */ ) {
+        var map = anObject(this);
+        var iterator = getMapIterator(map);
+        var boundFunction = bind(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
+        var newMap = new (speciesConstructor(map, getBuiltIn('Map')))();
+        var setter = aFunction(newMap.set);
+        iterate(iterator, function(key, value) {
+            setter.call(newMap, boundFunction(value, key, map), value);
+        }, {
+            AS_ENTRIES: true,
+            IS_ITERATOR: true
+        });
+        return newMap;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/get-built-in":"hqegu","../internals/an-object":"9unxM","../internals/a-function":"43ldr","../internals/function-bind-context":"1epb9","../internals/species-constructor":"6tv7V","../internals/get-map-iterator":"6tRAQ","../internals/iterate":"a4R19"}],"3Qxbu":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var getBuiltIn = require('../internals/get-built-in');
+var anObject = require('../internals/an-object');
+var aFunction = require('../internals/a-function');
+var bind = require('../internals/function-bind-context');
+var speciesConstructor = require('../internals/species-constructor');
+var getMapIterator = require('../internals/get-map-iterator');
+var iterate = require('../internals/iterate');
+// `Map.prototype.mapValues` method
+// https://github.com/tc39/proposal-collection-methods
+$({
+    target: 'Map',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    mapValues: function mapValues(callbackfn /* , thisArg */ ) {
+        var map = anObject(this);
+        var iterator = getMapIterator(map);
+        var boundFunction = bind(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
+        var newMap = new (speciesConstructor(map, getBuiltIn('Map')))();
+        var setter = aFunction(newMap.set);
+        iterate(iterator, function(key, value) {
+            setter.call(newMap, key, boundFunction(value, key, map));
+        }, {
+            AS_ENTRIES: true,
+            IS_ITERATOR: true
+        });
+        return newMap;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/get-built-in":"hqegu","../internals/an-object":"9unxM","../internals/a-function":"43ldr","../internals/function-bind-context":"1epb9","../internals/species-constructor":"6tv7V","../internals/get-map-iterator":"6tRAQ","../internals/iterate":"a4R19"}],"1aX9J":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var anObject = require('../internals/an-object');
+var aFunction = require('../internals/a-function');
+var iterate = require('../internals/iterate');
+// `Map.prototype.merge` method
+// https://github.com/tc39/proposal-collection-methods
+$({
+    target: 'Map',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    // eslint-disable-next-line no-unused-vars -- required for `.length`
+    merge: function merge(iterable /* ...iterbles */ ) {
+        var map = anObject(this);
+        var setter = aFunction(map.set);
+        var argumentsLength = arguments.length;
+        var i = 0;
+        while(i < argumentsLength)iterate(arguments[i++], setter, {
+            that: map,
+            AS_ENTRIES: true
+        });
+        return map;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/an-object":"9unxM","../internals/a-function":"43ldr","../internals/iterate":"a4R19"}],"lCzOX":[function(require,module,exports) {
+var $ = require('../internals/export');
+var of = require('../internals/collection-of');
+// `Map.of` method
+// https://tc39.github.io/proposal-setmap-offrom/#sec-map.of
+$({
+    target: 'Map',
+    stat: true
+}, {
+    of: of
+});
+
+},{"../internals/export":"2mZbc","../internals/collection-of":"6LnNV"}],"6LnNV":[function(require,module,exports) {
+'use strict';
+// https://tc39.github.io/proposal-setmap-offrom/
+module.exports = function of() {
+    var length = arguments.length;
+    var A = new Array(length);
+    while(length--)A[length] = arguments[length];
+    return new this(A);
+};
+
+},{}],"6RYs9":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var anObject = require('../internals/an-object');
+var aFunction = require('../internals/a-function');
+var getMapIterator = require('../internals/get-map-iterator');
+var iterate = require('../internals/iterate');
+// `Map.prototype.reduce` method
+// https://github.com/tc39/proposal-collection-methods
+$({
+    target: 'Map',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    reduce: function reduce(callbackfn /* , initialValue */ ) {
+        var map = anObject(this);
+        var iterator = getMapIterator(map);
+        var noInitial = arguments.length < 2;
+        var accumulator = noInitial ? undefined : arguments[1];
+        aFunction(callbackfn);
+        iterate(iterator, function(key, value) {
+            if (noInitial) {
+                noInitial = false;
+                accumulator = value;
+            } else accumulator = callbackfn(accumulator, value, key, map);
+        }, {
+            AS_ENTRIES: true,
+            IS_ITERATOR: true
+        });
+        if (noInitial) throw TypeError('Reduce of empty map with no initial value');
+        return accumulator;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/an-object":"9unxM","../internals/a-function":"43ldr","../internals/get-map-iterator":"6tRAQ","../internals/iterate":"a4R19"}],"aI6zg":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var anObject = require('../internals/an-object');
+var bind = require('../internals/function-bind-context');
+var getMapIterator = require('../internals/get-map-iterator');
+var iterate = require('../internals/iterate');
+// `Set.prototype.some` method
+// https://github.com/tc39/proposal-collection-methods
+$({
+    target: 'Map',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    some: function some(callbackfn /* , thisArg */ ) {
+        var map = anObject(this);
+        var iterator = getMapIterator(map);
+        var boundFunction = bind(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
+        return iterate(iterator, function(key, value, stop) {
+            if (boundFunction(value, key, map)) return stop();
+        }, {
+            AS_ENTRIES: true,
+            IS_ITERATOR: true,
+            INTERRUPTED: true
+        }).stopped;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/an-object":"9unxM","../internals/function-bind-context":"1epb9","../internals/get-map-iterator":"6tRAQ","../internals/iterate":"a4R19"}],"i3wjO":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var anObject = require('../internals/an-object');
+var aFunction = require('../internals/a-function');
+// `Set.prototype.update` method
+// https://github.com/tc39/proposal-collection-methods
+$({
+    target: 'Map',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    update: function update(key, callback /* , thunk */ ) {
+        var map = anObject(this);
+        var length = arguments.length;
+        aFunction(callback);
+        var isPresentInMap = map.has(key);
+        if (!isPresentInMap && length < 3) throw TypeError('Updating absent value');
+        var value = isPresentInMap ? map.get(key) : aFunction(length > 2 ? arguments[2] : undefined)(key, map);
+        map.set(key, callback(value, key, map));
+        return map;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/an-object":"9unxM","../internals/a-function":"43ldr"}],"d0SXP":[function(require,module,exports) {
+'use strict';
+// TODO: remove from `core-js@4`
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var $upsert = require('../internals/map-upsert');
+// `Map.prototype.updateOrInsert` method (replaced by `Map.prototype.emplace`)
+// https://github.com/thumbsupep/proposal-upsert
+$({
+    target: 'Map',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    updateOrInsert: $upsert
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/map-upsert":"52WxU"}],"52WxU":[function(require,module,exports) {
+'use strict';
+var anObject = require('../internals/an-object');
+// `Map.prototype.upsert` method
+// https://github.com/thumbsupep/proposal-upsert
+module.exports = function upsert(key, updateFn /* , insertFn */ ) {
+    var map = anObject(this);
+    var insertFn = arguments.length > 2 ? arguments[2] : undefined;
+    var value;
+    if (typeof updateFn != 'function' && typeof insertFn != 'function') throw TypeError('At least one callback required');
+    if (map.has(key)) {
+        value = map.get(key);
+        if (typeof updateFn == 'function') {
+            value = updateFn(value);
+            map.set(key, value);
+        }
+    } else if (typeof insertFn == 'function') {
+        value = insertFn();
+        map.set(key, value);
+    }
+    return value;
+};
+
+},{"../internals/an-object":"9unxM"}],"IOzQk":[function(require,module,exports) {
+'use strict';
+// TODO: remove from `core-js@4`
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var $upsert = require('../internals/map-upsert');
+// `Map.prototype.upsert` method (replaced by `Map.prototype.emplace`)
+// https://github.com/thumbsupep/proposal-upsert
+$({
+    target: 'Map',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    upsert: $upsert
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/map-upsert":"52WxU"}],"ajlW7":[function(require,module,exports) {
+var $ = require('../internals/export');
+var min = Math.min;
+var max = Math.max;
+// `Math.clamp` method
+// https://rwaldron.github.io/proposal-math-extensions/
+$({
+    target: 'Math',
+    stat: true
+}, {
+    clamp: function clamp(x, lower, upper) {
+        return min(upper, max(lower, x));
+    }
+});
+
+},{"../internals/export":"2mZbc"}],"8CdDE":[function(require,module,exports) {
+var $ = require('../internals/export');
+// `Math.DEG_PER_RAD` constant
+// https://rwaldron.github.io/proposal-math-extensions/
+$({
+    target: 'Math',
+    stat: true
+}, {
+    DEG_PER_RAD: Math.PI / 180
+});
+
+},{"../internals/export":"2mZbc"}],"5Spn2":[function(require,module,exports) {
+var $ = require('../internals/export');
+var RAD_PER_DEG = 180 / Math.PI;
+// `Math.degrees` method
+// https://rwaldron.github.io/proposal-math-extensions/
+$({
+    target: 'Math',
+    stat: true
+}, {
+    degrees: function degrees(radians) {
+        return radians * RAD_PER_DEG;
+    }
+});
+
+},{"../internals/export":"2mZbc"}],"gXrSR":[function(require,module,exports) {
+var $ = require('../internals/export');
+var scale = require('../internals/math-scale');
+var fround = require('../internals/math-fround');
+// `Math.fscale` method
+// https://rwaldron.github.io/proposal-math-extensions/
+$({
+    target: 'Math',
+    stat: true
+}, {
+    fscale: function fscale(x, inLow, inHigh, outLow, outHigh) {
+        return fround(scale(x, inLow, inHigh, outLow, outHigh));
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/math-scale":"exFyL","../internals/math-fround":"hI6TW"}],"exFyL":[function(require,module,exports) {
+// `Math.scale` method implementation
+// https://rwaldron.github.io/proposal-math-extensions/
+module.exports = Math.scale || function scale(x, inLow, inHigh, outLow, outHigh) {
+    if (arguments.length === 0 || x != x || inLow != inLow || inHigh != inHigh || outLow != outLow || outHigh != outHigh) return NaN;
+    if (x === Infinity || x === -Infinity) return x;
+    return (x - inLow) * (outHigh - outLow) / (inHigh - inLow) + outLow;
+};
+
+},{}],"aDtzr":[function(require,module,exports) {
+var $ = require('../internals/export');
+// `Math.iaddh` method
+// https://gist.github.com/BrendanEich/4294d5c212a6d2254703
+// TODO: Remove from `core-js@4`
+$({
+    target: 'Math',
+    stat: true
+}, {
+    iaddh: function iaddh(x0, x1, y0, y1) {
+        var $x0 = x0 >>> 0;
+        var $x1 = x1 >>> 0;
+        var $y0 = y0 >>> 0;
+        return $x1 + (y1 >>> 0) + (($x0 & $y0 | ($x0 | $y0) & ~($x0 + $y0 >>> 0)) >>> 31) | 0;
+    }
+});
+
+},{"../internals/export":"2mZbc"}],"2Dt0T":[function(require,module,exports) {
+var $ = require('../internals/export');
+// `Math.imulh` method
+// https://gist.github.com/BrendanEich/4294d5c212a6d2254703
+// TODO: Remove from `core-js@4`
+$({
+    target: 'Math',
+    stat: true
+}, {
+    imulh: function imulh(u, v) {
+        var UINT16 = 65535;
+        var $u = +u;
+        var $v = +v;
+        var u0 = $u & UINT16;
+        var v0 = $v & UINT16;
+        var u1 = $u >> 16;
+        var v1 = $v >> 16;
+        var t = (u1 * v0 >>> 0) + (u0 * v0 >>> 16);
+        return u1 * v1 + (t >> 16) + ((u0 * v1 >>> 0) + (t & UINT16) >> 16);
+    }
+});
+
+},{"../internals/export":"2mZbc"}],"gA5kl":[function(require,module,exports) {
+var $ = require('../internals/export');
+// `Math.isubh` method
+// https://gist.github.com/BrendanEich/4294d5c212a6d2254703
+// TODO: Remove from `core-js@4`
+$({
+    target: 'Math',
+    stat: true
+}, {
+    isubh: function isubh(x0, x1, y0, y1) {
+        var $x0 = x0 >>> 0;
+        var $x1 = x1 >>> 0;
+        var $y0 = y0 >>> 0;
+        return $x1 - (y1 >>> 0) - ((~$x0 & $y0 | ~($x0 ^ $y0) & $x0 - $y0 >>> 0) >>> 31) | 0;
+    }
+});
+
+},{"../internals/export":"2mZbc"}],"ggibb":[function(require,module,exports) {
+var $ = require('../internals/export');
+// `Math.RAD_PER_DEG` constant
+// https://rwaldron.github.io/proposal-math-extensions/
+$({
+    target: 'Math',
+    stat: true
+}, {
+    RAD_PER_DEG: 180 / Math.PI
+});
+
+},{"../internals/export":"2mZbc"}],"f22rG":[function(require,module,exports) {
+var $ = require('../internals/export');
+var DEG_PER_RAD = Math.PI / 180;
+// `Math.radians` method
+// https://rwaldron.github.io/proposal-math-extensions/
+$({
+    target: 'Math',
+    stat: true
+}, {
+    radians: function radians(degrees) {
+        return degrees * DEG_PER_RAD;
+    }
+});
+
+},{"../internals/export":"2mZbc"}],"aKAtJ":[function(require,module,exports) {
+var $ = require('../internals/export');
+var scale = require('../internals/math-scale');
+// `Math.scale` method
+// https://rwaldron.github.io/proposal-math-extensions/
+$({
+    target: 'Math',
+    stat: true
+}, {
+    scale: scale
+});
+
+},{"../internals/export":"2mZbc","../internals/math-scale":"exFyL"}],"47XLy":[function(require,module,exports) {
+var $ = require('../internals/export');
+var anObject = require('../internals/an-object');
+var numberIsFinite = require('../internals/number-is-finite');
+var createIteratorConstructor = require('../internals/create-iterator-constructor');
+var InternalStateModule = require('../internals/internal-state');
+var SEEDED_RANDOM = 'Seeded Random';
+var SEEDED_RANDOM_GENERATOR = SEEDED_RANDOM + ' Generator';
+var setInternalState = InternalStateModule.set;
+var getInternalState = InternalStateModule.getterFor(SEEDED_RANDOM_GENERATOR);
+var SEED_TYPE_ERROR = 'Math.seededPRNG() argument should have a "seed" field with a finite value.';
+var $SeededRandomGenerator = createIteratorConstructor(function SeededRandomGenerator(seed) {
+    setInternalState(this, {
+        type: SEEDED_RANDOM_GENERATOR,
+        seed: seed % 2147483647
+    });
+}, SEEDED_RANDOM, function next() {
+    var state = getInternalState(this);
+    var seed = state.seed = (state.seed * 1103515245 + 12345) % 2147483647;
+    return {
+        value: (seed & 1073741823) / 1073741823,
+        done: false
+    };
+});
+// `Math.seededPRNG` method
+// https://github.com/tc39/proposal-seeded-random
+// based on https://github.com/tc39/proposal-seeded-random/blob/78b8258835b57fc2100d076151ab506bc3202ae6/demo.html
+$({
+    target: 'Math',
+    stat: true,
+    forced: true
+}, {
+    seededPRNG: function seededPRNG(it) {
+        var seed = anObject(it).seed;
+        if (!numberIsFinite(seed)) throw TypeError(SEED_TYPE_ERROR);
+        return new $SeededRandomGenerator(seed);
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/an-object":"9unxM","../internals/number-is-finite":"19jl2","../internals/create-iterator-constructor":"biz26","../internals/internal-state":"ceuiK"}],"dMBtP":[function(require,module,exports) {
+var $ = require('../internals/export');
+// `Math.signbit` method
+// https://github.com/tc39/proposal-Math.signbit
+$({
+    target: 'Math',
+    stat: true
+}, {
+    signbit: function signbit(x) {
+        return (x = +x) == x && x == 0 ? 1 / x == -Infinity : x < 0;
+    }
+});
+
+},{"../internals/export":"2mZbc"}],"hv1bC":[function(require,module,exports) {
+var $ = require('../internals/export');
+// `Math.umulh` method
+// https://gist.github.com/BrendanEich/4294d5c212a6d2254703
+// TODO: Remove from `core-js@4`
+$({
+    target: 'Math',
+    stat: true
+}, {
+    umulh: function umulh(u, v) {
+        var UINT16 = 65535;
+        var $u = +u;
+        var $v = +v;
+        var u0 = $u & UINT16;
+        var v0 = $v & UINT16;
+        var u1 = $u >>> 16;
+        var v1 = $v >>> 16;
+        var t = (u1 * v0 >>> 0) + (u0 * v0 >>> 16);
+        return u1 * v1 + (t >>> 16) + ((u0 * v1 >>> 0) + (t & UINT16) >>> 16);
+    }
+});
+
+},{"../internals/export":"2mZbc"}],"9vMMd":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var toInteger = require('../internals/to-integer');
+var parseInt = require('../internals/number-parse-int');
+var INVALID_NUMBER_REPRESENTATION = 'Invalid number representation';
+var INVALID_RADIX = 'Invalid radix';
+var valid = /^[\da-z]+$/;
+// `Number.fromString` method
+// https://github.com/tc39/proposal-number-fromstring
+$({
+    target: 'Number',
+    stat: true
+}, {
+    fromString: function fromString(string, radix) {
+        var sign = 1;
+        var R, mathNum;
+        if (typeof string != 'string') throw TypeError(INVALID_NUMBER_REPRESENTATION);
+        if (!string.length) throw SyntaxError(INVALID_NUMBER_REPRESENTATION);
+        if (string.charAt(0) == '-') {
+            sign = -1;
+            string = string.slice(1);
+            if (!string.length) throw SyntaxError(INVALID_NUMBER_REPRESENTATION);
+        }
+        R = radix === undefined ? 10 : toInteger(radix);
+        if (R < 2 || R > 36) throw RangeError(INVALID_RADIX);
+        if (!valid.test(string) || (mathNum = parseInt(string, R)).toString(R) !== string) throw SyntaxError(INVALID_NUMBER_REPRESENTATION);
+        return sign * mathNum;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/to-integer":"gOCws","../internals/number-parse-int":"aSmbJ"}],"iO4Ka":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var NumericRangeIterator = require('../internals/numeric-range-iterator');
+// `Number.range` method
+// https://github.com/tc39/proposal-Number.range
+$({
+    target: 'Number',
+    stat: true
+}, {
+    range: function range(start, end, option) {
+        return new NumericRangeIterator(start, end, option, 'number', 0, 1);
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/numeric-range-iterator":"e4RMZ"}],"ixptT":[function(require,module,exports) {
+var $ = require('../internals/export');
+var hasOwn = require('../internals/has');
+// `Object.hasOwn` method
+// https://github.com/tc39/proposal-accessible-object-hasownproperty
+$({
+    target: 'Object',
+    stat: true
+}, {
+    hasOwn: hasOwn
+});
+
+},{"../internals/export":"2mZbc","../internals/has":"aVEHj"}],"h1heJ":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var ObjectIterator = require('../internals/object-iterator');
+// `Object.iterateEntries` method
+// https://github.com/tc39/proposal-object-iteration
+$({
+    target: 'Object',
+    stat: true
+}, {
+    iterateEntries: function iterateEntries(object) {
+        return new ObjectIterator(object, 'entries');
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/object-iterator":"4vxUf"}],"4vxUf":[function(require,module,exports) {
+'use strict';
+var InternalStateModule = require('../internals/internal-state');
+var createIteratorConstructor = require('../internals/create-iterator-constructor');
+var has = require('../internals/has');
+var objectKeys = require('../internals/object-keys');
+var toObject = require('../internals/to-object');
+var OBJECT_ITERATOR = 'Object Iterator';
+var setInternalState = InternalStateModule.set;
+var getInternalState = InternalStateModule.getterFor(OBJECT_ITERATOR);
+module.exports = createIteratorConstructor(function ObjectIterator(source, mode) {
+    var object = toObject(source);
+    setInternalState(this, {
+        type: OBJECT_ITERATOR,
+        mode: mode,
+        object: object,
+        keys: objectKeys(object),
+        index: 0
+    });
+}, 'Object', function next() {
+    var state = getInternalState(this);
+    var keys = state.keys;
+    while(true){
+        if (keys === null || state.index >= keys.length) {
+            state.object = state.keys = null;
+            return {
+                value: undefined,
+                done: true
+            };
+        }
+        var key = keys[state.index++];
+        var object = state.object;
+        if (!has(object, key)) continue;
+        switch(state.mode){
+            case 'keys':
+                return {
+                    value: key,
+                    done: false
+                };
+            case 'values':
+                return {
+                    value: object[key],
+                    done: false
+                };
+        } /* entries */ 
+        return {
+            value: [
+                key,
+                object[key]
+            ],
+            done: false
+        };
+    }
+});
+
+},{"../internals/internal-state":"ceuiK","../internals/create-iterator-constructor":"biz26","../internals/has":"aVEHj","../internals/object-keys":"7so9x","../internals/to-object":"ghTKi"}],"ec9BX":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var ObjectIterator = require('../internals/object-iterator');
+// `Object.iterateKeys` method
+// https://github.com/tc39/proposal-object-iteration
+$({
+    target: 'Object',
+    stat: true
+}, {
+    iterateKeys: function iterateKeys(object) {
+        return new ObjectIterator(object, 'keys');
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/object-iterator":"4vxUf"}],"kS0zb":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var ObjectIterator = require('../internals/object-iterator');
+// `Object.iterateValues` method
+// https://github.com/tc39/proposal-object-iteration
+$({
+    target: 'Object',
+    stat: true
+}, {
+    iterateValues: function iterateValues(object) {
+        return new ObjectIterator(object, 'values');
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/object-iterator":"4vxUf"}],"6pMm9":[function(require,module,exports) {
+'use strict';
+// https://github.com/tc39/proposal-observable
+var $ = require('../internals/export');
+var DESCRIPTORS = require('../internals/descriptors');
+var setSpecies = require('../internals/set-species');
+var aFunction = require('../internals/a-function');
+var anObject = require('../internals/an-object');
+var isObject = require('../internals/is-object');
+var anInstance = require('../internals/an-instance');
+var defineProperty = require('../internals/object-define-property').f;
+var createNonEnumerableProperty = require('../internals/create-non-enumerable-property');
+var redefineAll = require('../internals/redefine-all');
+var getIterator = require('../internals/get-iterator');
+var iterate = require('../internals/iterate');
+var hostReportErrors = require('../internals/host-report-errors');
+var wellKnownSymbol = require('../internals/well-known-symbol');
+var InternalStateModule = require('../internals/internal-state');
+var OBSERVABLE = wellKnownSymbol('observable');
+var getInternalState = InternalStateModule.get;
+var setInternalState = InternalStateModule.set;
+var getMethod = function(fn) {
+    return fn == null ? undefined : aFunction(fn);
+};
+var cleanupSubscription = function(subscriptionState) {
+    var cleanup = subscriptionState.cleanup;
+    if (cleanup) {
+        subscriptionState.cleanup = undefined;
+        try {
+            cleanup();
+        } catch (error) {
+            hostReportErrors(error);
+        }
+    }
+};
+var subscriptionClosed = function(subscriptionState) {
+    return subscriptionState.observer === undefined;
+};
+var close = function(subscriptionState) {
+    var subscription = subscriptionState.facade;
+    if (!DESCRIPTORS) {
+        subscription.closed = true;
+        var subscriptionObserver = subscriptionState.subscriptionObserver;
+        if (subscriptionObserver) subscriptionObserver.closed = true;
+    }
+    subscriptionState.observer = undefined;
+};
+var Subscription = function(observer, subscriber) {
+    var subscriptionState = setInternalState(this, {
+        cleanup: undefined,
+        observer: anObject(observer),
+        subscriptionObserver: undefined
+    });
+    var start;
+    if (!DESCRIPTORS) this.closed = false;
+    try {
+        if (start = getMethod(observer.start)) start.call(observer, this);
+    } catch (error) {
+        hostReportErrors(error);
+    }
+    if (subscriptionClosed(subscriptionState)) return;
+    var subscriptionObserver = subscriptionState.subscriptionObserver = new SubscriptionObserver(this);
+    try {
+        var cleanup = subscriber(subscriptionObserver);
+        var subscription = cleanup;
+        if (cleanup != null) subscriptionState.cleanup = typeof cleanup.unsubscribe === 'function' ? function() {
+            subscription.unsubscribe();
+        } : aFunction(cleanup);
+    } catch (error) {
+        subscriptionObserver.error(error);
+        return;
+    }
+    if (subscriptionClosed(subscriptionState)) cleanupSubscription(subscriptionState);
+};
+Subscription.prototype = redefineAll({
+}, {
+    unsubscribe: function unsubscribe() {
+        var subscriptionState = getInternalState(this);
+        if (!subscriptionClosed(subscriptionState)) {
+            close(subscriptionState);
+            cleanupSubscription(subscriptionState);
+        }
+    }
+});
+if (DESCRIPTORS) defineProperty(Subscription.prototype, 'closed', {
+    configurable: true,
+    get: function() {
+        return subscriptionClosed(getInternalState(this));
+    }
+});
+var SubscriptionObserver = function(subscription) {
+    setInternalState(this, {
+        subscription: subscription
+    });
+    if (!DESCRIPTORS) this.closed = false;
+};
+SubscriptionObserver.prototype = redefineAll({
+}, {
+    next: function next(value) {
+        var subscriptionState = getInternalState(getInternalState(this).subscription);
+        if (!subscriptionClosed(subscriptionState)) {
+            var observer = subscriptionState.observer;
+            try {
+                var nextMethod = getMethod(observer.next);
+                if (nextMethod) nextMethod.call(observer, value);
+            } catch (error) {
+                hostReportErrors(error);
+            }
+        }
+    },
+    error: function error(value) {
+        var subscriptionState = getInternalState(getInternalState(this).subscription);
+        if (!subscriptionClosed(subscriptionState)) {
+            var observer = subscriptionState.observer;
+            close(subscriptionState);
+            try {
+                var errorMethod = getMethod(observer.error);
+                if (errorMethod) errorMethod.call(observer, value);
+                else hostReportErrors(value);
+            } catch (err) {
+                hostReportErrors(err);
+            }
+            cleanupSubscription(subscriptionState);
+        }
+    },
+    complete: function complete() {
+        var subscriptionState = getInternalState(getInternalState(this).subscription);
+        if (!subscriptionClosed(subscriptionState)) {
+            var observer = subscriptionState.observer;
+            close(subscriptionState);
+            try {
+                var completeMethod = getMethod(observer.complete);
+                if (completeMethod) completeMethod.call(observer);
+            } catch (error1) {
+                hostReportErrors(error1);
+            }
+            cleanupSubscription(subscriptionState);
+        }
+    }
+});
+if (DESCRIPTORS) defineProperty(SubscriptionObserver.prototype, 'closed', {
+    configurable: true,
+    get: function() {
+        return subscriptionClosed(getInternalState(getInternalState(this).subscription));
+    }
+});
+var $Observable = function Observable(subscriber) {
+    anInstance(this, $Observable, 'Observable');
+    setInternalState(this, {
+        subscriber: aFunction(subscriber)
+    });
+};
+redefineAll($Observable.prototype, {
+    subscribe: function subscribe(observer) {
+        var length = arguments.length;
+        return new Subscription(typeof observer === 'function' ? {
+            next: observer,
+            error: length > 1 ? arguments[1] : undefined,
+            complete: length > 2 ? arguments[2] : undefined
+        } : isObject(observer) ? observer : {
+        }, getInternalState(this).subscriber);
+    }
+});
+redefineAll($Observable, {
+    from: function from(x) {
+        var C = typeof this === 'function' ? this : $Observable;
+        var observableMethod = getMethod(anObject(x)[OBSERVABLE]);
+        if (observableMethod) {
+            var observable = anObject(observableMethod.call(x));
+            return observable.constructor === C ? observable : new C(function(observer) {
+                return observable.subscribe(observer);
+            });
+        }
+        var iterator = getIterator(x);
+        return new C(function(observer) {
+            iterate(iterator, function(it, stop) {
+                observer.next(it);
+                if (observer.closed) return stop();
+            }, {
+                IS_ITERATOR: true,
+                INTERRUPTED: true
+            });
+            observer.complete();
+        });
+    },
+    of: function of() {
+        var C = typeof this === 'function' ? this : $Observable;
+        var length = arguments.length;
+        var items = new Array(length);
+        var index = 0;
+        while(index < length)items[index] = arguments[index++];
+        return new C(function(observer) {
+            for(var i = 0; i < length; i++){
+                observer.next(items[i]);
+                if (observer.closed) return;
+            }
+            observer.complete();
+        });
+    }
+});
+createNonEnumerableProperty($Observable.prototype, OBSERVABLE, function() {
+    return this;
+});
+$({
+    global: true
+}, {
+    Observable: $Observable
+});
+setSpecies('Observable');
+
+},{"../internals/export":"2mZbc","../internals/descriptors":"kuDzl","../internals/set-species":"99lPJ","../internals/a-function":"43ldr","../internals/an-object":"9unxM","../internals/is-object":"d60Kc","../internals/an-instance":"gTr5k","../internals/object-define-property":"iKHmb","../internals/create-non-enumerable-property":"73EkF","../internals/redefine-all":"4a8AR","../internals/get-iterator":"erkff","../internals/iterate":"a4R19","../internals/host-report-errors":"9DqXn","../internals/well-known-symbol":"6sZ59","../internals/internal-state":"ceuiK"}],"2NfUQ":[function(require,module,exports) {
+// TODO: Remove from `core-js@4`
+require('./es.promise.all-settled.js');
+
+},{"./es.promise.all-settled.js":"iKqpp"}],"kckYS":[function(require,module,exports) {
+// TODO: Remove from `core-js@4`
+require('./es.promise.any');
+
+},{"./es.promise.any":"8inPk"}],"2BrfX":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var newPromiseCapabilityModule = require('../internals/new-promise-capability');
+var perform = require('../internals/perform');
+// `Promise.try` method
+// https://github.com/tc39/proposal-promise-try
+$({
+    target: 'Promise',
+    stat: true
+}, {
+    'try': function(callbackfn) {
+        var promiseCapability = newPromiseCapabilityModule.f(this);
+        var result = perform(callbackfn);
+        (result.error ? promiseCapability.reject : promiseCapability.resolve)(result.value);
+        return promiseCapability.promise;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/new-promise-capability":"cqmSH","../internals/perform":"iovRC"}],"llXEW":[function(require,module,exports) {
+var $ = require('../internals/export');
+var ReflectMetadataModule = require('../internals/reflect-metadata');
+var anObject = require('../internals/an-object');
+var toMetadataKey = ReflectMetadataModule.toKey;
+var ordinaryDefineOwnMetadata = ReflectMetadataModule.set;
+// `Reflect.defineMetadata` method
+// https://github.com/rbuckton/reflect-metadata
+$({
+    target: 'Reflect',
+    stat: true
+}, {
+    defineMetadata: function defineMetadata(metadataKey, metadataValue, target /* , targetKey */ ) {
+        var targetKey = arguments.length < 4 ? undefined : toMetadataKey(arguments[3]);
+        ordinaryDefineOwnMetadata(metadataKey, metadataValue, anObject(target), targetKey);
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/reflect-metadata":"dGQNO","../internals/an-object":"9unxM"}],"dGQNO":[function(require,module,exports) {
+// TODO: in core-js@4, move /modules/ dependencies to public entries for better optimization by tools like `preset-env`
+var Map1 = require('../modules/es.map');
+var WeakMap1 = require('../modules/es.weak-map');
+var shared = require('../internals/shared');
+var metadata = shared('metadata');
+var store = metadata.store || (metadata.store = new WeakMap1());
+var getOrCreateMetadataMap = function(target, targetKey, create) {
+    var targetMetadata = store.get(target);
+    if (!targetMetadata) {
+        if (!create) return;
+        store.set(target, targetMetadata = new Map1());
+    }
+    var keyMetadata = targetMetadata.get(targetKey);
+    if (!keyMetadata) {
+        if (!create) return;
+        targetMetadata.set(targetKey, keyMetadata = new Map1());
+    }
+    return keyMetadata;
+};
+var ordinaryHasOwnMetadata = function(MetadataKey, O, P) {
+    var metadataMap = getOrCreateMetadataMap(O, P, false);
+    return metadataMap === undefined ? false : metadataMap.has(MetadataKey);
+};
+var ordinaryGetOwnMetadata = function(MetadataKey, O, P) {
+    var metadataMap = getOrCreateMetadataMap(O, P, false);
+    return metadataMap === undefined ? undefined : metadataMap.get(MetadataKey);
+};
+var ordinaryDefineOwnMetadata = function(MetadataKey, MetadataValue, O, P) {
+    getOrCreateMetadataMap(O, P, true).set(MetadataKey, MetadataValue);
+};
+var ordinaryOwnMetadataKeys = function(target, targetKey) {
+    var metadataMap = getOrCreateMetadataMap(target, targetKey, false);
+    var keys = [];
+    if (metadataMap) metadataMap.forEach(function(_, key) {
+        keys.push(key);
+    });
+    return keys;
+};
+var toMetadataKey = function(it) {
+    return it === undefined || typeof it == 'symbol' ? it : String(it);
+};
+module.exports = {
+    store: store,
+    getMap: getOrCreateMetadataMap,
+    has: ordinaryHasOwnMetadata,
+    get: ordinaryGetOwnMetadata,
+    set: ordinaryDefineOwnMetadata,
+    keys: ordinaryOwnMetadataKeys,
+    toKey: toMetadataKey
+};
+
+},{"../modules/es.map":"dgMLm","../modules/es.weak-map":"7VYon","../internals/shared":"ic92G"}],"yli2D":[function(require,module,exports) {
+var $ = require('../internals/export');
+var ReflectMetadataModule = require('../internals/reflect-metadata');
+var anObject = require('../internals/an-object');
+var toMetadataKey = ReflectMetadataModule.toKey;
+var getOrCreateMetadataMap = ReflectMetadataModule.getMap;
+var store = ReflectMetadataModule.store;
+// `Reflect.deleteMetadata` method
+// https://github.com/rbuckton/reflect-metadata
+$({
+    target: 'Reflect',
+    stat: true
+}, {
+    deleteMetadata: function deleteMetadata(metadataKey, target /* , targetKey */ ) {
+        var targetKey = arguments.length < 3 ? undefined : toMetadataKey(arguments[2]);
+        var metadataMap = getOrCreateMetadataMap(anObject(target), targetKey, false);
+        if (metadataMap === undefined || !metadataMap['delete'](metadataKey)) return false;
+        if (metadataMap.size) return true;
+        var targetMetadata = store.get(target);
+        targetMetadata['delete'](targetKey);
+        return !!targetMetadata.size || store['delete'](target);
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/reflect-metadata":"dGQNO","../internals/an-object":"9unxM"}],"8Xbyk":[function(require,module,exports) {
+var $ = require('../internals/export');
+var ReflectMetadataModule = require('../internals/reflect-metadata');
+var anObject = require('../internals/an-object');
+var getPrototypeOf = require('../internals/object-get-prototype-of');
+var ordinaryHasOwnMetadata = ReflectMetadataModule.has;
+var ordinaryGetOwnMetadata = ReflectMetadataModule.get;
+var toMetadataKey = ReflectMetadataModule.toKey;
+var ordinaryGetMetadata = function(MetadataKey, O, P) {
+    var hasOwn = ordinaryHasOwnMetadata(MetadataKey, O, P);
+    if (hasOwn) return ordinaryGetOwnMetadata(MetadataKey, O, P);
+    var parent = getPrototypeOf(O);
+    return parent !== null ? ordinaryGetMetadata(MetadataKey, parent, P) : undefined;
+};
+// `Reflect.getMetadata` method
+// https://github.com/rbuckton/reflect-metadata
+$({
+    target: 'Reflect',
+    stat: true
+}, {
+    getMetadata: function getMetadata(metadataKey, target /* , targetKey */ ) {
+        var targetKey = arguments.length < 3 ? undefined : toMetadataKey(arguments[2]);
+        return ordinaryGetMetadata(metadataKey, anObject(target), targetKey);
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/reflect-metadata":"dGQNO","../internals/an-object":"9unxM","../internals/object-get-prototype-of":"4Xd6L"}],"6NMq2":[function(require,module,exports) {
+var $ = require('../internals/export');
+// TODO: in core-js@4, move /modules/ dependencies to public entries for better optimization by tools like `preset-env`
+var Set1 = require('../modules/es.set');
+var ReflectMetadataModule = require('../internals/reflect-metadata');
+var anObject = require('../internals/an-object');
+var getPrototypeOf = require('../internals/object-get-prototype-of');
+var iterate = require('../internals/iterate');
+var ordinaryOwnMetadataKeys = ReflectMetadataModule.keys;
+var toMetadataKey = ReflectMetadataModule.toKey;
+var from = function(iter) {
+    var result = [];
+    iterate(iter, result.push, {
+        that: result
+    });
+    return result;
+};
+var ordinaryMetadataKeys = function(O, P) {
+    var oKeys = ordinaryOwnMetadataKeys(O, P);
+    var parent = getPrototypeOf(O);
+    if (parent === null) return oKeys;
+    var pKeys = ordinaryMetadataKeys(parent, P);
+    return pKeys.length ? oKeys.length ? from(new Set1(oKeys.concat(pKeys))) : pKeys : oKeys;
+};
+// `Reflect.getMetadataKeys` method
+// https://github.com/rbuckton/reflect-metadata
+$({
+    target: 'Reflect',
+    stat: true
+}, {
+    getMetadataKeys: function getMetadataKeys(target /* , targetKey */ ) {
+        var targetKey = arguments.length < 2 ? undefined : toMetadataKey(arguments[1]);
+        return ordinaryMetadataKeys(anObject(target), targetKey);
+    }
+});
+
+},{"../internals/export":"2mZbc","../modules/es.set":"5wbk0","../internals/reflect-metadata":"dGQNO","../internals/an-object":"9unxM","../internals/object-get-prototype-of":"4Xd6L","../internals/iterate":"a4R19"}],"cBShm":[function(require,module,exports) {
+var $ = require('../internals/export');
+var ReflectMetadataModule = require('../internals/reflect-metadata');
+var anObject = require('../internals/an-object');
+var ordinaryGetOwnMetadata = ReflectMetadataModule.get;
+var toMetadataKey = ReflectMetadataModule.toKey;
+// `Reflect.getOwnMetadata` method
+// https://github.com/rbuckton/reflect-metadata
+$({
+    target: 'Reflect',
+    stat: true
+}, {
+    getOwnMetadata: function getOwnMetadata(metadataKey, target /* , targetKey */ ) {
+        var targetKey = arguments.length < 3 ? undefined : toMetadataKey(arguments[2]);
+        return ordinaryGetOwnMetadata(metadataKey, anObject(target), targetKey);
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/reflect-metadata":"dGQNO","../internals/an-object":"9unxM"}],"kc0Ev":[function(require,module,exports) {
+var $ = require('../internals/export');
+var ReflectMetadataModule = require('../internals/reflect-metadata');
+var anObject = require('../internals/an-object');
+var ordinaryOwnMetadataKeys = ReflectMetadataModule.keys;
+var toMetadataKey = ReflectMetadataModule.toKey;
+// `Reflect.getOwnMetadataKeys` method
+// https://github.com/rbuckton/reflect-metadata
+$({
+    target: 'Reflect',
+    stat: true
+}, {
+    getOwnMetadataKeys: function getOwnMetadataKeys(target /* , targetKey */ ) {
+        var targetKey = arguments.length < 2 ? undefined : toMetadataKey(arguments[1]);
+        return ordinaryOwnMetadataKeys(anObject(target), targetKey);
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/reflect-metadata":"dGQNO","../internals/an-object":"9unxM"}],"vzLf5":[function(require,module,exports) {
+var $ = require('../internals/export');
+var ReflectMetadataModule = require('../internals/reflect-metadata');
+var anObject = require('../internals/an-object');
+var getPrototypeOf = require('../internals/object-get-prototype-of');
+var ordinaryHasOwnMetadata = ReflectMetadataModule.has;
+var toMetadataKey = ReflectMetadataModule.toKey;
+var ordinaryHasMetadata = function(MetadataKey, O, P) {
+    var hasOwn = ordinaryHasOwnMetadata(MetadataKey, O, P);
+    if (hasOwn) return true;
+    var parent = getPrototypeOf(O);
+    return parent !== null ? ordinaryHasMetadata(MetadataKey, parent, P) : false;
+};
+// `Reflect.hasMetadata` method
+// https://github.com/rbuckton/reflect-metadata
+$({
+    target: 'Reflect',
+    stat: true
+}, {
+    hasMetadata: function hasMetadata(metadataKey, target /* , targetKey */ ) {
+        var targetKey = arguments.length < 3 ? undefined : toMetadataKey(arguments[2]);
+        return ordinaryHasMetadata(metadataKey, anObject(target), targetKey);
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/reflect-metadata":"dGQNO","../internals/an-object":"9unxM","../internals/object-get-prototype-of":"4Xd6L"}],"hOiZZ":[function(require,module,exports) {
+var $ = require('../internals/export');
+var ReflectMetadataModule = require('../internals/reflect-metadata');
+var anObject = require('../internals/an-object');
+var ordinaryHasOwnMetadata = ReflectMetadataModule.has;
+var toMetadataKey = ReflectMetadataModule.toKey;
+// `Reflect.hasOwnMetadata` method
+// https://github.com/rbuckton/reflect-metadata
+$({
+    target: 'Reflect',
+    stat: true
+}, {
+    hasOwnMetadata: function hasOwnMetadata(metadataKey, target /* , targetKey */ ) {
+        var targetKey = arguments.length < 3 ? undefined : toMetadataKey(arguments[2]);
+        return ordinaryHasOwnMetadata(metadataKey, anObject(target), targetKey);
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/reflect-metadata":"dGQNO","../internals/an-object":"9unxM"}],"iRxO4":[function(require,module,exports) {
+var $ = require('../internals/export');
+var ReflectMetadataModule = require('../internals/reflect-metadata');
+var anObject = require('../internals/an-object');
+var toMetadataKey = ReflectMetadataModule.toKey;
+var ordinaryDefineOwnMetadata = ReflectMetadataModule.set;
+// `Reflect.metadata` method
+// https://github.com/rbuckton/reflect-metadata
+$({
+    target: 'Reflect',
+    stat: true
+}, {
+    metadata: function metadata(metadataKey, metadataValue) {
+        return function decorator(target, key) {
+            ordinaryDefineOwnMetadata(metadataKey, metadataValue, anObject(target), toMetadataKey(key));
+        };
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/reflect-metadata":"dGQNO","../internals/an-object":"9unxM"}],"4b0AZ":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var collectionAddAll = require('../internals/collection-add-all');
+// `Set.prototype.addAll` method
+// https://github.com/tc39/proposal-collection-methods
+$({
+    target: 'Set',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    addAll: function addAll() {
+        return collectionAddAll.apply(this, arguments);
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/collection-add-all":"cAIQ3"}],"cAIQ3":[function(require,module,exports) {
+'use strict';
+var anObject = require('../internals/an-object');
+var aFunction = require('../internals/a-function');
+// https://github.com/tc39/collection-methods
+module.exports = function() {
+    var set = anObject(this);
+    var adder = aFunction(set.add);
+    for(var k = 0, len = arguments.length; k < len; k++)adder.call(set, arguments[k]);
+    return set;
+};
+
+},{"../internals/an-object":"9unxM","../internals/a-function":"43ldr"}],"htGaI":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var collectionDeleteAll = require('../internals/collection-delete-all');
+// `Set.prototype.deleteAll` method
+// https://github.com/tc39/proposal-collection-methods
+$({
+    target: 'Set',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    deleteAll: function deleteAll() {
+        return collectionDeleteAll.apply(this, arguments);
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/collection-delete-all":"3PMSA"}],"c1hV1":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var getBuiltIn = require('../internals/get-built-in');
+var anObject = require('../internals/an-object');
+var aFunction = require('../internals/a-function');
+var speciesConstructor = require('../internals/species-constructor');
+var iterate = require('../internals/iterate');
+// `Set.prototype.difference` method
+// https://github.com/tc39/proposal-set-methods
+$({
+    target: 'Set',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    difference: function difference(iterable) {
+        var set = anObject(this);
+        var newSet = new (speciesConstructor(set, getBuiltIn('Set')))(set);
+        var remover = aFunction(newSet['delete']);
+        iterate(iterable, function(value) {
+            remover.call(newSet, value);
+        });
+        return newSet;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/get-built-in":"hqegu","../internals/an-object":"9unxM","../internals/a-function":"43ldr","../internals/species-constructor":"6tv7V","../internals/iterate":"a4R19"}],"1XTrr":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var anObject = require('../internals/an-object');
+var bind = require('../internals/function-bind-context');
+var getSetIterator = require('../internals/get-set-iterator');
+var iterate = require('../internals/iterate');
+// `Set.prototype.every` method
+// https://github.com/tc39/proposal-collection-methods
+$({
+    target: 'Set',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    every: function every(callbackfn /* , thisArg */ ) {
+        var set = anObject(this);
+        var iterator = getSetIterator(set);
+        var boundFunction = bind(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
+        return !iterate(iterator, function(value, stop) {
+            if (!boundFunction(value, value, set)) return stop();
+        }, {
+            IS_ITERATOR: true,
+            INTERRUPTED: true
+        }).stopped;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/an-object":"9unxM","../internals/function-bind-context":"1epb9","../internals/get-set-iterator":"54qLW","../internals/iterate":"a4R19"}],"54qLW":[function(require,module,exports) {
+module.exports = function(it) {
+    // eslint-disable-next-line es/no-set -- safe
+    return Set.prototype.values.call(it);
+};
+
+},{}],"dhxsc":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var getBuiltIn = require('../internals/get-built-in');
+var anObject = require('../internals/an-object');
+var aFunction = require('../internals/a-function');
+var bind = require('../internals/function-bind-context');
+var speciesConstructor = require('../internals/species-constructor');
+var getSetIterator = require('../internals/get-set-iterator');
+var iterate = require('../internals/iterate');
+// `Set.prototype.filter` method
+// https://github.com/tc39/proposal-collection-methods
+$({
+    target: 'Set',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    filter: function filter(callbackfn /* , thisArg */ ) {
+        var set = anObject(this);
+        var iterator = getSetIterator(set);
+        var boundFunction = bind(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
+        var newSet = new (speciesConstructor(set, getBuiltIn('Set')))();
+        var adder = aFunction(newSet.add);
+        iterate(iterator, function(value) {
+            if (boundFunction(value, value, set)) adder.call(newSet, value);
+        }, {
+            IS_ITERATOR: true
+        });
+        return newSet;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/get-built-in":"hqegu","../internals/an-object":"9unxM","../internals/a-function":"43ldr","../internals/function-bind-context":"1epb9","../internals/species-constructor":"6tv7V","../internals/get-set-iterator":"54qLW","../internals/iterate":"a4R19"}],"4pg19":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var anObject = require('../internals/an-object');
+var bind = require('../internals/function-bind-context');
+var getSetIterator = require('../internals/get-set-iterator');
+var iterate = require('../internals/iterate');
+// `Set.prototype.find` method
+// https://github.com/tc39/proposal-collection-methods
+$({
+    target: 'Set',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    find: function find(callbackfn /* , thisArg */ ) {
+        var set = anObject(this);
+        var iterator = getSetIterator(set);
+        var boundFunction = bind(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
+        return iterate(iterator, function(value, stop) {
+            if (boundFunction(value, value, set)) return stop(value);
+        }, {
+            IS_ITERATOR: true,
+            INTERRUPTED: true
+        }).result;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/an-object":"9unxM","../internals/function-bind-context":"1epb9","../internals/get-set-iterator":"54qLW","../internals/iterate":"a4R19"}],"lkG2b":[function(require,module,exports) {
+var $ = require('../internals/export');
+var from = require('../internals/collection-from');
+// `Set.from` method
+// https://tc39.github.io/proposal-setmap-offrom/#sec-set.from
+$({
+    target: 'Set',
+    stat: true
+}, {
+    from: from
+});
+
+},{"../internals/export":"2mZbc","../internals/collection-from":"hdOAY"}],"fiyAj":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var getBuiltIn = require('../internals/get-built-in');
+var anObject = require('../internals/an-object');
+var aFunction = require('../internals/a-function');
+var speciesConstructor = require('../internals/species-constructor');
+var iterate = require('../internals/iterate');
+// `Set.prototype.intersection` method
+// https://github.com/tc39/proposal-set-methods
+$({
+    target: 'Set',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    intersection: function intersection(iterable) {
+        var set = anObject(this);
+        var newSet = new (speciesConstructor(set, getBuiltIn('Set')))();
+        var hasCheck = aFunction(set.has);
+        var adder = aFunction(newSet.add);
+        iterate(iterable, function(value) {
+            if (hasCheck.call(set, value)) adder.call(newSet, value);
+        });
+        return newSet;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/get-built-in":"hqegu","../internals/an-object":"9unxM","../internals/a-function":"43ldr","../internals/species-constructor":"6tv7V","../internals/iterate":"a4R19"}],"587rv":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var anObject = require('../internals/an-object');
+var aFunction = require('../internals/a-function');
+var iterate = require('../internals/iterate');
+// `Set.prototype.isDisjointFrom` method
+// https://tc39.github.io/proposal-set-methods/#Set.prototype.isDisjointFrom
+$({
+    target: 'Set',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    isDisjointFrom: function isDisjointFrom(iterable) {
+        var set = anObject(this);
+        var hasCheck = aFunction(set.has);
+        return !iterate(iterable, function(value, stop) {
+            if (hasCheck.call(set, value) === true) return stop();
+        }, {
+            INTERRUPTED: true
+        }).stopped;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/an-object":"9unxM","../internals/a-function":"43ldr","../internals/iterate":"a4R19"}],"iGyob":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var getBuiltIn = require('../internals/get-built-in');
+var anObject = require('../internals/an-object');
+var aFunction = require('../internals/a-function');
+var getIterator = require('../internals/get-iterator');
+var iterate = require('../internals/iterate');
+// `Set.prototype.isSubsetOf` method
+// https://tc39.github.io/proposal-set-methods/#Set.prototype.isSubsetOf
+$({
+    target: 'Set',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    isSubsetOf: function isSubsetOf(iterable) {
+        var iterator = getIterator(this);
+        var otherSet = anObject(iterable);
+        var hasCheck = otherSet.has;
+        if (typeof hasCheck != 'function') {
+            otherSet = new (getBuiltIn('Set'))(iterable);
+            hasCheck = aFunction(otherSet.has);
+        }
+        return !iterate(iterator, function(value, stop) {
+            if (hasCheck.call(otherSet, value) === false) return stop();
+        }, {
+            IS_ITERATOR: true,
+            INTERRUPTED: true
+        }).stopped;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/get-built-in":"hqegu","../internals/an-object":"9unxM","../internals/a-function":"43ldr","../internals/get-iterator":"erkff","../internals/iterate":"a4R19"}],"9OjMM":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var anObject = require('../internals/an-object');
+var aFunction = require('../internals/a-function');
+var iterate = require('../internals/iterate');
+// `Set.prototype.isSupersetOf` method
+// https://tc39.github.io/proposal-set-methods/#Set.prototype.isSupersetOf
+$({
+    target: 'Set',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    isSupersetOf: function isSupersetOf(iterable) {
+        var set = anObject(this);
+        var hasCheck = aFunction(set.has);
+        return !iterate(iterable, function(value, stop) {
+            if (hasCheck.call(set, value) === false) return stop();
+        }, {
+            INTERRUPTED: true
+        }).stopped;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/an-object":"9unxM","../internals/a-function":"43ldr","../internals/iterate":"a4R19"}],"ezIFh":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var anObject = require('../internals/an-object');
+var getSetIterator = require('../internals/get-set-iterator');
+var iterate = require('../internals/iterate');
+// `Set.prototype.join` method
+// https://github.com/tc39/proposal-collection-methods
+$({
+    target: 'Set',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    join: function join(separator) {
+        var set = anObject(this);
+        var iterator = getSetIterator(set);
+        var sep = separator === undefined ? ',' : String(separator);
+        var result = [];
+        iterate(iterator, result.push, {
+            that: result,
+            IS_ITERATOR: true
+        });
+        return result.join(sep);
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/an-object":"9unxM","../internals/get-set-iterator":"54qLW","../internals/iterate":"a4R19"}],"8DW3P":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var getBuiltIn = require('../internals/get-built-in');
+var anObject = require('../internals/an-object');
+var aFunction = require('../internals/a-function');
+var bind = require('../internals/function-bind-context');
+var speciesConstructor = require('../internals/species-constructor');
+var getSetIterator = require('../internals/get-set-iterator');
+var iterate = require('../internals/iterate');
+// `Set.prototype.map` method
+// https://github.com/tc39/proposal-collection-methods
+$({
+    target: 'Set',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    map: function map(callbackfn /* , thisArg */ ) {
+        var set = anObject(this);
+        var iterator = getSetIterator(set);
+        var boundFunction = bind(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
+        var newSet = new (speciesConstructor(set, getBuiltIn('Set')))();
+        var adder = aFunction(newSet.add);
+        iterate(iterator, function(value) {
+            adder.call(newSet, boundFunction(value, value, set));
+        }, {
+            IS_ITERATOR: true
+        });
+        return newSet;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/get-built-in":"hqegu","../internals/an-object":"9unxM","../internals/a-function":"43ldr","../internals/function-bind-context":"1epb9","../internals/species-constructor":"6tv7V","../internals/get-set-iterator":"54qLW","../internals/iterate":"a4R19"}],"kyqkW":[function(require,module,exports) {
+var $ = require('../internals/export');
+var of = require('../internals/collection-of');
+// `Set.of` method
+// https://tc39.github.io/proposal-setmap-offrom/#sec-set.of
+$({
+    target: 'Set',
+    stat: true
+}, {
+    of: of
+});
+
+},{"../internals/export":"2mZbc","../internals/collection-of":"6LnNV"}],"jjsnY":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var anObject = require('../internals/an-object');
+var aFunction = require('../internals/a-function');
+var getSetIterator = require('../internals/get-set-iterator');
+var iterate = require('../internals/iterate');
+// `Set.prototype.reduce` method
+// https://github.com/tc39/proposal-collection-methods
+$({
+    target: 'Set',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    reduce: function reduce(callbackfn /* , initialValue */ ) {
+        var set = anObject(this);
+        var iterator = getSetIterator(set);
+        var noInitial = arguments.length < 2;
+        var accumulator = noInitial ? undefined : arguments[1];
+        aFunction(callbackfn);
+        iterate(iterator, function(value) {
+            if (noInitial) {
+                noInitial = false;
+                accumulator = value;
+            } else accumulator = callbackfn(accumulator, value, value, set);
+        }, {
+            IS_ITERATOR: true
+        });
+        if (noInitial) throw TypeError('Reduce of empty set with no initial value');
+        return accumulator;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/an-object":"9unxM","../internals/a-function":"43ldr","../internals/get-set-iterator":"54qLW","../internals/iterate":"a4R19"}],"cUaCp":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var anObject = require('../internals/an-object');
+var bind = require('../internals/function-bind-context');
+var getSetIterator = require('../internals/get-set-iterator');
+var iterate = require('../internals/iterate');
+// `Set.prototype.some` method
+// https://github.com/tc39/proposal-collection-methods
+$({
+    target: 'Set',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    some: function some(callbackfn /* , thisArg */ ) {
+        var set = anObject(this);
+        var iterator = getSetIterator(set);
+        var boundFunction = bind(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
+        return iterate(iterator, function(value, stop) {
+            if (boundFunction(value, value, set)) return stop();
+        }, {
+            IS_ITERATOR: true,
+            INTERRUPTED: true
+        }).stopped;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/an-object":"9unxM","../internals/function-bind-context":"1epb9","../internals/get-set-iterator":"54qLW","../internals/iterate":"a4R19"}],"SOu0a":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var getBuiltIn = require('../internals/get-built-in');
+var anObject = require('../internals/an-object');
+var aFunction = require('../internals/a-function');
+var speciesConstructor = require('../internals/species-constructor');
+var iterate = require('../internals/iterate');
+// `Set.prototype.symmetricDifference` method
+// https://github.com/tc39/proposal-set-methods
+$({
+    target: 'Set',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    symmetricDifference: function symmetricDifference(iterable) {
+        var set = anObject(this);
+        var newSet = new (speciesConstructor(set, getBuiltIn('Set')))(set);
+        var remover = aFunction(newSet['delete']);
+        var adder = aFunction(newSet.add);
+        iterate(iterable, function(value) {
+            remover.call(newSet, value) || adder.call(newSet, value);
+        });
+        return newSet;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/get-built-in":"hqegu","../internals/an-object":"9unxM","../internals/a-function":"43ldr","../internals/species-constructor":"6tv7V","../internals/iterate":"a4R19"}],"iQQky":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var getBuiltIn = require('../internals/get-built-in');
+var anObject = require('../internals/an-object');
+var aFunction = require('../internals/a-function');
+var speciesConstructor = require('../internals/species-constructor');
+var iterate = require('../internals/iterate');
+// `Set.prototype.union` method
+// https://github.com/tc39/proposal-set-methods
+$({
+    target: 'Set',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    union: function union(iterable) {
+        var set = anObject(this);
+        var newSet = new (speciesConstructor(set, getBuiltIn('Set')))(set);
+        iterate(iterable, aFunction(newSet.add), {
+            that: newSet
+        });
+        return newSet;
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/get-built-in":"hqegu","../internals/an-object":"9unxM","../internals/a-function":"43ldr","../internals/species-constructor":"6tv7V","../internals/iterate":"a4R19"}],"22NRM":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var charAt = require('../internals/string-multibyte').charAt;
+var fails = require('../internals/fails');
+var FORCED = fails(function() {
+    return '𠮷'.at(0) !== '𠮷';
+});
+// `String.prototype.at` method
+// https://github.com/mathiasbynens/String.prototype.at
+$({
+    target: 'String',
+    proto: true,
+    forced: FORCED
+}, {
+    at: function at(pos) {
+        return charAt(this, pos);
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/string-multibyte":"dPnMz","../internals/fails":"byxLb"}],"dVpuL":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var createIteratorConstructor = require('../internals/create-iterator-constructor');
+var requireObjectCoercible = require('../internals/require-object-coercible');
+var toString = require('../internals/to-string');
+var InternalStateModule = require('../internals/internal-state');
+var StringMultibyteModule = require('../internals/string-multibyte');
+var codeAt = StringMultibyteModule.codeAt;
+var charAt = StringMultibyteModule.charAt;
+var STRING_ITERATOR = 'String Iterator';
+var setInternalState = InternalStateModule.set;
+var getInternalState = InternalStateModule.getterFor(STRING_ITERATOR);
+// TODO: unify with String#@@iterator
+var $StringIterator = createIteratorConstructor(function StringIterator(string) {
+    setInternalState(this, {
+        type: STRING_ITERATOR,
+        string: string,
+        index: 0
+    });
+}, 'String', function next() {
+    var state = getInternalState(this);
+    var string = state.string;
+    var index = state.index;
+    var point;
+    if (index >= string.length) return {
+        value: undefined,
+        done: true
+    };
+    point = charAt(string, index);
+    state.index += point.length;
+    return {
+        value: {
+            codePoint: codeAt(point, 0),
+            position: index
+        },
+        done: false
+    };
+});
+// `String.prototype.codePoints` method
+// https://github.com/tc39/proposal-string-prototype-codepoints
+$({
+    target: 'String',
+    proto: true
+}, {
+    codePoints: function codePoints() {
+        return new $StringIterator(toString(requireObjectCoercible(this)));
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/create-iterator-constructor":"biz26","../internals/require-object-coercible":"1XURO","../internals/to-string":"k0ZQF","../internals/internal-state":"ceuiK","../internals/string-multibyte":"dPnMz"}],"6SMMk":[function(require,module,exports) {
+// TODO: Remove from `core-js@4`
+require('./es.string.match-all');
+
+},{"./es.string.match-all":"jEeAs"}],"eGhyp":[function(require,module,exports) {
+// TODO: Remove from `core-js@4`
+require('./es.string.replace-all');
+
+},{"./es.string.replace-all":"8IJOq"}],"gibPN":[function(require,module,exports) {
+var defineWellKnownSymbol = require('../internals/define-well-known-symbol');
+// `Symbol.asyncDispose` well-known symbol
+// https://github.com/tc39/proposal-using-statement
+defineWellKnownSymbol('asyncDispose');
+
+},{"../internals/define-well-known-symbol":"jDA2f"}],"8PCoW":[function(require,module,exports) {
+var defineWellKnownSymbol = require('../internals/define-well-known-symbol');
+// `Symbol.dispose` well-known symbol
+// https://github.com/tc39/proposal-using-statement
+defineWellKnownSymbol('dispose');
+
+},{"../internals/define-well-known-symbol":"jDA2f"}],"ejple":[function(require,module,exports) {
+var defineWellKnownSymbol = require('../internals/define-well-known-symbol');
+// `Symbol.matcher` well-known symbol
+// https://github.com/tc39/proposal-pattern-matching
+defineWellKnownSymbol('matcher');
+
+},{"../internals/define-well-known-symbol":"jDA2f"}],"8us9B":[function(require,module,exports) {
+var defineWellKnownSymbol = require('../internals/define-well-known-symbol');
+// `Symbol.metadata` well-known symbol
+// https://github.com/tc39/proposal-decorators
+defineWellKnownSymbol('metadata');
+
+},{"../internals/define-well-known-symbol":"jDA2f"}],"c37jl":[function(require,module,exports) {
+var defineWellKnownSymbol = require('../internals/define-well-known-symbol');
+// `Symbol.observable` well-known symbol
+// https://github.com/tc39/proposal-observable
+defineWellKnownSymbol('observable');
+
+},{"../internals/define-well-known-symbol":"jDA2f"}],"gineQ":[function(require,module,exports) {
+// TODO: remove from `core-js@4`
+var defineWellKnownSymbol = require('../internals/define-well-known-symbol');
+// `Symbol.patternMatch` well-known symbol
+// https://github.com/tc39/proposal-pattern-matching
+defineWellKnownSymbol('patternMatch');
+
+},{"../internals/define-well-known-symbol":"jDA2f"}],"2n22P":[function(require,module,exports) {
+// TODO: remove from `core-js@4`
+var defineWellKnownSymbol = require('../internals/define-well-known-symbol');
+defineWellKnownSymbol('replaceAll');
+
+},{"../internals/define-well-known-symbol":"jDA2f"}],"9MFJI":[function(require,module,exports) {
+'use strict';
+var ArrayBufferViewCore = require('../internals/array-buffer-view-core');
+var toLength = require('../internals/to-length');
+var toInteger = require('../internals/to-integer');
+var aTypedArray = ArrayBufferViewCore.aTypedArray;
+var exportTypedArrayMethod = ArrayBufferViewCore.exportTypedArrayMethod;
+// `%TypedArray%.prototype.at` method
+// https://github.com/tc39/proposal-relative-indexing-method
+exportTypedArrayMethod('at', function at(index) {
+    var O = aTypedArray(this);
+    var len = toLength(O.length);
+    var relativeIndex = toInteger(index);
+    var k = relativeIndex >= 0 ? relativeIndex : len + relativeIndex;
+    return k < 0 || k >= len ? undefined : O[k];
+});
+
+},{"../internals/array-buffer-view-core":"zd7ve","../internals/to-length":"coWuj","../internals/to-integer":"gOCws"}],"dUxZl":[function(require,module,exports) {
+'use strict';
+// TODO: Remove from `core-js@4`
+var ArrayBufferViewCore = require('../internals/array-buffer-view-core');
+var $filterReject = require('../internals/array-iteration').filterReject;
+var fromSpeciesAndList = require('../internals/typed-array-from-species-and-list');
+var aTypedArray = ArrayBufferViewCore.aTypedArray;
+var exportTypedArrayMethod = ArrayBufferViewCore.exportTypedArrayMethod;
+// `%TypedArray%.prototype.filterOut` method
+// https://github.com/tc39/proposal-array-filtering
+exportTypedArrayMethod('filterOut', function filterOut(callbackfn /* , thisArg */ ) {
+    var list = $filterReject(aTypedArray(this), callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+    return fromSpeciesAndList(this, list);
+});
+
+},{"../internals/array-buffer-view-core":"zd7ve","../internals/array-iteration":"ciNJ0","../internals/typed-array-from-species-and-list":"7zmLU"}],"k2CEH":[function(require,module,exports) {
+'use strict';
+var ArrayBufferViewCore = require('../internals/array-buffer-view-core');
+var $filterReject = require('../internals/array-iteration').filterReject;
+var fromSpeciesAndList = require('../internals/typed-array-from-species-and-list');
+var aTypedArray = ArrayBufferViewCore.aTypedArray;
+var exportTypedArrayMethod = ArrayBufferViewCore.exportTypedArrayMethod;
+// `%TypedArray%.prototype.filterReject` method
+// https://github.com/tc39/proposal-array-filtering
+exportTypedArrayMethod('filterReject', function filterReject(callbackfn /* , thisArg */ ) {
+    var list = $filterReject(aTypedArray(this), callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+    return fromSpeciesAndList(this, list);
+});
+
+},{"../internals/array-buffer-view-core":"zd7ve","../internals/array-iteration":"ciNJ0","../internals/typed-array-from-species-and-list":"7zmLU"}],"fsneV":[function(require,module,exports) {
+'use strict';
+var ArrayBufferViewCore = require('../internals/array-buffer-view-core');
+var $findLast = require('../internals/array-iteration-from-last').findLast;
+var aTypedArray = ArrayBufferViewCore.aTypedArray;
+var exportTypedArrayMethod = ArrayBufferViewCore.exportTypedArrayMethod;
+// `%TypedArray%.prototype.findLast` method
+// https://github.com/tc39/proposal-array-find-from-last
+exportTypedArrayMethod('findLast', function findLast(predicate /* , thisArg */ ) {
+    return $findLast(aTypedArray(this), predicate, arguments.length > 1 ? arguments[1] : undefined);
+});
+
+},{"../internals/array-buffer-view-core":"zd7ve","../internals/array-iteration-from-last":"ceqNG"}],"kpvqo":[function(require,module,exports) {
+'use strict';
+var ArrayBufferViewCore = require('../internals/array-buffer-view-core');
+var $findLastIndex = require('../internals/array-iteration-from-last').findLastIndex;
+var aTypedArray = ArrayBufferViewCore.aTypedArray;
+var exportTypedArrayMethod = ArrayBufferViewCore.exportTypedArrayMethod;
+// `%TypedArray%.prototype.findLastIndex` method
+// https://github.com/tc39/proposal-array-find-from-last
+exportTypedArrayMethod('findLastIndex', function findLastIndex(predicate /* , thisArg */ ) {
+    return $findLastIndex(aTypedArray(this), predicate, arguments.length > 1 ? arguments[1] : undefined);
+});
+
+},{"../internals/array-buffer-view-core":"zd7ve","../internals/array-iteration-from-last":"ceqNG"}],"8j0AK":[function(require,module,exports) {
+'use strict';
+var ArrayBufferViewCore = require('../internals/array-buffer-view-core');
+var $groupBy = require('../internals/array-group-by');
+var typedArraySpeciesConstructor = require('../internals/typed-array-species-constructor');
+var aTypedArray = ArrayBufferViewCore.aTypedArray;
+var exportTypedArrayMethod = ArrayBufferViewCore.exportTypedArrayMethod;
+// `%TypedArray%.prototype.groupBy` method
+// https://github.com/tc39/proposal-array-grouping
+exportTypedArrayMethod('groupBy', function groupBy(callbackfn /* , thisArg */ ) {
+    var thisArg = arguments.length > 1 ? arguments[1] : undefined;
+    return $groupBy(aTypedArray(this), callbackfn, thisArg, typedArraySpeciesConstructor);
+});
+
+},{"../internals/array-buffer-view-core":"zd7ve","../internals/array-group-by":"1x0WP","../internals/typed-array-species-constructor":"9xT79"}],"cQ5XR":[function(require,module,exports) {
+'use strict';
+var ArrayBufferViewCore = require('../internals/array-buffer-view-core');
+var arrayUniqueBy = require('../internals/array-unique-by');
+var fromSpeciesAndList = require('../internals/typed-array-from-species-and-list');
+var aTypedArray = ArrayBufferViewCore.aTypedArray;
+var exportTypedArrayMethod = ArrayBufferViewCore.exportTypedArrayMethod;
+// `%TypedArray%.prototype.uniqueBy` method
+// https://github.com/tc39/proposal-array-unique
+exportTypedArrayMethod('uniqueBy', function uniqueBy(resolver) {
+    return fromSpeciesAndList(this, arrayUniqueBy.call(aTypedArray(this), resolver));
+});
+
+},{"../internals/array-buffer-view-core":"zd7ve","../internals/array-unique-by":"jczNn","../internals/typed-array-from-species-and-list":"7zmLU"}],"3JoVW":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var collectionDeleteAll = require('../internals/collection-delete-all');
+// `WeakMap.prototype.deleteAll` method
+// https://github.com/tc39/proposal-collection-methods
+$({
+    target: 'WeakMap',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    deleteAll: function deleteAll() {
+        return collectionDeleteAll.apply(this, arguments);
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/collection-delete-all":"3PMSA"}],"6CYFH":[function(require,module,exports) {
+var $ = require('../internals/export');
+var from = require('../internals/collection-from');
+// `WeakMap.from` method
+// https://tc39.github.io/proposal-setmap-offrom/#sec-weakmap.from
+$({
+    target: 'WeakMap',
+    stat: true
+}, {
+    from: from
+});
+
+},{"../internals/export":"2mZbc","../internals/collection-from":"hdOAY"}],"3jtdy":[function(require,module,exports) {
+var $ = require('../internals/export');
+var of = require('../internals/collection-of');
+// `WeakMap.of` method
+// https://tc39.github.io/proposal-setmap-offrom/#sec-weakmap.of
+$({
+    target: 'WeakMap',
+    stat: true
+}, {
+    of: of
+});
+
+},{"../internals/export":"2mZbc","../internals/collection-of":"6LnNV"}],"i2YGI":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var $emplace = require('../internals/map-emplace');
+// `WeakMap.prototype.emplace` method
+// https://github.com/tc39/proposal-upsert
+$({
+    target: 'WeakMap',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    emplace: $emplace
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/map-emplace":"f66HB"}],"7vsuE":[function(require,module,exports) {
+'use strict';
+// TODO: remove from `core-js@4`
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var $upsert = require('../internals/map-upsert');
+// `WeakMap.prototype.upsert` method (replaced by `WeakMap.prototype.emplace`)
+// https://github.com/tc39/proposal-upsert
+$({
+    target: 'WeakMap',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    upsert: $upsert
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/map-upsert":"52WxU"}],"Msx01":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var collectionAddAll = require('../internals/collection-add-all');
+// `WeakSet.prototype.addAll` method
+// https://github.com/tc39/proposal-collection-methods
+$({
+    target: 'WeakSet',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    addAll: function addAll() {
+        return collectionAddAll.apply(this, arguments);
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/collection-add-all":"cAIQ3"}],"gFUO0":[function(require,module,exports) {
+'use strict';
+var $ = require('../internals/export');
+var IS_PURE = require('../internals/is-pure');
+var collectionDeleteAll = require('../internals/collection-delete-all');
+// `WeakSet.prototype.deleteAll` method
+// https://github.com/tc39/proposal-collection-methods
+$({
+    target: 'WeakSet',
+    proto: true,
+    real: true,
+    forced: IS_PURE
+}, {
+    deleteAll: function deleteAll() {
+        return collectionDeleteAll.apply(this, arguments);
+    }
+});
+
+},{"../internals/export":"2mZbc","../internals/is-pure":"dlbEd","../internals/collection-delete-all":"3PMSA"}],"iEvQZ":[function(require,module,exports) {
+var $ = require('../internals/export');
+var from = require('../internals/collection-from');
+// `WeakSet.from` method
+// https://tc39.github.io/proposal-setmap-offrom/#sec-weakset.from
+$({
+    target: 'WeakSet',
+    stat: true
+}, {
+    from: from
+});
+
+},{"../internals/export":"2mZbc","../internals/collection-from":"hdOAY"}],"4HGOv":[function(require,module,exports) {
+var $ = require('../internals/export');
+var of = require('../internals/collection-of');
+// `WeakSet.of` method
+// https://tc39.github.io/proposal-setmap-offrom/#sec-weakset.of
+$({
+    target: 'WeakSet',
+    stat: true
+}, {
+    of: of
+});
+
+},{"../internals/export":"2mZbc","../internals/collection-of":"6LnNV"}]},["drOo7","jKMjS"], "jKMjS", "parcelRequire7e89")
 
 //# sourceMappingURL=index.436439df.js.map
