@@ -2,7 +2,8 @@
 
 //using a function declaration 
 
-function calcAge(birthYear) { //this f(x) is defined inthe global scope
+function calcAge(birthYear) {
+    //this f(x) is defined inthe global scope
     const age = 2037 - birthYear;
 
     function printAge() {
@@ -13,7 +14,8 @@ function calcAge(birthYear) { //this f(x) is defined inthe global scope
             var millenial1 = true;
             const str = `Oh, and you're a millenila, ${firstName}`;
         }
-        console.log(millenial1); //var variables are function scoped 
+        console.log(millenial1);
+        //var variables are function scoped 
 
         function add(a, b) {
             return a + b;
@@ -27,3 +29,4 @@ function calcAge(birthYear) { //this f(x) is defined inthe global scope
 
     //The age variable is out of scope
     console.log(age);
+}
