@@ -80,3 +80,21 @@ const samuel = {
     },
 };
 samuel.calcAge();
+
+// Primitives vrs Reference 
+let lastName = 'Williams';
+let oldLastName = lastName;
+lastName = 'Davis';
+console.log(lastName, oldLastName);
+
+//  Reference
+const jessica = {
+    firstName: 'Jessica',
+    lastName: 'Williams',
+    age: 27,
+};
+
+const marriedJessica = jessica;
+marriedJessica.lastName = 'Davis';
+console.log('Before Marriage', jessica);
+console.log('After marriage', marriedJessica);
