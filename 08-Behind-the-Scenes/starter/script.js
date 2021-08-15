@@ -30,3 +30,53 @@ function calcAge(birthYear) {
     //The age variable is out of scope
     console.log(age);
 }
+
+
+// The Temporal Deadzone (TDZ)
+console.log(me);
+console.log(job);
+console.log(year);
+
+var me = 'Samuel';
+let job = 'programmer';
+const year = 1990
+
+
+//Functions
+console.log(addDecl(2, 3));
+console.log(addExpr(2, 3));
+
+function addDecl(a, b) {
+    return a + b;
+}
+
+const addExpr = function(a, b) {
+    return a + b;
+}
+
+const addArrow = (a, b) => a + b;
+
+// The 'this' keyword.
+// 1. 
+const calcAge = function(birthYear) {
+    console.log(2037 - birthYear)
+    console.log(this);
+};
+calcAge(1991);
+
+// 2. Inside an arrow function 
+const calcAgeArrow = birthYear => {
+    console.log(2037 - birthYear)
+    console.log(this);
+};
+calcAge(1990);
+
+//3. Inside an object 
+const samuel = {
+    year: 1990,
+    calcAge: function() {
+        console.log(this);
+        console.log(2037 - this.year);
+    },
+};
+samuel.calcAge();
