@@ -51,14 +51,46 @@ main = secondary;
 secondary = temp;
 console.log(main, secondary);
 
+// Switching Variables with Destructuring
 [main, secondary] = [secondary, main];
 console.log(main, secondary);
 
+// Receive 2 return values form a function 
 const [starter, mainCourse] = restaurant.order(2, 0);
 console.log(starter, mainCourse);
 
+// Nested Destructuring 
 const nested = [2, 4, [5, 6]];
 const [i, , [j, k]] = nested;
 
 
-//
+// Default Values
+const [p = 1, q = 1, r = 1] = [8, 9];
+console.log(p, q, r);
+
+//🎇🎇🎇🎇🎇🎇🎇🎇🎇🎇🎇🎇🎇🎇🎇🎇🎇🎇🎇🎇🎇🎇🎇🎇🎇🎇🎇🎇
+// Destructure OBJECTS . Curly braces are used to Destructure Objects
+//1. When destructuring objects, the object properties have to be stated as is. However, the order is not important. 
+
+const { name, openingHours, categories } = restaurant; //
+console.log(name, openingHours, categories);
+
+// 2. If you want to change the variable name from the property name
+const { name: restaurantName, openingHours: hours, categories: tags } = restaurant;
+console.log(restaurantName, hours, tags);
+
+// 3. Implementing Default values for object properties
+const { menu = [], starterMenu: starters = [] } = restaurant;
+console.log(menu, starters);
+
+// 4. Mutating variables 
+let a = 111;
+let b = 999;
+const obj = { a: 23, b: 7, c: 14 };
+({ a, b } = obj);
+console.log(a, b);
+
+
+// Nested Objects
+const { fri: { open: o, close: c } } = openingHours;
+console.log(o, c);
