@@ -104,3 +104,30 @@ console.log(a, b);
 // Nested Objects
 const { fri: { open: o, close: c } } = openingHours;
 console.log(o, c);
+
+
+// Using the Spread Operator
+const arr = [7, 8, 9];
+const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+console.log(badNewArr);
+
+const newArr = [1, 2, ...arr];
+console.log(newArr);
+
+
+// Creating a new Menu from the original menu
+const newMenu = [...restaurant.mainMenu, 'Banku'];
+console.log(newMenu);
+
+
+// Copy Array
+const mainMenuCopy = [...restaurant.mainMenu];
+
+// Join 2 arrays
+const menu2 = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(menu2);
+
+//Iterables: arrays, strings, maps, sets. NOT OBJECTS
+const str = 'Samuel';
+const letters = [...str, '', 'S.'];
+console.log(str);
