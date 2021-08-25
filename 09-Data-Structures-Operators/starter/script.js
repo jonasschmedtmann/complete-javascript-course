@@ -20,6 +20,10 @@ const restaurant = {
         console.log(`Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`);
     },
 
+    orderPasta: function(ing1, ing2, ing3) {
+        console.log(`Here is your delicious paster with ${ing1}, ${ing2} and ${ing3}`);
+    },
+
     openingHours: {
         thu: {
             open: 12,
@@ -97,6 +101,7 @@ console.log(menu, starters);
 let a = 111;
 let b = 999;
 const obj = { a: 23, b: 7, c: 14 };
+
 ({ a, b } = obj);
 console.log(a, b);
 
@@ -131,3 +136,9 @@ console.log(menu2);
 const str = 'Samuel';
 const letters = [...str, '', 'S.'];
 console.log(str);
+
+const ingredients = [prompt("Let's make pasta! Ingredient 1"), prompt("Let's make pasta! Ingredient 2"), prompt("Let's make pasta! Ingredient 3")];
+// Old way of calling the orderPaster()
+restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
+// Calling the orderPasta() with the spread operator
+restaurant.orderPasta(...ingredients);
