@@ -160,3 +160,20 @@ console.log(Pizza, Risotto, otherFood);
 // USING REST ON OBJECT
 const { sat, ...weekdays } = restaurant.openingHours;
 console.log(weekdays);
+
+// USING REST ON FUNCTION(Called REST ARGUEMENT)
+const add = function(...numbers) {
+
+    let sum = 0;
+    for (let i = 0; i < numbers.length; i++) sum +=
+        numbers[i];
+    console.log(sum);
+};
+
+add(2, 3);
+add(5, 3, 7, 2);
+add(8, 2, 5, 2, 4, 1, 4);
+
+// Taking it a step further we can do this;
+const xi = [23, 5, 7];
+add(...xi);
