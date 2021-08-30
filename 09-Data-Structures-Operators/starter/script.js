@@ -142,3 +142,21 @@ const ingredients = [prompt("Let's make pasta! Ingredient 1"), prompt("Let's mak
 restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
 // Calling the orderPasta() with the spread operator
 restaurant.orderPasta(...ingredients);
+
+
+
+
+//SPREAD OPERATOR, because on RIGHT side of =  
+const arr = [1, 2, ...[3, 4]];
+
+// REST, becuase on LEFT side of = 
+// REST is used to pack elements into an array
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+
+const [Pizza, Risotto, ...otherFood] = [...restaurant.mainMenu, ...restaurant.starterMenu];
+console.log(Pizza, Risotto, otherFood);
+
+
+// USING REST ON OBJECT
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(weekdays);
