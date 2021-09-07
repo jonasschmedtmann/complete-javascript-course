@@ -274,5 +274,15 @@ const allPlayers = [...players1, ...players2];
 const playersFinal = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
 
 //5.
-
 const { odds: { team1, x: draw, team2 } } = game;
+
+//6
+const printGoals = function(...players) {
+    console.log(`${players.length} goals were scored`);
+};
+
+printGoals(...game.scored);
+
+
+//7.
+team1 < team2 && console.log('Team 1 is more likely to win');
