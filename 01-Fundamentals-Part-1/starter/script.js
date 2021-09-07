@@ -1,5 +1,5 @@
-let country = 'US';
-let continent = 'North America';
+const country = 'US';
+const continent = 'North America';
 let population = '380MM';
 let dog = 'leo';
 let secondDog = 'tyson';
