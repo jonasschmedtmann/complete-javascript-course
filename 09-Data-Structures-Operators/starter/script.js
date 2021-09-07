@@ -259,3 +259,20 @@ const game = {
         team2: 6.5,
     },
 };
+
+// Solution
+//1.
+const [players1, players2] = game.players;
+
+//2.
+const [gk, ...fieldPlayers] = players1;
+
+//3. 
+const allPlayers = [...players1, ...players2];
+
+//4.
+const playersFinal = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+
+//5.
+
+const { odds: { team1, x: draw, team2 } } = game;
