@@ -63,3 +63,76 @@ const dolphinsTwo = [23, 34, 27];
 
 console.log(calcAverage(koalasOne, dolphinsOne)) // -> No winner 
 console.log(calcAverage(koalasOne, koalasTwo)) // -> Koalas win (60 vs. 28)
+
+/* -------------------------------------------------------------------------- */
+/*                              Code Challenge 2                              */
+/*
+Steven is still building his tip calculator, using the same rules as before: Tip 15% of
+the bill if the bill value is between 50 and 300, and if the value is different, the tip is
+20%.
+
+Your tasks:
+1. Write a function 'calcTip' that takes any bill value as an input and returns
+the corresponding tip, calculated based on the rules above (you can check out
+the code from first tip calculator challenge if you need to). Use the function
+type you like the most. Test the function using a bill value of 100
+2. And now let's use arrays! So create an array 'bills' containing the test data
+below
+3. Create an array 'tips' containing the tip value for each bill, calculated from
+the function you created before
+4. Bonus: Create an array 'total' containing the total values, so the bill + tip
+Test data: 125, 555 and 44
+
+Hint: Remember that an array needs a value in each position, and that value can
+actually be the returned value of a function! So you can just call a function as array
+values (so don't store the tip values in separate variables first, but right in the new
+array) �
+GOOD LUCK �
+*/
+/* -------------------------------------------------------------------------- */
+
+//* Pseudo Code: 
+// Phase one: 
+// 1.) Calculate tip percentage: 
+    // a.) tip 15% if the value of the bill is between 50 and 300 
+    // b.) if the value is higher the tip is 20% 
+// 2.) Calculate the actual tip, 15% or 20% of the total bill 
+// 3.) Return the total the tip will be 
+
+const calcTip = (bill) => {
+    // 1. get tip % 
+    const percentage = bill >= 50 && bill <= 300 ? .15 : .20; 
+    // 2. get total tip
+    const totalTip = bill * percentage; 
+    // 3. return tip amount 
+    return totalTip.toFixed(2); 
+}
+
+// Phase two:
+// Now let's use arrays - create an array of tips calculated by the function above 
+const customerBills = [125, 555, 44]; 
+const calcTips = (bills) => {
+    const tips = []; 
+    // iterate through the array calculating tip amount for each total 
+    for (let i=0; i<bills.length; i++) {
+        const tip = calcTip(bills[i]); 
+        tips.push(tip); 
+    }
+    return tips; 
+}
+console.log(calcTips(customerBills)); // -> [ '18.75', '111.00', '8.80' ]
+
+// STRETCH 🏹
+// I want to refine the function to use an array method (forEach), and return an array of arrays, with both the bill amount, and the tip total
+function refinedCalcTips(bills) {
+    const customerBillAndTips = []; 
+
+    bills.forEach((bill) => {
+        const tip = calcTip(bill); 
+        customerBillAndTips.push([bill, tip]); 
+    }); 
+
+    return customerBillAndTips; 
+}
+console.log(refinedCalcTips(customerBills)) // -> [ [ 125, '18.75' ], [ 555, '111.00' ], [ 44, '8.80' ] ]
+//? I just noticed that my tip amount is being returned as a string, I wonder why that is? 🤔
