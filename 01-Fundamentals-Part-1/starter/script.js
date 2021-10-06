@@ -183,8 +183,20 @@
 true && false && false //expression
 
 // expresion is like words and statement is the sentance
-
+// expression produces a value.
 
 //---- The conditional operator (Ternary)
 const age = prompt('Enter the age');
-age >= 18 ? console.log('I like programming 🤞⬜') : console.log('I like Engineerin 👩‍🍳')
+//age >= 18 ? console.log('I like programming 🤞⬜') : console.log('I like Engineerin 👩‍🍳')
+//-- we can use this another way of ternary operator---
+// const age = prompt('Enter the age');
+// const showPreferrence = age >= 18 ? 'coffee ☕' : 'water 🧂 or juice 🧃';
+// console.log(showPreferrence);
+
+//let drink;
+if (age >= 18) {
+    console.log('now you can drink coffee ☕');
+} else {
+    console.log(`1. you can only drink milk🥛,
+2. You can play football🌴.`)
+}
