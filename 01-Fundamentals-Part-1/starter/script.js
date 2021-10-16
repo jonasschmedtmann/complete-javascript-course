@@ -47,7 +47,26 @@ year = 1991;
 console.log(typeof year);
 
 console.log(typeof null);
+
+
+// let, const and var lecture
+
+// let can be mutated, changed at a later date. (block scoped)
+let age = 30;
+age = 31
+
+// consts creates a variable that cannot be mutated
+const birthyear = 1991;
+// birthyear = 1990;
+
+// Var and let are pretty different, this is the old way of declaring a variable. (function scoped)
+var job = 'programmer';
+job = 'teacher';
+
+// We dont need to declare the variable (pretty terrible idea JS creates a property on the global object)
+lastName = 'Cornwell';
+console.log(lastName);
 */
 
-// let, const and var
+// Basic operators
 
