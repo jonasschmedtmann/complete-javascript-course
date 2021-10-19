@@ -151,3 +151,30 @@ const markHeigherBMI = markBMI > johnBMI;
 
 console.log(markBMI, johnBMI, markHeigherBMI);
 */
+
+////////////////////////////////////
+// Strings and Template literals
+
+const firstName = 'Jacob';
+const job = 'techer';
+const birthYear = 1996;
+const year = 2037;
+
+const jacob = "I'm " + firstName + ', a ' + (year - birthYear) + ' years old ' + job + '!';
+console.log(jacob);
+
+// Template literal use `` rather than "" ES6
+const jacobNew = `I'm ${firstName}, a ${year - birthYear} years old ${job}!`;
+console.log(jacobNew);
+
+console.log(`Just a regular string...`);
+
+// We can use use \n\ for a new line
+console.log('String with \n\
+multiple \n\
+lines');
+
+// If we need a multiline string use template literal ``
+console.log(`string
+multiple
+lines`);
