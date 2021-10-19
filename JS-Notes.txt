@@ -1,0 +1,38 @@
+You can hit up arrow in console to get the line above
+Javascript - high level object oritented, multi-paradigm programming language
+Programming language - code used to get computers to do something
+high level - dont have to worry about complex stuff like memory management
+HTML - responsible for content of page (text, buttons)
+CSS - styling
+JS - add interactive and dynamic effects and web apps
+js can run outside of a browser
+like nodeJS
+
+Declaring a variable:
+let firstName = "John";
+
+JS uses camel case for variables
+- you can start a variable with _ or $ as well
+- all caps are used for constants
+make very descriptive names
+myFirstJob is better than job1
+
+every value is an object or a primitive value
+- only primitive when its not an object
+
+7 primitive data types
+number - always floating point (always have decimals)
+string - sequence of characters (always in quotes)
+boolean - logical type (true or false)
+- not strings
+undefined - variable declared without a value or empty
+null - means empty value
+symbol - value that is unique and cannot be changed
+big int - ints too large to be represented by number
+
+dynamic typing - don't need to manually define the data type of the value
+- value has the type not the variable
+- variables can change between data types without explicitly saying
+
+console.log(typeof true);
+- operator that tells the data type returned as a string
