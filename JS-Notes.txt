@@ -20,7 +20,7 @@ myFirstJob is better than job1
 every value is an object or a primitive value
 - only primitive when its not an object
 
-7 primitive data types
+7 primitive data types:
 number - always floating point (always have decimals)
 string - sequence of characters (always in quotes)
 boolean - logical type (true or false)
@@ -36,3 +36,17 @@ dynamic typing - don't need to manually define the data type of the value
 
 console.log(typeof true);
 - operator that tells the data type returned as a string
+
+Let, Var and Const:
+Declare the variable with 'let' when we know the variable will mutate
+- use these for emptys as well like 'let well;'
+
+Declare const when we know the variable will NOT mutate
+- immutable, cannot be reassigned
+- stuff like birth year
+- cannot declare empty const variables
+- generally use const as much as possible
+
+Don't use var (used prior to ES6)
+
+If you don't use let/const it will make it a variable on the global scope
