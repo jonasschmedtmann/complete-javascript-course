@@ -468,22 +468,58 @@ const tip = bill <= 300 && bill >= 50 ? bill * 0.15 : bill * 0.2;
 console.log(`The bill was ${bill}, the tip was ${tip}, and the total value ${bill + tip}`);
 */
 
-let js = "amazing";
+// let js = "amazing";
 
-let firstName = "Jonas"; // declaring a variable
+// let firstName = "Jonas"; // declaring a variable
 
-let PI = 3.14;
-let myFirstJob = "programmer";
-let myCurrentJob = "teacher";
+// let PI = 3.14;
+// let myFirstJob = "programmer";
+// let myCurrentJob = "teacher";
 
-let myCountry = "Syria";
-let myContinent = "Asia";
-let population = 18000000;
-console.log(myCountry, myContinent, population);
-let javaScriptIsAlotFun = true;
-console.log(typeof javaScriptIsAlotFun);
-let year;
-console.log(year);
-console.log(typeof null);
-const ageJonas = 2034 - 1991;
-console.log(ageJonas);
+// let myCountry = "Syria";
+// let myContinent = "Asia";
+// let population = 18000000;
+// console.log(myCountry, myContinent, population);
+// let javaScriptIsAlotFun = true;
+// console.log(typeof javaScriptIsAlotFun);
+// let year;
+// console.log(year);
+// console.log(typeof null);
+// const now = 2044;
+// const ageJonas = now - 1991;
+// const ageSarah = now - 2000;
+// console.log(ageJonas, ageSarah);
+// console.log(ageJonas * 2, ageJonas / 10, 2 ** 3);
+// const firstName = "Adnan";
+// const lastName = "Aljasem";
+
+// console.log(firstName + " " + lastName);
+
+// let x = 10 + 5; //15
+// x += 10; //x=x+10
+// x *= 4;
+// x++;
+// x--;
+// x--;
+// console.log(x);
+// console.log(ageJonas > ageSarah);
+// const now = 2037;
+// const ageJonas = now - 1991;
+// const ageSarah = now - 2000;
+// console.log(now - 1991 > now - 2018);
+
+// let x, y;
+// x = y = 25 - 10 - 5;
+// console.log(x);
+
+// const markWeight = 95;
+// const markHeight = 1.88;
+// const johnWeght = 85;
+// const johnHeight = 1.76;
+
+// //BMI = mass(kg)/ height*height
+// const markBMI = 78 / 1.69 ** 2;
+// const johnBMI = 92 / 1.95 ** 2;
+// console.log(markBMI, johnBMI);
+// const isMarkHeigherBMI = markBMI > johnBMI;
+// console.log(isMarkHeigherBMI);
