@@ -469,6 +469,21 @@ console.log(`The bill was ${bill}, the tip was ${tip}, and the total value ${bil
 */
 ///////////////////
 let js = "amazing";
-console.log(32);
+
 let firstName = "Jonas"; // declaring a variable
-console.log(firstName);
+
+let PI = 3.14;
+let myFirstJob = "programmer";
+let myCurrentJob = "teacher";
+
+let myCountry = "Syria";
+let myContinent = "Asia";
+let population = 18000000;
+console.log(myCountry, myContinent, population);
+let javaScriptIsAlotFun = true;
+console.log(typeof javaScriptIsAlotFun);
+let year;
+console.log(year);
+console.log(typeof null);
+const ageJonas = 2034 - 1991;
+console.log(ageJonas);
