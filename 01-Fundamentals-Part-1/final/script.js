@@ -523,3 +523,17 @@ console.log(`The bill was ${bill}, the tip was ${tip}, and the total value ${bil
 // console.log(markBMI, johnBMI);
 // const isMarkHeigherBMI = markBMI > johnBMI;
 // console.log(isMarkHeigherBMI);
+
+// console.log("string \n\
+// mulkfdl");
+// console.log(`this is
+// a multiline `);
+
+const age = 14;
+
+if (age >= 18) {
+  console.log("you are old enough");
+} else {
+  const yearsLeft = 18 - age;
+  console.log(`you are not old enough you can try after ${yearsLeft} years `);
+}
