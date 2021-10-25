@@ -512,28 +512,38 @@ console.log(`The bill was ${bill}, the tip was ${tip}, and the total value ${bil
 // x = y = 25 - 10 - 5;
 // console.log(x);
 
-// const markWeight = 95;
-// const markHeight = 1.88;
-// const johnWeght = 85;
-// const johnHeight = 1.76;
-
-// //BMI = mass(kg)/ height*height
-// const markBMI = 78 / 1.69 ** 2;
-// const johnBMI = 92 / 1.95 ** 2;
-// console.log(markBMI, johnBMI);
-// const isMarkHeigherBMI = markBMI > johnBMI;
-// console.log(isMarkHeigherBMI);
-
 // console.log("string \n\
 // mulkfdl");
 // console.log(`this is
 // a multiline `);
 
-const age = 14;
+// const age = 10;
 
-if (age >= 18) {
-  console.log("you are old enough");
-} else {
-  const yearsLeft = 18 - age;
-  console.log(`you are not old enough you can try after ${yearsLeft} years `);
-}
+// if (age >= 18) {
+//   console.log("you are old enough");
+// } else {
+//   const yearsLeft = 18 - age;
+//   console.log(`you are not old enough you can try after ${yearsLeft} years `);
+// }
+
+// const birthYear = 1991;
+// let century;
+// //a condition for if statement return always true or false
+// if (birthYear <= 2000) {
+//   century = 20;
+// } else {
+//   century = 21;
+// }
+// console.log(century);
+
+const markWeight = 95;
+const markHeight = 1.88;
+const johnWeght = 85;
+const johnHeight = 1.76;
+
+//BMI = mass(kg)/ height*height
+const markBMI = 78 / 1.69 ** 2;
+const johnBMI = 92 / 1.95 ** 2;
+console.log(markBMI, johnBMI);
+const isMarkHeigherBMI = markBMI > johnBMI;
+console.log(isMarkHeigherBMI);
