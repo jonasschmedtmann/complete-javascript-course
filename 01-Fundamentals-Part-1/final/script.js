@@ -536,17 +536,17 @@ console.log(`The bill was ${bill}, the tip was ${tip}, and the total value ${bil
 // }
 // console.log(century);
 
-const markWeight = 95;
-const markHeight = 1.88;
-const johnWeght = 85;
-const johnHeight = 1.76;
+// const markWeight = 95;
+// const markHeight = 1.88;
+// const johnWeght = 85;
+// const johnHeight = 1.76;
 
-//BMI = mass(kg)/ height*height
-const markBMI = 78 / 1.69 ** 2;
-const johnBMI = 92 / 1.95 ** 2;
-console.log(markBMI, johnBMI);
-if (markBMI > johnBMI) {
-  console.log(`Mark's BMI (${markBMI}) is higher than John's BMI (${johnBMI})`);
-} else {
-  console.log(`John's BMI (${johnBMI}) is higher than Mark's BMI (${markBMI})`);
-}
+// //BMI = mass(kg)/ height*height
+// const markBMI = 78 / 1.69 ** 2;
+// const johnBMI = 92 / 1.95 ** 2;
+// console.log(markBMI, johnBMI);
+// if (markBMI > johnBMI) {
+//   console.log(`Mark's BMI (${markBMI}) is higher than John's BMI (${johnBMI})`);
+// } else {
+//   console.log(`John's BMI (${johnBMI}) is higher than Mark's BMI (${markBMI})`);
+// }
