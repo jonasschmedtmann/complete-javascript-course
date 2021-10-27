@@ -541,7 +541,7 @@ console.log(`The bill was ${bill}, the tip was ${tip}, and the total value ${bil
 // const johnWeght = 85;
 // const johnHeight = 1.76;
 
-// //BMI = mass(kg)/ height*height
+//BMI = mass(kg)/ height*height
 // const markBMI = 78 / 1.69 ** 2;
 // const johnBMI = 92 / 1.95 ** 2;
 // console.log(markBMI, johnBMI);
@@ -549,4 +549,72 @@ console.log(`The bill was ${bill}, the tip was ${tip}, and the total value ${bil
 //   console.log(`Mark's BMI (${markBMI}) is higher than John's BMI (${johnBMI})`);
 // } else {
 //   console.log(`John's BMI (${johnBMI}) is higher than Mark's BMI (${markBMI})`);
+// }
+// type conversion
+const inputYear = "1991";
+//convert string into a number
+// console.log(Number(inputYear) + 18);
+
+// console.log(Number("Adnan"));
+// console.log(typeof NaN);
+// // convert number into String
+// console.log(String(23), 23);
+// // js can convert only 3 types: number string bolean
+
+// //type coercion
+// console.log("I am " + 3 + " years old");
+// console.log("23" + "10" + 3);
+// console.log("3" * "23");
+// console.log("10.1" > "11");
+
+// let n = "1" + 1; // sting 11
+// n = n - 1; // 11 will be converted inot number (automaticly )
+// console.log(n);
+// const money = 10;
+// if (money) {
+//   console.log("don't spend it all ;)");
+// } else {
+//   console.log("you should get a job");
+// }
+// let height = 0;
+// if (height) {
+//   console.log(" height is defined");
+// } else {
+//   console.log(" it is undefined because 0 is a falsy value");
+// }
+//equality operator$
+
+// const age = 18;
+// if (age === 18) console.log("you are 18");
+/// when conparing use ===
+// const favourite = prompt("what is your favourate number?");
+// console.log(favourite);
+// console.log(typeof favourite);
+
+// if (favourite === 23) {
+//   console.log("23 is an amazing number");
+// }
+
+// if (favourite !== 23) console.log("it is not 23!");
+
+// bolean logic
+const hasDriversLicense = true; //A
+const hasGoodVision = true; //B
+console.log(hasDriversLicense && hasGoodVision);
+console.log(hasDriversLicense || hasGoodVision);
+console.log(!hasDriversLicense);
+
+// const shouldDrive = hasDriversLicense && hasGoodVision;
+// if (shouldDrive) {
+//   console.log("she can drive ");
+// } else {
+//   console.log("Someone else should drive the car");
+// }
+
+// const isTired = false; //c
+
+// if (hasDriversLicense && hasGoodVision && !isTired) {
+//   console.log("she can drive ");
+// } else {
+//   console.log("Someone else should drive the car");
 // }
