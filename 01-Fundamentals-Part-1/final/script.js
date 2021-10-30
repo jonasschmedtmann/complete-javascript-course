@@ -658,3 +658,15 @@ const inputYear = "1991";
 // }
 // console.log(drink2);
 // console.log(`I like to dring ${age >= 18 ? "wine" : "water"}`);
+// tip // bill // total
+let tip;
+let bill = 277;
+bill >= 50 && bill <= 300
+  ? (tip = (bill * 15) / 100)
+  : (tip = (bill * 20) / 100);
+let total = tip + bill;
+console.log(
+  `Your bill is ${bill} and your tip should be ${tip} the total amount that you have to pay is: ${
+    bill + tip
+  }`
+);
