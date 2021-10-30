@@ -598,11 +598,11 @@ const inputYear = "1991";
 // if (favourite !== 23) console.log("it is not 23!");
 
 // bolean logic
-const hasDriversLicense = true; //A
-const hasGoodVision = true; //B
-console.log(hasDriversLicense && hasGoodVision);
-console.log(hasDriversLicense || hasGoodVision);
-console.log(!hasDriversLicense);
+// const hasDriversLicense = true; //A
+// const hasGoodVision = true; //B
+// console.log(hasDriversLicense && hasGoodVision);
+// console.log(hasDriversLicense || hasGoodVision);
+// console.log(!hasDriversLicense);
 
 // const shouldDrive = hasDriversLicense && hasGoodVision;
 // if (shouldDrive) {
@@ -618,3 +618,43 @@ console.log(!hasDriversLicense);
 // } else {
 //   console.log("Someone else should drive the car");
 // }
+//
+// const day = "monday";
+// switch (day) {
+//   case "monday":
+//     console.log("Plan my course");
+//     console.log("Go shopping");
+//     break;
+//   case "tuesday":
+//     console.log("prepaer theory vid");
+//     break;
+//   case "wednesday":
+//   case "thursday":
+//     console.log("write a code exampe");
+//     break;
+//   case "friday":
+//     console.log("Yaay it is friday");
+//     break;
+//   case "saturday":
+//   case "sunday":
+//     console.log("enjoy your weekend");
+//     break;
+//   default:
+//     console.log("not a valid number");
+// }
+// 27 statements and expressions
+// ternary operator
+//const age = 10;
+// age >= 18 ? console.log("I am 18 or over") : console.log("I am young");
+
+// const myAge = age >= 18 ? "i'm 18 " : "im not 18";
+// console.log(myAge);
+
+// let drink2;
+// if (age >= 18) {
+//   drink2 = "wine";
+// } else {
+//   drink2 = "water";
+// }
+// console.log(drink2);
+// console.log(`I like to dring ${age >= 18 ? "wine" : "water"}`);
