@@ -57,15 +57,15 @@
 // const yourRetermentAge = yearsUntilRe(1991);
 // console.log(yourRetermentAge);
 //function calling other function
-function cutFruitPieces(fruit) {
-  return fruit * 4;
-}
+// function cutFruitPieces(fruit) {
+//   return fruit * 4;
+// }
 
-function fruitProcessor(apples, oranges) {
-  const applePieces = cutFruitPieces(apples);
-  const orangePieces = cutFruitPieces(oranges);
+// function fruitProcessor(apples, oranges) {
+//   const applePieces = cutFruitPieces(apples);
+//   const orangePieces = cutFruitPieces(oranges);
 
-  const juice = `Juice with ${applePieces} apple pieces and ${orangePieces} orange pieces`;
-  return juice;
-}
-console.log(fruitProcessor(2, 3));
+//   const juice = `Juice with ${applePieces} apple pieces and ${orangePieces} orange pieces`;
+//   return juice;
+// }
+// console.log(fruitProcessor(2, 3));
