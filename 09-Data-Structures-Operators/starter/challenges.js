@@ -51,3 +51,96 @@ const game = {
   date: 'Nov 9th, 2037',
   odds: { team1: 1.33, x: 3.25, team2: 6.5 },
 };
+
+// 1
+// const [team1, team2] = [game.players[0], game.players[1]];
+
+const { players } = game;
+console.log('Team1: ' + players[0]);
+console.log('Team2: ' + players[1]);
+
+//Respuesta curso:
+const [players1, players2] = game.players;
+console.log(players1, players2);
+
+/*********************** */
+
+//2
+const [gk, ...fieldPlayers] = players[0];
+console.log('GoalKeeper: ' + gk);
+console.log('FieldPlayers: ' + fieldPlayers);
+
+//Respuesta curso:
+//Igual
+
+/*********************** */
+
+//3
+//const allPlayers = [...game.players[0], ...game.players[1]];
+let allPlayers = game.players[0].concat(game.players[1]);
+console.log('All Players: ' + allPlayers);
+
+//Respuesta curso
+const allPlayers2 = [...players1, ...players2];
+console.log(allPlayers2);
+
+/*********************** */
+
+//4
+const player1Final = [];
+
+player1Final.push(...players[0]);
+player1Final.push('Thiago', 'Coutinho', 'Perisic');
+console.log('Final players: ' + player1Final);
+
+//REspuesta curso
+const players1Final_2 = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+console.log(players1Final_2);
+
+/*********************** */
+
+//5
+//game = { Team1: game.odds };
+game.team1 = 'Team1aaaaa';
+console.log(game);
+
+//Respuesta curso
+const {
+  odds: { team1, x: draw, team2 },
+} = game;
+console.log(team1, draw, team2);
+
+/*********************** */
+
+//6
+const printGoals = function (...namePlayers) {
+  let sum = 0;
+  for (let i = 0; i < namePlayers.length; i++) {
+    // if (playerGoal.includes(namePlayers[i])) {
+    //   playerGoal.push(namePlayers[i]);
+    // }
+    console.log(namePlayers[i]);
+    sum++;
+  }
+  console.log('Total goals: ' + sum);
+};
+
+printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
+printGoals(...game.scored);
+
+//Respuest curso
+
+const printGoals2 = function (...players) {
+  console.log(players);
+  console.log(`${players.length} goals were scored`);
+};
+
+printGoals(...game.scored);
+
+/*********************** */
+
+//7
+
+// Respuesta curso.
+team1 < team2 && console.log('Team 1 is more likely to win');
+team1 > team2 && console.log('Team 2 is more likely to win');
