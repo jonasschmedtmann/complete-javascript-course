@@ -163,38 +163,38 @@ const game = {
 
 /** (1) */
 
-for (const [name, value] of game.scored.entries()) {
-  // const open = restaurant.openingHours[day]?.open ?? 'close';
-  console.log(`Goal ${name + 1}: ${value}`);
-  // console.log(`${score}`);
-}
+// for (const [name, value] of game.scored.entries()) {
+//   // const open = restaurant.openingHours[day]?.open ?? 'close';
+//   console.log(`Goal ${name + 1}: ${value}`);
+//   // console.log(`${score}`);
+// }
 
-/** (2) */
+// /** (2) */
 
-let average = 0;
+// let average = 0;
 
-for (const odd of Object.values(game.odds)) average += odd;
+// for (const odd of Object.values(game.odds)) average += odd;
 
-average /= Object.values(game.odds).length;
-console.log('Average Odd: ' + average);
+// average /= Object.values(game.odds).length;
+// console.log('Average Odd: ' + average);
 
-/** (3) */
+// /** (3) */
 
-for (const [team, odd] of Object.entries(game.odds)) {
-  let resultName = team === 'x' ? 'draw:' : `victory ${game[team]}`;
+// for (const [team, odd] of Object.entries(game.odds)) {
+//   let resultName = team === 'x' ? 'draw:' : `victory ${game[team]}`;
 
-  console.log(`Odd of ${resultName} ${odd}`);
-}
+//   console.log(`Odd of ${resultName} ${odd}`);
+// }
 
-/** (Bonus 4) */
+// /** (Bonus 4) */
 
-//Esto es chungo de cojones
-const scorers = {};
-for (const player of game.scored) {
-  scorers[player] ? scorers[player]++ : (scorers[player] = 1);
-}
+// //Esto es chungo de cojones
+// const scorers = {};
+// for (const player of game.scored) {
+//   scorers[player] ? scorers[player]++ : (scorers[player] = 1);
+// }
 
-console.log(scorers);
+// console.log(scorers);
 
 // Coding Challenge #3
 // Let's continue with our football betting app! This time, we have a map called 'gameEvents' (see below) with a log of the events that happened during the game. The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
