@@ -58,42 +58,199 @@ const restaurant = {
   },
 };
 
-const question = new Map([
-  ['question', 'What is the best programming language in the world?'],
-  [1, 'C'],
-  [2, 'Java'],
-  [3, 'JavaScript'],
-  ['correct', 3],
-  [true, 'Correct!'],
-  [false, 'Try again!'],
-]);
-console.log(question);
+// Split & Join
 
-//Convert object to map
-console.log(Object.entries(openingHours));
-const hoursMap = new Map(Object.entries(openingHours));
+console.log('a+very+nice+string'.split('+'));
+console.log('Jonas Schmedtmann'.split(' '));
 
-console.log(hoursMap);
+const [firstName, lastName] = 'Jonas Schmedtmann'.split(' ');
 
-//Quiz app
-console.log(question.get('question'));
-for (const [key, value] of question) {
-  if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
-}
+const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+console.log(newName);
 
-//const answer = Number(prompt('Your answer'));
-const answer = 3;
+const capitalizeName = function (name) {
+  const names = name.split(' ');
+  const nameUpper = [];
 
-console.log(answer);
+  //Pone el primer caracter en mayúsculas
+  for (const n of names) {
+    nameUpper.push(n[0].toUpperCase() + n.slice(1));
+    //Otra manera
+    //nameUpper.push(n.replace(n[0], n[0].toUpperCase()));
+  }
+  console.log(nameUpper.join(' '));
+};
 
-////El resultado de la operación(true/false) nos da la respuesta.
-console.log(question.get(question.get('correct') === answer));
+capitalizeName('jessica ann smith davis');
+capitalizeName('jonas schmedtmann');
 
-//Convert map to array
-console.log([...question]);
-console.log(question.entries());
-console.log([...question.keys()]);
-console.log([...question.values()]);
+//Padding -> Rellenar
+const message = 'Go to gate 23!';
+console.log(message.padStart(25, '+').padEnd(30, '+'));
+
+const maskCreditCard = function (number) {
+  const str = number + ''; //Una manera de convertir a string
+  const last = str.slice(-4);
+  return last.padStart(str.length, '*');
+};
+
+console.log(maskCreditCard(4384836454354));
+console.log(maskCreditCard('65464864684'));
+
+//Repeat
+const message2 = 'Bad Weather... All Departures Delayed... ';
+console.log(message2.repeat(5));
+
+const planesInLine = function (n) {
+  console.log(`There are ${n} planes in line ${'a'.repeat(n)}
+  `);
+};
+
+planesInLine(5);
+planesInLine(3);
+planesInLine(12);
+
+/** //////////////////////////////////////
+ * Working with String - Part 2 */
+
+// const airLine = 'TAP Air Portugal';
+
+// console.log(airLine.toLowerCase());
+// console.log(airLine.toUpperCase());
+
+// //Fix capitalization in name
+// const passenger = 'jOnAS';
+// const passengerLower = passenger.toLowerCase();
+// const passergerCorrect =
+//   passengerLower[0].toUpperCase() + passengerLower.slice(1);
+// console.log(passergerCorrect);
+
+// //comparing emails
+// const email = 'hello@jonas.io';
+// const loginEmail = '  Hello@Jonas.Io \n';
+
+// //Versión larga
+// const lowerEmail = loginEmail.toLowerCase();
+// const trimmedEmail = lowerEmail.trim();
+// console.log(trimmedEmail);
+
+// //Versión optima
+// const normalicedEmail = loginEmail.toLowerCase().trim();
+// console.log(normalicedEmail);
+// console.log(email === normalicedEmail);
+
+// // replacing
+// const priceEU = '288,97€';
+// const priceUS = priceEU.replace('€', '$').replace(',', '.');
+// console.log(priceUS);
+
+// const announcement =
+//   'All passengers come to boarding door 23. Boarding door 23!';
+
+// console.log(announcement.replace('door', 'gate')); //Sólo cambia el primer door. En el futuro habrá un replaceAll
+
+// console.log(announcement.replace(/door/g, 'gate')); //Para solucionar el problema.
+
+// // Booleans
+// const plane = 'Airbus A320neo';
+// console.log(plane.includes('A320'));
+// console.log(plane.includes('Boeing'));
+// console.log(plane.startsWith('Air'));
+
+// if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+//   console.log('Part of the NEW Airbus familiy');
+// }
+
+// //Practice exercise
+
+// const checkBaggage = function (items) {
+//   const baggage = items.toLowerCase();
+
+//   if (baggage.includes('knife') || baggage.includes('gun')) {
+//     console.log('Your are NOT allowd on board');
+//   } else {
+//     console.log('Welcome aboard');
+//   }
+// };
+
+// checkBaggage('I have a laptop, some Food and a pocket Knife');
+// checkBaggage('Socks and camera');
+// checkBaggage('Got some snacks and a gun for protection');
+
+/** //////////////////////////////////////
+ * Working with String - Part 1 */
+
+// const plane = 'A320';
+
+// console.log(plane[0]);
+
+// console.log(airLine.length);
+
+// console.log(airLine.indexOf('r'));
+// console.log(airLine.lastIndexOf('r'));
+// console.log(airLine.lastIndexOf('Portugal'));
+
+// //Slice method
+// console.log(airLine.slice(4)); // log: "Air Portugal". Hay que guardarlo en variable.
+// console.log(airLine.slice(4, 7)); // log: Air
+
+// console.log(airLine.slice(0, airLine.indexOf(' ')));
+// console.log(airLine.slice(airLine.lastIndexOf(' ') + 1));
+
+// console.log(airLine.slice(-2)); // Cuenta por atras
+// console.log(airLine.slice(1, -1)); // Empieza y acaba con uno extra
+
+// const checkMiddleSeat = function (seat) {
+//   // B and E are middle seats
+//   const s = seat.slice(-1);
+//   if (s === 'B' || s === 'E') console.log('You got the middle seat :(');
+//   else console.log('You got lucky :)');
+// };
+
+// checkMiddleSeat('11B');
+// checkMiddleSeat('23C');
+// checkMiddleSeat('3E');
+
+// console.log(new String('jonas'));
+// console.log(new String('jonas'));
+// console.log(typeof new String('jonas').slice(1)); //Ejempl raruno para entender Strings.
+
+// const question = new Map([
+//   ['question', 'What is the best programming language in the world?'],
+//   [1, 'C'],
+//   [2, 'Java'],
+//   [3, 'JavaScript'],
+//   ['correct', 3],
+//   [true, 'Correct!'],
+//   [false, 'Try again!'],
+// ]);
+// console.log(question);
+
+// //Convert object to map
+// console.log(Object.entries(openingHours));
+// const hoursMap = new Map(Object.entries(openingHours));
+
+// console.log(hoursMap);
+
+// //Quiz app
+// console.log(question.get('question'));
+// for (const [key, value] of question) {
+//   if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+// }
+
+// //const answer = Number(prompt('Your answer'));
+// const answer = 3;
+
+// console.log(answer);
+
+// ////El resultado de la operación(true/false) nos da la respuesta.
+// console.log(question.get(question.get('correct') === answer));
+
+// //Convert map to array
+// console.log([...question]);
+// console.log(question.entries());
+// console.log([...question.keys()]);
+// console.log([...question.values()]);
 
 /**
  * /////////////////////////////////////
