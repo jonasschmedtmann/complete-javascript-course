@@ -51,17 +51,14 @@ let dolphinsScore = [],
 
 switch (scenario) {
   case 1:
-    console.log("scenario-1");
     dolphinsScore = dolphinsScore1;
     koalasScore = koalasScore1;
     break;
   case 2:
-    console.log("scenario-2");
     dolphinsScore = dolphinsScore2;
     koalasScore = koalasScore2;
     break;
   case 3:
-    console.log("scenario-3");
     dolphinsScore = dolphinsScore3;
     koalasScore = koalasScore3;
     break;
@@ -78,3 +75,13 @@ console.log(
 );
 
 //challenge #4
+
+function tipCalc(bill) {
+  return bill > 50 && bill < 300 ? bill * 0.15 : bill * 0.2;
+}
+
+const bills = [275, 40, 430];
+
+for (i = 0; i < bills.length; i++) {
+  console.log(`tip is ${tipCalc(bills[i])} for bill ${bills[i]}`);
+}
