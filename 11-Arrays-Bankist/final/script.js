@@ -276,6 +276,21 @@ console.log(letters.join(' - '));
 
 
 ///////////////////////////////////////
+// The new at Method
+const arr = [23, 11, 64];
+console.log(arr[0]);
+console.log(arr.at(0));
+
+// getting last array element
+console.log(arr[arr.length - 1]);
+console.log(arr.slice(-1)[0]);
+console.log(arr.at(-1));
+
+console.log('jonas'.at(0));
+console.log('jonas'.at(-1));
+
+
+///////////////////////////////////////
 // Looping Arrays: forEach
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
@@ -609,7 +624,7 @@ console.log(movements);
 const arr = [1, 2, 3, 4, 5, 6, 7];
 console.log(new Array(1, 2, 3, 4, 5, 6, 7));
 
-// Empty arrays + fill method
+// Emprty arrays + fill method
 const x = new Array(7);
 console.log(x);
 // console.log(x.map(() => 5));
@@ -636,7 +651,7 @@ labelBalance.addEventListener('click', function () {
 
   const movementsUI2 = [...document.querySelectorAll('.movements__value')];
 });
-
+*/
 
 ///////////////////////////////////////
 // Array Methods Practice
@@ -657,10 +672,10 @@ console.log(bankDepositSum);
 const numDeposits1000 = accounts
   .flatMap(acc => acc.movements)
   .reduce((count, cur) => (cur >= 1000 ? ++count : count), 0);
-  
+
 console.log(numDeposits1000);
 
-// Prefixed ++ operator
+// Prefixed ++ oeprator
 let a = 10;
 console.log(++a);
 console.log(a);
@@ -676,29 +691,28 @@ const { deposits, withdrawals } = accounts
     },
     { deposits: 0, withdrawals: 0 }
   );
-  
+
 console.log(deposits, withdrawals);
 
 // 4.
 // this is a nice title -> This Is a Nice Title
 const convertTitleCase = function (title) {
-  const capitalize = str => str[0].toUpperCase() + str.slice(1);
+  const capitzalize = str => str[0].toUpperCase() + str.slice(1);
 
   const exceptions = ['a', 'an', 'and', 'the', 'but', 'or', 'on', 'in', 'with'];
 
   const titleCase = title
     .toLowerCase()
     .split(' ')
-    .map(word => (exceptions.includes(word) ? word : capitalize(word)))
+    .map(word => (exceptions.includes(word) ? word : capitzalize(word)))
     .join(' ');
 
-  return capitalize(titleCase);
+  return capitzalize(titleCase);
 };
 
 console.log(convertTitleCase('this is a nice title'));
 console.log(convertTitleCase('this is a LONG title but not too long'));
 console.log(convertTitleCase('and here is another title with an EXAMPLE'));
-*/
 
 ///////////////////////////////////////
 // Coding Challenge #4
