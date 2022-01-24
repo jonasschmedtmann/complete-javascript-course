@@ -131,34 +131,96 @@ HINT: To calculate average of 3 values, add them all together and divide by 3
 HINT: To check if number A is at least double number B, check for A >= 2 * B. Apply this to the team's average scores 😉
 
 GOOD LUCK 😀
-*/
 
 // Calculates average score
-const calcAverage = (team, score1, score2, score3) => {
-    const averageScore = score1 + score2 + score3 / 3;
-    console.log(`Average score for the ${team} was:`);
-    return averageScore;
-}
+// const calcAverage = (team, score1, score2, score3) => {
+//     const averageScore = (score1 + score2 + score3) / 3;
+//     console.log(`Average score for the ${team} was:`);
+//     return averageScore;
+// }
 
-// Stores Dolphins score
-// let avgDolphins = calcAverage('Dolphins', 44, 23, 71);
-let avgDolphins = calcAverage('Dolphins', 85, 54, 41);
-console.log(avgDolphins);
+// Calculates average score - arrow function in one line
+const calcAverage = (a, b, c) => (a + b + c) / 3;
 
-// Stores Koalas score
-// let avgKoalas = calcAverage('Koalas', 65, 54, 49);/
-let avgKoalas = calcAverage('Koalas', 23, 34, 27);
-console.log(avgKoalas);
+// Test 1
+let avgDolphins = calcAverage(44, 23, 71);
+let avgKoalas = calcAverage(65, 54, 49);
+console.log(avgDolphins, avgKoalas);
 
 // Function to check winner with params of averages scores
 function checkWinner(avgDolphins, avgKoalas) {
     if (avgDolphins >= 2 * avgKoalas) {
-        return `Dolphin win`;
+        console.log(`Dolphin win (${avgDolphins} vs. ${avgKoalas})`);
+        // return `Dolphin win (${avgDolphins} vs. ${avgKoalas})`;
     } else if (avgDolphins >= 2 * avgKoalas) {
-        return `Koalas win`;
+        console.log(`Koalas win  (${avgKoalas} vs. ${avgDolphins})`)
+        // return `Koalas win  (${avgKoalas} vs. ${avgDolphins})`;
     } else {
-        return `No winner`;
+        console.log('No winner')
+        // return `No winner`;
     }
 }
 
-console.log(checkWinner(avgDolphins, avgKoalas));
+// console.log(checkWinner(avgDolphins, avgKoalas));
+checkWinner(avgDolphins, avgKoalas);
+
+// Test 2: Remove let as we don't want to create new variables - just re assign
+avgKoalas = calcAverage(23, 34, 27);
+avgDolphins = calcAverage(85, 54, 41);
+console.log(avgDolphins, avgKoalas);
+
+checkWinner(avgDolphins, avgKoalas);
+
+// Values are totally independant from avg
+// checkWinner(60, 30);
+*/
+
+///////////////////////////////////////
+// Introduction to Arrays
+
+const friend1 = 'Michael';
+const friend2 = 'Steven';
+const friend3 = 'Peter';
+
+// Literal syntax
+const friends = ['Michael', 'Steven', 'Peter'];
+console.log(friends);
+
+const y = new Array(1991, 1984, 2008, 2020);
+console.log(y);
+
+console.log(friends[0]);
+console.log(friends[2]);
+
+// Property .length - not 0 based
+console.log(friends.length);
+
+// To get the last element of the array
+console.log(friends[friends.length - 1]);
+
+// Only parimative value are mutable - we can mutate arrays.
+friends[2] = 'Jacob';
+console.log(friends);
+
+// Data structure with an array inside an array
+const jacob = ['Jacob', 'Cornwell', 2037 - 1996, 'Web Dev', friends];
+
+console.log(jacob);
+console.log(jacob.length);
+
+// Exercise
+
+const calcAge = function (birthYear) {
+    return 2037 - birthYear;
+}
+const years = [1990, 1967, 2002, 2010, 2018];
+
+const age1 = calcAge(years[0]);
+const age2 = calcAge(years[1]);
+const age3 = calcAge(years[years.length - 1]);
+
+console.log(age1, age2, age3);
+
+const ages = [calcAge(years[0]), calcAge(years[1]), calcAge(years[years.length - 1])];
+
+console.log(ages);
