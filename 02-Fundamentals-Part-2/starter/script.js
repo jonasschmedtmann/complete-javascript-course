@@ -173,7 +173,7 @@ checkWinner(avgDolphins, avgKoalas);
 
 // Values are totally independant from avg
 // checkWinner(60, 30);
-*/
+
 
 ///////////////////////////////////////
 // Introduction to Arrays
@@ -224,3 +224,147 @@ console.log(age1, age2, age3);
 const ages = [calcAge(years[0]), calcAge(years[1]), calcAge(years[years.length - 1])];
 
 console.log(ages);
+
+
+
+///////////////////////////////////////
+// Basic array methods
+
+const friends = ['Michael', 'Steven', 'Peter'];
+
+// .friends adds element to end of array - also logs array number
+const newLength = friends.push('Jay');
+console.log(friends);
+console.log(newLength);
+
+// .unshift adds element to start of array
+friends.unshift('John');
+console.log(friends);
+
+// Remove elements
+friends.pop(); // last element
+const popped = friends.pop(); // .pop logs removes element
+console.log(popped);
+console.log(friends);
+
+friends.shift(); // first element
+console.log(friends);
+
+console.log(friends.indexOf('Steven')); // returns index of element
+console.log(friends.indexOf('Bob')); // returns index -1 (not a element)
+
+// Test with strict equality.
+friends.push(23);
+console.log(friends.includes('Steven')); // .includes true
+console.log(friends.includes('Bob')); // false
+console.log(friends.includes(23)); // true
+
+if (friends.includes('Steven')) {
+    console.log('You have a firend called peter');
+};
+
+*/
+
+///////////////////////////////////////
+// Coding Challenge #2
+
+/*
+Steven is still building his tip calculator, using the same rules as before: Tip 15% of the bill if the bill value is between 50 and 300, and if the value is different, the tip is 20%.
+
+1. Write a function 'calcTip' that takes any bill value as an input and returns the corresponding tip, calculated based on the rules above (you can check out the code from first tip calculator challenge if you need to). Use the function type you like the most. Test the function using a bill value of 100.
+2. And now let's use arrays! So create an array 'bills' containing the test data below.
+3. Create an array 'tips' containing the tip value for each bill, calculated from the function you created before.
+4. BONUS: Create an array 'total' containing the total values, so the bill + tip.
+
+TEST DATA: 125, 555 and 44
+
+HINT: Remember that an array needs a value in each position, and that value can actually be the returned value of a function! So you can just call a function as array values (so don't store the tip values in separate variables first, but right in the new array) 😉
+
+GOOD LUCK 😀
+
+
+// Function to calculate tip
+const calcTip = function (bill) {
+    // if (bill >= 50 && bill <= 300) {
+    //     return (bill / 100) * 20;
+    // } else {
+    //     return (bill / 100) * 15;
+    // }
+    return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+}
+
+const bills = [125, 555, 44];
+const tips = [];
+const total = [];
+
+console.log(bills);
+
+// For loop to run through all bills and calculate tip
+for (let i = 0; i < bills.length; i++) {
+    tips.push(calcTip(bills[i]));
+}
+console.log(tips);
+
+// adds bills and tips to create total
+total.push(bills[0] + tips[0]);
+total.push(bills[1] + tips[1]);
+total.push(bills[2] + tips[2]);
+console.log(total);
+
+///////////////////////////////////////
+// Object Methods
+
+const jacob = {
+    firstName: 'Jacob',
+    lastName: 'Cornwell',
+    age: 2037 - 1996,
+    job: 'Web Developer',
+    friends: ['Michale', 'Peter', 'Steven']
+};
+
+console.log(jacob.age);
+
+///////////////////////////////////////
+// dot vs bracket notation
+
+const jacob = {
+    firstName: 'Jacob',
+    lastName: 'Cornwell',
+    age: 2037 - 1996,
+    job: 'Web Developer',
+    friends: ['Michael', 'Peter', 'Steven']
+};
+
+console.log(jacob);
+
+console.log(jacob.lastName);
+console.log(jacob['lastName']); // Put any expressions
+
+const nameKey = 'Name';
+console.log(jacob['first' + nameKey]);
+console.log(jacob['last' + nameKey]);
+
+// const interestedIn = prompt('What do you want to know about Jacob? Choose between firstName, lastName, age, job, friends');
+// console.log(jacob.interestedIn); // is not a property on object jacob so use bracket notation
+
+// if (jacob[interestedIn]) {
+//     console.log(jacob[interestedIn]);
+// } else {
+//     console.log('This is not a property');
+// }
+
+// jacob.location = 'Leeds';
+// jacob['twitter'] = '@jacob';
+// console.log(jacob);
+
+// Challenge
+// 'Jacob has 3 friends, and his best frienst and his best freind is called Michael (first person in array)
+
+console.log(`${jacob.firstName} has ${jacob.friends.length} friends, and his best friend is called ${jacob.friends[0]}`);
+
+*/
+
+///////////////////////////////////////
+// object methods
+
+
