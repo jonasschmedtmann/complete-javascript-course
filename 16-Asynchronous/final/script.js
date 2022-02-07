@@ -1,20 +1,29 @@
+// noinspection JSDeprecatedSymbols
+
 'use strict';
 
 const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
 
 const renderCountry = function (data, className = '') {
+
+  const name = data.name.common;
+  const flag = data.flags.svg;
+  const region = data.region;
+  const language = Object.values(data.languages)[0];
+  const currency = Object.values(data.currencies)[0].name;
+
   const html = `
   <article class="country ${className}">
-    <img class="country__img" src="${data.flag}" />
+    <img class="country__img" src="${flag}" />
     <div class="country__data">
-      <h3 class="country__name">${data.name}</h3>
-      <h4 class="country__region">${data.region}</h4>
+      <h3 class="country__name">${name}</h3>
+      <h4 class="country__region">${region}</h4>
       <p class="country__row"><span>👫</span>${(
-        +data.population / 1000000
-      ).toFixed(1)} people</p>
-      <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
-      <p class="country__row"><span>💰</span>${data.currencies[0].name}</p>
+      +data.population / 1000000
+  ).toFixed(1)} people</p>
+      <p class="country__row"><span>🗣️</span>${language}</p>
+      <p class="country__row"><span>💰</span>${currency}</p>
     </div>
   </article>
   `;
@@ -41,24 +50,30 @@ const getJSON = function (url, errorMsg = 'Something went wrong') {
 
 const getCountryData = function (country) {
   const request = new XMLHttpRequest();
-  request.open('GET', `https://restcountries.eu/rest/v2/name/${country}`);
+  request.open('GET', `https://restcountries.com/v3.1/name/${country}`);
   request.send();
 
   request.addEventListener('load', function () {
     const [data] = JSON.parse(this.responseText);
     console.log(data);
 
+    const name = data.name.common;
+    const flag = data.flags.svg;
+    const region = data.region;
+    const language = Object.values(data.languages)[0];
+    const currency = Object.values(data.currencies)[0].name;
+
     const html = `
   <article class="country">
-    <img class="country__img" src="${data.flag}" />
+    <img class="country__img" src="${flag}" />
     <div class="country__data">
-      <h3 class="country__name">${data.name}</h3>
-      <h4 class="country__region">${data.region}</h4>
+      <h3 class="country__name">${name}</h3>
+      <h4 class="country__region">${region}</h4>
       <p class="country__row"><span>👫</span>${(
         +data.population / 1000000
       ).toFixed(1)} people</p>
-      <p class="country__row"><span>🗣️</span>${data.languages[0].name}</p>
-      <p class="country__row"><span>💰</span>${data.currencies[0].name}</p>
+      <p class="country__row"><span>🗣️</span>${language}</p>
+      <p class="country__row"><span>💰</span>${currency}</p>
     </div>
   </article>
   `;
@@ -79,7 +94,7 @@ getCountryData('germany');
 const getCountryAndNeighbour = function (country) {
   // AJAX call country 1
   const request = new XMLHttpRequest();
-  request.open('GET', `https://restcountries.eu/rest/v2/name/${country}`);
+  request.open('GET', `https://restcountries.com/v3.1/name/${country}`);
   request.send();
 
   request.addEventListener('load', function () {
@@ -96,11 +111,11 @@ const getCountryAndNeighbour = function (country) {
 
     // AJAX call country 2
     const request2 = new XMLHttpRequest();
-    request2.open('GET', `https://restcountries.eu/rest/v2/alpha/${neighbour}`);
+    request2.open('GET', `https://restcountries.com/v3.1/alpha/${neighbour}`);
     request2.send();
 
     request2.addEventListener('load', function () {
-      const data2 = JSON.parse(this.responseText);
+      const [data2] = JSON.parse(this.responseText);
       console.log(data2);
 
       renderCountry(data2, 'neighbour');
@@ -124,7 +139,6 @@ setTimeout(() => {
   }, 1000);
 }, 1000);
 
-
 ///////////////////////////////////////
 // Consuming Promises
 // Chaining Promises
@@ -132,7 +146,7 @@ setTimeout(() => {
 // Throwing Errors Manually
 
 // const getCountryData = function (country) {
-//   fetch(`https://restcountries.eu/rest/v2/name/${country}`)
+//   fetch(`https://restcountries.com/v3.1/name/${country}`)
 //     .then(function (response) {
 //       console.log(response);
 //       return response.json();
@@ -145,7 +159,7 @@ setTimeout(() => {
 
 // const getCountryData = function (country) {
 //   // Country 1
-//   fetch(`https://restcountries.eu/rest/v2/name/${country}`)
+//   fetch(`https://restcountries.com/v3.1/name/${country}`)
 //     .then(response => {
 //       console.log(response);
 
@@ -162,7 +176,7 @@ setTimeout(() => {
 //       if (!neighbour) return;
 
 //       // Country 2
-//       return fetch(`https://restcountries.eu/rest/v2/alpha/${neighbour}`);
+//       return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
 //     })
 //     .then(response => {
 //       if (!response.ok)
@@ -170,7 +184,10 @@ setTimeout(() => {
 
 //       return response.json();
 //     })
-//     .then(data => renderCountry(data, 'neighbour'))
+//     .then(data => {
+//       [data] = data;
+//       renderCountry(data, 'neighbour')
+//     })
 //     .catch(err => {
 //       console.error(`${err} 💥💥💥`);
 //       renderError(`Something went wrong 💥💥 ${err.message}. Try again!`);
@@ -183,7 +200,7 @@ setTimeout(() => {
 const getCountryData = function (country) {
   // Country 1
   getJSON(
-    `https://restcountries.eu/rest/v2/name/${country}`,
+    `https://restcountries.com/v3.1/name/${country}`,
     'Country not found'
   )
     .then(data => {
@@ -194,12 +211,15 @@ const getCountryData = function (country) {
 
       // Country 2
       return getJSON(
-        `https://restcountries.eu/rest/v2/alpha/${neighbour}`,
+        `https://restcountries.com/v3.1/alpha/${neighbour}`,
         'Country not found'
       );
     })
 
-    .then(data => renderCountry(data, 'neighbour'))
+    .then(data => {
+      [data] = data;
+      renderCountry(data, 'neighbour')
+    })
     .catch(err => {
       console.error(`${err} 💥💥💥`);
       renderError(`Something went wrong 💥💥 ${err.message}. Try again!`);
@@ -254,20 +274,21 @@ const whereAmI = function (lat, lng) {
       console.log(data);
       console.log(`You are in ${data.city}, ${data.country}`);
 
-      return fetch(`https://restcountries.eu/rest/v2/name/${data.country}`);
+      return fetch(`https://restcountries.com/v3.1/name/${data.country}`);
     })
     .then(res => {
       if (!res.ok) throw new Error(`Country not found (${res.status})`);
 
       return res.json();
     })
-    .then(data => renderCountry(data[0]))
+    .then(data => {
+      renderCountry(data[0]);
+    })
     .catch(err => console.error(`${err.message} 💥`));
 };
 whereAmI(52.508, 13.381);
 whereAmI(19.037, 72.873);
 whereAmI(-33.933, 18.474);
-
 
 ///////////////////////////////////////
 // The Event Loop in Practice
@@ -336,7 +357,6 @@ wait(1)
 Promise.resolve('abc').then(x => console.log(x));
 Promise.reject(new Error('Problem!')).catch(x => console.error(x));
 
-
 ///////////////////////////////////////
 // Promisifying the Geolocation API
 const getPosition = function () {
@@ -352,28 +372,28 @@ const getPosition = function () {
 
 const whereAmI = function () {
   getPosition()
-    .then(pos => {
-      const { latitude: lat, longitude: lng } = pos.coords;
+      .then(pos => {
+        const {latitude: lat, longitude: lng} = pos.coords;
 
-      return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
-    })
-    .then(res => {
-      if (!res.ok) throw new Error(`Problem with geocoding ${res.status}`);
-      return res.json();
-    })
-    .then(data => {
-      console.log(data);
-      console.log(`You are in ${data.city}, ${data.country}`);
+        return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+      })
+      .then(res => {
+        if (!res.ok) throw new Error(`Problem with geocoding ${res.status}`);
+        return res.json();
+      })
+      .then(data => {
+        console.log(data);
+        console.log(`You are in ${data.city}, ${data.prov}`);
 
-      return fetch(`https://restcountries.eu/rest/v2/name/${data.country}`);
-    })
-    .then(res => {
-      if (!res.ok) throw new Error(`Country not found (${res.status})`);
+        return fetch(`https://restcountries.com/v3.1/alpha/${data.prov}`);
+      })
+      .then(res => {
+        if (!res.ok) throw new Error(`Country not found (${res.status})`);
 
-      return res.json();
-    })
-    .then(data => renderCountry(data[0]))
-    .catch(err => console.error(`${err.message} 💥`));
+        return res.json();
+      })
+      .then(data => renderCountry(data[0]))
+      .catch(err => console.error(`${err.message} 💥`));
 };
 
 btn.addEventListener('click', whereAmI);
@@ -462,7 +482,7 @@ const getPosition = function () {
   });
 };
 
-// fetch(`https://restcountries.eu/rest/v2/name/${country}`).then(res => console.log(res))
+// fetch(`https://restcountries.com/v3.1/name/${country}`).then(res => console.log(res))
 
 const whereAmI = async function () {
   try {
@@ -479,12 +499,12 @@ const whereAmI = async function () {
 
     // Country data
     const res = await fetch(
-      `https://restcountries.eu/rest/v2/name/${dataGeo.country}`
+      `https://restcountries.com/v3.1/alpha/${dataGeo.prov}`
     );
-    
+
     // BUG in video:
     // if (!resGeo.ok) throw new Error('Problem getting country');
-    
+
     // FIX:
     if (!res.ok) throw new Error('Problem getting country');
 
@@ -531,13 +551,13 @@ const whereAmI = async function () {
 
     // Country data
     const res = await fetch(
-      `https://restcountries.eu/rest/v2/name/${dataGeo.country}`
+      `https://restcountries.com/v3.1/alpha/${dataGeo.prov}`
     );
     if (!resGeo.ok) throw new Error('Problem getting country');
     const data = await res.json();
     renderCountry(data[0]);
 
-    return `You are in ${dataGeo.city}, ${dataGeo.country}`;
+    return `You are in ${dataGeo.city}, ${dataGeo.prov}`;
   } catch (err) {
     console.error(`${err} 💥`);
     renderError(`💥 ${err.message}`);
@@ -572,20 +592,20 @@ console.log('1: Will get location');
 const get3Countries = async function (c1, c2, c3) {
   try {
     // const [data1] = await getJSON(
-    //   `https://restcountries.eu/rest/v2/name/${c1}`
+    //   `https://restcountries.com/v3.1/name/${c1}`
     // );
     // const [data2] = await getJSON(
-    //   `https://restcountries.eu/rest/v2/name/${c2}`
+    //   `https://restcountries.com/v3.1/name/${c2}`
     // );
     // const [data3] = await getJSON(
-    //   `https://restcountries.eu/rest/v2/name/${c3}`
+    //   `https://restcountries.com/v3.1/name/${c3}`
     // );
     // console.log([data1.capital, data2.capital, data3.capital]);
 
     const data = await Promise.all([
-      getJSON(`https://restcountries.eu/rest/v2/name/${c1}`),
-      getJSON(`https://restcountries.eu/rest/v2/name/${c2}`),
-      getJSON(`https://restcountries.eu/rest/v2/name/${c3}`),
+      getJSON(`https://restcountries.com/v3.1/name/${c1}`),
+      getJSON(`https://restcountries.com/v3.1/name/${c2}`),
+      getJSON(`https://restcountries.com/v3.1/name/${c3}`),
     ]);
     console.log(data.map(d => d[0].capital));
   } catch (err) {
@@ -600,9 +620,9 @@ get3Countries('portugal', 'canada', 'tanzania');
 // Promise.race
 (async function () {
   const res = await Promise.race([
-    getJSON(`https://restcountries.eu/rest/v2/name/italy`),
-    getJSON(`https://restcountries.eu/rest/v2/name/egypt`),
-    getJSON(`https://restcountries.eu/rest/v2/name/mexico`),
+    getJSON(`https://restcountries.com/v3.1/name/italy`),
+    getJSON(`https://restcountries.com/v3.1/name/egypt`),
+    getJSON(`https://restcountries.com/v3.1/name/mexico`),
   ]);
   console.log(res[0]);
 })();
@@ -616,7 +636,7 @@ const timeout = function (sec) {
 };
 
 Promise.race([
-  getJSON(`https://restcountries.eu/rest/v2/name/tanzania`),
+  getJSON(`https://restcountries.com/v3.1/name/tanzania`),
   timeout(5),
 ])
   .then(res => console.log(res[0]))
