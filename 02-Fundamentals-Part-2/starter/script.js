@@ -1,0 +1,1 @@
+calAverage => scores / 3;
