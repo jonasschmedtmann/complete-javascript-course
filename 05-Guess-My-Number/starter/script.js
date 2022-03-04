@@ -33,7 +33,7 @@ const guessNumber = () => {
 
   if (!guess) displayMessage('⛔️ No number!');
 
-  doGuess(guuess)
+  doGuess(guess)
     .then(() => {
       displayMessage('🎉 Correct Number!');
       displaySuccess();
