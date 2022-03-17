@@ -72,18 +72,17 @@ console.log(age4);
 // Arrow function - Great for quick one-line functions. Has no 'this' keyword
 // Three different ways of writing functions, but they all work in a similar way: receive data, transform data, and then output data
 
-// ----------------------------------------------------------------
-// Coding Challenge #1
+// -------------------------------- Coding Challenge #1 --------------------------------
 
-const calcAverage = (score1, score2, score3, score4, score5, score6) => {
+const calcAverage1 = (score1, score2, score3, score4, score5, score6) => {
   const avgDolphins = (score1 + score2 + score3) / 3;
   const avgKoalas = (score4 + score5 + score6) / 3;
   console.log(`Average Dolphins score: ${avgDolphins}`);
   console.log(`Average Koalas score: ${avgKoalas}`);
-  checkWinner(avgDolphins, avgKoalas);
+  checkWinner1(avgDolphins, avgKoalas);
 };
 
-const checkWinner = function (avgDolphins, avgKoalas) {
+const checkWinner1 = function (avgDolphins, avgKoalas) {
   if (avgDolphins >= avgKoalas * 2) {
     console.log(`Dolphins win (${avgDolphins} vs. ${avgKoalas})`);
   } else if (avgKoalas >= avgDolphins * 2) {
@@ -93,10 +92,10 @@ const checkWinner = function (avgDolphins, avgKoalas) {
   }
 };
 
-console.log(calcAverage(44, 23, 71, 65, 54, 59));
-console.log(calcAverage(85, 54, 41, 23, 34, 27));
+console.log(calcAverage1(44, 23, 71, 65, 54, 59));
+console.log(calcAverage1(85, 54, 41, 23, 34, 27));
 
-// -------------------------------- Answer --------------------------------
+// ---------------- Answer ----------------
 
 const calcAverage = (a, b, c) => (a + b + c) / 3;
 console.log(calcAverage(3, 4, 5));
@@ -112,18 +111,63 @@ const checkWinner = function (avgDolphins, avgKoalas) {
   } else if (avgKoalas >= 2 * avgDolphins) {
     console.log(`Koalas win 🏆 (${avgKoalas} vs. ${avgDolphins})`);
   } else {
-    console.log('No team wins...');
+    console.log("No team wins...");
   }
-}
+};
 checkWinner(scoreDolphins, scoreKoalas);
 
-checkWinner(576, 111);
+checkWinner(576, 111); // Testing with random numbers
 
 // Test 2
 scoreDolphins = calcAverage(85, 54, 41);
 scoreKoalas = calcAverage(23, 34, 27);
 console.log(scoreDolphins, scoreKoalas);
 checkWinner(scoreDolphins, scoreKoalas);
+
+// ----------------------------------------------------------------
+
+const ages = [
+  calcAge(years[0]),
+  calcAge(years[1]),
+  calcAge(years[years.length - 1]), // This will get the last one in the array
+];
+// You can place function calls into an array because they're expressions (i.e they produce values)
+
+// Methods are basically array operations
+
+// Basic array methods: push, slice, shift, etc.
+
+// -------------------------------- Coding Challenge #2 --------------------------------
+
+// const bill = 430;
+// const tip = bill <= 300 && bill >= 50 ? bill * 0.15 : bill * 0.2;
+// console.log(
+//   `The bill was ${bill}, the tip was ${tip}, and the total value ${bill + tip}`
+// );
+
+const calcTip = function (bill) {
+  const tip = bill <= 300 && bill >= 50 ? bill * 0.15 : bill * 0.2;
+  // return tip;
+  // console.log(
+  //   `The bill was ${bill}, the tip was ${tip}, and the total value was ${
+  //     bill + tip
+  //   }`
+  tips.push(tip);
+  console.log(tips);
+};
+
+const bills = [125, 555, 44];
+const tips = [];
+const total = [];
+
+bills.forEach((bill) => {
+  // console.log(bill);
+  calcTip(bill);
+});
+
+// ----------------------------------------------------------------
+
+// ----------------------------------------------------------------
 
 // ----------------------------------------------------------------
 
