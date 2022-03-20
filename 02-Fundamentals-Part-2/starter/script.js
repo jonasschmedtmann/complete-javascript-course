@@ -145,7 +145,7 @@ const ages = [
 //   `The bill was ${bill}, the tip was ${tip}, and the total value ${bill + tip}`
 // );
 
-const calcTip = function (bill) {
+const calcTip1 = function (bill) {
   const tip = bill <= 300 && bill >= 50 ? bill * 0.15 : bill * 0.2;
   // return tip;
   // console.log(
@@ -156,14 +156,29 @@ const calcTip = function (bill) {
   console.log(tips);
 };
 
-const bills = [125, 555, 44];
-const tips = [];
-const total = [];
+const bills1 = [125, 555, 44];
+const tips1 = [];
+const total1 = [];
 
 bills.forEach((bill) => {
   // console.log(bill);
   calcTip(bill);
 });
+
+// ---------------- Answer ----------------
+
+const calcTip = function (bill) {
+  return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+};
+// const calcTip = bill => bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+
+const bills = [125, 555, 44];
+const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
+const totals = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
+// Note how this is cleaner than creating extra variables
+// Also note how 'const totals = bills + tips' would not work because you can't do operations on arrays. It would just concatenate strings
+
+console.log(bills, tips, totals);
 
 // ----------------------------------------------------------------
 
