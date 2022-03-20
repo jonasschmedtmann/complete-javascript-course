@@ -115,4 +115,11 @@ console.log(`I like to drink ${age >= 18 ? 'wine 🍇' : 'sorry 🙅🏻‍♂�
 
 ///////////////
 
-// hi
+let bill = 430;
+const tip = 50 <= bill <= 300 ? 15 : 20;
+
+console.log(`The bill was ${bill}, the tip was ${tip/100*bill}, and the total value is  ${bill + (tip/100*bill)}`);
+
+//////////////
+
+
