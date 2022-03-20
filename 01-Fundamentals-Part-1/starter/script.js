@@ -109,8 +109,10 @@ if(day === 'monday'){
 const age = 33;
 
 age >= 18 ? console.log("I want to drink wine 🍇") :  console.log("Sorry no wine for you 🙅🏻‍♂️");
-const drink = age >= 18 ? 'wine 🍇' : 'sorry 🙅🏻‍♂️';
+const drink = age >= 18 ? 'wine 🍇' : 'sorry 🙅🏻‍♂️'; // produces an output and hence is 
 
 console.log(`I like to drink ${age >= 18 ? 'wine 🍇' : 'sorry 🙅🏻‍♂️'}`)
 
 ///////////////
+
+// hi
