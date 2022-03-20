@@ -182,6 +182,39 @@ console.log(bills, tips, totals);
 
 // ----------------------------------------------------------------
 
+// Objects are used to group together variables that belong together.
+// One big difference between objects and arrays is that in objects the order you want to retrieve them does not matter at all, whereas in arrays it does. You can only access array eleemnts using their order number. Arrays are useful for more ordered data and objects for more unstructured data.
+// Objects are possibly the most fundamental concept in all of JavaScript and there are many ways of creating them. Curly braces are the easist way. It's called the object literal syntax because we are literally writing down the entire object content.
+
+// Two ways of retrieving data from an object: dot notation and bracket notation
+console.log(jonas.lastName);
+console.log(jonas["lastName"]); // These are the exact same thing. Note however that it is a string
+
+// One difference is that you can put any expression in the brackets. Dot notation is cleaner so consider using that when able
+const nameKey = "Name";
+console.log(jonas["first" + nameKey]);
+console.log(jonas["last" + nameKey]);
+
+// How to add to an object
+jonas.location = "Portugal";
+jonas["twitter"] = "@jonasschmedtman";
+
+const jonas = {
+  firstName: "Jonas",
+  lastName: "Schmedtmann",
+  birthYeah: 1991,
+  job: "teacher",
+  friends: ["Michael", "Peter", "Steven"],
+  hasDriversLicense: true,
+};
+
+console.log(
+  `${jonas.firstName} has ${jonas.friends.length} friends, and his best friend is called ${jonas.friends[0]}`
+);
+
+// Operator precedence: dot (Member Access) and bracket (Computed Member Access) notations have very high precedence and are both left-to-right
+// So in the string above, 'jonas.friends' is executed first, then '.length' and '[0]'
+
 // ----------------------------------------------------------------
 
 // ----------------------------------------------------------------
