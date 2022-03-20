@@ -25,5 +25,15 @@ const calcAge3 = function (birthYear){
 }
 
 // arrow function, shorter way for function expression
-// pro tip: good for one liner functions
+// pro tip: good for one liner functions, do not get the this-statement
 const calcAge4 = birthYear => 2022 - birthYear;
+
+const yearsUntilRetirement = (birthYear, firstName) => {
+    const age = 2022 - birthYear;
+    const retirement = 65 - age;
+    return `My name is ${firstName} and I retire in ${retirement} years.`
+}
+
+console.log(yearsUntilRetirement(1988,"Vincenzo"));
+
+
