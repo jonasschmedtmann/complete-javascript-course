@@ -10,8 +10,8 @@ const passTest = true;
 if (passTest) hasDriversLicense = true;
 if (hasDriversLicense) console.log("I can drive :D");
 
-const interface = "Audio"; // Yields an error because interface is a reserved word that might be implemented in the future
-const private = 534; // Same thing. Strict mode reserves these words so we can't use them as variables
+// const interface = "Audio"; // Yields an error because interface is a reserved word that might be implemented in the future
+// const private = 534; // Same thing. Strict mode reserves these words so we can't use them as variables
 
 // ----------------------------------------------------------------
 
@@ -92,8 +92,8 @@ const checkWinner1 = function (avgDolphins, avgKoalas) {
   }
 };
 
-console.log(calcAverage1(44, 23, 71, 65, 54, 59));
-console.log(calcAverage1(85, 54, 41, 23, 34, 27));
+// console.log(calcAverage1(44, 23, 71, 65, 54, 59));
+// console.log(calcAverage1(85, 54, 41, 23, 34, 27));
 
 // ---------------- Answer ----------------
 
@@ -126,11 +126,11 @@ checkWinner(scoreDolphins, scoreKoalas);
 
 // ----------------------------------------------------------------
 
-const ages = [
-  calcAge(years[0]),
-  calcAge(years[1]),
-  calcAge(years[years.length - 1]), // This will get the last one in the array
-];
+// const ages = [
+//   calcAge(years[0]),
+//   calcAge(years[1]),
+//   calcAge(years[years.length - 1]), // This will get the last one in the array
+// ];
 // You can place function calls into an array because they're expressions (i.e they produce values)
 
 // Methods are basically array operations
@@ -152,17 +152,17 @@ const calcTip1 = function (bill) {
   //   `The bill was ${bill}, the tip was ${tip}, and the total value was ${
   //     bill + tip
   //   }`
-  tips.push(tip);
-  console.log(tips);
+  tips1.push(tip);
+  console.log(tips1);
 };
 
 const bills1 = [125, 555, 44];
 const tips1 = [];
 const total1 = [];
 
-bills.forEach((bill) => {
+bills1.forEach((bill) => {
   // console.log(bill);
-  calcTip(bill);
+  calcTip1(bill);
 });
 
 // ---------------- Answer ----------------
@@ -187,17 +187,17 @@ console.log(bills, tips, totals);
 // Objects are possibly the most fundamental concept in all of JavaScript and there are many ways of creating them. Curly braces are the easist way. It's called the object literal syntax because we are literally writing down the entire object content.
 
 // Two ways of retrieving data from an object: dot notation and bracket notation
-console.log(jonas.lastName);
-console.log(jonas["lastName"]); // These are the exact same thing. Note however that it is a string
+// console.log(jonas.lastName);
+// console.log(jonas["lastName"]); // These are the exact same thing. Note however that it is a string
 
 // One difference is that you can put any expression in the brackets. Dot notation is cleaner so consider using that when able
-const nameKey = "Name";
-console.log(jonas["first" + nameKey]);
-console.log(jonas["last" + nameKey]);
+// const nameKey = "Name";
+// console.log(jonas["first" + nameKey]);
+// console.log(jonas["last" + nameKey]);
 
 // How to add to an object
-jonas.location = "Portugal";
-jonas["twitter"] = "@jonasschmedtman";
+// jonas.location = "Portugal";
+// jonas["twitter"] = "@jonasschmedtman";
 
 const jonas = {
   firstName: "Jonas",
@@ -217,6 +217,87 @@ console.log(
 
 // ----------------------------------------------------------------
 
-// ----------------------------------------------------------------
+// Object Methods
+
+const jonas2 = {
+  firstName: "Jonas",
+  lastName: "Schmedtmann",
+  birthYear: 1991,
+  job: "teacher",
+  friends: ["Michael", "Peter", "Steven"],
+  hasDriversLicense: true,
+
+  // calcAge: function (birthYear) {
+  //   return 2037 - birthYear;
+  // }
+
+  // calcAge: function () {
+  //   // console.log(this);
+  //   // Displays the entire object
+  //   return 2037 - this.birthYear;
+  //   // You could write 'jonas,birthYear' but this isn't optimal since it repeats code and could cause issues if you ever need to rename anything.
+  // }
+
+  calcAge: function () {
+    this.age = 2037 - this.birthYear;
+    // Creates a new property on the object
+    return this.age;
+    // 'this' is a keyword/variable that's equal to the object calling the method
+    // You don't have to have 'return' in there but it's good practice
+  },
+
+  getSummary: function () {
+    return `${this.firstName} is a ${this.calcAge()}-year old ${
+      jonas2.job
+    }, and he has ${this.hasDriversLicense ? "a" : "no"} driver's license.`;
+  },
+};
+
+// console.log(jonas2.calcAge(1991));
+// console.log(jonas2["calcAge(1991)"]);
+// These, however, are not optimal even if they don't cause errors. They don't leave the code dry; they repeat data
+console.log(jonas2.calcAge());
+
+// -------------------------------- Coding Challenge #3 --------------------------------
+
+// Let's go back to Mark and John comparing their BMIs! This time, let's use objects to implement the calculations! Remember: BMI = mass / height ** 2 = mass / (height * height). (mass in kg and height in meter)
+
+// 1. For each of them, create an object with properties for their full name, mass, and height (Mark Miller and John Smith)
+// 2. Create a 'calcBMI' method on each object to calculate the BMI (the same method on both objects). Store the BMI value to a property, and also return it from the method.
+// 3. Log to the console who has the higher BMI, together with the full name and the respective BMI. Example: "John Smith's BMI (28.3) is higher than Mark Miller's (23.9)!"
+
+// TEST DATA: Marks weights 78 kg and is 1.69 m tall. John weights 92 kg and is 1.95 m tall.
+
+const mark = {
+  firstName: "Mark",
+  lastName: "Miller",
+  mass: 78,
+  height: 1.69,
+  calcBMI: function () {
+    return this.mass / this.height ** 2;
+  },
+};
+
+const john = {
+  firstName: "John",
+  lastName: "Smith",
+  mass: 92,
+  height: 1.95,
+  calcBMI: function () {
+    return this.mass / this.height ** 2;
+  },
+};
+
+if (mark.calcBMI() > john.calcBMI()) {
+  console.log(
+    `Mark's BMI (${mark.calcBMI()}) is higher than John's (${john.calcBMI()})!`
+  );
+} else {
+  console.log(
+    `John's BMI (${john.calcBMI()}) is higher than Mark's (${mark.calcBMI()})!`
+  );
+}
+
+// ---------------- Answer ----------------
 
 // ----------------------------------------------------------------
