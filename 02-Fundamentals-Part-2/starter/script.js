@@ -300,4 +300,94 @@ if (mark.calcBMI() > john.calcBMI()) {
 
 // ---------------- Answer ----------------
 
+const mark2 = {
+  fullName: "Mark Miller",
+  mass: 78,
+  height: 1.69,
+  calcBMI: function () {
+    this.bmi = this.mass / this.height ** 2;
+    return this.bmi;
+  },
+};
+
+const john2 = {
+  fullName: "John Smith",
+  mass: 92,
+  height: 1.95,
+  calcBMI: function () {
+    this.bmi = this.mass / this.height ** 2;
+    return this.bmi;
+  },
+};
+
+mark2.calcBMI();
+john2.calcBMI();
+
+// console.log(mark2.bmi, john2.bmi);
+
+if (mark2.bmi > john2.bmi) {
+  console.log(
+    `${mark2.fullName}'s BMI (${mark2.bmi}) is higher than ${john2.fullName}'s BMI (${john2.bmi})`
+  );
+} else if (john.bmi > mark.bmi) {
+  console.log(
+    `${john2.fullName}'s BMI (${john2.bmi}) is higher than ${mark2.fullName}'s BMI (${mark2.bmi})`
+  );
+}
+
+// ----------------------------------------------------------------
+
+// One of the things for loops are most used for is looping through arrays
+
+const jonasArray = [
+  "Jonas",
+  "Schmedtmann",
+  2037 - 1991,
+  "teacher",
+  ["Michael", "Peter", "Steven"],
+  true,
+];
+const types = [];
+
+for (let i = 0; i < jonasArray.length; i++) {
+  // Reading from jonas array
+  console.log(jonasArray[i], typeof jonasArray[i]);
+
+  // Filling types array
+  types[i] = typeof jonasArray[i];
+  // types.push(typeof jonas[i]);
+}
+
+console.log(types);
+
+const years = [1991, 2007, 1969, 2020];
+const ages = [];
+
+for (let i = 0; i < years.length; i++) {
+  ages.push(2037 - years[i]);
+}
+console.log(ages);
+
+// continue and break
+console.log("--- ONLY STRINGS ---");
+for (let i = 0; i < jonasArray.length; i++) {
+  if (typeof jonasArray[i] !== "string") continue;
+  // This will filter out anything that isn't a string
+
+  console.log(jonasArray[i], typeof jonasArray[i]);
+}
+
+console.log("--- BREAK WITH NUMBER ---");
+for (let i = 0; i < jonasArray.length; i++) {
+  if (typeof jonasArray[i] === "number") break;
+
+  console.log(jonasArray[i], typeof jonasArray[i]);
+}
+
+// ----------------------------------------------------------------
+
+// ----------------------------------------------------------------
+
+// ----------------------------------------------------------------
+
 // ----------------------------------------------------------------
