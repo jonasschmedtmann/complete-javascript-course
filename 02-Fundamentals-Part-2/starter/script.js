@@ -26,7 +26,7 @@ function fruitProcessor(apples, oranges) {
 
 // fruitProcessor(5, 0); // Logs just 5 0
 const appleJuice = fruitProcessor(5, 0);
-console.log(appleJuice); // Logs the full "Juice with 5 apples and 0 oranges."
+// console.log(appleJuice); // Logs the full "Juice with 5 apples and 0 oranges."
 // console.log(fruitProcessor(5, 0)); // Logs the same thing, just doesn't create a variable
 
 // The coding principle DRY: Don't Repeat Yourself
@@ -56,7 +56,7 @@ const calcAge3 = function (birthYear) {
 };
 const age3 = calcAge3(1991);
 
-console.log(age2, age3);
+// console.log(age2, age3);
 
 // A big difference is that declarations can be called before they're defined in the code, although that may not be a great idea in some cases. You can prefer one over the other but both have their place in JavaScript
 
@@ -65,7 +65,7 @@ console.log(age2, age3);
 // Arrow function version of above
 const calcAge4 = (birthYear) => 2037 - birthYear;
 const age4 = calcAge4(1991);
-console.log(age4);
+// console.log(age4);
 
 // Function declaration - function that can be used before it is delcared
 // Function expression - essentially a function VALUE stored in a variable
@@ -98,12 +98,12 @@ const checkWinner1 = function (avgDolphins, avgKoalas) {
 // ---------------- Answer ----------------
 
 const calcAverage = (a, b, c) => (a + b + c) / 3;
-console.log(calcAverage(3, 4, 5));
+// console.log(calcAverage(3, 4, 5));
 
 // Test 1
 let scoreDolphins = calcAverage(44, 23, 71);
 let scoreKoalas = calcAverage(65, 54, 49);
-console.log(scoreDolphins, scoreKoalas);
+// console.log(scoreDolphins, scoreKoalas);
 
 const checkWinner = function (avgDolphins, avgKoalas) {
   if (avgDolphins >= 2 * avgKoalas) {
@@ -121,7 +121,7 @@ checkWinner(576, 111); // Testing with random numbers
 // Test 2
 scoreDolphins = calcAverage(85, 54, 41);
 scoreKoalas = calcAverage(23, 34, 27);
-console.log(scoreDolphins, scoreKoalas);
+// console.log(scoreDolphins, scoreKoalas);
 checkWinner(scoreDolphins, scoreKoalas);
 
 // ----------------------------------------------------------------
@@ -153,7 +153,7 @@ const calcTip1 = function (bill) {
   //     bill + tip
   //   }`
   tips1.push(tip);
-  console.log(tips1);
+  // console.log(tips1);
 };
 
 const bills1 = [125, 555, 44];
@@ -178,7 +178,7 @@ const totals = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
 // Note how this is cleaner than creating extra variables
 // Also note how 'const totals = bills + tips' would not work because you can't do operations on arrays. It would just concatenate strings
 
-console.log(bills, tips, totals);
+// console.log(bills, tips, totals);
 
 // ----------------------------------------------------------------
 
@@ -208,9 +208,9 @@ const jonas = {
   hasDriversLicense: true,
 };
 
-console.log(
-  `${jonas.firstName} has ${jonas.friends.length} friends, and his best friend is called ${jonas.friends[0]}`
-);
+// console.log(
+//   `${jonas.firstName} has ${jonas.friends.length} friends, and his best friend is called ${jonas.friends[0]}`
+// );
 
 // Operator precedence: dot (Member Access) and bracket (Computed Member Access) notations have very high precedence and are both left-to-right
 // So in the string above, 'jonas.friends' is executed first, then '.length' and '[0]'
@@ -256,7 +256,7 @@ const jonas2 = {
 // console.log(jonas2.calcAge(1991));
 // console.log(jonas2["calcAge(1991)"]);
 // These, however, are not optimal even if they don't cause errors. They don't leave the code dry; they repeat data
-console.log(jonas2.calcAge());
+// console.log(jonas2.calcAge());
 
 // -------------------------------- Coding Challenge #3 --------------------------------
 
@@ -288,15 +288,15 @@ const john = {
   },
 };
 
-if (mark.calcBMI() > john.calcBMI()) {
-  console.log(
-    `Mark's BMI (${mark.calcBMI()}) is higher than John's (${john.calcBMI()})!`
-  );
-} else {
-  console.log(
-    `John's BMI (${john.calcBMI()}) is higher than Mark's (${mark.calcBMI()})!`
-  );
-}
+// if (mark.calcBMI() > john.calcBMI()) {
+//   console.log(
+//     `Mark's BMI (${mark.calcBMI()}) is higher than John's (${john.calcBMI()})!`
+//   );
+// } else {
+//   console.log(
+//     `John's BMI (${john.calcBMI()}) is higher than Mark's (${mark.calcBMI()})!`
+//   );
+// }
 
 // ---------------- Answer ----------------
 
@@ -325,15 +325,15 @@ john2.calcBMI();
 
 // console.log(mark2.bmi, john2.bmi);
 
-if (mark2.bmi > john2.bmi) {
-  console.log(
-    `${mark2.fullName}'s BMI (${mark2.bmi}) is higher than ${john2.fullName}'s BMI (${john2.bmi})`
-  );
-} else if (john.bmi > mark.bmi) {
-  console.log(
-    `${john2.fullName}'s BMI (${john2.bmi}) is higher than ${mark2.fullName}'s BMI (${mark2.bmi})`
-  );
-}
+// if (mark2.bmi > john2.bmi) {
+//   console.log(
+//     `${mark2.fullName}'s BMI (${mark2.bmi}) is higher than ${john2.fullName}'s BMI (${john2.bmi})`
+//   );
+// } else if (john.bmi > mark.bmi) {
+//   console.log(
+//     `${john2.fullName}'s BMI (${john2.bmi}) is higher than ${mark2.fullName}'s BMI (${mark2.bmi})`
+//   );
+// }
 
 // ----------------------------------------------------------------
 
@@ -351,14 +351,14 @@ const types = [];
 
 for (let i = 0; i < jonasArray.length; i++) {
   // Reading from jonas array
-  console.log(jonasArray[i], typeof jonasArray[i]);
+  // console.log(jonasArray[i], typeof jonasArray[i]);
 
   // Filling types array
   types[i] = typeof jonasArray[i];
   // types.push(typeof jonas[i]);
 }
 
-console.log(types);
+// console.log(types);
 
 const years = [1991, 2007, 1969, 2020];
 const ages = [];
@@ -366,25 +366,33 @@ const ages = [];
 for (let i = 0; i < years.length; i++) {
   ages.push(2037 - years[i]);
 }
-console.log(ages);
+// console.log(ages);
 
 // continue and break
-console.log("--- ONLY STRINGS ---");
+// console.log("--- ONLY STRINGS ---");
 for (let i = 0; i < jonasArray.length; i++) {
   if (typeof jonasArray[i] !== "string") continue;
   // This will filter out anything that isn't a string
 
-  console.log(jonasArray[i], typeof jonasArray[i]);
+  // console.log(jonasArray[i], typeof jonasArray[i]);
 }
 
-console.log("--- BREAK WITH NUMBER ---");
+// console.log("--- BREAK WITH NUMBER ---");
 for (let i = 0; i < jonasArray.length; i++) {
   if (typeof jonasArray[i] === "number") break;
 
-  console.log(jonasArray[i], typeof jonasArray[i]);
+  // console.log(jonasArray[i], typeof jonasArray[i]);
 }
 
 // ----------------------------------------------------------------
+
+let dice = Math.trunc(Math.random() * 6) + 1;
+
+while (dice !== 6) {
+  console.log(`You rolled a ${dice}`);
+  dice = Math.trunc(Math.random() * 6) + 1; // If you don't include the '+1', it seems to run infinitely
+  if (dice === 6) console.log("You rolled a 6, gottdang it. Ya blew it!");
+}
 
 // ----------------------------------------------------------------
 
