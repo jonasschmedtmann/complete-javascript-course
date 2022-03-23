@@ -660,7 +660,7 @@ PART 2
 2. Use .map to loop over the array, to load all the images with the 'createImage' function (call the resulting array 'imgs')
 3. Check out the 'imgs' array in the console! Is it like you expected?
 4. Use a promise combinator function to actually get the images from the array 😉
-5. Add the 'paralell' class to all the images (it has some CSS styles).
+5. Add the 'parallel' class to all the images (it has some CSS styles).
 
 TEST DATA: ['img/img-1.jpg', 'img/img-2.jpg', 'img/img-3.jpg']. To test, turn off the 'loadNPause' function.
 
