@@ -192,7 +192,7 @@ const antoGrownUp = {
     lastName : 'G.',
     birthYear : 1990,
     friends : ['Thomas', 'Peter', 'Jonas'],
-    hasDriversLicense : true,
+    hasDriversLicense : this.calcAge > 18 ? true : false,
     calcAge: function() { // method = function attached to an object, function is a property
         console.log(this)                   // this-keyword = this equals the object calling the method
         this.age = 2022 - this.birthYear;   // this instead of antoGrownUp, due to DRY. "What if antoGrownUp-nomenclature is changing?" 
@@ -206,3 +206,38 @@ const antoGrownUp = {
 // console.log(antoGrownUp['calcAge']());
 console.log(antoGrownUp.calcAge(), antoGrownUp.age);
 console.log(antoGrownUp.getSummary());
+
+//////////////////
+
+const mark = {
+    fullName: "Mark Miller",
+    height: 1.69,
+    mass: 78,
+    calcBMI: function() {
+        this.bmi = this.mass / this.height ** 2;
+        return this.bmi;
+    }
+}
+
+const john = {
+    fullName: "John Smith",
+    height: 1.95,
+    mass: 92,
+    calcBMI: function() {
+        this.bmi = this.mass / this.height ** 2;
+        return this.bmi;
+    }
+}
+
+// methods do not call themself, they need to explicilty called hence this.calcBMI and not this.bmi
+mark.calcBMI();
+john.calcBMI();
+
+if(mark.bmi > john.bmi){
+    console.log(`${mark.fullName}'s BMI (${mark.bmi}) is higher than ${john.fullName}'s BMI (${john.bmi}).`);
+} else {
+    console.log(`${john.fullName}'s BMI (${john.bmi}) is higher than ${mark.fullName}'s BMI (${mark.bmi}).`);
+}
+
+////////////////////
+
