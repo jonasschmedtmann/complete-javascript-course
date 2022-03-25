@@ -413,24 +413,25 @@ for (let i = 0; i < bills2.length; i++) {
 // ---------------- Answer ----------------
 
 for (let i = 0; i < bills2.length; i++) {
-  const tip2 = calcTip(bills2[i]);
+  const tip2 = calcTip(bills2[i]); // We can use const here because on every iteration a new tip variable is being created. We're not mutating or changing the variable
   tips2.push(tip2);
   totals2.push(tip2 + bills2[i]);
 }
-console.log(bills2, tips2, totals2);
+console.log("Bills:", bills2, "Tips:", tips2, "Totals", totals2);
 // console.log(`Bills: ${bills2}, Tips: ${tips2}, Totals: ${totals2}`);
 
-let sum = 0;
-
-const arr = [];
-
-// const average = x / array.length
-
 const calcAverage2 = function (arr) {
-  
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    // sum = sum + arr[i];
+    sum += arr[i]; // Exact same as above
+  }
+  // console.log(sum);
+  return sum / arr.length;
 };
-
-for (var i, j = 0; i < array.length; i++) {}
+console.log(`Average is: ${calcAverage2([1, 2, 3])}`);
+console.log(calcAverage(totals2));
+console.log(calcAverage(tips2));
 
 // ----------------------------------------------------------------
 
