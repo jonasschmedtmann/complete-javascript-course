@@ -389,10 +389,48 @@ for (let i = 0; i < jonasArray.length; i++) {
 let dice = Math.trunc(Math.random() * 6) + 1;
 
 while (dice !== 6) {
-  console.log(`You rolled a ${dice}`);
+  // console.log(`You rolled a ${dice}`);
   dice = Math.trunc(Math.random() * 6) + 1; // If you don't include the '+1', it seems to run infinitely
   if (dice === 6) console.log("You rolled a 6, gottdang it. Ya blew it!");
 }
+
+// -------------------------------- Coding Challenge #4 --------------------------------
+
+const bills2 = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+const tips2 = [];
+const totals2 = [];
+
+for (let i = 0; i < bills2.length; i++) {
+  // console.log(i);
+  // console.log(calcTip(1));
+  // bills2.forEach();
+  bills2.forEach((bill) => {
+    // console.log(bill);
+    // calcTip1(bill);
+  });
+}
+
+// ---------------- Answer ----------------
+
+for (let i = 0; i < bills2.length; i++) {
+  const tip2 = calcTip(bills2[i]);
+  tips2.push(tip2);
+  totals2.push(tip2 + bills2[i]);
+}
+console.log(bills2, tips2, totals2);
+// console.log(`Bills: ${bills2}, Tips: ${tips2}, Totals: ${totals2}`);
+
+let sum = 0;
+
+const arr = [];
+
+// const average = x / array.length
+
+const calcAverage2 = function (arr) {
+  
+};
+
+for (var i, j = 0; i < array.length; i++) {}
 
 // ----------------------------------------------------------------
 
