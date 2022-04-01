@@ -52,8 +52,8 @@ const calcTempAmplitude = function (temps) {
 
 // calcTempAmplitude([3, 7, 4, 1, 600]); // Max is 3, then is 3 > 3, no it's not, so is 7 > 3?, yes it is, so max = 7, then is 4 > 7, no it's not. So max is 7
 // calcTempAmplitude(temperatures);
-const amplitude = calcTempAmplitude(temperatures);
-console.log(amplitude);
+// const amplitude = calcTempAmplitude(temperatures);
+// console.log(amplitude);
 
 // -------------------------------- PROBLEM 2 --------------------------------
 
@@ -84,11 +84,39 @@ const calcTempAmplitudeNew = function (t1, t2) {
   console.log(max, min);
   return max - min;
 };
-const amplitudeNew = calcTempAmplitudeNew([3, 5, 1], [9, 0, 5]);
-console.log(amplitudeNew);
+// const amplitudeNew = calcTempAmplitudeNew([3, 5, 1], [9, 0, 5]);
+// console.log(amplitudeNew);
 
 // ----------------------------------------------------------------
 
+const measureKevin = function () {
+  const measurement = {
+    type: 'temp',
+    unit: 'celsius',
+
+    // C) FIX
+    value: Number(prompt('Degrees celsius')),
+  };
+
+  // B) FIND
+  // console.log(measurement); // This shows the problem: the value is a string, not a number. Prompt always returns a string, no matter what we enter
+  // console.table(measurement); // Helpful especially for bigger objects
+
+  //   console.log(measurement.value);
+  //   console.warn(measurement.value);
+  //   console.error(measurement.value);
+
+  const kelvin = measurement.value + 273;
+  return kelvin;
+};
+// A). IDENTIFY
+console.log(measureKevin());
+
 // ----------------------------------------------------------------
+
+// Debugging in Chrome/Brave
+
+// Go to the Sources tab. You can add breakpoints by clicking next to the line number on the left. Then, when you reload the page, the execution will stop at exactly this point. It will essentially freeze and show what the execution looks like at exactly that moment, including all the values of all the defined variables.
+// You can click the resume execution button (F8 or Ctrl\). Under Scope and then Local, you should see all the variables (in this case: kelvin, measurement, and this)? (Can't seem to replicate it myself, either on Brave or Chrome)
 
 // ----------------------------------------------------------------
