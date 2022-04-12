@@ -169,3 +169,93 @@ main {
 .hidden {
   display: none;
 }
+
+/* active sign button style */
+.active--sign {
+  width: 10px;
+  height: 10px;
+  background-color: #c7365f;
+  border-radius: 50%;
+}
+
+/* media query */
+@media (max-width: 1024px) {
+  main {
+    width: 90rem;
+  }
+  .player {
+    padding: 7rem 9rem;
+  }
+  .name {
+    font-size: 3.5rem;
+  }
+  .score {
+    font-size: 6rem;
+  }
+  .current {
+    width: 75%;
+  }
+  .btn--roll {
+    top: 41rem;
+  }
+  .btn--hold {
+    top: 48rem;
+  }
+}
+@media (max-width:768px) {
+  main {
+    width: 70rem;
+    height: 50rem;
+  }
+  .player {
+    padding: 5rem 9rem;
+  }
+  .name {
+    font-size: 3rem;
+  }
+  .score {
+    font-size: 5rem;
+  }
+  .current {
+    width: 80%;
+  }
+  .btn {
+    font-size: 1.7rem;
+  }
+  .btn::first-letter {
+    font-size: 2.1rem;
+  }
+  .btn--roll {
+    top: 33rem;
+  }
+
+  .btn--hold {
+    top: 40rem;
+  }
+  .dice {
+    height: 8rem;
+  }
+}
+@media (max-width: 680px) {
+  main {
+    border-radius: 0;
+  }
+  .player {
+    padding: 5rem 0;
+  }
+  .name {
+    font-size: 2.5rem;
+  }
+  .score {
+    font-size: 3.5rem;
+  }
+  .current {
+    width: 50%;
+  }
+  .btn {
+    font-size: 1.3rem;
+  }
+  .btn::first-letter {
+    font-size: 1.8rem;
+  }
+}
