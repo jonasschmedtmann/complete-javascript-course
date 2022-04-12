@@ -95,7 +95,8 @@ const measureKevin = function () {
     unit: 'celsius',
 
     // C) FIX
-    value: Number(prompt('Degrees celsius')),
+    // value: Number(prompt('Degrees celsius')),
+    value: 10,
   };
 
   // B) FIND
@@ -110,7 +111,7 @@ const measureKevin = function () {
   return kelvin;
 };
 // A). IDENTIFY
-console.log(measureKevin());
+// console.log(measureKevin());
 
 // ----------------------------------------------------------------
 
@@ -120,3 +121,29 @@ console.log(measureKevin());
 // You can click the resume execution button (F8 or Ctrl\). Under Scope and then Local, you should see all the variables (in this case: kelvin, measurement, and this)? (Can't seem to replicate it myself, either on Brave or Chrome)
 
 // ----------------------------------------------------------------
+
+// Using a debugger
+const calcTempAmplitudeBug = function (t1, t2) {
+  const temps = t1.concat(t2);
+  console.log(temps);
+
+  // let max = temps[0];
+  // let min = temps[0];
+  let max = 0;
+  let min = 0;
+
+  for (let i = 0; i < temps.length; i++) {
+    const curTemp = temps[i];
+    if (typeof curTemp !== 'number') continue;
+
+    if (curTemp > max) max = curTemp;
+    if (curTemp < min) min = curTemp;
+  }
+  console.log(max, min);
+  return max - min;
+};
+const amplitudeBug = calcTempAmplitudeBug([3, 5, 1], [9, 4, 5]);
+// A) IDENTIFY
+console.log(amplitudeBug);
+
+// You can click on the next step button to progress through manually
