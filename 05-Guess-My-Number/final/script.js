@@ -57,6 +57,9 @@ document.querySelector('.check').addEventListener('click', function () {
     }
   }
 
+        displayMessage(guess > number? 'Too high':'Too low')
+});
+
   //   // When guess is too high
   // } else if (guess > secretNumber) {
   //   if (score > 1) {
@@ -79,7 +82,7 @@ document.querySelector('.check').addEventListener('click', function () {
   //     document.querySelector('.score').textContent = 0;
   //   }
   // }
-});
+
 
 document.querySelector('.again').addEventListener('click', function () {
   score = 20;
