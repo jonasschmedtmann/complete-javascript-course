@@ -1,0 +1,13 @@
+{
+    "folders": [
+		{
+			"path": "..\\..\\..\\..\\My Projects"
+		},
+		{
+			"path": "..\\..\\.."
+		}
+	],
+    "settings": {
+        "liveServer.settings.multiRootWorkspaceName": "GitHub"
+    }
+}
