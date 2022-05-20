@@ -11,4 +11,4 @@ let person = "Melvina";
 let myFirstJob = "Programmer";
 let mySecondJob = "Professor";
 
-console.log(myFirstJob + " " + mySecondJob);
+console.log(myFirstJob);
