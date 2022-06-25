@@ -171,6 +171,11 @@ console.log(drink);
 console.log(`I like to drink ${age >= 18 ? "wine 🍷" : "water 💧"}`);
 
 */
-
+var bill = 40;
 var tip;
-50 < bill < 300 ? tip = bill + ;
+
+console.log(`The bill is ${bill}, the tip is ${bill >= 50 && bill <= 300 ? tip = bill * 15 / 100 : tip = bill * 20 / 100}, so the total amount you need to tip ${bill >= 50 && bill <= 300 ? tip = bill + (bill * 15 / 100) : tip = bill + (bill * 20 / 100)}`);
+
+//TEMA - verifica daca un string este palindrom
+
+//var tip = bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
