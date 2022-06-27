@@ -29,7 +29,8 @@ fields
 
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
-let highScore = 0;
+let highScore = window.localStorage.getItem('highScore') ?? 0;
+document.querySelector('.highscore').textContent = highScore;
 const displayMessage = function (message) {
   document.querySelector('.message').textContent = message;
 };
@@ -50,6 +51,7 @@ document.querySelector('.check').addEventListener('click', function () {
     document.querySelector('.number').style.width = '50rem';
     if (score > highScore) {
       highScore = score;
+      window.localStorage.setItem('highScore', score);
       document.querySelector('.highscore').textContent = highScore;
     }
   }
