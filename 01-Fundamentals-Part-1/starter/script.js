@@ -160,3 +160,10 @@ console.log(johnMBI);
 markHigherBMI = markMBI > johnMBI; // **** vc nao precisa colocar primeiro let markMBI = true... pode colocar direto isso q ele vai entender que se for maior é true
 console.log(markHigherBMI);
 */
+
+const age = 19;
+const isOldEnough = age >= 18;
+
+if (isOldEnough) {
+  console.log('Sarah can start driving!');
+}
