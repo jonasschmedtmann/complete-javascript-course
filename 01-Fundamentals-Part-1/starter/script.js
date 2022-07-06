@@ -161,9 +161,55 @@ markHigherBMI = markMBI > johnMBI; // **** vc nao precisa colocar primeiro let m
 console.log(markHigherBMI);
 */
 
-const age = 19;
-const isOldEnough = age >= 18;
 
-if (isOldEnough) {
+// *string and Template Literals -- aspas e como utilizar*
+const firstName = 'Erica';
+const job = 'teacher';
+const birthYear = 1992;
+const year = 2037;
+
+const erica = "I'm " + firstName + ', a ' + (year - birthYear) + ' years old ' + job + '!';
+console.log(erica);
+
+const ericaNew = `I'm ${firstName}, a ${year - birthYear} years old ${job}`;
+console.log(ericaNew);
+
+console.log('String with \n\
+multiple \n\
+lines'); // esse *\n\ é para dar enter ou.... só dar enter
+
+console.log(`String with
+multiple
+lines`); // esse tem o `` e da enter e funciona da mesma forma que a de cima
+
+
+
+// *if else*
+// const age = 19;
+// const isOldEnough = age >= 18;
+
+// if (isOldEnough) {
+//   console.log('Sarah can start driving!');
+// }
+
+/*
+// *forma simplificada*
+const age = 15;
+
+if (age >= 18) {
   console.log('Sarah can start driving!');
+} else {
+  const yearsLeft = 18 - age;
+  console.log(`Sarah is too young, Wait another ${yearsLeft} years !`);
 }
+
+const birthYear = 2013;
+
+let century;
+if (birthYear <= 2000) {
+  century = 20;
+} else {
+  century = 21;
+}
+console.log(`Born in ${century} century`);
+*/
