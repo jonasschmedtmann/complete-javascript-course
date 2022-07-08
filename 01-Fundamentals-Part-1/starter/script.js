@@ -161,7 +161,7 @@ markHigherBMI = markMBI > johnMBI; // **** vc nao precisa colocar primeiro let m
 console.log(markHigherBMI);
 */
 
-
+/*
 // *string and Template Literals -- aspas e como utilizar*
 const firstName = 'Erica';
 const job = 'teacher';
@@ -181,7 +181,7 @@ lines'); // esse *\n\ é para dar enter ou.... só dar enter
 console.log(`String with
 multiple
 lines`); // esse tem o `` e da enter e funciona da mesma forma que a de cima
-
+*/
 
 
 // *if else*
@@ -213,3 +213,36 @@ if (birthYear <= 2000) {
 }
 console.log(`Born in ${century} century`);
 */
+
+
+/*
+**** Coding Challenge #2
+Use the BMI example from Challenge #1, and the code you already wrote, and
+improve it.
+Your tasks:
+1. Print a nice output to the console, saying who has the higher BMI. The message
+is either "Mark's BMI is higher than John's!" or "John's BMI is higher than Mark's!"
+2. Use a template literal to include the BMI values in the outputs. Example: "Mark's
+BMI (28.3) is higher than John's (23.9)!"
+Hint: Use an if/else statement
+*/
+
+// const markMass = 78;
+// const markHeight = 1.69;
+// const johnMass = 91;
+// const johnHeight = 1.95;
+
+
+const markMass = 95;
+const markHeight = 1.88;
+const johnMass = 85;
+const johnHeight = 1.76;
+
+let markMBI = markMass / (markHeight ** 2);
+let johnMBI = johnMass / (johnHeight ** 2);
+
+if (markMBI > johnMBI) {
+  console.log(`Mark's BMI (${markMBI}) is higher than John's ${johnMBI}!`);
+} else {
+  console.log(`John's (${johnMBI}) is higher than Mark's BMI ${markMBI}!`);
+}
