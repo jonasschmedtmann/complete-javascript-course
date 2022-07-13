@@ -32,17 +32,30 @@ let tips = []
 const total = []
 
 
-const calTip = (value) => {
-    let tip = 0;
-    if (value < 50) {
-        return tip = .1 * value
+
+const calTip = (bill) => {
+    if (bill < 50) {
+        return .1 * bill
     }
-    else if(value >= 50 && value <= 300){
-        return tip = .15 * value
+    else if(bill >= 50 && bill <= 300){
+        return .15 * bill
     }else {
-       return  tip = .2 * value
+       return  .2 * bill
     }
+} 
+
+const calcAverage = (arr) => {
+    let sum = 0
+
+    for (i = 0; i < arr.length; i++){
+        sum += arr[i];      
+    }
+
+    return sum / arr.length
 }
+
+
+
 
 for (i = 0; i < bills.length; i++){
     const tip = calTip(bills[i]);
@@ -52,3 +65,4 @@ for (i = 0; i < bills.length; i++){
 
 console.log(`value of tips are: ${tips} `);
 console.log(`The value of total bills are: ${total}`)
+console.log(`The average of bills is: ${calcAverage(bills)}`)
