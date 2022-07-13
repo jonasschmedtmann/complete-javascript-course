@@ -1,6 +1,6 @@
 ///////////////////////////////////////
 // Dot vs. Bracket Notation
-const jonas = {
+/* const jonas = {
   firstName: "Jonas",
   lastName: "Schmedtmann",
   age: 2037 - 1991,
@@ -33,7 +33,7 @@ if (jonas[interestedIn]) {
 jonas.location = "Portugal";
 jonas["twitter"] = "@jonasschmedtman";
 console.log(jonas);
-   
+    */
 
 //Ohject method 
 
@@ -43,7 +43,7 @@ const jonas = {
   birthYeah: 1991,
   job: 'teacher',
   friends: ['Michael', 'Peter', 'Steven'],
-  hasDriversLicense: true,
+  hasDriversLicense: false,
 
   // calcAge: function (birthYeah) {
   //   return 2037 - birthYeah;
@@ -55,7 +55,7 @@ const jonas = {
   // }
 
   calcAge: function () {
-    this.age = 2037 - this.birthYeah;
+    this.age = new Date().getFullYear() - this.birthYeah;
     return this.age;
   },
 
@@ -66,11 +66,10 @@ const jonas = {
 
 console.log(jonas.calcAge());
 
-console.log(jonas.age);
+console.log(new Date().getFullYear());
 console.log(jonas.age);
 console.log(jonas.age);
 
 // Challenge
 // "Jonas is a 46-year old teacher, and he has a driver's license"
 console.log(jonas.getSummary());
-*/
