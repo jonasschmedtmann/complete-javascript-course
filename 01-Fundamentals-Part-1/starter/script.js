@@ -270,3 +270,14 @@ let n = '1' + 1; // = 11 because is a string
 n = n - 1;
 console.log(n); // the result is 10 cause + is a string 11 and - make
 // transform in number 11 -1 ...
+
+/// Boolean :) true or false
+// 5 maneiras de ser FALSE VALUE : 0, "undefined", null, Nan, "",
+const money = 0;
+if (money) {
+  console.log("Dont spend it all");
+} else {
+  console.log("you should get a job");
+}
+
+// como o número é zero ele é falso !! ou seja ele vai aparecer como a 2 resposta
