@@ -262,22 +262,32 @@ console.log(String(30), 30); // the first one is a string and second one is a nu
 */
 
 ///and Coercion
-console.log('I am' + 30 + 'years old'); // fica string com "+"
-console.log('23' - '10' - 3); // fica um number com "-"
-console.log('23' / '2');
+// console.log('I am' + 30 + 'years old'); // fica string com "+"
+// console.log('23' - '10' - 3); // fica um number com "-"
+// console.log('23' / '2');
 
-let n = '1' + 1; // = 11 because is a string
-n = n - 1;
-console.log(n); // the result is 10 cause + is a string 11 and - make
-// transform in number 11 -1 ...
+// let n = '1' + 1; // = 11 because is a string
+// n = n - 1;
+// console.log(n); // the result is 10 cause + is a string 11 and - make
+// // transform in number 11 -1 ...
 
 /// Boolean :) true or false
 // 5 maneiras de ser FALSE VALUE : 0, "undefined", null, Nan, "",
-const money = 0;
-if (money) {
-  console.log("Dont spend it all");
-} else {
-  console.log("you should get a job");
-}
+// const money = 0;
+// if (money) {
+//   console.log("Dont spend it all");
+// } else {
+//   console.log("you should get a job");
+// }
 
 // como o número é zero ele é falso !! ou seja ele vai aparecer como a 2 resposta
+
+
+//Equality Operator == vs ===
+const age = 18;
+if (age === 18) console.log("You just became an adult! (strict)");
+// diferenca entre === é que ele iguala...
+// == ele se torna negativo ex '18' == 18 ele vai sair como true
+// '18' === 18 vai ser falso
+
+if (age == 18) console.log("You just became an adult! (loose)");
