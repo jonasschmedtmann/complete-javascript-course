@@ -232,7 +232,7 @@ Hint: Use an if/else statement
 // const johnMass = 91;
 // const johnHeight = 1.95;
 
-
+/*
 const markMass = 95;
 const markHeight = 1.88;
 const johnMass = 85;
@@ -246,3 +246,27 @@ if (markMBI > johnMBI) {
 } else {
   console.log(`John's (${johnMBI}) is higher than Mark's BMI ${markMBI}!`);
 }
+*/
+
+/*
+/// Type Conversion
+const inputYear = '1991';
+console.log(Number(inputYear), inputYear); // primeiro é um numero e o segundo é uma string
+console.log(Number(inputYear) + 18);
+
+
+console.log(Number('Erica'));
+console.log(typeof NaN);
+
+console.log(String(30), 30); // the first one is a string and second one is a number
+*/
+
+///and Coercion
+console.log('I am' + 30 + 'years old'); // fica string com "+"
+console.log('23' - '10' - 3); // fica um number com "-"
+console.log('23' / '2');
+
+let n = '1' + 1; // = 11 because is a string
+n = n - 1;
+console.log(n); // the result is 10 cause + is a string 11 and - make
+// transform in number 11 -1 ...
