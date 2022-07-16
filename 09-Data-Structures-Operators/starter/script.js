@@ -43,11 +43,14 @@ const letter = [...str]
 console.log(letter)
 
 
-const ingredients = [
-  prompt('The pasta ingridient1'),
-  prompt('ingrdient2'),
-  prompt('ingrdient3')
-]
+// const ingredients = [
+//   prompt('The pasta ingridient1'),
+//   prompt('ingrdient2'),
+//   prompt('ingrdient3')
+// ]
 
-console.log(restaurant.ingredient(...ingredients
-  ));
+//console.log(restaurant.ingredient(...ingredients));
+
+
+  console.log(false || undefined)
+  console.log(null || undefined)
