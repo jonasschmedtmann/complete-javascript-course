@@ -38,7 +38,6 @@ console.log(jonas);
 
 const jonasNew = `I'm ${firstName}, a ${year - birthYear} years old ${job}!`;
 console.log(jonasNew);
-*/
 
 const age = 15;
 
@@ -57,3 +56,7 @@ if (birthYear <= 2000) {
   century = 21;
 }
 console.log(century);
+*/
+const inputYear = "1991";
+console.log(Number(inputYear));
+console.log(Number(inputYear) + 18);

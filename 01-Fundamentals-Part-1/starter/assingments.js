@@ -1,7 +1,7 @@
 //lecture 1
 let country = "Czechia";
 let continent = "Europe";
-let population = 10;
+let population = 130;
 
 console.log(country);
 console.log(continent);
@@ -40,3 +40,34 @@ console.log(
     " million people speak czech."
 );
 //lecture 4
+
+//lecture 5
+console.log(
+  `${country} is in ${continent}, and it's ${population} million people speak czech.`
+);
+//lecture 5
+
+//lecture 6
+if (population > 33) {
+  console.log(`${country}'s population is above average`);
+} else {
+  console.log(
+    `${country}'s population is ${33 - population} million below average`
+  );
+}
+//lecture 6
+
+//lecture 7
+/*
+const numNeighbours = prompt(
+  "How many neighbour countries does your country have?"
+);
+if (Number(numNeighbours) === 1) {
+  console.log("Only 1 border!");
+} else if (numNeighbours > 1) {
+  console.log("More than 1 border.");
+} else {
+  console.log("No borders.");
+}
+*/
+//lecture 7
