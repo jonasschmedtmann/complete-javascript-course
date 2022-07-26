@@ -79,3 +79,7 @@ if (language === "English" && population < 50 && isIsland === false) {
   console.log(`${country} does not meet your criteria :(`);
 }
 //lecture 8
+
+//lecture 9
+
+//lecture 9
