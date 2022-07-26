@@ -1,7 +1,7 @@
 //lecture 1
 let country = "Czechia";
 let continent = "Europe";
-let population = 130;
+let population = 10;
 
 console.log(country);
 console.log(continent);
@@ -10,7 +10,7 @@ console.log(population);
 
 //lecture 2
 const isIsland = false;
-const language = "Czech";
+const language = "English";
 
 console.log(typeof isIsland);
 console.log(typeof population);
@@ -71,3 +71,11 @@ if (Number(numNeighbours) === 1) {
 }
 */
 //lecture 7
+
+//lecture 8
+if (language === "English" && population < 50 && isIsland === false) {
+  console.log(`You should live in ${country}`);
+} else {
+  console.log(`${country} does not meet your criteria :(`);
+}
+//lecture 8
