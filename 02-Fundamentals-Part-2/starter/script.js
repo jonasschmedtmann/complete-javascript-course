@@ -73,7 +73,7 @@ function calcAge(birthYear) {
 }
 
 console.log(calcAge(years[2]));
-*/
+
 
 const friends = new Array("Michael", "Steven", "Peter");
 // end of array
@@ -94,3 +94,4 @@ console.log(friends);
 console.log(friends.indexOf("Michael"));
 
 console.log(friends.includes("Steven"));
+*/
