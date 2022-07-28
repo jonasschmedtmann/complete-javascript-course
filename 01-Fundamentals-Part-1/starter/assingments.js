@@ -10,7 +10,7 @@ console.log(population);
 
 //lecture 2
 const isIsland = false;
-const language = "English";
+const language = "spanish";
 
 console.log(typeof isIsland);
 console.log(typeof population);
@@ -81,5 +81,27 @@ if (language === "English" && population < 50 && isIsland === false) {
 //lecture 8
 
 //lecture 9
+switch (language) {
+  case "chinese": {
+    console.log("MOST nubmer of native speakers");
+    break;
+  }
+  case "spanish": {
+    console.log("2nd place");
+    break;
+  }
+  case "english": {
+    console.log("3rd place");
+    break;
+  }
+  case "hindi": {
+    console.log("nubmer 4");
+    break;
+  }
+  default: {
+    console.log("Great language too!");
+    break;
+  }
+}
 
 //lecture 9
