@@ -57,4 +57,40 @@ function fruitProccesor(apples, oranges) {
   return juice;
 }
 console.log(fruitProccesor(4, 3));
+
+
+const friends = ["Michael", "Steven", "Peter"];
+console.log(friends);
+
+const years = new Array(1999, 1994, 1991);
+
+console.log(friends[0]);
+friends[2] = "Jay";
+console.log(friends);
+
+function calcAge(birthYear) {
+  return 2037 - birthYear;
+}
+
+console.log(calcAge(years[2]));
 */
+
+const friends = new Array("Michael", "Steven", "Peter");
+// end of array
+const newLength = friends.push("Jay");
+console.log(friends);
+console.log(newLength);
+// start of array
+friends.unshift("John");
+console.log(friends);
+
+// remove elements
+friends.pop(); // last element
+console.log(friends);
+
+friends.shift(); // first element
+console.log(friends);
+
+console.log(friends.indexOf("Michael"));
+
+console.log(friends.includes("Steven"));
