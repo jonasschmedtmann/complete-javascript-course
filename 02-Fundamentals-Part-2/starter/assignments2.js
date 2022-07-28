@@ -20,7 +20,7 @@ function describePopulation(country, population) {
 }
 
 console.log(describePopulation("Czech republlic", 1441));
-*/
+
 const populations = new Array(11, 69, 420, 32);
 
 function percentageOfWorld(population) {
@@ -47,3 +47,36 @@ if (neighbours.indexOf("Germany")) {
 }
 neighbours[2] = "Sweden";
 console.log(neighbours);
+*/
+
+const myCountry = {
+  country: "Czech republic",
+  capital: "Prague",
+  language: "Czech",
+  population: 10,
+  neighbours: ["Germany", "Austria", "Poland", "Slovakia"],
+
+  describe: function () {
+    return `${this.country} has ${this.population} million ${this.language}-speaking people, ${this.neighbours.length} neighbouring countries and a capital called ${this.capital}`;
+  },
+
+  checkIsIsland: function () {
+    return this.neighbours.length === 0
+      ? (this.isIsland = true)
+      : (this.isIsland = false);
+  },
+};
+
+myCountry.population += 2;
+myCountry["population"] -= 2;
+
+// console.log(
+// `${myCountry.country} has ${myCountry.population} million ${myCountry.language}-speaking people, ${myCountry.neighbours.length} neighbouring countries and a capital called ${myCountry.capital}`
+// );
+
+console.log(myCountry.describe());
+console.log(myCountry.checkIsIsland());
+
+for (let i = 1; i <= 50; i++) {
+  console.log(`Voter number ${i} is currently voting...`);
+}

@@ -94,4 +94,56 @@ console.log(friends);
 console.log(friends.indexOf("Michael"));
 
 console.log(friends.includes("Steven"));
+
+
+const filip = {
+  firstName: "Filip",
+  lastName: "Tichanek",
+  age: 2022 - 1999,
+  job: "Front end developer",
+  friends: ["Michael", "Peter", "Steven"],
+};
+
+console.log(filip.lastName);
+/*const interestedIn = prompt(
+  "What do you want to know about Filip? Choose between firstName, lastName, age, job"
+);
+console.log(filip[interestedIn]);
+
+filip.location = "USA";
+filip["twitter"] = "@omegalul";
+console.log(filip);
+
+console.log(
+  `${filip.firstName} has ${filip.friends.length} friends, and his best friend is called ${filip.friends[0]}`
+);
 */
+const filip = {
+  firstName: "Filip",
+  lastName: "Tichanek",
+  birthYear: 1999,
+  job: "Front end developer",
+  friends: ["Michael", "Peter", "Steven"],
+  hasDriversLicense: true,
+
+  // calcAge: function (birthYear) {
+  // return 2037 - birthYear;
+  // },
+
+  calcAge: function () {
+    this.age = 2022 - this.birthYear;
+    return this.age;
+  },
+
+  getSummary: function () {
+    this.summary = `${this.firstName} is a ${this.age}-year old ${
+      this.job
+    }, and he has ${this.hasDriversLicense ? "a" : "no"} driver's license`;
+    return this.summary;
+  },
+};
+filip.calcAge();
+console.log(filip.age);
+
+filip.getSummary();
+console.log(filip.summary);
