@@ -119,3 +119,60 @@ if (dolphinsScoreHigher2 && dolphinsMinimum2) {
 } else if (dolphinsMinimum2 && koalasMinimum2 && bothEqual) {
     console.log(`Bonus 2: It's a draw!!!`);
 }
+
+// Switch statements practice
+
+const day = "sundy";
+
+// switch
+
+switch (day) {
+    case "monday":
+        console.log("today is Monday");
+        break;
+    case "tuesday":
+        console.log("today is Tuesday");
+        break;
+    case "wednesday":
+    case "thursday":
+        console.log("today is a mid-week day");
+        break;
+    case "friday":
+        console.log("today is friday");
+        break;
+    case "saturday":
+    case "sunday":
+        console.log("today is a weekend day");
+        break;
+    default:
+        console.log("Not a valid day of the week!");
+        break;
+}
+
+// if
+
+if (day === "monday") {
+    console.log("today is Monday");
+} else if (day === "tuesday") {
+    console.log("today is Tuesday");
+} else if (day === "wednesday" || day === "thursday") {
+    console.log("today is a mid-week day");
+} else if (day === "friday") {
+    console.log("today is Friday");
+} else if (day === "saturday" || day === "sunday") {
+    console.log("today is a weekend day");
+} else {
+    console.log("Not a valid day of the week!");
+}
+
+// Coding Challenge 4
+console.log(`Result for Code Challenge 4 starts here...`);
+
+const bill = 40;
+let tip;
+
+// The COnditional Ternary Operator
+
+bill >= 50 && bill <= 300 ? tip = 0.15 * bill : tip = 0.20 * bill;
+
+console.log(`The bill was ${bill}, the tip was ${tip}, and the total value is ${bill + tip}`);
