@@ -51,17 +51,35 @@ console.log(chechWinner(scoreDolphins, scoreKoalas));
 
 console.log(`Result for Code Challenge 2 starts here..`);
 
-const bill = new Array(125, 555, 44);
-console.log(bill);
-
-function calcTip(bill) {
-    if (bill >= 50 && bill <= 300) {
-        
-    }
+const calcTip = function (bills) {
+    return bills >= 50 && bills <= 300 ? 0.15 * bills : 0.20 * bills;
 }
 
-// // The COnditional Ternary Operator
+// const bills = [125, 555, 44];
+const bills = new Array(125, 555, 44);
 
-// bill >= 50 && bill <= 300 ? tip = 0.15 * bill : tip = 0.20 * bill;
+console.log(bills);
 
-// console.log(`The bill was ${bill}, the tip was ${tip}, and the total value is ${bill + tip}`);
+// const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
+const tips = new Array(calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2]));
+
+console.log(tips);
+
+// const totals = [calcTip(bills[0]) + bills[0], calcTip(bills[1]) + bills[1], calcTip(bills[2]) + bills[2]];
+// const totals = new Array(calcTip(bills[0]) + bills[0], calcTip(bills[1]) + bills[1], calcTip(bills[2]) + bills[2]);
+// OR
+const totals = new Array(bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2])
+
+console.log(totals);
+
+// Objects
+
+const abdulObject = {
+    firstName: "Abdul Barri",
+    lastName: "Lawal",
+    age: 2022 - 1999,
+    friends: ["Owologe", "Feranmi", "Bolaji"],
+    job: "Programmer"
+};
+
+console.log(abdulObject);
