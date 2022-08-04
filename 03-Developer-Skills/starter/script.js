@@ -15,7 +15,6 @@ console.log(smash(words));
 
 const data1 = new Array(17, 21, 23);
 const data2 = new Array(12, 5, -5, 0, 4);
-const output = new Array();
 
 const printForecast = function (arr) {
     let str = "";
