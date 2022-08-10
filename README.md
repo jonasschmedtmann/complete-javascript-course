@@ -71,4 +71,5 @@ There is also a the [updates-and-fixes](https://github.com/jonasschmedtmann/comp
 ### Q14: I'm looking for the old course version (v1) files. Where can I find them?
 
 **A:** They are in this same repo, but in the [v1 branch](https://github.com/jonasschmedtmann/complete-javascript-course/tree/v1). So just go to [v1](https://github.com/jonasschmedtmann/complete-javascript-course/tree/v1), and download the code from there.
-$$testing Forked..
+$$I really appreciate you and your team for the effort you have put together as a team to come up with this powerfull course ,It has made me gain confindent on my Javscript skills and ,Thanks to you sir i now have a Broad knowlegde to grow as a javascript Junior.😎
+
