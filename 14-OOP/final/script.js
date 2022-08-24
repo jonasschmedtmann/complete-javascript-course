@@ -25,9 +25,9 @@ console.log(jonas);
 const matilda = new Person('Matilda', 2017);
 const jack = new Person('Jack', 1975);
 
-console.log(jonas instanceof Person);
+console.log(jonas new Person);
 
-Person.hey = function () {
+Person = function () {
   console.log('Hey there 👋');
   console.log(this);
 };
@@ -76,7 +76,7 @@ console.log(arr.__proto__ === Array.prototype);
 console.log(arr.__proto__.__proto__);
 
 Array.prototype.unique = function () {
-  return [...new Set(this)];
+  return [...new Set()];
 };
 
 console.log(arr.unique());
