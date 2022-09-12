@@ -54,35 +54,24 @@
     Coding challenge -- calculate BMI
 */
 
-// const massMark1 = 78;
-// const heightMark1 = 1.69;
-// const massJohn1 = 92;
-// const heightJohn1 = 1.95;
+// const massMark = 78;
+// const heightMark = 1.69;
+// const massJohn = 92;
+// const heightJohn = 1.95;
 
-// const BMIMark1 = massMark1 / (heightMark1 ** 2);
-// const BMIJohn1 = massJohn1 / (heightJohn1 ** 2);
+const massMark = 95;
+const heightMark = 1.88;
+const massJohn = 85;
+const heightJohn = 1.76;
 
-// console.log(BMIMark1);
-// console.log(BMIJohn1);
+const BMIMark = massMark / (heightMark ** 2);
+const BMIJohn = massJohn / (heightJohn ** 2);
 
-// const markHigherBMI1 = BMIMark1 > BMIJohn1;
+console.log(BMIMark);
+console.log(BMIJohn);
 
-// console.log(markHigherBMI1);
-
-// const massMark2 = 95;
-// const heightMark2 = 1.88;
-// const massJohn2 = 85;
-// const heightJohn2 = 1.76;
-
-// const BMIMark2 = massMark2 / (heightMark2 ** 2);
-// const BMIJohn2 = massJohn2 / (heightJohn2 ** 2);
-
-// console.log(BMIMark2);
-// console.log(BMIJohn2);
-
-// const markHigherBMI2 = BMIMark2 > BMIJohn2;
-
-// console.log(markHigherBMI2);
+const markHigherBMI = BMIMark > BMIJohn;
+console.log(markHigherBMI);
 
 /* 
     18: Taking decisions/if-else
@@ -95,4 +84,11 @@ if (age >= 18) {
     console.log(`${driver} is allowed to drive 🚙`);
 } else {
     console.log(`${driver} has to wait for another ${18 - age} years to drive`);
+}
+
+if (markHigherBMI) {
+    console.log(`Mark's BMI (${BMIMark}) is higher than John's (${BMIJohn})!!`)
+} else {
+    console.log(`John's BMI (${BMIJohn}) is higher than Mark's (${BMIMark})!!`)
+
 }
