@@ -50,36 +50,49 @@
 // const description = country + ' is in ' + continent + ', and its ' + Math.floor(countryPopulation / 100000) + ' million people speak ' + language;
 // console.log(description);
 
-/* 
+/*
     Coding challenge -- calculate BMI
 */
 
-const massMark1 = 78;
-const heightMark1 = 1.69;
-const massJohn1 = 92;
-const heightJohn1 = 1.95;
+// const massMark1 = 78;
+// const heightMark1 = 1.69;
+// const massJohn1 = 92;
+// const heightJohn1 = 1.95;
 
-const BMIMark1 = massMark1 / (heightMark1 ** 2);
-const BMIJohn1 = massJohn1 / (heightJohn1 ** 2);
+// const BMIMark1 = massMark1 / (heightMark1 ** 2);
+// const BMIJohn1 = massJohn1 / (heightJohn1 ** 2);
 
-console.log(BMIMark1);
-console.log(BMIJohn1);
+// console.log(BMIMark1);
+// console.log(BMIJohn1);
 
-const markHigherBMI1 = BMIMark1 > BMIJohn1;
+// const markHigherBMI1 = BMIMark1 > BMIJohn1;
 
-console.log(markHigherBMI1);
+// console.log(markHigherBMI1);
 
-const massMark2 = 95;
-const heightMark2 = 1.88;
-const massJohn2 = 85;
-const heightJohn2 = 1.76;
+// const massMark2 = 95;
+// const heightMark2 = 1.88;
+// const massJohn2 = 85;
+// const heightJohn2 = 1.76;
 
-const BMIMark2 = massMark2 / (heightMark2 ** 2);
-const BMIJohn2 = massJohn2 / (heightJohn2 ** 2);
+// const BMIMark2 = massMark2 / (heightMark2 ** 2);
+// const BMIJohn2 = massJohn2 / (heightJohn2 ** 2);
 
-console.log(BMIMark2);
-console.log(BMIJohn2);
+// console.log(BMIMark2);
+// console.log(BMIJohn2);
 
-const markHigherBMI2 = BMIMark2 > BMIJohn2;
+// const markHigherBMI2 = BMIMark2 > BMIJohn2;
 
-console.log(markHigherBMI2);
+// console.log(markHigherBMI2);
+
+/* 
+    18: Taking decisions/if-else
+*/
+
+const age = 16;
+const driver = 'Vishu'
+
+if (age >= 18) {
+    console.log(`${driver} is allowed to drive 🚙`);
+} else {
+    console.log(`${driver} has to wait for another ${18 - age} years to drive`);
+}
