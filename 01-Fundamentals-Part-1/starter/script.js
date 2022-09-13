@@ -11,3 +11,6 @@ let jonas_matilda = "JM";
 let javascriptIsFun = true;
 console.log(javascriptIsFun);
 console.log(typeof true)
+console.log(typeof 'Jonas')
+console.log(typeof 23)
+console.log(typeof null)
