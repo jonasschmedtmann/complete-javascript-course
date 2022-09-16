@@ -59,36 +59,50 @@
 // const massJohn = 92;
 // const heightJohn = 1.95;
 
-const massMark = 95;
-const heightMark = 1.88;
-const massJohn = 85;
-const heightJohn = 1.76;
+// const massMark = 95;
+// const heightMark = 1.88;
+// const massJohn = 85;
+// const heightJohn = 1.76;
 
-const BMIMark = massMark / (heightMark ** 2);
-const BMIJohn = massJohn / (heightJohn ** 2);
+// const BMIMark = massMark / (heightMark ** 2);
+// const BMIJohn = massJohn / (heightJohn ** 2);
 
-console.log(BMIMark);
-console.log(BMIJohn);
+// console.log(BMIMark);
+// console.log(BMIJohn);
 
-const markHigherBMI = BMIMark > BMIJohn;
-console.log(markHigherBMI);
+// const markHigherBMI = BMIMark > BMIJohn;
+// console.log(markHigherBMI);
 
-/* 
+/*
     18: Taking decisions/if-else
 */
 
-const age = 16;
-const driver = 'Vishu'
+// const age = 16;
+// const driver = 'Vishu'
 
-if (age >= 18) {
-    console.log(`${driver} is allowed to drive 🚙`);
+// if (age >= 18) {
+//     console.log(`${driver} is allowed to drive 🚙`);
+// } else {
+//     console.log(`${driver} has to wait for another ${18 - age} years to drive`);
+// }
+
+// if (markHigherBMI) {
+//     console.log(`Mark's BMI (${BMIMark}) is higher than John's (${BMIJohn})!!`)
+// } else {
+//     console.log(`John's BMI (${BMIJohn}) is higher than Mark's (${BMIMark})!!`)
+
+// }
+
+/* 
+    24: Logical Operators
+*/
+
+const hasDriversLicense = true;
+const hasGoodVision = true;
+const isTired = true;
+
+if (hasDriversLicense && hasGoodVision && !isTired) {
+    console.log('Vishu can drive');
 } else {
-    console.log(`${driver} has to wait for another ${18 - age} years to drive`);
-}
-
-if (markHigherBMI) {
-    console.log(`Mark's BMI (${BMIMark}) is higher than John's (${BMIJohn})!!`)
-} else {
-    console.log(`John's BMI (${BMIJohn}) is higher than Mark's (${BMIMark})!!`)
-
+    console.log('Vishu cannot drive');
 }
