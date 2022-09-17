@@ -93,16 +93,43 @@
 
 // }
 
-/* 
+/*
     24: Logical Operators
 */
 
-const hasDriversLicense = true;
-const hasGoodVision = true;
-const isTired = true;
+// const hasDriversLicense = true;
+// const hasGoodVision = true;
+// const isTired = true;
 
-if (hasDriversLicense && hasGoodVision && !isTired) {
-    console.log('Vishu can drive');
+// if (hasDriversLicense && hasGoodVision && !isTired) {
+//     console.log('Vishu can drive');
+// } else {
+//     console.log('Vishu cannot drive');
+// }
+
+/* 
+    25: Coding Challenge #3
+*/
+
+// const dolphinScores = [ 96, 108, 89 ];
+// const koalasScores = [ 88, 92, 110 ];
+// const dolphinScores = [ 97, 112, 101 ];
+// const koalasScores = [ 109, 95, 123 ];
+const dolphinScores = [ 97, 112, 101 ];
+const koalasScores = [ 109, 95, 106 ];
+
+const avgDolphinScores = (dolphinScores.reduce((a, b) => a + b, 0) / dolphinScores.length);
+const avgKoalaScores = (koalasScores.reduce((a, b) => a + b, 0) / koalasScores.length);
+console.log(avgDolphinScores, avgKoalaScores);
+
+if (avgDolphinScores >= 100 || avgKoalaScores >= 100) {
+    if (avgDolphinScores === avgKoalaScores) {
+        console.log(`Woah!! Its a tie`);
+    } else if (avgDolphinScores > avgKoalaScores) {
+        console.log(`Yayy!! Dolphins have won 🏆`);
+    } else {
+        console.log(`Yayy!! Koalas have won 🏆`);
+    }
 } else {
-    console.log('Vishu cannot drive');
+    console.log(`There is no winner as minimum score is not acheived`);
 }
