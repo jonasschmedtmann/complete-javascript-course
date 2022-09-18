@@ -107,29 +107,39 @@
 //     console.log('Vishu cannot drive');
 // }
 
-/* 
+/*
     25: Coding Challenge #3
 */
 
-// const dolphinScores = [ 96, 108, 89 ];
-// const koalasScores = [ 88, 92, 110 ];
+// // const dolphinScores = [ 96, 108, 89 ];
+// // const koalasScores = [ 88, 92, 110 ];
+// // const dolphinScores = [ 97, 112, 101 ];
+// // const koalasScores = [ 109, 95, 123 ];
 // const dolphinScores = [ 97, 112, 101 ];
-// const koalasScores = [ 109, 95, 123 ];
-const dolphinScores = [ 97, 112, 101 ];
-const koalasScores = [ 109, 95, 106 ];
+// const koalasScores = [ 109, 95, 106 ];
 
-const avgDolphinScores = (dolphinScores.reduce((a, b) => a + b, 0) / dolphinScores.length);
-const avgKoalaScores = (koalasScores.reduce((a, b) => a + b, 0) / koalasScores.length);
-console.log(avgDolphinScores, avgKoalaScores);
+// const avgDolphinScores = (dolphinScores.reduce((a, b) => a + b, 0) / dolphinScores.length);
+// const avgKoalaScores = (koalasScores.reduce((a, b) => a + b, 0) / koalasScores.length);
+// console.log(avgDolphinScores, avgKoalaScores);
 
-if (avgDolphinScores >= 100 || avgKoalaScores >= 100) {
-    if (avgDolphinScores === avgKoalaScores) {
-        console.log(`Woah!! Its a tie`);
-    } else if (avgDolphinScores > avgKoalaScores) {
-        console.log(`Yayy!! Dolphins have won 🏆`);
-    } else {
-        console.log(`Yayy!! Koalas have won 🏆`);
-    }
-} else {
-    console.log(`There is no winner as minimum score is not acheived`);
-}
+// if (avgDolphinScores >= 100 || avgKoalaScores >= 100) {
+//     if (avgDolphinScores === avgKoalaScores) {
+//         console.log(`Woah!! Its a tie`);
+//     } else if (avgDolphinScores > avgKoalaScores) {
+//         console.log(`Yayy!! Dolphins have won 🏆`);
+//     } else {
+//         console.log(`Yayy!! Koalas have won 🏆`);
+//     }
+// } else {
+//     console.log(`There is no winner as minimum score is not acheived`);
+// }
+
+/* 
+    29: Coding Challenge #4 -- Ternary operator
+*/
+// const bill = 275;
+// const bill = 40;
+const bill = 430;
+const tip = (bill > 50 && bill < 300 ? 0.15 : 0.2) * bill;
+
+console.log(`The bill was ${bill}, the tip was ${tip}, and the total value is ${bill + tip}`);
