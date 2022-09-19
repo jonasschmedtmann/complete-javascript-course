@@ -16,21 +16,40 @@
 //     console.log(`Yayy!! I can drive`);
 // }
 
-/* 
+/*
     33: Functions
 */
 
-function logger () {
-    console.log(`My name is Vishu!`);
+// function logger () {
+//     console.log(`My name is Vishu!`);
+// }
+
+// logger();   // Calling
+
+// function fruitProcessor (applesCount, orangesCount) {
+//     console.log(applesCount, orangesCount);
+//     const juice = `Juice with ${applesCount} apples and ${orangesCount} oranges`;
+//     return juice;
+// }
+
+// console.log(fruitProcessor(10, 3));
+// console.log(fruitProcessor(7, 9));
+
+/* 
+    34: Function Declaration vs. Expression
+*/
+
+// function declaration -- can be called before declaring -- Hoisting 🙊
+function calcAge1 (birthYear) {
+    return 2022 - birthYear;
 }
 
-logger();   // Calling
+console.log(calcAge1(1992));
 
-function fruitProcessor (applesCount, orangesCount) {
-    console.log(applesCount, orangesCount);
-    const juice = `Juice with ${applesCount} apples and ${orangesCount} oranges`;
-    return juice;
-}
+//function expression/ anonymous function -- cannot be called before initializing
+const calcAge2 = function (birthYear) {
+    return 2022 - birthYear;
+};
 
-console.log(fruitProcessor(10, 3));
-console.log(fruitProcessor(7, 9));
+console.log(calcAge2(1997));
+
