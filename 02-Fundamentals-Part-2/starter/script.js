@@ -35,21 +35,36 @@
 // console.log(fruitProcessor(10, 3));
 // console.log(fruitProcessor(7, 9));
 
-/* 
+/*
     34: Function Declaration vs. Expression
 */
 
-// function declaration -- can be called before declaring -- Hoisting 🙊
-function calcAge1 (birthYear) {
-    return 2022 - birthYear;
+// // function declaration -- can be called before declaring -- Hoisting 🙊
+// function calcAge1 (birthYear) {
+//     return 2022 - birthYear;
+// }
+
+// console.log(calcAge1(1992));
+
+// //function expression/ anonymous function -- cannot be called before initializing
+// const calcAge2 = function (birthYear) {
+//     return 2022 - birthYear;
+// };
+
+// console.log(calcAge2(1997));
+
+/* 
+    35: Arrow functions
+*/
+
+const calcAge = (birthYear) => 2022 - birthYear;
+console.log(calcAge(1992));
+
+const yearsUntilRetirement = (birthYear, retirementAge) => {
+    const age = 2022 - birthYear;
+    const yearsLeft = retirementAge - age;
+    return yearsLeft;
 }
 
-console.log(calcAge1(1992));
-
-//function expression/ anonymous function -- cannot be called before initializing
-const calcAge2 = function (birthYear) {
-    return 2022 - birthYear;
-};
-
-console.log(calcAge2(1997));
+console.log(yearsUntilRetirement(1992, 55));
 
