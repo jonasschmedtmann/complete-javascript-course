@@ -53,18 +53,39 @@
 
 // console.log(calcAge2(1997));
 
-/* 
+/*
     35: Arrow functions
 */
 
-const calcAge = (birthYear) => 2022 - birthYear;
-console.log(calcAge(1992));
+// const calcAge = (birthYear) => 2022 - birthYear;
+// console.log(calcAge(1992));
 
-const yearsUntilRetirement = (birthYear, retirementAge) => {
-    const age = 2022 - birthYear;
-    const yearsLeft = retirementAge - age;
-    return yearsLeft;
+// const yearsUntilRetirement = (birthYear, retirementAge) => {
+//     const age = 2022 - birthYear;
+//     const yearsLeft = retirementAge - age;
+//     return yearsLeft;
+// }
+
+// console.log(yearsUntilRetirement(1992, 55));
+
+/* 
+    36: Functions calling other functions
+*/
+
+const cutFruitToPieces = (fruit) => fruit * 4;
+
+const fruitProcessor = (applesCount, orangesCount) => {
+
+    const applePieces = cutFruitToPieces(applesCount)
+    const orangePieces = cutFruitToPieces(orangesCount)
+
+    console.log(applesCount, orangesCount);
+    const juice = `Juice with ${applePieces} apple pieces and ${orangePieces} orange pieces`;
+    return juice;
 }
 
-console.log(yearsUntilRetirement(1992, 55));
+console.log(fruitProcessor(2, 3));
+
+
+
 
