@@ -86,38 +86,47 @@
 
 // console.log(fruitProcessor(2, 3));
 
-/* 
+/*
     Coding Challenge #1
 */
 
-const calcAvg = (scores) => scores.reduce((a, b) => a + b, 0) / scores.length;
+// const calcAvg = (scores) => scores.reduce((a, b) => a + b, 0) / scores.length;
 
-const checkWinner = (avgDolphins, avgKoalas) => {
-    if (avgKoalas >= 2 * avgDolphins) {
-        return `Koalas win (${avgKoalas} vs. ${avgDolphins})`;
-    } else if (avgDolphins >= 2 * avgKoalas) {
-        return `Dolphins win (${avgDolphins} vs. ${avgKoalas})`;
-    } else {
-        return `No team wins...😢`
-    }
-}
+// const checkWinner = (avgDolphins, avgKoalas) => {
+//     if (avgKoalas >= 2 * avgDolphins) {
+//         return `Koalas win (${avgKoalas} vs. ${avgDolphins})`;
+//     } else if (avgDolphins >= 2 * avgKoalas) {
+//         return `Dolphins win (${avgDolphins} vs. ${avgKoalas})`;
+//     } else {
+//         return `No team wins...😢`
+//     }
+// }
 
-// Test Data 1
-let dolphinsScores = [ 44, 23, 71 ];
-let koalasScores = [ 65, 54, 49 ];
-let avgDolphins = calcAvg(dolphinsScores);
-let avgKoalas = calcAvg(koalasScores);
-console.log(avgDolphins, avgKoalas);
+// // Test Data 1
+// let dolphinsScores = [ 44, 23, 71 ];
+// let koalasScores = [ 65, 54, 49 ];
+// let avgDolphins = calcAvg(dolphinsScores);
+// let avgKoalas = calcAvg(koalasScores);
+// console.log(avgDolphins, avgKoalas);
 
-console.log(checkWinner(avgDolphins, avgKoalas));
+// console.log(checkWinner(avgDolphins, avgKoalas));
 
-// Test Data 2
-dolphinsScores = [ 85, 54, 41 ];
-koalasScores = [ 23, 34, 27 ];
-avgDolphins = calcAvg(dolphinsScores);
-avgKoalas = calcAvg(koalasScores);
-console.log(avgDolphins, avgKoalas);
-console.log(checkWinner(avgDolphins, avgKoalas));
+// // Test Data 2
+// dolphinsScores = [ 85, 54, 41 ];
+// koalasScores = [ 23, 34, 27 ];
+// avgDolphins = calcAvg(dolphinsScores);
+// avgKoalas = calcAvg(koalasScores);
+// console.log(avgDolphins, avgKoalas);
+// console.log(checkWinner(avgDolphins, avgKoalas));
+
+/* 
+    39: Intruduction to arrays
+*/
+
+const data = [ 'Vishu', 29, 'Vitla' ];
+console.log((data));
+
+
 
 
 
