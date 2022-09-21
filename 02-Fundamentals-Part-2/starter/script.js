@@ -119,12 +119,35 @@
 // console.log(avgDolphins, avgKoalas);
 // console.log(checkWinner(avgDolphins, avgKoalas));
 
-/* 
+/*
     39: Intruduction to arrays
 */
 
-const data = [ 'Vishu', 29, 'Vitla' ];
-console.log((data));
+// const data = [ 'Vishu', 29, 'Vitla' ];
+// console.log((data));
+
+/* 
+    40: Basic Array Operations
+*/
+
+const friends = [ 'Vishu', 'Kaushik' ];
+
+console.log(friends);
+friends.push('Sharath');
+console.log(friends);
+friends.unshift('Arjun');
+console.log(friends);
+friends.pop();
+console.log(friends);
+friends.shift();    // remove first element
+console.log(friends);
+
+console.log(friends.indexOf('Arjun'));      // -1
+console.log(friends.indexOf('Vishu'));      // position
+console.log(friends.includes('Vishu'));     // true
+console.log(friends.includes('Arjun'));     // false
+console.log(friends.reduceRight(callbackfn));     // false
+
 
 
 
