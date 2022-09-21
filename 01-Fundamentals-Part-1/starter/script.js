@@ -41,6 +41,6 @@ console.log('I am ' + 23 + ' years old')
 console.log('I am ' + String(23) + ' years old')
 console.log('23' - '10' - 3);
 console.log('23' + '10' + 3);
-// console.log('23' * '2');
-// console.log('23' / '2');
+console.log('23' * '2');
+console.log('23' / '2');
 
