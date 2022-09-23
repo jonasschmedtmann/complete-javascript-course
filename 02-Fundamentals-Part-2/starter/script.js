@@ -126,27 +126,71 @@
 // const data = [ 'Vishu', 29, 'Vitla' ];
 // console.log((data));
 
-/* 
+/*
     40: Basic Array Operations
 */
 
-const friends = [ 'Vishu', 'Kaushik' ];
+// const friends = [ 'Vishu', 'Kaushik' ];
 
-console.log(friends);
-friends.push('Sharath');
-console.log(friends);
-friends.unshift('Arjun');
-console.log(friends);
-friends.pop();
-console.log(friends);
-friends.shift();    // remove first element
-console.log(friends);
+// console.log(friends);
+// friends.push('Sharath');
+// console.log(friends);
+// friends.unshift('Arjun');
+// console.log(friends);
+// friends.pop();
+// console.log(friends);
+// friends.shift();    // remove first element
+// console.log(friends);
 
-console.log(friends.indexOf('Arjun'));      // -1
-console.log(friends.indexOf('Vishu'));      // position
-console.log(friends.includes('Vishu'));     // true
-console.log(friends.includes('Arjun'));     // false
-console.log(friends.reduceRight(callbackfn));     // false
+// console.log(friends.indexOf('Arjun'));      // -1
+// console.log(friends.indexOf('Vishu'));      // position
+// console.log(friends.includes('Vishu'));     // true
+// console.log(friends.includes('Arjun'));     // false
+// console.log(friends.reduceRight(callbackfn));     // false
+
+/*
+    41: Coding challenge #2
+*/
+
+// const calcTip = bill => bill >= 50 && bill <= 300 ? 0.15 * bill : 0.2 * bill;
+
+
+// const bills = [ 125, 555, 44 ];
+
+// const tips = bills.map(bill => calcTip(bill));
+// console.log(tips);
+// const total = bills.map(bill => bill + calcTip(bill));
+// console.log(total);
+
+/* 
+    43: Objects -- Dot vs. Bracket Notation
+*/
+
+const Vishu = {
+    firstName: 'Vishu',
+    lastName: 'Kumar',
+    job: 'coder',
+    age: 2022 - 1992,
+    friends: [ 'Kaushik', 'Sharath', 'Arjun' ]
+};
+
+console.log(Vishu.firstName);
+console.log(Vishu[ 'lastName' ]);
+
+const interestedIn = prompt(`What do you want to know about vishu? 
+            Select from firstName, lastName, job, age, friends`);
+
+console.log(Vishu.interestedIn)     // Undefined as 'interestedIn' is not a property of Vishu
+console.log(Vishu[ interestedIn ]); // Gives value as the one inside the square bracket is an expression and is resolved during execution
+
+Vishu.home = 'Vitla';
+Vishu[ 'location' ] = 'Bengaluru';
+
+console.log(Vishu);
+
+console.log(`${Vishu.firstName} has ${Vishu.friends.length} and his best friend is ${Vishu.friends[ 0 ]}`);
+
+
 
 
 
