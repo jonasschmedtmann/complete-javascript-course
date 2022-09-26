@@ -194,39 +194,75 @@
     44: Object Methods
 */
 
-const vishu = {
-    firstName: 'Vishu',
-    lastName: 'Kumar',
-    job: 'coder',
-    birthYear: 1992,
-    friends: [ 'Kaushik', 'Sharath', 'Arjun' ],
-    hasDriversLicense: false,
+// const vishu = {
+//     firstName: 'Vishu',
+//     lastName: 'Kumar',
+//     job: 'coder',
+//     birthYear: 1992,
+//     friends: [ 'Kaushik', 'Sharath', 'Arjun' ],
+//     hasDriversLicense: false,
 
-    // calcAge: function(birthYear) {
-    //     return 2022 - birthYear
-    // }
+//     // calcAge: function(birthYear) {
+//     //     return 2022 - birthYear
+//     // }
 
-    // calcAge: function () {
-    //     return 2022 - this.birthYear;
-    // }
+//     // calcAge: function () {
+//     //     return 2022 - this.birthYear;
+//     // }
 
-    calcAge: function () {
-        this.age = 2022 - this.birthYear
-        return this.age;
-    },
+//     calcAge: function () {
+//         this.age = 2022 - this.birthYear
+//         return this.age;
+//     },
 
-    getSummary: function () {
-        return `${this.firstName} is a ${this.calcAge()} year old ${this.job}, and
-        ${this.hasDriversLicense ? `he has a drivers license` : `he doesn't have a drivers license`}`;
+//     getSummary: function () {
+//         return `${this.firstName} is a ${this.calcAge()} year old ${this.job}, and
+//         ${this.hasDriversLicense ? `he has a drivers license` : `he doesn't have a drivers license`}`;
+//     }
+// };
+
+// // console.log(Vishu.calcAge(1992));
+// // console.log(Vishu[ 'calcAge' ](1992));
+
+// console.log(vishu.calcAge());
+// console.log(vishu.age);
+// console.log(vishu.getSummary());
+
+/* 
+    45: Coding Challenge #3
+*/
+
+const mark = {
+    fullName: `Mark Miller`,
+    mass: 78,
+    height: 1.69,
+
+    calcBMI: function () {
+        this.bmi = this.mass / (this.height ** 2);
+        return this.bmi;
+    }
+};
+const john = {
+    fullName: `John Smith`,
+    mass: 92,
+    height: 1.95,
+
+    calcBMI: function () {
+        this.bmi = this.mass / (this.height ** 2);
+        return this.bmi;
     }
 };
 
-// console.log(Vishu.calcAge(1992));
-// console.log(Vishu[ 'calcAge' ](1992));
+console.log(mark.calcBMI());
+console.log(john.calcBMI());
 
-console.log(vishu.calcAge());
-console.log(vishu.age);
-console.log(vishu.getSummary());
+if (mark.calcBMI() > john.calcBMI()) {
+    console.log(`${mark.fullName}'s BMI (${mark.bmi}) is higher than ${john.fullName}'s (${john.bmi})`);
+} else if (john.calcBMI() > mark.calcBMI()) {
+    console.log(`${john.fullName}'s BMI (${john.bmi}) is higher than ${mark.fullName}'s (${mark.bmi})`);
+} else {
+    console.log(`Wow!! it's a tie for the BMIs 🙆🏼‍♂️`);
+}
 
 
 
