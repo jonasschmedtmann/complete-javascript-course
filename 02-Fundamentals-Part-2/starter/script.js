@@ -162,7 +162,7 @@
 // const total = bills.map(bill => bill + calcTip(bill));
 // console.log(total);
 
-/* 
+/*
     43: Objects -- Dot vs. Bracket Notation
 */
 
@@ -190,7 +190,7 @@
 
 // console.log(`${Vishu.firstName} has ${Vishu.friends.length} and his best friend is ${Vishu.friends[ 0 ]}`);
 
-/* 
+/*
     44: Object Methods
 */
 
@@ -228,42 +228,65 @@
 // console.log(vishu.age);
 // console.log(vishu.getSummary());
 
-/* 
+/*
     45: Coding Challenge #3
 */
 
-const mark = {
-    fullName: `Mark Miller`,
-    mass: 78,
-    height: 1.69,
+// const mark = {
+//     fullName: `Mark Miller`,
+//     mass: 78,
+//     height: 1.69,
 
-    calcBMI: function () {
-        this.bmi = this.mass / (this.height ** 2);
-        return this.bmi;
-    }
-};
-const john = {
-    fullName: `John Smith`,
-    mass: 92,
-    height: 1.95,
+//     calcBMI: function () {
+//         this.bmi = this.mass / (this.height ** 2);
+//         return this.bmi;
+//     }
+// };
+// const john = {
+//     fullName: `John Smith`,
+//     mass: 92,
+//     height: 1.95,
 
-    calcBMI: function () {
-        this.bmi = this.mass / (this.height ** 2);
-        return this.bmi;
-    }
-};
+//     calcBMI: function () {
+//         this.bmi = this.mass / (this.height ** 2);
+//         return this.bmi;
+//     }
+// };
 
-console.log(mark.calcBMI());
-console.log(john.calcBMI());
+// console.log(mark.calcBMI());
+// console.log(john.calcBMI());
 
-if (mark.calcBMI() > john.calcBMI()) {
-    console.log(`${mark.fullName}'s BMI (${mark.bmi}) is higher than ${john.fullName}'s (${john.bmi})`);
-} else if (john.calcBMI() > mark.calcBMI()) {
-    console.log(`${john.fullName}'s BMI (${john.bmi}) is higher than ${mark.fullName}'s (${mark.bmi})`);
-} else {
-    console.log(`Wow!! it's a tie for the BMIs 🙆🏼‍♂️`);
+// if (mark.calcBMI() > john.calcBMI()) {
+//     console.log(`${mark.fullName}'s BMI (${mark.bmi}) is higher than ${john.fullName}'s (${john.bmi})`);
+// } else if (john.calcBMI() > mark.calcBMI()) {
+//     console.log(`${john.fullName}'s BMI (${john.bmi}) is higher than ${mark.fullName}'s (${mark.bmi})`);
+// } else {
+//     console.log(`Wow!! it's a tie for the BMIs 🙆🏼‍♂️`);
+// }
+
+
+/* 
+    47: Looping Arrays, breaking and continuing
+*/
+
+const vishu = [
+    'Vishu',
+    'Kumar',
+    29,
+    [ 'Kaushik', 'Sharath', 'Arjun' ],
+    'Vitla'
+];
+
+for (let i = 0; i < vishu.length; i++) {
+
+    if (typeof vishu[ i ] === 'object')
+        break;          // Exit the array
+
+    if (typeof vishu[ i ] !== 'string')
+        continue;       // Skip if the element is not of string type
+
+    console.log(vishu[ i ], typeof vishu[ i ]);
 }
-
 
 
 
