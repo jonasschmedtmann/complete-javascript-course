@@ -166,31 +166,67 @@
     43: Objects -- Dot vs. Bracket Notation
 */
 
-const Vishu = {
+// const Vishu = {
+//     firstName: 'Vishu',
+//     lastName: 'Kumar',
+//     job: 'coder',
+//     age: 2022 - 1992,
+//     friends: [ 'Kaushik', 'Sharath', 'Arjun' ]
+// };
+
+// console.log(Vishu.firstName);
+// console.log(Vishu[ 'lastName' ]);
+
+// const interestedIn = prompt(`What do you want to know about vishu? 
+//             Select from firstName, lastName, job, age, friends`);
+
+// console.log(Vishu.interestedIn)     // Undefined as 'interestedIn' is not a property of Vishu
+// console.log(Vishu[ interestedIn ]); // Gives value as the one inside the square bracket is an expression and is resolved during execution
+
+// Vishu.home = 'Vitla';
+// Vishu[ 'location' ] = 'Bengaluru';
+
+// console.log(Vishu);
+
+// console.log(`${Vishu.firstName} has ${Vishu.friends.length} and his best friend is ${Vishu.friends[ 0 ]}`);
+
+/* 
+    44: Object Methods
+*/
+
+const vishu = {
     firstName: 'Vishu',
     lastName: 'Kumar',
     job: 'coder',
-    age: 2022 - 1992,
-    friends: [ 'Kaushik', 'Sharath', 'Arjun' ]
+    birthYear: 1992,
+    friends: [ 'Kaushik', 'Sharath', 'Arjun' ],
+    hasDriversLicense: false,
+
+    // calcAge: function(birthYear) {
+    //     return 2022 - birthYear
+    // }
+
+    // calcAge: function () {
+    //     return 2022 - this.birthYear;
+    // }
+
+    calcAge: function () {
+        this.age = 2022 - this.birthYear
+        return this.age;
+    },
+
+    getSummary: function () {
+        return `${this.firstName} is a ${this.calcAge()} year old ${this.job}, and
+        ${this.hasDriversLicense ? `he has a drivers license` : `he doesn't have a drivers license`}`;
+    }
 };
 
-console.log(Vishu.firstName);
-console.log(Vishu[ 'lastName' ]);
+// console.log(Vishu.calcAge(1992));
+// console.log(Vishu[ 'calcAge' ](1992));
 
-const interestedIn = prompt(`What do you want to know about vishu? 
-            Select from firstName, lastName, job, age, friends`);
-
-console.log(Vishu.interestedIn)     // Undefined as 'interestedIn' is not a property of Vishu
-console.log(Vishu[ interestedIn ]); // Gives value as the one inside the square bracket is an expression and is resolved during execution
-
-Vishu.home = 'Vitla';
-Vishu[ 'location' ] = 'Bengaluru';
-
-console.log(Vishu);
-
-console.log(`${Vishu.firstName} has ${Vishu.friends.length} and his best friend is ${Vishu.friends[ 0 ]}`);
-
-
+console.log(vishu.calcAge());
+console.log(vishu.age);
+console.log(vishu.getSummary());
 
 
 
