@@ -265,27 +265,44 @@
 // }
 
 
-/* 
+/*
     47: Looping Arrays, breaking and continuing
 */
 
-const vishu = [
-    'Vishu',
-    'Kumar',
-    29,
-    [ 'Kaushik', 'Sharath', 'Arjun' ],
-    'Vitla'
-];
+// const vishu = [
+//     'Vishu',
+//     'Kumar',
+//     29,
+//     [ 'Kaushik', 'Sharath', 'Arjun' ],
+//     'Vitla'
+// ];
 
-for (let i = 0; i < vishu.length; i++) {
+// for (let i = 0; i < vishu.length; i++) {
 
-    if (typeof vishu[ i ] === 'object')
-        break;          // Exit the array
+//     if (typeof vishu[ i ] === 'object')
+//         break;          // Exit the array
 
-    if (typeof vishu[ i ] !== 'string')
-        continue;       // Skip if the element is not of string type
+//     if (typeof vishu[ i ] !== 'string')
+//         continue;       // Skip if the element is not of string type
 
-    console.log(vishu[ i ], typeof vishu[ i ]);
+//     console.log(vishu[ i ], typeof vishu[ i ]);
+// }
+
+/* 
+    49: While loop
+*/
+
+const diceMethod = () => Math.trunc(Math.random() * 6 + 1);
+
+// console.log(dice);
+
+let dice = diceMethod();
+
+console.log(dice);
+
+while (dice !== 6) {
+    console.log(`You rolled a dice -- ${dice}`);
+    dice = diceMethod();
 }
 
 
