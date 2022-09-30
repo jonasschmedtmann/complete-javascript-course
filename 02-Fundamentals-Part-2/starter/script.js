@@ -288,22 +288,57 @@
 //     console.log(vishu[ i ], typeof vishu[ i ]);
 // }
 
-/* 
+/*
     49: While loop
 */
 
-const diceMethod = () => Math.trunc(Math.random() * 6 + 1);
+// const diceMethod = () => Math.trunc(Math.random() * 6 + 1);
+
+// // console.log(dice);
+
+// let dice = diceMethod();
 
 // console.log(dice);
 
-let dice = diceMethod();
+// while (dice !== 6) {
+//     console.log(`You rolled a dice -- ${dice}`);
+//     dice = diceMethod();
+// }
 
-console.log(dice);
+/* 
+    50: Coding Challenge #4
+*/
 
-while (dice !== 6) {
-    console.log(`You rolled a dice -- ${dice}`);
-    dice = diceMethod();
+const bills = [ 22, 295, 176, 440, 37, 105, 10, 1100, 86, 52 ];
+
+console.log(bills);
+const tips = [];
+const totals = [];
+
+const calcTip = bill => bill >= 50 && bill <= 300 ? 0.15 * bill : 0.2 * bill;
+// const calcAverage = arr => arr.reduce((a, b) => a + b, 0) / arr.length;
+
+const calcAverage = arr => {
+    let total = 0;
+    for (let i = 0; i < arr.length; i++) {
+        total += arr[ i ];
+    }
+    return total / arr.length;
+};
+
+
+for (let i = 0; i < bills.length; i++) {
+    const tip = calcTip(bills[ i ])
+    tips.push(tip);
+    totals.push(tip + bills[ i ]);
 }
+
+console.log('Tips -- ', tips);
+console.log('Totals -- ', totals);
+
+console.log('Average bills -- ', calcAverage(bills));
+console.log('Average tips -- ', calcAverage(tips));
+console.log('Average totals -- ', calcAverage(totals));
 
 
 
