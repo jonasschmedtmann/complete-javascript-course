@@ -1,0 +1,32 @@
+{
+  "name": "promises-exercises",
+  "version": "1.0.0",
+  "description": "Exercises for learning promises",
+  "main": "index.js",
+  "scripts": {
+    "01-making-promises": "./node_modules/.bin/mocha -- ./01-making-promises/test.js",
+    "02-consuming-promises": "./node_modules/.bin/mocha -- ./02-consuming-promises/test.js",
+    "03-transforming-promises": "./node_modules/.bin/mocha -- ./03-transforming-promises/test.js",
+    "04-chaining-promises": "./node_modules/.bin/mocha -- ./04-chaining-promises/test.js",
+    "05-callbacks": "./node_modules/.bin/mocha -- ./05-callbacks/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lighthouse-labs/promises-exercises.git"
+  },
+  "keywords": [
+    "promises",
+    "js",
+    "async"
+  ],
+  "author": "Joel Shinness <me@joelshinness.com> (http://joelshinness.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lighthouse-labs/promises-exercises/issues"
+  },
+  "homepage": "https://github.com/lighthouse-labs/promises-exercises#readme",
+  "dependencies": {
+    "eslint": "^5.1.0",
+    "mocha": "^5.2.0"
+  }
+}

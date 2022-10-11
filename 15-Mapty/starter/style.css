@@ -41,6 +41,10 @@ a:visited {
 }
 
 /* SIDEBAR */
+.btndelete {
+  background-color: #00000000;
+  color: red;
+}
 .sidebar {
   flex-basis: 50rem;
   background-color: var(--color-dark--1);
