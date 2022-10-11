@@ -20,6 +20,7 @@
     75: Manipulating CSS styles
     76: Coding Challenge #1 -- Implementing the reset button
     77: Implementing high scores
+    78: Refactoring the code: The DRY Principle
 */
 
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
@@ -30,9 +31,9 @@ document.querySelector('.check').addEventListener('click', function () {
     const guess = +document.querySelector('.guess').value;
 
     if (!guess) {   // no input
-        document.querySelector('.message').textContent = '🚫 No Number !!';
+        displayMessage('🚫 No Number !!');
     } else if (guess === secretNumber) {    // guess is correct
-        document.querySelector('.message').textContent = '🏆 Correct Number!!';
+        displayMessage('🏆 Correct Number!!');
         document.querySelector('body').style.backgroundColor = '#60b347';
         document.querySelector('.number').style.width = '30rem';
         document.querySelector('.number').textContent = secretNumber;
@@ -43,46 +44,33 @@ document.querySelector('.check').addEventListener('click', function () {
             highScore = score;
         }
 
-    } else if (guess > secretNumber) {  // guess is high
+    } else if (guess !== secretNumber) {
+
+        let message;
+        // When score is above 0, update the message for input.
         if (score > 1) {
-            document.querySelector('.message').textContent = '📈 Too High!!';
+            message = guess > secretNumber ? '📈 Too High!!' : '📉 Too Low!!';
         } else {
-            document.querySelector('.message').textContent = 'You lost the game!!!';
+            message = '😢 You lost the game!!!';
+            document.querySelector('.check').disabled = true;
         }
-        decreaseScore();
-        updateScoreUI();
-    } else if (guess < secretNumber) {  // guess is low
-        if (score > 1) {
-            document.querySelector('.message').textContent = '📉 Too Low!!';
-        } else {
-            document.querySelector('.message').textContent = '🎲 You lost the game!!!';
-        }
-        decreaseScore();
-        updateScoreUI();
+        score--;
+        document.querySelector('.score').textContent = score;
+        displayMessage(message);
     }
-
-
 });
 
-const decreaseScore = () => {
-    score--;
-};
-
-const updateHighScore = () => {
-
-};
-
-function updateScoreUI () {
-    document.querySelector('.score').textContent = score;
+const displayMessage = (message) => {
+    document.querySelector('.message').textContent = message
 }
 
 document.querySelector('.again').addEventListener('click', function () {
     score = 20;
     secretNumber = Math.trunc(Math.random() * 20) + 1;
     document.querySelector('.number').textContent = '?';
-    document.querySelector('.message').textContent = 'Start guessing...';
+    document.querySelector('.check').disabled = false;
     document.querySelector('.guess').value = '';
     document.querySelector('body').style.backgroundColor = '#222';
-    updateScoreUI();
+    displayMessage('Start guessing...');
 
 });
