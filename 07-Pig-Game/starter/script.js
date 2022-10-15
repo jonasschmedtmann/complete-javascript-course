@@ -3,10 +3,13 @@
 /* 
     82: Project #3: PIG Game
     83: Rolling the Dice
+    84: Switching the Active Player
 */
 
-// Select the score elements
+// Select the elements
 
+const player0El = document.querySelector('.player--0');
+const player1El = document.querySelector('.player--1');
 const score0El = document.querySelector('#score--0');
 const score1El = document.getElementById('score--1');
 const diceEl = document.querySelector('.dice');
@@ -34,9 +37,17 @@ btnRoll.addEventListener('click', function () {
     if (dice === 1) {
         // switch the current player
 
+        const currentPlayerScore = +document.querySelector(`#score--${activePlayer}`).textContent
+        document.querySelector(`#score--${activePlayer}`).textContent = currentPlayerScore + currentScore;
+        currentScore = 0;
+        document.getElementById(`current--${activePlayer}`).textContent = currentScore;
+        activePlayer = activePlayer === 0 ? 1 : 0;
+        player0El.classList.toggle('player--active');
+        player1El.classList.toggle('player--active');
+
     } else {
         // add the score to the current score
         currentScore += dice;
-        current0El.textContent = currentScore;      //TODO: Update in the future with player info   
+        document.getElementById(`current--${activePlayer}`).textContent = currentScore;
     }
 });
