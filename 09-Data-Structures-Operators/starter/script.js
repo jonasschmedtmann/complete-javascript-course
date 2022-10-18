@@ -27,3 +27,31 @@ const restaurant = {
     },
   },
 };
+
+let person1 = {
+  name: null,
+  age:33
+}
+
+let person2 = {
+  name: "Elsa",
+  age:33
+}
+
+// take the first value if it exists, if not take the second value
+// person1.name ||= "changed"
+// take the first value if it exists or if it is "nullish" ("" or 0), if not take the second value
+// person1.name ??= "changed"
+// if the first value exists, take the second value. If you want to change a property if it exists use this one.
+// person1.name &&= "bobert"
+
+person1.name ??= "Blah blah"
+
+
+
+
+
+
+// console.log(`or: ${person1.name}`);
+// console.log(`nullish: ${person1.name}`);
+console.log(`and: ${person1.name}`)

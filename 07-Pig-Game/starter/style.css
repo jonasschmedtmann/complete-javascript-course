@@ -36,6 +36,10 @@ main {
   display: flex;
 }
 
+.hidden {
+  display: none;
+}
+
 .player {
   flex: 50%;
   padding: 9rem;
