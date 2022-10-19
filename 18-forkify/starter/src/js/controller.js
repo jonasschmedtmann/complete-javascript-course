@@ -1,12 +1,16 @@
 import * as model from './model.js';
 import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
+import resultsView from './views/resultsView.js';
+import paginationView from './views/paginationView.js';
 
 //import icons from 'url:../img/icons.svg';
 import 'core-js/stable'; //pollyfiling
 import 'regenerator-runtime/runtime'; //pollisync async/await
 
-// https://forkify-api.herokuapp.com/v2
+if (module.hot) {
+  module.hot.accept();
+}
 
 ///////////////////////////////////////
 
@@ -29,25 +33,45 @@ const controlRecipes = async () => {
 
 const controlSearchResults = async () => {
   try {
+    resultsView.renderSpinner();
     //Get search query
     const query = searchView.getQuery();
-    if(!query) return;
+    if (!query) return;
 
-    //load search results
+    //Load search results
     await model.loadSearchResults(query);
 
+    //Render results
+    resultsView.render(model.getSearchResultsPage());
 
-    console.log(model.state.search.results);
+    //Render initial pagination buttons
+    paginationView.render(model.state.search);
   } catch (err) {
     console.log(err);
   }
 };
 
+const controlPagination = goToPage => {
+  //Render new results
+  resultsView.render(model.getSearchResultsPage(goToPage));
+
+  //Render new pagination buttons
+  paginationView.render(model.state.search);
+};
+
+const controlServings = (newServings) => {
+  //Update the recipe servings (in state)
+  model.updateServings(newServings);
+
+  //Update the recipe view
+  recipeView.render(model.state.recipe);
+};
 
 const init = () => {
   recipeView.addHandlerRender(controlRecipes);
-  searchView.addHandlerSearch(controlSearchResults)
+  recipeView.addHandlerUpdateServings(controlServings);
+  searchView.addHandlerSearch(controlSearchResults);
+  paginationView.addHandlerClick(controlPagination);
 };
 
 init();
-
