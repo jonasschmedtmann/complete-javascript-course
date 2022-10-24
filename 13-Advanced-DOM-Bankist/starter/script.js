@@ -64,7 +64,7 @@ message.classList.add('cookie-message');
 message.textContent = "We use cookied for imporved functionality and analytics.";
 
 message.innerHTML = 
-'We use cookied for imporved functionality and analytics. <button class = "btn btn-close-cookie">Got it!</button>' ;
+'We use cookied for imporved functionality and analytics. <button class = "btn btn--close-cookie">Got it!</button>' ;
 
 // header.prepend(message); 
 header.append(message); 
@@ -73,6 +73,101 @@ header.append(message);
 
 
 // Delete elements 
-document.querySelector('.btn--close-cookies').addEventListener('click', function() {
-  message.remove(); 
-})
+document.querySelector('.btn--close-cookie').addEventListener('click', function() {
+  // message.remove(); 
+  message.parentElement.removeChild(message);
+});
+
+
+
+// Styles 
+message.style.backgroundColor = "#37383d"; 
+message.style.width = "120%";
+
+// how to get styles 
+
+console.log(getComputedStyle(message).height);
+
+message.style.height = Number.parseFloat(getComputedStyle(message).height,10) + 30 + 'px'; 
+
+//working with custom Css variables 
+document.documentElement.style.setProperty('--color-primary', 'orangered'); 
+
+//Atributes 
+
+const logo = document.querySelector('.nav__logo');
+
+// only works if attributes are standard, can not be custom 
+console.log(logo.alt);
+console.log(logo.className);
+
+
+
+// setting atributies 
+
+logo.alt = 'Beautiful Minimalist logo'
+console.log(logo.alt);
+
+console.log(logo.src); // prints absolute path 
+console.log(logo.getAttribute('src')); // gets realtive path 
+
+//Data Attributes 
+
+console.log(logo.dataset.versionNumber);
+
+
+//Classes
+// logo.classList.add();
+// logo.classList.remove();
+// logo.classList.toggle();
+// logo.classList.contains();
+
+
+//Implementing Smooth Scroll
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+console.log(btnScrollTo);
+console.log(section1);
+
+btnScrollTo.addEventListener('click', function(e) {
+  const s1coords = section1.getBoundingClientRect();
+  console.log(s1coords);
+
+  console.log(e.target.getBoundingClientRect());
+
+  console.log('Current Scroll (x/y) ', window.pageXOffset, window.pageYOffset);
+
+  console.log('height/width viewport', document.documentElement.clientHeight, 
+  document.documentElement.clientWidth);
+
+
+  // old way 
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageYOffset,
+  //   top: s1coords.top + window.pageYOffset,
+  //   behavior: 'smooth',
+  // });
+
+  // new way for smooth scroll 
+  section1.scrollIntoView({behavior: 'smooth'}); 
+}); 
+
+const h1 = document.querySelector('h1'); 
+
+const alertH1 = function(e) {
+  alert('addEventListener: Great! '); 
+  // Method 1 of remove event listener
+  // h1.removeEventListener('mouseenter',alertH1); 
+}
+h1.addEventListener('mouseenter', alertH1); 
+
+setTimeout( () => HTMLQuoteElement.removeEventListener(
+  'mouseenter', alertH1), 3000); 
+
+// h1.onmouseenter = function(e) {
+//   alert('addEventListener: Great! ')
+// }; 
+
+// Event Propagation: Bubbling and Capturing 
