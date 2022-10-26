@@ -24,7 +24,7 @@ const controlRecipes = async () => {
 
     //Update results view to mark selected search result
     resultsView.update(model.getSearchResultsPage());
-    bookmarksView.update(model.state.bookmarks)
+    bookmarksView.update(model.state.bookmarks);
 
     //1) Loading Recipe
     await model.loadRecipe(id);
@@ -77,7 +77,7 @@ const controlAddBookmark = () => {
   //Add or Remove bookmark
   if (!model.state.recipe.bookmarked) model.addBookmark(model.state.recipe);
   else model.deleteBookmark(model.state.recipe.id);
-  
+
   //Update recipe view
   recipeView.update(model.state.recipe);
 
@@ -85,7 +85,11 @@ const controlAddBookmark = () => {
   bookmarksView.render(model.state.bookmarks);
 };
 
+const controlBookmarks = () => {
+  bookmarksView.render(model.state.bookmarks);
+};
 const init = () => {
+  bookmarksView.addHandlerRender(controlBookmarks);
   recipeView.addHandlerRender(controlRecipes);
   recipeView.addHandlerUpdateServings(controlServings);
   recipeView.addHandlerAddBookmark(controlAddBookmark);
@@ -94,3 +98,8 @@ const init = () => {
 };
 
 init();
+
+const clearBookmarks = () => {
+  localStorage.clear('bookmarks');
+}
+//clearBookmarks()
