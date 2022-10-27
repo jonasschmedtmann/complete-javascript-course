@@ -84,37 +84,84 @@
     97: The this keyword in practice
 */
 
-console.log(this);      // window
+// console.log(this);      // window
 
-const calcAge = function (birthYear) {
-    console.log(2022 - birthYear);
-    console.log(this);      // undefined -- normal function call
-}
+// const calcAge = function (birthYear) {
+//     console.log(2022 - birthYear);
+//     console.log(this);      // undefined -- normal function call
+// }
 
-calcAge(1992);
+// calcAge(1992);
 
 
-const calcAgeArrow = (birthYear) => {
-    console.log(2022 - birthYear);
-    console.log(this);      // window -- lexical this -- gets the this keyword of parent scope
-}
+// const calcAgeArrow = (birthYear) => {
+//     console.log(2022 - birthYear);
+//     console.log(this);      // window -- lexical this -- gets the this keyword of parent scope
+// }
 
-calcAgeArrow(1992);
+// calcAgeArrow(1992);
+
+// const vishu = {
+//     birthYear: 1992,
+//     calcAge: function () {
+//         console.log(this);      // vishu obj
+//         console.log(2022 - this.birthYear);
+//     }
+// };
+
+// vishu.calcAge();
+
+// const vasudha = {
+//     birthYear: 1997
+// }
+
+// // Method borrowing
+// vasudha.calcAge = vishu.calcAge;
+// vasudha.calcAge();  // this points to vasudha obj 
+
+/* 
+    98: Regular functions vs Arrow functions
+*/
 
 const vishu = {
+    firstName: 'Vishu',
     birthYear: 1992,
     calcAge: function () {
         console.log(this);      // vishu obj
         console.log(2022 - this.birthYear);
-    }
+
+        // const isMillenial = function () {
+        //     console.log(this);      // this-- undefined as it is a normal function call
+        //     console.log(this.birthYear >= 1981 && this.birthYear <= 1996);  //Error
+        // };
+        // isMillenial();
+
+        // Use arrow function if we need to use 'this' -- as arrow function gets lexical this
+        const isMillenialArrow = () => {
+            console.log(this);
+            console.log(this.birthYear >= 1981 && this.birthYear <= 1996);
+        }
+
+        isMillenialArrow();
+    },
+
+
+
+    greet: () => console.log(`Hello ${this.firstName}`)     // this.firstName -- will be undefined as window obj doesn't have firstName property
 };
 
+vishu.greet();
 vishu.calcAge();
 
-const vasudha = {
-    birthYear: 1997
-}
+const addExpr = function (a, b) {
+    console.log(arguments);     // gives the arguments in an array
+    return a + b;
+};
 
-// Method borrowing
-vasudha.calcAge = vishu.calcAge;
-vasudha.calcAge();  // this points to vasudha obj 
+console.log(addExpr(2, 3, 4, 5));       // We can pass any number of arguments. but is handled in a more efficient way in ES6
+
+const addArrow = (a, b) => {
+    console.log(arguments);     // undefined
+    return a + b;
+};
+console.log(addArrow(5, 6, 7, 8));
