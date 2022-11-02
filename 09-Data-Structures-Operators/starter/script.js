@@ -16,6 +16,19 @@ const restaurant = {
         return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
     },
 
+    // function with object destructuring in the params
+    orderDelivery: function ({
+        starterIndex = 1,
+        mainIndex,
+        time = '20:00',
+        address
+    }) {
+        console.log(
+            `Order received!! Your order of ${this.mainMenu[mainIndex]} and
+            ${this.starterMenu[starterIndex]} will be delivered to ${address} at ${time}`
+        );
+    },
+
     openingHours: {
         thu: {
             open: 12,
@@ -32,29 +45,76 @@ const restaurant = {
     },
 };
 
-/* 
+/*
     103: Destructuring Arrays
 */
 
-// Leave a hole to ignore a certain element in the array
-let [main, , secondary] = restaurant.categories;
+// // Leave a hole to ignore a certain element in the array
+// let [main, , secondary] = restaurant.categories;
 
-console.log(main, secondary);
+// console.log(main, secondary);
 
-// Switching variables without temp
-[main, secondary] = [secondary, main];
-console.log(main, secondary);
+// // Switching variables without temp
+// [main, secondary] = [secondary, main];
+// console.log(main, secondary);
 
-// Receive more than 1 return value from a function
-const [starter, mainCourse] = restaurant.order(2, 0);
-console.log(starter, mainCourse);
+// // Receive more than 1 return value from a function
+// const [starter, mainCourse] = restaurant.order(2, 0);
+// console.log(starter, mainCourse);
 
-//Nested destructuring
-const nested = [1, 2, [3, 4]];
-const [i, , [j, k]] = nested;
-console.log(i, j, k);
+// //Nested destructuring
+// const nested = [1, 2, [3, 4]];
+// const [i, , [j, k]] = nested;
+// console.log(i, j, k);
 
-// Default Values -- can be used when we don't want to use undefined 
-// to a value that doesn't exist in the arrar
-const [p = 1, q = 1, r = 1] = [7, 8];
-console.log(p, q, r);
+// // Default Values -- can be used when we don't want to use undefined 
+// // to a value that doesn't exist in the arrar
+// const [p = 1, q = 1, r = 1] = [7, 8];
+// console.log(p, q, r);
+
+/* 
+    104: Destructuring Objects
+*/
+
+const {
+    name: restaurantName,
+    openingHours,
+    categories: tags} = restaurant;
+console.log(restaurantName, openingHours, tags);
+
+// Default values
+const {menu = [], starterMenu: starters = []} = restaurant;
+console.log(menu, starters);
+
+// Mutating variables
+let a = 111;
+let b = 999;
+const obj = {a: 14, b: 7, c: 14};
+
+// Gives error as JS expects code inside -- {} -- to be a block.
+// So, we have to wrap it in parentheses
+({a, b} = obj);
+
+// Nested Objects
+// const {fri} = openingHours;
+// console.log(fri);
+
+// We want only the open and close hours for friday and have a custom name for variables
+const {fri: {
+    open: openhours, close: closeHours
+}} = openingHours;
+console.log(openhours, closeHours);
+
+// Pass object into function
+restaurant.orderDelivery({
+    address: '29, 2nd main, water tank road',
+    mainIndex: 2,
+    starterIndex: 1,
+    time: '21:30'
+});
+
+restaurant.orderDelivery({  // using the default values in the function
+    address: '29, 2nd main, water tank road',
+    mainIndex: 3
+})
+
