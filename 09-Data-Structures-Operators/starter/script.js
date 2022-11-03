@@ -29,6 +29,12 @@ const restaurant = {
         );
     },
 
+    orderPasta: function (ing1, ing2, ing3) {
+        console.log(
+            `Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`
+        );
+    },
+
     openingHours: {
         thu: {
             open: 12,
@@ -72,49 +78,85 @@ const restaurant = {
 // const [p = 1, q = 1, r = 1] = [7, 8];
 // console.log(p, q, r);
 
-/* 
+/*
     104: Destructuring Objects
 */
 
-const {
-    name: restaurantName,
-    openingHours,
-    categories: tags} = restaurant;
-console.log(restaurantName, openingHours, tags);
+// const {
+//     name: restaurantName,
+//     openingHours,
+//     categories: tags} = restaurant;
+// console.log(restaurantName, openingHours, tags);
 
-// Default values
-const {menu = [], starterMenu: starters = []} = restaurant;
-console.log(menu, starters);
+// // Default values
+// const {menu = [], starterMenu: starters = []} = restaurant;
+// console.log(menu, starters);
 
-// Mutating variables
-let a = 111;
-let b = 999;
-const obj = {a: 14, b: 7, c: 14};
+// // Mutating variables
+// let a = 111;
+// let b = 999;
+// const obj = {a: 14, b: 7, c: 14};
 
-// Gives error as JS expects code inside -- {} -- to be a block.
-// So, we have to wrap it in parentheses
-({a, b} = obj);
+// // Gives error as JS expects code inside -- {} -- to be a block.
+// // So, we have to wrap it in parentheses
+// ({a, b} = obj);
 
-// Nested Objects
-// const {fri} = openingHours;
-// console.log(fri);
+// // Nested Objects
+// // const {fri} = openingHours;
+// // console.log(fri);
 
-// We want only the open and close hours for friday and have a custom name for variables
-const {fri: {
-    open: openhours, close: closeHours
-}} = openingHours;
-console.log(openhours, closeHours);
+// // We want only the open and close hours for friday and have a custom name for variables
+// const {fri: {
+//     open: openhours, close: closeHours
+// }} = openingHours;
+// console.log(openhours, closeHours);
 
-// Pass object into function
-restaurant.orderDelivery({
-    address: '29, 2nd main, water tank road',
-    mainIndex: 2,
-    starterIndex: 1,
-    time: '21:30'
-});
+// // Pass object into function
+// restaurant.orderDelivery({
+//     address: '29, 2nd main, water tank road',
+//     mainIndex: 2,
+//     starterIndex: 1,
+//     time: '21:30'
+// });
 
-restaurant.orderDelivery({  // using the default values in the function
-    address: '29, 2nd main, water tank road',
-    mainIndex: 3
-})
+// restaurant.orderDelivery({  // using the default values in the function
+//     address: '29, 2nd main, water tank road',
+//     mainIndex: 3
+// });
+
+/* 
+    105: The Spread Operator
+*/
+
+const newMenu = [...restaurant.mainMenu, 'Idli'];
+console.log(newMenu);
+
+// Join 2 arrays
+const allMenu = [...restaurant.mainMenu, ...restaurant.starterMenu];
+console.log(allMenu);
+
+// Real world example
+const ingredients = [
+    // prompt(`Let's make pasta!! Ingrdient 1?`),
+    // prompt(`Ingrdient 2?`),
+    // prompt(`Ingrdient 3?`)
+];
+console.log(ingredients);
+//basic way
+restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
+//spread operator
+restaurant.orderPasta(...ingredients);
+
+// Objects -- after ES2018
+
+const newRestaurant = {
+    foundedIn: 1998,
+    ...restaurant,
+    founder: 'Vishu'
+};
+console.log(newRestaurant);
+// create a copy of restaurant
+const restaurantCopy = {...restaurant};
+restaurantCopy.name = 'Om Ganesh Restaurant';
+console.log(restaurantCopy.name, restaurant.name);
 
