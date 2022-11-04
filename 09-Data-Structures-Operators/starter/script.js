@@ -165,37 +165,69 @@ const restaurant = {
 // restaurantCopy.name = 'Om Ganesh Restaurant';
 // console.log(restaurantCopy.name, restaurant.name);
 
-/* 
+/*
     106: Rest Pattern and parameters
 */
 
-// Spread -- on the RHS of =
-const array = [1, 2, 3, ...[4, 5]];
-// REST -- on the LHS of =
-const [a, b, ...others] = array;
-console.log(a, b, others);
+// // Spread -- on the RHS of =
+// const array = [1, 2, 3, ...[4, 5]];
+// // REST -- on the LHS of =
+// const [a, b, ...others] = array;
+// console.log(a, b, others);
 
-const [pizza, , risotto, ...otherMenu] = [...restaurant.mainMenu, ...restaurant.starterMenu];
-// Rest will ignore the skipped elements and only collect the remaining elements
-console.log(pizza, risotto, otherMenu);
+// const [pizza, , risotto, ...otherMenu] = [...restaurant.mainMenu, ...restaurant.starterMenu];
+// // Rest will ignore the skipped elements and only collect the remaining elements
+// console.log(pizza, risotto, otherMenu);
 
 
-// Objects
-const {sat, ...weekDays} = restaurant.openingHours;
-console.log(sat, weekDays);
+// // Objects
+// const {sat, ...weekDays} = restaurant.openingHours;
+// console.log(sat, weekDays);
 
-// Functions
-// accepts arbitrary number of arguments
-const add = function (...numbers) {     // Unpack the values using rest
-    console.log(numbers);
-    const sum = numbers.reduce((a, b) => a + b);
-    console.log(sum);
-};
+// // Functions
+// // accepts arbitrary number of arguments
+// const add = function (...numbers) {     // Unpack the values using rest
+//     console.log(numbers);
+//     const sum = numbers.reduce((a, b) => a + b);
+//     console.log(sum);
+// };
 
-add(2, 3, 4);
-add(2, 3, 4, 5, 6);
-const x = [4, 5, 6];
-add(...x);
+// add(2, 3, 4);
+// add(2, 3, 4, 5, 6);
+// const x = [4, 5, 6];
+// add(...x);
 
-restaurant.orderPizza('mushrooms', 'onions', 'tomato', 'spinach');
+// restaurant.orderPizza('mushrooms', 'onions', 'tomato', 'spinach');
 
+/* 
+    107: Short Circuiting(&& and ||)
+*/
+
+// || --> returns the first truthy value. If there are no truthy values, returns the last value
+console.log(3 || 'Vishu'); // 3
+console.log('' || 'Vishu'); // vishu
+console.log(true || 0); //true
+console.log(undefined || null); // null
+console.log(undefined || 0 || '' || 'hello' || 23 || null); //hello
+
+restaurant.numGuests = 23;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
+// avoid ternary operator and set default value
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
+
+console.log('----AND----');
+// && --> returns the first falsy value. If there are no falsy values, returns the last value
+console.log(0 && 'vishu'); // 0
+console.log(1 && 'vishu'); // vishu
+console.log('hello' && 23 && null && true); // null. Short circuits the true 'true'
+
+// Practical example
+if (restaurant.orderPizza) {
+    restaurant.orderPizza('mushrooms', 'tomato');
+}
+
+// we can avoid the if statement using &&
+// first operand is true, so will return the last value here
+restaurant.orderPizza && restaurant.orderPizza('mushroom', 'onions');
