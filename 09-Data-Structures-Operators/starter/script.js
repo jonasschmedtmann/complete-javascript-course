@@ -35,6 +35,11 @@ const restaurant = {
         );
     },
 
+    orderPizza: function (mainIngredient, ...otherIngrdient) {
+        console.log(mainIngredient);
+        console.log(otherIngrdient);
+    },
+
     openingHours: {
         thu: {
             open: 12,
@@ -124,39 +129,73 @@ const restaurant = {
 //     mainIndex: 3
 // });
 
-/* 
+/*
     105: The Spread Operator
 */
 
-const newMenu = [...restaurant.mainMenu, 'Idli'];
-console.log(newMenu);
+// const newMenu = [...restaurant.mainMenu, 'Idli'];
+// console.log(newMenu);
 
-// Join 2 arrays
-const allMenu = [...restaurant.mainMenu, ...restaurant.starterMenu];
-console.log(allMenu);
+// // Join 2 arrays
+// const allMenu = [...restaurant.mainMenu, ...restaurant.starterMenu];
+// console.log(allMenu);
 
-// Real world example
-const ingredients = [
-    // prompt(`Let's make pasta!! Ingrdient 1?`),
-    // prompt(`Ingrdient 2?`),
-    // prompt(`Ingrdient 3?`)
-];
-console.log(ingredients);
-//basic way
-restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
-//spread operator
-restaurant.orderPasta(...ingredients);
+// // Real world example
+// const ingredients = [
+//     // prompt(`Let's make pasta!! Ingrdient 1?`),
+//     // prompt(`Ingrdient 2?`),
+//     // prompt(`Ingrdient 3?`)
+// ];
+// console.log(ingredients);
+// //basic way
+// restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]);
+// //spread operator
+// restaurant.orderPasta(...ingredients);
 
-// Objects -- after ES2018
+// // Objects -- after ES2018
 
-const newRestaurant = {
-    foundedIn: 1998,
-    ...restaurant,
-    founder: 'Vishu'
+// const newRestaurant = {
+//     foundedIn: 1998,
+//     ...restaurant,
+//     founder: 'Vishu'
+// };
+// console.log(newRestaurant);
+// // create a copy of restaurant
+// const restaurantCopy = {...restaurant};
+// restaurantCopy.name = 'Om Ganesh Restaurant';
+// console.log(restaurantCopy.name, restaurant.name);
+
+/* 
+    106: Rest Pattern and parameters
+*/
+
+// Spread -- on the RHS of =
+const array = [1, 2, 3, ...[4, 5]];
+// REST -- on the LHS of =
+const [a, b, ...others] = array;
+console.log(a, b, others);
+
+const [pizza, , risotto, ...otherMenu] = [...restaurant.mainMenu, ...restaurant.starterMenu];
+// Rest will ignore the skipped elements and only collect the remaining elements
+console.log(pizza, risotto, otherMenu);
+
+
+// Objects
+const {sat, ...weekDays} = restaurant.openingHours;
+console.log(sat, weekDays);
+
+// Functions
+// accepts arbitrary number of arguments
+const add = function (...numbers) {     // Unpack the values using rest
+    console.log(numbers);
+    const sum = numbers.reduce((a, b) => a + b);
+    console.log(sum);
 };
-console.log(newRestaurant);
-// create a copy of restaurant
-const restaurantCopy = {...restaurant};
-restaurantCopy.name = 'Om Ganesh Restaurant';
-console.log(restaurantCopy.name, restaurant.name);
+
+add(2, 3, 4);
+add(2, 3, 4, 5, 6);
+const x = [4, 5, 6];
+add(...x);
+
+restaurant.orderPizza('mushrooms', 'onions', 'tomato', 'spinach');
 
