@@ -203,31 +203,41 @@ const restaurant = {
     107: Short Circuiting(&& and ||)
 */
 
-// || --> returns the first truthy value. If there are no truthy values, returns the last value
-console.log(3 || 'Vishu'); // 3
-console.log('' || 'Vishu'); // vishu
-console.log(true || 0); //true
-console.log(undefined || null); // null
-console.log(undefined || 0 || '' || 'hello' || 23 || null); //hello
+// // || --> returns the first truthy value. If there are no truthy values, returns the last value
+// console.log(3 || 'Vishu'); // 3
+// console.log('' || 'Vishu'); // vishu
+// console.log(true || 0); //true
+// console.log(undefined || null); // null
+// console.log(undefined || 0 || '' || 'hello' || 23 || null); //hello
 
-restaurant.numGuests = 23;
-const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
-console.log(guests1);
-// avoid ternary operator and set default value
-const guests2 = restaurant.numGuests || 10;
-console.log(guests2);
+// restaurant.numGuests = 23;
+// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+// console.log(guests1);
+// // avoid ternary operator and set default value
+// const guests2 = restaurant.numGuests || 10;
+// console.log(guests2);
 
-console.log('----AND----');
-// && --> returns the first falsy value. If there are no falsy values, returns the last value
-console.log(0 && 'vishu'); // 0
-console.log(1 && 'vishu'); // vishu
-console.log('hello' && 23 && null && true); // null. Short circuits the true 'true'
+// console.log('----AND----');
+// // && --> returns the first falsy value. If there are no falsy values, returns the last value
+// console.log(0 && 'vishu'); // 0
+// console.log(1 && 'vishu'); // vishu
+// console.log('hello' && 23 && null && true); // null. Short circuits the true 'true'
 
-// Practical example
-if (restaurant.orderPizza) {
-    restaurant.orderPizza('mushrooms', 'tomato');
-}
+// // Practical example
+// if (restaurant.orderPizza) {
+//     restaurant.orderPizza('mushrooms', 'tomato');
+// }
 
-// we can avoid the if statement using &&
-// first operand is true, so will return the last value here
-restaurant.orderPizza && restaurant.orderPizza('mushroom', 'onions');
+// // we can avoid the if statement using &&
+// // first operand is true, so will return the last value here
+// restaurant.orderPizza && restaurant.orderPizza('mushroom', 'onions');
+
+/* 
+    108: The Nullish Coalescing Operator(??)
+*/
+
+restaurant.numGuests = 0;
+//Nullish --> null/undefined
+// Returns 0 for guestsCorrect
+const guestsCorrect = restaurant.numGuests ?? 10;
+console.log(guestsCorrect);
