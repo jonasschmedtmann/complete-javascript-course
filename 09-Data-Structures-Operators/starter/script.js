@@ -233,11 +233,48 @@ const restaurant = {
 // restaurant.orderPizza && restaurant.orderPizza('mushroom', 'onions');
 
 /* 
-    108: The Nullish Coalescing Operator(??)
+    108: The Nullish Coalescing Operator(??) -- ES2020
 */
 
-restaurant.numGuests = 0;
-//Nullish --> null/undefined
-// Returns 0 for guestsCorrect
-const guestsCorrect = restaurant.numGuests ?? 10;
-console.log(guestsCorrect);
+// restaurant.numGuests = 0;
+// //Nullish --> null/undefined
+// // Returns 0 for guestsCorrect
+// const guestsCorrect = restaurant.numGuests ?? 10;
+// console.log(guestsCorrect);
+
+/* 
+    109: Logical Assingment Operators -- ES2021
+*/
+
+const rest1 = {
+    name: 'Ayodhya',
+    // numGuests: 20
+    numGuests: 0
+};
+
+const rest2 = {
+    name: 'Udupi',
+    owner: 'Vishu'
+};
+
+// // OR assingment operator -- returns the first truthy value/last value
+// rest1.numGuests = rest1.numGuests || 10;
+// rest2.numGuests = rest2.numGuests || 10;
+// rest1.numGuests ||= 10;
+// rest2.numGuests ||= 10;
+
+// // AND assignment operator -- returns the first falsy value/last value
+// rest1.owner = rest1.owner && `<ANONYMOUS>`;
+// rest2.owner = rest2.owner && `<ANONYMOUS>`;
+// rest1.owner &&= `<ANONYMOUS>`;
+// rest2.owner &&= `<ANONYMOUS>`;
+
+// // Nullish assingment operator
+// rest1.numGuests = rest1.numGuests ?? 10;
+// rest2.numGuests = rest2.numGuests ?? 10;
+rest1.numGuests ??= 10;
+rest2.numGuests ??= 10;
+
+
+console.log(rest1);
+console.log(rest2);
