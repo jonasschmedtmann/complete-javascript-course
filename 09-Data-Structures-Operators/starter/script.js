@@ -272,9 +272,83 @@ const rest2 = {
 // // Nullish assingment operator
 // rest1.numGuests = rest1.numGuests ?? 10;
 // rest2.numGuests = rest2.numGuests ?? 10;
-rest1.numGuests ??= 10;
-rest2.numGuests ??= 10;
+// rest1.numGuests ??= 10;
+// rest2.numGuests ??= 10;
 
 
-console.log(rest1);
-console.log(rest2);
+// console.log(rest1);
+// console.log(rest2);
+
+/* 
+    110: Coding Challenge #1 -- Football betting app
+*/
+
+const game = {
+    team1: 'Bayern Munich',
+    team2: 'Borrussia Dortmund',
+    players: [
+        [
+            'Neuer',
+            'Pavard',
+            'Martinez',
+            'Alaba',
+            'Davies',
+            'Kimmich',
+            'Goretzka',
+            'Coman',
+            'Muller',
+            'Gnarby',
+            'Lewandowski',
+        ],
+        [
+            'Burki',
+            'Schulz',
+            'Hummels',
+            'Akanji',
+            'Hakimi',
+            'Weigl',
+            'Witsel',
+            'Hazard',
+            'Brandt',
+            'Sancho',
+            'Gotze',
+        ],
+    ],
+    score: '4:0',
+    scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+    date: 'Nov 9th, 2037',
+    odds: {
+        team1: 11.33,
+        x: 3.25,
+        team2: 6.5,
+    },
+};
+
+// 1: Create one player array for each team
+const [players1, players2] = game.players;
+console.log(players1, players2);
+// 2: Bayern Munich Goal Keeper and players list
+const [gk, ...fieldPlayers] = players1;
+console.log(gk, fieldPlayers);
+// 3: allPlayers -- array of all players from both teams
+const allPlayers = [...players1, ...players2];
+console.log(allPlayers);
+// 4: three substitute players used by Bayern Munich
+const finalPlayers = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+console.log(finalPlayers);
+// 5: One variable for each odd
+const {team1, x: draw, team2} = game.odds;
+console.log(team1, draw, team2);
+// 6: function to accept arbitrary number of player names
+
+const printGoals = function (...players) {
+    console.log(players);
+    console.log(`Number of Goals sccores -- ${players.length}`);
+};
+printGoals('Davies', 'Muller', 'Lewandoski', 'Kimmich', 'Alaba');
+printGoals(...game.scored);
+
+// 7: Likely winner based on the odds using short circuiting
+team1 < team2 && console.log(`Team 1 is more likely to win`);
+team2 < team1 && console.log(`Team 2 is more likely to win`);
+
