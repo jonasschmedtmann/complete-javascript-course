@@ -4,15 +4,42 @@
 const flights =
     '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
+
+/* 
+    112: Enhanced Object Literals
+*/
+
+// compute property names
+const weekDays = ['mon', 'tue', 'wed', 'thu', 'fridayy', 'sat', 'sun'];
+const [, , , , fri] = weekDays;
+const openingHours = {
+    [weekDays[3]]: {  // square brackets is needed to compute the property name. else, it'll not consider the variable for the property name
+        open: 12,
+        close: 22,
+    },
+    [fri]: {        // De-structure to get 'fridayy'
+        open: 11,
+        close: 23,
+    },
+    sat: {
+        open: 0, // Open 24 hours
+        close: 24,
+    },
+};
+
 // Data needed for first part of the section
+// Object Literal syntax
 const restaurant = {
     name: 'Classico Italiano',
     location: 'Via Angelo Tavanti 23, Firenze, Italy',
     categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
     starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
     mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+    // ES6 enhanced object literal
+    openingHours,
 
-    order: function (starterIndex, mainIndex) {
+    // ES6 enhanced object literal -- without the 'function' keyword
+    order (starterIndex, mainIndex) {
         return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
     },
 
@@ -40,20 +67,7 @@ const restaurant = {
         console.log(otherIngrdient);
     },
 
-    openingHours: {
-        thu: {
-            open: 12,
-            close: 22,
-        },
-        fri: {
-            open: 11,
-            close: 23,
-        },
-        sat: {
-            open: 0, // Open 24 hours
-            close: 24,
-        },
-    },
+
 };
 
 /*
@@ -199,7 +213,7 @@ const restaurant = {
 
 // restaurant.orderPizza('mushrooms', 'onions', 'tomato', 'spinach');
 
-/* 
+/*
     107: Short Circuiting(&& and ||)
 */
 
@@ -232,7 +246,7 @@ const restaurant = {
 // // first operand is true, so will return the last value here
 // restaurant.orderPizza && restaurant.orderPizza('mushroom', 'onions');
 
-/* 
+/*
     108: The Nullish Coalescing Operator(??) -- ES2020
 */
 
@@ -242,7 +256,7 @@ const restaurant = {
 // const guestsCorrect = restaurant.numGuests ?? 10;
 // console.log(guestsCorrect);
 
-/* 
+/*
     109: Logical Assingment Operators -- ES2021
 */
 
@@ -353,21 +367,23 @@ const restaurant = {
 // team2 < team1 && console.log(`Team 2 is more likely to win`);
 
 
-/* 
+/*
     111: Looping Arrays -- the for-of loop
 */
 
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
-for (const item of menu) {
-    console.log(item);
-}
+// for (const item of menu) {
+//     console.log(item);
+// }
 
-// Get index using entries() -- returns [index, element]
-for (const item of menu.entries()) {
-    console.log(item);
-}
-console.log(...menu.entries());     // returns all menu entries, but not in array -- [0,Dosa] [1,Rice] [2, chapathi]
-for (const [index, el] of [...menu.entries()]) {        // wrap menu.entries() in an array and destructure the array to get the index and element
-    console.log(`${index}: ${el}`);
-}
+// // Get index using entries() -- returns [index, element]
+// for (const item of menu.entries()) {
+//     console.log(item);
+// }
+// console.log(...menu.entries());     // returns all menu entries, but not in array -- [0,Dosa] [1,Rice] [2, chapathi]
+// for (const [index, el] of [...menu.entries()]) {        // wrap menu.entries() in an array and destructure the array to get the index and element
+//     console.log(`${index}: ${el}`);
+// }
+
+
