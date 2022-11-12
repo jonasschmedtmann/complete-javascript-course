@@ -84,6 +84,9 @@ btnScrollTo.addEventListener('click', function (e) {
 
 document.querySelector('.nav__links').addEventListener('click', function (e) {
   e.preventDefault();
+  
+  //gaurd class for 'open account' bcz therre is no acrolling
+  if (e.target.classList.contains('btn--show-modal')) return;
 
   // Matching strategy
   if (e.target.classList.contains('nav__link')) {
