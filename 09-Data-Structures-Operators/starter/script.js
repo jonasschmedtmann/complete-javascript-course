@@ -386,4 +386,28 @@ const restaurant = {
 //     console.log(`${index}: ${el}`);
 // }
 
+/* 
+    113: Optional Chaining(?.) -- ES 2020
+*/
+
+if (restaurant.openingHours && restaurant.openingHours.thu) {
+    console.log(restaurant.openingHours.thu.open);
+}
+
+// Optional Chaining -- checks for nullish values i.e: null/undefined
+console.log(restaurant.openingHours?.mon?.open);
+
+// Example
+for (const day of weekDays) {
+    const open = restaurant.openingHours[day]?.open ?? 'Closed';
+    console.log(`On ${day} we are open at ${open}`);
+}
+
+// Methods
+console.log(restaurant.order?.(0, 1) ?? 'Method doesn\'t exist');
+console.log(restaurant.orderCurdRice?.(0, 1) ?? 'Method doesn\'t exist');
+
+// Arrays
+const users = [];
+console.log(users[0]?.name ?? 'There are no users');
 
