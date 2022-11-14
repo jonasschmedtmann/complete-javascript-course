@@ -386,28 +386,55 @@ const restaurant = {
 //     console.log(`${index}: ${el}`);
 // }
 
-/* 
+/*
     113: Optional Chaining(?.) -- ES 2020
 */
 
-if (restaurant.openingHours && restaurant.openingHours.thu) {
-    console.log(restaurant.openingHours.thu.open);
+// if (restaurant.openingHours && restaurant.openingHours.thu) {
+//     console.log(restaurant.openingHours.thu.open);
+// }
+
+// // Optional Chaining -- checks for nullish values i.e: null/undefined
+// console.log(restaurant.openingHours?.mon?.open);
+
+// // Example
+// for (const day of weekDays) {
+//     const open = restaurant.openingHours[day]?.open ?? 'Closed';
+//     console.log(`On ${day} we are open at ${open}`);
+// }
+
+// // Methods
+// console.log(restaurant.order?.(0, 1) ?? 'Method doesn\'t exist');
+// console.log(restaurant.orderCurdRice?.(0, 1) ?? 'Method doesn\'t exist');
+
+// // Arrays
+// const users = [];
+// console.log(users[0]?.name ?? 'There are no users');
+
+/* 
+    113: Looping Objects: Object Keys, Values and Entries
+*/
+
+// Properties
+const properties = Object.keys(openingHours);
+console.log(properties);
+
+let openStr = `We are open on ${properties.length} days: `;
+
+for (const day of properties) {
+    openStr += `${day}, `;
 }
+console.log(openStr);
 
-// Optional Chaining -- checks for nullish values i.e: null/undefined
-console.log(restaurant.openingHours?.mon?.open);
+// Values
+const values = Object.values(openingHours);
+console.log(values);
 
-// Example
-for (const day of weekDays) {
-    const open = restaurant.openingHours[day]?.open ?? 'Closed';
-    console.log(`On ${day} we are open at ${open}`);
+// Entire Object
+const entries = Object.entries(openingHours);
+console.log(entries);
+
+// [key, value]
+for (const [day, {open, close}] of entries) {       // Zen level de-structuring 😎
+    console.log(`On ${day} we open at ${open} and close at ${close}`);
 }
-
-// Methods
-console.log(restaurant.order?.(0, 1) ?? 'Method doesn\'t exist');
-console.log(restaurant.orderCurdRice?.(0, 1) ?? 'Method doesn\'t exist');
-
-// Arrays
-const users = [];
-console.log(users[0]?.name ?? 'There are no users');
-
