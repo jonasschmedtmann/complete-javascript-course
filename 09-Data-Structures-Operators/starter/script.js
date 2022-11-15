@@ -297,46 +297,46 @@ const restaurant = {
     110: Coding Challenge #1 -- Football betting app
 */
 
-// const game = {
-//     team1: 'Bayern Munich',
-//     team2: 'Borrussia Dortmund',
-//     players: [
-//         [
-//             'Neuer',
-//             'Pavard',
-//             'Martinez',
-//             'Alaba',
-//             'Davies',
-//             'Kimmich',
-//             'Goretzka',
-//             'Coman',
-//             'Muller',
-//             'Gnarby',
-//             'Lewandowski',
-//         ],
-//         [
-//             'Burki',
-//             'Schulz',
-//             'Hummels',
-//             'Akanji',
-//             'Hakimi',
-//             'Weigl',
-//             'Witsel',
-//             'Hazard',
-//             'Brandt',
-//             'Sancho',
-//             'Gotze',
-//         ],
-//     ],
-//     score: '4:0',
-//     scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
-//     date: 'Nov 9th, 2037',
-//     odds: {
-//         team1: 11.33,
-//         x: 3.25,
-//         team2: 6.5,
-//     },
-// };
+const game = {
+    team1: 'Bayern Munich',
+    team2: 'Borrussia Dortmund',
+    players: [
+        [
+            'Neuer',
+            'Pavard',
+            'Martinez',
+            'Alaba',
+            'Davies',
+            'Kimmich',
+            'Goretzka',
+            'Coman',
+            'Muller',
+            'Gnarby',
+            'Lewandowski',
+        ],
+        [
+            'Burki',
+            'Schulz',
+            'Hummels',
+            'Akanji',
+            'Hakimi',
+            'Weigl',
+            'Witsel',
+            'Hazard',
+            'Brandt',
+            'Sancho',
+            'Gotze',
+        ],
+    ],
+    score: '4:0',
+    scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+    date: 'Nov 9th, 2037',
+    odds: {
+        team1: 11.33,
+        x: 3.25,
+        team2: 6.5,
+    },
+};
 
 // // 1: Create one player array for each team
 // const [players1, players2] = game.players;
@@ -411,30 +411,58 @@ const restaurant = {
 // const users = [];
 // console.log(users[0]?.name ?? 'There are no users');
 
-/* 
-    113: Looping Objects: Object Keys, Values and Entries
+/*
+    114: Looping Objects: Object Keys, Values and Entries
 */
 
-// Properties
-const properties = Object.keys(openingHours);
-console.log(properties);
+// // Properties
+// const properties = Object.keys(openingHours);
+// console.log(properties);
 
-let openStr = `We are open on ${properties.length} days: `;
+// let openStr = `We are open on ${properties.length} days: `;
 
-for (const day of properties) {
-    openStr += `${day}, `;
+// for (const day of properties) {
+//     openStr += `${day}, `;
+// }
+// console.log(openStr);
+
+// // Values
+// const values = Object.values(openingHours);
+// console.log(values);
+
+// // Entire Object
+// const entries = Object.entries(openingHours);
+// console.log(entries);
+
+// // [key, value]
+// for (const [day, {open, close}] of entries) {       // Zen level de-structuring 😎
+//     console.log(`On ${day} we open at ${open} and close at ${close}`);
+// }
+
+/* 
+    115: Coding Challenge #2
+*/
+
+// Goal scored, Player name 
+const scoredEntries = Object.entries(game.scored);
+const scorers = {};
+for (const [goal, player] of scoredEntries) {
+    console.log(`Goal ${+goal + 1}: ${player}`);
+
+    // Create an Object with player name as property and goal scored as values
+    scorers[player] = +scorers[player] + 1 || 1;
 }
-console.log(openStr);
+console.log(scorers);
 
-// Values
-const values = Object.values(openingHours);
-console.log(values);
+// Avg of all the odds
+let avgOdd = 0;
+for (const odd of Object.values(game.odds)) {
+    avgOdd += odd;
+}
+console.log(`Average Odd: ${avgOdd / Object.values(game.odds).length}`);
 
-// Entire Object
-const entries = Object.entries(openingHours);
-console.log(entries);
-
-// [key, value]
-for (const [day, {open, close}] of entries) {       // Zen level de-structuring 😎
-    console.log(`On ${day} we open at ${open} and close at ${close}`);
+//Print the 3 odds
+for (const [team, value] of Object.entries(game.odds)) {
+    const teamStr = `Odd of ${game[team] ? `victory of ${game[team]}` : `Draw`} is ${value}`;
+    console.log(teamStr);
 }
