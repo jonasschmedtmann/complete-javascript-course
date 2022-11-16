@@ -166,3 +166,17 @@ const movementsDescriptions = movements.map(
 
 console.log(movementsDescriptions);
  */
+
+const deposits = movements.filter(mov => mov > 0);
+console.log(deposits);
+
+const depositsFor = [];
+for (const mov of movements) {
+  if (mov > 0) {
+    depositsFor.push(mov);
+  }
+}
+console.log(depositsFor);
+
+const whitdrew = movements.filter(mov => mov < 0);
+console.log(whitdrew);
