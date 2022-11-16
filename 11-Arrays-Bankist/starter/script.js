@@ -81,6 +81,17 @@ const displayMovements = function (movements) {
 
 displayMovements(account1.movements);
 
+const createUserNames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+createUserNames(accounts);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -135,7 +146,7 @@ const checkDogs = function (dogsJulia, dogsKate) {
 };
 checkDogs(dogsJulia, dogsKate);
  */
-const eurToUsd = 1.1;
+/* const eurToUsd = 1.1;
 
 const movementsUSD = movements.map(mov => mov * eurToUsd);
 
@@ -154,3 +165,4 @@ const movementsDescriptions = movements.map(
 );
 
 console.log(movementsDescriptions);
+ */
