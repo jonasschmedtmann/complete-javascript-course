@@ -30,18 +30,25 @@ const controlRecipes = async function () {
     // 3) Rendering recipe
     recipeView.render(model.state.recipe);
   } catch (err) {
-    recipeView.renderError();
+    recipeView.renderError(err.message);
     console.error(err);
   }
 };
 
 const controlSearchResults = async function () {
   try {
-    resultsView.renderSpinner();
-
-    // 1) Get search query
+    // 0) Get search query
     const query = searchView.getQuery();
     if (!query) return;
+
+    //show alert to enter a search term instead of infinite spinner if query is false
+    if (!query) {
+      alert('Please type a food name in the search box');
+      return;
+    }
+
+    // 1) load the spinner
+    resultsView.renderSpinner();
 
     // 2) Load search results
     await model.loadSearchResults(query);
@@ -52,7 +59,8 @@ const controlSearchResults = async function () {
     // 4) Render initial pagination buttons
     paginationView.render(model.state.search);
   } catch (err) {
-    console.log(err);
+    console.error(err.message);
+    resultsView.renderError(err.message);
   }
 };
 
@@ -111,6 +119,13 @@ const controlAddRecipe = async function (newRecipe) {
 
     // Close form window
     setTimeout(function () {
+      //check if the form is already closed to prevent opining it again
+      if (
+        document
+          .querySelector('.add-recipe-window')
+          .classList.contains('hidden')
+      )
+        return;
       addRecipeView.toggleWindow();
     }, MODAL_CLOSE_SEC * 1000);
   } catch (err) {
