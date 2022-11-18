@@ -84,6 +84,9 @@ btnScrollTo.addEventListener('click', function (e) {
 
 document.querySelector('.nav__links').addEventListener('click', function (e) {
   e.preventDefault();
+  //we dont want any scroll for 'open account' which axist in nav__links
+  // here we can also call 'open modal'
+  if (e.target.classList.contains('btn--show-modal')) return;
 
   // Matching strategy
   if (e.target.classList.contains('nav__link')) {
