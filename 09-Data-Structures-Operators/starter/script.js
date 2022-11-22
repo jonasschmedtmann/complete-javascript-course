@@ -468,34 +468,67 @@ const game = {
 // }
 
 /*
-    116: Sets
+    116: Sets -- ES6
 */
 
-// Unique Values will be considered
+// // Unique Values will be considered
 
-const ordersSet = new Set([
-    'Rice', 'Chapathi', 'Sambar', 'Rasam', 'Palya', 'Rice', 'RICE'
-]);
-console.log(ordersSet);
+// const ordersSet = new Set([
+//     'Rice', 'Chapathi', 'Sambar', 'Rasam', 'Palya', 'Rice', 'RICE'
+// ]);
+// console.log(ordersSet);
 
-console.log(new Set('Vishu'));
-console.log(ordersSet.size);
-console.log(ordersSet.has('Pizza'));    // false
-console.log(ordersSet.has('Rice'));     // true
-console.log(ordersSet.add('Curd'));
-console.log(ordersSet.add('Curd'));
-console.log(ordersSet.delete('Sambar'));
-console.log(ordersSet);
+// console.log(new Set('Vishu'));
+// console.log(ordersSet.size);
+// console.log(ordersSet.has('Pizza'));    // false
+// console.log(ordersSet.has('Rice'));     // true
+// console.log(ordersSet.add('Curd'));
+// console.log(ordersSet.add('Curd'));
+// console.log(ordersSet.delete('Sambar'));
+// console.log(ordersSet);
 
-for (const order of ordersSet) {
-    console.log(order);
-}
+// for (const order of ordersSet) {
+//     console.log(order);
+// }
 
-// Example
-const staff = ['Waiter', 'Chef', 'Waiter', 'Cashier', 'Cleaner', 'Manager'];
-const uniqueStaff = new Set(staff);
-console.log(uniqueStaff);
-console.log(uniqueStaff.size);
-// create array using the set
-const uniqueStaffArray = [...uniqueStaff];
-console.log(uniqueStaffArray);
+// // Example
+// const staff = ['Waiter', 'Chef', 'Waiter', 'Cashier', 'Cleaner', 'Manager'];
+// const uniqueStaff = new Set(staff);
+// console.log(uniqueStaff);
+// console.log(uniqueStaff.size);
+// // create array using the set
+// const uniqueStaffArray = [...uniqueStaff];
+// console.log(uniqueStaffArray);
+
+/* 
+    117: Maps: Fundamentals -- ES6
+*/
+
+const rest = new Map();
+rest.set('name', 'Ganesh Grand');
+rest.set(1, 'Saligrama');
+rest.set(2, 'Bangalore');
+rest.set('categories', ['Italian', 'Chinese', 'Organic', 'Veg'])
+    .set('open', 11)
+    .set('close', 23)
+    .set(true, 'We are open 🙂')
+    .set(false, 'We are closed 🚫');
+
+console.log(rest.get('false'));  // Undefined -- data type matters
+console.log(rest.get(false));
+console.log(rest.get('name'));
+
+const time = 21;
+console.log(
+    rest.get(time > rest.get('open') && time < rest.get('close'))
+);
+
+rest.set([1, 2], 'Test');
+console.log(rest.get([1, 2])); // Undefined -- we are not pointing to the same array in the heap
+// So, use a variable to set an array/obj as key
+const arr = [1, 2];
+rest.set(arr, 'New Test');
+console.log(rest.get(arr));
+// can even use a DOM element as key 
+rest.set(document.querySelector('h1'), 'Om');
+console.log(rest);
