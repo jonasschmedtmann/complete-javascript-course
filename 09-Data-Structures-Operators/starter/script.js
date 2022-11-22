@@ -504,31 +504,68 @@ const game = {
     117: Maps: Fundamentals -- ES6
 */
 
-const rest = new Map();
-rest.set('name', 'Ganesh Grand');
-rest.set(1, 'Saligrama');
-rest.set(2, 'Bangalore');
-rest.set('categories', ['Italian', 'Chinese', 'Organic', 'Veg'])
-    .set('open', 11)
-    .set('close', 23)
-    .set(true, 'We are open 🙂')
-    .set(false, 'We are closed 🚫');
+// const rest = new Map();
+// rest.set('name', 'Ganesh Grand');
+// rest.set(1, 'Saligrama');
+// rest.set(2, 'Bangalore');
+// rest.set('categories', ['Italian', 'Chinese', 'Organic', 'Veg'])
+//     .set('open', 11)
+//     .set('close', 23)
+//     .set(true, 'We are open 🙂')
+//     .set(false, 'We are closed 🚫');
 
-console.log(rest.get('false'));  // Undefined -- data type matters
-console.log(rest.get(false));
-console.log(rest.get('name'));
+// console.log(rest.get('false'));  // Undefined -- data type matters
+// console.log(rest.get(false));
+// console.log(rest.get('name'));
 
-const time = 21;
-console.log(
-    rest.get(time > rest.get('open') && time < rest.get('close'))
-);
+// const time = 21;
+// console.log(
+//     rest.get(time > rest.get('open') && time < rest.get('close'))
+// );
 
-rest.set([1, 2], 'Test');
-console.log(rest.get([1, 2])); // Undefined -- we are not pointing to the same array in the heap
-// So, use a variable to set an array/obj as key
-const arr = [1, 2];
-rest.set(arr, 'New Test');
-console.log(rest.get(arr));
-// can even use a DOM element as key 
-rest.set(document.querySelector('h1'), 'Om');
-console.log(rest);
+// rest.set([1, 2], 'Test');
+// console.log(rest.get([1, 2])); // Undefined -- we are not pointing to the same array in the heap
+// // So, use a variable to set an array/obj as key
+// const arr = [1, 2];
+// rest.set(arr, 'New Test');
+// console.log(rest.get(arr));
+// // can even use a DOM element as key 
+// rest.set(document.querySelector('h1'), 'Om');
+// console.log(rest);
+
+/* 
+    118: Maps: Iteration
+*/
+
+const question = new Map([
+    ['question', 'What is the best programming language?'],
+    [1, 'C'],
+    [2, 'Java'],
+    [3, 'JavaScript'],
+    ['correct', 3],
+    [true, 'Correct 🏆'],
+    [false, 'Please try again!']
+]);
+
+console.log(question);
+
+// Structure is similar to Object.entries(). So, we can use it to create a new Map
+
+console.log(Object.entries(openingHours));
+const hoursMap = new Map(Object.entries(openingHours));
+console.log(hoursMap);
+
+// Quiz App
+console.log(question.get('question'));
+for (const [key, value] of question) {
+    if (typeof key === 'number') {
+        console.log(`Answer ${key}: ${value}`);
+    }
+}
+const answer = +prompt('Your answer?');
+console.log(question.get(answer === question.get('correct')));
+
+// Convert map to array
+console.log([...question]);
+console.log(question.keys());
+console.log([...question.values()]);
