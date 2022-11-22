@@ -439,30 +439,63 @@ const game = {
 //     console.log(`On ${day} we open at ${open} and close at ${close}`);
 // }
 
-/* 
+/*
     115: Coding Challenge #2
 */
 
-// Goal scored, Player name 
-const scoredEntries = Object.entries(game.scored);
-const scorers = {};
-for (const [goal, player] of scoredEntries) {
-    console.log(`Goal ${+goal + 1}: ${player}`);
+// // Goal scored, Player name 
+// const scoredEntries = Object.entries(game.scored);
+// const scorers = {};
+// for (const [goal, player] of scoredEntries) {
+//     console.log(`Goal ${+goal + 1}: ${player}`);
 
-    // Create an Object with player name as property and goal scored as values
-    scorers[player] = +scorers[player] + 1 || 1;
-}
-console.log(scorers);
+//     // Create an Object with player name as property and goal scored as values
+//     scorers[player] = +scorers[player] + 1 || 1;
+// }
+// console.log(scorers);
 
-// Avg of all the odds
-let avgOdd = 0;
-for (const odd of Object.values(game.odds)) {
-    avgOdd += odd;
-}
-console.log(`Average Odd: ${avgOdd / Object.values(game.odds).length}`);
+// // Avg of all the odds
+// let avgOdd = 0;
+// for (const odd of Object.values(game.odds)) {
+//     avgOdd += odd;
+// }
+// console.log(`Average Odd: ${avgOdd / Object.values(game.odds).length}`);
 
-//Print the 3 odds
-for (const [team, value] of Object.entries(game.odds)) {
-    const teamStr = `Odd of ${game[team] ? `victory of ${game[team]}` : `Draw`} is ${value}`;
-    console.log(teamStr);
+// //Print the 3 odds
+// for (const [team, value] of Object.entries(game.odds)) {
+//     const teamStr = `Odd of ${game[team] ? `victory of ${game[team]}` : `Draw`} is ${value}`;
+//     console.log(teamStr);
+// }
+
+/*
+    116: Sets
+*/
+
+// Unique Values will be considered
+
+const ordersSet = new Set([
+    'Rice', 'Chapathi', 'Sambar', 'Rasam', 'Palya', 'Rice', 'RICE'
+]);
+console.log(ordersSet);
+
+console.log(new Set('Vishu'));
+console.log(ordersSet.size);
+console.log(ordersSet.has('Pizza'));    // false
+console.log(ordersSet.has('Rice'));     // true
+console.log(ordersSet.add('Curd'));
+console.log(ordersSet.add('Curd'));
+console.log(ordersSet.delete('Sambar'));
+console.log(ordersSet);
+
+for (const order of ordersSet) {
+    console.log(order);
 }
+
+// Example
+const staff = ['Waiter', 'Chef', 'Waiter', 'Cashier', 'Cleaner', 'Manager'];
+const uniqueStaff = new Set(staff);
+console.log(uniqueStaff);
+console.log(uniqueStaff.size);
+// create array using the set
+const uniqueStaffArray = [...uniqueStaff];
+console.log(uniqueStaffArray);
