@@ -500,7 +500,7 @@ const game = {
 // const uniqueStaffArray = [...uniqueStaff];
 // console.log(uniqueStaffArray);
 
-/* 
+/*
     117: Maps: Fundamentals -- ES6
 */
 
@@ -533,7 +533,7 @@ const game = {
 // rest.set(document.querySelector('h1'), 'Om');
 // console.log(rest);
 
-/* 
+/*
     118: Maps: Iteration
 */
 
@@ -570,11 +570,11 @@ const game = {
 // console.log(question.keys());
 // console.log([...question.values()]);
 
-/* 
+/*
     120: Coding Challenge#3
 */
 
-/* 
+/*
 Let's continue with our football betting app! This time, we have a map with a log of the events that happened during the game.
 The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
 
@@ -587,39 +587,75 @@ The values are the events themselves, and the keys are the minutes in which each
 GOOD LUCK 😀
 */
 
-const gameEvents = new Map([
-    [17, '⚽️ GOAL'],
-    [36, '🔁 Substitution'],
-    [47, '⚽️ GOAL'],
-    [61, '🔁 Substitution'],
-    [64, '🔶 Yellow card'],
-    [69, '🔴 Red card'],
-    [70, '🔁 Substitution'],
-    [72, '🔁 Substitution'],
-    [76, '⚽️ GOAL'],
-    [80, '⚽️ GOAL'],
-    [92, '🔶 Yellow card'],
-]);
+// const gameEvents = new Map([
+//     [17, '⚽️ GOAL'],
+//     [36, '🔁 Substitution'],
+//     [47, '⚽️ GOAL'],
+//     [61, '🔁 Substitution'],
+//     [64, '🔶 Yellow card'],
+//     [69, '🔴 Red card'],
+//     [70, '🔁 Substitution'],
+//     [72, '🔁 Substitution'],
+//     [76, '⚽️ GOAL'],
+//     [80, '⚽️ GOAL'],
+//     [92, '🔶 Yellow card'],
+// ]);
 
-// 1: different game events
-const gameEventsSet = new Set(gameEvents.values());
-console.log(gameEventsSet);
-const events = [...gameEventsSet];
-console.log(events);
+// // 1: different game events
+// const gameEventsSet = new Set(gameEvents.values());
+// console.log(gameEventsSet);
+// const events = [...gameEventsSet];
+// console.log(events);
 
-// remove (64) event from the game events log
-gameEvents.delete(64)
-console.log(gameEvents);
+// // remove (64) event from the game events log
+// gameEvents.delete(64)
+// console.log(gameEvents);
 
-// Avg time for an event
-const gameKeyArray = [...gameEvents.keys()]
-const time = gameKeyArray[gameKeyArray.length - 1]
-// console.log(`An event happened, on average, every ${90 / gameEvents.size} minutes`);
-console.log(`An event happened, on average, every ${time / gameEvents.size} minutes`);
+// // Avg time for an event
+// const gameKeyArray = [...gameEvents.keys()]
+// const time = gameKeyArray[gameKeyArray.length - 1]
+// // console.log(`An event happened, on average, every ${90 / gameEvents.size} minutes`);
+// console.log(`An event happened, on average, every ${time / gameEvents.size} minutes`);
 
-for (const [minute, event] of gameEvents) {
-    const halfTime = 90 / 2;
-    const displayStr = minute <= halfTime ? '[FIRST HALF]' : '[SECOND HALF]';
-    console.log(`${displayStr} ${minute}: ${event}`);
+// for (const [minute, event] of gameEvents) {
+//     const halfTime = 90 / 2;
+//     const displayStr = minute <= halfTime ? '[FIRST HALF]' : '[SECOND HALF]';
+//     console.log(`${displayStr} ${minute}: ${event}`);
+// }
+
+
+/* 
+    121: Working with Strings: Part 1
+*/
+
+const airline = 'Tap Air Portugal';
+const plane = 'A320';
+
+console.log(airline.indexOf('A'));
+console.log(airline.lastIndexOf('a'));
+
+console.log(airline.slice(2, 6));
+
+// get the first word
+console.log(airline.slice(0, airline.indexOf(` `)));
+// get last word
+console.log(airline.slice(airline.lastIndexOf(` `) + 1));
+// works backwords with -ve index
+console.log(airline.slice(-2));
+console.log(airline.slice(2, -3));
+
+const checkMiddleSeat = function (seat) {
+    // B & E are middle seats
+
+    // const isMiddleSeat = seat.indexOf('B') !== -1 || seat.indexOf('E') !== -1;
+    const isMiddleSeat = seat.slice(-1) === 'B' || seat.slice(-1) === 'E';
+    console.log(isMiddleSeat ? 'You got a middle seat!!' : 'Your\'s is not a middle seat');
 }
 
+checkMiddleSeat('11B');
+checkMiddleSeat('23C');
+checkMiddleSeat('16E');
+
+console.log(new String('Vishu'));
+console.log(typeof new String('vishu'));
+console.log(typeof new String('vishu').slice(1));
