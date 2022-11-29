@@ -660,58 +660,111 @@ GOOD LUCK 😀
 // console.log(typeof new String('vishu'));
 // console.log(typeof new String('vishu').slice(1));
 
-/* 
+/*
     122: Working with strings -- Part 2
 */
 
-const airline = 'Tap Air Portugal';
-console.log(airline.toLowerCase());
-console.log(airline.toUpperCase());
+// const airline = 'Tap Air Portugal';
+// console.log(airline.toLowerCase());
+// console.log(airline.toUpperCase());
 
-const correctPassengerName = function (name) {
-    const nameLower = name.toLowerCase();
-    const correctedName = nameLower[0].toUpperCase() + nameLower.slice(1);
-    console.log(correctedName);
-}
+// const correctPassengerName = function (name) {
+//     const nameLower = name.toLowerCase();
+//     const correctedName = nameLower[0].toUpperCase() + nameLower.slice(1);
+//     console.log(correctedName);
+// }
 
-correctPassengerName('viSHu');
-correctPassengerName('vASudhA');
+// correctPassengerName('viSHu');
+// correctPassengerName('vASudhA');
 
-const email = 'vishu@gmail.com';
-const emailHack = '  Vishu@gmail.com \n';
-console.log(email === emailHack);
-console.log(email === emailHack.toLowerCase().trim());
+// const email = 'vishu@gmail.com';
+// const emailHack = '  Vishu@gmail.com \n';
+// console.log(email === emailHack);
+// console.log(email === emailHack.toLowerCase().trim());
 
-const announcement = 'All passengers come to boarding door 23! Boarding door 23';
+// const announcement = 'All passengers come to boarding door 23! Boarding door 23';
 
-// only replaces the first instance
-console.log(announcement.replace('door', 'gate'));
-console.log(
-    announcement.replace(/door/g, 'gate')
-);
+// // only replaces the first instance
+// console.log(announcement.replace('door', 'gate'));
+// console.log(
+//     announcement.replace(/door/g, 'gate')
+// );
 
-// Booleans
-const plane = 'Airbus A320Neo';
+// // Booleans
+// const plane = 'Airbus A320Neo';
 
-console.log(plane.includes('A320'));
-console.log(plane.includes('Boeing'));
-console.log(plane.startsWith('A'));
-console.log(plane.startsWith('Ai'));
-console.log(plane.endsWith('o'));
+// console.log(plane.includes('A320'));
+// console.log(plane.includes('Boeing'));
+// console.log(plane.startsWith('A'));
+// console.log(plane.startsWith('Ai'));
+// console.log(plane.endsWith('o'));
 
-if (plane.startsWith('Airbus') && plane.endsWith('Neo')) {
-    console.log('Part of new Airbus family!!!');
-}
+// if (plane.startsWith('Airbus') && plane.endsWith('Neo')) {
+//     console.log('Part of new Airbus family!!!');
+// }
 
-const checkBaggage = function (items) {
-    const baggage = items.toLowerCase();
-    if (baggage.includes('knife') || baggage.includes('gun')) {
-        console.log(`You are not allowed to board 🚫`);
-    } else {
-        console.log('Welcome aboard!!');
+// const checkBaggage = function (items) {
+//     const baggage = items.toLowerCase();
+//     if (baggage.includes('knife') || baggage.includes('gun')) {
+//         console.log(`You are not allowed to board 🚫`);
+//     } else {
+//         console.log('Welcome aboard!!');
+//     }
+// }
+
+// checkBaggage('laptop, food and pocket Knife');
+// checkBaggage('books and clothes');
+// checkBaggage('snacks and gun for protection');
+
+/*
+    123: Working with strings -- Part 3
+*/
+
+const myName = 'vishu kumar';
+console.log(myName.split(' '));
+
+const [firstName, lastName] = myName.split(' ');
+
+const newName = ['Mr.', firstName, lastName.toUpperCase()];
+console.log(newName.join(' '));
+
+const capitalizeName = name => {
+    const name1 = 'vishu kumar';
+    const names = name1.split(' ');
+    const nameUpper = [];
+
+    for (const n of names) {
+
+        // nameUpper.push(n[0].toUpperCase() + n.slice(1));
+        // nameUpper.push(n.replace(n[0], n[0].toUpperCase()));
+        nameUpper.push(n.charAt(0).toUpperCase() + n.slice(1));
     }
+
+    console.log(nameUpper.join(' '));
+
+};
+
+capitalizeName('vishu kumar');
+
+// Padding
+const message = 'Go to gate 23!';
+console.log(message.padStart(25, '-'));
+const maskCreditCard = function (number) {
+    const numberString = String(number);
+    const last = numberString.slice(-4);
+    const maskedString = last.padStart(numberString.length, '*')
+    console.log(maskedString);
 }
 
-checkBaggage('laptop, food and pocket Knife');
-checkBaggage('books and clothes');
-checkBaggage('snacks and gun for protection');
+maskCreditCard(4386280529183089);
+
+// Repeat
+const badWeatherMessage = 'Bad weather.. All Departures delayed.. ';
+console.log(badWeatherMessage.repeat(5));
+const planesInLine = planes => {
+    console.log(`There are ${planes} waiting for take off.. ${'🛩 '.repeat(planes)}`);
+}
+
+planesInLine(5);
+planesInLine(8);
+planesInLine(3);
