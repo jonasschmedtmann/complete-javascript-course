@@ -624,38 +624,94 @@ GOOD LUCK 😀
 // }
 
 
-/* 
+/*
     121: Working with Strings: Part 1
 */
 
+// const airline = 'Tap Air Portugal';
+// const plane = 'A320';
+
+// console.log(airline.indexOf('A'));
+// console.log(airline.lastIndexOf('a'));
+
+// console.log(airline.slice(2, 6));
+
+// // get the first word
+// console.log(airline.slice(0, airline.indexOf(` `)));
+// // get last word
+// console.log(airline.slice(airline.lastIndexOf(` `) + 1));
+// // works backwords with -ve index
+// console.log(airline.slice(-2));
+// console.log(airline.slice(2, -3));
+
+// const checkMiddleSeat = function (seat) {
+//     // B & E are middle seats
+
+//     // const isMiddleSeat = seat.indexOf('B') !== -1 || seat.indexOf('E') !== -1;
+//     const isMiddleSeat = seat.slice(-1) === 'B' || seat.slice(-1) === 'E';
+//     console.log(isMiddleSeat ? 'You got a middle seat!!' : 'Your\'s is not a middle seat');
+// }
+
+// checkMiddleSeat('11B');
+// checkMiddleSeat('23C');
+// checkMiddleSeat('16E');
+
+// console.log(new String('Vishu'));
+// console.log(typeof new String('vishu'));
+// console.log(typeof new String('vishu').slice(1));
+
+/* 
+    122: Working with strings -- Part 2
+*/
+
 const airline = 'Tap Air Portugal';
-const plane = 'A320';
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
 
-console.log(airline.indexOf('A'));
-console.log(airline.lastIndexOf('a'));
-
-console.log(airline.slice(2, 6));
-
-// get the first word
-console.log(airline.slice(0, airline.indexOf(` `)));
-// get last word
-console.log(airline.slice(airline.lastIndexOf(` `) + 1));
-// works backwords with -ve index
-console.log(airline.slice(-2));
-console.log(airline.slice(2, -3));
-
-const checkMiddleSeat = function (seat) {
-    // B & E are middle seats
-
-    // const isMiddleSeat = seat.indexOf('B') !== -1 || seat.indexOf('E') !== -1;
-    const isMiddleSeat = seat.slice(-1) === 'B' || seat.slice(-1) === 'E';
-    console.log(isMiddleSeat ? 'You got a middle seat!!' : 'Your\'s is not a middle seat');
+const correctPassengerName = function (name) {
+    const nameLower = name.toLowerCase();
+    const correctedName = nameLower[0].toUpperCase() + nameLower.slice(1);
+    console.log(correctedName);
 }
 
-checkMiddleSeat('11B');
-checkMiddleSeat('23C');
-checkMiddleSeat('16E');
+correctPassengerName('viSHu');
+correctPassengerName('vASudhA');
 
-console.log(new String('Vishu'));
-console.log(typeof new String('vishu'));
-console.log(typeof new String('vishu').slice(1));
+const email = 'vishu@gmail.com';
+const emailHack = '  Vishu@gmail.com \n';
+console.log(email === emailHack);
+console.log(email === emailHack.toLowerCase().trim());
+
+const announcement = 'All passengers come to boarding door 23! Boarding door 23';
+
+// only replaces the first instance
+console.log(announcement.replace('door', 'gate'));
+console.log(
+    announcement.replace(/door/g, 'gate')
+);
+
+// Booleans
+const plane = 'Airbus A320Neo';
+
+console.log(plane.includes('A320'));
+console.log(plane.includes('Boeing'));
+console.log(plane.startsWith('A'));
+console.log(plane.startsWith('Ai'));
+console.log(plane.endsWith('o'));
+
+if (plane.startsWith('Airbus') && plane.endsWith('Neo')) {
+    console.log('Part of new Airbus family!!!');
+}
+
+const checkBaggage = function (items) {
+    const baggage = items.toLowerCase();
+    if (baggage.includes('knife') || baggage.includes('gun')) {
+        console.log(`You are not allowed to board 🚫`);
+    } else {
+        console.log('Welcome aboard!!');
+    }
+}
+
+checkBaggage('laptop, food and pocket Knife');
+checkBaggage('books and clothes');
+checkBaggage('snacks and gun for protection');
