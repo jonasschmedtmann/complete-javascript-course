@@ -29,8 +29,8 @@ console.log(age1);
 
 // function expression
 const calcAge2 = function (birthYear) {
-  return 2022 - birthYear
-}
+  return 2022 - birthYear;
+};
 
-const age2 = calcAge2(1982, 1977)
-console.log(age2)
+const age2 = calcAge2(1977);
+console.log(age1, age2);
