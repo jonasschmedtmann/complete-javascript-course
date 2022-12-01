@@ -82,7 +82,8 @@ const averageScore = function (scores) {
   for (let i = 0; i < scores.length; i++) {
     avgScore += scores[i];
   }
-  return avgScore / scores.length;
+  let avg = avgScore / scores.length;
+  return avg;
 };
 
 const avgDolphins = averageScore(dolphinsScore);
@@ -90,3 +91,11 @@ const avgKoalas = averageScore(koalasScore);
 
 console.log(avgDolphins);
 console.log(avgKoalas);
+
+if (avgDolphins > avgKoalas) {
+  console.log("Team Dolphins is the winner");
+} else if (avgDolphins < avgKoalas) {
+  console.log("Team Koalas is the winner");
+} else {
+  console.log("It's a draw");
+}
