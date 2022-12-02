@@ -165,8 +165,20 @@ const age = [
 console.log(age);
 */
 
+// Add Element in array are (unshift and push)
 const friends = ["Michael", "Steven", "Peter"];
 
-friends.push("Daivd");
+const newLength = friends.push("David");
+const newLength1 = friends.unshift("Tim");
+const newLength2 = friends.unshift("Tom");
 
 console.log(friends);
+console.log(newLength1);
+console.log(newLength2);
+
+// Remove Element in array are (pop and shift)
+const removeLength = friends.pop();
+const removeFirst = friends.shift();
+console.log(friends);
+console.log(removeLength);
+console.log(removeFirst);
