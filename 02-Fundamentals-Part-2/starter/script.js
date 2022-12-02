@@ -72,6 +72,7 @@ console.log(fruitMaker(5, 2));
 
 */
 
+/*
 const dolphinsScore = [96, 108, 89];
 const koalasScore = [88, 91, 110];
 
@@ -89,13 +90,43 @@ const averageScore = function (scores) {
 const avgDolphins = averageScore(dolphinsScore);
 const avgKoalas = averageScore(koalasScore);
 
-console.log(avgDolphins);
-console.log(avgKoalas);
+console.log(avgDolphins, avgKoalas);
 
-if (avgDolphins > avgKoalas) {
-  console.log("Team Dolphins is the winner");
-} else if (avgDolphins < avgKoalas) {
-  console.log("Team Koalas is the winner");
-} else {
-  console.log("It's a draw");
-}
+const compare = function (avgDolphins, avgKoalas) {
+  if (avgDolphins > avgKoalas && avgDolphins >= 100) {
+    console.log("Team Dolphins is the winner");
+  } else if (avgDolphins < avgKoalas && avgKoalas >= 100) {
+    console.log("Team Koalas is the winner");
+  } else {
+    console.log("No team wins");
+  }
+};
+
+// compare(avgDolphins, avgKoalas);
+
+const average = (a, b, c) => (a + b + c) / 3;
+
+const teamDolphinsAVG = average(44, 23, 71);
+const teamKoalasAVG = average(65, 54, 49);
+const teamDolphinsAVG1 = average(97, 112, 101);
+const teamKoalasAVG1 = average(109, 95, 123);
+const teamDolphinsAVG2 = average(97, 112, 101);
+const teamKoalasAVG2 = average(109, 95, 106);
+
+const compareFunction = function (dolphins, koalas) {
+  if (dolphins >= 2 * koalas && dolphins > 100) {
+    console.log("Team Dolphins Wins");
+  } else if (2 * dolphins <= koalas && koalas > 100) {
+    console.log("Team Koalas Wins");
+  } else if (dolphins === koalas && dolphins > 100 && koalas > 100) {
+    console.log("Draws");
+  } else {
+    console.log("No team wins");
+  }
+};
+
+compareFunction(teamDolphinsAVG, teamKoalasAVG);
+compareFunction(teamDolphinsAVG1, teamKoalasAVG1);
+compareFunction(teamDolphinsAVG2, teamKoalasAVG2);
+
+*/
