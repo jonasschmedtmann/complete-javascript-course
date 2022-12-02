@@ -73,6 +73,8 @@ console.log(fruitMaker(5, 2));
 */
 
 /*
+CHALLENGE #3
+
 const dolphinsScore = [96, 108, 89];
 const koalasScore = [88, 91, 110];
 
@@ -130,3 +132,41 @@ compareFunction(teamDolphinsAVG1, teamKoalasAVG1);
 compareFunction(teamDolphinsAVG2, teamKoalasAVG2);
 
 */
+
+/*
+const friends = ["Michael", "Steven", "Peter"];
+console.log(friends);
+
+const yearss = new Array(1991, 1984, 2008, 2020);
+console.log(yearss);
+
+friends[friends.length - 1] = "Jay";
+console.log(friends);
+
+const firstName = "Tim";
+const tim = [firstName, "Ha", 2020 - 1982, "IT", friends];
+
+console.log(tim);
+
+const calcAge = function (birthday) {
+  return 2022 - birthday;
+};
+
+const years = [1990, 1967, 2002, 2010, 2018];
+
+const age = [
+  calcAge(years[0]),
+  calcAge(years[1]),
+  calcAge(years[2]),
+  calcAge(years[3]),
+  calcAge(years[years.length - 1]),
+];
+
+console.log(age);
+*/
+
+const friends = ["Michael", "Steven", "Peter"];
+
+friends.push("Daivd");
+
+console.log(friends);
