@@ -189,3 +189,22 @@ console.log(friends.includes('Steven'))
 */
 
 
+// Coding Challenge #4
+const bills = [275, 40, 430]
+
+const tip = function (bill) {
+  const restTip = 300 >= bill && bill >= 50 ? bill * 0.15 : bill * 0.20;
+  console.log(`The bill was ${bill}, the tip was ${restTip}, and the total value ${bill + restTip}`);
+  return restTip;
+}
+
+tip(275)
+
+const tableTip = bill => 300 >= bill && bill >= 50 ? bill * 0.15 : bill * 0.20
+
+const tips = [tableTip(bills[0]), tableTip(bills[1]), tableTip(bills[2])]
+
+const tableBills = [bills[0], bills[1], bills[2]]
+
+const total = [tableBills[0] + tips[0], tableBills[1] + tips[1], tableBills[2] + tips[2]]
+console.log(tableBills, tips, total)
