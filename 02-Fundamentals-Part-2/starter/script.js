@@ -165,6 +165,7 @@ const age = [
 console.log(age);
 */
 
+/*
 // Add Element in array are (unshift and push)
 const friends = ["Michael", "Steven", "Peter"];
 
@@ -182,3 +183,9 @@ const removeFirst = friends.shift();
 console.log(friends);
 console.log(removeLength);
 console.log(removeFirst);
+
+console.log(friends.indexOf('Michael'))
+console.log(friends.includes('Steven'))
+*/
+
+
