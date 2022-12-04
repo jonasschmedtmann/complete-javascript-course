@@ -189,6 +189,7 @@ console.log(friends.includes('Steven'))
 */
 
 
+/*
 // Coding Challenge #4
 const bills = [275, 40, 430]
 
@@ -208,3 +209,45 @@ const tableBills = [bills[0], bills[1], bills[2]]
 
 const total = [tableBills[0] + tips[0], tableBills[1] + tips[1], tableBills[2] + tips[2]]
 console.log(tableBills, tips, total)
+*/
+
+// Array and Object
+
+const timArray = [
+  'tim',
+  'ha',
+  2022 - 1982,
+  'IT',
+  ['David', 'Frank', 'Lynn']
+]
+
+const timObject = {
+  firstName: 'Tim',
+  lastName: 'Ha',
+  job: 'IT',
+  birthYear: 1982,
+  friends: ['Ken', 'Frank', 'Lynn'],
+  hasDriversLicense: true,
+  calcAge: function () {
+    this.age = 2022 - this.birthYear
+    return this.age;
+  }
+}
+const names = 'Name'
+// console.log(timObject.'first Name')
+
+console.log(timObject.calcAge())
+
+//Chanellge
+// Tim is 40 years old IT, and has a/no driver's license.
+console.log()
+
+
+// console.log(timObject['calcAge'](1982))
+
+// timObject.location = 'California';
+// timObject['twitter'] = 'solo';
+// console.log(timObject)
+// // Tim has 3 friends, and his best friend is called Ken.
+
+// console.log(`${timObject.firstName} has ${timObject.friends.length} friends, and his bes friend is called ${timObject.friends[0]}.`)
