@@ -231,6 +231,9 @@ const timObject = {
   calcAge: function () {
     this.age = 2022 - this.birthYear
     return this.age;
+  },
+  getSummary: function () {
+    return `${this.firstName} is ${this.calcAge()} years old ${this.job}, and has ${this.hasDriversLicense ? "a" : 'no'} driver's license.`
   }
 }
 const names = 'Name'
@@ -240,7 +243,7 @@ console.log(timObject.calcAge())
 
 //Chanellge
 // Tim is 40 years old IT, and has a/no driver's license.
-console.log()
+console.log(timObject.getSummary())
 
 
 // console.log(timObject['calcAge'](1982))
