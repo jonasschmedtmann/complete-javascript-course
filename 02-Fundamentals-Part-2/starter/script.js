@@ -296,3 +296,62 @@ if (mark.calcBMI() > john.calcBMI()) {
   console.log(`${john.firstName} ${john.lastName} weights ${john.mass} kg and is ${mark.height} tall. ${mark.firstName} ${mark.lastName} weights ${mark.mass} kg and is ${mark.height} m tall.`)
 }
 */
+// for (let i = 1; i <= 10; i++) {
+//   console.log(`Lifting weights repetition ${i}`)
+// }
+
+const timArray = [
+  'tim',
+  'ha',
+  2022 - 1982,
+  'IT',
+  ['David', 'Frank', 'Lynn']
+]
+
+/*
+// Loop backwards
+for (let i = timArray.length - 1; i >= 0; i--) {
+  console.log(timArray[i])
+}
+for (let i = 0; i < timArray.length; i++) {
+  console.log(timArray[i])
+}
+*/
+
+/*
+// Loop inside the loop exercise
+for (let i = 1; i <= 3; i++) {
+  console.log(`Starting exercise ${i}`)
+  for (let y = 1; y <= 5; y++) {
+    console.log(`${i}-----Exercise repetion ${y}`)
+  }
+}
+*/
+
+/*
+console.log('typeof of timArray')
+for (let i = 0; i < timArray.length; i++) {
+  console.log(timArray[i], typeof timArray[i])
+}
+
+console.log('Only log strings with continue')
+for (let i = 0; i < timArray.length; i++) {
+  if (typeof timArray[i] !== 'string') continue;
+  console.log(timArray[i], typeof timArray[i]);
+}
+
+console.log('Break with numbers')
+for (let i = 0; i < timArray.length; i++) {
+  if (typeof timArray[i] === 'number') break;
+  console.log(timArray[i], typeof timArray[i]);
+}
+
+
+const years = [1991, 2007, 1969, 2020]
+const age = []
+
+for (let i = 0; i < years.length; i++) {
+  age.push(2022 - years[i])
+}
+console.log(age)
+*/
