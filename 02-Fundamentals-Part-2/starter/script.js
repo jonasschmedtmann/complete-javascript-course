@@ -211,6 +211,8 @@ const total = [tableBills[0] + tips[0], tableBills[1] + tips[1], tableBills[2] +
 console.log(tableBills, tips, total)
 */
 
+
+/*
 // Array and Object
 
 const timArray = [
@@ -254,3 +256,43 @@ console.log(timObject.getSummary())
 // // Tim has 3 friends, and his best friend is called Ken.
 
 // console.log(`${timObject.firstName} has ${timObject.friends.length} friends, and his bes friend is called ${timObject.friends[0]}.`)
+
+*/
+
+
+// Challenge 3
+/*
+const mark = {
+  firstName: 'Mark',
+  lastName: 'Miller',
+  mass: 78,
+  height: 1.69,
+  calcBMI: function () {
+    this.BMI = this.mass / this.height ** 2
+    return this.BMI
+    // return this.mass / (this.height * this.height)
+  }
+}
+
+console.log(mark.calcBMI())
+
+const john = {
+  firstName: 'John',
+  lastName: 'Smith',
+  mass: 92,
+  height: 1.95,
+  calcBMI: function () {
+    this.BMI = this.mass / this.height ** 2
+    return this.BMI
+    // return this.mass / (this.height * this.height)
+  }
+}
+
+console.log(john.calcBMI());
+
+if (mark.calcBMI() > john.calcBMI()) {
+  console.log(`${mark.firstName} ${mark.lastName} weights ${mark.mass} kg and is ${mark.height} tall. ${john.firstName} ${john.lastName} weights ${john.mass} kg and is ${john.height} m tall.`)
+} else if (mark.calcBMI() < john.calcBMI()) {
+  console.log(`${john.firstName} ${john.lastName} weights ${john.mass} kg and is ${mark.height} tall. ${mark.firstName} ${mark.lastName} weights ${mark.mass} kg and is ${mark.height} m tall.`)
+}
+*/
