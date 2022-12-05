@@ -3,7 +3,8 @@
 // DOM Manipulation
 // console.log(document.querySelector('.message').textContent);
 // document.querySelector('.message').textContent = 'Correct Number!';
-// //console.log(document.querySelector('.message').textContent);
+console.log(document.querySelector('.highscore').textContent);
+//document.querySelector('.label-highscore').textContent = 20;
 
 // document.querySelector('.number').textContent = 13;
 // document.querySelector('.score').textContent = 10;
@@ -12,6 +13,7 @@
 // console.log(document.querySelector('.guess').value);
 
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
+let document.querySelector('.highscore').textContent = 10;
 let score = 20;
 
 document.querySelector('.check').addEventListener('click', function () {
@@ -52,10 +54,19 @@ document.querySelector('.check').addEventListener('click', function () {
 // 2 Reset the initial vals
 
 document.querySelector('.again').addEventListener('click', function () {
+  if (
+    document.querySelector('.highscore').textContent <
+    document.querySelector('.score').textContent
+  ) {
+    console.log('New High Score');
+    document.querySelector('.highscore').textContent =
+      document.querySelector('.score').textContent;
+  }
+  // ---------------------
   document.querySelector('.message').textContent = 'Lets Play again';
   document.querySelector('.number').textContent = '?';
   document.querySelector('body').style.backgroundColor = '#222222';
   document.querySelector('.number').style.width = '15rem';
   document.querySelector('.guess').value = '';
-  //console.log(guess);
+  document.querySelector('.score').textContent = 20;
 });
