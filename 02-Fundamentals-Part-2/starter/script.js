@@ -355,3 +355,26 @@ for (let i = 0; i < years.length; i++) {
 }
 console.log(age)
 */
+
+// for (let i = 1; i <= 3; i++) {
+//   console.log(`Starting exercise ${i}`)
+//   for (let y = 1; y <= 5; y++) {
+//     console.log(`${i}-----Exercise repetion ${y}`)
+//   }
+// }
+
+console.log('-------------using WHILE LOOPS-----------')
+
+// let i = 1;
+// while (i <= 10) {
+//   console.log(`Repetition ${i}`)
+//   i++;
+// }
+
+let randomNumber = Math.trunc(Math.random() * 6) + 1;
+
+
+while (randomNumber !== 6) {
+  console.log(`You rolled ${randomNumber}`)
+  randomNumber = Math.trunc(Math.random() * 6) + 1;
+}
