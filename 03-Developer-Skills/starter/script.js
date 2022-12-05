@@ -1,6 +1,7 @@
 // Remember, we're gonna use strict mode in all scripts now!
 'use strict';
 
+/*
 const temperature = [3, -2, -6, -1, 9, 13, 17, 15, 14, 9, 5];
 const temperature1 = [2, 5, 19, -9, 22];
 
@@ -32,3 +33,16 @@ console.log(amplitude);
 // max - min is amplitude
 
 // what to do with error
+*/
+
+const measureKelvin = function () {
+  const measurement = {
+    type: 'temp',
+    unit: 'celsius',
+    value: prompt('Degrees celsius:'),
+  };
+  const kelvin = Number(measurement.value) + 273;
+  return kelvin;
+};
+
+console.log(measureKelvin(10));
