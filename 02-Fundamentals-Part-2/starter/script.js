@@ -363,6 +363,7 @@ console.log(age)
 //   }
 // }
 
+/*
 console.log('-------------using WHILE LOOPS-----------')
 
 // let i = 1;
@@ -378,3 +379,36 @@ while (randomNumber !== 6) {
   console.log(`You rolled ${randomNumber}`)
   randomNumber = Math.trunc(Math.random() * 6) + 1;
 }
+*/
+
+// Challenege #4
+
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52]
+
+let tips = [];
+let totals = [];
+
+for (let i = 0; i < bills.length; i++) {
+  const calcTip = function () {
+    if (bills[i] >= 50 && bills[i] <= 300) {
+      const tip = tips.push(bills[i] * 0.15)
+      const total = totals.push(tips[i] + bills[i])
+    } else {
+      const tip = tips.push(bills[i] * 0.2)
+      const total = totals.push(tips[i] + bills[i])
+    }
+  }
+  calcTip()
+}
+console.log(tips)
+console.log(totals)
+
+let sum = 0;
+for (let i = 0; i < totals.length; i++) {
+  const calcAverage = function (arr) {
+    sum += arr[i] / arr.length
+  }
+  calcAverage(totals)
+}
+
+console.log(sum)
