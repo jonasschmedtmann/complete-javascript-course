@@ -35,6 +35,7 @@ console.log(amplitude);
 // what to do with error
 */
 
+/*
 const measureKelvin = function () {
   const measurement = {
     type: 'temp',
@@ -46,3 +47,10 @@ const measureKelvin = function () {
 };
 
 console.log(measureKelvin(10));
+
+const hi = 'hi';
+if (x === 23) console.log(23);
+console.log();
+*/
+
+//Coding Challenge #1
