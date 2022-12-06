@@ -54,3 +54,20 @@ console.log();
 */
 
 //Coding Challenge #1
+const data1 = [17, 21, 23];
+const data2 = [12, 5, -5, 0, 4];
+/*
+ ... 17ºC in 1
+days ... 21ºC in 2 days ... 23ºC in 3 days ..."
+*/
+
+const printForecast = function (arr) {
+  let string = '';
+  for (let i = 0; i < arr.length; i++) {
+    string += ` ${arr[i]} in ${i + 1} days ...`;
+  }
+  console.log('...' + string);
+};
+
+printForecast(data1);
+printForecast(data2);
