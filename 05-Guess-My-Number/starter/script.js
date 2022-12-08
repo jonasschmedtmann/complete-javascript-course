@@ -1,11 +1,18 @@
 'use strict';
 
-let text = document.querySelector('.message').textContent;
+// Generate random number
+let randomNumber = Math.ceil(Math.random() * 10);
+console.log(randomNumber);
 
-text = 'hello';
+document.querySelector('.score').textContent = 10;
 
-document.querySelector('.guess').textContent = 'x';
+// hide the randomNumber later
+document.querySelector('.number').textContent = randomNumber;
 
 document.querySelector('.check').addEventListener('click', function () {
-  document.querySelector('.guess').value = 5;
+  const guess = Number(document.querySelector('.guess').value);
+  console.log(guess);
+  if (guess === randomNumber) {
+    console.log('match');
+  } else if ()
 });
