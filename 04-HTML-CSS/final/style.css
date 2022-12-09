@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: rgb(255, 247, 201);
+  background-color: rgb(38, 178, 224);
   font-family: Arial;
   font-size: 20px;
   padding: 50px;
@@ -26,7 +26,7 @@ p {
 }
 
 .first {
-  color: red;
+  color: rgb(255, 255, 255);
 }
 
 #your-name {
