@@ -720,51 +720,113 @@ GOOD LUCK 😀
     123: Working with strings -- Part 3
 */
 
-const myName = 'vishu kumar';
-console.log(myName.split(' '));
+// const myName = 'vishu kumar';
+// console.log(myName.split(' '));
 
-const [firstName, lastName] = myName.split(' ');
+// const [firstName, lastName] = myName.split(' ');
 
-const newName = ['Mr.', firstName, lastName.toUpperCase()];
-console.log(newName.join(' '));
+// const newName = ['Mr.', firstName, lastName.toUpperCase()];
+// console.log(newName.join(' '));
 
-const capitalizeName = name => {
-    const name1 = 'vishu kumar';
-    const names = name1.split(' ');
-    const nameUpper = [];
+// const capitalizeName = name => {
+//     const name1 = 'vishu kumar';
+//     const names = name1.split(' ');
+//     const nameUpper = [];
 
-    for (const n of names) {
+//     for (const n of names) {
 
-        // nameUpper.push(n[0].toUpperCase() + n.slice(1));
-        // nameUpper.push(n.replace(n[0], n[0].toUpperCase()));
-        nameUpper.push(n.charAt(0).toUpperCase() + n.slice(1));
+//         // nameUpper.push(n[0].toUpperCase() + n.slice(1));
+//         // nameUpper.push(n.replace(n[0], n[0].toUpperCase()));
+//         nameUpper.push(n.charAt(0).toUpperCase() + n.slice(1));
+//     }
+
+//     console.log(nameUpper.join(' '));
+
+// };
+
+// capitalizeName('vishu kumar');
+
+// // Padding
+// const message = 'Go to gate 23!';
+// console.log(message.padStart(25, '-'));
+// const maskCreditCard = function (number) {
+//     const numberString = String(number);
+//     const last = numberString.slice(-4);
+//     const maskedString = last.padStart(numberString.length, '*')
+//     console.log(maskedString);
+// }
+
+// maskCreditCard(4386280529183089);
+
+// // Repeat
+// const badWeatherMessage = 'Bad weather.. All Departures delayed.. ';
+// console.log(badWeatherMessage.repeat(5));
+// const planesInLine = planes => {
+//     console.log(`There are ${planes} waiting for take off.. ${'🛩 '.repeat(planes)}`);
+// }
+
+// planesInLine(5);
+// planesInLine(8);
+// planesInLine(3);
+
+/*
+    124: Coding Challenge #4
+*/
+
+/* 
+Write a program that receives a list of variable names written in underscore_case and convert them to camelCase.
+
+The input will come from a textarea inserted into the DOM (see code below), and conversion will happen when the button is pressed.
+
+THIS TEST DATA (pasted to textarea)
+underscore_case
+ first_name
+Some_Variable 
+  calculate_AGE
+delayed_departure
+
+SHOULD PRODUCE THIS OUTPUT (5 separate console.log outputs)
+underscoreCase      ✅
+firstName           ✅✅
+someVariable        ✅✅✅
+calculateAge        ✅✅✅✅
+delayedDeparture    ✅✅✅✅✅
+
+HINT 1: Remember which character defines a new line in the textarea 😉
+HINT 2: The solution only needs to work for a variable made out of 2 words, like a_b
+HINT 3: Start without worrying about the ✅. Tackle that only after you have the variable name conversion working 😉
+HINT 4: This challenge is difficult on purpose, so start watching the solution in case you're stuck. Then pause and continue!
+
+Afterwards, test with your own test data!
+
+GOOD LUCK 😀
+*/
+
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+const textArea = document.querySelector('textarea');
+const button = document.querySelector('button');
+
+button.addEventListener('click', () => {
+    const value = textArea.value;
+    const valueArray = value.split('\n');
+
+    // for (let i = 0; i < valueArray.length; i++) {
+    //     let splitValueArray = valueArray[i].trim().split('_');
+    //     for (let i = 0; i < splitValueArray.length; i++) {
+
+    //         splitValueArray[i] = i === 0 ? splitValueArray[i].toLowerCase()
+    //             : splitValueArray[i].charAt(0).toUpperCase() + splitValueArray[i].slice(1).toLowerCase();
+    //     }
+    //     splitValueArray = splitValueArray.join('').padEnd(20);
+    //     console.log(splitValueArray + `${'✅'.repeat(i + 1)}`);
+    // }
+
+    for (const [i, value] of valueArray.entries()) {
+        const [first, second] = value.toLowerCase().trim().split('_');
+        const outPut = `${first}${second.replace(second[0], second[0].toUpperCase())}`;
+        console.log(`${outPut.padEnd(20)}${'✅'.repeat(i + 1)}`);
     }
 
-    console.log(nameUpper.join(' '));
-
-};
-
-capitalizeName('vishu kumar');
-
-// Padding
-const message = 'Go to gate 23!';
-console.log(message.padStart(25, '-'));
-const maskCreditCard = function (number) {
-    const numberString = String(number);
-    const last = numberString.slice(-4);
-    const maskedString = last.padStart(numberString.length, '*')
-    console.log(maskedString);
-}
-
-maskCreditCard(4386280529183089);
-
-// Repeat
-const badWeatherMessage = 'Bad weather.. All Departures delayed.. ';
-console.log(badWeatherMessage.repeat(5));
-const planesInLine = planes => {
-    console.log(`There are ${planes} waiting for take off.. ${'🛩 '.repeat(planes)}`);
-}
-
-planesInLine(5);
-planesInLine(8);
-planesInLine(3);
+})
