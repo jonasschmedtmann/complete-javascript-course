@@ -17,6 +17,9 @@ score1El.textContent = 0;
 // Hide the dice
 diceEl.classList.add('hidden');
 
+// Current score
+let currentScore = 0;
+
 // User rolls dice
 btnRoll.addEventListener('click', function () {
   // Generate randome dice roll
@@ -25,4 +28,7 @@ btnRoll.addEventListener('click', function () {
   diceEl.classList.remove('hidden');
   // Display rolled dice number
   diceEl.src = `dice-${randomDice}.png`;
+  // Check if a number is one
+  if (randomDice !== 1) {
+  }
 });
