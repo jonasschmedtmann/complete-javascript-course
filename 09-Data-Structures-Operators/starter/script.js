@@ -1,10 +1,5 @@
 'use strict';
 
-// Data needed for a later exercise
-const flights =
-    '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
-
-
 /* 
     112: Enhanced Object Literals
 */
@@ -830,3 +825,27 @@ button.addEventListener('click', () => {
     }
 
 })
+
+/*
+    125: String methods practice
+*/
+
+// Data needed for a later exercise
+const flights =
+    `_Delayed_Departure;fao93766109;txl2133758440;11:25
+    +_Arrival;bru0943384722;fao93766109;11:45
+    +_Delayed_Arrival;hel7439299980;fao93766109;12:05
+    +_Departure;fao93766109;lis2323639855;12:30`;
+
+const flightRows = flights.split('+');
+
+console.log(flightRows);
+
+const getCode = str => str.slice(0, 3).toUpperCase();
+
+for (const flight of flightRows) {
+    let [action, from, to, time] = flight.split(';');
+    action = action.replaceAll('_', ' ').trim();
+    console.log(`${action.startsWith('Delayed') ? '🔴' : ''} ${action} from ${getCode(from)} to ${getCode(to)} (${time.trim().replace(':', 'h')})`.padStart(50));
+}
+
