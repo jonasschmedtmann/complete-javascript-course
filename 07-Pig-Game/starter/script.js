@@ -18,17 +18,37 @@ const diceEl = document.querySelector('.dice');
 const player0El = document.querySelector('.player--0');
 const player1El = document.querySelector('.player--1');
 
-// Intial Setting
-// Set the starting score to 0
-score0El.textContent = 0;
-score1El.textContent = 0;
-// Hide the dice
-diceEl.classList.add('hidden');
+let currentScore, activePlayer, totalScore, isGameOver;
 
-// Current score
-let currentScore = 0;
-let activePlayer = 0;
-let totalScore = [0, 0];
+// Starting setting
+const init = function () {
+  currentScore = 0;
+  activePlayer = 0;
+  totalScore = [0, 0];
+  isGameOver = false;
+  current0El.textContent = 0;
+  current1El.textContent = 0;
+  score0El.textContent = 0;
+  score1El.textContent = 0;
+  diceEl.classList.add('hidden');
+  player1El.classList.remove('player--winner');
+  player0El.classList.remove('player--winner');
+  player0El.classList.add('player--active');
+  player1El.classList.remove('player--active');
+};
+init();
+// Switch player function
+const switchPlayer = function () {
+  // Switch player
+  document.getElementById(`current--${activePlayer}`).textContent = 0;
+  // Switch player scores and background color
+  activePlayer = activePlayer ? 0 : 1;
+  // Set current score to 0
+  currentScore = 0;
+  // Switch player scores and background color
+  player0El.classList.toggle('player--active');
+  player1El.classList.toggle('player--active');
+};
 
 // User rolls dice
 btnRoll.addEventListener('click', function () {
