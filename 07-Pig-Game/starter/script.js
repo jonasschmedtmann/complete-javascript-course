@@ -18,25 +18,19 @@ const diceEl = document.querySelector('.dice');
 const player0El = document.querySelector('.player--0');
 const player1El = document.querySelector('.player--1');
 
-let currentScore, activePlayer, totalScore, isGameOver;
+// Intial Setting
+// Set the starting score to 0
+score0El.textContent = 0;
+score1El.textContent = 0;
+// Hide the dice
+diceEl.classList.add('hidden');
 
-// Starting setting
-const init = function () {
-  currentScore = 0;
-  activePlayer = 0;
-  totalScore = [0, 0];
-  isGameOver = false;
-  current0El.textContent = 0;
-  current1El.textContent = 0;
-  score0El.textContent = 0;
-  score1El.textContent = 0;
-  diceEl.classList.add('hidden');
-  player1El.classList.remove('player--winner');
-  player0El.classList.remove('player--winner');
-  player0El.classList.add('player--active');
-  player1El.classList.remove('player--active');
-};
-init();
+// Current score
+let currentScore = 0;
+let activePlayer = 0;
+let totalScore = [0, 0];
+let isGameOver = false;
+
 // Switch player function
 const switchPlayer = function () {
   // Switch player
@@ -106,20 +100,4 @@ btnHold.addEventListener('click', function () {
   }
 });
 
-btnNew.addEventListener('click', function () {
-  if (isGameOver || !isGameOver) {
-    isGameOver = false;
-    totalScore = [0, 0];
-    currentScore = 0;
-    activePlayer = 0;
-    current0El.textContent = 0;
-    current1El.textContent = 0;
-    score0El.textContent = 0;
-    score1El.textContent = 0;
-    document
-      .querySelector(`.player--${activePlayer}`)
-      .classList.remove('player--winner');
-    console.log(totalScore);
-  }
-  console.log(activePlayer);
-});
+btnNew.addEventListener('click', init);
