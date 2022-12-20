@@ -61,25 +61,63 @@
 // document.body.addEventListener('click', high5);
 // ['Vishu', 'Vasudha', 'Bharathi'].forEach(high5);
 
-/* 
+/*
     132: Functions returning functions
 */
 
-const greet = function (greeting) {
-    return function (name) {
-        console.log(`${greeting} ${name}`);
+// const greet = function (greeting) {
+//     return function (name) {
+//         console.log(`${greeting} ${name}`);
+//     }
+// }
+
+// const greeter = greet('Hi');
+// greeter('Vishu');
+// greeter('Vasudha');
+
+// greet('Hello')('Bharathi');
+
+// // Arrow
+// const greetArrow = (greeting) => (name) => console.log(`${greeting} ${name}`);
+
+// greetArrow('Hello')('Vishu');
+// greetArrow('Hello')('Vasudha');
+// greetArrow('Hello')('Bharathi');
+
+/* 
+    133: The call and apply methods
+*/
+
+const lufthansa = {
+    airline: 'Lufthansa',
+    iataCode: 'LH',
+    bookings: [],
+    book (flightNum, name) {
+        console.log(`${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`);
+        this.bookings.push({flight: `${this.iataCode}${flightNum}`, name});
     }
-}
+};
 
-const greeter = greet('Hi');
-greeter('Vishu');
-greeter('Vasudha');
+const euroWings = {
+    airline: 'EuroWings',
+    iataCode: 'EW',
+    bookings: []
+};
 
-greet('Hello')('Bharathi');
+lufthansa.book(239, 'Vishu Kumar');
+lufthansa.book(634, 'Vasudha');
+lufthansa.book(1649, 'Bharathi');
 
-// Arrow
-const greetArrow = (greeting) => (name) => console.log(`${greeting} ${name}`);
+const book = lufthansa.book;
+// book(239, 'Vishu Kumar')        // Doesn't work -- this keyword is undefined
 
-greetArrow('Hello')('Vishu');
-greetArrow('Hello')('Vasudha');
-greetArrow('Hello')('Bharathi');
+
+// call method
+book.call(lufthansa, 142, 'Savitha');
+book.call(euroWings, 108, 'Kishan');
+// Apply method -- same as call, but takes an array for arguments
+book.apply(lufthansa, [265, 'Savitha']);
+book.apply(euroWings, [98, 'Kishan']);
+console.log(lufthansa);
+console.log(euroWings);
+
