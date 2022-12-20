@@ -121,3 +121,50 @@ book.apply(euroWings, [98, 'Kishan']);
 console.log(lufthansa);
 console.log(euroWings);
 
+/*
+    134: The bind Method
+*/
+// Returns a new method with the set 'this' keyword -- can be used multiple times
+
+const bookEW = book.bind(euroWings);
+const bookLH = book.bind(lufthansa);
+
+bookEW(23, 'Taami');
+bookLH(56, 'Jooli');
+
+// always books seat 23 -- preset a variable -- partial application
+// A part of the arguments is preset
+const bookEW23 = book.bind(euroWings, 23);
+bookEW23('Vishu Kumar');
+bookEW23('Vasudha');
+
+// With Event Listeners
+
+lufthansa.planes = 300;
+lufthansa.buyplane = function () {
+    console.log(this);
+
+    this.planes++;
+
+    console.log(this.planes);
+}
+// call & apply don't work here as we don't want to invoke the buyPlane function
+// So, bind creates a new func and that is called on the click of the button
+document
+    .querySelector('.buy')
+    .addEventListener('click', lufthansa.buyplane.bind(lufthansa));
+
+// Partial Application
+
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 200));
+const addCess = addTax.bind(null, 0.05);
+console.log(addCess(1000));
+console.log(addCess(100));
+
+// Return Function excersise
+const addCessFunc = (value) => {
+    return (rate) => value + value * rate;
+}
+
+console.log(addCessFunc(1000)(.01));
