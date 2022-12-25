@@ -43,12 +43,37 @@ const restaurant = {
     console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}.`);
   },
 };
-const ing = prompt('Enter the ingredients').split(', ');
-console.log(ing);
-console.log(...ing);
+// const ing = prompt('Enter the ingredients').split(', ');
+// const ing = [
+//   prompt("Let's make a pasta? Ingredient?"),
+//   prompt('Second ingredient?'),
+//   prompt('Last ingredient?'),
+// ];
+const [a, b, ...rest] = [1, 2, 3, 4, 5];
 
-restaurant.orderPasta(...ing);
+console.log(a, b, ...rest);
 
+const [...foods] = [...restaurant.mainMenu, ...restaurant.starterMenu];
+console.log(foods);
+
+const { sat, fri } = restaurant.openingHours;
+
+console.log(sat, fri);
+
+const add = function (...x) {
+  let sum = 0;
+  for (let i = 0; i < x.length; i++) {
+    sum += x[i];
+  }
+  console.log(sum);
+};
+add(2, 3);
+add(2, 4, 6, 3);
+add(8, 3, 5, 1, 5, 3, 4, 3);
+
+const w = [23, 5, 7];
+console.log(w);
+add(...w);
 /* ---------------------------------------------------------------
 restaurant.orderDelivery({
   time: '12',
