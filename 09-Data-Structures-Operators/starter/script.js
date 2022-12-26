@@ -43,12 +43,133 @@ const restaurant = {
     console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}.`);
   },
 };
+
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+//1
+const [players1, players2] = game.players;
+console.log(players1, players2);
+//2
+const [gk, ...fieldPlayers] = players1;
+console.log(gk, ...fieldPlayers);
+//3
+const allPlayers = [...players1, ...players2];
+console.log(allPlayers);
+//4
+const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+console.log(players1Final);
+//5
+const {
+  odds: { team1, x: draw, team2 },
+} = game;
+console.log(team1, draw, team2);
+//6
+const printGoals = function (...goals) {
+  console.log(`${goals.length}: ${goals}`);
+};
+printGoals('Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels');
+printGoals(...game.scored);
+//7
+team1 < team2 && console.log('Team1 will likely to win');
+team1 > team2 && console.log('Team2 will likely to win');
+// //1
+
+// const [players1, players2] = game.players;
+// //2
+// const [gk, ...fieldPlayers] = players1;
+// //3
+// const allPlayers = [...players1, ...players2];
+// //4
+// const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+// //5
+
+// const {
+//   odds: { team1, x: draw, team2 },
+// } = game;
+// //6
+// const printGoals = function (...goals) {
+//   console.log(`${goals.length} goals:${goals}`);
+// };
+// //7
+// console.log(team1 < team2 && `team1 will likely to win`);
+
+// printGoals('Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels');
+
+// console.log(players1, players2);
+// console.log(gk, fieldPlayers);
+// console.log(allPlayers);
+// console.log(players1Final);
+// console.log(team1, draw, team2);
+// const rest1 = {
+//   name: 'Capri',
+//   numGuests: 0,
+// };
+
+// const rest2 = {
+//   name: 'La Piazaa',
+//   owner: 'Giovanni Rossi',
+// };
+
+// rest1.numGuests ??= 10;
+// rest2.numGuests ??= 10;
+
+// rest2.owner &&= 'Anonymous';
+
+// console.log(rest1);
+// console.log(rest2);
+
+// restaurant.numGuests = 0;
+
+// const guests = restaurant.numGuests || 10;
+// const guestCorrected = restaurant.numGuests ?? 10;
+// console.log(guests);
+// console.log(guestCorrected);
+
 // const ing = prompt('Enter the ingredients').split(', ');
 // const ing = [
 //   prompt("Let's make a pasta? Ingredient?"),
 //   prompt('Second ingredient?'),
 //   prompt('Last ingredient?'),
 // ];
+/*
 const [a, b, ...rest] = [1, 2, 3, 4, 5];
 
 console.log(a, b, ...rest);
