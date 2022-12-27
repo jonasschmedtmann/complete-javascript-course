@@ -4,6 +4,22 @@
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+const openingHours = {
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  [weekdays[4]]: {
+    open: 11,
+    close: 23,
+  },
+  [weekdays[5]]: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
+
 // Data needed for first part of the section
 const restaurant = {
   name: 'Classico Italiano',
@@ -11,38 +27,81 @@ const restaurant = {
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
-  order: function (starterIndex, mainIndex) {
+  openingHours,
+  // openingHours: {
+  //   thu: {
+  //     open: 12,
+  //     close: 22,
+  //   },
+  //   fri: {
+  //     open: 11,
+  //     close: 23,
+  //   },
+  //   sat: {
+  //     open: 0, // Open 24 hours
+  //     close: 24,
+  //   },
+  // },
+  order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
-  orderDelivery: function ({
-    time = '20:00',
-    address,
-    mainIndex = 0,
-    starterIndex = 1,
-  }) {
+  orderDelivery({ time = '20:00', address, mainIndex = 0, starterIndex = 1 }) {
     console.log(
       `Your main dish ${this.mainMenu[mainIndex]} and starter dish ${this.starterMenu[starterIndex]} will be delivered to ${address} at around ${time}.`
     );
   },
-  orderPasta: function (ing1, ing2, ing3) {
+  orderPasta(ing1, ing2, ing3) {
     console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}.`);
   },
 };
+
+// property NAMES;
+// const properties = Object.keys(openingHours);
+// // console.log(properties);
+// const values = Object.values(openingHours);
+// console.log(values);
+// const entryHours = Object.entries(openingHours);
+// console.log(entryHours);
+// // let str = `We are open on ${properties.length} days:`;
+// // for (const day of Object.keys(openingHours)) {
+// //   str = str + ` ${day}`;
+// // }
+// for (const [key, { open, close }] of entryHours) {
+//   let final = `on ${key} we open at ${open} and close at ${close}`;
+//   console.log(final);
+// }
+
+// // console.log(str);
+
+// // We are open on 3 days: thu, fri, sat,
+
+// // console.log(
+// //   restaurant.orderPastas?.('tim', 'david', 'han') ?? 'Method does not exist'
+// // );
+
+// const users = [
+//   {
+//     name: 'david',
+//     age: 12,
+//     email: 'kp@gmail.com',
+//   },
+// ];
+
+// console.log(users);
+// console.log(users[5]?.name ?? 'error');
+
+// const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+// for (const day of days) {
+//   const open = restaurant.openingHours[day]?.open ?? 'closed';
+//   console.log(`We are open on ${day} at ${open}.`);
+// }
+
+// console.log(restaurant.openingHours.mon?.open);
+// console.log(restaurant.openingHours.fri.open);
+
+// const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
+// console.log(menu.entries());
+// for (const [i, el] of menu.entries()) console.log(`${i + 1}: ${el}`);
 
 const game = {
   team1: 'Bayern Munich',
@@ -84,6 +143,32 @@ const game = {
     team2: 6.5,
   },
 };
+
+//Coding Challege #2
+//1
+const scored = game.scored.entries();
+for (const [i, el] of scored) {
+  console.log(`Goal ${i}: ${el}`);
+}
+//2
+const gameOdds = Object.entries(game.odds);
+let sum = 0;
+for (const [team, value] of gameOdds) {
+  sum += value;
+}
+let avg = sum / Object.values(game.score).length;
+console.log(`Average odd is ${avg}.`);
+//3
+
+for (const [team, odd] of gameOdds) {
+  const teamStr = team === 'x' ? 'draw' : `vicotry ${game[team]}`;
+
+  console.log(`Odd of ${teamStr}: ${odd}`);
+}
+// Odd of victory Bayern Munich: 1.33
+// Odd of draw: 3.25
+// Odd of victory Borrussia Dortmund: 6.5
+/*
 //1
 const [players1, players2] = game.players;
 console.log(players1, players2);
@@ -132,7 +217,7 @@ team1 > team2 && console.log('Team2 will likely to win');
 // console.log(team1 < team2 && `team1 will likely to win`);
 
 // printGoals('Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels');
-
+/*
 // console.log(players1, players2);
 // console.log(gk, fieldPlayers);
 // console.log(allPlayers);
