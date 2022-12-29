@@ -54,7 +54,123 @@ const restaurant = {
     console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}.`);
   },
 };
+const gameEvents = new Map([
+  [17, '⚽ GOAL'],
+  [36, '🔁 Substitution'],
+  [47, '⚽ GOAL'],
+  [61, '🔁 Substitution'],
+  [64, '🔶 Yellow card'],
+  [69, '🔴 Red card'],
+  [70, '🔁 Substitution'],
+  [72, '🔁 Substitution'],
+  [76, '⚽ GOAL'],
+  [80, '⚽ GOAL'],
+  [92, '🔶 Yellow card'],
+]);
+// 5
+for (const [time, event] of gameEvents.entries()) {
+  console.log(
+    `${time < 45 ? '[FIRST HALF]' : '[SECOND HALF]'}${time}: ${event}`
+  );
+}
 
+// 1
+// const events = [...new Set([...gameEvents.values()])];
+// const eventss = new Set([...gameEvents.values()]);
+
+// console.log(events);
+// console.log(eventss);
+// // 2
+// gameEvents.delete(64);
+// console.log(gameEvents);
+// // 3
+// console.log(
+//   `An event happend, on average, ever ${90 / gameEvents.size} minutes`
+// );
+// // 4
+// const time = [...gameEvents.keys()].pop();
+// console.log(
+//   `An event happend, on average, ever ${time / gameEvents.size} minutes`
+// );
+// 5
+
+// "An event happened, on average, every 9 minutes"
+
+// for (const [time, event] of gameEvents) {
+//   console.log(event);
+// }
+// console.log(events);
+
+// console.log(gameEvents);
+// Set examples
+// const orderSet = new Set([
+//   'Pasta',
+//   'Pizza',
+//   'Pizza',
+//   'Risotto',
+//   'Pasta',
+//   'Pizza',
+// ]);
+
+// const question = new Map([
+//   ['question', 'What is the best program language?'],
+//   [1, 'c++'],
+//   [2, 'Ruby'],
+//   [3, 'Javascript'],
+//   ['correct', 3],
+//   [true, 'Correct!'],
+//   [false, 'Wrong!'],
+// ]);
+
+// console.log(question.get('question'));
+
+// for (const [key, value] of question) {
+//   if (typeof key === 'number') {
+//     console.log(`${key}: ${value}`);
+//   }
+// }
+
+// const answer = Number(prompt('What is your answer?'));
+// // console.log(question.get(answer === 3 ? true : false));
+// console.log(question.get(question.get('correct') === answer));
+
+// convert map to array
+// console.log(...question);
+// console.log(question);
+// console.log(question);
+
+// console.log(Object.entries(restaurant.openingHours));
+// const hoursMap = new Map(Object.entries(restaurant.openingHours));
+// console.log(hoursMap);
+// console.log(orderSet);
+// const names = new Set('Timmy');
+// console.log(new Set());
+// console.log(names.size);
+// console.log(orderSet.has('Pastas'));
+// orderSet.add('Salad');
+// orderSet.delete('Salad');
+// orderSet.clear();
+// console.log(orderSet);
+
+// const staffs = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+// const staffsd = new Set(staffs);
+// const staff = [...new Set(staffs)];
+// console.log(staffsd);
+// console.log(staff);
+// for (const staf of staff) {
+//   console.log(`There are ${staf}`);
+// }
+
+// const rest = new Map();
+// rest.set('name', 'Tim');
+// rest.set(true, 'open').set(false, 'close');
+// rest.set('open', 11);
+// rest.set('closed', 23);
+
+// const time = 21;
+// console.log(rest.get(true));
+// console.log(rest.get(time > rest.get('open') && time < rest.get('closed')));
+// console.log(rest.size);
 // property NAMES;
 // const properties = Object.keys(openingHours);
 // // console.log(properties);
@@ -146,25 +262,55 @@ const game = {
 
 //Coding Challege #2
 //1
-const scored = game.scored.entries();
-for (const [i, el] of scored) {
-  console.log(`Goal ${i}: ${el}`);
-}
-//2
-const gameOdds = Object.entries(game.odds);
-let sum = 0;
-for (const [team, value] of gameOdds) {
-  sum += value;
-}
-let avg = sum / Object.values(game.score).length;
-console.log(`Average odd is ${avg}.`);
-//3
+// for (const [i, el] of game.scored.entries())
+//   console.log(`Goal ${i + 1}: ${el}`);
+// //2
+// let avg = 0;
+// for (const odd of Object.values(game.odds)) {
+//   avg += odd;
+//   avg / odd.length;
+// }
+// console.log(avg);
+// //3
+// for (const [team, odd] of Object.entries(game.odds)) {
+//   const teamStr = team === 'x' ? 'draw' : game[team];
+//   console.log(`Odd of ${teamStr}: ${odd}`);
+// }
+//4
 
-for (const [team, odd] of gameOdds) {
-  const teamStr = team === 'x' ? 'draw' : `vicotry ${game[team]}`;
+// const scorers = {};
+// for (const player of game.scored) {
+//   console.log(player);
+//   scorers[player] ? scorers[player]++ : (scorers[player] = 1);
 
-  console.log(`Odd of ${teamStr}: ${odd}`);
+//   scorers['hi'] = 'hl';
+// }
+
+// const test = {};
+// test['2'] = 'h';
+// console.log(test);
+
+// console.log(scorers);
+
+// const testArr = [];
+// testArr['testt'] = 'test';
+// console.log(testArr);
+
+/*
+{
+Gnarby: 1,
+Hummels: 1,
+Lewandowski: 2
 }
+*/
+// BONUS
+// So the solution is to loop over the array, and add the array elements as object properties, and then increase the count as we encounter a new occurence of a certain element
+// const scorers = {};
+// for (const player of game.scored) {
+//   scorers[player] ? scorers[player]++ : (scorers[player] = 1);
+// }
+// console.log(scorers);
+
 // Odd of victory Bayern Munich: 1.33
 // Odd of draw: 3.25
 // Odd of victory Borrussia Dortmund: 6.5
