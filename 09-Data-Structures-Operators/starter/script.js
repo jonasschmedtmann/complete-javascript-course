@@ -54,25 +54,119 @@ const restaurant = {
     console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}.`);
   },
 };
-const gameEvents = new Map([
-  [17, '⚽ GOAL'],
-  [36, '🔁 Substitution'],
-  [47, '⚽ GOAL'],
-  [61, '🔁 Substitution'],
-  [64, '🔶 Yellow card'],
-  [69, '🔴 Red card'],
-  [70, '🔁 Substitution'],
-  [72, '🔁 Substitution'],
-  [76, '⚽ GOAL'],
-  [80, '⚽ GOAL'],
-  [92, '🔶 Yellow card'],
-]);
-// 5
-for (const [time, event] of gameEvents.entries()) {
-  console.log(
-    `${time < 45 ? '[FIRST HALF]' : '[SECOND HALF]'}${time}: ${event}`
-  );
-}
+// Repeat is it repeating itself
+// const message3 = 'Time is the bomb';
+// console.log(message3.repeat(4));
+
+// const maskCreditCard = function (number) {
+//   const str = String(number);
+//   const pad = str.slice(0, 3).padEnd(7, '*');
+//   console.log(pad);
+// };
+// maskCreditCard(3452553);
+// maskCreditCard(2398237);
+
+// const firstMask = function (number) {
+//   const str = number + '';
+//   const pad = str.slice(-4).padStart(str.length, '*');
+//   console.log(pad);
+// };
+// firstMask(3452553);
+// firstMask(2398237342);
+// firstMask(2398234242589375);
+
+// Padding is add number of characters to it
+// const message = 'Go to gate 2number3!';
+// console.log(message.padStart(25, '+'));
+// console.log(message.padEnd(25, '+'));
+
+// const captializeName = function (names) {
+//   const split = names.split(' ');
+//   const arr = [];
+//   for (const s of split) {
+//     // const d = s[0].toUpperCase() + s.slice(1);
+//     const d = s[0].replace(s[0], s[0].toUpperCase()) + s.slice(1);
+//     arr.push(d);
+//   }
+//   console.log(arr.join(' '));
+// };
+
+// captializeName('jessica ann smith davis');
+// captializeName('tim ha');
+
+// split() splits the words and makes an array
+
+// const [firstName, lastName] = 'tim ha'.split(' ');
+// console.log(firstName, lastName);
+// // join(0) joins the array with what you assigned
+// const newName = ['Mr.', firstName, lastName].join(' ');
+// console.log(newName);
+
+// const email = 'hello@jonas.io';
+// const loginEmail = '  Hello@Jonas.Io \n';
+
+// const lowerEmail = loginEmail.toLowerCase().trim();
+// // trim() will remove all spaces
+// // const trimmedEmail = lowerEmail.trim();
+// console.log(lowerEmail);
+
+// const priceGB = '288,96&';
+// const priceUS = priceGB.replace(',', '.').replace('&', '$');
+// console.log(priceUS);
+
+// const announcement =
+//   'all passengers come to boarding door 23, Boarding door 23!';
+// const doorToGate = announcement.replaceAll('door', 'gate');
+// console.log(doorToGate);
+// const passenger = 'jOnAS';
+// const newPassenger =
+//   passenger[0].toUpperCase() + passenger.slice(1).toLowerCase();
+// console.log(passenger);
+// console.log(newPassenger);
+// const checkMiddleSeat = function (seat) {
+//   const s = seat.slice(-1);
+//   console.log(
+//     s === 'C' || s === 'E'
+//       ? 'You are on middle seat'
+//       : 'You are not on middle seat'
+//   );
+// };
+// checkMiddleSeat('11B');
+// checkMiddleSeat('23C');
+// checkMiddleSeat('3E');
+// const airline = 'Tap Air Portugal';
+// const plane = 'A320';
+
+// console.log(airline.slice(8, 16));
+// // slice is like slicing something in between
+// console.log(airline.slice(0, airline.lastIndexOf(' ')));
+// console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+
+// console.log(plane[0]);
+// console.log('B324'[1]);
+// console.log(airline.indexOf('r'));
+// console.log(airline.lastIndexOf('a'));
+
+// const gameEvents = new Map([
+//   [17, '⚽ GOAL'],
+//   [36, '🔁 Substitution'],
+//   [47, '⚽ GOAL'],
+//   [61, '🔁 Substitution'],
+//   [64, '🔶 Yellow card'],
+//   [69, '🔴 Red card'],
+//   [70, '🔁 Substitution'],
+//   [72, '🔁 Substitution'],
+//   [76, '⚽ GOAL'],
+//   [80, '⚽ GOAL'],
+//   [92, '🔶 Yellow card'],
+// ]);
+
+// // 5
+// for (const [time, event] of gameEvents.entries()) {
+//   console.log(
+//     `${time < 45 ? '[FIRST HALF]' : '[SECOND HALF]'}${time}: ${event}`
+//   );
+// }
 
 // 1
 // const events = [...new Set([...gameEvents.values()])];
