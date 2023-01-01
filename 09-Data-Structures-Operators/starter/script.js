@@ -54,6 +54,56 @@ const restaurant = {
     console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}.`);
   },
 };
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+const text = document.querySelector('textarea').value;
+
+const button = document.querySelector('button');
+
+button.addEventListener('click', function () {
+  const text = document.querySelector('textarea').value;
+  const toMultipleLines = text.split('\n');
+  for (const [i, el] of toMultipleLines.entries()) {
+    const [firstName, secondName] = el.toLowerCase().trim().split('_');
+    const newText =
+      firstName +
+      secondName.replace(`${secondName[0]}`, `${secondName[0].toUpperCase()}`);
+    console.log(`${newText.padEnd(20)}${'✔️'.repeat(i + 1)}`);
+  }
+});
+
+// button.addEventListener('click', function () {
+//   const text = document.querySelector('textarea').value;
+//   const lowerCase = text.toLowerCase();
+//   const splitLine = lowerCase.split('\n');
+//   for (const s of splitLine) {
+//     const splitUnder = s.split('_');
+//     const camelJoin =
+//       splitUnder[0] + splitUnder[1][0].toUpperCase() + splitUnder[1].slice(1);
+//     const trim = camelJoin.trim(' ');
+//     const addSpace = trim.padEnd(25, ' ');
+//     const addCheckMark = addSpace.padEnd(26, '*');
+//     console.log(addCheckMark);
+//   }
+// });
+
+// const newCode = function (text) {
+//   const str = String(text);
+//   const lowerCase = str.toLowerCase();
+//   const split = lowerCase.split('_');
+//   const join = split[0] + split[1][0].toUpperCase() + split[1].slice(1);
+//   console.log(join);
+//   console.log(split);
+// };
+
+// newCode('underscore_case');
+// underscore_case
+//  first_name
+// Some_Variable
+//   calculate_AGE
+// delayed_departure
+
 // Repeat is it repeating itself
 // const message3 = 'Time is the bomb';
 // console.log(message3.repeat(4));
