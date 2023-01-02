@@ -242,13 +242,34 @@ GOOD LUCK 😀
     136: Immediately Invoked Function Expression(IIFE)
 */
 
-const runOnce = function () {
-    console.log(`this runs once`);
+// const runOnce = function () {
+//     console.log(`this runs once`);
+// }
+
+// runOnce();
+// (function () {
+//     console.log(`this always runs once`);
+// })();
+
+// (() => console.log(`this ALSO always runs once`))();
+
+/* 
+    137: Closures
+*/
+
+const secureBooking = function () {
+    let passengerCount = 0;
+
+    return function () {
+        passengerCount++;
+        console.log(passengerCount);
+    }
 }
 
-runOnce();
-(function () {
-    console.log(`this always runs once`);
-})();
+const booker = secureBooking();
 
-(() => console.log(`this ALSO always runs once`))();
+booker();
+booker();
+booker();
+
+console.dir(booker);
