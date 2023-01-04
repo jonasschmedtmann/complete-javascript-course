@@ -253,7 +253,7 @@ GOOD LUCK 😀
 
 // (() => console.log(`this ALSO always runs once`))();
 
-/* 
+/*
     137: Closures
 */
 
@@ -274,46 +274,57 @@ GOOD LUCK 😀
 
 // console.dir(booker);
 
-/* 
+/*
     138: More Closure Examples
 */
 
-let f;
+// let f;
 
-const g = function () {
-    const a = 23;
-    f = function () {
-        console.log(a * 2);
-    }
-};
+// const g = function () {
+//     const a = 23;
+//     f = function () {
+//         console.log(a * 2);
+//     }
+// };
 
-const h = function () {
-    const b = 777;
-    f = function () {
-        console.log(b * 2);
-    }
-}
+// const h = function () {
+//     const b = 777;
+//     f = function () {
+//         console.log(b * 2);
+//     }
+// }
 
-g();
-f();
+// g();
+// f();
 
-// Closure gets re-assigned here
-h();
-f();
+// // Closure gets re-assigned here
+// h();
+// f();
 
-// Example 2
+// // Example 2
 
-const boardPassengers = function (num, wait) {
-    const perGroup = num / 3;
+// const boardPassengers = function (num, wait) {
+//     const perGroup = num / 3;
 
-    setTimeout(() => {
-        console.log(`We are now boarding all ${num} passengers`);
-        console.log(`Boarding will be in 3 groups, each group with ${perGroup} passengers`);
-    }, wait * 1000);
+//     setTimeout(() => {
+//         console.log(`We are now boarding all ${num} passengers`);
+//         console.log(`Boarding will be in 3 groups, each group with ${perGroup} passengers`);
+//     }, wait * 1000);
 
-    console.log(`We will start boarding in ${wait} seconds`);
+//     console.log(`We will start boarding in ${wait} seconds`);
 
-}
+// }
 
-const perGroup = 25;    // Closure has priority over scope chain -- this vaiable won't be used
-boardPassengers(180, 3);
+// const perGroup = 25;    // Closure has priority over scope chain -- this vaiable won't be used
+// boardPassengers(180, 3);
+
+/* 
+    139: Coding Challenge #2
+*/
+
+(function () {
+    const header = document.querySelector('h1');
+    document.querySelector('body').addEventListener('click', () => {
+        header.style.color = 'orangered';
+    })
+})();
