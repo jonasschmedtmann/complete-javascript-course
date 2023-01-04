@@ -257,19 +257,63 @@ GOOD LUCK 😀
     137: Closures
 */
 
-const secureBooking = function () {
-    let passengerCount = 0;
+// const secureBooking = function () {
+//     let passengerCount = 0;
 
-    return function () {
-        passengerCount++;
-        console.log(passengerCount);
+//     return function () {
+//         passengerCount++;
+//         console.log(passengerCount);
+//     }
+// }
+
+// const booker = secureBooking();
+
+// booker();
+// booker();
+// booker();
+
+// console.dir(booker);
+
+/* 
+    138: More Closure Examples
+*/
+
+let f;
+
+const g = function () {
+    const a = 23;
+    f = function () {
+        console.log(a * 2);
+    }
+};
+
+const h = function () {
+    const b = 777;
+    f = function () {
+        console.log(b * 2);
     }
 }
 
-const booker = secureBooking();
+g();
+f();
 
-booker();
-booker();
-booker();
+// Closure gets re-assigned here
+h();
+f();
 
-console.dir(booker);
+// Example 2
+
+const boardPassengers = function (num, wait) {
+    const perGroup = num / 3;
+
+    setTimeout(() => {
+        console.log(`We are now boarding all ${num} passengers`);
+        console.log(`Boarding will be in 3 groups, each group with ${perGroup} passengers`);
+    }, wait * 1000);
+
+    console.log(`We will start boarding in ${wait} seconds`);
+
+}
+
+const perGroup = 25;    // Closure has priority over scope chain -- this vaiable won't be used
+boardPassengers(180, 3);
