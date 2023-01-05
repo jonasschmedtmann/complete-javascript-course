@@ -75,32 +75,45 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
-/* 
+/*
     142: Simple Array Methods
 */
 
 
-// SLICE
-const arr = ['a', 'b', 'c', 'd', 'e'];
-console.log(arr.slice(2, 4));
-console.log(arr.slice(-2));
-console.log(arr.slice(1, -3));
+// // SLICE
+// const arr = ['a', 'b', 'c', 'd', 'e'];
+// console.log(arr.slice(2, 4));
+// console.log(arr.slice(-2));
+// console.log(arr.slice(1, -3));
 
-// SPLICE -- modifies the array
-console.log(arr);
-console.log(arr.splice(2, 2));  // start position & deletecount
-console.log(arr);
+// // SPLICE -- modifies the array
+// console.log(arr);
+// console.log(arr.splice(2, 2));  // start position & deletecount
+// console.log(arr);
 
-// REVERSE -- modifies the array
-const arr1 = ['a', 'b', 'c', 'd', 'e'];
-const arr2 = ['j', 'i', 'h', 'g', 'f'];
+// // REVERSE -- modifies the array
+// const arr1 = ['a', 'b', 'c', 'd', 'e'];
+// const arr2 = ['j', 'i', 'h', 'g', 'f'];
 
-console.log(arr2.reverse());
+// console.log(arr2.reverse());
 
-// CONCAT
-const letters = arr1.concat(arr2);
-console.log(letters);
-console.log([...arr1, ...arr2]);
+// // CONCAT
+// const letters = arr1.concat(arr2);
+// console.log(letters);
+// console.log([...arr1, ...arr2]);
 
-// JOIN
-console.log(letters.join(' - '));
+// // JOIN
+// console.log(letters.join(' - '));
+
+/*
+    143: The new 'at' method -- ES2022
+*/
+
+// const arr = [23, 34, 45, 56, 766];
+// console.log(arr[2]);
+// console.log(arr.at(2));
+
+// // Get last element without knowing the length
+// console.log(arr[arr.length - 1]);
+// console.log(arr.slice(-1));
+// console.log(arr.at(-1));
