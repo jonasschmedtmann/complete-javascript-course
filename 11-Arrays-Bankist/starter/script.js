@@ -71,7 +71,7 @@ const currencies = new Map([
     ['GBP', 'Pound sterling'],
 ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -117,3 +117,29 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // console.log(arr[arr.length - 1]);
 // console.log(arr.slice(-1));
 // console.log(arr.at(-1));
+
+/* 
+    144: Looping Arrays: forEach
+*/
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+// for-of
+
+for (const [i, movement] of movements.entries()) {
+    if (movement > 0) {
+        console.log(`Movement ${i + 1}: You deposited ${movement}`);
+    } else {
+        console.log(`Movement ${i + 1}: You withdrew ${Math.abs(movement)}`);
+    }
+}
+
+// foreach is the higher order function which calls the callback function for each of the element in the array
+console.log(`---- FOREACH ----`);
+movements.forEach((movement, i, array) => {
+    if (movement > 0) {
+        console.log(`Movement ${i + 1}: You deposited ${movement}`);
+    } else {
+        console.log(`Movement ${i + 1}: You withdrew ${Math.abs(movement)}`);
+    }
+});
