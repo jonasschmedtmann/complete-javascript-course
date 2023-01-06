@@ -65,11 +65,6 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // LECTURES
 
-const currencies = new Map([
-    ['USD', 'United States dollar'],
-    ['EUR', 'Euro'],
-    ['GBP', 'Pound sterling'],
-]);
 
 // const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
@@ -118,28 +113,52 @@ const currencies = new Map([
 // console.log(arr.slice(-1));
 // console.log(arr.at(-1));
 
-/* 
+/*
     144: Looping Arrays: forEach
 */
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-// for-of
+// // for-of
 
-for (const [i, movement] of movements.entries()) {
-    if (movement > 0) {
-        console.log(`Movement ${i + 1}: You deposited ${movement}`);
-    } else {
-        console.log(`Movement ${i + 1}: You withdrew ${Math.abs(movement)}`);
-    }
-}
+// for (const [i, movement] of movements.entries()) {
+//     if (movement > 0) {
+//         console.log(`Movement ${i + 1}: You deposited ${movement}`);
+//     } else {
+//         console.log(`Movement ${i + 1}: You withdrew ${Math.abs(movement)}`);
+//     }
+// }
 
-// foreach is the higher order function which calls the callback function for each of the element in the array
-console.log(`---- FOREACH ----`);
-movements.forEach((movement, i, array) => {
-    if (movement > 0) {
-        console.log(`Movement ${i + 1}: You deposited ${movement}`);
-    } else {
-        console.log(`Movement ${i + 1}: You withdrew ${Math.abs(movement)}`);
-    }
+// // foreach is the higher order function which calls the callback function for each of the element in the array
+// console.log(`---- FOREACH ----`);
+// movements.forEach((movement, i, array) => {
+//     if (movement > 0) {
+//         console.log(`Movement ${i + 1}: You deposited ${movement}`);
+//     } else {
+//         console.log(`Movement ${i + 1}: You withdrew ${Math.abs(movement)}`);
+//     }
+// });
+
+/* 
+    145: forEach with Maps and Sets
+*/
+
+// Map
+const currencies = new Map([
+    ['USD', 'United States dollar'],
+    ['EUR', 'Euro'],
+    ['GBP', 'Pound sterling'],
+]);
+
+currencies.forEach((value, key, map) => {
+    console.log(`${key}: ${value}`);
 });
+
+// SET
+const uniqueCurrencies = new Set(['USD', 'EUR', 'INR', 'GBP', 'USD', 'YEN']);
+console.log(uniqueCurrencies);
+
+// Key not available in set. So, value appears in that place
+uniqueCurrencies.forEach((value, _, set) => {
+    console.log(value, _, set);
+})
