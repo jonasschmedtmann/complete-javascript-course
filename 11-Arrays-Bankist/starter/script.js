@@ -95,12 +95,7 @@ const calculateUserName = (accounts) =>
 
     });
 
-calculateUserName(accounts)
-console.log(accounts);
-// const userNames = accounts.map((account) =>
-//     calculateUserName(account.owner))
-// console.log(userNames);
-
+calculateUserName(accounts);
 
 
 /////////////////////////////////////////////////
@@ -252,7 +247,7 @@ GOOD LUCK 😀
     150: The map method
 */
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 // const euroToUsd = 1.1;
 // const movementsUSD = movements.map((mov) => mov * euroToUsd);
@@ -269,3 +264,12 @@ GOOD LUCK 😀
 // const movementsDescription = movements.map((mov, i) =>
 //     `Movement ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(mov)}`);
 // console.log(movementsDescription);
+
+/* 
+    152: The filter method
+*/
+
+const deposits = movements.filter((movement) => movement > 0);
+const withdrawals = movements.filter((movement) => movement < 0);
+console.log(deposits, withdrawals);
+
