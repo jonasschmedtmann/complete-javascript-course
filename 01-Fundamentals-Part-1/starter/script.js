@@ -69,73 +69,112 @@
 // Calculate the average score foreach team
 // compare the teams' average score to determine the winner and console.log - test for a draw as well
 
-const dolphinsArray = [96, 108, 89]
+// const dolphinsArray = [96, 108, 89]
 
-const averageD = dolphinsArray.reduce((a, b) => a + b, 0) / dolphinsArray.length
+// const averageD = dolphinsArray.reduce((a, b) => a + b, 0) / dolphinsArray.length
 
-console.log('dolphins', averageD)
+// console.log('dolphins', averageD)
 
-const koalasArray = [88, 91, 110]
+// const koalasArray = [88, 91, 110]
 
-const averageK = koalasArray.reduce((a, b) => a + b, 0) / koalasArray.length
+// const averageK = koalasArray.reduce((a, b) => a + b, 0) / koalasArray.length
 
-console.log(`Koala's`, averageK)
+// console.log(`Koala's`, averageK)
 
-if (averageK > averageD) {
-  console.log(`Koalas Win`, averageK)
-} else if (averageD > averageK) {
-  console.log(`Dolphins win`, averageD)
-} else {
-  console.log(`There's a draw`)
-}
+// if (averageK > averageD) {
+//   console.log(`Koalas Win`, averageK)
+// } else if (averageD > averageK) {
+//   console.log(`Dolphins win`, averageD)
+// } else {
+//   console.log(`There's a draw`)
+// }
 
 //Bonus 1
 
-const arrDolphins = [97, 112, 101]
+// const arrDolphins = [97, 112, 101]
 
-const d_Average = arrDolphins.reduce((a, b) => a + b, 0) / arrDolphins.length
+// const d_Average = arrDolphins.reduce((a, b) => a + b, 0) / arrDolphins.length
 
-console.log('dolphins2', d_Average)
+// console.log('dolphins2', d_Average)
 
-const arrKoalas = [109, 95, 123]
+// const arrKoalas = [109, 95, 123]
 
-const k_AverageK = arrKoalas.reduce((a, b) => a + b, 0) / arrKoalas.length
+// const k_AverageK = arrKoalas.reduce((a, b) => a + b, 0) / arrKoalas.length
 
-console.log(`Koalas2`, k_AverageK)
+// console.log(`Koalas2`, k_AverageK)
 
-const isOverOneHundred = true
+// const isOverOneHundred = true
 
-if (d_Average > k_AverageK && d_Average > 100) {
-  console.log(`Dolphins Win`, d_Average)
-} else if (k_AverageK > averageD && k_AverageK > 100) {
-  console.log(`Bonus 1 Koalas win and > 100`, k_AverageK)
-} else {
-  console.log(`There's a draw`)
-}
+// if (d_Average > k_AverageK && d_Average > 100) {
+//   console.log(`Dolphins Win`, d_Average)
+// } else if (k_AverageK > averageD && k_AverageK > 100) {
+//   console.log(`Bonus 1 Koalas win and > 100`, k_AverageK)
+// } else {
+//   console.log(`There's a draw`)
+// }
 
 // Bonus 2
 
-const dolphins_Array = [97, 112, 101]
+// const dolphins_Array = [97, 112, 101]
 
-const dolAverage =
-  dolphins_Array.reduce((a, b) => a + b, 0) / dolphins_Array.length
+// const dolAverage =
+//   dolphins_Array.reduce((a, b) => a + b, 0) / dolphins_Array.length
 
-console.log('dolphins3', dolAverage)
+// console.log('dolphins3', dolAverage)
 
-const koalas_Array = [109, 95, 106]
+// const koalas_Array = [109, 95, 106]
 
-const koaAverageK =
-  koalas_Array.reduce((a, b) => a + b, 0) / koalas_Array.length
-console.log(`Koalas3`, koaAverageK)
+// const koaAverageK =
+//   koalas_Array.reduce((a, b) => a + b, 0) / koalas_Array.length
+// console.log(`Koalas3`, koaAverageK)
 
-if (dolAverage >= 100 && dolAverage > koaAverageK) {
-  console.log(`Bonus 2 Dolphins Win`, dolAverage)
-} else if (koaAverageK >= 100 && koaAverageK > dolAverage) {
-  console.log(`Bonus 2 Koalas win `, k_AverageK)
-} else if (koaAverageK >= 100 && koaAverageK >= 100 && koaAverageK === dolAverage) {
-  console.log(`Bonus 2 DRAW`, k_AverageK)
-}else if (koaAverageK < 100) {
-  console.log(`Bonus 3 koalas <100`, koaAverageK)
-} else if (dolAverage < 100) {
-  console.log(`Bonus 3 dolphins <100`, dolAverage)
+// if (dolAverage >= 100 && dolAverage > koaAverageK) {
+//   console.log(`Bonus 2 Dolphins Win`, dolAverage)
+// } else if (koaAverageK >= 100 && koaAverageK > dolAverage) {
+//   console.log(`Bonus 2 Koalas win `, k_AverageK)
+// } else if (koaAverageK >= 100 && koaAverageK >= 100 && koaAverageK === dolAverage) {
+//   console.log(`Bonus 2 DRAW`, k_AverageK)
+// }else if (koaAverageK < 100) {
+//   console.log(`Bonus 3 koalas <100`, koaAverageK)
+// } else if (dolAverage < 100) {
+//   console.log(`Bonus 3 dolphins <100`, dolAverage)
+// }
+
+
+// Challenge 4
+
+// 50-300 15% else 20%
+
+
+// const bill= 275
+// const bill= 40
+// const bill =430
+
+// const tip =  bill >=50 && bill <=300 ? bill * 0.2 : bill * 0.15
+// console.log('tip: ', tip)
+// const total = bill + tip
+// console.log(`The bill was ${bill}, the tip was ${tip}, and the total value
+//   ${total}`)
+
+
+const average =  function (score1, score2, score3){
+  return (score1, score2, score3)/3
 }
+
+const dolAverage= average(96, 108, 89)
+console.log('dolAverage', dolAverage)
+
+const KoalaAverage= average(88, 91, 110)
+console.log('KoalaAverage', KoalaAverage)
+
+function declareWinner(dolAverage, KoalaAverage){
+ if (dolAverage == KoalaAverage){
+  console.log (`${dolAverage, KoalaAverage}It's a Tie, there's no winner`)
+ } else if (dolAverage > KoalaAverage){
+  console.log (`score: ${dolAverage} dolphins Wins`)
+ } else{
+  console.log (`score: ${KoalaAverage} Koalas Wins`)
+ }
+}
+
+declareWinner(dolAverage, KoalaAverage)
