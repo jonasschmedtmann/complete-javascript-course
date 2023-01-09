@@ -97,6 +97,14 @@ const calculateUserName = (accounts) =>
 
 calculateUserName(accounts);
 
+/* 
+    153: The reduce method
+*/
+const calcDisplayBalance = (movements) => {
+    const balance = movements.reduce((acc, cur) => acc + cur, 0)
+    labelBalance.textContent = `${balance} EUR`;
+};
+calcDisplayBalance(account1.movements);
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -272,4 +280,20 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 const deposits = movements.filter((movement) => movement > 0);
 const withdrawals = movements.filter((movement) => movement < 0);
 console.log(deposits, withdrawals);
+
+/* 
+    153: The reduce method
+*/
+console.log(movements);
+const balance = movements.reduce((acc, cur) => acc + cur, 0);
+console.log(balance);
+// Find largest using reduce
+const max = movements.reduce((acc, prev) => {
+    return prev > acc ? prev : acc
+}, movements[0]);
+
+const min = movements.reduce((acc, prev) => prev < acc ? prev : acc, movements[0])
+console.log(max);
+console.log(min);
+
 
