@@ -156,25 +156,3 @@
 // console.log(`The bill was ${bill}, the tip was ${tip}, and the total value
 //   ${total}`)
 
-
-const average =  function (score1, score2, score3){
-  return (score1, score2, score3)/3
-}
-
-const dolAverage= average(96, 108, 89)
-console.log('dolAverage', dolAverage)
-
-const KoalaAverage= average(88, 91, 110)
-console.log('KoalaAverage', KoalaAverage)
-
-function declareWinner(dolAverage, KoalaAverage){
- if (dolAverage == KoalaAverage){
-  console.log (`${dolAverage, KoalaAverage}It's a Tie, there's no winner`)
- } else if (dolAverage > KoalaAverage){
-  console.log (`score: ${dolAverage} dolphins Wins`)
- } else{
-  console.log (`score: ${KoalaAverage} Koalas Wins`)
- }
-}
-
-declareWinner(dolAverage, KoalaAverage)
