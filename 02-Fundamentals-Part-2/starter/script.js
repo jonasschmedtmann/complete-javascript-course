@@ -83,3 +83,72 @@ let tips = [ calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])]
 
 let total = [ bills[0]+ tips[0], bills[1] + tips[1], bills[2] + tips[2]]
 console.log('tips arr', tips, 'total', total)
+
+
+ // challenge video 43
+
+ const jonas = {
+  firstName: 'Jonas',
+  lastName: 'Schmedtmann',
+  birthYear: 1991,
+  job: 'teacher',
+  friends: ['Michael', 'Peter', 'Steven'],
+  hasDriversLicense: false,
+  calcAge: function(){
+    this.age =  2037 - this.birthYear
+    return this.age
+  },
+  getSummary: function(){
+  return `${this.firstName} is a ${this.calcAge()} y.o ${this.job} & he has ${this.hasDriversLicense?  'a ': 'no'}drivers license. `
+  }
+};
+
+
+
+// console.log(`${jonas.firstName} has ${jonas.friends.length} friends, and his best friend is called ${jonas.friends[0]}`)
+
+
+
+console.log(jonas.getSummary())
+
+///////////////////////////////////////
+// Coding Challenge #3
+
+/*
+Let's go back to Mark and John comparing their BMIs! This time, let's use objects to implement the calculations! Remember: BMI = mass / height ** 2 = mass / (height * height). (mass in kg and height in meter)
+
+1. For each of them, create an object with properties for their full name, mass, and height (Mark Miller and John Smith)
+2. Create a 'calcBMI' method on each object to calculate the BMI (the same method on both objects). Store the BMI value to a property, and also return it from the method.
+3. Log to the console who has the higher BMI, together with the full name and the respective BMI. Example: "John Smith's BMI (28.3) is higher than Mark Miller's (23.9)!"
+
+TEST DATA: Marks weights 78 kg and is 1.69 m tall. John weights 92 kg and is 1.95 m tall.
+
+GOOD LUCK 😀
+*/
+
+const mark ={
+  firstName: 'Mark',
+  lastName: 'Miller',
+  height: 1.69,
+  weight: 78,
+  calcBMI: function() {
+    this.bmi = Math.round(this.weight / this.height ** 2 )
+    return this.bmi
+  }
+}
+
+const john ={
+  firstName: 'John',
+  lastName: 'Smith',
+  height: 1.95,
+  weight: 92,
+  calcBMI: function() {
+    this.bmi = Math.round(this.weight / this.height ** 2 )
+    return this.bmi
+  }
+}
+
+mark.calcBMI();
+john.calcBMI();
+
+console.log( mark.bmi > john.bmi ? `${mark.firstName} BMI: (${mark.bmi}) is higher than ${john.firstName}'s BMI: (${john.bmi})`: `${john.firstName}'s BMI ${john.bmi} is higher than ${mark.firstName} BMI (${mark.bmi})` )
