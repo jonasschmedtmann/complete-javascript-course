@@ -69,7 +69,7 @@ const displayMovements = function (movements) {
             <div class="movements__row">
                 <div class="movements__type movements__type--${type}">${i + 1} deposit</div>
                 <div class="movements__date">3 days ago</div>
-                <div class="movements__value">${movement}</div>
+                <div class="movements__value">₹${Math.abs(movement)}</div>
             </div>`;
 
         containerMovements.insertAdjacentHTML('afterbegin', html);
@@ -102,9 +102,32 @@ calculateUserName(accounts);
 */
 const calcDisplayBalance = (movements) => {
     const balance = movements.reduce((acc, cur) => acc + cur, 0)
-    labelBalance.textContent = `${balance} EUR`;
+    labelBalance.textContent = `₹${balance}`;
 };
+
+/* 
+    155: The magic of chaining methods
+*/
+
+const calcDisplaySummary = movements => {
+    const income = movements
+        .filter((mov) => mov > 0)
+        .reduce((acc, mov) => acc + mov, 0);
+    labelSumIn.textContent = `₹${income}`;
+    const out = movements
+        .filter((mov) => mov < 0)
+        .reduce((acc, mov) => acc + mov, 0);
+    labelSumOut.textContent = `₹${Math.abs(out)}`;
+    const interest = movements
+        .filter(mov => mov > 0)
+        .map(deposit => deposit * 1.2 / 100)
+        .filter(interest => interest >= 1)
+        .reduce((acc, interest) => acc + interest, 0);
+    labelSumInterest.textContent = `₹${interest}`;
+}
+
 calcDisplayBalance(account1.movements);
+calcDisplaySummary(account1.movements);
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -255,9 +278,9 @@ GOOD LUCK 😀
     150: The map method
 */
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-// const euroToUsd = 1.1;
+const euroToUsd = 1.1;
 // const movementsUSD = movements.map((mov) => mov * euroToUsd);
 
 // console.log(movements);
@@ -296,11 +319,11 @@ GOOD LUCK 😀
 // console.log(max);
 // console.log(min);
 
-/* 
+/*
     154: Coding Challenge #2
 */
-/* 
-    Let's go back to Julia and Kate's study about dogs. 
+/*
+    Let's go back to Julia and Kate's study about dogs.
     This time, they want to convert dog ages to human ages and calculate the average age of the dogs in their study.
 
     Create a function 'calcAverageHumanAge', which accepts an arrays of dog's ages ('ages'), and does the following things in order:
@@ -315,18 +338,29 @@ GOOD LUCK 😀
     TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
 */
 
-const calcAverageHumanAge = (ages) => {
-    console.log(ages);
-    const humanAge = ages.map((age) => age <= 2 ? 2 * age : 16 + age * 4).filter(age => age >= 18);
-    console.log(humanAge);
-    // const avghumanAge = (humanAge.reduce((acc, prev) => acc + prev, 0)) / humanAge.length;
+// const calcAverageHumanAge = (ages) => {
+//     console.log(ages);
+//     const humanAge = ages.map((age) => age <= 2 ? 2 * age : 16 + age * 4).filter(age => age >= 18);
+//     console.log(humanAge);
+//     // const avghumanAge = (humanAge.reduce((acc, prev) => acc + prev, 0)) / humanAge.length;
 
-    // divide each element by the array length and then add it to accumalator
-    const avghumanAge = humanAge.reduce((acc, prev, i, arr) => acc + prev / arr.length, 0);
-    return avghumanAge;
-}
+//     // divide each element by the array length and then add it to accumalator
+//     const avghumanAge = humanAge.reduce((acc, prev, i, arr) => acc + prev / arr.length, 0);
+//     return avghumanAge;
+// }
 
-console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
-console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
+// console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+// console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
+
+/* 
+    155: The magic of chaining methods
+*/
+
+const totalDepositInUsd = movements
+    .filter((movement) => movement > 0)
+    .map((mov) => mov * euroToUsd)
+    .reduce((acc, cur) => acc + cur, 0);
+
+console.log(totalDepositInUsd);
 
 
