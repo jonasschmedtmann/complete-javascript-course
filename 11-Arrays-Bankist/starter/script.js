@@ -356,11 +356,28 @@ const euroToUsd = 1.1;
     155: The magic of chaining methods
 */
 
-const totalDepositInUsd = movements
-    .filter((movement) => movement > 0)
-    .map((mov) => mov * euroToUsd)
-    .reduce((acc, cur) => acc + cur, 0);
+// const totalDepositInUsd = movements
+//     .filter((movement) => movement > 0)
+//     .map((mov) => mov * euroToUsd)
+//     .reduce((acc, cur) => acc + cur, 0);
 
-console.log(totalDepositInUsd);
+// console.log(totalDepositInUsd);
+
+/*
+    156: Coding Challenge #3
+*/
+
+// Use chaining
+
+const calcAverageHumanAge = (ages) => {
+    const avgHumanAge = ages
+        .map((age) => age <= 2 ? 2 * age : 16 + age * 4).
+        filter(age => age >= 18)
+        .reduce((acc, prev, i, arr) => acc + prev / arr.length, 0);
+    return avgHumanAge;
+}
+
+console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
 
 
