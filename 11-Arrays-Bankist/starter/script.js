@@ -61,6 +61,12 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+const updateUI = (account) => {
+    displayMovements(account.movements);
+    calcDisplayBalance(account);
+    calcDisplaySummary(account);
+}
+
 const displayMovements = function (movements) {
     containerMovements.innerHTML = '';
     movements.forEach((movement, i) => {
@@ -99,9 +105,9 @@ calculateUserName(accounts);
 /* 
     153: The reduce method
 */
-const calcDisplayBalance = (movements) => {
-    const balance = movements.reduce((acc, cur) => acc + cur, 0)
-    labelBalance.textContent = `₹${balance}`;
+const calcDisplayBalance = (account) => {
+    account.balance = account.movements.reduce((acc, cur) => acc + cur, 0);
+    labelBalance.textContent = `₹${account.balance}`;
 };
 
 /* 
@@ -141,12 +147,29 @@ btnLogin.addEventListener('click', (e) => {
         containerApp.style.opacity = 1;
         inputLoginUsername.value = inputLoginPin.value = '';
         inputLoginPin.blur();
-        displayMovements(currentAccount.movements);
-        calcDisplayBalance(currentAccount.movements);
-        calcDisplaySummary(currentAccount);
+        updateUI(currentAccount);
     }
 
-})
+});
+
+/* 
+    159: Implementing transfers
+*/
+
+btnTransfer.addEventListener('click', (e) => {
+    e.preventDefault();
+    const amount = +inputTransferAmount.value;
+    const receiverAccount = accounts.find(acc => acc.username === inputTransferTo.value);
+
+    if (amount > 0 && receiverAccount && receiverAccount?.username !== currentAccount.username && currentAccount.balance > amount) {
+        receiverAccount.movements.push(amount);
+        currentAccount.movements.push(-Math.abs(amount));
+        updateUI(currentAccount);
+    }
+    inputTransferAmount.value = inputTransferTo.value = '';
+    inputTransferAmount.blur();
+});
+
 
 
 /////////////////////////////////////////////////
