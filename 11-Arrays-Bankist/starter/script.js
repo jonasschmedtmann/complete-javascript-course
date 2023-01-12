@@ -76,7 +76,6 @@ const displayMovements = function (movements) {
     });
 }
 
-displayMovements(account1.movements);
 
 /*
     151: Computing Usernames
@@ -109,25 +108,46 @@ const calcDisplayBalance = (movements) => {
     155: The magic of chaining methods
 */
 
-const calcDisplaySummary = movements => {
-    const income = movements
+const calcDisplaySummary = account => {
+    const income = account.movements
         .filter((mov) => mov > 0)
         .reduce((acc, mov) => acc + mov, 0);
     labelSumIn.textContent = `₹${income}`;
-    const out = movements
+    const out = account.movements
         .filter((mov) => mov < 0)
         .reduce((acc, mov) => acc + mov, 0);
     labelSumOut.textContent = `₹${Math.abs(out)}`;
-    const interest = movements
+    const interest = account.movements
         .filter(mov => mov > 0)
-        .map(deposit => deposit * 1.2 / 100)
+        .map(deposit => deposit * account.interestRate / 100)
         .filter(interest => interest >= 1)
         .reduce((acc, interest) => acc + interest, 0);
     labelSumInterest.textContent = `₹${interest}`;
 }
 
-calcDisplayBalance(account1.movements);
-calcDisplaySummary(account1.movements);
+
+/* 
+    158: Implementing Login
+*/
+
+let currentAccount;
+btnLogin.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    currentAccount = accounts.find((acc) => acc.username === inputLoginUsername.value);
+    console.log(currentAccount);
+    if (currentAccount?.pin === +inputLoginPin.value) {
+        labelWelcome.textContent = `Welcome Back ${currentAccount.owner.split(' ')[0]}`
+        containerApp.style.opacity = 1;
+        inputLoginUsername.value = inputLoginPin.value = '';
+        inputLoginPin.blur();
+        displayMovements(currentAccount.movements);
+        calcDisplayBalance(currentAccount.movements);
+        calcDisplaySummary(currentAccount);
+    }
+
+})
+
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -380,22 +400,22 @@ const euroToUsd = 1.1;
 // console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
 // console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
 
-/* 
+/*
     157: The find method
 */
 
-const firstWithdrawal = movements.find((mov) => mov < 0);
-console.log(firstWithdrawal);
+// const firstWithdrawal = movements.find((mov) => mov < 0);
+// console.log(firstWithdrawal);
 
-const account = accounts.find((account) => account.owner === 'Jessica Davis');
-console.log(account);
+// const account = accounts.find((account) => account.owner === 'Jessica Davis');
+// console.log(account);
 
-let ofAccount;
-for (const account1 of accounts) {
-    if (account1.owner === 'Jessica Davis') {
-        ofAccount = account1;
-    }
-}
-console.log(ofAccount);
+// let ofAccount;
+// for (const account1 of accounts) {
+//     if (account1.owner === 'Jessica Davis') {
+//         ofAccount = account1;
+//     }
+// }
+// console.log(ofAccount);
 
 
