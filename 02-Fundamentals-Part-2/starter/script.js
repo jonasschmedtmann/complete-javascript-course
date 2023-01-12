@@ -21,33 +21,33 @@ HINT: To check if number A is at least double number B, check for A >= 2 * B. Ap
 GOOD LUCK 😀
 */
 
-const calcAverage=  (score1, score2, score3) =>  (score1 + score2+ score3)/3
+// const calcAverage=  (score1, score2, score3) =>  (score1 + score2+ score3)/3
 
 // TEST DATA 1: 
-let avgDolhins= calcAverage(44, 23, 71)
-let avgKoalas= calcAverage(65, 54, 49)
+// let avgDolhins= calcAverage(44, 23, 71)
+// let avgKoalas= calcAverage(65, 54, 49)
 
-console.log('dolAverage', avgDolhins, 'KoalaAverage', avgKoalas)
+// console.log('dolAverage', avgDolhins, 'KoalaAverage', avgKoalas)
 
-const checkWinner = function(avgDolhins, avgKoalas){
-  if (avgDolhins >= 2 * avgKoalas){
-    console.log (`Dolphins Win - ( ${avgDolhins} vs. ${avgKoalas})`)
-   } else if (avgKoalas >= 2 * avgDolhins){
-    console.log (`Koalas Win - ( ${avgKoalas} vs. ${avgDolhins})`)
-   }else{
-    console.log (`There's no winner`)
-     }
-  }
+// const checkWinner = function(avgDolhins, avgKoalas){
+//   if (avgDolhins >= 2 * avgKoalas){
+//     console.log (`Dolphins Win - ( ${avgDolhins} vs. ${avgKoalas})`)
+//    } else if (avgKoalas >= 2 * avgDolhins){
+//     console.log (`Koalas Win - ( ${avgKoalas} vs. ${avgDolhins})`)
+//    }else{
+//     console.log (`There's no winner`)
+//      }
+//   }
   
-  checkWinner(avgDolhins, avgKoalas)
+//   checkWinner(avgDolhins, avgKoalas)
 
 // TEST DATA 2: Dolphins score 85, 54 and 41. Koalas score 23, 34 and 27
 
-avgDolhins= calcAverage(85, 54, 41)
-avgKoalas= calcAverage(23, 34, 27)
-console.log('dolAverage', avgDolhins, 'KoalaAverage', avgKoalas)
+// avgDolhins= calcAverage(85, 54, 41)
+// avgKoalas= calcAverage(23, 34, 27)
+// console.log('dolAverage', avgDolhins, 'KoalaAverage', avgKoalas)
 
-checkWinner(avgDolhins, avgKoalas)
+// checkWinner(avgDolhins, avgKoalas)
 
 
 ///////////////////////////////////////
@@ -68,40 +68,40 @@ HINT: Remember that an array needs a value in each position, and that value can 
 GOOD LUCK 😀
 */
 
-const calcTip = function (bill){
-  if (bill >= 50 && bill <=300){
-    return bill * 0.15
-  } else{
-    return  bill * 0.20
-  }
-}
+// const calcTip = function (bill){
+//   if (bill >= 50 && bill <=300){
+//     return bill * 0.15
+//   } else{
+//     return  bill * 0.20
+//   }
+// }
 // arrow func && ternary
 // const calcTip =  (bill) => bill >=50 && bill <=300 ? bill * 0.15 : bill * 0.20
 
-const bills = [125, 55, 44]
-let tips = [ calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])]
+// const bills = [125, 55, 44]
+// let tips = [ calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])]
 
-let total = [ bills[0]+ tips[0], bills[1] + tips[1], bills[2] + tips[2]]
-console.log('tips arr', tips, 'total', total)
+// let total = [ bills[0]+ tips[0], bills[1] + tips[1], bills[2] + tips[2]]
+// console.log('tips arr', tips, 'total', total)
 
 
  // challenge video 43
 
- const jonas = {
-  firstName: 'Jonas',
-  lastName: 'Schmedtmann',
-  birthYear: 1991,
-  job: 'teacher',
-  friends: ['Michael', 'Peter', 'Steven'],
-  hasDriversLicense: false,
-  calcAge: function(){
-    this.age =  2037 - this.birthYear
-    return this.age
-  },
-  getSummary: function(){
-  return `${this.firstName} is a ${this.calcAge()} y.o ${this.job} & he has ${this.hasDriversLicense?  'a ': 'no'}drivers license. `
-  }
-};
+//  const jonas = {
+//   firstName: 'Jonas',
+//   lastName: 'Schmedtmann',
+//   birthYear: 1991,
+//   job: 'teacher',
+//   friends: ['Michael', 'Peter', 'Steven'],
+//   hasDriversLicense: false,
+//   calcAge: function(){
+//     this.age =  2037 - this.birthYear
+//     return this.age
+//   },
+//   getSummary: function(){
+//   return `${this.firstName} is a ${this.calcAge()} y.o ${this.job} & he has ${this.hasDriversLicense?  'a ': 'no'}drivers license. `
+//   }
+// };
 
 
 
@@ -109,7 +109,7 @@ console.log('tips arr', tips, 'total', total)
 
 
 
-console.log(jonas.getSummary())
+// console.log(jonas.getSummary())
 
 ///////////////////////////////////////
 // Coding Challenge #3
@@ -126,29 +126,62 @@ TEST DATA: Marks weights 78 kg and is 1.69 m tall. John weights 92 kg and is 1.9
 GOOD LUCK 😀
 */
 
-const mark ={
-  firstName: 'Mark',
-  lastName: 'Miller',
-  height: 1.69,
-  weight: 78,
-  calcBMI: function() {
-    this.bmi = Math.round(this.weight / this.height ** 2 )
-    return this.bmi
-  }
+// const mark ={
+//   firstName: 'Mark',
+//   lastName: 'Miller',
+//   height: 1.69,
+//   weight: 78,
+//   calcBMI: function() {
+//     this.bmi = Math.round(this.weight / this.height ** 2 )
+//     return this.bmi
+//   }
+// }
+
+// const john ={
+//   firstName: 'John',
+//   lastName: 'Smith',
+//   height: 1.95,
+//   weight: 92,
+//   calcBMI: function() {
+//     this.bmi = Math.round(this.weight / this.height ** 2 )
+//     return this.bmi
+//   }
+// }
+
+// mark.calcBMI();
+// john.calcBMI();
+
+// console.log( mark.bmi > john.bmi ? `${mark.firstName} BMI: (${mark.bmi}) is higher than ${john.firstName}'s BMI: (${john.bmi})`: `${john.firstName}'s BMI ${john.bmi} is higher than ${mark.firstName} BMI (${mark.bmi})` )
+
+
+///////////////////////////////////////////////////////////////////
+// LECTURE: Introduction to Objects
+// 1. Create an object called 'myCountry' for a country of your choice, containing
+// properties 'country', 'capital', 'language', 'population' and
+// 'neighbours' (an array like we used in previous assignments)
+
+
+const myCountry ={
+  country: 'argentina',
+  capital: 'buenos aires',
+  language: 'spanish',
+  population: 52,
+  neighnours:['uruguay', 'brasil', 'bolivia', 'chile']
 }
+console.log(myCountry)
+//////////////////////////////////////////////////////////////////
+// LECTURE: Dot vs. Bracket Notation
+// 1. Using the object from the previous assignment, log a string like this to the
+// console: 'Finland has 6 million finnish-speaking people, 3 neighbouring countries
+// and a capital called Helsinki.'
+// 2. Increase the country's population by two million using dot notation, and then
+// decrease it by two million using brackets notation.
 
-const john ={
-  firstName: 'John',
-  lastName: 'Smith',
-  height: 1.95,
-  weight: 92,
-  calcBMI: function() {
-    this.bmi = Math.round(this.weight / this.height ** 2 )
-    return this.bmi
-  }
-}
+let str = `${myCountry['country']} has ${myCountry.population} million ${myCountry.language}-speaking people, ${myCountry.neighnours.length} neighboring countries and a capital called ${myCountry.capital}`;
+console.log(str)
 
-mark.calcBMI();
-john.calcBMI();
+myCountry.population= 54
+console.log(myCountry.population)
 
-console.log( mark.bmi > john.bmi ? `${mark.firstName} BMI: (${mark.bmi}) is higher than ${john.firstName}'s BMI: (${john.bmi})`: `${john.firstName}'s BMI ${john.bmi} is higher than ${mark.firstName} BMI (${mark.bmi})` )
+myCountry['population']=52
+console.log(myCountry.population)
