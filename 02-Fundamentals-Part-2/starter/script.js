@@ -161,14 +161,20 @@ GOOD LUCK 😀
 // 'neighbours' (an array like we used in previous assignments)
 
 
-const myCountry ={
-  country: 'argentina',
-  capital: 'buenos aires',
-  language: 'spanish',
-  population: 52,
-  neighnours:['uruguay', 'brasil', 'bolivia', 'chile']
-}
-console.log(myCountry)
+// const myCountry ={
+//   country: 'argentina',
+//   capital: 'buenos aires',
+//   language: 'spanish',
+//   population: 52,
+//   neighnours:['uruguay', 'brasil', 'bolivia', 'chile'],
+//   describe: function(){
+//     return `${this['country']} has ${this.population} million ${this.language}-speaking people, ${this.neighnours.length} neighboring countries and a capital called ${this.capital}`
+//   },
+//   checkIsland: function(){
+//     return this.neighnours.length >= 1 ? 'false' : 'true'
+//   }
+// }
+// console.log(myCountry)
 //////////////////////////////////////////////////////////////////
 // LECTURE: Dot vs. Bracket Notation
 // 1. Using the object from the previous assignment, log a string like this to the
@@ -177,11 +183,34 @@ console.log(myCountry)
 // 2. Increase the country's population by two million using dot notation, and then
 // decrease it by two million using brackets notation.
 
-let str = `${myCountry['country']} has ${myCountry.population} million ${myCountry.language}-speaking people, ${myCountry.neighnours.length} neighboring countries and a capital called ${myCountry.capital}`;
-console.log(str)
+// let str = `${myCountry['country']} has ${myCountry.population} million ${myCountry.language}-speaking people, ${myCountry.neighnours.length} neighboring countries and a capital called ${myCountry.capital}`;
+// console.log(str)
 
-myCountry.population= 54
-console.log(myCountry.population)
+// myCountry.population= 54
+// console.log(myCountry.population)
 
-myCountry['population']=52
-console.log(myCountry.population)
+// myCountry['population']=52
+// console.log(myCountry.population)
+
+// console.log(myCountry.describe())
+// console.log(myCountry.checkIsland())
+
+
+const jonasArray = [
+  'jonas',
+  'Schmedtmann',
+  20097-1991,
+  'teacher',
+  ['michael', 'peter', 'steven'], 
+  true
+]
+
+let types = []
+
+for(let i= 0 ; i < jonasArray.length ; i++) {
+  console.log(jonasArray[i], typeof jonasArray[i])
+
+  types[i] = typeof jonasArray[i]
+}
+
+console.log(types)
