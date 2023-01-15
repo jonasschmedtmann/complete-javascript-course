@@ -186,9 +186,22 @@ btnClose.addEventListener('click', (e) => {
         containerApp.style.opacity = 0;
     }
     inputCloseUsername.value = inputClosePin.value = '';
+});
 
+/* 
+    161: some and every
+*/
 
-})
+btnLoan.addEventListener('click', (e) => {
+    e.preventDefault();
+    const loanAmount = +inputLoanAmount.value;
+    if (loanAmount > 0 && currentAccount.movements.some(mov => mov >= loanAmount * 0.1)) {
+        currentAccount.movements.push(loanAmount);
+        updateUI(currentAccount);
+        inputLoanAmount.value = '';
+        inputLoanAmount.blur();
+    }
+});
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -460,3 +473,15 @@ const euroToUsd = 1.1;
 // console.log(ofAccount);
 
 
+/* 
+    161: some and every
+*/
+
+console.log(movements);
+const isAnyDeposit = movements.some(mov => mov > 0);
+console.log(isAnyDeposit);
+const largeDeposit = movements.some(mov => mov > 5000);
+console.log(largeDeposit);
+
+console.log(movements.every(mov => mov > 0));
+console.log(account4.movements.every(mov => mov > 0));
