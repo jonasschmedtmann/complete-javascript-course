@@ -170,7 +170,25 @@ btnTransfer.addEventListener('click', (e) => {
     inputTransferAmount.blur();
 });
 
+/* 
+    160: The findIndex method
+*/
 
+btnClose.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    const username = inputCloseUsername.value;
+    const pin = +inputClosePin.value;
+
+    if (username === currentAccount.username && pin === currentAccount.pin) {
+        accounts.splice(accounts.findIndex((acc) => acc.username === currentAccount.username), 1);
+        currentAccount = null;
+        containerApp.style.opacity = 0;
+    }
+    inputCloseUsername.value = inputClosePin.value = '';
+
+
+})
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
