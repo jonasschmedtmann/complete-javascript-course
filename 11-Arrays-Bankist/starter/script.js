@@ -67,9 +67,10 @@ const updateUI = (account) => {
     calcDisplaySummary(account);
 }
 
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
     containerMovements.innerHTML = '';
-    movements.forEach((movement, i) => {
+    const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+    movs.forEach((movement, i) => {
         const type = movement > 0 ? 'deposit' : 'withdrawal'
         const html = `
             <div class="movements__row">
@@ -201,6 +202,16 @@ btnLoan.addEventListener('click', (e) => {
         inputLoanAmount.value = '';
         inputLoanAmount.blur();
     }
+});
+
+/* 
+    163: Sorting Arrays
+*/
+let sorted = false;
+btnSort.addEventListener('click', (e) => {
+    e.preventDefault();
+    displayMovements(currentAccount.movements, !sorted);
+    sorted = !sorted;
 });
 
 /////////////////////////////////////////////////
@@ -486,22 +497,34 @@ const euroToUsd = 1.1;
 // console.log(movements.every(mov => mov > 0));
 // console.log(account4.movements.every(mov => mov > 0));
 
-/* 
+/*
     162: flat and flatMap: ES2019
 */
 
-const arr = [[1, 2, 3], [4, 5], 6, 7, 8];
-console.log(arr.flat());
-const arrDeep = [[[1, 2], 3], [4, 5], [[[6, 7]]], [8, 9]];
-console.log(arrDeep.flat(3));
+// const arr = [[1, 2, 3], [4, 5], 6, 7, 8];
+// console.log(arr.flat());
+// const arrDeep = [[[1, 2], 3], [4, 5], [[[6, 7]]], [8, 9]];
+// console.log(arrDeep.flat(3));
 
-const overAllBalance = accounts
-    .map(acc => acc.movements)
-    .flat()
-    .reduce((acc, cur) => acc + cur, 0);
-console.log(overAllBalance);
+// const overAllBalance = accounts
+//     .map(acc => acc.movements)
+//     .flat()
+//     .reduce((acc, cur) => acc + cur, 0);
+// console.log(overAllBalance);
 
-const overAllBalanceFlatMap = accounts
-    .flatMap(acc => acc.movements)      // combines map and flat
-    .reduce((acc, cur) => acc + cur, 0);
-console.log(overAllBalanceFlatMap);
+// const overAllBalanceFlatMap = accounts
+//     .flatMap(acc => acc.movements)      // combines map and flat
+//     .reduce((acc, cur) => acc + cur, 0);
+// console.log(overAllBalanceFlatMap);
+
+/* 
+    163: Sorting Arrays
+*/
+
+const owners = ['Vishu', 'Vasudha', 'Savitha', 'Kishan', 'Sneha'];
+console.log(owners.sort());
+console.log(owners);
+
+console.log(movements);
+console.log(movements.sort((a, b) => a - b));   // ascending order
+console.log(movements.sort((a, b) => b - a));   // descending order
