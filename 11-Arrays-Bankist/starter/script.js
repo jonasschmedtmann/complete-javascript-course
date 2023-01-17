@@ -517,14 +517,48 @@ const euroToUsd = 1.1;
 //     .reduce((acc, cur) => acc + cur, 0);
 // console.log(overAllBalanceFlatMap);
 
-/* 
+/*
     163: Sorting Arrays
 */
 
-const owners = ['Vishu', 'Vasudha', 'Savitha', 'Kishan', 'Sneha'];
-console.log(owners.sort());
-console.log(owners);
+// const owners = ['Vishu', 'Vasudha', 'Savitha', 'Kishan', 'Sneha'];
+// console.log(owners.sort());
+// console.log(owners);
 
-console.log(movements);
-console.log(movements.sort((a, b) => a - b));   // ascending order
-console.log(movements.sort((a, b) => b - a));   // descending order
+// console.log(movements);
+// console.log(movements.sort((a, b) => a - b));   // ascending order
+// console.log(movements.sort((a, b) => b - a));   // descending order
+
+/* 
+    164: More ways of creating and filling arrays
+*/
+
+// Empty array + fill method
+const x = new Array(7);
+console.log(x);
+console.log(x.fill(1, 2));
+console.log(x);
+console.log(x.fill(23, 1, 3));  // element, start,end
+console.log(x);
+
+// array.from()
+const y = Array.from({length: 7}, () => 1);
+console.log(y);
+const z = Array.from({length: 7}, (cur, i) => i + 1);
+console.log(z);
+
+
+// 100 random dice rolls
+
+const rolls = Array.from({length: 100}, (cur, i) => {
+    return Math.floor(Math.random() * 100) + 1;
+});
+console.log(rolls);
+
+// Array from nodelist
+
+labelBalance.addEventListener('click', () => {
+    const movementsFromUINodes = document.querySelectorAll('.movements__value');
+    const movementsFromUI = Array.from(movementsFromUINodes).map(el => +el.textContent.replace('₹', ''))
+    console.log(movementsFromUI);
+});
