@@ -229,3 +229,19 @@ btnSort.addEventListener('click', (e) => {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+
+/* 
+    170: Converting and checking numbers
+*/
+
+// Conversion
+console.log(+'23');
+
+// Parsing
+console.log(Number.parseInt('20rem'));
+console.log(Number.parseInt('2.5rem'));
+console.log(Number.isNaN('2.5rem'));
+console.log(Number.isNaN(23));
+console.log(Number.isNaN(+'23x'));
+console.log(Number.isNaN(23 / 0));
+console.log(Number.isFinite(23 / 0));
