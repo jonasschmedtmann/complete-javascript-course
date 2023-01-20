@@ -93,7 +93,7 @@ const displayMovements = function (movements, sort = false) {
             <div class="movements__row">
                 <div class="movements__type movements__type--${type}">${i + 1} deposit</div>
                 <div class="movements__date">3 days ago</div>
-                <div class="movements__value">₹${Math.abs(movement)}</div>
+                <div class="movements__value">${movement.toFixed(2)}₹</div>
             </div>`;
 
         containerMovements.insertAdjacentHTML('afterbegin', html);
@@ -120,7 +120,7 @@ calculateUserName(accounts);
 */
 const calcDisplayBalance = (account) => {
     account.balance = account.movements.reduce((acc, cur) => acc + cur, 0);
-    labelBalance.textContent = `₹${account.balance}`;
+    labelBalance.textContent = `${account.balance.toFixed(2)}₹`;
 };
 
 /* 
@@ -131,17 +131,17 @@ const calcDisplaySummary = account => {
     const income = account.movements
         .filter((mov) => mov > 0)
         .reduce((acc, mov) => acc + mov, 0);
-    labelSumIn.textContent = `₹${income}`;
+    labelSumIn.textContent = `${income.toFixed(2)}₹`;
     const out = account.movements
         .filter((mov) => mov < 0)
         .reduce((acc, mov) => acc + mov, 0);
-    labelSumOut.textContent = `₹${Math.abs(out)}`;
+    labelSumOut.textContent = `${Math.abs(out).toFixed(2)}₹`;
     const interest = account.movements
         .filter(mov => mov > 0)
         .map(deposit => deposit * account.interestRate / 100)
         .filter(interest => interest >= 1)
         .reduce((acc, interest) => acc + interest, 0);
-    labelSumInterest.textContent = `₹${interest}`;
+    labelSumInterest.textContent = `${interest.toFixed(2)}₹`;
 }
 
 
@@ -207,7 +207,7 @@ btnClose.addEventListener('click', (e) => {
 
 btnLoan.addEventListener('click', (e) => {
     e.preventDefault();
-    const loanAmount = +inputLoanAmount.value;
+    const loanAmount = Math.floor(inputLoanAmount.value);
     if (loanAmount > 0 && currentAccount.movements.some(mov => mov >= loanAmount * 0.1)) {
         currentAccount.movements.push(loanAmount);
         updateUI(currentAccount);
@@ -235,13 +235,56 @@ btnSort.addEventListener('click', (e) => {
 */
 
 // Conversion
-console.log(+'23');
+// console.log(+'23');
 
-// Parsing
-console.log(Number.parseInt('20rem'));
-console.log(Number.parseInt('2.5rem'));
-console.log(Number.isNaN('2.5rem'));
-console.log(Number.isNaN(23));
-console.log(Number.isNaN(+'23x'));
-console.log(Number.isNaN(23 / 0));
-console.log(Number.isFinite(23 / 0));
+// // Parsing
+// console.log(Number.parseInt('20rem'));
+// console.log(Number.parseInt('2.5rem'));
+// console.log(Number.isNaN('2.5rem'));
+// console.log(Number.isNaN(23));
+// console.log(Number.isNaN(+'23x'));
+// console.log(Number.isNaN(23 / 0));
+// console.log(Number.isFinite(23 / 0));
+
+/* 
+    171: Math and rounding
+*/
+
+console.log(Math.sqrt(25));
+console.log(25 ** (1 / 2));
+console.log(27 ** (1 / 3));     // Cubic root using exponentiation
+
+console.log(Math.max(1, 3, 4, 67, 23, 89, '456'));
+console.log(Math.min(1, 3, 4, 67, 23, 89, '456'));
+
+// calculate radius
+console.log(Math.PI * Number.parseFloat('10px') ** 2);
+
+console.log(Math.floor(Math.random() * 6) + 1);
+
+const randomInt = (min, max) => Math.floor(Math.random() * (max - min) + 1 + min);
+console.log(randomInt(2, 5));
+
+// removes decimal
+console.log(Math.trunc(23.3));
+
+// Round to nearest integer
+console.log(Math.round(23.3));
+console.log(Math.round(23.6));
+
+// Always takes the upper limit
+console.log(Math.ceil(23.3));
+console.log(Math.ceil(23.7));
+
+// Always takes the lower limit
+console.log(Math.floor(23.3));
+console.log(Math.floor(23.7));
+
+// trunc and floor work differently -- in -ve numbers
+console.log(Math.floor(-23.7));     // -24
+console.log(Math.trunc(-23.7));     // -23
+
+// Rounding to decimals -- converts to string
+
+console.log((23.7).toFixed(3));     // 23.700
+console.log((23.745).toFixed(2));   // 23.75
