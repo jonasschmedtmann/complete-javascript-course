@@ -290,24 +290,38 @@ btnSort.addEventListener('click', (e) => {
 // console.log((23.745).toFixed(2));   // 23.75
 
 /* 
-    173: The remainder operator
+    172: The remainder operator
 */
 
-console.log(5 % 2);
+// console.log(5 % 2);
 
-const isEven = n => n % 2 === 0;
-console.log(isEven(8));
-console.log(isEven(9));
+// const isEven = n => n % 2 === 0;
+// console.log(isEven(8));
+// console.log(isEven(9));
 
-labelBalance.addEventListener('click', (e) => {
-    e.preventDefault();
+// labelBalance.addEventListener('click', (e) => {
+//     e.preventDefault();
 
-    [...document.querySelectorAll('.movements__row')].forEach((row, i) => {
-        if (i % 2 === 0) {
-            row.style.backgroundColor = 'orangered'
-        }
-        if (i % 3 === 0) {
-            row.style.backgroundColor = 'blue'
-        }
-    })
-});
+//     [...document.querySelectorAll('.movements__row')].forEach((row, i) => {
+//         if (i % 2 === 0) {
+//             row.style.backgroundColor = 'orangered'
+//         }
+//         if (i % 3 === 0) {
+//             row.style.backgroundColor = 'blue'
+//         }
+//     })
+// });
+
+/* 
+    173: Numeric Separator
+*/
+
+const solarSystemDiameter = 287_460_000_000;
+console.log(solarSystemDiameter);
+
+const PI = 3.14_16;
+// const PI1 = 3_.1416; // Error
+// const PI2 = 3.1416_; // Error
+
+console.log(Number('230_000')); //NaN
+
