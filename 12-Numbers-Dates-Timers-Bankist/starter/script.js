@@ -230,7 +230,7 @@ btnSort.addEventListener('click', (e) => {
 /////////////////////////////////////////////////
 // LECTURES
 
-/* 
+/*
     170: Converting and checking numbers
 */
 
@@ -246,45 +246,68 @@ btnSort.addEventListener('click', (e) => {
 // console.log(Number.isNaN(23 / 0));
 // console.log(Number.isFinite(23 / 0));
 
-/* 
+/*
     171: Math and rounding
 */
 
-console.log(Math.sqrt(25));
-console.log(25 ** (1 / 2));
-console.log(27 ** (1 / 3));     // Cubic root using exponentiation
+// console.log(Math.sqrt(25));
+// console.log(25 ** (1 / 2));
+// console.log(27 ** (1 / 3));     // Cubic root using exponentiation
 
-console.log(Math.max(1, 3, 4, 67, 23, 89, '456'));
-console.log(Math.min(1, 3, 4, 67, 23, 89, '456'));
+// console.log(Math.max(1, 3, 4, 67, 23, 89, '456'));
+// console.log(Math.min(1, 3, 4, 67, 23, 89, '456'));
 
-// calculate radius
-console.log(Math.PI * Number.parseFloat('10px') ** 2);
+// // calculate radius
+// console.log(Math.PI * Number.parseFloat('10px') ** 2);
 
-console.log(Math.floor(Math.random() * 6) + 1);
+// console.log(Math.floor(Math.random() * 6) + 1);
 
-const randomInt = (min, max) => Math.floor(Math.random() * (max - min) + 1 + min);
-console.log(randomInt(2, 5));
+// const randomInt = (min, max) => Math.floor(Math.random() * (max - min) + 1 + min);
+// console.log(randomInt(2, 5));
 
-// removes decimal
-console.log(Math.trunc(23.3));
+// // removes decimal
+// console.log(Math.trunc(23.3));
 
-// Round to nearest integer
-console.log(Math.round(23.3));
-console.log(Math.round(23.6));
+// // Round to nearest integer
+// console.log(Math.round(23.3));
+// console.log(Math.round(23.6));
 
-// Always takes the upper limit
-console.log(Math.ceil(23.3));
-console.log(Math.ceil(23.7));
+// // Always takes the upper limit
+// console.log(Math.ceil(23.3));
+// console.log(Math.ceil(23.7));
 
-// Always takes the lower limit
-console.log(Math.floor(23.3));
-console.log(Math.floor(23.7));
+// // Always takes the lower limit
+// console.log(Math.floor(23.3));
+// console.log(Math.floor(23.7));
 
-// trunc and floor work differently -- in -ve numbers
-console.log(Math.floor(-23.7));     // -24
-console.log(Math.trunc(-23.7));     // -23
+// // trunc and floor work differently -- in -ve numbers
+// console.log(Math.floor(-23.7));     // -24
+// console.log(Math.trunc(-23.7));     // -23
 
-// Rounding to decimals -- converts to string
+// // Rounding to decimals -- converts to string
 
-console.log((23.7).toFixed(3));     // 23.700
-console.log((23.745).toFixed(2));   // 23.75
+// console.log((23.7).toFixed(3));     // 23.700
+// console.log((23.745).toFixed(2));   // 23.75
+
+/* 
+    173: The remainder operator
+*/
+
+console.log(5 % 2);
+
+const isEven = n => n % 2 === 0;
+console.log(isEven(8));
+console.log(isEven(9));
+
+labelBalance.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    [...document.querySelectorAll('.movements__row')].forEach((row, i) => {
+        if (i % 2 === 0) {
+            row.style.backgroundColor = 'orangered'
+        }
+        if (i % 3 === 0) {
+            row.style.backgroundColor = 'blue'
+        }
+    })
+});
