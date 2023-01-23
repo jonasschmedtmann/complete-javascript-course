@@ -289,7 +289,7 @@ btnSort.addEventListener('click', (e) => {
 // console.log((23.7).toFixed(3));     // 23.700
 // console.log((23.745).toFixed(2));   // 23.75
 
-/* 
+/*
     172: The remainder operator
 */
 
@@ -312,16 +312,72 @@ btnSort.addEventListener('click', (e) => {
 //     })
 // });
 
-/* 
+/*
     173: Numeric Separator
 */
 
-const solarSystemDiameter = 287_460_000_000;
-console.log(solarSystemDiameter);
+// const solarSystemDiameter = 287_460_000_000;
+// console.log(solarSystemDiameter);
 
-const PI = 3.14_16;
-// const PI1 = 3_.1416; // Error
-// const PI2 = 3.1416_; // Error
+// const PI = 3.14_16;
+// // const PI1 = 3_.1416; // Error
+// // const PI2 = 3.1416_; // Error
 
-console.log(Number('230_000')); //NaN
+// console.log(Number('230_000')); //NaN
 
+/*
+    174: Working with BigInt -- ES2020
+*/
+
+// console.log(2 ** 53 - 1);
+// console.log(Number.MAX_SAFE_INTEGER);
+
+// // These below don't work accurately
+// console.log(2 ** 53 + 1);
+// console.log(2 ** 53 + 2);
+// console.log(2 ** 53 + 3);
+// console.log(2 ** 53 + 4);
+
+// console.log(234235459879387494973245235n);
+
+// // operations on bigint
+// console.log(23432534653n * 1000n);
+// // console.log(23432534653n * 1000);       // Error -- differnt typess
+// console.log(23432534653n * BigInt(10000));
+// console.log(10n / 3);     // 3n -- ignores the decimal part
+
+/*
+    175: Creating Dates
+*/
+
+const now = new Date();
+console.log(now);
+console.log(new Date('Mon Jan 23 2023 15:25:36'));
+console.log(new Date('Dec 24 2019'));
+console.log(new Date(account1.movementsDates[0]));
+
+console.log(new Date(2017, 3, 23, 14, 45, 56));
+
+// param in ms
+console.log(new Date(0)); // Jan 01 1970
+console.log(new Date(3 * 24 * 60 * 60 * 1000));    // 3 days after Jan 01 1970 -- (convert day into ms) * 3 days
+
+const future = new Date(2027, 3, 23, 14, 45, 56);
+console.log(future);
+console.log(future.getFullYear());
+console.log(future.getMonth());
+console.log(future.getDate());
+console.log(future.getDay());
+console.log(future.getHours());
+console.log(future.getMinutes());
+console.log(future.getSeconds());
+console.log(future.toISOString());      // formatted string
+console.log(future.toDateString());
+console.log(future.toLocaleTimeString());
+
+console.log(future.getTime());      // gives the timestamp from Jan 01 1970
+// use timestamp to get the current date and time
+console.log(new Date(1808471756000));
+console.log(Date.now());    // current timestamp
+future.setFullYear(2035);
+console.log(future);
