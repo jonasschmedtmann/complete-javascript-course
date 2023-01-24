@@ -20,10 +20,10 @@ const account1 = {
         '2019-12-23T07:42:02.383Z',
         '2020-01-28T09:15:04.904Z',
         '2020-04-01T10:17:24.185Z',
-        '2020-05-08T14:11:59.604Z',
-        '2020-05-27T17:01:17.194Z',
-        '2020-07-11T23:36:17.929Z',
-        '2020-07-12T10:51:36.790Z',
+        '2023-01-17T14:11:59.604Z',
+        '2023-01-20T17:01:17.194Z',
+        '2023-01-22T20:36:17.929Z',
+        '2023-01-24T10:51:36.790Z',
     ],
     currency: 'EUR',
     locale: 'pt-PT', // de-DE
@@ -84,21 +84,36 @@ const updateUI = (account) => {
     calcDisplaySummary(account);
 }
 
+const calDaysGapBankist = (date1, date2) => Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
+
+const formatMovementDate = (movementDate) => {
+    movementDate = new Date(movementDate);
+    const gap = calDaysGapBankist(new Date(), +movementDate);
+    if (gap === 0) {
+        return `Yoday`;
+    } else if (gap === 1) {
+        return `Yesterday`
+    } else if (gap <= 7) {
+        return `${gap} day(s) ago`;
+    } else {
+        // Padstart to add 0 to date and month
+        const day = `${movementDate.getDate()}`.padStart(2, 0);
+        const month = `${movementDate.getMonth() + 1}`.padStart(2, 0);
+        const year = movementDate.getFullYear();
+        return `${day}/${month}/${year}`;
+    }
+}
+
 const displayMovements = function (account, sort = false) {
     containerMovements.innerHTML = '';
     const movs = sort ? account.movements.slice().sort((a, b) => a - b) : account.movements;
     movs.forEach((movement, i) => {
         const type = movement > 0 ? 'deposit' : 'withdrawal'
-        const movementDate = new Date(account.movementsDates[i]);
-
-        // Padstart to add 0 to date and month
-        const day = `${movementDate.getDate()}`.padStart(2, 0);
-        const month = `${movementDate.getMonth() + 1}`.padStart(2, 0);
-        const year = movementDate.getFullYear();
+        const formattedDate = formatMovementDate(new Date(account.movementsDates[i]));
         const html = `
             <div class="movements__row">
-                <div class="movements__type movements__type--${type}">${i + 1} deposit</div>
-                <div class="movements__date">${day}/${month}/${year}</div>
+                <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
+                <div class="movements__date">${formattedDate}</div>
                 <div class="movements__value">${movement.toFixed(2)}₹</div>
             </div>`;
 
@@ -411,3 +426,15 @@ containerApp.style.opacity = 1;
 // console.log(Date.now());    // current timestamp
 // future.setFullYear(2035);
 // console.log(future);
+
+/* 
+    177: Operations with dates
+*/
+
+const future = new Date(2027, 3, 23, 14, 45, 56);
+console.log(+future);
+
+// calculate the timestamp in ms, convert it to days
+const calDaysGap = (date1, date2) => Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
+const gap = calDaysGap(new Date(2023, 4, 28), new Date(2023, 4, 24, 10, 8));
+console.log(gap);
