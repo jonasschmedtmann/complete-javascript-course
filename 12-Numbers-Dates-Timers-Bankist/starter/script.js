@@ -86,21 +86,22 @@ const updateUI = (account) => {
 
 const calDaysGapBankist = (date1, date2) => Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
 
-const formatMovementDate = (movementDate) => {
-    movementDate = new Date(movementDate);
+const formatMovementDate = (movementDate, locale) => {
     const gap = calDaysGapBankist(new Date(), +movementDate);
     if (gap === 0) {
-        return `Yoday`;
+        return `Today`;
     } else if (gap === 1) {
         return `Yesterday`
     } else if (gap <= 7) {
         return `${gap} day(s) ago`;
     } else {
-        // Padstart to add 0 to date and month
-        const day = `${movementDate.getDate()}`.padStart(2, 0);
-        const month = `${movementDate.getMonth() + 1}`.padStart(2, 0);
-        const year = movementDate.getFullYear();
-        return `${day}/${month}/${year}`;
+        return new Intl.DateTimeFormat(locale).format(movementDate);
+
+        // // Padstart to add 0 to date and month
+        // const day = `${movementDate.getDate()}`.padStart(2, 0);
+        // const month = `${movementDate.getMonth() + 1}`.padStart(2, 0);
+        // const year = movementDate.getFullYear();
+        // return `${day}/${month}/${year}`;
     }
 }
 
@@ -109,7 +110,7 @@ const displayMovements = function (account, sort = false) {
     const movs = sort ? account.movements.slice().sort((a, b) => a - b) : account.movements;
     movs.forEach((movement, i) => {
         const type = movement > 0 ? 'deposit' : 'withdrawal'
-        const formattedDate = formatMovementDate(new Date(account.movementsDates[i]));
+        const formattedDate = formatMovementDate(new Date(account.movementsDates[i]), currentAccount.locale);
         const html = `
             <div class="movements__row">
                 <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
@@ -182,17 +183,26 @@ btnLogin.addEventListener('click', (e) => {
         inputLoginUsername.value = inputLoginPin.value = '';
         inputLoginPin.blur();
         updateUI(currentAccount);
-
-
-        // Update the date
+        /* 
+            178: Internationalizing dates(Intl)
+        */
         const now = new Date();
-        // Padstart to add 0 to date and month
-        const day = `${now.getDate()}`.padStart(2, 0);
-        const month = `${now.getMonth() + 1}`.padStart(2, 0);
-        const year = now.getFullYear();
-        const hours = `${now.getHours()}`.padStart(2, 0);
-        const min = `${now.getMinutes()}`.padStart(2, 0);
-        labelDate.textContent = `${day}/${month}/${year}, ${hours}:${min}`;
+        // const locale = navigator.language;  // Get the language from the browser
+
+        labelDate.textContent = new Intl.DateTimeFormat(currentAccount.locale, {
+            hour: "numeric",
+            minute: "numeric",
+            day: "numeric",
+            month: "numeric",
+            year: "numeric",
+        }).format(now);
+        // // Padstart to add 0 to date and month
+        // const day = `${now.getDate()}`.padStart(2, 0);
+        // const month = `${now.getMonth() + 1}`.padStart(2, 0);
+        // const year = now.getFullYear();
+        // const hours = `${now.getHours()}`.padStart(2, 0);
+        // const min = `${now.getMinutes()}`.padStart(2, 0);
+        // labelDate.textContent = `${day}/${month}/${year}, ${hours}:${min}`;
 
     }
 
