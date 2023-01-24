@@ -79,20 +79,26 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 const updateUI = (account) => {
-    displayMovements(account.movements);
+    displayMovements(account);
     calcDisplayBalance(account);
     calcDisplaySummary(account);
 }
 
-const displayMovements = function (movements, sort = false) {
+const displayMovements = function (account, sort = false) {
     containerMovements.innerHTML = '';
-    const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+    const movs = sort ? account.movements.slice().sort((a, b) => a - b) : account.movements;
     movs.forEach((movement, i) => {
         const type = movement > 0 ? 'deposit' : 'withdrawal'
+        const movementDate = new Date(account.movementsDates[i]);
+
+        // Padstart to add 0 to date and month
+        const day = `${movementDate.getDate()}`.padStart(2, 0);
+        const month = `${movementDate.getMonth() + 1}`.padStart(2, 0);
+        const year = movementDate.getFullYear();
         const html = `
             <div class="movements__row">
                 <div class="movements__type movements__type--${type}">${i + 1} deposit</div>
-                <div class="movements__date">3 days ago</div>
+                <div class="movements__date">${day}/${month}/${year}</div>
                 <div class="movements__value">${movement.toFixed(2)}₹</div>
             </div>`;
 
@@ -161,6 +167,18 @@ btnLogin.addEventListener('click', (e) => {
         inputLoginUsername.value = inputLoginPin.value = '';
         inputLoginPin.blur();
         updateUI(currentAccount);
+
+
+        // Update the date
+        const now = new Date();
+        // Padstart to add 0 to date and month
+        const day = `${now.getDate()}`.padStart(2, 0);
+        const month = `${now.getMonth() + 1}`.padStart(2, 0);
+        const year = now.getFullYear();
+        const hours = `${now.getHours()}`.padStart(2, 0);
+        const min = `${now.getMinutes()}`.padStart(2, 0);
+        labelDate.textContent = `${day}/${month}/${year}, ${hours}:${min}`;
+
     }
 
 });
@@ -177,6 +195,8 @@ btnTransfer.addEventListener('click', (e) => {
     if (amount > 0 && receiverAccount && receiverAccount?.username !== currentAccount.username && currentAccount.balance > amount) {
         receiverAccount.movements.push(amount);
         currentAccount.movements.push(-Math.abs(amount));
+        currentAccount.movementsDates.push(new Date().toISOString());
+        receiverAccount.movementsDates.push(new Date().toISOString());
         updateUI(currentAccount);
     }
     inputTransferAmount.value = inputTransferTo.value = '';
@@ -210,6 +230,7 @@ btnLoan.addEventListener('click', (e) => {
     const loanAmount = Math.floor(inputLoanAmount.value);
     if (loanAmount > 0 && currentAccount.movements.some(mov => mov >= loanAmount * 0.1)) {
         currentAccount.movements.push(loanAmount);
+        currentAccount.movementsDates.push(new Date().toISOString());
         updateUI(currentAccount);
         inputLoanAmount.value = '';
         inputLoanAmount.blur();
@@ -222,10 +243,19 @@ btnLoan.addEventListener('click', (e) => {
 let sorted = false;
 btnSort.addEventListener('click', (e) => {
     e.preventDefault();
-    displayMovements(currentAccount.movements, !sorted);
+    displayMovements(currentAccount, !sorted);
     sorted = !sorted;
 });
 
+
+/*
+    176: Adding dates to bankist app
+*/
+
+// Faking always Login
+currentAccount = account1;
+updateUI(currentAccount);
+containerApp.style.opacity = 1;
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -350,34 +380,34 @@ btnSort.addEventListener('click', (e) => {
     175: Creating Dates
 */
 
-const now = new Date();
-console.log(now);
-console.log(new Date('Mon Jan 23 2023 15:25:36'));
-console.log(new Date('Dec 24 2019'));
-console.log(new Date(account1.movementsDates[0]));
+// const now = new Date();
+// console.log(now);
+// console.log(new Date('Mon Jan 23 2023 15:25:36'));
+// console.log(new Date('Dec 24 2019'));
+// console.log(new Date(account1.movementsDates[0]));
 
-console.log(new Date(2017, 3, 23, 14, 45, 56));
+// console.log(new Date(2017, 3, 23, 14, 45, 56));
 
-// param in ms
-console.log(new Date(0)); // Jan 01 1970
-console.log(new Date(3 * 24 * 60 * 60 * 1000));    // 3 days after Jan 01 1970 -- (convert day into ms) * 3 days
+// // param in ms
+// console.log(new Date(0)); // Jan 01 1970
+// console.log(new Date(3 * 24 * 60 * 60 * 1000));    // 3 days after Jan 01 1970 -- (convert day into ms) * 3 days
 
-const future = new Date(2027, 3, 23, 14, 45, 56);
-console.log(future);
-console.log(future.getFullYear());
-console.log(future.getMonth());
-console.log(future.getDate());
-console.log(future.getDay());
-console.log(future.getHours());
-console.log(future.getMinutes());
-console.log(future.getSeconds());
-console.log(future.toISOString());      // formatted string
-console.log(future.toDateString());
-console.log(future.toLocaleTimeString());
+// const future = new Date(2027, 3, 23, 14, 45, 56);
+// console.log(future);
+// console.log(future.getFullYear());
+// console.log(future.getMonth());
+// console.log(future.getDate());
+// console.log(future.getDay());
+// console.log(future.getHours());
+// console.log(future.getMinutes());
+// console.log(future.getSeconds());
+// console.log(future.toISOString());      // formatted string
+// console.log(future.toDateString());
+// console.log(future.toLocaleTimeString());
 
-console.log(future.getTime());      // gives the timestamp from Jan 01 1970
-// use timestamp to get the current date and time
-console.log(new Date(1808471756000));
-console.log(Date.now());    // current timestamp
-future.setFullYear(2035);
-console.log(future);
+// console.log(future.getTime());      // gives the timestamp from Jan 01 1970
+// // use timestamp to get the current date and time
+// console.log(new Date(1808471756000));
+// console.log(Date.now());    // current timestamp
+// future.setFullYear(2035);
+// console.log(future);
