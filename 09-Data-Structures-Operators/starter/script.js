@@ -15,13 +15,20 @@ const restaurant = {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
   orderDelivery: function ({
-    starterIndex=1,
-    mainIndex=0,
-    time=`20.00`,
-    address}){
-  console.log(`Order Received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`);
+    starterIndex = 1,
+    mainIndex = 0,
+    time = `20.00`,
+    address,
+  }) {
+    console.log(
+      `Order Received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+    );
   },
-
+  orderPasta: function (ing1, ing2,ing3) {
+    console.log(
+      `Order Received! Preparing pasta with ${ing1},${ing2} & ${ing3}`
+    );
+  },
   openingHours: {
     thu: {
       open: 12,
@@ -38,21 +45,17 @@ const restaurant = {
   },
 };
 
-restaurant.orderDelivery(
-  {
-    time: `22.30`,
-    address: `96 BuckleyRoad`,
-    mainIndex:2,
-    starterIndex:2
-  }
-)
+restaurant.orderDelivery({
+  time: `22.30`,
+  address: `96 BuckleyRoad`,
+  mainIndex: 2,
+  starterIndex: 2,
+});
 
-restaurant.orderDelivery(
-  {   
-    address: `96 BuckleyRoad`,   
-    starterIndex:1
-  }
-)
+restaurant.orderDelivery({
+  address: `96 BuckleyRoad`,
+  starterIndex: 1,
+});
 const { name, openingHours, categories } = restaurant;
 console.log(name, openingHours, categories);
 
@@ -78,17 +81,15 @@ console.log('a,b', a, b);
 
 // nested objects
 const {
-  fri: { open:o, close:c },
+  fri: { open: o, close: c },
 } = openingHours;
 console.log(o, c);
 
-
-
-// Destructuring Arrays: 
+// Destructuring Arrays:
 let [main, secondary] = restaurant.categories;
 console.log(main, secondary);
 [main, secondary] = [secondary, main];
-console.log(main, secondary)
+console.log(main, secondary);
 
 // ---  a diff way:
 
@@ -98,8 +99,6 @@ console.log(main, secondary)
 // main = secondary;
 // secondary = temp;
 // console.log(main, secondary)
-
-
 
 const [starter, mainCourse] = restaurant.order(2, 0);
 // console.log(starter, mainCourse)
@@ -124,3 +123,23 @@ let student2 = 'sinta';
 
 // console.log('student1', student1); // 'sinta'
 // console.log('student2', student2); // 'budi'
+
+const newMenu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+// console.log(newMenu)
+
+const restaurantCopy = { ...restaurant };
+// console.log(restaurantCopy)
+restaurantCopy.name = 'la Bella Pasta';
+
+// console.log(restaurantCopy.name)
+// console.log(restaurant.name)
+
+// const ingredients = [
+//   prompt('1st Pasta ingredient'),
+//   prompt('2nd Pasta ingredient'),
+//   prompt('3rd Pasta ingredient'),
+// ];
+// console.log(ingredients);
+
+// restaurant.orderPasta(...ingredients);
