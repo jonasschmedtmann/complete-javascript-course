@@ -105,6 +105,12 @@ const formatMovementDate = (movementDate, locale) => {
     }
 }
 
+const formatCurrency = (value, locale, currency) =>
+    new Intl.NumberFormat(locale, {
+        style: 'currency',
+        currency: currency
+    }).format(value);
+
 const displayMovements = function (account, sort = false) {
     containerMovements.innerHTML = '';
     const movs = sort ? account.movements.slice().sort((a, b) => a - b) : account.movements;
@@ -115,7 +121,7 @@ const displayMovements = function (account, sort = false) {
             <div class="movements__row">
                 <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
                 <div class="movements__date">${formattedDate}</div>
-                <div class="movements__value">${movement.toFixed(2)}₹</div>
+                <div class="movements__value">${formatCurrency(movement, account.locale, account.currency)}</div>
             </div>`;
 
         containerMovements.insertAdjacentHTML('afterbegin', html);
@@ -142,7 +148,7 @@ calculateUserName(accounts);
 */
 const calcDisplayBalance = (account) => {
     account.balance = account.movements.reduce((acc, cur) => acc + cur, 0);
-    labelBalance.textContent = `${account.balance.toFixed(2)}₹`;
+    labelBalance.textContent = `${formatCurrency(account.balance, account.locale, account.currency)}`;
 };
 
 /* 
@@ -153,17 +159,17 @@ const calcDisplaySummary = account => {
     const income = account.movements
         .filter((mov) => mov > 0)
         .reduce((acc, mov) => acc + mov, 0);
-    labelSumIn.textContent = `${income.toFixed(2)}₹`;
+    labelSumIn.textContent = `${formatCurrency(income, account.locale, account.currency)}`;
     const out = account.movements
         .filter((mov) => mov < 0)
         .reduce((acc, mov) => acc + mov, 0);
-    labelSumOut.textContent = `${Math.abs(out).toFixed(2)}₹`;
+    labelSumOut.textContent = `${formatCurrency(out, account.locale, account.currency)}`;
     const interest = account.movements
         .filter(mov => mov > 0)
         .map(deposit => deposit * account.interestRate / 100)
         .filter(interest => interest >= 1)
         .reduce((acc, interest) => acc + interest, 0);
-    labelSumInterest.textContent = `${interest.toFixed(2)}₹`;
+    labelSumInterest.textContent = `${formatCurrency(interest, account.locale, account.currency)}`;
 }
 
 
@@ -437,14 +443,34 @@ containerApp.style.opacity = 1;
 // future.setFullYear(2035);
 // console.log(future);
 
-/* 
+/*
     177: Operations with dates
 */
 
-const future = new Date(2027, 3, 23, 14, 45, 56);
-console.log(+future);
+// const future = new Date(2027, 3, 23, 14, 45, 56);
+// console.log(+future);
 
-// calculate the timestamp in ms, convert it to days
-const calDaysGap = (date1, date2) => Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
-const gap = calDaysGap(new Date(2023, 4, 28), new Date(2023, 4, 24, 10, 8));
-console.log(gap);
+// // calculate the timestamp in ms, convert it to days
+// const calDaysGap = (date1, date2) => Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
+// const gap = calDaysGap(new Date(2023, 4, 28), new Date(2023, 4, 24, 10, 8));
+// console.log(gap);
+
+
+/* 
+    179: Internationalizing numbers(Intl)
+*/
+
+const num = 237865490.34
+
+console.log(`US:   `, new Intl.NumberFormat('en-US', {
+    style: "unit",
+    unit: "mile-per-hour"
+}).format(num));
+console.log(`Germany:   `, new Intl.NumberFormat('de-DE').format(num));
+console.log(`Syria:   `, new Intl.NumberFormat('ar-SY').format(num));
+console.log(`India:   `, new Intl.NumberFormat('hi-IN', {
+    currency: 'INR',
+    style: 'currency',
+    useGrouping: false
+}).format(num));
+console.log(navigator.language, new Intl.NumberFormat(navigator.language).format(num));
