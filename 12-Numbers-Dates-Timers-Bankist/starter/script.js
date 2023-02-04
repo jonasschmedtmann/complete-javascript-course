@@ -260,11 +260,14 @@ btnLoan.addEventListener('click', (e) => {
     e.preventDefault();
     const loanAmount = Math.floor(inputLoanAmount.value);
     if (loanAmount > 0 && currentAccount.movements.some(mov => mov >= loanAmount * 0.1)) {
-        currentAccount.movements.push(loanAmount);
-        currentAccount.movementsDates.push(new Date().toISOString());
-        updateUI(currentAccount);
-        inputLoanAmount.value = '';
-        inputLoanAmount.blur();
+        // Bank takes some time to provide loan. Simulate here with a setTimeout
+        setTimeout(() => {
+            currentAccount.movements.push(loanAmount);
+            currentAccount.movementsDates.push(new Date().toISOString());
+            updateUI(currentAccount);
+            inputLoanAmount.value = '';
+            inputLoanAmount.blur();
+        }, 2500)
     }
 });
 
@@ -456,21 +459,47 @@ containerApp.style.opacity = 1;
 // console.log(gap);
 
 
-/* 
+/*
     179: Internationalizing numbers(Intl)
 */
 
-const num = 237865490.34
+// const num = 237865490.34
 
-console.log(`US:   `, new Intl.NumberFormat('en-US', {
-    style: "unit",
-    unit: "mile-per-hour"
-}).format(num));
-console.log(`Germany:   `, new Intl.NumberFormat('de-DE').format(num));
-console.log(`Syria:   `, new Intl.NumberFormat('ar-SY').format(num));
-console.log(`India:   `, new Intl.NumberFormat('hi-IN', {
-    currency: 'INR',
-    style: 'currency',
-    useGrouping: false
-}).format(num));
-console.log(navigator.language, new Intl.NumberFormat(navigator.language).format(num));
+// console.log(`US:   `, new Intl.NumberFormat('en-US', {
+//     style: "unit",
+//     unit: "mile-per-hour"
+// }).format(num));
+// console.log(`Germany:   `, new Intl.NumberFormat('de-DE').format(num));
+// console.log(`Syria:   `, new Intl.NumberFormat('ar-SY').format(num));
+// console.log(`India:   `, new Intl.NumberFormat('hi-IN', {
+//     currency: 'INR',
+//     style: 'currency',
+//     useGrouping: false
+// }).format(num));
+// console.log(navigator.language, new Intl.NumberFormat(navigator.language).format(num));
+
+/* 
+    180: Timers: setTimeout and setInterval
+*/
+
+const ingredients = ['paneer', 'spinch'];
+
+const pizzaTimer = setTimeout((ing1, ing2) => {
+    console.log(`Here is your pijja with ${ing1} and ${ing2} 🍕`);
+}, 3000, ...ingredients);
+console.log('Waiting for pijja');
+// Clear the timer
+if (ingredients.includes('spinach')) {
+    clearTimeout(pizzaTimer);
+}
+
+setInterval(() => {
+    const now = new Date();
+    // console.log(now);
+    const cloak = new Intl.DateTimeFormat(navigator.language, {
+        hour: "numeric",
+        minute: '2-digit',
+        second: "2-digit"
+    }).format(now);
+    // console.log(cloak);
+}, 1000)
