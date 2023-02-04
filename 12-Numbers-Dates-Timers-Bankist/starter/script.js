@@ -128,6 +128,29 @@ const displayMovements = function (account, sort = false) {
     });
 }
 
+/* 
+    181: Implementing a countdown timer
+*/
+
+const startLogoutTimer = () => {
+    let time = 120;
+    const tick = () => {
+        const min = String(Math.trunc(time / 60)).padStart(2, '0');
+        const sec = String(time % 60).padStart(2, '0');
+        labelTimer.textContent = `${min}:${sec}`;
+        if (time === 0) {
+            clearInterval(timer);
+            containerApp.style.opacity = 0;
+            currentAccount = null;
+            labelWelcome.textContent = `Log in to get started`;
+        }
+        time--;
+    }
+    tick();
+    timer = setInterval(tick, 1000);
+    return timer;
+}
+
 
 /*
     151: Computing Usernames
@@ -177,7 +200,7 @@ const calcDisplaySummary = account => {
     158: Implementing Login
 */
 
-let currentAccount;
+let currentAccount, timer;
 btnLogin.addEventListener('click', (e) => {
     e.preventDefault();
 
@@ -188,6 +211,10 @@ btnLogin.addEventListener('click', (e) => {
         containerApp.style.opacity = 1;
         inputLoginUsername.value = inputLoginPin.value = '';
         inputLoginPin.blur();
+        if (timer) {
+            clearInterval(timer);
+        };
+        timer = startLogoutTimer();
         updateUI(currentAccount);
         /* 
             178: Internationalizing dates(Intl)
@@ -229,6 +256,8 @@ btnTransfer.addEventListener('click', (e) => {
         currentAccount.movementsDates.push(new Date().toISOString());
         receiverAccount.movementsDates.push(new Date().toISOString());
         updateUI(currentAccount);
+        clearInterval(timer);
+        timer = startLogoutTimer();
     }
     inputTransferAmount.value = inputTransferTo.value = '';
     inputTransferAmount.blur();
@@ -267,6 +296,8 @@ btnLoan.addEventListener('click', (e) => {
             updateUI(currentAccount);
             inputLoanAmount.value = '';
             inputLoanAmount.blur();
+            clearInterval(timer);
+            timer = startLogoutTimer();
         }, 2500)
     }
 });
@@ -286,10 +317,10 @@ btnSort.addEventListener('click', (e) => {
     176: Adding dates to bankist app
 */
 
-// Faking always Login
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 1;
+// // Faking always Login
+// currentAccount = account1;
+// updateUI(currentAccount);
+// containerApp.style.opacity = 1;
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
