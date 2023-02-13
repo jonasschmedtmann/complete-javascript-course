@@ -155,6 +155,29 @@ btnScrollTo.addEventListener('click', (e) => {
     section1.scrollIntoView({behavior: 'smooth'});
 });
 
+/* 
+    189: Types of events and Event handlers
+*/
+
+const h1 = document.querySelector('h1');
+const alerth1 = (e) => {
+    alert('Yay!! You have entered');
+};
+h1.addEventListener('mouseenter', alerth1);
+
+// remove eventlistner
+
+setTimeout(() => {
+    h1.removeEventListener('mouseenter', alerth1);
+}, 3000);
+
+// old way
+h1.onmouseenter = (e) => {
+    alert('Yay!! You have entered and stayed');
+};
+
+
+
 
 
 
