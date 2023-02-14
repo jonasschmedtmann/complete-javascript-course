@@ -155,26 +155,66 @@ btnScrollTo.addEventListener('click', (e) => {
     section1.scrollIntoView({behavior: 'smooth'});
 });
 
-/* 
+/*
     189: Types of events and Event handlers
 */
 
-const h1 = document.querySelector('h1');
-const alerth1 = (e) => {
-    alert('Yay!! You have entered');
-};
-h1.addEventListener('mouseenter', alerth1);
+// const h1 = document.querySelector('h1');
+// const alerth1 = (e) => {
+//     alert('Yay!! You have entered');
+// };
+// h1.addEventListener('mouseenter', alerth1);
 
-// remove eventlistner
+// // remove eventlistner
 
-setTimeout(() => {
-    h1.removeEventListener('mouseenter', alerth1);
-}, 3000);
+// setTimeout(() => {
+//     h1.removeEventListener('mouseenter', alerth1);
+// }, 3000);
 
-// old way
-h1.onmouseenter = (e) => {
-    alert('Yay!! You have entered and stayed');
-};
+// // old way
+// h1.onmouseenter = (e) => {
+//     alert('Yay!! You have entered and stayed');
+// };
+
+/*
+    191: Event propagation in practice
+*/
+
+// We will attach event handlers to the nav link and each of its parent element to see the bubbling
+
+const randomInt = (min, max) =>
+    Math.floor(Math.random() * (max - min + 1) + min);
+
+const randomColor = () => `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`
+console.log(randomColor());
+
+document.querySelector('.nav__link').addEventListener('click', function (e) {
+    this.style.backgroundColor = randomColor();
+    console.log('LINK', e.target, e.currentTarget);
+});
+document.querySelector('.nav__item').addEventListener('click', function (e) {
+    this.style.backgroundColor = randomColor();
+    console.log('NAV-ITEM', e.target, e.currentTarget);
+});
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+    this.style.backgroundColor = randomColor();
+    console.log('NAV-LINKS-UL', e.target, e.currentTarget);
+});
+document.querySelector('.nav').addEventListener('click', function (e) {
+    this.style.backgroundColor = randomColor();
+    console.log('NAV-LINKS-CONTAINER', e.target);
+    console.log(e.currentTarget === this);
+    e.stopPropagation();    // not advisable
+});
+document.querySelector('.header').addEventListener('click', function (e) {
+    this.style.backgroundColor = randomColor();
+    console.log('HEADER', e.target);
+}, true);
+document.querySelector('body').addEventListener('click', function (e) {
+    this.style.backgroundColor = randomColor();
+    console.log('BODY', e.target);
+}, {capture: true});
+
 
 
 
