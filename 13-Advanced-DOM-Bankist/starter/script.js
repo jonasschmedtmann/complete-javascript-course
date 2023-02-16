@@ -33,6 +33,59 @@ document.addEventListener('keydown', function (e) {
 });
 
 /* 
+    188: Implementing smooth scrolling
+*/
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+btnScrollTo.addEventListener('click', (e) => {
+    const sec1coords = section1.getBoundingClientRect();
+    console.log(sec1coords);
+    // console.log(e.target.getBoundingClientRect());
+    console.log('Current (X/Y)', window.pageXOffset, window.pageYOffset);
+    // console.log(
+    //     'height/width of view port', document.documentElement.clientHeight, document.documentElement.clientWidth
+    // );
+
+    /* 
+        When we have scrolled on the page, the co-ords won't be exactly relative to the top of the page
+        So, scrolling programmatically doesn't work properly. Hence, find the offset of the btn from top of the page
+        and add it to the co-ords 
+    */
+    // window.scrollTo({
+    //     left: sec1coords.left,
+    //     top: sec1coords.top + window.pageYOffset,
+    //     behavior: 'smooth'
+    // });
+
+    // New browser approach
+    section1.scrollIntoView({behavior: 'smooth'});
+});
+
+/*
+    192: Event delegation: Implementing page navigation
+*/
+
+// document.querySelectorAll('.nav__link').forEach(function (node) {
+//     node.addEventListener('click', function (e) {
+//         console.log('LINK');
+//         e.preventDefault();
+//         const id = this.getAttribute('href');
+//         console.log(id);
+//         document.querySelector(id).scrollIntoView({behavior: 'smooth'});
+//     })
+// })
+
+document.querySelector('.nav__links').addEventListener('click', (e) => {
+    e.preventDefault();
+    if (e.target.classList.contains('nav__link')) {
+        const id = e.target.getAttribute('href');
+        document.querySelector(id).scrollIntoView({behavior: 'smooth'});
+    }
+});
+
+
+/*
     186: Selecting, Creating and Deleting elements
 */
 
@@ -125,35 +178,7 @@ document.addEventListener('keydown', function (e) {
 // // Don't do -- removes all other classes and updates to given class
 // logo.className = 'vishu-logo';
 
-/* 
-    188: Implementing smooth scrolling
-*/
 
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-const section1 = document.querySelector('#section--1');
-btnScrollTo.addEventListener('click', (e) => {
-    const sec1coords = section1.getBoundingClientRect();
-    console.log(sec1coords);
-    // console.log(e.target.getBoundingClientRect());
-    console.log('Current (X/Y)', window.pageXOffset, window.pageYOffset);
-    // console.log(
-    //     'height/width of view port', document.documentElement.clientHeight, document.documentElement.clientWidth
-    // );
-
-    /* 
-        When we have scrolled on the page, the co-ords won't be exactly relative to the top of the page
-        So, scrolling programmatically doesn't work properly. Hence, find the offset of the btn from top of the page
-        and add it to the co-ords 
-    */
-    // window.scrollTo({
-    //     left: sec1coords.left,
-    //     top: sec1coords.top + window.pageYOffset,
-    //     behavior: 'smooth'
-    // });
-
-    // New browser approach
-    section1.scrollIntoView({behavior: 'smooth'});
-});
 
 /*
     189: Types of events and Event handlers
@@ -180,40 +205,40 @@ btnScrollTo.addEventListener('click', (e) => {
     191: Event propagation in practice
 */
 
-// We will attach event handlers to the nav link and each of its parent element to see the bubbling
+// // We will attach event handlers to the nav link and each of its parent element to see the bubbling
 
-const randomInt = (min, max) =>
-    Math.floor(Math.random() * (max - min + 1) + min);
+// const randomInt = (min, max) =>
+//     Math.floor(Math.random() * (max - min + 1) + min);
 
-const randomColor = () => `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`
-console.log(randomColor());
+// const randomColor = () => `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`
+// console.log(randomColor());
 
-document.querySelector('.nav__link').addEventListener('click', function (e) {
-    this.style.backgroundColor = randomColor();
-    console.log('LINK', e.target, e.currentTarget);
-});
-document.querySelector('.nav__item').addEventListener('click', function (e) {
-    this.style.backgroundColor = randomColor();
-    console.log('NAV-ITEM', e.target, e.currentTarget);
-});
-document.querySelector('.nav__links').addEventListener('click', function (e) {
-    this.style.backgroundColor = randomColor();
-    console.log('NAV-LINKS-UL', e.target, e.currentTarget);
-});
-document.querySelector('.nav').addEventListener('click', function (e) {
-    this.style.backgroundColor = randomColor();
-    console.log('NAV-LINKS-CONTAINER', e.target);
-    console.log(e.currentTarget === this);
-    e.stopPropagation();    // not advisable
-});
-document.querySelector('.header').addEventListener('click', function (e) {
-    this.style.backgroundColor = randomColor();
-    console.log('HEADER', e.target);
-}, true);
-document.querySelector('body').addEventListener('click', function (e) {
-    this.style.backgroundColor = randomColor();
-    console.log('BODY', e.target);
-}, {capture: true});
+// document.querySelector('.nav__link').addEventListener('click', function (e) {
+//     this.style.backgroundColor = randomColor();
+//     console.log('LINK', e.target, e.currentTarget);
+// });
+// document.querySelector('.nav__item').addEventListener('click', function (e) {
+//     this.style.backgroundColor = randomColor();
+//     console.log('NAV-ITEM', e.target, e.currentTarget);
+// });
+// document.querySelector('.nav__links').addEventListener('click', function (e) {
+//     this.style.backgroundColor = randomColor();
+//     console.log('NAV-LINKS-UL', e.target, e.currentTarget);
+// });
+// document.querySelector('.nav').addEventListener('click', function (e) {
+//     this.style.backgroundColor = randomColor();
+//     console.log('NAV-LINKS-CONTAINER', e.target);
+//     console.log(e.currentTarget === this);
+//     e.stopPropagation();    // not advisable
+// });
+// document.querySelector('.header').addEventListener('click', function (e) {
+//     this.style.backgroundColor = randomColor();
+//     console.log('HEADER', e.target);
+// }, true);
+// document.querySelector('body').addEventListener('click', function (e) {
+//     this.style.backgroundColor = randomColor();
+//     console.log('BODY', e.target);
+// }, {capture: true});
 
 
 
