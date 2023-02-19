@@ -62,6 +62,30 @@ btnScrollTo.addEventListener('click', (e) => {
     section1.scrollIntoView({behavior: 'smooth'});
 });
 
+/* 
+    194: Building a tabbed component
+*/
+
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+tabsContainer.addEventListener('click', e => {
+    e.preventDefault();
+    const clickedTab = e.target.closest('.operations__tab ');
+    if (!clickedTab) {
+        return
+    };
+    // activate tab
+    tabs.forEach(tab => tab.classList.remove('operations__tab--active'));
+    clickedTab.classList.add('operations__tab--active');
+    // activate content
+    tabsContent.forEach(content => content.classList.remove('operations__content--active'));
+    document.querySelector(`.operations__content--${clickedTab.dataset.tab}`)
+        .classList.add('operations__content--active');
+});
+
+
 /*
     192: Event delegation: Implementing page navigation
 */
@@ -241,44 +265,44 @@ document.querySelector('.nav__links').addEventListener('click', (e) => {
 // }, {capture: true});
 
 
-/* 
+/*
     193: DOM Traversing
 */
 
-// traverse down
-const h1 = document.querySelector('h1');
-// All child elements with this class will be selected -- no matter how deep they are
-console.log(h1.querySelectorAll('.highlight'));
-console.log(h1.children);   // direct children
-console.log(h1.firstElementChild);      // returns the first child element
-console.log(h1.firstChild);     // can give the text inside the element
+// // traverse down
+// const h1 = document.querySelector('h1');
+// // All child elements with this class will be selected -- no matter how deep they are
+// console.log(h1.querySelectorAll('.highlight'));
+// console.log(h1.children);   // direct children
+// console.log(h1.firstElementChild);      // returns the first child element
+// console.log(h1.firstChild);     // can give the text inside the element
 
-h1.firstElementChild.style.color = 'pink';
-h1.lastElementChild.style.color = 'orangered';
+// h1.firstElementChild.style.color = 'pink';
+// h1.lastElementChild.style.color = 'orangered';
 
-// traverse up
-console.log(h1.parentNode);
-console.log(h1.parentElement);
+// // traverse up
+// console.log(h1.parentNode);
+// console.log(h1.parentElement);
 
-// closest will traverse up, but not to sibling
-h1.closest('.header__title').style.background = 'var(--gradient-secondary)';
-h1.closest('h1').style.background = 'var(--gradient-primary)';  // closest element is itself here
-// h1.closest('.section').style.background = 'var(--color-tertiary-opacity)';  // error -- as section is a sibling element
+// // closest will traverse up, but not to sibling
+// h1.closest('.header__title').style.background = 'var(--gradient-secondary)';
+// h1.closest('h1').style.background = 'var(--gradient-primary)';  // closest element is itself here
+// // h1.closest('.section').style.background = 'var(--color-tertiary-opacity)';  // error -- as section is a sibling element
 
-// going sideways: siblings
-console.log(h1.previousElementSibling);
-console.log(h1.nextElementSibling);
+// // going sideways: siblings
+// console.log(h1.previousElementSibling);
+// console.log(h1.nextElementSibling);
 
-console.log(h1.previousSibling);
-console.log(h1.nextSibling);
+// console.log(h1.previousSibling);
+// console.log(h1.nextSibling);
 
-// get all the siblings
-console.log(h1.parentElement.children);
-[...h1.parentElement.children].forEach((el) => {
-    if (el !== h1) {
-        el.style.transform = 'scale(0.5)';
-    }
-})
+// // get all the siblings
+// console.log(h1.parentElement.children);
+// [...h1.parentElement.children].forEach((el) => {
+//     if (el !== h1) {
+//         el.style.transform = 'scale(0.5)';
+//     }
+// })
 
 
 
