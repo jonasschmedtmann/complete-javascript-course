@@ -62,6 +62,29 @@ btnScrollTo.addEventListener('click', (e) => {
     section1.scrollIntoView({behavior: 'smooth'});
 });
 
+/*
+    192: Event delegation: Implementing page navigation
+*/
+
+// document.querySelectorAll('.nav__link').forEach(function (node) {
+//     node.addEventListener('click', function (e) {
+//         console.log('LINK');
+//         e.preventDefault();
+//         const id = this.getAttribute('href');
+//         console.log(id);
+//         document.querySelector(id).scrollIntoView({behavior: 'smooth'});
+//     })
+// })
+
+document.querySelector('.nav__links').addEventListener('click', (e) => {
+    e.preventDefault();
+    if (e.target.classList.contains('nav__link')) {
+        const id = e.target.getAttribute('href');
+        document.querySelector(id).scrollIntoView({behavior: 'smooth'});
+    }
+});
+
+
 /* 
     194: Building a tabbed component
 */
@@ -83,29 +106,6 @@ tabsContainer.addEventListener('click', e => {
     tabsContent.forEach(content => content.classList.remove('operations__content--active'));
     document.querySelector(`.operations__content--${clickedTab.dataset.tab}`)
         .classList.add('operations__content--active');
-});
-
-
-/*
-    192: Event delegation: Implementing page navigation
-*/
-
-// document.querySelectorAll('.nav__link').forEach(function (node) {
-//     node.addEventListener('click', function (e) {
-//         console.log('LINK');
-//         e.preventDefault();
-//         const id = this.getAttribute('href');
-//         console.log(id);
-//         document.querySelector(id).scrollIntoView({behavior: 'smooth'});
-//     })
-// })
-
-document.querySelector('.nav__links').addEventListener('click', (e) => {
-    e.preventDefault();
-    if (e.target.classList.contains('nav__link')) {
-        const id = e.target.getAttribute('href');
-        document.querySelector(id).scrollIntoView({behavior: 'smooth'});
-    }
 });
 
 
