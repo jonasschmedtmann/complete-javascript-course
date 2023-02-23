@@ -133,6 +133,18 @@ nav.addEventListener('mouseover', handleHover.bind(0.5));
 nav.addEventListener('mouseout', handleHover.bind(1));
 
 /*
+    196: Implementing the sticky navigation: The scroll event
+    * not a vey good way as the scroll event keeps firing for every scroll
+*/
+const initialCoOrds = section1.getBoundingClientRect();
+console.log(initialCoOrds);
+window.addEventListener('scroll', () => {
+    initialCoOrds.top < window.scrollY ?
+        nav.classList.add('sticky') : nav.classList.remove('sticky');
+})
+
+
+/*
     186: Selecting, Creating and Deleting elements
 */
 
