@@ -129,7 +129,7 @@ const handleHover = function (e) {
 // on the "this" keyword inside the function. So make sure to avoid the arrow function
 // in this case
 
-nav.addEventListener('mouseover', handleHover.bind([0.5, 'b']));
+nav.addEventListener('mouseover', handleHover.bind(0.5));
 nav.addEventListener('mouseout', handleHover.bind(1));
 
 /*
