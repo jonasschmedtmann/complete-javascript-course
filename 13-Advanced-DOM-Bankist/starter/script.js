@@ -9,6 +9,7 @@ const section1 = document.querySelector('#section--1');
 const tabs = document.querySelectorAll('.operations__tab');
 const tabsContainer = document.querySelector('.operations__tab-container');
 const tabsContent = document.querySelectorAll('.operations__content');
+const nav = document.querySelector('nav');
 
 ///////////////////////////////////////
 // Modal window
@@ -111,6 +112,25 @@ tabsContainer.addEventListener('click', e => {
 
 // Menu fade
 
+const handleHover = function (e) {
+    if (e.target.classList.contains('nav__link')) {
+        const clickedLink = e.target;
+        const allLinks = clickedLink.closest('.nav').querySelectorAll('.nav__link');
+        allLinks.forEach(link => {
+            if (link !== clickedLink) link.style.opacity = this;
+        });
+        clickedLink.closest('.nav').querySelector('img').style.opacity = this;
+    }
+}
+
+// .bind() -- creates a function that has same body as the original one
+// we can pass parameters into that function on the bind method.
+// If there are multiple params, pass them as array. All of it will be available 
+// on the "this" keyword inside the function. So make sure to avoid the arrow function
+// in this case
+
+nav.addEventListener('mouseover', handleHover.bind([0.5, 'b']));
+nav.addEventListener('mouseout', handleHover.bind(1));
 
 /*
     186: Selecting, Creating and Deleting elements
