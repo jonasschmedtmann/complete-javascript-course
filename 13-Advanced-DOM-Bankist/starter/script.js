@@ -10,6 +10,7 @@ const tabs = document.querySelectorAll('.operations__tab');
 const tabsContainer = document.querySelector('.operations__tab-container');
 const tabsContent = document.querySelectorAll('.operations__content');
 const nav = document.querySelector('nav');
+const header = document.querySelector('header');
 
 ///////////////////////////////////////
 // Modal window
@@ -136,13 +137,28 @@ nav.addEventListener('mouseout', handleHover.bind(1));
     196: Implementing the sticky navigation: The scroll event
     * not a vey good way as the scroll event keeps firing for every scroll
 */
-const initialCoOrds = section1.getBoundingClientRect();
-console.log(initialCoOrds);
-window.addEventListener('scroll', () => {
-    initialCoOrds.top < window.scrollY ?
-        nav.classList.add('sticky') : nav.classList.remove('sticky');
-})
+// const initialCoOrds = section1.getBoundingClientRect();
+// window.addEventListener('scroll', () => {
+//     initialCoOrds.top < window.scrollY ?
+//         nav.classList.add('sticky') : nav.classList.remove('sticky');
+// });
 
+/*
+    197: A Better way: The intersection observer API
+*/
+
+const navHeight = nav.getBoundingClientRect().height;
+const headerSticky = (entries) => {
+    const [entry] = entries;
+    !entry.isIntersecting ? nav.classList.add('sticky') : nav.classList.remove('sticky');
+};
+
+const headerObserver = new IntersectionObserver(headerSticky, {
+    root: null,
+    threshold: 0,    // start showing the sticky nav when only 0 percent of the header is visible
+    rootMargin: `-${navHeight}px`   // use a -ve height equal to the navbar height to transition seamlessly
+});
+headerObserver.observe(header);
 
 /*
     186: Selecting, Creating and Deleting elements
@@ -339,6 +355,21 @@ window.addEventListener('scroll', () => {
 //     }
 // })
 
+
+/*
+    197: A Better way: The intersection observer API
+*/
+
+// const observer = new IntersectionObserver((entries, observer) => {
+//     console.log(entries);
+//     entries.forEach(entry => {
+//         console.log(entry);
+//     });
+// }, {
+//     root: null,
+//     threshold: [0, 0.2]
+// });
+// observer.observe(section1);
 
 
 
