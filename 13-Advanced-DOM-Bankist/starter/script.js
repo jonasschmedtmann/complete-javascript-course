@@ -13,6 +13,10 @@ const nav = document.querySelector('nav');
 const header = document.querySelector('header');
 const allSections = document.querySelectorAll('.section');
 const imgTargets = document.querySelectorAll('img[data-src]');
+const slider = document.querySelector('.slider');
+const slides = document.querySelectorAll('.slide');
+const btnLeft = document.querySelector('.slider__btn--left');
+const btnRight = document.querySelector('.slider__btn--right');
 
 ///////////////////////////////////////
 // Modal window
@@ -180,7 +184,7 @@ const sectionObserver = new IntersectionObserver(revealSection, {
 });
 allSections.forEach(section => {
     sectionObserver.observe(section);
-    section.classList.add('section--hidden');
+    // section.classList.add('section--hidden');
 });
 
 /*
@@ -208,6 +212,29 @@ const imageObserver = new IntersectionObserver(revealImage, {
 });
 imgTargets.forEach(img => {
     imageObserver.observe(img);
+});
+
+/*
+    200: Building a slider component: Part 1
+*/
+
+let currentSlide = 0;
+
+const moveSlide = () => {
+    slides.forEach((slide, index) => {
+        slide.style.transform = `translateX(${(index - currentSlide) * 100}%)`;
+    });
+};
+moveSlide();
+
+btnRight.addEventListener('click', () => {
+    currentSlide !== slides.length - 1 ? currentSlide++ : currentSlide = 0;
+    moveSlide();
+});
+
+btnLeft.addEventListener('click', () => {
+    currentSlide !== 0 ? currentSlide-- : currentSlide = slides.length - 1;
+    moveSlide();
 });
 
 /*
