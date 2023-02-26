@@ -17,6 +17,7 @@ const slider = document.querySelector('.slider');
 const slides = document.querySelectorAll('.slide');
 const btnLeft = document.querySelector('.slider__btn--left');
 const btnRight = document.querySelector('.slider__btn--right');
+const dotsContainer = document.querySelector('.dots');
 
 ///////////////////////////////////////
 // Modal window
@@ -184,7 +185,7 @@ const sectionObserver = new IntersectionObserver(revealSection, {
 });
 allSections.forEach(section => {
     sectionObserver.observe(section);
-    // section.classList.add('section--hidden');
+    section.classList.add('section--hidden');
 });
 
 /*
@@ -192,7 +193,6 @@ allSections.forEach(section => {
 */
 
 const revealImage = (entries, observer) => {
-    console.log(entries, observer);
     const [entry] = entries;
     if (entry.isIntersecting) {
         entry.target.src = entry.target.dataset.src;
@@ -220,22 +220,62 @@ imgTargets.forEach(img => {
 
 let currentSlide = 0;
 
-const moveSlide = () => {
+const moveSlide = (slideIndex) => {
     slides.forEach((slide, index) => {
-        slide.style.transform = `translateX(${(index - currentSlide) * 100}%)`;
+        slide.style.transform = `translateX(${(index - slideIndex) * 100}%)`;
     });
 };
-moveSlide();
+moveSlide(currentSlide);
 
-btnRight.addEventListener('click', () => {
+const updateDots = (index) => {
+    dots.forEach(dot => {
+        dot.classList.remove('dots__dot--active');
+    });
+    dots[index].classList.add('dots__dot--active');
+}
+
+const nextSlide = () => {
     currentSlide !== slides.length - 1 ? currentSlide++ : currentSlide = 0;
-    moveSlide();
+    moveSlide(currentSlide);
+    updateDots(currentSlide);
+};
+
+const prevSlide = () => {
+    currentSlide !== 0 ? currentSlide-- : currentSlide = slides.length - 1;
+    moveSlide(currentSlide);
+    updateDots(currentSlide);
+}
+
+btnRight.addEventListener('click', nextSlide);
+btnLeft.addEventListener('click', prevSlide);
+
+/*
+    201: Building a slider component: Part 2
+*/
+
+document.addEventListener('keydown', e => {
+    e.key === 'ArrowRight' && nextSlide();
+    e.key === 'ArrowLeft' && prevSlide();
 });
 
-btnLeft.addEventListener('click', () => {
-    currentSlide !== 0 ? currentSlide-- : currentSlide = slides.length - 1;
-    moveSlide();
+const createDots = () => {
+    slides.forEach((_, index) => {
+        dotsContainer.insertAdjacentHTML(
+            'beforeend',
+            `<button class="dots__dot ${index === 0 && 'dots__dot--active'}" data-slide=${index}></button>`)
+    });
+};
+createDots();
+const dots = document.querySelectorAll('.dots__dot');
+dotsContainer.addEventListener('click', e => {
+    e.preventDefault();
+    if (e.target.classList.contains('dots__dot')) {
+        moveSlide(e.target.dataset.slide);
+        updateDots(e.target.dataset.slide);
+    }
 });
+
+// dots.forEach((dot))
 
 /*
     186: Selecting, Creating and Deleting elements
