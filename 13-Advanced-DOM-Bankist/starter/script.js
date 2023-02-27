@@ -489,5 +489,24 @@ dotsContainer.addEventListener('click', e => {
 // observer.observe(section1);
 
 
+/* 
+    202: Lifecycle DOM Events
+*/
+
+document.addEventListener('DOMContentLoaded', e => {
+    console.log('HTML parsed, JS loaded, DOM tree built', e);
+});
+
+window.addEventListener('load', e => {
+    console.log(`Window loaded`, e);
+});
+
+// window.addEventListener('beforeunload', e => {
+//     e.preventDefault();
+//     console.log('Window unloading', e);
+//     e.returnValue = '';
+// });
+
+
 
 
