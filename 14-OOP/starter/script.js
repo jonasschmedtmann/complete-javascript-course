@@ -45,3 +45,26 @@ console.log(Person.prototype.isPrototypeOf(vishu));
 Person.prototype.species = 'Homo Sapiens';
 console.log(vishu.species);
 console.log(vasudha.species);
+
+/* 
+    211: Prototypal inheritance on built in objects
+*/
+
+console.log(vishu.__proto__);
+console.log(vishu.__proto__.__proto__);
+console.log(vishu.__proto__.__proto__.__proto__);
+console.dir(Person.prototype.constructor);
+
+const arr = [1, 2, 3, 4, 5, 5, 6, 3, 2, 1];
+console.log(arr.__proto__);
+console.log(arr.__proto__.__proto__);
+console.log(arr.__proto__ === Array.prototype);
+
+// add new method to array prototype -- not a good practice, but just for fun
+Array.prototype.unique = function () {
+    return [...new Set(this)];
+};
+console.log(arr.unique());
+
+const h1 = document.querySelector('h1');
+console.dir(x => x + 1)
