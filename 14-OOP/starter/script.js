@@ -114,6 +114,11 @@ class PersonCl {
         console.log(2023 - this.birthYear);
     }
 
+    static hey () {
+        console.log(`Hey there!!`);
+        console.log(this);
+    }
+
     get age () {
         return 2023 - this.birthYear;
     }
@@ -162,6 +167,12 @@ const account = {
 account.latest = 50;
 console.log(account.latest);
 console.log(account.movements);
+
+/* 
+    215: Static Methods
+*/
+
+PersonCl.hey();
 
 
 
