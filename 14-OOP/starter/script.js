@@ -69,33 +69,61 @@
 // const h1 = document.querySelector('h1');
 // console.dir(x => x + 1)
 
-/* 
+/*
     212: Coding Challenge #1
 */
 
-const Car = function (make, speed) {
-    this.make = make;
-    this.speed = speed;
-}
+// const Car = function (make, speed) {
+//     this.make = make;
+//     this.speed = speed;
+// }
 
-Car.prototype.accelarate = function () {
-    this.speed += 10;
-    console.log(`${this.make} speed is ${this.speed} km/h`);
-}
+// Car.prototype.accelarate = function () {
+//     this.speed += 10;
+//     console.log(`${this.make} speed is ${this.speed} km/h`);
+// }
 
-Car.prototype.brake = function () {
-    this.speed -= 5;
-    console.log(`${this.make} speed is ${this.speed} km/h`);
-}
+// Car.prototype.brake = function () {
+//     this.speed -= 5;
+//     console.log(`${this.make} speed is ${this.speed} km/h`);
+// }
 
-const car1 = new Car('BMW', 120);
-const car2 = new Car('Mercedes', 95);
+// const car1 = new Car('BMW', 120);
+// const car2 = new Car('Mercedes', 95);
 
-console.log(car1);
-console.log(car2);
-car1.accelarate();
-car1.brake();
-car2.accelarate();
-car2.brake();
-car1.brake();
-car1.brake();
+// console.log(car1);
+// console.log(car2);
+// car1.accelarate();
+// car1.brake();
+// car2.accelarate();
+// car2.brake();
+// car1.brake();
+// car1.brake();
+
+/* 
+    213: ES6 Classes
+*/
+
+class PersonCl {
+    constructor (firstName, birthYear) {
+        this.firstName = firstName;
+        this.birthYear = birthYear;
+    }
+
+    calcAge () {
+        console.log(2023 - this.birthYear);
+    }
+};
+
+const sneha = new PersonCl('Sneha', 2006);
+console.log(sneha);
+console.log(sneha.__proto__ === PersonCl.prototype);
+sneha.calcAge();
+
+// Taking to next level 😎
+PersonCl.prototype.greet = function () {
+    console.log(`Hello ${this.firstName}`);
+};
+
+sneha.greet();
+console.log(sneha.__proto__ === PersonCl.prototype);
