@@ -100,22 +100,34 @@
 // car1.brake();
 // car1.brake();
 
-/* 
+/*
     213: ES6 Classes
 */
 
 class PersonCl {
-    constructor (firstName, birthYear) {
-        this.firstName = firstName;
+    constructor (fullName, birthYear) {
+        this.fullName = fullName;
         this.birthYear = birthYear;
     }
 
     calcAge () {
         console.log(2023 - this.birthYear);
     }
+
+    get age () {
+        return 2023 - this.birthYear;
+    }
+
+    set fullName (name) {
+        name.includes(' ') ? this._fullName = name : alert(`${name} is not a full name`);
+    }
+
+    get fullName () {
+        return this._fullName;
+    }
 };
 
-const sneha = new PersonCl('Sneha', 2006);
+const sneha = new PersonCl('Sneha Bharathi', 2006);
 console.log(sneha);
 console.log(sneha.__proto__ === PersonCl.prototype);
 sneha.calcAge();
@@ -127,3 +139,29 @@ PersonCl.prototype.greet = function () {
 
 sneha.greet();
 console.log(sneha.__proto__ === PersonCl.prototype);
+console.log(sneha.age);
+console.log(sneha.fullName);
+
+/* 
+    214: Getters and setters
+*/
+
+const account = {
+    ownner: 'Vishu',
+    movements: [100, 200, 300, 400, 500],
+
+    get latest () {
+        return this.movements.slice(-1).pop();
+    },
+
+    set latest (mov) {
+        this.movements.push(mov);
+    }
+};
+
+account.latest = 50;
+console.log(account.latest);
+console.log(account.movements);
+
+
+
