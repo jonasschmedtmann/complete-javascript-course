@@ -175,4 +175,31 @@ console.log(account.movements);
 PersonCl.hey();
 
 
+/* 
+    216: Object.create
+*/
+
+const PersonProto = {
+    calcAge () {
+        console.log(2023 - this.birthYear);
+    },
+
+    init (firstName, birthYear) {
+        this.firstName = firstName;
+        this.birthYear = birthYear;
+    }
+};
+
+const savitha = Object.create(PersonProto);
+savitha.name = 'Savitha';
+savitha.birthYear = 1968;
+console.log(savitha);
+savitha.calcAge();
+
+console.log(savitha.__proto__ === PersonProto);
+
+const kishan = Object.create(PersonProto);
+kishan.init('Kishan', 1959);
+console.log(kishan);
+
 
