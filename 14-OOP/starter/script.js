@@ -104,102 +104,138 @@
     213: ES6 Classes
 */
 
-class PersonCl {
-    constructor (fullName, birthYear) {
-        this.fullName = fullName;
-        this.birthYear = birthYear;
-    }
+// class PersonCl {
+//     constructor (fullName, birthYear) {
+//         this.fullName = fullName;
+//         this.birthYear = birthYear;
+//     }
 
-    calcAge () {
-        console.log(2023 - this.birthYear);
-    }
+//     calcAge () {
+//         console.log(2023 - this.birthYear);
+//     }
 
-    static hey () {
-        console.log(`Hey there!!`);
-        console.log(this);
-    }
+//     static hey () {
+//         console.log(`Hey there!!`);
+//         console.log(this);
+//     }
 
-    get age () {
-        return 2023 - this.birthYear;
-    }
+//     get age () {
+//         return 2023 - this.birthYear;
+//     }
 
-    set fullName (name) {
-        name.includes(' ') ? this._fullName = name : alert(`${name} is not a full name`);
-    }
+//     set fullName (name) {
+//         name.includes(' ') ? this._fullName = name : alert(`${name} is not a full name`);
+//     }
 
-    get fullName () {
-        return this._fullName;
-    }
-};
+//     get fullName () {
+//         return this._fullName;
+//     }
+// };
 
-const sneha = new PersonCl('Sneha Bharathi', 2006);
-console.log(sneha);
-console.log(sneha.__proto__ === PersonCl.prototype);
-sneha.calcAge();
+// const sneha = new PersonCl('Sneha Bharathi', 2006);
+// console.log(sneha);
+// console.log(sneha.__proto__ === PersonCl.prototype);
+// sneha.calcAge();
 
-// Taking to next level 😎
-PersonCl.prototype.greet = function () {
-    console.log(`Hello ${this.firstName}`);
-};
+// // Taking to next level 😎
+// PersonCl.prototype.greet = function () {
+//     console.log(`Hello ${this.firstName}`);
+// };
 
-sneha.greet();
-console.log(sneha.__proto__ === PersonCl.prototype);
-console.log(sneha.age);
-console.log(sneha.fullName);
+// sneha.greet();
+// console.log(sneha.__proto__ === PersonCl.prototype);
+// console.log(sneha.age);
+// console.log(sneha.fullName);
 
-/* 
-    214: Getters and setters
-*/
+// /* 
+//     214: Getters and setters
+// */
 
-const account = {
-    ownner: 'Vishu',
-    movements: [100, 200, 300, 400, 500],
+// const account = {
+//     ownner: 'Vishu',
+//     movements: [100, 200, 300, 400, 500],
 
-    get latest () {
-        return this.movements.slice(-1).pop();
-    },
+//     get latest () {
+//         return this.movements.slice(-1).pop();
+//     },
 
-    set latest (mov) {
-        this.movements.push(mov);
-    }
-};
+//     set latest (mov) {
+//         this.movements.push(mov);
+//     }
+// };
 
-account.latest = 50;
-console.log(account.latest);
-console.log(account.movements);
+// account.latest = 50;
+// console.log(account.latest);
+// console.log(account.movements);
 
 /* 
     215: Static Methods
 */
 
-PersonCl.hey();
+// PersonCl.hey();
 
 
-/* 
+/*
     216: Object.create
 */
 
-const PersonProto = {
-    calcAge () {
-        console.log(2023 - this.birthYear);
-    },
+// const PersonProto = {
+//     calcAge () {
+//         console.log(2023 - this.birthYear);
+//     },
 
-    init (firstName, birthYear) {
-        this.firstName = firstName;
-        this.birthYear = birthYear;
+//     init (firstName, birthYear) {
+//         this.firstName = firstName;
+//         this.birthYear = birthYear;
+//     }
+// };
+
+// const savitha = Object.create(PersonProto);
+// savitha.name = 'Savitha';
+// savitha.birthYear = 1968;
+// console.log(savitha);
+// savitha.calcAge();
+
+// console.log(savitha.__proto__ === PersonProto);
+
+// const kishan = Object.create(PersonProto);
+// kishan.init('Kishan', 1959);
+// console.log(kishan);
+
+/* 
+    217: Coding Challenge #2
+*/
+
+class CarCl {
+    constructor (make, speed) {
+        this.make = make;
+        this.speed = speed;
     }
-};
 
-const savitha = Object.create(PersonProto);
-savitha.name = 'Savitha';
-savitha.birthYear = 1968;
-console.log(savitha);
-savitha.calcAge();
+    get speedUS () {
+        return this.speed / 1.6;
+    }
 
-console.log(savitha.__proto__ === PersonProto);
+    set speedUS (speed) {
+        this.speed = speed * 1.6;
+    }
 
-const kishan = Object.create(PersonProto);
-kishan.init('Kishan', 1959);
-console.log(kishan);
+    accelarate () {
+        this.speed += 10;
+        console.log(`${this.make} speed is ${this.speed} km/h`);
+    }
+
+    brake () {
+        this.speed -= 5;
+        console.log(`${this.make} speed is ${this.speed} km/h`);
+    }
+}
+
+const ford = new CarCl('ford', 120);
+console.log(ford);
+ford.accelarate();
+console.log(ford.speedUS);
+ford.speedUS = 100;
+console.log(ford);
 
 
