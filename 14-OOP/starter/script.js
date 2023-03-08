@@ -73,20 +73,20 @@
     212: Coding Challenge #1
 */
 
-// const Car = function (make, speed) {
-//     this.make = make;
-//     this.speed = speed;
-// }
+const Car = function (make, speed) {
+    this.make = make;
+    this.speed = speed;
+}
 
-// Car.prototype.accelarate = function () {
-//     this.speed += 10;
-//     console.log(`${this.make} speed is ${this.speed} km/h`);
-// }
+Car.prototype.accelarate = function () {
+    this.speed += 10;
+    console.log(`${this.make} speed is ${this.speed} km/h`);
+}
 
-// Car.prototype.brake = function () {
-//     this.speed -= 5;
-//     console.log(`${this.make} speed is ${this.speed} km/h`);
-// }
+Car.prototype.brake = function () {
+    this.speed -= 5;
+    console.log(`${this.make} speed is ${this.speed} km/h`);
+}
 
 // const car1 = new Car('BMW', 120);
 // const car2 = new Car('Mercedes', 95);
@@ -238,46 +238,86 @@
 // ford.speedUS = 100;
 // console.log(ford);
 
-/* 
+/*
     218: Inheritance between 'classes': Constructor functions
 */
 
-const Person = function (firstName, birthYear) {
-    this.firstName = firstName;
-    this.birthYear = birthYear;
+// const Person = function (firstName, birthYear) {
+//     this.firstName = firstName;
+//     this.birthYear = birthYear;
+// };
+
+// Person.prototype.calcAge = function () {
+//     return 2023 - this.birthYear;
+// };
+
+// const Student = function (firstName, birthYear, course) {
+//     // Person(firstName, birthYear);   // will fail as 'this' is undefined
+//     Person.call(this, firstName, birthYear);
+//     this.course = course;
+// };
+// // Set the prototype chain to inherit
+// // Object.create does the prototype linking job
+// Student.prototype = Object.create(Person.prototype);
+// // Student.prototype = {...Person.prototype}; -- doesn't work
+
+// Student.prototype.introduce = function () {
+//     console.log(`My name is ${this.firstName} and I study ${this.course}`);
+// };
+
+// const sneha = new Student('Sneha', 2006, 'CS');
+// console.log(sneha);
+// sneha.introduce();
+
+// console.log(sneha.__proto__);
+// console.log(sneha.__proto__.__proto__);
+// // Student.prototype.constructor --> returns Person(as we used object.create) but should be Student. So, setting it here
+// Student.prototype.constructor = Student;
+// console.dir(Student.prototype.constructor);
+// console.log(sneha);
+
+// console.log(sneha instanceof Student);
+// console.log(sneha instanceof Person);
+// console.log(sneha instanceof Object);
+
+
+/* 
+    219: Coding Challenge #3
+
+    1. Use a constructor function to implement an Electric Car (called EV) as a CHILD "class" of Car. Besides a make and current speed, the EV also has the current battery charge in % ('charge' property);
+    2. Implement a 'chargeBattery' method which takes an argument 'chargeTo' and sets the battery charge to 'chargeTo';
+    3. Implement an 'accelerate' method that will increase the car's speed by 20, and decrease the charge by 1%. Then log a message like this: 'Tesla going at 140 km/h, with a charge of 22%';
+    4. Create an electric car object and experiment with calling 'accelerate', 'brake' and 'chargeBattery' (charge to 90%). Notice what happens when you 'accelerate'! HINT: Review the definiton of polymorphism 😉
+
+    DATA CAR 1: 'Tesla' going at 120 km/h, with a charge of 23%
+
+GOOD LUCK 😀
+*/
+
+const EV = function (make, speed, charge) {
+    Car.call(this, make, speed);
+    this.charge = charge;
 };
 
-Person.prototype.calcAge = function () {
-    return 2023 - this.birthYear;
+// Link the prototypes
+EV.prototype = Object.create(Car.prototype);
+EV.prototype.chargeBattery = function (chargeTo) {
+    this.charge = chargeTo;
 };
 
-const Student = function (firstName, birthYear, course) {
-    // Person(firstName, birthYear);   // will fail as 'this' is undefined
-    Person.call(this, firstName, birthYear);
-    this.course = course;
-};
-// Set the prototype chain to inherit
-// Object.create does the prototype linking job
-Student.prototype = Object.create(Person.prototype);
-// Student.prototype = {...Person.prototype}; -- doesn't work
-
-Student.prototype.introduce = function () {
-    console.log(`My name is ${this.firstName} and I study ${this.course}`);
+EV.prototype.accelarate = function () {
+    this.speed += 20;
+    this.charge--;
+    console.log(`${this.make} is going at ${this.speed}km/h, with a charge of ${this.charge}%`);
 };
 
-const sneha = new Student('Sneha', 2006, 'CS');
-console.log(sneha);
-sneha.introduce();
+EV.prototype.constructor = EV;
 
-console.log(sneha.__proto__);
-console.log(sneha.__proto__.__proto__);
-// Student.prototype.constructor --> returns Person(as we used object.create) but should be Student. So, setting it here
-Student.prototype.constructor = Student;
-console.dir(Student.prototype.constructor);
-console.log(sneha);
-
-console.log(sneha instanceof Student);
-console.log(sneha instanceof Person);
-console.log(sneha instanceof Object);
+console.dir(EV);
+const tesla = new EV('Tesla', 120, 23);
+tesla.chargeBattery(90);
+tesla.accelarate();
+tesla.brake();
+console.log(tesla);
 
 
