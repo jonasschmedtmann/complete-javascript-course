@@ -179,16 +179,16 @@ class PersonCl {
     216: Object.create
 */
 
-// const PersonProto = {
-//     calcAge () {
-//         console.log(2023 - this.birthYear);
-//     },
+const PersonProto = {
+    calcAge () {
+        console.log(2023 - this.birthYear);
+    },
 
-//     init (firstName, birthYear) {
-//         this.firstName = firstName;
-//         this.birthYear = birthYear;
-//     }
-// };
+    init (firstName, birthYear) {
+        this.firstName = firstName;
+        this.birthYear = birthYear;
+    }
+};
 
 // const savitha = Object.create(PersonProto);
 // savitha.name = 'Savitha';
@@ -343,9 +343,30 @@ class StudentCL extends PersonCl {
 // No need to define constructor call super() in the class
 // const sneha = new StudentCL('Sneha Bharathi', 2006);
 const sneha = new StudentCL('Sneha Bharathi', 2006, 'Computer Science');
-console.log(sneha);
-sneha.introduce();
-sneha.calcAge();
+// console.log(sneha);
+// sneha.introduce();
+// sneha.calcAge();
+
+/* 
+    221: Inheritance between "classes": Object.create
+*/
+
+console.log(PersonProto);
+const savitha = Object.create(PersonProto);
+const StudentProto = Object.create(PersonProto);
+// Methods
+StudentProto.init = function (firstName, birthYear, course) {
+    PersonProto.init.call(this, firstName, birthYear);
+    this.course = course;
+};
+StudentProto.introduce = function () {
+    console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
+console.log(StudentProto);
+const snehaProto = Object.create(StudentProto);
+snehaProto.init('Sneha', 2006, 'Computers');
+console.log(snehaProto);
+snehaProto.introduce();
 
 
 
