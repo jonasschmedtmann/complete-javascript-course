@@ -104,33 +104,33 @@ Car.prototype.brake = function () {
     213: ES6 Classes
 */
 
-// class PersonCl {
-//     constructor (fullName, birthYear) {
-//         this.fullName = fullName;
-//         this.birthYear = birthYear;
-//     }
+class PersonCl {
+    constructor (fullName, birthYear) {
+        this.fullName = fullName;
+        this.birthYear = birthYear;
+    }
 
-//     calcAge () {
-//         console.log(2023 - this.birthYear);
-//     }
+    calcAge () {
+        console.log(2023 - this.birthYear);
+    }
 
-//     static hey () {
-//         console.log(`Hey there!!`);
-//         console.log(this);
-//     }
+    static hey () {
+        console.log(`Hey there!!`);
+        console.log(this);
+    }
 
-//     get age () {
-//         return 2023 - this.birthYear;
-//     }
+    get age () {
+        return 2023 - this.birthYear;
+    }
 
-//     set fullName (name) {
-//         name.includes(' ') ? this._fullName = name : alert(`${name} is not a full name`);
-//     }
+    set fullName (name) {
+        name.includes(' ') ? this._fullName = name : alert(`${name} is not a full name`);
+    }
 
-//     get fullName () {
-//         return this._fullName;
-//     }
-// };
+    get fullName () {
+        return this._fullName;
+    }
+};
 
 // const sneha = new PersonCl('Sneha Bharathi', 2006);
 // console.log(sneha);
@@ -313,11 +313,40 @@ EV.prototype.accelarate = function () {
 
 EV.prototype.constructor = EV;
 
-console.dir(EV);
+// console.dir(EV);
 const tesla = new EV('Tesla', 120, 23);
-tesla.chargeBattery(90);
-tesla.accelarate();
-tesla.brake();
-console.log(tesla);
+// tesla.chargeBattery(90);
+// tesla.accelarate();
+// tesla.brake();
+// console.log(tesla);
+
+/* 
+    220: Inheritance between "classes": ES6 Classes
+*/
+
+class StudentCL extends PersonCl {
+    constructor (fullName, birthYear, course) {
+        super(fullName, birthYear);     // This takes care of setting up the prototype chain
+        this.course = course;
+    }
+
+    introduce () {
+        console.log(`My name is ${this.fullName} and I study ${this.course}`);
+    }
+
+    calcAge () {
+        console.log(`I'm ${2023 - this.birthYear} years old`);
+    }
+};
+
+// To just extend without new properties, we can call like below.
+// No need to define constructor call super() in the class
+// const sneha = new StudentCL('Sneha Bharathi', 2006);
+const sneha = new StudentCL('Sneha Bharathi', 2006, 'Computer Science');
+console.log(sneha);
+sneha.introduce();
+sneha.calcAge();
+
+
 
 
