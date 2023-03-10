@@ -351,7 +351,7 @@ const sneha = new StudentCL('Sneha Bharathi', 2006, 'Computer Science');
     221: Inheritance between "classes": Object.create
 */
 
-console.log(PersonProto);
+// console.log(PersonProto);
 const savitha = Object.create(PersonProto);
 const StudentProto = Object.create(PersonProto);
 // Methods
@@ -362,11 +362,57 @@ StudentProto.init = function (firstName, birthYear, course) {
 StudentProto.introduce = function () {
     console.log(`My name is ${this.firstName} and I study ${this.course}`);
 };
-console.log(StudentProto);
+// console.log(StudentProto);
 const snehaProto = Object.create(StudentProto);
-snehaProto.init('Sneha', 2006, 'Computers');
-console.log(snehaProto);
-snehaProto.introduce();
+// snehaProto.init('Sneha', 2006, 'Computers');
+// console.log(snehaProto);
+// snehaProto.introduce();
+
+/* 
+    222: Another Class example
+*/
+
+class Account {
+    constructor (owner, currency, pin) {
+        this.owner = owner;
+        this.currency = currency;
+        // As a convention for private properties, use _
+        this._pin = pin;
+        this._movements = [];
+        this.locale = navigator.language;
+    }
+
+    deposit (amount) {
+        this._movements.push(amount);
+    }
+
+    withdraw (amount) {
+        this.deposit(-amount);
+    }
+
+    _approveLoan () {
+        return true;
+    }
+
+    requestLoan (amount) {
+        if (this._approveLoan()) {
+            this.deposit(amount);
+            console.log(`Your loan of ${amount} is approved and deposited`);
+        }
+    }
+
+    getMovements () {
+        return this._movements;
+    }
+};
+
+const vishuAcc = new Account('Vishu', 'INR', 1212);
+vishuAcc.deposit(200);
+vishuAcc.deposit(500);
+vishuAcc.withdraw(50);
+console.log(vishuAcc);
+vishuAcc.requestLoan(3000);
+console.log(vishuAcc.getMovements());
 
 
 
