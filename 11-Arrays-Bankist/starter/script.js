@@ -151,7 +151,7 @@ btnTransfer.addEventListener('click', function (e) {
   );
   console.log(receiverAcc, amount);
 });
-
+// test
 // btnLogin.addEventListener('click', function (e) {
 //   // Prevent form from submitting
 //   e.preventDefault();
