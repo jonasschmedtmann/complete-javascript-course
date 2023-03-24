@@ -27,3 +27,42 @@ const restaurant = {
     },
   },
 };
+
+// const orderSet = new Set(['Pasta', 'Pizza', 'Pizza', 'Risotto']);
+
+// console.log(orderSet.size);
+// console.log(orderSet.has('Pizza'));
+// orderSet.add('Garlic Bread');
+// orderSet.delete('Risotto');
+// console.log(orderSet);
+
+// for (const order of orderSet) console.log(order);
+
+// const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+
+// const staffUnique = [...new Set(staff)];
+// console.log(staffUnique);
+
+// const rest = new Map();
+
+// rest.set('name', 'Classico Italiano');
+// rest.set(1, 'Firenze, Italy');
+// rest.set(2, 'Lisbon, Portugal');
+
+// rest
+//   .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+//   .set('open', 11)
+//   .set('close', 23)
+//   .set(true, 'We are open')
+//   .set(false, 'We are closed');
+
+// console.log(rest.get('name'));
+// console.log(rest.get(true));
+
+// const time = 21;
+// console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+
+// console.log(rest.has('categories'));
+// rest.delete(2);
+
+// console.log(rest.size);
