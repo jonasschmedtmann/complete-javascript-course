@@ -137,12 +137,17 @@ main {
 }
 
 .btn--roll {
-  top: 39.3rem;
+  top: 39rem;
 }
 
 .btn--hold {
-  top: 46.1rem;
+  top: 46rem;
 }
+
+.btn--rules {
+  top: 53rem;
+}
+
 
 .btn:active {
   transform: translate(-50%, 3px);
@@ -167,6 +172,45 @@ main {
   border: solid 2px #ccc;
 }
 
+.rules-modal {
+  position: absolute;
+  top: 30%;
+  width: 40%;
+
+  text-align: center;
+  font-size: 1.75rem;
+  padding: 2rem;
+  background-color: rgb(48, 2, 56);
+  color: white;
+  border-radius: 2rem;
+  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.2);
+}
+
+.rules-modal h4 {
+  font-size: 2rem;
+}
+
+.rules-modal ul {
+  list-style-type: none;
+}
+
+.close-modal {
+  position: absolute;
+  top: -9px;
+  right: 8px;
+  font-size: 5rem;
+  cursor: pointer;
+  border: none;
+  padding: 1rem;
+  color: white;
+  background: none;
+}
+
+.close-modal:hover,
+.close-modal:active {
+  color: red;
+}
+
 .player--winner {
   background-color: #f2ff009e;
   box-shadow: inset 0rem 0rem 4rem rgb(255, 149, 0);
@@ -176,7 +220,6 @@ main {
   font-weight: 700;
   color: #c7365f;
 }
-
 
 .hidden {
   display: none;

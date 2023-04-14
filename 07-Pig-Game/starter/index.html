@@ -32,7 +32,30 @@
     <button class="btn btn--new">🔄 New game</button>
     <button class="btn btn--roll">🎲 Roll dice</button>
     <button class="btn btn--hold">📥 Hold</button>
+    <button class="btn btn--rules">📖 Rules</button>
   </main>
+
+  <div class="rules-modal">
+    <button class="close-modal">&times;</button>
+    <ul>
+      <h4>🎲 ROLL DICE</h4>
+      <li>
+        Generates random dice roll and adds roll amount to current score
+      </li></br>
+      <h4>📥 HOLD</h4>
+      <li>
+        Add your current score to your overall score and switch turns
+      </li></br>
+      <h4 style="color: rgb(255, 40, 40);">The Catch ☠️</h4>
+      <li>
+        If you roll a 1, your current score will be set to 0 and your turn will be over
+      </li></br>
+      <h4 style="color: limegreen;">WIN 🎉</h4>
+      <li>
+        First player to accumulate an overall score of 100 points wins the game!
+      </li>
+    </ul>
+  </div>
   <script src="script.js"></script>
 </body>
 

@@ -9,6 +9,9 @@ const diceImg = document.querySelector(".dice");
 const btnNewGame = document.querySelector(".btn--new");
 const btnRollDice = document.querySelector(".btn--roll");
 const btnHoldScore = document.querySelector(".btn--hold");
+const btnRules = document.querySelector(".btn--rules");
+const rulesModal = document.querySelector(".rules-modal");
+const closeModal = document.querySelector(".close-modal");
 
 let totalScores, currentScore, activePlayer, playing;
 
@@ -71,7 +74,7 @@ btnHoldScore.addEventListener("click", function () {
     totalScores[activePlayer] += currentScore;
     document.querySelector(`#score--${activePlayer}`).textContent = totalScores[activePlayer];
 
-    if (totalScores[activePlayer] >= 20) {
+    if (totalScores[activePlayer] >= 50) {
 
       playing = false;
 
@@ -90,5 +93,13 @@ btnHoldScore.addEventListener("click", function () {
 });
 
 btnNewGame.addEventListener("click", init);
+
+btnRules.addEventListener("click", function () {
+  rulesModal.classList.toggle("hidden");
+});
+
+closeModal.addEventListener("click", function () {
+  rulesModal.classList.add("hidden");
+});
 
 init();
