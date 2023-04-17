@@ -200,3 +200,41 @@ addArrow(2, 8);
 
 // console.log("friend:", friend);
 // console.log("me:", me);
+
+// PRIMITIVE TYPES
+let lastName = 'Rojas';
+let oldLastName = lastName;
+lastName = 'Lazette';
+
+console.log(lastName, oldLastName);
+
+// REFERENCE TYPES
+const jessica = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+};
+
+const marriedJessica = jessica; // does NOT create a new object, just points to the same memory address in the heap
+marriedJessica.lastName = 'Davis'; // since we didn't create a new object, we are modifying BOTH jessica and marriedJessica objects
+// console.log('Before marriage:', jessica); // last name is davis
+// console.log('After marriage:', marriedJessica); // last name is davis
+
+// COPYING OBJECTS
+
+const jessica2 = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+  family: ['Alice', 'Bob'], // deeply nested objects (not first level)
+};
+
+// create a NEW object
+const jessica2Copy = Object.assign({}, jessica2); // creates a shallow copy: only copies the properties at the first level-- doesn't copy the family array
+jessica2Copy.lastName = "Davidson";
+
+jessica2Copy.family.push('Mary');
+jessica2Copy.family.push('John');
+
+console.log('OG jessica2:', jessica2); // last name is williams
+console.log('jessica2Copy:', jessica2Copy); // last name is davidson
