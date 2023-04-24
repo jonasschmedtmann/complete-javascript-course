@@ -1,0 +1,32 @@
+{
+	"name": "Ubuntu",
+    "runArgs": ["--name=udemy-js"],
+	"build": {
+		"dockerfile": "Dockerfile",
+		// Update 'VARIANT' to pick an Ubuntu version: jammy / ubuntu-22.04, focal / ubuntu-20.04, bionic /ubuntu-18.04
+		// Use ubuntu-22.04 or ubuntu-18.04 on local arm64/Apple Silicon.
+		"args": {
+            "VARIANT": "ubuntu-22.04",
+            "BUILDKIT_INLINE_CACHE": "0"
+        }
+	},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "uname -a",
+
+	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "vscode",
+
+    // Add the IDs of extensions you want installed when the container is created.
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "MS-CEINTL.vscode-language-pack-ja",
+                "vscode-icons-team.vscode-icons"
+            ]
+        }
+    }
+}
