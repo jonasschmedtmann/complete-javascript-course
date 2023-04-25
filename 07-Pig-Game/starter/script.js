@@ -73,6 +73,7 @@ const resetGame = () => {
   });
   gameRun = true;
 };
+
 rollButton.addEventListener('click', rollDice);
 holdButton.addEventListener('click', holdScore);
 newButton.addEventListener('click', resetGame);
