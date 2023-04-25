@@ -50,5 +50,6 @@ const hadleAgain = () => {
   message.innerHTML = "Start guessing...";
   number.innerHTML = "?";
 };
+
 againButton.addEventListener("click", hadleAgain);
 checkButton.addEventListener("click", handleCheck);
