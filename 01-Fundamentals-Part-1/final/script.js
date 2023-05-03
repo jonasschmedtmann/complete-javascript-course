@@ -130,6 +130,43 @@ TEST DATA 2: Marks weights 95 kg and is 1.88 m tall. John weights 85 kg and is 1
 
 GOOD LUCK 😀
 */
+// BMI calculator
+const mark = {
+  name: 'Mark',
+  mass: 78,
+  height: 1.69,
+};
+
+const john = {
+  name: 'John',
+  mass: 92,
+  height: 1.95,
+};
+
+const calcBMI = function (mass, height, name) {
+  const bmi = parseFloat(mass / height ** 2).toFixed(2);
+
+  if (bmi < 18.5) {
+    console.log(`${bmi}: ${name} is underweight`)
+  } else if (bmi >= 18.5 && bmi <= 24.9) {
+    console.log(`${bmi}: ${name}  is at a healthy weight`)
+  } else if (bmi >= 25.0 && bmi <= 29.9) {
+    console.log(`${bmi}: ${name} is overweight`)
+  } else if (bmi > 30.0) {
+    console.log(`${bmi}: ${name} is obese`)
+  };
+  //if you dont return bmi, markBMI & johnBMI come back UNDEFINED
+  return bmi;
+};
+
+const markBMI = calcBMI(mark.mass, mark.height, mark.name);
+const johnBMI = calcBMI(john.mass, john.height, john.name);
+
+if (markBMI > johnBMI) {
+  console.log(`Mark's BMI (${markBMI}) is greater than John's BMI (${johnBMI})`)
+} else {
+  console.log(`John's BMI (${johnBMI}) is greater than Mark's BMI (${markBMI})`)
+}
 
 // const massMark = 78;
 // const heightMark = 1.69;
