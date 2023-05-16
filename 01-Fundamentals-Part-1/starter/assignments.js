@@ -1,30 +1,47 @@
 // Values and Variables
+
 const country = "America";
 const continent = "North America";
-let population = 300000000;
+let population = 300;
 console.log(country, continent, population);
 
 // Data Types
+
 const isIsland = false;
 let language;
 console.log(isIsland, population, country, language)
 
 // let, const, var
+
 language = "English";
 
 // basic operators
 
-let populationHalf = population/2;
+let populationHalf = population / 2;
 population = population + 1;
 
-let populationFinland = 6000000;
+let populationFinland = 6;
 const isPopulationGreaterThanFinland = population > populationFinland;
 console.log(isPopulationGreaterThanFinland);
 
-let populationAverage = 33000000;
+let populationAverage = 33;
 const isPopulationLessThanAverage = population < populationAverage;
 console.log(isPopulationLessThanAverage);
 
-let description = "Portugal is in Europe, and its 11 million people speak portuguese"
+let description = country + " is in " + continent + " , and its " + population + " million people speak " + language
 
-// 
+// String and Template literals
+
+description = `${country} is in ${continent}, and its ${population} million people speak ${language}`
+
+// if else 
+
+if (population > populationAverage) {
+    console.log(`${country}'s population is above average 👀`);
+} else {
+    console.log(`${country}'s population is ${populationAverage - population} million below average`);
+}
+
+//type conversion and coercion
+
+
