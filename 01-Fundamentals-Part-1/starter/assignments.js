@@ -44,4 +44,11 @@ if (population > populationAverage) {
 
 //type conversion and coercion
 
+const inputYear = '1991';
 
+console.log(Number(inputYear));
+
+console.log(inputYear * 18);
+
+//truthy and falsy
+const aNumber = Number(window.prompt("Type a number", ""));
