@@ -14,8 +14,8 @@ function logger(name) {
     console.log(`My name is ${name}`);
 }
 
-logger(Betty); //calling, invoking, running
-logger(Robin);
+logger("Betty"); //calling, invoking, running
+logger("Robin");
 
 //name is a parameter but Betty is an argument
 
