@@ -133,7 +133,7 @@ console.log(`String with
 multiple 
 lines`);
 */
-/*
+
 const age = 15;
 
 if(age >= 18) {
@@ -143,38 +143,7 @@ console.log('Sarah can start driving license 🚗');
       console.log(`Sarah is too young. 🥹  Wait another ${yearsLeft} years.`);
 }
 
-const birthYear = 2012;
-
-let century;
-if(birthYear <= 2000) {
-       century = 20;
-} else {
-       century = 21;
-}
-console.log(century);
-*/
-
-const markWeight = 78;
-const markHeight = 1.69;
-const johnWeight = 92;
-const johnHeight = 1.95;
-
-// const markWeight = 95;
-// const markHeight = 1.88;
-// const johnWeight = 85;
-// const johnHeight = 1.76;
-
-const markBMI = markWeight / markHeight ** 2; 
-const johnBMI = johnWeight / johnHeight ** 2;
-
-console.log(`Mark ${markBMI}, John ${johnBMI}`);
-
-if(markBMI > johnBMI) {
-      console.log(`Mark's BMI ${markBMI} is higher than John's ${johnBMI}!`)
-} else {
-      console.log(`John's BMI ${johnBMI} is higher than ${markBMI}!`)
-}
-
+// This is to practice revert😡😡😡😡
 
 
 
