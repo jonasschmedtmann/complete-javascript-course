@@ -186,6 +186,7 @@ console.log(typeof NaN);
 
 console.log(String(123));
 
+console.log(`checking cmp add all`)
 
 
 
