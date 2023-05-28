@@ -163,7 +163,7 @@ const johnHeight = 1.95;
 // const markHeight = 1.88;
 // const johnWeight = 85;
 // const johnHeight = 1.76;
-
+/*
 const markBMI = markWeight / markHeight ** 2; 
 const johnBMI = johnWeight / johnHeight ** 2;
 
@@ -174,6 +174,19 @@ if(markBMI > johnBMI) {
 } else {
       console.log(`John's BMI ${johnBMI} is higher than ${markBMI}!`)
 }
+*/
+
+// Conversion and Coercion
+const inputYear = '1991'
+console.log(Number(inputYear));
+console.log(Number(inputYear) + 18);
+
+console.log(Number('Jonas'));
+console.log(typeof NaN);
+
+console.log(String(123));
+
+
 
 
 
