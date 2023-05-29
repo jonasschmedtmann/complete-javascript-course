@@ -1,0 +1,89 @@
+
+-----> BASIC STYLING WITH CSS 
+
+
+
+WE USE CSS TO STYLE ELEMENTS AND TO CREATE A LAYOUT FOR THE OVERRALL PAGE 
+WE CAN STYLE IN THE HTML FILE USING THE STYLE ELEMENT. 
+
+AND THE STYLE ELEMENT IS NOT FOR VISIBLE CONTENT 
+SO IT SHOULD GO RIGHT HERE INTO THE HEAD 
+
+----> THE HEAD IS BASICALLY LIKE FOR SETTINGS OF THE PAGE 
+AND THE STYLE COUNTS AS A SETTING 
+
+<head>
+
+<style> 
+to style elements we need to first select them and there are different types of selectors in CSS. 
+THE MOST BASIC ONE IS THE ELEMENT SELECTOR.
+With the element selector we CAN SIMPLY SELECT ALL ELEMENTS OF A CERTAIN TYPE, FOR EXAMPLE: THE BODY  
+
+body { here we write our CSS declarations.
+   Each CSS declaration has a property name, and then a value  
+   background-color: green; 
+
+ }
+
+</style
+ 
+</head> 
+
+WE WRITE THE CSS CODE IN A SEPARATE FILE 
+SO WE LINK IT ( THE CSS FILE TO THE HTML FILE) USING THE LINK ELEMENT 
+
+ANCHOR ELEMENT CREATE A CLICKABLE LINK BUT THE LINK ELEMENT DOES NOT!!!!
+
+<link href="style.css" rel= "stylesheet"/> 
+
+THE LINK ELEMENT DOES NOT HAVE A CLOSING TAG 
+
+body { here we write our CSS declarations.
+   Each CSS declaration has a property name, and then a value  
+   background-color: green;
+   font-family: Arial;
+
+ }
+
+ OBS: THE FONT FAMILY PROPERTY IS A PROPERTY THAT GETS INHERITED
+ SO ALL THE CHILD ELEMENTS OF THE BODY ELEMENT WILL AUTOMATICALY GET 
+ THIS FONT FAMILY ASSIGNED TO THEM!!!!  
+
+MOST PROPERTIES DO NOT INHERIT!!!
+BUT GENERALLY, ALL THE PROPERTIES THAT ARE RELATED TO FONTS 
+WILL INHERIT 
+
+body { here we write our CSS declarations.
+   Each CSS declaration has a property name, and then a value  
+   background-color: green;
+   font-family: Arial;
+   font-size: 20px;
+ }
+
+OBS: The elements h1 and h2 don't change when you set the font size
+And that's because they have predefined font size that automaticaly are applied from the browser
+if we do not specify them on our own. 
+
+- BUT OF COURSE WE CAN OVERWRITE THEM WITH OUR OWN SELECTORS 
+
+- ANOTHER ELEMENT SELECTOR BUT IN THIS CASE WITH THE H1 
+
+h1{
+  font-size: 40p;
+}
+
+NOW LET'S USE THE CLASS NAMES AND THE IDS TO NOW SELECT ELEMENTS BASED ON THESE CLASSES 
+
+----WE SELECT A CLASS BY USING A DOT: 
+
+.first{
+  color: red;
+}
+
+--- HOW TO SELECT BASED ON ID: 
+
+OBS: WE CAN SET MULTIPLE VALUES FOR THE BORDER PROPERTY 
+#your-name{
+  background-color: yellow; 
+  border: 5px solid #444 (RGB COLORS)
+}
