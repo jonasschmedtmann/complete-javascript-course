@@ -175,7 +175,7 @@ if(markBMI > johnBMI) {
       console.log(`John's BMI ${johnBMI} is higher than ${markBMI}!`)
 }
 */
-
+/*
 // Conversion and Coercion
 const inputYear = '1991'
 console.log(Number(inputYear));
@@ -185,6 +185,48 @@ console.log(Number('Jonas'));
 console.log(typeof NaN);
 
 console.log(String(123));
+
+// type coersion
+console.log('I am ' + 23 + ' years old') // if there's tring in front + operator converts to string
+console.log('23' - '10' - 3)
+console.log('23' * '10')
+console.log('23' / '10')
+
+let n = '1' + 1; // '11'
+n = n-1; // 11-1 = 10
+console.log(n); // 10
+
+// 2+3+4+'5' // '95'
+// '10'-'4'-'3'-2+'5' // '15'
+*/
+
+// Boolean
+// 5 falsy values: 0 '', undefined, null, NaN
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
