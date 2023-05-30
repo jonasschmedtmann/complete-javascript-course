@@ -1,0 +1,14 @@
+{
+  "folders": [
+	{
+		"path": ".."
+	},
+	{
+		"name": "udemy-js-1",
+		"path": "../../../.vscode/udemy-js/udemy-js-1"
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "03-Developer-Skills"
+  }
+}
