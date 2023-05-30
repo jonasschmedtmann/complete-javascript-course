@@ -1,4 +1,4 @@
-console.log("Hello form main!");
+console.log("Hello from main!");
 
 // use const unless the value needs to change
 /*
