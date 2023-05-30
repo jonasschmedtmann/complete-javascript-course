@@ -172,34 +172,82 @@ console.log(Boolean(" ")); // true
 // console.log(var1 == var2); // true => be careful
 // console.log(var1 === var2); // false - because different types
 
-const var1 = null;
-const var2 = undefined;
-console.log(var1 == var2); // true => be careful
-console.log(var1 === var2); // false - because different types
+// const var1 = null;
+// const var2 = undefined;
+// console.log(var1 == var2); // true => be careful
+// console.log(var1 === var2); // false - because different types
 
 // conditional Staements if else, switch
-const num = 0;
+// const num = 0;
 
-if (num > 0) {
-  console.log("number is positiove");
-} else if (num < 0) {
-  console.log("Number is negative");
-} else {
-  console.log("Number is zero");
-}
+// if (num > 0) {
+//   console.log("number is positiove");
+// } else if (num < 0) {
+//   console.log("Number is negative");
+// } else {
+//   console.log("Number is zero");
+// }
 
-const color = "10";
+// const color = "10";
 
-switch (color) {
-  case "red":
-    console.log("Color is red");
-    break;
-  case "blue":
-    console.log("Color is blue");
-    break;
-  case "green":
-    console.log("Color is green");
-    break;
-  default:
-    console.log("Not a valid color");
+// switch (color) {
+//   case "red":
+//     console.log("Color is red");
+//     break;
+//   case "blue":
+//     console.log("Color is blue");
+//     break;
+//   case "green":
+//     console.log("Color is green");
+//     break;
+//   default:
+//     console.log("Not a valid color");
+// }
+
+// // Looping code
+// // For loop
+// // for (initializer; condition; final-expression){
+// //     // code run
+// // }
+
+// for (let i = 1; i <= 5; i++) {
+//   console.log("Iteration number " + i);
+// }
+
+// While loop
+// initializer
+// while (condition) {
+//    // code run
+
+//    final-expression
+// }
+
+// let i = 1;
+// while (i <= 5) {
+//   console.log("Iteration number " + i);
+//   i++;
+// }
+
+// Do While loop
+// initializer
+// do {
+//     // code run
+
+//     final-expression
+// } while (condition)
+
+// let i = 1; // if we give 6 we see 6 once, prints before checking condition
+// do {
+//   console.log("Iterator number " + i);
+//   i++;
+// } while (i <= 5);
+
+// For of loop - loop for Array
+// for(const item of array) {
+//     // code run
+// }
+
+const numArray = [1, 4, 55, 0, 5]; // 1,4,55,0,5
+for (const num of numArray) {
+  console.log("Iterator number " + num);
 }
