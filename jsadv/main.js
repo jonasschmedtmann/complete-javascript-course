@@ -121,7 +121,7 @@ Other op
 // console.log("5" + false); // 5false => string
 // console.log("5" - null); // 5 => null = 0
 // console.log(5 + undefined); // NaN
-
+/*
 // Expicit conversion
 console.log(Number("5")); // 5
 console.log(Number(false)); // 0
@@ -141,3 +141,65 @@ console.log(Boolean(0)); // fasle
 console.log(Boolean(undefined)); // false
 console.log(Boolean("")); // false
 console.log(Boolean(" ")); // true
+*/
+// Equality
+
+// ==(Allows coercion)
+// ===(Does not allow coercion)
+
+// const var1 = "test";
+// const var2 = "test";
+// console.log(var1 == var2); // true
+// console.log(var1 === var2); // true
+
+// const var1 = 10;
+// const var2 = "10";
+// console.log(var1 == var2); // true
+// console.log(var1 === var2); // false - because different type
+
+// const var1 = "10";
+// const var2 = "5";
+// console.log(var1 == var2); // false
+// console.log(var1 === var2); // false - because different value
+
+// const var1 = 0;
+// const var2 = "";
+// console.log(var1 == var2); // true => be careful
+// console.log(var1 === var2); // false - because different types
+
+// const var1 = false;
+// const var2 = "";
+// console.log(var1 == var2); // true => be careful
+// console.log(var1 === var2); // false - because different types
+
+const var1 = null;
+const var2 = undefined;
+console.log(var1 == var2); // true => be careful
+console.log(var1 === var2); // false - because different types
+
+// conditional Staements if else, switch
+const num = 0;
+
+if (num > 0) {
+  console.log("number is positiove");
+} else if (num < 0) {
+  console.log("Number is negative");
+} else {
+  console.log("Number is zero");
+}
+
+const color = "10";
+
+switch (color) {
+  case "red":
+    console.log("Color is red");
+    break;
+  case "blue":
+    console.log("Color is blue");
+    break;
+  case "green":
+    console.log("Color is green");
+    break;
+  default:
+    console.log("Not a valid color");
+}
