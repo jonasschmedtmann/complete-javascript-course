@@ -99,3 +99,5 @@ sayMyName();
 function sayMyName() {
   console.log(`My name is ${this.name}`);
 }
+
+//checking if this branch was deleted
