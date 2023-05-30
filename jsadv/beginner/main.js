@@ -247,7 +247,59 @@ console.log(Boolean(" ")); // true
 //     // code run
 // }
 
-const numArray = [1, 4, 55, 0, 5]; // 1,4,55,0,5
-for (const num of numArray) {
-  console.log("Iterator number " + num);
+// const numArray = [1, 4, 55, 0, 5]; // 1,4,55,0,5
+// for (const num of numArray) {
+//   console.log("Iterator number " + num);
+// }
+
+// Functions
+// function greet(userName) {
+//   console.log("Good morning " + userName);
+// }
+// greet("Bruce");
+// greet("Diana");
+// greet("Clark");
+
+// function add(a, b) {
+//   return a + b;
+// }
+// const sum = add(5, 10);
+// console.log(sum);
+
+// const arrowSum = (a, b) => a + b;
+// const sum = arrowSum(25, 25);
+// console.log(sum);
+
+// const addFive = (num) => num + 5;
+// console.log(addFive); // (num) => num + 5 ==> TODO
+
+// Scope - Block scope, Function scope, Global scope
+//Block scope
+// if (true) {
+//   const myName = "John";
+//   console.log(myName);
+// }
+
+// // Function scope
+// function testFN() {
+//   const myName = "Batman";
+//   console.log(myName);
+// }
+// testFN();
+
+// Global scope
+// Globally declare variable does not override local or function variable
+const myNum = 100;
+if (true) {
+  const myName = "John";
+  console.log(myName);
+  console.log(myNum);
 }
+
+// Function scope
+function testFN() {
+  const myName = "Batman";
+  console.log(myName);
+  console.log(myNum);
+}
+testFN();
