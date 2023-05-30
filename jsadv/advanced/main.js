@@ -90,14 +90,53 @@
 
 // ***Default binding
 
-//globalThis.name = "1234";
-function sayMyName() {
-  console.log(`My name is ${this.name}`);
+// globalThis.name = "Booo";
+// function sayMyName() {
+//   console.log(`My name is ${this.name}`);
+// }
+
+// sayMyName();
+// function sayMyName() {
+//   console.log(`My name is ${this.name}`);
+// }
+
+// ***Prototype -
+// 1. helps to share properties and methods across instances
+// function person(firstName, lastName) {
+//   this.firstName = firstName;
+//   this.lastName = lastName;
+// }
+// const person1 = new person("Bruce", "Wayne"); // constructor function
+// const person2 = new person("Clark", "Kent");
+
+// person.prototype.getFullName = function () {
+//   return this.firstName + " " + this.lastName;
+// };
+// console.log(person1.getFullName());
+// console.log(person2.getFullName());
+
+// 2. Inheritance - prototypal inheritance => method is inherited through the prototype chain
+function Person(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
 }
 
-sayMyName();
-function sayMyName() {
-  console.log(`My name is ${this.name}`);
-}
+Person.prototype.getFullName = function () {
+  return this.firstName + " " + this.lastName;
+};
 
-//checking if this branch was deleted
+function Superhero(firstName, lastName) {
+  Person.call(this, firstName, lastName);
+  this.Superhero = true;
+}
+Superhero.prototype.fightCrime = function () {
+  console.log("Fighting crime");
+};
+
+Superhero.prototype = Object.create(Person.prototype);
+
+const batman = new Superhero("Bruce", "Wayne");
+Superhero.prototype.constructor = Superhero; // otherwise JS thinks batman is created from Person(), but it was created from Superhero(). Superhero() inherited properties from Person()
+console.log(batman.getFullName());
+
+// ***Class
