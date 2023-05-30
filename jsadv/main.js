@@ -61,46 +61,83 @@ String op
 Other op
 */
 // Assignment op
-let x = 10;
-let y = 5;
-// Arithmetic op
-console.log(x + y);
-console.log(x % y);
-console.log(++x);
-console.log(--x);
+// let x = 10;
+// let y = 5;
+// // Arithmetic op
+// console.log(x + y);
+// console.log(x % y);
+// console.log(++x);
+// console.log(--x);
 
-// Comparison op
-console.log(x > y);
-console.log(x == y);
-console.log(x === y); // false - compares value and data type
-console.log(x !== y); // true - strictly not equal to
+// // Comparison op
+// console.log(x > y);
+// console.log(x == y);
+// console.log(x === y); // false - compares value and data type
+// console.log(x !== y); // true - strictly not equal to
 
-// Logical op
-const isValidNumer = x > 8 && y > 8; // false - true only if both true
-const isValidNumer2 = x > 8 || y > 8; // true - true if only one true
+// // Logical op
+// const isValidNumer = x > 8 && y > 8; // false - true only if both true
+// const isValidNumer2 = x > 8 || y > 8; // true - true if only one true
 
-console.log(isValidNumer);
-console.log(isValidNumer2);
+// console.log(isValidNumer);
+// console.log(isValidNumer2);
 
-const isValid = false;
-console.log(!isValid); // true - negating false
+// const isValid = false;
+// console.log(!isValid); // true - negating false
 
-// String op
-console.log("Bruce" + "Wayne");
+// // String op
+// console.log("Bruce" + "Wayne");
 
-// Ternery op
-const isEven = 10 % 2 === 0 ? true : false;
-console.log(isEven);
+// // Ternery op
+// const isEven = 10 % 2 === 0 ? true : false;
+// console.log(isEven);
 
-const isEven2 = 10 % 2 === 0 ? "Number is even" : "Number is odd";
-console.log(isEven2);
+// const isEven2 = 10 % 2 === 0 ? "Number is even" : "Number is odd";
+// console.log(isEven2);
 
-const ofAge = 17 >= 18 ? "Of age" : "Of not age";
-console.log(ofAge);
+// const ofAge = 17 >= 18 ? "Of age" : "Of not age";
+// console.log(ofAge);
 
-const year = 2023;
-const birthYear = 1991;
-const ofAge2 = year - birthYear >= 18 ? "Of age" : "Of not age";
-console.log(ofAge2);
+// const year = 2023;
+// const birthYear = 1991;
+// const ofAge2 = year - birthYear >= 18 ? "Of age" : "Of not age";
+// console.log(ofAge2);
 
-// Type conversion
+// // Type conversion
+// // Implicit conversion - automatically done
+// // Expicit conversion - manuall y done
+
+// console.log(11 + "3"); // 113 - string
+// console.log(true + "3"); // true3
+// console.log("4" - "2"); // 2
+// console.log("8" * "2"); // 16
+// console.log("8" / "2"); // 4
+// console.log(8 / "2"); // 4
+// console.log(8 * "2"); // 16
+// console.log("Bruce" - "Wayne"); // NaN
+// console.log("5" - true); // 4 => true = 1
+// console.log("5" - false); // 5 => true = 0
+// console.log("5" + true); // 5true => string
+// console.log("5" + false); // 5false => string
+// console.log("5" - null); // 5 => null = 0
+// console.log(5 + undefined); // NaN
+
+// Expicit conversion
+console.log(Number("5")); // 5
+console.log(Number(false)); // 0
+console.log(Number("")); // 0
+console.log(parseInt("5")); // 5
+console.log(parseFloat("3.14")); // 5
+
+console.log(String(500)); // 500 string
+console.log(String(null)); // null string
+console.log(String(undefined)); // undefined string
+console.log((500).toString()); // 500 string
+
+console.log(Boolean(10)); // true
+console.log(Boolean(NaN)); // false
+console.log(Boolean(null)); // null
+console.log(Boolean(0)); // fasle
+console.log(Boolean(undefined)); // false
+console.log(Boolean("")); // false
+console.log(Boolean(" ")); // true
