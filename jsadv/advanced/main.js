@@ -90,14 +90,160 @@
 
 // ***Default binding
 
-//globalThis.name = "1234";
-function sayMyName() {
-  console.log(`My name is ${this.name}`);
+// globalThis.name = "Booo";
+// function sayMyName() {
+//   console.log(`My name is ${this.name}`);
+// }
+
+// sayMyName();
+// function sayMyName() {
+//   console.log(`My name is ${this.name}`);
+// }
+
+// ***Prototype -
+// 1. helps to share properties and methods across instances
+// function person(firstName, lastName) {
+//   this.firstName = firstName;
+//   this.lastName = lastName;
+// }
+// const person1 = new person("Bruce", "Wayne"); // constructor function
+// const person2 = new person("Clark", "Kent");
+
+// person.prototype.getFullName = function () {
+//   return this.firstName + " " + this.lastName;
+// };
+// console.log(person1.getFullName());
+// console.log(person2.getFullName());
+
+// 2. Inheritance - prototypal inheritance => method is inherited through the prototype chain
+/*
+function Person(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
 }
 
-sayMyName();
-function sayMyName() {
-  console.log(`My name is ${this.name}`);
+Person.prototype.getFullName = function () {
+  return this.firstName + " " + this.lastName;
+};
+
+function Superhero(firstName, lastName) {
+  Person.call(this, firstName, lastName);
+  this.isSuperhero = true;
+}
+Superhero.prototype.fightCrime = function () {
+  console.log("Fighting crime");
+};
+
+Superhero.prototype = Object.create(Person.prototype);
+
+const batman = new Superhero("Bruce", "Wayne");
+Superhero.prototype.constructor = Superhero; // otherwise JS thinks batman is created from Person(), but it was created from Superhero(). Superhero() inherited properties from Person()
+console.log(batman.getFullName());
+*/
+
+// ***Class
+/*
+class Person {
+  // creating class
+  constructor(firstName, lastName) {
+    // initialzing properties
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+  sayMyName() {
+    // adding method
+    return this.firstName + " " + this.lastName;
+  }
 }
 
-//checking if this branch was deleted
+const classP1 = new Person("Bruce", "Wayne"); // creating instance of class
+console.log(classP1.sayMyName());
+
+class Superhero extends Person {
+  // inherit using "extends"
+  constructor(firstName, lastName) {
+    super(firstName, lastName); // inherit using "super"
+    this.isSuperhero = true;
+  }
+
+  fightCrime() {
+    console.log("Fighting crime");
+  }
+}
+const batman = new Superhero("Bruce", "Wayne");
+console.log(batman.sayMyName());
+*/
+
+// Iterables and Iterators
+
+//For..of loop
+// const str = "Wayne";
+// for (const char of str) {
+//   console.log(char);
+// }
+
+// const arr = ["R", "o", "b", "e", "r", "t", "s"];
+// for (const item of arr) {
+//   console.log(item);
+// }
+
+// Iterable
+// const obj = {
+//   [Symbol.iterator]: function () {
+//     let step = 0;
+//     const iterator = {
+//       next: function () {
+//         step++;
+//         if (step === 1) {
+//           return { value: "Hello", done: false };
+//         } else if (step === 2) {
+//           return { value: "World", done: false };
+//         }
+//         return { value: undefined, done: true };
+//       },
+//     };
+//     return iterator;
+//   },
+// };
+// for (const word of obj) {
+//   console.log(word);
+// }
+
+// ***Generator
+const obj = {
+  [Symbol.iterator]: function () {
+    let step = 0;
+    const iterator = {
+      next: function () {
+        step++;
+        if (step === 1) {
+          return { value: "Hello", done: false };
+        } else if (step === 2) {
+          return { value: "World", done: false };
+        }
+        return { value: undefined, done: true };
+      },
+    };
+    return iterator;
+  },
+};
+// for (const word of obj) {
+//   console.log(word);
+// }
+
+function normalFunction() {
+  console.log("Hello");
+  console.log("World");
+}
+normalFunction();
+
+// ***Generator function
+function* generatorFunction() {
+  yield "Hello";
+  yield "World";
+}
+
+const generatorObject = generatorFunction();
+for (const word of generatorObject) {
+  console.log(word);
+}
