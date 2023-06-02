@@ -203,53 +203,24 @@ console.log(n); // 10
 // Boolean
 // 5 falsy values: 0 '', undefined, null, NaN
 
+//
+// const inputYear = "1991";
+// console.log(Number(inputYear), inputYear); // 1991 '1991'
+// console.log(Number(inputYear) + 18); // 2009
 
+// console.log(Number("Jonas")); // Nan
+// console.log(typeof NaN); // number
 
+// console.log(String(23), 23);
 
+// *** type coercion
+console.log("I am " + 23 + " years old"); // + operator turns numbers into strings
 
+console.log("23" - "10" - 3); // - turns to number
+console.log("23" - "10" - 3); // 10 => - operator turns to number
+console.log("23" + "10" + 3); // 23103 => + operator turns to string
+console.log("23" * "2"); // 46 => * turns to number
+console.log("23" / "2"); // 11.5 => / turns to number
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
+let n = "1" + 1; // 11 => because + op turns to string
+n = n - 1; // 11 - 1 = 10 => - op turns to number
