@@ -200,9 +200,6 @@ console.log(n); // 10
 // '10'-'4'-'3'-2+'5' // '15'
 */
 
-// Boolean
-// 5 falsy values: 0 '', undefined, null, NaN
-
 //
 // const inputYear = "1991";
 // console.log(Number(inputYear), inputYear); // 1991 '1991'
@@ -214,13 +211,36 @@ console.log(n); // 10
 // console.log(String(23), 23);
 
 // *** type coercion
-console.log("I am " + 23 + " years old"); // + operator turns numbers into strings
+// console.log("I am " + 23 + " years old"); // + operator turns numbers into strings
 
-console.log("23" - "10" - 3); // - turns to number
-console.log("23" - "10" - 3); // 10 => - operator turns to number
-console.log("23" + "10" + 3); // 23103 => + operator turns to string
-console.log("23" * "2"); // 46 => * turns to number
-console.log("23" / "2"); // 11.5 => / turns to number
+// console.log("23" - "10" - 3); // - turns to number
+// console.log("23" - "10" - 3); // 10 => - operator turns to number
+// console.log("23" + "10" + 3); // 23103 => + operator turns to string
+// console.log("23" * "2"); // 46 => * turns to number
+// console.log("23" / "2"); // 11.5 => / turns to number
 
-let n = "1" + 1; // 11 => because + op turns to string
-n = n - 1; // 11 - 1 = 10 => - op turns to number
+// let n = "1" + 1; // 11 => because + op turns to string
+// n = n - 1; // 11 - 1 = 10 => - op turns to number
+
+// Boolean
+// 5 falsy values: 0 '', undefined, null, NaN
+
+console.log(Boolean(0)); // fasle
+console.log(Boolean(undefined)); // false
+console.log(Boolean("Jonas")); // true
+console.log(Boolean({})); // true
+console.log(Boolean("")); // false
+
+const money = 0;
+if (money) {
+  console.log("Don't spend it all ;)");
+} else {
+  console.log("You should get a job!");
+}
+
+let height;
+if (height) {
+  console.log("YAY! Height is defined");
+} else {
+  console.log("Height is UNDEFINED");
+}
