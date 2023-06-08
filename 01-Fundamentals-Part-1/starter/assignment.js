@@ -94,19 +94,6 @@ if(language === "English" && population < 50 &&  isIsland === true) {
     console.log('Somalia does not meet your criteria :(');
  }
 
-*/
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -129,3 +116,42 @@ console.log( BMIMark, BMIJohn);
 
 
 
+// The switch Statement //
+
+const language = 'arabic';
+ 
+switch (language) {
+    case 'chinese':
+    case 'mandarin':
+        console.log('MOST number of native speakers!');
+        break;
+    case 'spanish':
+        console.log( '2nd place in number of native speakers');
+        break;
+    case 'english':
+        console.log( '3rd place');
+        break;
+    case 'hindi':
+        console.log('Number 4');
+        break;
+    case 'arabic':
+        console.log('5th most spoken language');
+        break;
+    default:
+        console.log('Great language too :D');
+
+}
+
+*/
+
+// The Conditional(Ternary) Operator //
+
+const population = 13;
+
+const result = population > 33? "Portugal's population is above average":
+ "Portugal's population is below average";
+ console.log(result);
+
+ console.log(`I want to know ${population > 33? "Portugal's population is above average":
+ "Portugal's population is below average"}`);
+ 

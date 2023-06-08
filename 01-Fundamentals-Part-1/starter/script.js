@@ -87,5 +87,58 @@ if(hasDriversLicense && hasGoodVision){
     console.log('Someone else should drive...');
 }
 
+
+
+// The Switch Statement //
+
+const day = 'thursday';
+
+switch (day) {
+    case 'saturday':
+        console.log('plan course structure');
+        console.log('Go to coding meetup');
+        break;
+    case 'sunday':
+        console.log('prepare theory videos');
+        break;
+    case 'monday':
+    case 'tuesday':
+        console.log('Write code examples');
+        break;
+    case 'wednesday':
+        console.log('Recod videos');
+        break;
+    case 'thurday':
+    case 'friday':
+        console.log('Enjoy the weekend');
+        break;
+    default:
+    console.log('Not a valid day!'); 
+}
+
+var everyDay = "saturday";
+
+if(everyDay === "saturday"){
+    console.log('plan course structure');
+    console.log('Go to coding meetup');
+} else if (everyDay ===  'sunday'){
+    console.log('prepare theory videos');
+} else if (everyDay === 'monday' || everyDay === 'tuesday'){
+    console.log('Write code examples');
+} else if (everyDay === 'wednesday'){
+    console.log('Recod videos');
+} else if (everyDay === 'thurday' || everyDay === 'friday'){
+    console.log('Enjoy the weekend');
+}else {
+    console.log('Not a valid day!'); 
+}
+
 */
+
+// Ternatary Operator //
+const age = 19;
+const drink = age >= 18 ? 'coffee☕': 'water🥤';
+console.log(drink);
+
+console.log(`I like to drink ${age >= 18 ? 'coffee☕': 'water🥤'}`);
 
