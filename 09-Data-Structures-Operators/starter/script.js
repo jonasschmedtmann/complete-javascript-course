@@ -4,6 +4,25 @@
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
+const weekdays = ['mon', 'tues', 'wed', 'thurs', 'fri'];
+
+const openingHours = {
+  // dynamically generating object properties using new ES6 enhancements
+  [weekdays[3]]: {
+    open: 12,
+    close: 22,
+  },
+  fri: {
+    open: 11,
+    close: 23,
+  },
+  sat: {
+    open: 0, // Open 24 hours
+    close: 24,
+  },
+};
+
+
 // Data needed for first part of the section
 const restaurant = {
   name: 'Classico Italiano',
@@ -11,25 +30,13 @@ const restaurant = {
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-  order: function (starterIndex, mainIndex) {
+  order(starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
-  openingHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0, // Open 24 hours
-      close: 24,
-    },
-  },
+  // ES6 enhanced object literal, replaced 'openingHours: openingHours,' SECTION 112
+  openingHours,
   // passing in a destructured object as a single parameter
-  orderDelivery: function ({
+  orderDelivery({
     starterIndex = 1,
     mainIndex = 0,
     time = '20:00',
@@ -37,17 +44,97 @@ const restaurant = {
   }) {
     console.log(
       `Order Recieved! \n Your ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} 
-    will be delivered at ${time} to ${address}`
-    );
-  },
-  orderPasta: function (ing1, ing2, ing3) {
-    console.log(`Order recieved for pasta using ${ing1}, ${ing2}, and ${ing3}`)
-  },
-  orderPizza: function (mainIngredient, ...otherIngredients) {
-    console.log(`You just ordered a pizza with: ${mainIngredient}, ${otherIngredients}`);
-  }
-};
+      will be delivered at ${time} to ${address}`
+      );
+    },
+    orderPasta(ing1, ing2, ing3) {
+      console.log(`Order recieved for pasta using ${ing1}, ${ing2}, and ${ing3}`)
+    },
+    orderPizza(mainIngredient, ...otherIngredients) {
+      console.log(`You just ordered a pizza with: ${mainIngredient}, ${otherIngredients}`);
+    }
+  };
+  
+  ////////////////////////////////////////////////////////////////////
+// SECTION 114: LOOPING OBJECTS (KEYS, VALUES, ENTRIES)
 
+// KEYS
+const properties = Object.keys(openingHours);
+console.log(properties); //['thurs', 'fri', 'sat']
+
+let openStr = `We are open on ${properties.length} days: `;
+for (const day of properties){
+  openStr += `${day},`;
+};
+console.log(openStr)
+
+// VALUES
+const values = Object.values(openingHours);
+console.log(values); 
+//(3) [{…}, {…}, {…}]
+//    0: {open: 12, close: 22}
+//    1: {open: 11, close: 23}
+//    2: {open: 0, close: 24}
+
+// ENTRIES
+const entries = Object.entries(openingHours);
+console.log(entries); //(3) [Array(2), Array(2), Array(2)] 
+
+for (const [day, {open, close}] of entries){
+  console.log(`On ${day} we open at ${open} and close at ${close}`);
+}
+
+
+
+  ////////////////////////////////////////////////////////////////////
+  // SECTION 113: OPTIONAL CHAINING (?.) 
+  // ensures that if part of the statement is undefined, then the entire value is undefined rather than throwing an error
+  
+  // console.log(restaurant.openingHours.mon--if it exists THEN-- .open)
+  // console.log(restaurant.openingHours.mon?.open); // prints 'undefined' because mon doesn't exist
+
+// if resaurant.openingHours exists, then restaurant.openingHours.fri-- if it exists THEN restaurant.opneingHours.fri.open
+  // console.log(restaurant.openingHours?.fri?.open); // prints '11'
+
+  /*  //Example 
+
+  const days = ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
+
+  for(const day of days){
+    const openTime = restaurant.openingHours[day.toLowerCase()]?.open ?? 'NOT OPEN'; // ?? (nullish coalescing operator) default value if undefined or null -- if you use || then the value of 0 will default to falsy and print "not open". ?? bypasses this and keeps 0 a truthy value
+    console.log(`${day} OPEN at: ${openTime}`);
+  }
+  */
+
+/* //Another Example 
+  // check if a method exists?. BEFORE (calling it)
+  console.log(restaurant.order?.(0,1) ?? 'Method does not exists');
+  console.log(restaurant.orderRisotto?.(0,1) ?? 'Method does not exists');
+*/
+
+/* //Annnnother Example
+const users = [
+  { name: 'kass', age: 26, email: 'ka@email.com'},
+  { name: 'kiwi', age: 3, email: null},
+  { name: 'andrew', age: 34, email: 'a@drew.com'},
+];
+// does  users[0] exists? . then grab 'name' ?? otherwise 'user array empty'
+//  optional chaining and nullish coelescing operator tend to go hand in hand
+for (const user of users){
+  console.log(user?.email ?? 'property empty')
+}
+ */
+  ////////////////////////////////////////////////////////////////////
+  // SECTION 112: FOR OF LOOP
+  //(can use 'break' and 'continue')
+  // const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+  // for (const item of menu) console.log(item);
+  
+  // way to get [index value, and the element] with a for of loop
+  // menu.entries() gives us an array of index value and element. Destructuring gives us just the value and element without it being in an array.
+// for (const [i, el] of menu.entries()) {
+//   console.log(`${i + 1}: ${el}`);
+// };
 
 /*
 const rest1 = {
@@ -318,7 +405,7 @@ TEST DATA FOR 6: Use players 'Davies', 'Muller', 'Lewandowski' and 'Kimmich'. Th
 
 GOOD LUCK 😀
 */
-
+/* solved
 const game = {
   team1: 'Bayern Munich',
   team2: 'Borrussia Dortmund',
@@ -360,7 +447,7 @@ const game = {
   },
 };
 
-//1 destructuring game.players as 2 separate arrays namesd players1 and players2
+//1 destructuring game.players as 2 separate arrays named players1 and players2
 const [players1, players2] = game.players;
 
 // 2 set first person as goal keeper and the rest as fieldPlayers, destructuring gk = players1[0], ...fieldPlayers = players1[1,]
@@ -374,10 +461,10 @@ const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
 console.log(players1Final);
 
 //5 using OBJECT DESTRUCTURING create one variable for each odd (called 'team1', 'draw' and 'team2')
-// const { odds: { team1, x: draw, team2 } } = game; // almost the same thing but destructuring more on left side here
+// const { odds: { team1, x: draw, team2 } } = game; // almost the same thing but destructuring MORE on left side this way
 const { team1, x: draw, team2 } = game.odds;
 
-// 6. Write a function ('printGoals') that receives an arbitrary number of player names (NOT an array) and prints each of them to the console, along with the number of goals that were scored in total (number of player names passed in)
+// 6. Write a function ('printGoals') that receives an arbitrary number of player names and prints each of them to the console, along with the number of goals that were scored in total (number of player names passed in)
 
 const printGoals = (...players) => {
   console.log(`${players.length} goals were scored`);
@@ -385,11 +472,12 @@ const printGoals = (...players) => {
 };
 
 // printGoals('Davies', 'Muller');
-// printGoals(...game.scored)
+// printGoals(...game.scored);
 
 // 7. The team with the lower odd is more likely to win. Print to the console which team is more likely to win, WITHOUT using an if/else statement or the ternary operator.
-// if ___ is true && then do this 
+// if ___ is true && (logical operator) then do this 
 team1 < team2 && console.log('Team 1 is more likely to win');
 
 // if ___ is true && then do this
 team2 < team1 && console.log('Team 2 is more likely to win');
+*/
