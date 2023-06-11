@@ -120,7 +120,6 @@ console.log(factorial(5));
 //   }, j * 1000)
 // };
 
-
 // for (let a = 1; a < 200; a++) {
 //   if (a % 3 === 0) {
 //     console.log(a)
@@ -182,14 +181,80 @@ function countingSort(arr) {
   return console.log(zeroArray);
 }
 
+countingSort([
+  63, 25, 73, 1, 98, 73, 56, 84, 86, 57, 16, 83, 8, 25, 81, 56, 9, 53, 98, 67,
+  99, 12, 83, 89, 80, 91, 39, 86, 76, 85, 74, 39, 25, 90, 59, 10, 94, 32, 44,
+  89,
+]);
 
-countingSort([63, 25, 73, 1, 98, 73, 56, 84, 86, 57, 16, 83, 8, 25, 81, 56, 9, 53, 98, 67, 99, 12, 83, 89, 80, 91, 39, 86, 76, 85, 74, 39, 25, 90, 59, 10, 94, 32, 44, 89]);
+/* Convert 12 hour time to miliary time
+function timeConversion(s) {
+  const timeOnly = s.substring(0, s.length - 2);
+  const modifier = s.substring(s.length - 2);
+  let [hours, mins, secs] = timeOnly.split(":");
 
+  if (hours === "12") {
+    hours = "00";
+  }
 
-// Given an array of integers, where all elements but one occur twice, find the unique element.
+  if (modifier.toUpperCase() === "PM") {
+    hours = parseInt(hours, 10) + 12;
+  }
 
-const lonelyInteger = (arr) => {
-
+  return `${hours}:${mins}:${secs}`;
 }
 
-// lonelyInteger([1, 2, 3, 4, 3, 2, 1]);
+console.log(timeConversion("01:15:20am"));
+*/
+// Given an array of integers, where all elements but one occur twice, find the unique element.
+function lonelyinteger(a) {
+  // Write your code here
+  for (let i = 0; i < a.length; i++) {
+    let comparisonElement = a[i];
+    let hasRepeat = false;
+    for (let j = 0; j < a.length; j++) {
+      if (comparisonElement == a[j] && i != j) {
+        hasRepeat = true;
+      }
+    }
+    if (!hasRepeat) {
+      return comparisonElement;
+    }
+  }
+}
+
+// console.log(lonelyinteger([0, 0, 2, 2, 5]));
+
+/*
+function findMedian(arr) {
+  // Write your code here
+  const sortedArr = arr.sort((a, b) => a - b);
+  console.log(Math.floor(7 / 2)); // 3 -- floor rounds to the nearest integer existing in the number
+  //ex; 3.9999 = 3 ex: 43,454.32910934093 rounds to 4, so 3.5 rounds to 3
+  console.log(Math.round(7 / 2)); // 43,454-- normal rounding rules, 3.5 rounds up to 4
+  const middleNum = sortedArr[Math.floor(sortedArr.length / 2)];
+  return middleNum;
+}
+
+console.log(findMedian([12, 90, 50, 203, 504, 93, 21]));
+*/
+
+//Given a square matrix, calculate the absolute difference between the sums of its diagonal
+
+const diagonalDifference = (arr) => {
+  let leftRightDiag = 0;
+  let RightLeftDiag = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+    for (let j = 0; j < arr.length; j++) {
+      console.log(`arr[j]: ${arr[j]} \n`);
+    }
+  }
+};
+
+diagonalDifference([
+  [11, 2, 4],
+  [4, 5, 6],
+  [10, 8, -12],
+]);
