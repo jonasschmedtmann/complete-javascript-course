@@ -27,3 +27,9 @@ const restaurant = {
     },
   },
 };
+
+// Destructuring Arrays
+const [cat1, cat2, cat3, cat4] = restaurant.categories;
+const [cat1a, , cat2a] = restaurant.categories; //Skip 1
+console.log(cat1, cat2);
+console.log(cat1a, cat2a);
