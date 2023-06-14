@@ -225,22 +225,38 @@ console.log(n); // 10
 // Boolean
 // 5 falsy values: 0 '', undefined, null, NaN
 
-console.log(Boolean(0)); // fasle
-console.log(Boolean(undefined)); // false
-console.log(Boolean("Jonas")); // true
-console.log(Boolean({})); // true
-console.log(Boolean("")); // false
+// console.log(Boolean(0)); // fasle
+// console.log(Boolean(undefined)); // false
+// console.log(Boolean("Jonas")); // true
+// console.log(Boolean({})); // true
+// console.log(Boolean("")); // false
 
-const money = 0;
-if (money) {
-  console.log("Don't spend it all ;)");
-} else {
-  console.log("You should get a job!");
-}
+// const money = 0;
+// if (money) {
+//   console.log("Don't spend it all ;)");
+// } else {
+//   console.log("You should get a job!");
+// }
 
-let height;
-if (height) {
-  console.log("YAY! Height is defined");
-} else {
-  console.log("Height is UNDEFINED");
-}
+// let height;
+// if (height) {
+//   console.log("YAY! Height is defined");
+// } else {
+//   console.log("Height is UNDEFINED");
+// }
+
+// --- * Equality operator
+
+// ===  strict equality operator - doesn't to type coercion, it will returns true only if both values are the same
+// ===  loose equality operator- does type coercion, it will return true if 1 value is true
+
+18 === 18; // true
+18 === "18"; // false
+
+18 == 18; // true
+18 == "18"; // true
+
+const age = 18;
+if (age === 18) console.log("You just became an adult (strict)");
+
+if (age == 18) console.log("You just became an adult (loose)");
