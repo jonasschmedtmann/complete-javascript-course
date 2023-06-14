@@ -250,13 +250,39 @@ console.log(n); // 10
 // ===  strict equality operator - doesn't to type coercion, it will returns true only if both values are the same
 // ===  loose equality operator- does type coercion, it will return true if 1 value is true
 
-18 === 18; // true
-18 === "18"; // false
+// 18 === 18; // true
+// 18 === "18"; // false
 
-18 == 18; // true
-18 == "18"; // true
+// 18 == 18; // true
+// 18 == "18"; // true
 
-const age = 18;
-if (age === 18) console.log("You just became an adult (strict)");
+// const age = 18;
+// if (age === 18) console.log("You just became an adult (strict)");
 
-if (age == 18) console.log("You just became an adult (loose)");
+// if (age == 18) console.log("You just became an adult (loose)");
+
+//const favorite = prompt("What's your favortie number?");
+
+// console.log(favorite);
+// console.log(typeof favorite);
+
+// if (favorite == 23) {
+//   // '23' == 23
+//   console.log("Cool! 23 is an amazing number!");
+// }
+
+const favorite2 = Number(prompt("What's your favortie number?"));
+
+console.log(favorite2);
+console.log(typeof favorite2);
+
+if (favorite2 === 23) {
+  // '23' == 23
+  console.log("Cool! 23 is an amazing number!");
+} else if (favorite2 === 7) {
+  console.log("7 is also a cool number!");
+} else {
+  console.log("Number is not 23 or 7");
+}
+
+if (favorite2 !== 23) console.log("Why not 23?");
