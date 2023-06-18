@@ -358,7 +358,19 @@ TEST DATA 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6, 1, 4]
 
 GOOD LUCK 😀
 */
-
+function checkDogs(dogsJulia, dogsKate)
+{
+  let newDogsJulia = dogsJulia.slice(1,-1);
+  console.log(newDogsJulia,dogsKate);
+  const allDogs = newDogsJulia.concat(dogsKate);
+  allDogs.forEach(function(value, index)
+  {
+    const status = value>=3 ? "adult" : "puppy";
+    console.log(`Dog number ${index+1} is an ${status}, and is ${value} years old`);
+  })
+  console.log(allDogs);
+}
+checkDogs([3, 5, 2, 12, 7],[4, 1, 15, 8, 3]);
 /*
 const checkDogs = function (dogsJulia, dogsKate) {
   const dogsJuliaCorrected = dogsJulia.slice();
