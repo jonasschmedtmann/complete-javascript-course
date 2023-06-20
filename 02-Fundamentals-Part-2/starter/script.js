@@ -153,13 +153,13 @@
 
 // array methods
 // add elements
-const friends = ["Michael", "Steven", "Peter"];
-const newLength = friends.push("Jay"); // add element at the end
-console.log(friends);
-console.log(newLength);
+// const friends = ["Michael", "Steven", "Peter"];
+// const newLength = friends.push("Jay"); // add element at the end
+// console.log(friends);
+// console.log(newLength);
 
-friends.unshift("John");
-console.log(friends); // add element at the beginning
+// friends.unshift("John");
+// console.log(friends); // add element at the beginning
 
 // Remove elements
 // friends.pop(); // from end
@@ -184,18 +184,96 @@ console.log(friends); // add element at the beginning
 
 // challenge #2
 // with expression function
-const calcTip = function (bill) {
-  return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+// const calcTip = function (bill) {
+//   return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+// };
+// console.log(calcTip(230));
+
+// // with arrow function
+// const calcTip2 = (bill) =>
+//   bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+
+// console.log(calcTip2(230));
+
+// const bills = [125, 555, 44];
+// const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
+// const totals = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
+// console.log(`Bill is ${bills}, tip is ${tips} and tolal is ${totals}`);
+
+// * Objects
+// const jonas = {
+//   firstName: "Jonas",
+//   lastName: "Johnson",
+//   age: 2037 - 1991,
+//   job: "teacher",
+//   friends: ["Michael", "Peter", "Steven"],
+// };
+// console.log(jonas);
+
+// console.log(jonas.lastName);
+// console.log(jonas["lastName"]);
+
+// const nameKey = "Name";
+// console.log(jonas["first" + nameKey]);
+// console.log(jonas["last" + nameKey]);
+
+// const interestedIn = prompt(
+//   "What do you want to know about Jonas? choose between firsName, lastName, age, job, and friends"
+// );
+
+// if (jonas[interestedIn]) {
+//   console.log(jonas[interestedIn]);
+// } else {
+//   console.log(
+//     "Wrong request! choose between firsName, lastName, age, job, and friends"
+//   );
+// }
+
+// jonas.location = "Portugal";
+// jonas["twitter"] = "@jonasjohnson";
+// console.log(jonas);
+
+// Challenge
+// "Jonas has 3 friends, and his best friend is called Michael"
+// console.log(
+//   `${jonas.firstName} has ${jonas.friends.length} friends, and his best friend is ${jonas.friends[0]}`
+// );
+
+const jonas = {
+  firstName: "Jonas",
+  lastName: "Johnson",
+  birthYear: 1991,
+  job: "teacher",
+  friends: ["Michael", "Peter", "Steven"],
+  hasDriversLicense: false,
+
+  // any function attached to an object is called method
+  // calcAge: function (birthYear) {
+  //   // used function expression. function declaration doesn't work, e.g function calcAge(birthYear){}
+  //   return 2037 - birthYear;
+  // },
+
+  // calcAge: function () {
+  //   //console.log(this);
+  //   return 2037 - this.birthYear;
+  // },
+
+  calcAge: function () {
+    this.age = 2037 - this.birthYear;
+    return this.age;
+  },
+
+  // Challenge
+  // Jonas is a 46-year old teacher, and he has a/no driver's license.
+
+  getSummary: function () {
+    return `${this.firstName} is a ${this.calcAge()}-year old ${
+      jonas.job
+    }, and he has ${this.hasDriversLicense ? "a" : "no"} driver's license`;
+  },
 };
-console.log(calcTip(230));
 
-// with arrow function
-const calcTip2 = (bill) =>
-  bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+console.log(jonas.calcAge()); // 46
+console.log(jonas.age); //46
 
-console.log(calcTip2(230));
-
-const bills = [125, 555, 44];
-const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
-const totals = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
-console.log(`Bill is ${bills}, tip is ${tips} and tolal is ${totals}`);
+console.log(jonas.getSummary());
