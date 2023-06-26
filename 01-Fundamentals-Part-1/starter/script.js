@@ -81,15 +81,53 @@ console.log(lastName);
 
 // *operator precedence*
 
-const now = 2037;
-const ageJonas = now - 1991;
-const ageSarah = now - 2019;
-console.log(now - 1991 > now - 2019);
+// const now = 2037;
+// const ageJonas = now - 1991;
+// const ageSarah = now - 2019;
+// console.log(now - 1991 > now - 2019);
 
-console.log(25 - 10 - 5);
-let x, y;
-x = y = 25 - 10 - 5; // x = y = 10, x = 10
-console.log(x, y);
+// console.log(25 - 10 - 5);
+// let x, y;
+// x = y = 25 - 10 - 5; // x = y = 10, x = 10
+// console.log(x, y);
 
-const averageAge = (ageJonas + ageSarah) / 2;
-console.log(ageJonas, ageSarah, averageAge);
+// const averageAge = (ageJonas + ageSarah) / 2;
+// console.log(ageJonas, ageSarah, averageAge);
+
+// const massMark = 78;
+// const heightMark = 1.69;
+// const massJohn = 92;
+// const heightJohn = 1.95;
+/*
+const massMark = 95;
+const heightMark = 1.88;
+const massJohn = 85;
+const heightJohn = 1.76;
+
+const BMIMark = massMark / heightMark ** 2;
+const BMIJohn = massJohn / (heightJohn * heightJohn);
+const markHigherBMI = BMIMark > BMIJohn;
+
+console.log(BMIMark, BMIJohn, markHigherBMI);
+// */
+
+// const firstName = "jonas";
+// const job = "teacher";
+// const birthYear = 1991;
+// const year = 2037;
+
+// const jonas =
+//   "I'm " + firstName + ", a " + (year - birthYear) + " years old " + job + "!";
+
+// console.log(jonas);
+
+// const jonasNew = `I'm ${firstName}, a ${year - birthYear} year old ${job}`;
+// console.log(jonasNew);
+
+// console.log(`Just a regular string...`);
+
+// console.log(
+//   `string with
+// multiple
+// lines`
+// );
