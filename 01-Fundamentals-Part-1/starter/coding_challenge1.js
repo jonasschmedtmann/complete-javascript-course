@@ -25,4 +25,4 @@ console.log("Data 2")
 console.log("BMI Of Mark is ",bmiMark)
 console.log("BMI Of John is : ",bmiJohn)
 
-alert("End of coding challenge")
+alert("End of coding challenge  ")
