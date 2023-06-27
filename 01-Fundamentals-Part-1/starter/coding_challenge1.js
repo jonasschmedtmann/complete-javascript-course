@@ -24,3 +24,5 @@ bmiJohn = johnWeight / johnHeight **2
 console.log("Data 2")
 console.log("BMI Of Mark is ",bmiMark)
 console.log("BMI Of John is : ",bmiJohn)
+
+alert("End of coding challenge")
