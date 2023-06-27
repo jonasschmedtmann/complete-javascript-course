@@ -7,7 +7,7 @@ console.log(10+20*33/4)
 let ageLicence = 18;
 let age = 14;
 console.log("Your Age is ", age)
-if (age>ageLicence) 
+if (age>=ageLicence) //comaprsion operator <,> <=,>=
     console.log("You are eligible for driving")
 else
     console.log("You are NOT eligible for driving")  
