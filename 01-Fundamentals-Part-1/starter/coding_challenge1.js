@@ -46,3 +46,23 @@ if (BMIMark >BMIJohn){
 }
 
 alert("End of coding challange 2")
+alert("Start of coding challange 3")
+const d1 = 96;
+const d2 = 108;
+const d3 = 89;
+const k1 = 88;
+const k2 = 91;
+const k3 = 110;
+
+const scoreDolphins = (d1+d2+d3) / 3
+console.log(scoreDolphins)
+const scoreKoalas  = (d1+d2+d3) / 3
+console.log(scoreKoalas)
+
+if(scoreKoalas>scoreDolphins){
+    console.log("Koalas win the trophy")
+}else if(scoreDolphins>scoreKoalas){
+    console.log("Dolphins win the trophy")
+}else{
+    console.log("Both win the trophy")
+}
