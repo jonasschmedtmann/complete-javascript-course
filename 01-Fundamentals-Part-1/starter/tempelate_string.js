@@ -12,4 +12,6 @@ console.log("Printing with tempelate literal")
 aboutIndia = `The beautiful country ${country} , having ${states} states and ${ut} union terrorities counts to the population of ${population}`
 console.log(aboutIndia)
 
-console.log(`Total number of states and Union terriotories sums up to ${states+ut}`)
+console.log(`Total number of states \n
+and \n
+Union terriotories sums up to ${states+ut}`);
