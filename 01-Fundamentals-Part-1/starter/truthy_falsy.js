@@ -33,7 +33,7 @@ const ageParty = Number(prompt("Enter your age : "))
 if (ageParty === 18){
     console.log("User is eligible for party🎉 ");
 }
-else if (ageParty != 18) {
+else if (ageParty !== 18) { //strict not equal != is loose not equal
     console.log("Why not 18")
     console.log(`User is not🚫 eligible for party`); 
 }
