@@ -12,3 +12,8 @@ else if (age1<5){
 }else{    
     alert(`User is not🚫 yet eligible for driving . \nStill ${legalDriveAge - age1} years are left to start driving`); 
 }
+
+ageDrink = prompt("Enter you age to get your drink ")
+//single line if else
+// ageDrink >= 18 ? 'Wine 🍷 ':'Water 💧 ' // if true then wine if false then water
+alert(`You will a glass of ${ageDrink >= 18 ? 'Wine 🍷 ':'Water 💧 '} `)
