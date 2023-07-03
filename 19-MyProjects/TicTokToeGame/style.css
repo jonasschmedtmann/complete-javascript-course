@@ -1,0 +1,22 @@
+#board{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 10px;
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+.cell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    width: 100px;
+    height: 100px;
+    background-color: lightgrey;
+    cursor: pointer;
+}
+
+button{
+    font-size: 24px;
+}
