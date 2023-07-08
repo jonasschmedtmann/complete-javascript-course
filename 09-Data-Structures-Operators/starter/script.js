@@ -27,3 +27,41 @@ const restaurant = {
     },
   },
 };
+// use of spread operator in copying elements of object
+const restaurantFullInfo = {
+  foundingYear: '2023',
+  ...restaurant,
+  owner: 'Abhinav A',
+};
+restaurantFullInfo.name = 'Bihari Katta';
+console.log(restaurant);
+console.log(restaurantFullInfo);
+
+const arr = [1, 2, 3, 45, 6, 5];
+console.log(...arr);
+
+const [a, , b, ...others] = arr;
+console.log(a, b, others);
+
+// console.log(undefined  null);
+// restaurant.numberOfGuests = 0;
+const numberOfGuests = restaurant.numberOfGuests ?? 10;
+console.log(numberOfGuests);
+console.log(null && undefined);
+// Logical Operators Demo
+const student1 = {
+  name: 'Abhinav',
+  roll: 2,
+};
+
+const student2 = {
+  name: 'Anand',
+};
+
+student1.roll ||= 1; // OR Assignment operator
+student2.roll = student2.roll || 0;
+student2.roll ??= 1; // Nullish Assignment operator
+console.log(student1, student2);
+
+student2.name &&= 'Arunit'; // AND assignment operator
+console.log(student2);
