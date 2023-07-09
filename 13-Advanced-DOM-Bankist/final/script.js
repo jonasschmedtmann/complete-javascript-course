@@ -236,9 +236,19 @@ const slider = function () {
   };
 
   const goToSlide = function (slide) {
+    if(curSlide<slide){
+      for(let i=curSlide; i<slide; i++){
+        curSlide++;
+      }
+    }
+    else if(curSlide>slide){
+      for(let i=curSlide; i>slide; i--){
+        curSlide--;
+      }
+    }
     slides.forEach(
       (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
-    );
+      );
   };
 
   // Next slide
