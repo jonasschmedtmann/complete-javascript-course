@@ -3,6 +3,31 @@
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // BANKIST APP
+// Elements
+const labelWelcome = document.querySelector('.welcome');
+const labelDate = document.querySelector('.date');
+const labelBalance = document.querySelector('.balance__value');
+const labelSumIn = document.querySelector('.summary__value--in');
+const labelSumOut = document.querySelector('.summary__value--out');
+const labelSumInterest = document.querySelector('.summary__value--interest');
+const labelTimer = document.querySelector('.timer');
+
+const containerApp = document.querySelector('.app');
+const containerMovements = document.querySelector('.movements');
+
+const btnLogin = document.querySelector('.login__btn');
+const btnTransfer = document.querySelector('.form__btn--transfer');
+const btnLoan = document.querySelector('.form__btn--loan');
+const btnClose = document.querySelector('.form__btn--close');
+const btnSort = document.querySelector('.btn--sort');
+
+const inputLoginUsername = document.querySelector('.login__input--user');
+const inputLoginPin = document.querySelector('.login__input--pin');
+const inputTransferTo = document.querySelector('.form__input--to');
+const inputTransferAmount = document.querySelector('.form__input--amount');
+const inputLoanAmount = document.querySelector('.form__input--loan-amount');
+const inputCloseUsername = document.querySelector('.form__input--user');
+const inputClosePin = document.querySelector('.form__input--pin');
 
 // Data
 const account1 = {
@@ -34,43 +59,84 @@ const account4 = {
 };
 
 const accounts = [account1, account2, account3, account4];
+const euroSign = '€';
 
-// Elements
-const labelWelcome = document.querySelector('.welcome');
-const labelDate = document.querySelector('.date');
-const labelBalance = document.querySelector('.balance__value');
-const labelSumIn = document.querySelector('.summary__value--in');
-const labelSumOut = document.querySelector('.summary__value--out');
-const labelSumInterest = document.querySelector('.summary__value--interest');
-const labelTimer = document.querySelector('.timer');
+// display all transactions
+const displayMovements = (movements) => {
+  containerMovements.innerHTML = ''; // clears containerMovement at beginning
 
-const containerApp = document.querySelector('.app');
-const containerMovements = document.querySelector('.movements');
+  movements.forEach((mov, i) => {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+    const html = `
+    <div class="movements__row">
+    <div class="movements__type movements__type--${type}">${type} #${i + 1}</div>
+    <div class="movements__value">${mov}${euroSign}</div>
+    </div>
+    `;
+    // append html to movement container
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
 
-const btnLogin = document.querySelector('.login__btn');
-const btnTransfer = document.querySelector('.form__btn--transfer');
-const btnLoan = document.querySelector('.form__btn--loan');
-const btnClose = document.querySelector('.form__btn--close');
-const btnSort = document.querySelector('.btn--sort');
+// display total balance in top right corner
+const calcDisplayBalance = (movements) => {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance}${euroSign}`;
+};
 
-const inputLoginUsername = document.querySelector('.login__input--user');
-const inputLoginPin = document.querySelector('.login__input--pin');
-const inputTransferTo = document.querySelector('.form__input--to');
-const inputTransferAmount = document.querySelector('.form__input--amount');
-const inputLoanAmount = document.querySelector('.form__input--loan-amount');
-const inputCloseUsername = document.querySelector('.form__input--user');
-const inputClosePin = document.querySelector('.form__input--pin');
+// display in, out, interest, on bottom of home page
+const calcDisplaySummary = ({ movements, interestRate }) => {
+  const inSum = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${inSum}${euroSign}`;
 
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// LECTURES
+  const outSum = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(outSum)}${euroSign}`;
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+  // New rule added: only include interest over $1 in total interest sum
+  const interestSum = movements
+    .filter(mov => mov > 0)
+    .map(deposit => deposit * interestRate / 100)
+    .filter((interest, i, arr) => interest >= 1)
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `${interestSum.toFixed(2)}${euroSign}`;
+};
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const createUsernames = (accs) => {
+  accs.forEach((acc) => {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+// console.log(accounts);
+createUsernames(accounts);
 
-/////////////////////////////////////////////////
+
+// event handler
+let currentAccount;
+
+btnLogin.addEventListener('click', (e) => {
+  // prevents form from submitting
+  e.preventDefault();
+  currentAccount = accounts.find(account => account.username === inputLoginUsername.value);
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    // display UI and welcome message
+    labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(' ')[0]}`;
+    containerApp.style.opacity = 100;
+
+    //clear input fields
+    inputLoginPin.value = inputLoginUsername.value = '';
+    inputLoginPin.blur();
+
+    // display balance, movements, summary
+    calcDisplayBalance(currentAccount.movements);
+    displayMovements(currentAccount.movements);
+    calcDisplaySummary(currentAccount);
+  }
+})

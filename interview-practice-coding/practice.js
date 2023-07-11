@@ -178,7 +178,7 @@ function countingSort(arr) {
       zeroArray[num] = zeroArray[num] + 1;
     }
   }
-  return console.log(zeroArray);
+  // return console.log(zeroArray);
 }
 
 countingSort([
@@ -246,15 +246,161 @@ const diagonalDifference = (arr) => {
   let RightLeftDiag = 0;
 
   for (let i = 0; i < arr.length; i++) {
-    console.log(arr[i]);
+    // console.log(arr[i]);
     for (let j = 0; j < arr.length; j++) {
       console.log(`arr[j]: ${arr[j]} \n`);
     }
   }
 };
 
-diagonalDifference([
-  [11, 2, 4],
-  [4, 5, 6],
-  [10, 8, -12],
-]);
+// diagonalDifference([
+//   [11, 2, 4],
+//   [4, 5, 6],
+//   [10, 8, -12],
+// ]);
+
+/*
+// Given a string, reverse each word in the sentence
+const reverseWordInString = (str) => {
+  const reverseSentence = str.split(' ').reverse().join(' ');
+  const reverseEachWord = reverseSentence.split('').reverse().join('');
+  return reverseEachWord;
+}
+
+let string = 'Welcome to this Javascript Guide!';
+string = "Ilse Kassandra Rojas Lazette"
+console.log(reverseWordInString(string));
+*/
+
+/*
+// How would you check if a number is an integer?
+const checkIfInt = (num) => {
+  return num % 1 === 0;
+}
+
+console.log(checkIfInt(12))
+console.log(checkIfInt(12.2))
+*/
+
+
+/*
+// Make this work: duplicate([1, 2, 3, 4, 5]); // [1,2,3,4,5,1,2,3,4,5]
+
+function duplicate(arr) {
+  return arr.concat(arr);
+}
+
+console.log(duplicate([1, 2, 3, 4, 5]))
+
+
+/*
+// Remove duplicates from an array
+*/
+
+// function removeDuplicates(arr) {
+//   const output = new Set(arr); // new Set(arr) removes duplucates from arr and returns it as an object
+//   return [...output]; // [...] spreads output OBJ into an array
+// }
+
+
+// function removeDupsWithFilter(arr) {
+//   arr.filter((item, index) => {
+//     return arr.indexOf(item) === index;
+//   })
+// }
+
+// let testArr = [1, 2, 3, 4, 5, 1, 2, 2, 3];
+// // console.log(removeDuplicates(testArr))
+
+// removeDupsWithFilter(testArr)
+
+
+
+
+// let newMatrix = [];
+// let numberRun = 0;
+
+// function flippingMatrix(matrix) {
+
+//   for (let i = 0; i < matrix.length; i++) {
+//     const rows = matrix[i];
+//     const columns = matrix.map((column) => {
+//       return column[i];
+//     });
+
+//     // console.log(columns)
+//     newMatrix.push(logic(columns));
+//     // console.log(newMatrix);
+
+//     // console.log(logic((columns)));
+//   }
+//   //numberRun++;
+//   //console.log(newMatrix)
+//   check(matrix)
+//   //flippingMatrix(newMatrix);
+
+// }
+
+// function check(matrix) {
+//   for (let i = 0; i < matrix.length; i++) {
+//     const rows = matrix[i];
+//     for (let j = 0; j < rows.length; j++) {
+//       const val = rows[j];
+//       console.log(rows.sort(val))
+//       // console.log(sort(val))
+//     }
+//   }
+// }
+// function logic(col) {
+//   if ((col[0] + col[1]) < (col[2] + col[3])) {
+//     return col.reverse();
+//   }
+//   // if ((rows[0] + rows[1]) < (rows[2] + rows[3])) {
+//   //   rows.reverse();
+//   // }
+
+//   return col;
+// }
+
+
+// flippingMatrix([
+//   [112, 42, 83, 119],
+//   [56, 125, 56, 49],
+//   [15, 78, 101, 43],
+//   [62, 98, 114, 108],
+// ]);
+
+
+// function getTeams(year, k) {
+//   let page = 0;
+
+//   const teamsURL = `https://jsonmock.hackerrank.com/api/football_matches?competition=UEFA%20Champions%20League
+//     &year=${year}
+//     &page=${page}`;
+
+//   fetch(teamsURL)
+//     .then((response) => response.json())
+//     .then((json) => console.log(json))
+//     .catch((error) => console.log(error));
+// }
+
+// function findK(data) {
+//   console.log(data)
+// }
+
+// getTeams(2015, 13);
+
+// // return new object literal with the same properties and their values as obj excluding the property named prop if it exists
+// function stripProperty(obj, prop) {
+//   let objCopy = { ...obj };
+
+//   if (prop) {
+//     const { [prop]: omitted, ...rest } = objCopy;
+//     return rest;
+//   }
+//   return objCopy;
+// }
+
+
+const obj = new String('1');
+console.log(obj === '1')

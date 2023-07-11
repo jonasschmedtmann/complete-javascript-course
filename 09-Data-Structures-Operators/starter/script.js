@@ -55,36 +55,164 @@ const restaurant = {
     }
   };
   
-  ////////////////////////////////////////////////////////////////////
-// SECTION 114: LOOPING OBJECTS (KEYS, VALUES, ENTRIES)
 
-// KEYS
-const properties = Object.keys(openingHours);
-console.log(properties); //['thurs', 'fri', 'sat']
+////////////////////////////////////////////////////////////////////
+// SECTION 117:  MAPS data structure that we can use to map data structures to keys of any type such as arrays, objects, strings, and other maps
 
-let openStr = `We are open on ${properties.length} days: `;
-for (const day of properties){
-  openStr += `${day},`;
-};
-console.log(openStr)
+const restaurantMap = new Map(); // easiest way to create a map is to start with empty Map()
+restaurantMap
+  .set('name', 'Classico Italiano')
+  .set(1, 'Firenze, Italy')
+  .set(2, 'Lisbon, Portugal')
+  .set('categories', restaurant.categories)
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'We are open :) ')
+  .set(false, 'We are closed :( ');
+console.log(restaurantMap);
+/*
+  Map(8) {
+    'name' => 'Classico Italiano',
+    1 => 'Firenze, Italy',
+    2 => 'Lisbon, Portugal',
+    'categories' => [ 'Italian', 'Pizzeria', 'Vegetarian', 'Organic' ],
+    'open' => 11,
+    'close' => 23,
+    true => 'We are open :) ',
+    false => 'We are closed :( '
+  }
+*/
 
-// VALUES
-const values = Object.values(openingHours);
-console.log(values); 
-//(3) [{…}, {…}, {…}]
-//    0: {open: 12, close: 22}
-//    1: {open: 11, close: 23}
-//    2: {open: 0, close: 24}
+console.log(restaurantMap.get('name'), ' || ', restaurantMap.get(true)); // Classico Italiano ||  We are open :) 
 
-// ENTRIES
-const entries = Object.entries(openingHours);
-console.log(entries); //(3) [Array(2), Array(2), Array(2)] 
+const time = 18;
+const result = restaurantMap.get(time > restaurantMap.get('open') && time < restaurantMap.get('close'));
+console.log(result); // we are open :)
 
-for (const [day, {open, close}] of entries){
-  console.log(`On ${day} we open at ${open} and close at ${close}`);
+console.log(restaurantMap.has('categories')); // true
+restaurantMap.delete(2);
+console.log(restaurantMap);
+console.log(restaurantMap.size); // 7
+
+const arr = [1, 2];
+restaurantMap.set(arr, 'Test')
+console.log(restaurantMap.get(arr)); // Test
+
+console.log([...restaurantMap])
+
+// restaurantMap.set(document.querySelector('h1'), 'Heading');
+// console.log(restaurantMap);
+
+const question = new Map([
+  ['question', 'What is the best programming language in the world?'], 
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'JavaScript'],
+  ['correct', 3], 
+  [true, 'Correct 🎉'], 
+  [false, 'Try Again!']
+]);
+
+console.log(question);
+
+// convert OBJECT TO MAP
+console.log(Object.entries(openingHours));
+const hoursMap = new Map(Object.entries(openingHours));
+console.log(hoursMap);
+
+/////////////// Quiz App
+console.log(question.get('question'));
+
+for(const [key, value] of question){
+  if(typeof key === 'number')console.log(`Answer ${key}: ${value}`)
 }
 
+const userAnswer = Number(prompt('Your answer'));
+const correctAnswer = question.get('correct');
 
+// if(userAnswer === correctAnswer){
+//   console.log(question.get(true))
+// } else {
+//   console.log(question.get(false))
+// }
+console.log(question.get(correctAnswer === userAnswer));
+
+// convert MAP TO ARRAY
+console.log([...question]);
+console.log([...question.keys()]); //['question', 1, 2, 3, 'correct', true, false]
+console.log([...question.values()]); 
+
+
+/*
+////////////////////////////////////////////////////////////////////
+//  SECTION 116: SETS -- no indexes, all values are unique and the order doesn't matter
+// someSet.has('value'); is the more common use for Sets
+const ordersSet = new Set ([
+  'Pasta', 'Pizza', 'Pizza', 'Risotta', 'Pizza',
+]);
+
+console.log(ordersSet); // Set(3) { 'Pasta', 'Pizza', 'Risotta' }
+console.log(new Set('Kassandra')); // Set(6) { 'K', 'a', 's', 'n', 'd', 'r' }
+
+console.log(ordersSet.size); //3
+
+console.log(ordersSet.has('Bread')); // false
+console.log(ordersSet.has('Pizza')); // true
+
+ordersSet.add('Garlic Bread');
+ordersSet.add('Spaghetti');
+console.log(ordersSet); //Set(5) { 'Pasta', 'Pizza', 'Risotta', 'Garlic Bread', 'Spaghetti' }
+
+ordersSet.delete('Pizza');
+console.log(ordersSet); //Set(4) { 'Pasta', 'Risotta', 'Garlic Bread', 'Spaghetti' }
+
+// ordersSet.clear();
+// console.log(ordersSet);
+
+// Sets are iterable therefore you can loop through them. Example:
+for (const order of ordersSet) console.log(order); 
+    /*
+    Pasta
+    Risotta
+    Garlic Bread
+    Spaghetti
+    */
+
+// Main use case: remove duplicate values from an array
+// const staff = [ 'Waiter', 'Chef', 'Waiter', 'Chef', 'Manager', 'Waiter'];
+// const staffUnique = [...new Set (staff)]; // [...new Set ()] how to put unique values into an array
+// console.log(staffUnique); //[ 'Waiter', 'Chef', 'Manager' ]
+
+
+
+////////////////////////////////////////////////////////////////////
+// SECTION 114: LOOPING OBJECTS (KEYS, VALUES, ENTRIES)
+
+// // KEYS
+// const properties = Object.keys(openingHours);
+// console.log(properties); //['thurs', 'fri', 'sat']
+
+// let openStr = `We are open on ${properties.length} days: `;
+// for (const day of properties){
+//   openStr += `${day},`;
+// };
+// console.log(openStr)
+
+// // VALUES
+// const values = Object.values(openingHours);
+// console.log(values); 
+// //(3) [{…}, {…}, {…}]
+// //    0: {open: 12, close: 22}
+// //    1: {open: 11, close: 23}
+// //    2: {open: 0, close: 24}
+
+// // ENTRIES
+// const entries = Object.entries(openingHours);
+// console.log(entries); //(3) [Array(2), Array(2), Array(2)] 
+
+// for (const [day, {open, close}] of entries){
+//   console.log(`On ${day} we open at ${open} and close at ${close}`);
+// }
 
   ////////////////////////////////////////////////////////////////////
   // SECTION 113: OPTIONAL CHAINING (?.) 
@@ -121,7 +249,7 @@ const users = [
 // does  users[0] exists? . then grab 'name' ?? otherwise 'user array empty'
 //  optional chaining and nullish coelescing operator tend to go hand in hand
 for (const user of users){
-  console.log(user?.email ?? 'property empty')
+  console.log(user?.name ?? 'user array empty')
 }
  */
   ////////////////////////////////////////////////////////////////////

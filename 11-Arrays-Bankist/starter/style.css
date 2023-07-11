@@ -243,9 +243,11 @@ h2 {
 .form.form--loan {
   grid-template-columns: 2.5fr 1fr 2.5fr;
 }
+
 .form__label--loan {
   grid-row: 2;
 }
+
 /* End exceptions */
 
 .form__input {
