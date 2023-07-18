@@ -302,3 +302,295 @@ for (const acc of accounts) {
     // console.log(acc);
   }
 }
+//////////////////////  .SOME() METHOD ///////////////////
+// call back function returns boolean value if any (some) instance in array matches condition
+// console.log(movements);
+
+// EQUALITY using .INCLUDES()
+// console.log(movements.includes(-130)); // true
+
+// CONDITION using .SOME()
+const sameAsIncludes = movements.some(mov => mov === -130);
+// console.log(sameAsIncludes);
+
+const anyMatch = movements.some(mov => mov > 1500);
+// console.log(anyMatch); // true
+
+// think of .SOME() as 'any' -- it will return a {{{ boolean }}} value if any element(s) match the condition
+
+//////////////////////  .EVERY() METHOD ///////////////////
+// call back function returns boolean value if every instance in array matches condition(s)
+// console.log(movements.every(mov => mov > 0)); //false
+// console.log(movements.every(mov => typeof mov === 'number')); // true
+
+// store callback funciton in variable to exercise DRY principles and make code more reusable
+const deposit = mov => mov > 0;
+// console.log(movements.some(deposit)) // true
+// console.log(movements.every(deposit)) // false
+// console.log(movements.filter(deposit)) // [200, 450, 3000, 70, 1300]
+
+
+// .FLAT() only flattens out one level deep
+// default is .flat(1) meaning array will be flattened one level deep
+const nestedArr = [[1, 2, 3], [4, 5, 6], 7, 8];
+// console.log(nestedArr.flat()); // [1, 2, 3, 4, 5, 6, 7, 8]
+
+const deepNest = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+// console.log(deepNest.flat()); //[Array(2), 3, 4, Array(2), 7, 8]
+// console.log(deepNest.flat(2)); //[1, 2, 3, 4, 5, 6, 7, 8]
+
+
+// .flat()
+const overallBal = accounts
+  .map(acc => acc.movements) // gives us nested array
+  .flat() // flattens nested array
+  .reduce((acc, curr) => acc + curr, 0); // adds up all movements
+
+// console.log(overallBal); //17840
+
+// .flatMap() -- common practice to map then flatten so flatMap() does both in one go
+// .flatMap() does not allow you to flatten array more than 1 level deep: use flat() instead if more than one level deep is needed
+const overallBal2 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((acc, curr) => acc + curr, 0);
+
+// console.log(overallBal2)
+
+
+
+// SORT STRINGS
+const owners = ['jonas', 'zach', 'martha', 'adam'];
+// console.log(owners.sort()); // sort mutates original array!!!!!!!!!!!!!!
+// console.log(owners)
+
+
+// SORT NUMBERS
+// console.log(movements);
+// console.log(movements.sort()); // doesnt work 
+
+// return < 0 ? A then B (keep order)
+// return > 0 ? B then A (switch order)
+
+// ascending order
+movements.sort((a, b) => {
+  if (a > b) return 1;
+  if (b > a) return -1;
+});
+
+movements.sort((a, b) => a - b);
+
+// console.log(movements);
+
+//descending order
+movements.sort((a, b) => {
+  if (a > b) return -1;
+  if (b > a) return 1;
+});
+
+movements.sort((a, b) => b - a);
+
+// console.log(movements);
+
+// empty array + .fill()
+const x = new Array(7); //[empty × 7]
+// x.fill(1); // [1, 1, 1, 1, 1, 1, 1]
+// x.fill(1, 3); // [empty × 3, 1, 1, 1, 1]
+// x.fill(1, 3, 5); //[empty × 3, 1, 1, empty × 2]
+
+const arr4 = [1, 2, 3, 4, 5, 6, 7];
+arr4.fill(251, 2, 6); //[1, 2, 251, 251, 251, 251, 7];
+
+// Array.from()
+const y = Array.from({ length: 7 }, () => 1);
+// console.log(y); //[1, 1, 1, 1, 1, 1, 1]
+
+const z = Array.from({ length: 7 }, (_curr_, index) => index + 1)
+// console.log(z); //[1, 2, 3, 4, 5, 6, 7]
+
+
+labelBalance.addEventListener('click', () => {
+  const movementsUI = Array.from(document.querySelectorAll('.movements__value'),
+    el => Number(el.textContent.replace('€', '')));
+  // console.log(movementsUI)
+})
+
+/*
+labelBalance.addEventListener('click', () => {
+  const movementsUI = Array.from(document.querySelectorAll('.movements__value'));
+  const listOfMovs = movementsUI.map(el => Number(el.textContent.replace('€', '')));
+  console.log(listOfMovs)
+})
+*/
+
+
+
+////////////// CHOOSING ARRAY METHOD /////////////// 
+/* 
+
+I WANT.......
+
+TO MUTATE ORIGINAL ARRAY:
+
+- add to original: 
+  .push()   adds to end
+  .unshift()  add to start
+
+- remove from original:
+  .pop()  removes from end
+  .shift()  removes from start
+  .splice() removes any/specified
+
+- others:
+  .reverse()
+  .sort()
+  .fill()
+
+I WANT.......
+TO CREATE A NEW ARRAY:
+
+- computed from original
+  .map()  loop
+
+- filtered using condition
+  .filter()
+
+- portion of original
+  .slice()
+
+- adding original to other
+  .concat()
+
+- flattening the original
+  .flat()
+  .flatMap()
+
+I WANT.......
+AN ARRAY INDEX
+
+-based on value
+  .indexOf()
+
+- based on test condition
+  .findIndex()
+
+
+I WANT.......
+AN ARRAY ELEMENT
+
+- based on test condition
+  .find()
+
+
+I WANT.......
+TO KNOW IF ARRAY INCLUDES:
+
+- based on value
+  .includes()
+
+- based on test condition 
+  .some()
+  .every()
+
+
+I WANT.......
+A NEW STRING
+
+- based on separator string
+  .join()
+
+
+I WANT.......
+TO TRANSFORM TO VALUE
+
+- based on accumulator
+  .reduce()  : boil down array to single value of any type: number, string, boolean, or even new array or object
+
+
+I WANT.......
+TO JUST LOOP ARRAY
+
+-based on callback: 
+  .forEach()  : does not create a new array, just loops over it and returns every instance
+
+*/
+
+////////////////////////////
+// ARRAY METHODS PRACTICE
+
+// 1.
+const bankDepositSum = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov > 0)
+  .reduce((sum, curr) => sum + curr, 0);
+
+// console.log(bankDepositSum)
+
+// 2. # of deposits that are at least 1000
+const numDeposits1000Plus = accounts
+  .flatMap(account => account.movements)
+  .filter(mov => mov >= 1000).length; // THIS WORKS! 👍🏼
+
+const numDeposits1000 = accounts
+  .flatMap(account => account.movements)
+  // .reduce((count, curr) => if currMovment is at least 1000, add 1 to the count, otherwise leave count as is, start count at 0)
+  .reduce((ongoingCount, currMov) => currMov >= 1000 ? ++ongoingCount : ongoingCount, 0)
+
+// console.log(numDeposits1000)
+
+/* 
+// ++PREFIXED OPERATOR
+let a = 10;
+console.log(a++); // this returns 10 even though when you log 'a' again below
+console.log(a); // 'a' returns as '11'. 'a++' performs the operation of adding one *BUT* 
+// returns the previous value
+
+console.log(++a); // easy solution to this: prefix operator -- THIS returns the correct value
+*/
+
+
+// 3. Create an obj that contains the sum of deposits and sum of withdrawals
+
+// destructuring {deposits, withdrawals} from object created from .reduce() method
+const { deposits, withdrawals } = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((sums, curr) => {
+    sums[curr > 0 ? 'deposits' : 'withdrawals'] += curr;
+    return sums;
+  }, { deposits: 0, withdrawals: 0 });
+
+
+/* { deposits: 0, withdrawals: 0 } represents "sums" in reduce params, therefore you want to return sums after you have completed reducing the array */
+// console.log(deposits, withdrawals)
+
+const sum = accounts
+  .flatMap(a => a.movements)
+  .reduce((sums, curr) => {
+    if (curr > 0) {
+      sums.deposits += curr;
+    } else {
+      sums.withdrawals += curr;
+    }
+    // curr > 0 ? (sums.deposits += curr) : (sums.withdrawals += curr);
+    return sums;
+  }, { deposits: 0, withdrawals: 0 });
+
+// console.log(sum)
+
+// 4. convert a string into Title Case
+// this is a nice title -> This Is a Nice Title
+const convertTitleCase = (title) => {
+  const exceptions = ['a', 'an', 'and', 'the', 'but', 'or', 'on', 'in', 'with'];
+
+  const capitzalizeFirstLetter = (string) => string.at(0).toUpperCase().concat(string.slice(1));
+
+  const titleCase = title
+    .toLowerCase()
+    .split(' ')
+    .map(word => exceptions.includes(word) ? word : capitzalizeFirstLetter(word))
+    .join(' ');
+  return capitzalizeFirstLetter(titleCase);
+}
+
+// console.log(convertTitleCase('this is a nice title'));
+// console.log(convertTitleCase('this is a long title but not too long'));
+// console.log(convertTitleCase('and here is another title with an EXAMPLE'));
