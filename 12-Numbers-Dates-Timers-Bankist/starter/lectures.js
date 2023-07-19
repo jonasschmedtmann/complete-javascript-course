@@ -1,4 +1,4 @@
-// Numbers are represented internally as 64bits : there are exactly 64 combinations of 1's and 0's to represent any given number. Only 53 are used to store the digits themselves, the rest are for storing the posotion of the decimal point and the sign. 
+// Numbers are represented internally as 64bits : there are exactly 64 combinations of 1's and 0's to represent any given number. Only 53 are used to store the digits themselves, the rest are for storing the posotion of the decimal point and the sign.
 // // BASE 10 : # 0 - 9
 // // BASE 2 : # 0 and 1
 
@@ -121,7 +121,7 @@
 /*
 labelBalance.addEventListener('click', () => {
   [...document.querySelectorAll('.movements__row')].forEach((row, i) => {
-    
+
     if (i % 2 === 0) {
       row.style.backgroundColor = 'orangeRed';
     }
@@ -132,7 +132,7 @@ labelBalance.addEventListener('click', () => {
   })
 });
 
-if you need to do something every nth time, using the % operator is a helpful tool. 
+if you need to do something every nth time, using the % operator is a helpful tool.
 Do x other one: % 2
 do x every 3 : % 3
 do x every n time: % n
@@ -161,6 +161,7 @@ console.log(Number.parseInt('230_000')); // 230 -- parseInt registers _ as non-n
 */
 
 // BIG INT Data Type: introduced in ES6 to accomodate big numbers
+/*
 const limitThatJSCanSafelyRepresent = 2 ** 53 - 1;
 console.log(limitThatJSCanSafelyRepresent); //9007199254740991
 console.log(Number.MAX_SAFE_INTEGER); //9007199254740991
@@ -169,7 +170,7 @@ console.log(Number.MAX_SAFE_INTEGER); //9007199254740991
 // VSCODE: Numeric literals with absolute values equal to 2^53 or greater are too large to be represented accurately as integers
 
 let bigIntEx1 = 77471992547409911532124;
-// console.log(bigIntEx1); //7.747199254740992e+22
+console.log(bigIntEx1); //7.747199254740992e+22
 
 console.log(77471992547409911532124n); //77471992547409911532124n
 console.log(BigInt(77471992547409911532124)); //77471992547409917902848n
@@ -179,10 +180,45 @@ console.log(BigInt(77471992547409911532124)); //77471992547409917902848n
 const huge = 35461878176546546504n;
 const small = 23;
 
-// console.log(huge * small); //Uncaught TypeError: Cannot mix BigInt and other types, use explicit conversions
+console.log(huge * small); //Uncaught TypeError: Cannot mix BigInt and other types, use explicit conversions
 console.log(huge * BigInt(small)); //815623198060570569592n
 
 // because Math.method() can only operate on Numbers, it does not work on BigInt
 // console.log(Math.sqrt(16n)); // uncaught typeError
+*/
 
+// ******** DATES AND TIMES ********
+/*
+// create a date
+let now = new Date();
+// console.log(now)
 
+console.log(new Date('Jul 19 2023 13:53:07'));
+console.log(new Date('December 13, 1996'));
+console.log(account1.movementsDates[0]); //2019-11-18T21:31:17.178Z
+console.log(new Date(account1.movementsDates[0])); //Mon Nov 18 2019 16:31:17 GMT-0500 (Eastern Standard Time)
+
+// year, month, day, hour, minutes, seconds
+console.log(new Date(2035, 10, 19, 15, 23, 5)); //Mon Nov 19 2035 15:23:05 GMT-0500 
+console.log(new Date(2035, 10, 33)); //Mon Dec 03 2035 00:00:00 GMT-0500
+
+console.log(new Date(0)); //Wed Dec 31 1969 19:00:00 GMT-0500
+
+// working with dates
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(future);
+console.log(future.getFullYear()); //2037
+console.log(future.getMonth()); // 0 based; 0 = jan so 10 = nov
+console.log(future.getDate()); //19
+console.log(future.getDay()); // day of the week 4
+console.log(future.getHours());
+console.log(future.getMinutes());
+console.log(future.getSeconds());
+console.log(future.toISOString()); //2037-11-19T20:23:00.000Z
+console.log(future.getTime()); // 2142274980000 (ms that have passed since Jan 1st, 1970. called a timestamp)
+console.log(new Date(2142274980000));
+console.log(Date.now()); //gives time stamp
+
+future.setFullYear(2040);
+console.log(future); //Mon Nov 19 2040 15:23:00 GMT-0500
+*/

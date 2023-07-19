@@ -92,17 +92,23 @@ const setLabelText = (label, sum) => {
 };
 
 // display all transactions
-const displayMovements = (movements, sort = false) => {
+const displayMovements = (acc, sort = false) => {
   containerMovements.innerHTML = ''; // clears containerMovement at beginning
 
   // if sort = true, then make copy of movements and sort in asc order, otherwise keep movs as og movements
-  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+  const movs = sort ? acc.movements.slice().sort((a, b) => a - b) : acc.movements;
 
   movs.forEach((mov, i) => {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
+    const date = new Date(acc.movementsDates[i]);
+    const day = `${date.getDate()}`.padStart(2, 0);
+    const month = `${date.getMonth() + 1}`.padStart(2, 0);
+    const year = date.getFullYear();
+    const displayDate = `${month}/${day}/${year}`
     const html = `
     <div class="movements__row">
     <div class="movements__type movements__type--${type}">${type} #${i + 1}</div>
+    <div class="movements__date">${displayDate}</div>
     <div class="movements__value">${(mov).toFixed(2)}${currencySign}</div>
     </div>
     `;
@@ -155,13 +161,22 @@ createUsernames(accounts);
 
 const updateUI = (acc) => {
   // display movements, balance, summary
-  displayMovements(acc.movements);
+  displayMovements(acc);
   calcDisplayBalance(acc);
   calcDisplaySummary(acc);
 }
 
 // event handlers
 let currentAccount;
+const now = new Date();
+
+
+// FAKE ALWAYS LOGGED IN
+currentAccount = account1;
+updateUI(currentAccount);
+containerApp.style.opacity = 100;
+
+
 
 btnLogin.addEventListener('click', (e) => {
   // prevents form's default behavior of submitting
@@ -171,6 +186,14 @@ btnLogin.addEventListener('click', (e) => {
     // display UI and welcome message
     labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(' ')[0]}`;
     containerApp.style.opacity = 100;
+
+    // create current date and time upon login
+    const day = `${now.getDate()}`.padStart(2, 0);
+    const month = `${now.getMonth() + 1}`.padStart(2, 0);
+    const year = now.getFullYear();
+    const hour = `${now.getHours()}`;
+    const minutes = `${now.getMinutes()}`;
+    labelDate.textContent = `${month}/${day}/${year} ${hour}:${minutes}`;
 
     //clear input fields
     // inputLoginPin.value = inputLoginUsername.value = '';
@@ -198,6 +221,10 @@ btnTransfer.addEventListener('click', (e) => {
     currentAccount.movements.push(-amount);
     receiverAcc.movements.push(amount);
 
+    // add transfer date
+    currentAccount.movementsDates.push(new Date().toISOString());
+    receiverAcc.movementsDates.push(new Date().toISOString());
+
     //update UI to reflect changes
     updateUI(currentAccount);
   }
@@ -214,6 +241,10 @@ btnLoan.addEventListener('click', (e) => {
   ) {
     // approve loan
     currentAccount.movements.push(loanAmount);
+
+    // add loan date
+    currentAccount.movementsDates.push(new Date().toISOString());
+
     updateUI(currentAccount);
   }
   clearInputFields(inputLoanAmount);
@@ -241,7 +272,7 @@ btnClose.addEventListener('click', (e) => {
 let sorted = false;
 btnSort.addEventListener('click', (e) => {
   e.preventDefault();
-  displayMovements(currentAccount.movements, !sorted);
+  displayMovements(currentAccount, !sorted);
   sorted = !sorted; // set sorted as opposite after running displayMovements
 });
 
