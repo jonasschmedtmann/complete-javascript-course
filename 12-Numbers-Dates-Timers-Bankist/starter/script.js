@@ -16,14 +16,14 @@ const account1 = {
   pin: 1111,
 
   movementsDates: [
-    '2019-11-18T21:31:17.178Z',
-    '2019-12-23T07:42:02.383Z',
-    '2020-01-28T09:15:04.904Z',
-    '2020-04-01T10:17:24.185Z',
-    '2020-05-08T14:11:59.604Z',
-    '2020-05-27T17:01:17.194Z',
-    '2020-07-11T23:36:17.929Z',
-    '2020-07-12T10:51:36.790Z',
+    '2022-11-18T21:31:17.178Z',
+    '2022-12-23T07:42:02.383Z',
+    '2022-01-28T09:15:04.904Z',
+    '2023-04-01T10:17:24.185Z',
+    '2023-05-08T14:11:59.604Z',
+    '2023-07-17T17:01:17.194Z',
+    '2023-07-18T23:36:17.929Z',
+    '2023-07-19T10:51:36.790Z',
   ],
   currency: 'EUR',
   locale: 'pt-PT', // de-DE
@@ -36,14 +36,14 @@ const account2 = {
   pin: 2222,
 
   movementsDates: [
-    '2019-11-01T13:15:33.035Z',
-    '2019-11-30T09:48:16.867Z',
-    '2019-12-25T06:04:23.907Z',
-    '2020-01-25T14:18:46.235Z',
-    '2020-02-05T16:33:06.386Z',
-    '2020-04-10T14:43:26.374Z',
-    '2020-06-25T18:49:59.371Z',
-    '2020-07-26T12:01:20.894Z',
+    '2022-11-01T13:15:33.035Z',
+    '2022-11-30T09:48:16.867Z',
+    '2022-12-25T06:04:23.907Z',
+    '2023-01-25T14:18:46.235Z',
+    '2023-02-05T16:33:06.386Z',
+    '2023-04-10T14:43:26.374Z',
+    '2023-06-25T18:49:59.371Z',
+    '2023-07-16T12:01:20.894Z',
   ],
   currency: 'USD',
   locale: 'en-US',
@@ -79,37 +79,57 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 /////////////////////////////////////////////////
-let currencySign = '€';
-
 const clearInputFields = (...inputField) => {
   inputField.forEach(i => {
     i.value = '';
   });
 };
 
-const setLabelText = (label, sum) => {
-  return label.textContent = `${Math.abs(sum.toFixed(2))}${currencySign}`;
+const setLabelText = (label, sum, acc) => {
+  return label.textContent = formatCurrency(Math.abs(sum), acc.locale, acc.currency);
+};
+
+const formatMovementDate = (date, locale) => {
+  const calcDaysPassed = (date1, date2) =>
+    Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
+
+  const daysPassedFromToday = calcDaysPassed(new Date(), date);
+
+  if (daysPassedFromToday === 0) return 'Today';
+  if (daysPassedFromToday === 1) return 'Yesterday';
+  if (daysPassedFromToday <= 7) return `${daysPassedFromToday} days ago`;
+
+  // const day = `${date.getDate()}`.padStart(2, 0);
+  // const month = `${date.getMonth() + 1}`.padStart(2, 0);
+  // const year = date.getFullYear();
+  // return `${month}/${day}/${year}`;
+  return new Intl.DateTimeFormat(locale).format(date);
+};
+
+const formatCurrency = (value, locale, currency) => {
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: currency
+  }).format(value);
 };
 
 // display all transactions
 const displayMovements = (acc, sort = false) => {
   containerMovements.innerHTML = ''; // clears containerMovement at beginning
 
-  // if sort = true, then make copy of movements and sort in asc order, otherwise keep movs as og movements
+  // if sort = true, then make copy of movements and sort in asc order, otherwise keep movs as is
   const movs = sort ? acc.movements.slice().sort((a, b) => a - b) : acc.movements;
 
   movs.forEach((mov, i) => {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
-    const date = new Date(acc.movementsDates[i]);
-    const day = `${date.getDate()}`.padStart(2, 0);
-    const month = `${date.getMonth() + 1}`.padStart(2, 0);
-    const year = date.getFullYear();
-    const displayDate = `${month}/${day}/${year}`
+    const dateOfMovement = new Date(acc.movementsDates[i]);
+    const displayDate = formatMovementDate(dateOfMovement, acc.locale);
+    const formattedMov = formatCurrency(mov, acc.locale, acc.currency);
     const html = `
     <div class="movements__row">
     <div class="movements__type movements__type--${type}">${type} #${i + 1}</div>
     <div class="movements__date">${displayDate}</div>
-    <div class="movements__value">${(mov).toFixed(2)}${currencySign}</div>
+    <div class="movements__value">${formattedMov}</div>
     </div>
     `;
     // append html to movement container
@@ -122,29 +142,29 @@ const displayMovements = (acc, sort = false) => {
 const calcDisplayBalance = (acc) => {
   //create new property of "balance" on account
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  // labelBalance.textContent = `${acc.balance}${currencySign}`;
-  setLabelText(labelBalance, acc.balance);
+  labelBalance.textContent = formatCurrency(acc.balance, acc.locale, acc.currency);
 };
 
 // display in, out, interest, on bottom of home page
-const calcDisplaySummary = ({ movements, interestRate }) => {
-  const inSum = movements
+const calcDisplaySummary = (acc) => {
+  const inSum = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  setLabelText(labelSumIn, inSum);
+  setLabelText(labelSumIn, inSum, acc);
 
-  const outSum = movements
+  const outSum = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  setLabelText(labelSumOut, outSum);
+  setLabelText(labelSumOut, outSum, acc);
 
   // New rule added: only include interest over $1 in total interest sum
-  const interestSum = movements
+  const interestSum = acc.movements
     .filter(mov => mov > 0)
-    .map(deposit => deposit * interestRate / 100)
+    .map(deposit => deposit * acc.interestRate / 100)
     .filter((interest, i, arr) => interest >= 1)
     .reduce((acc, int) => acc + int, 0);
-  setLabelText(labelSumInterest, interestSum)
+  setLabelText(labelSumInterest, interestSum, acc);
+  // labelSumInterest.textContent = formatCurrency(interestSum, acc.locale, acc.currency);
 };
 
 // 'John Jacobs' -> 'jj'
@@ -164,19 +184,40 @@ const updateUI = (acc) => {
   displayMovements(acc);
   calcDisplayBalance(acc);
   calcDisplaySummary(acc);
+};
+
+const startLogOutTimer = () => {
+  // set timer to 5 mins
+  let time = 5 * 60; //seconds
+  const tick = () => {
+    const mins = String(Math.trunc(time / 60)).padStart(2, 0);
+    const secs = String(time % 60).padStart(2, 0);
+    // print remaining time to UI
+    labelTimer.textContent = `${mins}:${secs}`;
+
+    // at 0 seconds, stop timer and log out user
+    if (time === 0) {
+      clearInterval(logOutTimer);
+      labelWelcome.textContent = 'Log in to get started';
+      containerApp.style.opacity = 0;
+    }
+
+    // decrease time 1s (placed after time === 0 eval so we are logged out at 0 vs 1s)
+    time--;
+  }
+  // call timer every second
+  tick();
+  const logOutTimer = setInterval(tick, 1000);
+  return logOutTimer;
 }
 
 // event handlers
-let currentAccount;
-const now = new Date();
-
+let currentAccount, logOutTimer;
 
 // FAKE ALWAYS LOGGED IN
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 100;
-
-
+// currentAccount = account1;
+// updateUI(currentAccount);
+// containerApp.style.opacity = 100;
 
 btnLogin.addEventListener('click', (e) => {
   // prevents form's default behavior of submitting
@@ -187,21 +228,42 @@ btnLogin.addEventListener('click', (e) => {
     labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(' ')[0]}`;
     containerApp.style.opacity = 100;
 
-    // create current date and time upon login
-    const day = `${now.getDate()}`.padStart(2, 0);
-    const month = `${now.getMonth() + 1}`.padStart(2, 0);
-    const year = now.getFullYear();
-    const hour = `${now.getHours()}`;
-    const minutes = `${now.getMinutes()}`;
-    labelDate.textContent = `${month}/${day}/${year} ${hour}:${minutes}`;
+    // EXPERIMENTING WITH INTERNATIONALIZATION API to accomodate for different languages and timezones
+    const now = new Date();
+    const options = {
+      hour: 'numeric',
+      minute: 'numeric',
+      day: '2-digit',
+      month: '2-digit', // can do 'long', 'numeric'
+      year: 'numeric',
+      weekday: 'short' // long, short, narrow options
+    };
+    const localeInfo = navigator.language; //gets locale sting data from user browser
 
-    //clear input fields
-    // inputLoginPin.value = inputLoginUsername.value = '';
-    clearInputFields(inputLoginPin, inputLoginUsername);
-    inputLoginPin.blur();
+    labelDate.textContent = new Intl.DateTimeFormat(
+      currentAccount.locale,
+      options
+    ).format(now);
+
+    // check if other timers are running before running logOutTimer on another account
+    if (logOutTimer) clearInterval(logOutTimer);
+    logOutTimer = startLogOutTimer();
 
     updateUI(currentAccount);
+
+    document.addEventListener('click', (e) => {
+      e.preventDefault();
+      // Reset timer on click activity when logged in
+      clearInterval(logOutTimer);
+      logOutTimer = startLogOutTimer();
+    })
+
+  } else {
+    alert('Incorrect Credentials');
   }
+  //clear input fields
+  clearInputFields(inputLoginPin, inputLoginUsername);
+  inputLoginPin.blur();
 });
 
 btnTransfer.addEventListener('click', (e) => {
@@ -228,6 +290,11 @@ btnTransfer.addEventListener('click', (e) => {
     //update UI to reflect changes
     updateUI(currentAccount);
   }
+
+  // Reset timer
+  clearInterval(logOutTimer);
+  logOutTimer = startLogOutTimer();
+
   clearInputFields(inputTransferAmount, inputTransferTo);
 });
 
@@ -239,14 +306,20 @@ btnLoan.addEventListener('click', (e) => {
     loanAmount > 0 &&
     currentAccount.movements.some(mov => mov >= loanAmount * 0.1)
   ) {
-    // approve loan
-    currentAccount.movements.push(loanAmount);
+    setTimeout(() => {
+      // approve loan
+      currentAccount.movements.push(loanAmount);
 
-    // add loan date
-    currentAccount.movementsDates.push(new Date().toISOString());
+      // add loan date
+      currentAccount.movementsDates.push(new Date().toISOString());
 
-    updateUI(currentAccount);
+      updateUI(currentAccount);
+    }, 3000);
   }
+  // // Reset timer
+  // clearInterval(logOutTimer);
+  // logOutTimer = startLogOutTimer();
+
   clearInputFields(inputLoanAmount);
 });
 
@@ -273,9 +346,7 @@ let sorted = false;
 btnSort.addEventListener('click', (e) => {
   e.preventDefault();
   displayMovements(currentAccount, !sorted);
-  sorted = !sorted; // set sorted as opposite after running displayMovements
+  sorted = !sorted; // reset sorted property
 });
 
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// LECTURES
+

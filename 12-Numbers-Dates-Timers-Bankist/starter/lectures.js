@@ -199,7 +199,7 @@ console.log(account1.movementsDates[0]); //2019-11-18T21:31:17.178Z
 console.log(new Date(account1.movementsDates[0])); //Mon Nov 18 2019 16:31:17 GMT-0500 (Eastern Standard Time)
 
 // year, month, day, hour, minutes, seconds
-console.log(new Date(2035, 10, 19, 15, 23, 5)); //Mon Nov 19 2035 15:23:05 GMT-0500 
+console.log(new Date(2035, 10, 19, 15, 23, 5)); //Mon Nov 19 2035 15:23:05 GMT-0500
 console.log(new Date(2035, 10, 33)); //Mon Dec 03 2035 00:00:00 GMT-0500
 
 console.log(new Date(0)); //Wed Dec 31 1969 19:00:00 GMT-0500
@@ -222,3 +222,120 @@ console.log(Date.now()); //gives time stamp
 future.setFullYear(2040);
 console.log(future); //Mon Nov 19 2040 15:23:00 GMT-0500
 */
+/*
+const future = new Date(2023, 10, 19, 15, 23);
+console.log(future); //Thu Nov 19 2037 15:23:00 GMT-0500
+console.log(Number(future)); //2142274980000 -- converts date to number type timestamp
+console.log(+future); // + operator to convert to number type timestamp
+
+const calcDaysPassed = (date1, date2) =>
+  Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
+// 1000ms/s, 60 s/min, 60 min/hr, 24 hr/day = dayspassed
+
+const results1 = calcDaysPassed(new Date(), future);
+console.log(results1);
+*/
+
+// *********** WORKING WITH Intl.NumberFormat(locale, options).format(valueYouWantFormatted)***********
+/*
+const num = 3884764.23;
+console.log('US: ', new Intl.NumberFormat('en-US').format(num)); //3,884,764.23
+console.log('Germany: ', new Intl.NumberFormat('de-DE').format(num)); // 3.884.764,23
+console.log('Syria: ', new Intl.NumberFormat('ar-SY').format(num)); // ٣٬٨٨٤٬٧٦٤٫٢٣
+
+console.log(
+  navigator.language, //get locale from browser
+  new Intl.NumberFormat(navigator.language).format(num)
+); // en-US 3,884,764.23
+
+const options = {
+  style: 'unit', //unit, percent, currency
+  unit: 'mile-per-hour'
+};
+console.log('US: ', new Intl.NumberFormat('en-US', options).format(num)); //3,884,764.23 mph
+console.log('Germany: ', new Intl.NumberFormat('de-DE', options).format(num)); // 3.884.764,23 mi/h
+
+options.unit = 'celsius'; //different units available
+console.log(
+  'Germany: ',
+  new Intl.NumberFormat('de-DE', options).format(num)
+); //Germany:  3.884.764,23 °C
+
+options.style = 'percent';
+console.log(
+  'Germany: ',
+  new Intl.NumberFormat('de-DE', options).format(num)
+); //Germany:  388.476.423 %
+
+options.style = 'currency'; //change style
+options.currency = 'EUR'; // create currency property and assign a value
+console.log(
+  'Germany: ',
+  new Intl.NumberFormat('de-DE', options).format(num)
+); //Germany:  3.884.764,23 €
+
+console.log(
+  'US: ',
+  new Intl.NumberFormat('en-US', options).format(num)
+); // US:  €3,884,764.23
+
+options.useGrouping = false;
+console.log(
+  'US: ',
+  new Intl.NumberFormat('en-US', options).format(num)
+); // US:  €3884764.23
+
+options.useGrouping = true; //default set to true
+console.log(
+  'US: ',
+  new Intl.NumberFormat('en-US', options).format(num)
+); // US:  €3,884,764.23
+
+// EXPERIMENTING WITH INTERNATIONALIZATION API to accomodate for different languages and timezones
+    const now = new Date();
+    const options = {
+      hour: 'numeric',
+      minute: 'numeric',
+      day: '2-digit',
+      month: '2-digit', // can do 'long', 'numeric'
+      year: 'numeric',
+      weekday: 'short' // long, short, narrow options
+    };
+    const localeInfo = navigator.language; //gets locale sting data from user browser
+
+    labelDate.textContent = new Intl.DateTimeFormat(
+      currentAccount.locale,
+      options)
+      .format(now);
+*/
+
+
+// ******** SET TIMEOUT *********
+/*
+const ingredients = ['pineapple', 'onions'];
+const pizzaReadyTimer = setTimeout(
+  (ing1, ing2) => console.log(`Your ${ing1} and ${ing2} pizza is ready! 🍕`),
+  3000,
+  ...ingredients, //passing in arguments to use as params in ^^ callback fn
+);
+console.log('Pizza order placed')
+
+if (ingredients.includes('spinach')) clearTimeout(pizzaReadyTimer);
+
+setTimeout(() => console.log('starting pizza... 🎬'), 1000);
+setTimeout(() => console.log('in progress... 💪🏻'), 2000);
+*/
+
+const timer = () => {
+  setInterval(() => {
+    const now = new Date();
+    const formattedDate = new Intl.DateTimeFormat(navigator.language, {
+      hour: 'numeric',
+      minute: '2-digit',
+      second: '2-digit'
+    }).format(now);
+    console.log(formattedDate);
+  }, 3000)
+};
+
+// timer();
