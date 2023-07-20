@@ -223,6 +223,121 @@ if (BMIMark > BMIJohn) {
 //   console.log("height is undefined");
 // }
 
-const age = 18;
+// const age = "18";
 
-if (age === 18) console.log("you just became an adult");
+// if (age === 18) console.log("you just became an adult");
+
+// 3 equals are strict because they don't perform type coercion
+
+// if (age == 18) console.log("you just became an adult (loose)");
+
+// const favorite = Number(prompt("what is your favorite number?"));
+
+// console.log(typeof favorite);
+
+// if (favorite === 23) {
+//   console.log("cool 23 is an amazing number");
+// } else if (favorite === 7) {
+//   console.log("7 is also cool");
+// } else {
+//   console.log("number is not 23 or 7");
+// }
+
+// // inequality != not strict !== strict
+
+// if (favorite !== 23) console.log("why not 23?");
+// const hasDriversLiscense = true; //A
+// const hasGoodVision = true; //B
+
+// console.log(hasDriversLiscense && hasGoodVision);
+// console.log(hasDriversLiscense || hasGoodVision);
+// console.log(!hasDriversLiscense);
+
+// const shouldDrive = hasDriversLiscense && hasGoodVision;
+
+// // if (hasDriversLiscense && hasGoodVision) {
+// //   console.log("Sarah can drive");
+// // } else {
+// //   console.log("someone else should drive");
+// // }
+
+// const isTired = false; // C
+
+// console.log(hasDriversLiscense && hasGoodVision && isTired);
+
+// if (hasDriversLiscense && hasGoodVision && !isTired) {
+//   console.log("Sarah can drive");
+// } else {
+//   console.log("someone else should drive");
+// }
+
+// *Switch Statement*
+// basically the select function from VBA
+
+// const day = "test";
+// switch (day) {
+//   case "monday": //day === 'monday'
+//     console.log("plan course structure");
+//     console.log("go to coding meetup");
+//     break;
+//   case "tuesday":
+//     console.log("prepare theory videos");
+//     break;
+//   case "wednesday":
+//     console.log("it is wednesday my dudes");
+//   case "thursday":
+//     console.log("Write code examples");
+//     break;
+//   case "friday":
+//     console.log("record videos");
+//     break;
+//   case "saturday":
+//   case "sunday":
+//     console.log("enjoy the weekend");
+//   default:
+//     console.log("not a valid date!");
+// }
+
+// if (day === "monday") {
+//   console.log("plan course structure");
+//   console.log("go to coding meetup");
+// } else if (day === "tuesday") {
+//   console.log("prepare theory videos");
+// } else if (day === "wednesday" || day === "thursday") {
+//   console.log("write code examples");
+// } else if (day === "friday") {
+//   console.log("record videos");
+// } else if (day === "saturday" || day === "sunday") {
+//   console.log("enjoy the weekend");
+// } else {
+//   console.log("not a valid date");
+// }
+
+//*Statements and Expressions*
+
+// 3 + 4;
+// 1991;
+// true && false && !false;
+
+// if (23 > 10) {
+//   const str = "23 is bigger";
+// }
+
+//*Ternary operator*
+// ? is like "if" and : is like "else"
+// const age = 23;
+// // age >= 18
+// //   ? console.log("I like to drink wine")
+// //   : console.log("I like to drink water");
+
+// const drink = age >= 18 ? "wine" : "water";
+
+// console.log(`I like to drink ${age >= 18 ? "wine" : "water"}`);
+
+// const bill = 275;
+
+// const tip = 50 <= bill <= 300 ? bill * 0.15 : bill * 0.2;
+
+// console.log(
+//   `The bill was ${bill}, the tip was ${tip}, and the total value ${tip + bill}`
+// );
