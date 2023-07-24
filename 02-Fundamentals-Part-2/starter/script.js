@@ -77,7 +77,7 @@ However you need to know both.
 
 // Arrow function
 // easier and faster to write
-// Return happens implicilty (ie you don't need to write the return keyword, good for single commands)
+// Return happens implicitly (ie you don't need to write the return keyword, good for single commands)
 /*
 const calcAge3 = (birthYear) => 2037 - birthYear;
 const age3 = calcAge3(1991);
@@ -89,7 +89,7 @@ const yearsUntilRetirement = (birthYear, firstName) => {
   const age = 2037 - birthYear;
   const retirement = 65 - age;
   return `${firstName} retires in ${retirement} years`;
-  // Return can only be ommitted on one line functions
+  // Return can only be omitted on one line functions
 };
 
 console.log(yearsUntilRetirement(1991, "john"));
@@ -107,7 +107,7 @@ console.log(yearsUntilRetirement(1980, "bob"));
 // food processing example
 
 // Function for cutting fruit into multiple pieces
-
+/*
 function cutFruitPieces(fruit) {
   return fruit * 4;
 }
@@ -122,3 +122,29 @@ function fruitProcessor(apples, oranges) {
 }
 
 console.log(fruitProcessor(2, 3));
+*/
+
+////////////////////
+// Years until retirement function
+/*
+const calcAge = function (birthYear) {
+  return 2037 - birthYear;
+};
+const yearsUntilRetirement = function (birthYear, firstName) {
+  const age = calcAge(birthYear);
+  const retirement = 65 - age;
+
+  if (retirement > 0) {
+    console.log(`${firstName} retires in %{retirement} years`);
+    return retirement;
+    // function exit immediately following the return keyword
+    // any other code within the function will not be executed
+  } else {
+    console.log(`${firstName} has already retired🎊`);
+    return -1;
+  }
+};
+
+console.log(yearsUntilRetirement(1991, "jonas"));
+console.log(yearsUntilRetirement(1950, "mike"));
+*/
