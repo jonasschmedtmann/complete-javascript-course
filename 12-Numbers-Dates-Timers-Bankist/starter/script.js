@@ -79,6 +79,8 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 /////////////////////////////////////////////////
+let currentAccount, logOutTimer, loggedIn;
+
 const clearInputFields = (...inputField) => {
   inputField.forEach(i => {
     i.value = '';
@@ -99,10 +101,6 @@ const formatMovementDate = (date, locale) => {
   if (daysPassedFromToday === 1) return 'Yesterday';
   if (daysPassedFromToday <= 7) return `${daysPassedFromToday} days ago`;
 
-  // const day = `${date.getDate()}`.padStart(2, 0);
-  // const month = `${date.getMonth() + 1}`.padStart(2, 0);
-  // const year = date.getFullYear();
-  // return `${month}/${day}/${year}`;
   return new Intl.DateTimeFormat(locale).format(date);
 };
 
@@ -113,12 +111,19 @@ const formatCurrency = (value, locale, currency) => {
   }).format(value);
 };
 
+let sorted = false;
+
 // display all transactions
 const displayMovements = (acc, sort = false) => {
   containerMovements.innerHTML = ''; // clears containerMovement at beginning
+  let movs = acc.movements
 
-  // if sort = true, then make copy of movements and sort in asc order, otherwise keep movs as is
-  const movs = sort ? acc.movements.slice().sort((a, b) => a - b) : acc.movements;
+  if (sort) {
+    movs = acc.movements.slice().sort((a, b) => a - b);
+    btnSort.style.color = 'green'
+  } else {
+    btnSort.style.color = 'gray';
+  }
 
   movs.forEach((mov, i) => {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
@@ -137,6 +142,11 @@ const displayMovements = (acc, sort = false) => {
   });
 };
 
+btnSort.addEventListener('click', (e) => {
+  e.preventDefault();
+  displayMovements(currentAccount, !sorted);
+  sorted = !sorted; // reset sorted property
+});
 
 // display total balance in top right corner
 const calcDisplayBalance = (acc) => {
@@ -200,30 +210,35 @@ const startLogOutTimer = () => {
       clearInterval(logOutTimer);
       labelWelcome.textContent = 'Log in to get started';
       containerApp.style.opacity = 0;
+      loggedIn = false;
     }
 
     // decrease time 1s (placed after time === 0 eval so we are logged out at 0 vs 1s)
     time--;
   }
-  // call timer every second
   tick();
+
+
+
+  // call tick() every second
   const logOutTimer = setInterval(tick, 1000);
   return logOutTimer;
 }
 
 // event handlers
-let currentAccount, logOutTimer;
 
 // FAKE ALWAYS LOGGED IN
-// currentAccount = account1;
-// updateUI(currentAccount);
-// containerApp.style.opacity = 100;
+currentAccount = account1;
+updateUI(currentAccount);
+containerApp.style.opacity = 100;
+
 
 btnLogin.addEventListener('click', (e) => {
   // prevents form's default behavior of submitting
   e.preventDefault();
   currentAccount = accounts.find(account => account.username === inputLoginUsername.value);
   if (currentAccount?.pin === +(inputLoginPin.value)) {
+    loggedIn = true;
     // display UI and welcome message
     labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(' ')[0]}`;
     containerApp.style.opacity = 100;
@@ -236,10 +251,11 @@ btnLogin.addEventListener('click', (e) => {
       day: '2-digit',
       month: '2-digit', // can do 'long', 'numeric'
       year: 'numeric',
-      weekday: 'short' // long, short, narrow options
+      // weekday: 'short' // long, short, narrow options
     };
     const localeInfo = navigator.language; //gets locale sting data from user browser
 
+    // * aim to reuse this code to update labelDate every 30 seconds
     labelDate.textContent = new Intl.DateTimeFormat(
       currentAccount.locale,
       options
@@ -259,7 +275,7 @@ btnLogin.addEventListener('click', (e) => {
     })
 
   } else {
-    alert('Incorrect Credentials');
+    swal('Oops', 'These credentials do not match any of our records', 'info');
   }
   //clear input fields
   clearInputFields(inputLoginPin, inputLoginUsername);
@@ -272,6 +288,7 @@ btnTransfer.addEventListener('click', (e) => {
   const receiverAcc = accounts.find(
     acc => acc.username === inputTransferTo.value
   );
+  const formattedAmount = formatCurrency(amount, currentAccount.locale, currentAccount.currency);
 
   if (
     amount > 0 &&
@@ -279,16 +296,31 @@ btnTransfer.addEventListener('click', (e) => {
     receiverAcc &&
     receiverAcc.username !== currentAccount.username
   ) {
-    // act of transfer
-    currentAccount.movements.push(-amount);
-    receiverAcc.movements.push(amount);
+    swal(
+      `Confirm transfer`,
+      `${formattedAmount} to ${inputTransferTo.value}`,
+      {
+        buttons: [true, `Confirm transfer to "${inputTransferTo.value}"`]
+      })
+      .then((confirmTransfer) => {
+        if (confirmTransfer) {
+          swal('Transfer complete', { icon: 'success' })
+          // act of transfer
+          currentAccount.movements.push(-amount);
+          receiverAcc.movements.push(amount);
 
-    // add transfer date
-    currentAccount.movementsDates.push(new Date().toISOString());
-    receiverAcc.movementsDates.push(new Date().toISOString());
+          // add transfer date
+          currentAccount.movementsDates.push(new Date().toISOString());
+          receiverAcc.movementsDates.push(new Date().toISOString());
 
-    //update UI to reflect changes
-    updateUI(currentAccount);
+          //update UI to reflect changes
+          updateUI(currentAccount);
+        }
+      })
+  } else if (!receiverAcc) {
+    swal('Oops', 'This user does not exist in our system', 'info');
+  } else if (currentAccount.balance < amount) {
+    swal('Sorry', 'You do not have enough funds to make this transfer', 'info');
   }
 
   // Reset timer
@@ -306,6 +338,7 @@ btnLoan.addEventListener('click', (e) => {
     loanAmount > 0 &&
     currentAccount.movements.some(mov => mov >= loanAmount * 0.1)
   ) {
+    swal('Success!', 'Your loan has been approved', 'success');
     setTimeout(() => {
       // approve loan
       currentAccount.movements.push(loanAmount);
@@ -315,10 +348,11 @@ btnLoan.addEventListener('click', (e) => {
 
       updateUI(currentAccount);
     }, 3000);
+  } else if (loanAmount < 0 || !loanAmount) {
+    swal('Loan Denied', 'Requested loan amount less than $0', 'error');
+  } else {
+    swal('Loan Denied', 'Loans are granted only if you have a deposit that is at least 10% of the requested loan amount', 'error')
   }
-  // // Reset timer
-  // clearInterval(logOutTimer);
-  // logOutTimer = startLogOutTimer();
 
   clearInputFields(inputLoanAmount);
 });
@@ -332,21 +366,40 @@ btnClose.addEventListener('click', (e) => {
     const index = accounts.findIndex(
       acc => acc.username === currentAccount.username
     );
+    swal({
+      title: 'Are you sure you want to close your account?',
+      text: 'You are permanently deleting your entire account. \nThis action cannot be undone!',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal('Your account has been deleted', {
+            icon: 'success'
+          });
+          setTimeout(() => {
+            labelWelcome.textContent = 'Log in to get started';
+            // remove currentAccount from accounts array
+            accounts.splice(index, 1);
+            // 'logout' user
+            containerApp.style.opacity = 0;
+            loggedIn = false;
+          }, 1500);
 
-    // remove currentAccount from accounts array
-    accounts.splice(index, 1);
-    // 'logout' user
-    containerApp.style.opacity = 0;
+        } else {
+          swal('You account is still active!', {
+            icon: "success"
+          })
+        }
+      })
+  } else {
+    swal('Oops', 'These credentials do not match any of our records', 'info');
   }
 
   clearInputFields(inputClosePin, inputCloseUsername);
 });
 
-let sorted = false;
-btnSort.addEventListener('click', (e) => {
-  e.preventDefault();
-  displayMovements(currentAccount, !sorted);
-  sorted = !sorted; // reset sorted property
-});
+
 
 

@@ -93,7 +93,7 @@ nav {
   grid-template-rows: auto repeat(3, 15rem) auto;
   gap: 2rem;
 
-  /* NOTE This creates the fade in/out anumation */
+  /* NOTE This creates the fade in/out animation */
   opacity: 0;
   transition: all 1s;
 }
@@ -202,7 +202,7 @@ nav {
   border: none;
   background: none;
   font-size: 1.3rem;
-  font-weight: 500;
+  font-weight: 900;
   cursor: pointer;
 }
 
@@ -243,9 +243,11 @@ h2 {
 .form.form--loan {
   grid-template-columns: 2.5fr 1fr 2.5fr;
 }
+
 .form__label--loan {
   grid-row: 2;
 }
+
 /* End exceptions */
 
 .form__input {
