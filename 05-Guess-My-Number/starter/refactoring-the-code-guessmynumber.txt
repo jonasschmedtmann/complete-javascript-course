@@ -1,0 +1,4 @@
+
+--- > WHY IS IT SO BAD TO HAVE DUPLICATE CODE? 
+
+Whenever we have duplicate code 
