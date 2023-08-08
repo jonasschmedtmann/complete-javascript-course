@@ -422,7 +422,7 @@ TEST DATA: Marks weighs 78 kg and is 1.69 m tall. John weighs 92 kg and is 1.95 
 
 IMPORTANT: The ** operator is not supported in this editor. Please make sure to use exactly this formula mass / (height * height), and not this one mass / (height ** 2).
 */
-
+/*
 const mark = {
   fullName: "Mark Miller",
   mass: 78,
@@ -463,3 +463,156 @@ mark.bmi > john.bmi
   : console.log(
       `${john.fullName}'s BMI (${john.bmi}) is higher than ${mark.fullName}'s (${mark.bmi})!`
     );
+*/
+
+///////////////////////////
+// Loops //
+///////////////////////////
+
+// Loops are a fundamental aspect of programming because they automate repetitive tasks
+
+// another control structure life if statements
+
+// console.log("Lifting weights repetition 1");
+// console.log("Lifting weights repetition 2");
+// console.log("Lifting weights repetition 3");
+// console.log("Lifting weights repetition 4");
+// console.log("Lifting weights repetition 5");
+// console.log("Lifting weights repetition 6");
+// console.log("Lifting weights repetition 7");
+// console.log("Lifting weights repetition 8");
+// console.log("Lifting weights repetition 9");
+// console.log("Lifting weights repetition 10");
+
+// ☝️ this is terrible
+
+// for loop
+
+// for loop keeps running while the condition you set is TRUE
+
+// for (let rep = 1; rep <= 10; rep++) {
+//   console.log(`Lifting weights repetition ${rep}`);
+// }
+
+//////////////////////////////
+// Looping through arrays
+//////////////////////////////
+/*
+const jonas = [
+  "Jonas",
+  "Schmedtmann",
+  2037 - 1991,
+  "teacher",
+  ["Michael", "Peter", "Steven"],
+  true,
+];
+
+// // console.log(jonas[0])
+// // console.log(jonas[1])
+// // ...
+// // console.log(jonas[4])
+// // jonas[5] does NOT exist
+
+const types = [];
+
+for (let i = 0; i < jonas.length; i++) {
+  //reading from jonas array
+  console.log(jonas[i], typeof jonas[i]);
+
+  //filling types array
+  // types[i] = typeof jonas[i];
+  types.push(typeof jonas[i]);
+}
+
+console.log(types);
+
+const years = [1991, 2007, 1969, 2020];
+const ages = [];
+
+for (let i = 0; i < years.length; i++) {
+  ages.push(2037 - years[i]);
+}
+console.log(ages);
+
+// continue and break
+
+// continue is to exit the current iteration and proceed to the next one
+// break exits the entire loop
+console.log("---Only string---");
+
+for (let i = 0; i < jonas.length; i++) {
+  if (typeof jonas[i] !== "string") continue;
+  console.log(jonas[i]);
+}
+
+for (let i = 0; i < jonas.length; i++) {
+  if (typeof jonas[i] === "number") break;
+  console.log(jonas[i]);
+}
+*/
+
+///////////////////
+// Looping backwards and loops within loops (nested) //
+///////////////////
+
+// const jonas = [
+//   "Jonas",
+//   "Schmedtmann",
+//   2037 - 1991,
+//   "teacher",
+//   ["Michael", "Peter", "Steven"],
+//   true,
+// ];
+// //0,2...4
+// //4,3...0
+
+// for (let i = jonas.length - 1; i >= 0; i--) {
+//   console.log(i, jonas[i]);
+// }
+
+// for (let exercise = 1; exercise < 4; exercise++) {
+//   console.log(`------- Starting Exercise ${exercise}`);
+
+//   for (let rep = 1; rep < 6; rep++) {
+//     console.log(`Exercise ${exercise} Lifting weight repetition ${rep}`);
+//   }
+// }
+
+//////////////////////////////////
+// While loop //
+//////////////////////////////////
+
+// while loops vs for loops
+
+// while loops we can only specify conditions
+// runs "while" the condition is true
+
+// let rep = 1;
+// while (rep <= 10) {
+//   console.log(`Lifting weights rep ${rep}`);
+//   rep++;
+// }
+
+// while loops is more versatile than for loop
+// while loops don't necessarily "need" a counter
+
+// example, depends on random variable
+
+// dice roll example, runs until you get a 6
+
+// console.log(dice);
+// let dice = Math.trunc(Math.random() * 6) + 1;
+
+// while (dice !== 6) {
+//   console.log(`you rolled a ${dice}`);
+//   dice = Math.trunc(Math.random() * 6) + 1;
+//   if (dice === 6) {
+//     console.log("loops is about to end...");
+//   }
+// }
+
+// when we want to loop over a predeterinmined amount, we use for loops, if we're not sure, we use while loops
+
+//////////////////////
+// Coding Challenge #4 //
+//////////////////////
