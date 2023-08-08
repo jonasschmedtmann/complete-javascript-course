@@ -1,0 +1,15 @@
+
+--- > WHY IS IT SO BAD TO HAVE DUPLICATE CODE? 
+
+Whenever we have duplicate code and we want to change something we have to change it in multiple places
+
+- REFACTORING BASICALLT MEANS TO RESTRUCTURE THE CODE BUT WITHOUT CHANGE HOW IT WORKS.
+
+WE USE REFACTORINGTO IMPROVE THE CODE OR TO DRY IT. 
+
+else if (guess !== secretNumber){
+    if (score > 1) {
+      document.querySelector('.message').textContent = 
+      guess > secretNumber ? "Too High" : "Too Low";
+    }
+}   
