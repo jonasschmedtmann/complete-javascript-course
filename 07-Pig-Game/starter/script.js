@@ -20,6 +20,7 @@ const image = document.querySelector('.dice');
 let currentPlayer = "player1"; 
 
 console.log(currentScore0, currentScore1, totalScore0, totalScore1);
+
 function resetScores() {
     console.log("new game");
     currentScores.forEach((currentScore) => currentScore.textContent = 0);
