@@ -92,3 +92,23 @@ function printGoals(...number) {
 printGoals('Davies', 'Muller', 'Lewandowski','Kimmich');
 
 (team1 < team2) && console.log(team1);
+
+//coding challenge 2
+
+for (const [key, val] of game.scored.entries()) {
+  console.log(`Goal ${key+1}: ${val}`);
+}
+
+let sum = 0;
+let length = Object.entries(game.odds).length;
+for (const odd of Object.values(game.odds)) {
+  sum += odd; 
+}
+console.log(sum/length);
+
+for (const [team, odd] of Object.entries(game.odds)) {
+  const teamStr = (game[team]) ? `victory ${game[team]}` : `draw`;
+  console.log(`Odd of ${teamStr}: ${odd}`);
+}
+
+
