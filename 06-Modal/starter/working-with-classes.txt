@@ -1,0 +1,49 @@
+
+
+-----> How to manipulate classes with JS: 
+
+We will createmanipulate the modal window using js 
+so we are moving this class " hidden"
+
+1. what we want to do is to take the modal 
+
+duvida1: onde está a classe .modal? 
+onde esta a classe .hidden? no html 
+
+IN PRATIICE WE USE THE FUNCTIONALITY OF ADDING AND REMOVING CLASSES ALL THE TIME 
+IN ORDER TO CHANGE APPERENCE OF ELEMENTS ON OUR PAGE 
+
+IT HAPPENS BECAUSE CLASSSES ALLOW US TO BASICALLY AGGREGATE MULTIPLE CSS PROPERTIES IN JUST ONE LIKE A CONTAINER
+SO EACH CLASS FUNTIONS A BIT LIKE A CONTAINER WITH A LOT OF PROPERTIES IN IT.
+
+AND BY ADDING AND REMOVING THEM WE CAN BASICALLY ACTIVATE AND DEACTIVATE CERTAIN STYLES ALL AT THE SAME TIME 
+
+const OpenModal = function () {
+  console.log('Button clicked');
+  modal.classList.remove('hidden');
+  overlay.classList.remove('hidden');
+};
+const closeModal = function () {
+  modal.classList.add('hidden');
+  overlay.classList.add('hidden');
+};
+
+for (let i = 0; i < btnOpenModal.length; i++)
+  btnOpenModal[i].addEventListener('click', OpenModal);
+// THE DOT IS ONLY FOR THE SELECTOR, HERE WE JUST PASS THE NAME OF THE CLASS
+
+btnCloseModal.addEventListener('click', closeModal);
+
+overlay.addEventListener('click', closeModal);
+
+// WE ARE NOT CALLING THE FUNCTION () !! IF WE DID THAT IT WOULD EXECUTE IMEDIATELLY BUT WE JUST
+// WANT IT TO HAPPEN THE CLICK EVENT HAPPENS
+// 'click' is the name of the event and after we write the function
+// just like and if-else statement, when there's only one line of code that I want to execute, I actually don't have to use curly braces (a block)
+// now we need to add a modal
+
+//for (let i = 0); i < btnOpenModal.length; i++){
+//consobtnOpenModal[i].addEventListener(click, function () {});
+//}
+
+THE OTHER THING WE CAN DO WITH CLASSES IS TO CHECK IF A CLASS IS ACTUALLY PRESENT ON A CERTAIN ELEMENT 
