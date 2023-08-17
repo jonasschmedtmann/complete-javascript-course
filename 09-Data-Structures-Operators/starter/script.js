@@ -139,3 +139,19 @@ for (const [time, event] of gameEvents) {
   const statement = time <= 45 ? '[FIRST HALF]' : '[SECOND HALF]';
   console.log(`${statement} ${time}: ${event} `);
 }
+
+//coding challenge 4
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+document.querySelector('button').addEventListener('click', conversion);
+
+function conversion () {
+  const text = document.querySelector('textarea').value;
+  const arr = text.split('\n');
+  for (const [counter, name] of arr.entries()) {
+    const [first, second] = name.replaceAll(" ", "").split("_");
+    const output = first.toLowerCase() + second[0].toUpperCase() + second.slice(1).toLowerCase();
+    console.log(output.padEnd(20," ") + "*".repeat(counter + 1));
+  }
+}
