@@ -115,4 +115,9 @@ createUsernames(accounts);
 const deposits = movements.filter((mov) => mov > 0);
 console.log(deposits);
 
+//reduce method
+const balance = movements.reduce((acc, curr, index, arr) => acc + curr, 1);
+console.log(balance)
 
+const max = movements.reduce((acc, curr, index, arr) => acc = Math.max(curr, acc), -Infinity);
+console.log(max)
