@@ -98,9 +98,52 @@ const poll = {
     }
 };
 
-document.querySelector('.poll').addEventListener('click', poll.registerNewAnswer.bind(poll));
+//document.querySelector('.poll').addEventListener('click', poll.registerNewAnswer.bind(poll));
 const data1 = [5, 2, 3];
 const data2 = [1, 5, 3, 9, 6, 1];
 poll.displayResults.call({answers: data1});
 poll.displayResults.call({answers: data2});
+
+// closures when a function returns a function
+
+const secureBooking = function () {
+    let passengerCount = 0;
+
+    return function() {
+        passengerCount++;
+        console.log(`${passengerCount} passengers`);
+    }
+}
+
+const booker = secureBooking();
+
+booker();
+booker();
+booker();
+console.dir(booker); //to check for closure in scopes
+
+//closures when a function does not return a function 
+let f;
+
+const g = function() {
+    const a = 23;
+    f = function() {
+        console.log(a*2);
+    };
+};
+
+const h = function() {
+    const b = 33;
+    f = function() {
+        console.log(b*2);
+    };
+}
+
+g();
+f();
+
+//reassigning f function
+h();
+f();
+
 
