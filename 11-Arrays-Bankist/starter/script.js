@@ -98,4 +98,18 @@ const INR = 80;
 const convertINR = movements.map(mov => mov*INR);
 console.log(convertINR)
 
-//
+function createUsernames(acc) {
+  acc.forEach((account) => {
+    account.username = account.owner
+                        .toLowerCase()
+                        .split(" ")
+                        .map((name) => name[0])
+                        .join("");
+    console.log(account);
+  })
+}
+
+createUsernames(accounts);
+
+// filter method
+
