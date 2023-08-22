@@ -98,7 +98,7 @@ const poll = {
     }
 };
 
-//document.querySelector('.poll').addEventListener('click', poll.registerNewAnswer.bind(poll));
+document.querySelector('.poll').addEventListener('click', poll.registerNewAnswer.bind(poll));
 const data1 = [5, 2, 3];
 const data2 = [1, 5, 3, 9, 6, 1];
 poll.displayResults.call({answers: data1});
@@ -146,4 +146,10 @@ f();
 h();
 f();
 
+//coding challenge 2
 
+(function () {
+    const header = document.querySelector('h1');
+    header.style.color = 'red';
+    document.body.addEventListener('click', () => header.style.color = 'blue');
+})();
