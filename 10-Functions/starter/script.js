@@ -46,4 +46,22 @@ const passenger = jonas;
 console.log(flightNum);
 console.log(passenger);
 
-//
+// functions returning functions
+
+const greet = function(greeting) {
+    return function (name) {
+        console.log(`${greeting} ${name}`);
+    };
+};
+
+const greeterHey = greet("Hey");
+greeterHey('Jonas');
+greeterHey('Steven');
+
+greet('Hello')('Jonas');
+
+const greete = (greeting) => name => 
+    console.log(`${greeting} ${name}`);
+
+greete('Hello')('Joey');
+
