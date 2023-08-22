@@ -1,6 +1,6 @@
 'use strict';
 
-//default parameters
+// default parameters
 const bookings = [];
 
 const createBooking = function (flightNum, numPassengers = 1, price = 199 * numPassengers) { 
@@ -18,7 +18,7 @@ createBooking('LH123', 2);
 createBooking('LH123', 2, 3);
 createBooking('LH123', 3);
 
-//passing arguments (values vs references)
+// passing arguments (values vs references)
 const flight = 'LH234';
 
 const jonas = {
@@ -65,3 +65,7 @@ const greete = (greeting) => name =>
 
 greete('Hello')('Joey');
 
+const tax = rate => value => value + value * rate;
+
+const incomeTax = tax(0.23);
+console.log(incomeTax(100));
