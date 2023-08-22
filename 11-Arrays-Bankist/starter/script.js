@@ -35,7 +35,7 @@ const account4 = {
 
 const accounts = [account1, account2, account3, account4];
 
-// Elements
+/* Elements
 const labelWelcome = document.querySelector('.welcome');
 const labelDate = document.querySelector('.date');
 const labelBalance = document.querySelector('.balance__value');
@@ -61,7 +61,7 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-/////////////////////////////////////////////////
+*/////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
 
@@ -73,4 +73,22 @@ const currencies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-/////////////////////////////////////////////////
+///////////////////////////////////////////////// coding challenge 1
+const dogsJulia = [3, 5, 2, 12, 7];
+const dogsKate = [4, 1, 15, 8, 3];
+
+
+function checkDogs(Julia, Kate) {
+  const correctedJulia = Julia.slice(1, -2);
+  const allDogs = correctedJulia.concat(Kate);
+  console.log(correctedJulia, allDogs)
+  allDogs.forEach((dogAge, index) => {
+    if (dogAge >= 3) {
+      console.log(`Dog number ${index+1} is an adult and is ${dogAge} years old`);
+    } else {
+      console.log(`Dog number ${index+1} is still a puppy`)
+    }
+  })
+}
+
+checkDogs(dogsJulia, dogsKate)
