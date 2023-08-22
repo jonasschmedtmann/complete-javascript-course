@@ -96,7 +96,7 @@ checkDogs(dogsJulia, dogsKate)
 // map method
 const INR = 80;
 const convertINR = movements.map(mov => mov*INR);
-console.log(convertINR)
+console.log(convertINR);
 
 function createUsernames(acc) {
   acc.forEach((account) => {
@@ -112,4 +112,7 @@ function createUsernames(acc) {
 createUsernames(accounts);
 
 // filter method
+const deposits = movements.filter((mov) => mov > 0);
+console.log(deposits);
+
 
