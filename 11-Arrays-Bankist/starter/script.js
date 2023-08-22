@@ -92,3 +92,10 @@ function checkDogs(Julia, Kate) {
 }
 
 checkDogs(dogsJulia, dogsKate)
+
+// map method
+const INR = 80;
+const convertINR = movements.map(mov => mov*INR);
+console.log(convertINR)
+
+//
