@@ -193,26 +193,121 @@ const getCountryData = country => {
 //     });
 // };
 
-// fetching data based off user's current location
-const getCurrentLocation = (url) => {
-  fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      // using code to improve accuracy
-      const countryCode = data.address.country_code;
-      return fetch(`https://restcountries.com/v3.1/alpha/${countryCode}`);
-    })
-    .then(res => res.json())
-    .then(data => getCountryData(data[0].name.official))
-    .catch(err => console.error(err));
+// getCountryData('United States of America');
+
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    // navigator.geolocation.getCurrentPosition(
+    //   position => resolve(position),
+    //   error => reject(new Error(error))
+    // )
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  })
 };
 
-// // using navigator to get current Country via openStreetMap API
-btn.addEventListener('click', function () {
-  navigator.geolocation.getCurrentPosition(pos => {
-    const currPosUrl = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`;
-    getCurrentLocation(currPosUrl);
-  });
+const whereAmI = () => {
+  getPosition()
+    .then(pos => {
+      const { latitude: lat, longitude: lng } = pos.coords;
+      return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
+    })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(`Problem with geocoding ${res.status}`)
+      }
+      return res.json()
+    })
+    .then(data => {
+      console.log(`You are in ${data.country}`);
+      return fetch(`https://restcountries.com/v3.1/name/${data.country}`);
+    })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(`Problem with geocoding ${res.status}`)
+      }
+      return res.json();
+    })
+    .then(data => {
+      renderCountry(data[0]);
+    })
+    .catch(err => console.error(err.message))
+};
+
+btn.addEventListener('click', whereAmI);
+
+
+
+/*
+// What order will these print in???
+console.log('test start'); //1
+setTimeout(() => console.log('0 sec timer'), 0); //3
+Promise.resolve('Resolved promise 1').then(res => console.log(res)); //2
+console.log('test end'); //1
+
+
+Promise.resolve('Resolved promise 2')
+  .then(res => {
+    for (let i = 0; i < 100000000; i++) { }
+    console.log(res)
+  })
+
+// Building Promises
+const lotteryPromise = new Promise((resolve, reject) => {
+  console.log('Lottery draw happening...');
+  setTimeout(() => {
+    if (Math.random() >= 0.5) {
+      resolve('You WIN 🎉')
+    } else {
+      reject(new Error('You LOSE ⛈'))
+    }
+  }, 2000);
 });
 
-// getCountryData('United States of America');
+// consuming the promise
+lotteryPromise.then(res => console.log(res)).catch(err => console.error(err))
+
+// Promisifying = turning callback based behavior into promises
+const wait = function (seconds) {
+  return new Promise(function (resolve, reject) {
+    setTimeout(resolve, seconds * 1000)
+  });
+};
+
+// // LET'S PROMISIFY THIS
+// setTimeout(() => {
+//   console.log('1 second passed');
+//   setTimeout(() => {
+//     console.log('2 seconds passed');
+//     setTimeout(() => {
+//       console.log('3 seconds passed');
+//       setTimeout(() => {
+//         console.log('4 seconds passed');
+//       }, 1000)
+//     }, 1000)
+//   }, 1000)
+// }, 1000)
+
+wait(1)
+  //nothing is being returned from the resolved promise hence why we aren't passing anything into this .then()
+  .then(() => {
+    console.log('1 SECOND PASSED');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('2 SECONDS PASSED');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('3 SECONDS PASSED');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('4 SECONDS PASSED');
+  });
+
+Promise.resolve('abc').then(x => console.log(x));
+Promise.reject(new Error('def')).catch(x => console.error(x));
+
+*/
+
+
