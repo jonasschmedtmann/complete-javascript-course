@@ -121,3 +121,15 @@ console.log(balance)
 
 const max = movements.reduce((acc, curr, index, arr) => acc = Math.max(curr, acc), -Infinity);
 console.log(max)
+
+//coding challenge 2
+function calcAverageHumanAge (ages) {
+  const result = ages.slice().map(age => (
+  age <= 2 ? 2 * age : 16 + age * 4))
+  .filter(age => age >= 18)
+  .reduce((acc, curr, index, arr) => acc + curr / arr.length, 0);
+  return result;
+}
+
+console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
