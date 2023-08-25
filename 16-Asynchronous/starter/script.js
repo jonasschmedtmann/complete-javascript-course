@@ -195,45 +195,44 @@ const getCountryData = country => {
 
 // getCountryData('United States of America');
 
-const getPosition = function () {
-  return new Promise(function (resolve, reject) {
-    // navigator.geolocation.getCurrentPosition(
-    //   position => resolve(position),
-    //   error => reject(new Error(error))
-    // )
-    navigator.geolocation.getCurrentPosition(resolve, reject);
-  })
-};
+// const getPosition = function () {
+//   return new Promise(function (resolve, reject) {
+//     // navigator.geolocation.getCurrentPosition(
+//     //   position => resolve(position),
+//     //   error => reject(new Error(error))
+//     // )
+//     navigator.geolocation.getCurrentPosition(resolve, reject);
+//   })
+// };
 
-const whereAmI = () => {
-  getPosition()
-    .then(pos => {
-      const { latitude: lat, longitude: lng } = pos.coords;
-      return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
-    })
-    .then(res => {
-      if (!res.ok) {
-        throw new Error(`Problem with geocoding ${res.status}`)
-      }
-      return res.json()
-    })
-    .then(data => {
-      console.log(`You are in ${data.country}`);
-      return fetch(`https://restcountries.com/v3.1/name/${data.country}`);
-    })
-    .then(res => {
-      if (!res.ok) {
-        throw new Error(`Problem with geocoding ${res.status}`)
-      }
-      return res.json();
-    })
-    .then(data => {
-      renderCountry(data[0]);
-    })
-    .catch(err => console.error(err.message))
-};
+// const whereAmI = () => {
+//   getPosition()
+//     .then(pos => {
+//       const { latitude: lat, longitude: lng } = pos.coords;
+//       return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
+//     })
+//     .then(res => {
+//       if (!res.ok) {
+//         throw new Error(`Problem with geocoding ${res.status}`)
+//       }
+//       return res.json()
+//     })
+//     .then(data => {
+//       console.log(`You are in ${data.country}`);
+//       return fetch(`https://restcountries.com/v3.1/name/${data.country}`);
+//     })
+//     .then(res => {
+//       if (!res.ok) {
+//         throw new Error(`Problem with geocoding ${res.status}`)
+//       }
+//       return res.json();
+//     })
+//     .then(data => {
+//       renderCountry(data[0]);
+//     })
+//     .catch(err => console.error(err.message))
+// };
 
-btn.addEventListener('click', whereAmI);
 
 
 
@@ -310,4 +309,194 @@ Promise.reject(new Error('def')).catch(x => console.error(x));
 
 */
 
+/* 
+    aysnc/await is just syntactic sugar for consuming promises 
+    fetch(url).then(res => res.json())
+*/
 
+/*
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  })
+};
+
+const whereAmI = async function () {
+  try {
+    const pos = await getPosition();
+    const { latitude: lat, longitude: lng } = pos.coords;
+    const geoRes = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+    if (!geoRes.ok) {
+      throw new Error('Problem getting current location')
+    }
+    const geoData = await geoRes.json();
+    const countryRes = await fetch(`https://restcountries.com/v3.1/name/${geoData.country}`);
+    if (!countryRes.ok) {
+      throw new Error('Problem getting country data')
+    }
+    const countryData = await countryRes.json();
+    renderCountry(countryData[0]);
+
+    return `you are in ${geoData.city}`
+  } catch (err) {
+    console.error(err);
+    errMsg(`something went wrong, ${err.message}`);
+
+    // Reject promise returned from async function
+    throw err;
+  }
+};
+
+console.log('1');
+// whereAmI() // consuming promises
+//   .then(city => console.log(`3: ${city}`))
+//   .catch(err => console.error(`3: ${err.message}`))
+//   .finally(() => console.log('4'));
+console.log('2');
+
+// immediately invoked function using async/await 
+// ( function(){} )();
+(async function () {
+  try {
+    const city = await whereAmI();
+    console.log(`3: ${city}`)
+  } catch (err) {
+    console.error(`3: ${err.message}`);
+  }
+  console.log('4')
+})();
+*/
+
+// whereAmI();
+
+// const whereAmI = () => {
+//   getPosition()
+//     .then(pos => {
+//       const { latitude: lat, longitude: lng } = pos.coords;
+//       return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
+//     })
+//     .then(res => {
+//       if (!res.ok) {
+//         throw new Error(`Problem with geocoding ${res.status}`)
+//       }
+//       return res.json()
+//     })
+//     .then(data => {
+//       console.log(`You are in ${data.country}`);
+//       return fetch(`https://restcountries.com/v3.1/name/${data.country}`);
+//     })
+//     .then(res => {
+//       if (!res.ok) {
+//         throw new Error(`Problem with geocoding ${res.status}`)
+//       }
+//       return res.json();
+//     })
+//     .then(data => {
+//       renderCountry(data[0]);
+//     })
+//     .catch(err => console.error(err.message))
+// };
+
+// btn.addEventListener('click', whereAmI);
+
+
+// /////////// running promises in parallel (when data doesnt depend on other data, do this) ////////
+
+const get3Countries = async function (c1, c2, c3) {
+  try {
+    // const [data1] = await getJSONData(`https://restcountries.com/v3.1/name/${c1}`);
+    // const [data2] = await getJSONData(`https://restcountries.com/v3.1/name/${c2}`);
+    // const [data3] = await getJSONData(`https://restcountries.com/v3.1/name/${c3}`);
+    // console.log(data1.capital, data2.capital, data3.capital)
+
+    //  Promise.all() short circuits when one promise rejects-- one rejected promise is enough to reject the entire Promise.all()
+    const data = await Promise.all([
+      getJSONData(`https://restcountries.com/v3.1/name/${c1}`),
+      getJSONData(`https://restcountries.com/v3.1/name/${c2}`),
+      getJSONData(`https://restcountries.com/v3.1/name/${c3}`)
+    ]);
+    console.log(data.map(d => d[0].capital))
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+// get3Countries('portugal', 'canada', 'tanzania');
+
+
+/*
+ Promise.race()
+-promise concurrency method
+-takes in an array of promises and returns the first *settled* (not necessarily fulfilled/resolved) promise
+-The promise settles as fulfilled if the first promise is resolved, and settles as rejectted (and caught in the error handling) if the first promise to settle is rejected
+*/
+
+// example 1
+// const promise1 = new Promise((resolve, reject) => {
+//   setTimeout(resolve, 500, 'one'); // resolve this promise after 500ms with the return value of 'one'
+// });
+
+// const promise2 = new Promise((resolve, reject) => {
+//   setTimeout(resolve, 100, 'two');
+// });
+
+// Promise.race([promise1, promise2])
+//   .then(value => console.log(value)); // expect 'two' because that promise is resolved first
+
+// // example 2
+// const sleep = (time, value, state) => {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       if (state === 'fulfill') {
+//         return resolve(value);
+//       } else {
+//         return reject(new Error(value));
+//       }
+//     }, time)
+//   })
+// };
+
+// const p1 = sleep(500, 'p1', 'fulfill');
+// const p2 = sleep(100, 'p2', 'reject');
+// const p3 = sleep(400, 'p3', 'fulfill');
+
+// Promise.race([p1, p2, p3])
+//   .then(response => console.log(response))
+//   .catch(err => console.error(err)); // expected 'error: p2' bc a rejected promise was settled first
+
+// (async function () {
+//   const response = await Promise.race([p1, p2, p3]);
+//   console.log(response);
+// })();
+
+
+// /*
+//  Promise.allSettled()
+//  - takes in array of promises and returns an array of all settled promises
+//  - similar to Promise.all() but promise.all() short circuits as soon as one promise rejects, Promise.allSettled() returns all promises regardless of how they settled
+//  */
+
+// Promise.allSettled([p1, p2, p3]).then(value => console.log(value));
+
+// Promise.allSettled([
+//   Promise.resolve('succes'),
+//   Promise.reject('error'),
+//   Promise.resolve('another success')
+// ]).then(res => console.log(res))
+//   .catch(err => console.error(err));
+
+
+// /* 
+// Promise.any()
+// - takes in array of promises and returns first fulfilled promise, ignores rejected promises
+// - key: rejected promises are ignored
+// - will always return a resolved promise unless *all* promises are rejected
+// */
+
+// Promise.any([
+//   Promise.resolve('success'),
+//   Promise.reject('error'),
+//   Promise.resolve('another success')
+// ])
+//   .then(res => console.log(res))
+//   .catch(err => console.error(err));
