@@ -105,7 +105,7 @@ function createUsernames(acc) {
                         .split(" ")
                         .map((name) => name[0])
                         .join("");
-    console.log(account);
+      console.log(account);
   })
 }
 
@@ -127,13 +127,14 @@ const displayMovements = function (movs) {
 
 const displayBalance = function (movs) {
   const balance = movs.reduce((acc, curr) => acc + curr, 0);
-  labelBalance.textContent = `$${balance}`
+  acc.balance = balance;
+  labelBalance.textContent = `$${acc.balance}`
 }
 
 const displaySummary = function (movs, intRate) {
   const totalDeposit = movs
-  .filter(mov => mov > 0)
-  .reduce((acc, curr) => acc + curr, 0);
+    .filter(mov => mov > 0)
+    .reduce((acc, curr) => acc + curr, 0);
   const totalWithdrawal = Math.abs(movs
     .filter(mov => mov < 0)
     .reduce((acc, curr) => acc + curr, 0));
@@ -143,24 +144,52 @@ const displaySummary = function (movs, intRate) {
     .reduce((acc, curr) => acc + curr, 0);
   labelSumIn.textContent = `$${totalDeposit}`;
   labelSumOut.textContent = `$${totalWithdrawal}`;
-  labelSumInterest.textContent = `$${interest}`;
+  labelSumInterest.textContent = `$${interest.toFixed(2)}`;
 }
 
-btnLogin.addEventListener('click', (e) => {
-  e.preventDefault();
-  const acc = accounts.find(acc => acc.username === inputLoginUsername.value);  
-  if (acc && acc.pin === Number(inputLoginPin.value)) {
-  // display UI and message
-  labelWelcome.textContent = `Welcome back, ${acc.owner.split(" ")[0]}`;
-  containerApp.style.opacity = 100;
+let acc;
+
+const updateUI = function(acc) {
   //display movements
   displayMovements(acc.movements);
   //display balance 
   displayBalance(acc.movements);
   //display summary
   displaySummary(acc.movements, acc.interestRate);
+};
+
+//Logging In
+btnLogin.addEventListener('click', (e) => {
+  e.preventDefault(); //prevents the button from submitting a form
+  acc = accounts.find(acc => acc.username === inputLoginUsername.value);  
+  if (acc && acc.pin === Number(inputLoginPin.value)) {
+  // display UI and message
+  labelWelcome.textContent = `Welcome back, ${acc.owner.split(" ")[0]}`;
+  containerApp.style.opacity = 100;
+  updateUI(acc);
+  inputLoginUsername.value = "";
+  inputLoginPin.value = "";
+  inputLoginPin.blur(); //to remove the cursor from showing on the pin
   }
 })
+
+//Transfer money
+btnTransfer.addEventListener('click', (e) => { 
+  e.preventDefault();
+  const transferAmount = Number(inputTransferAmount.value);
+  const transferAcc = accounts.find(acc => acc.username === inputTransferTo.value);
+  inputTransferAmount.value = "";  
+  inputTransferTo.value = "";  
+
+  if (transferAmount > 0 && transferAcc && acc.balance >= transferAmount && transferAcc.username !== acc.username) {
+    transferAcc.movements.push(transferAmount);
+    acc.movements.push(-1 * transferAmount);
+    updateUI(acc);
+  } else { 
+    console.log("Transfer declined. Enter the proper name and amount.");
+  }  
+})
+
 
 // filter method
 const deposits = movements.filter((mov) => mov > 0);
