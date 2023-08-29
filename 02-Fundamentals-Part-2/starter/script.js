@@ -1,5 +1,6 @@
 "use strict";
 /*
+<<<<<<< Updated upstream
 function logger() {
   console.log("hello world");
 }
@@ -616,3 +617,28 @@ for (let i = 0; i < jonas.length; i++) {
 //////////////////////
 // Coding Challenge #4 //
 //////////////////////
+=======
+///////////////////////////////////////
+// Activating Strict Mode
+let hasDriversLicense = false;
+const passTest = true;
+
+if (passTest) hasDriversLicense = true;
+if (hasDriversLicense) console.log('I can drive :D');
+
+// const interface = 'Audio';
+// const private = 534;
+
+
+///////////////////////////////////////
+// Functions
+function logger() {
+  console.log('My name is Jonas');
+}
+
+// calling / running / invoking function
+logger();
+logger();
+logger();
+*/
+>>>>>>> Stashed changes
