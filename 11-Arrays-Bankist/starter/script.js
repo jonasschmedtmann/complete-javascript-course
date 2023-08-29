@@ -175,7 +175,7 @@ btnLogin.addEventListener('click', (e) => {
 
 //Transfer money
 btnTransfer.addEventListener('click', (e) => { 
-  e.preventDefault();
+  e.preventDefault(); //prevents the button from submitting a form
   const transferAmount = Number(inputTransferAmount.value);
   const transferAcc = accounts.find(acc => acc.username === inputTransferTo.value);
   inputTransferAmount.value = "";  
@@ -190,6 +190,37 @@ btnTransfer.addEventListener('click', (e) => {
   }  
 })
 
+// closing account
+btnClose.addEventListener('click', (e) => {
+  e.preventDefault(); //prevents the button from submitting a form
+  const closeAccUser = inputCloseUsername.value;
+  const closeAccPin = Number(inputClosePin.value);
+  
+  if (closeAccUser === acc.username && closeAccPin === acc.pin) {
+    const index = accounts.findIndex(elem => elem.pin === closeAccPin);
+    accounts.splice(index, 1);
+    inputCloseUsername.value = "";  
+    inputClosePin.value = "";  
+    containerApp.style.opacity = 0;
+  } else if (closeAccUser !== acc.username) {
+    console.log("You can only close your account");
+  } else if (closeAccPin !== acc.pin) {
+    console.log("Enter the correct pin number.")
+  } else {
+    console.log("")
+  }
+})
+
+// requesting loan
+btnLoan.addEventListener('click', (e) => {
+  e.preventDefault();
+  const loanAmt = Number(inputLoanAmount.value); 
+  if (loanAmt > 0 && acc.movements.some(amt => amt >= .10 * loanAmt)) { 
+    acc.movements.push(loanAmt); 
+    updateUI(acc); 
+  } 
+  inputLoanAmount.value = "";
+})
 
 // filter method
 const deposits = movements.filter((mov) => mov > 0);
@@ -214,9 +245,7 @@ function calcAverageHumanAge (ages) {
 console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
 console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
 
-
 //coding challenge 3
-
 const calcAverageHumanAge2 = ages => 
   ages
     .map(age => ( age <= 2 ? 2 * age : 16 + age * 4))
