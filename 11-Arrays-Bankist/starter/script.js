@@ -111,10 +111,13 @@ function createUsernames(acc) {
 
 createUsernames(accounts);
 
-const displayMovements = function (movs) {
+const displayMovements = function (movs, sort = false) {
   containerMovements.innerHTML = "";
-  movs.forEach((mov, i) => {
-    const type = mov > 0 ? 'deposit' : 'withdrawal'
+
+  const transactions = (sort) ? movs.slice().sort((a,b) => a-b) : movs ;
+
+  transactions.forEach((mov, i) => {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
     //create movement row
     const html = `<div class="movements__row">
                     <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
@@ -220,6 +223,14 @@ btnLoan.addEventListener('click', (e) => {
     updateUI(acc); 
   } 
   inputLoanAmount.value = "";
+})
+
+let toggle = true;
+//sort movements
+btnSort.addEventListener('click', (e) => {
+  e.preventDefault();
+  displayMovements(acc.movements, !toggle);
+  toggle = !toggle;
 })
 
 // filter method
