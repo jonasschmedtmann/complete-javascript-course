@@ -17,6 +17,26 @@ console.log("country is a", typeof country)
 language = "english"
 
 // Strings and Template Literals
-const myTemplate = `The ${country} is in ${continent}, and has a population of ${population}`
+const myTemplate = `The ${country} is in ${continent}, and has\
+ a population of ${population}`
 
 console.log(myTemplate)
+
+/*
+    5 falsy values:
+        0, '', undefined, null, NaN
+*/
+
+// Switch statements
+let currentDay = 'monday'
+
+switch (currentDay) {
+    case 'monday':
+        console.log('Today is monday.')
+        break
+    case 'tuesday':
+        console.log('Today is taco day.')
+        break
+    default:
+        console.log('Today is default day')
+}
