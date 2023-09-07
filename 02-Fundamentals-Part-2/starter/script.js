@@ -66,11 +66,15 @@ const ryan2 = {
     calcAge: function () {
         this.age = 2023 - this.birthYear;
         return this.age;
+    },
+    getSummary: function () {
+        console.log(`${this.firstName} is a ${this.age}-year old ${this.job}\
+, and he ${this.age >= 16 ? 'has' : 'does not have'} a \
+driver's license.`)
     }
 };
 
 console.log(ryan2.calcAge())
 console.log(ryan2.age)
 
-console.log(`${ryan2.firstName} is a ${ryan2.age}-year old ${ryan2.job}, and \
-he ${ryan2.age >= 16 ? 'has' : 'does not have'} a driver's license.`)
+ryan2.getSummary()
