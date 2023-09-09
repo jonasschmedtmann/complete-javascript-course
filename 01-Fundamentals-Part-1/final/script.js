@@ -29,4 +29,26 @@ if (money){
 }
 
 
+//equality operators 
+// 1 equality operator is an assignment operator
+// 2 equal signs: loose comparison operator (doe not do type coercion)
+// 3 equla signs: strict comparison operator (does not perform type coercion)
+
+const adultAge = 18;
+const sadultAge = '18';
+if (adultAge == 18) 
+console.log("she is an adult :A")
+
+if (adultAge === 18) 
+console.log("she is an adult :b")
+
+if (sadultAge == 18) 
+console.log("she is an adult :c")
+
+if (sadultAge === 18) 
+console.log("she is an adult :d")
+// the one with d does not work because it involves strict comparions without type coercion
+
+
+
 
