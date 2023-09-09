@@ -67,7 +67,7 @@ switch (day){
             case 'Wednesday':
                 break;
                 default:
-                    console.log(`That is not a valid day ${day}`);
+                    console.log(`${day} is not a valid day!!`);
 }
 
 if (day === "Monday") {
@@ -80,4 +80,10 @@ if (day === "Monday") {
 
 
 
+
+// this conditional statement that carries the if statement is called a ternary  statement
+let drinkAge = 12
+drinkAge >= 18?
+  console.log(`I like to drink wine`):
+console.log(`I am under 18`);
 
