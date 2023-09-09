@@ -11,4 +11,22 @@ if (isOldEnough) {
     console.log(`Sarah is too young to drive. Check in after ${18 - age} years`);
 }
 
+//input conversion and coercion. 
+birthYear  ='1961';
+console.log(Number(birthYear) + age);
+
+//converts the birthyear only for that single instance 
+
+//java scripts converts all values in control statements into boolean. The falsy values are 5:
+// zero, empty string, undefined, null and NaN. 
+// ALL OTHERS ARE TRUTHY VALUES 
+
+const money = 0;
+if (money){
+    console.log("Spend it !!");
+} else {
+    console.log("Make Money");
+}
+
+
 
