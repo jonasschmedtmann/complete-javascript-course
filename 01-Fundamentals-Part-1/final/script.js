@@ -49,6 +49,11 @@ if (sadultAge === 18)
 console.log("she is an adult :d")
 // the one with d does not work because it involves strict comparions without type coercion
 
+const favNumber = prompt("Input your fav number");
+console.log(`This is your fav number: ${favNumber}`);
+
+
+
 
 
 
