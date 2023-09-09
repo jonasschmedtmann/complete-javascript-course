@@ -53,6 +53,30 @@ const favNumber = prompt("Input your fav number");
 console.log(`This is your fav number: ${favNumber}`);
 
 
+// Using the case control 
+
+const day = prompt("Input the day: ")
+
+switch (day){
+    case 'Monday':
+        console.log("Hate this day!!");
+        break;
+        case 'Tuesday':
+            console.log("Eat eggs");
+            break;
+            case 'Wednesday':
+                break;
+                default:
+                    console.log(`That is not a valid day ${day}`);
+}
+
+if (day === "Monday") {
+    console.log(`Still hating ${day}`);
+} else if (day == 'Tuesday' || day == 'Wednesday') {
+    console.log( `Tuesday or Wednesday`)
+} else if  (day == 'Tuesday' && day == 'Wednesday') {
+    console.log( `Tuesday and Wednesday`);
+}
 
 
 
