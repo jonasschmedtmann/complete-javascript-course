@@ -2,7 +2,9 @@ import * as model from './model.js';
 import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
+import bookmarksView from './views/bookmarksView.js';
 import paginationView from './views/paginationView.js';
+import addRecipeView from './views/addRecipeView.js';
 // Polyfilling async/await to support most old browsers
 import 'regenerator-runtime/runtime';
 // Polyfills everything else 
@@ -23,13 +25,18 @@ const controlRecipes = async function () {
     // 0 Update results view to mark selected search result
     resultsView.updateDOM(model.getSearchResultsPage());
 
-    // 1) fetching recipe
+    // 1) fetching and loading recipe
     await model.loadRecipe(id); //returns a Promise of an updated model.state.recipe 
 
     // 2) rendering recipe
     recipeView.render(model.state.recipe);
+
+    // Update bookmarks view
+    bookmarksView.updateDOM(model.state.bookmarks);
   } catch (err) {
     recipeView.renderError();
+
+    console.error(err);
   }
 };
 
@@ -70,14 +77,29 @@ const controlServings = function (newServings) {
 };
 
 const controlAddBookMark = function () {
+  // Add/remove bookmark
   if (!model.state.recipe.bookmarked) {
     model.addBookmark(model.state.recipe);
   } else {
     model.deleteBookMark(model.state.recipe.id);
   }
 
+  // Update view with bookmark
   recipeView.updateDOM(model.state.recipe);
+
+  // Render bookmarks
+  bookmarksView.render(model.state.bookmarks);
 };
+
+const controlBookmarks = function () {
+  bookmarksView.render(model.state.bookmarks);
+};
+
+const controlAddRecipe = function (newRecipe) {
+  console.log(newRecipe);
+
+  // Upload the new recipe data
+}
 
 const init = function () {
   //publisher (SUBSCRIBER) pattern
@@ -86,6 +108,8 @@ const init = function () {
   recipeView.addHandlerAddBookmark(controlAddBookMark);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
+  bookmarksView.addHandlerRender(controlBookmarks);
+  addRecipeView.addHandlerUpload(controlAddRecipe);
 };
 
 init();
