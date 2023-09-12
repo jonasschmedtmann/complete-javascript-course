@@ -1,6 +1,7 @@
 import { async } from "regenerator-runtime";
-import { API_URL, RES_PER_PAGE } from "./config";
-import { getJson } from "./helper";
+import { API_URL, RES_PER_PAGE, KEY } from "./config";
+// import { getJson, sendJson } from "./helper";
+import { ajax } from "./helper.js";
 
 export const state = {
   recipe: {},
@@ -13,23 +14,29 @@ export const state = {
   bookmarks: []
 };
 
+const createRecipeObject = function (data) {
+  const { recipe } = data.data;
+  return state.recipe = {
+    cookingTime: recipe.cooking_time,
+    id: recipe.id,
+    imageUrl: recipe.image_url,
+    ingredients: recipe.ingredients,
+    publisher: recipe.publisher,
+    servings: recipe.servings,
+    sourceUrl: recipe.source_url,
+    title: recipe.title,
+    // conditiionally adding properties to an object
+    // recipe.key true && (then) do this
+    // recipe.key false && SHORT CIRCUIT
+    ...(recipe.key && { key: recipe.key })
+  };
+};
+
 export const loadRecipe = async function (id) {
   try {
-    const data = await getJson(`${API_URL}/${id}`);
+    const data = await ajax(`${API_URL}/${id}?key=${KEY}`);
 
-    // let recipe = data.data.recipe; //use destructuring below
-    const { recipe } = data.data;
-    state.recipe = {
-      cookingTime: recipe.cooking_time,
-      id: recipe.id,
-      imageUrl: recipe.image_url,
-      ingredients: recipe.ingredients,
-      publisher: recipe.publisher,
-      servings: recipe.servings,
-      sourceUrl: recipe.source_url,
-      title: recipe.title
-    };
-
+    state.recipe = createRecipeObject(data);
     // think of 'some' as 'any'
     if (state.bookmarks.some(bookm => bookm.id === id)) {
       state.recipe.bookmarked = true;
@@ -48,7 +55,7 @@ export const loadRecipe = async function (id) {
 export const loadSearchResults = async function (query) {
   try {
     state.search.query = query;
-    const data = await getJson(`${API_URL}?search=${query}`);
+    const data = await ajax(`${API_URL}?search=${query}&key=${KEY}`);
     console.log({ data });
 
     state.search.results = data.data.recipes.map(r => {
@@ -56,7 +63,8 @@ export const loadSearchResults = async function (query) {
         id: r.id,
         imageUrl: r.image_url,
         publisher: r.publisher,
-        title: r.title
+        title: r.title,
+        ...(r.key && { key: r.key })
       }
     });
     state.search.page = 1;
@@ -124,3 +132,50 @@ const clearBookmarks = function () {
   localStorage.clear('forkifyBookmarks');
 };
 // clearBookmarks();
+
+export const uploadRecipe = async function (newRecipe) {
+  // console.log(Object.entries(newRecipe));
+  try {
+    const ingredients = Object.entries(newRecipe)
+      .filter(entry =>
+        entry[0].startsWith('ingredient') && entry[1] !== ''
+      )
+      .map(ing => {
+        // const ingArr = ing[1].replaceAll(' ', '').split(',');
+        // trim() to display 1+ word ingredients with spaces
+        const ingArr = ing[1].split(',').map(el => el.trim());
+
+        const expectedNumInput = 3;
+        if (ingArr.length !== expectedNumInput) {
+          throw new Error('Invalid input format. Please use correct format (with commas) of quantity, unit, description.')
+        }
+
+        // const quantity = ingArr.quantity;
+        // const unit = ingArr.unit;
+        // const description = ingArr.description;
+        const [quantity, unit, description] = ingArr; // destructuring
+
+        return { quantity: quantity ? +quantity : null, unit, description };
+      });
+
+    const recipe = {
+      // how the property is formatted in the API: names from our index.html attributes
+      title: newRecipe.title,
+      source_url: newRecipe.sourceUrl,
+      image_url: newRecipe.imageUrl,
+      publisher: newRecipe.publisher,
+      cooking_time: +newRecipe.cookingTime,
+      servings: +newRecipe.servings,
+      ingredients,
+    };
+
+    console.log(recipe);
+
+    const data = await ajax(`${API_URL}?key=${KEY}`, recipe);
+    // console.log(data);
+    state.recipe = createRecipeObject(data);
+    addBookmark(state.recipe);
+  } catch (err) {
+    throw err;
+  }
+};
