@@ -95,8 +95,8 @@ document.querySelector('.again').addEventListener('click', function () {
   document.querySelector('.number').style.width = '15rem';
 });
 
-///////////////////////////////////////
 // Coding Challenge #1
+///////////////////////////////////////
 
 /* 
 Implement a game rest functionality, so that the player can make a new guess! Here is how:
