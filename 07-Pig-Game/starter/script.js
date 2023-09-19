@@ -19,10 +19,31 @@ score1El.textContent = 0;
 diceEl.classList.add('hidden');
 
 // scores
-const scores = [0, 0];
-let currentScore = 0;
-let activePlayer = 0;
-let playing = true;
+
+let scores, currentScore, activePlayer, playing;
+
+const init = function () {
+  // state variables
+  scores = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
+  playing = true;
+
+  // visible content
+  score0El.textContent = 0;
+  score1El.textContent = 0;
+  current0El.textContent = 0;
+  current1El.textContent = 0;
+  // reset classes
+  player0El.classList.remove('player--winner');
+  player0El.classList.remove('player--active');
+  player1El.classList.remove('player--winner');
+  player1El.classList.remove('player--active');
+
+  player0El.classList.add('player--active');
+};
+
+init();
 
 const switchPlayer = function () {
   document.getElementById(`current--${activePlayer}`).textContent = 0;
@@ -64,7 +85,7 @@ btnHold.addEventListener('click', function () {
       scores[activePlayer];
 
     // 2. check if players core is >= 100
-    if (scores[activePlayer] >= 20) {
+    if (scores[activePlayer] >= 100) {
       playing = false;
       document
         .querySelector(`.player--${activePlayer}`)
@@ -81,20 +102,4 @@ btnHold.addEventListener('click', function () {
   // finish game
 });
 
-btnNew.addEventListener('click', function () {
-  // text content
-  playing = true;
-  activePlayer = 0;
-  score0El.textContent = 0;
-  score1El.textContent = 0;
-  current0El.textContent = 0;
-  current1El.textContent = 0;
-  currentScore = 0;
-  // reset classes
-  player0El.classList.remove('player--winner');
-  player0El.classList.remove('player--active');
-  player1El.classList.remove('player--winner');
-  player1El.classList.remove('player--active');
-
-  player0El.classList.add('player--active');
-});
+btnNew.addEventListener('click', init);
