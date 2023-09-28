@@ -197,6 +197,7 @@ Extremely important concept in javascript
 
 */
 
+/*
 const calcAge = function (birthYear) {
   console.log(2037 - birthYear);
   console.log(this);
@@ -231,3 +232,59 @@ matilda.calcAge();
 
 const f = jonas.calcAge;
 f(1950); // this is undefined in this instance
+*/
+
+/*
+
+*** Arrow functions vs regular functions ***
+
+*/
+
+const jonas = {
+  firstName: 'Jonas',
+  year: 1991,
+  calcAge: function () {
+    console.log(this);
+    console.log(2037 - this.year);
+    /* const self = this;  enables this to be used in lower scope
+    self or that are common names
+    this is a pre es6 solution, now we use arrow functions
+
+    
+    };*/
+    // arrow functions use the this keyword of its parent scope
+    const isMillennial = () => {
+      console.log(this.year >= 1981 && this.year <= 1996);
+
+      isMillennial(); // the this keyword will be undefined because it is within a function block
+    };
+  },
+
+  greet: () => {
+    console.log(this);
+    console.log(`hey ${this.firstName}`);
+  },
+};
+// object is not a code block, it is an object literal, everything is in the global variable
+// therefore the this keyword applies to the global variable in this instance
+
+// a regular function call has the this keyword set to undefined
+
+jonas.greet();
+jonas.calcAge();
+
+// arguments keyword, only available in regular functions
+const addExpr = function (a, b) {
+  console.log(arguments);
+  return a + b;
+};
+
+addExpr(2, 5);
+addExpr(2, 5, 10, 5, 6);
+
+var addArrow = (a, b) => {
+  console.log(arguments);
+  return a + b;
+};
+
+addArrow(1, 2); // arguments will not be defined
