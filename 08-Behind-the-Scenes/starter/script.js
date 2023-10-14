@@ -239,19 +239,19 @@ f(1950); // this is undefined in this instance
 *** Arrow functions vs regular functions ***
 
 */
-
+/*
 const jonas = {
   firstName: 'Jonas',
   year: 1991,
   calcAge: function () {
     console.log(this);
     console.log(2037 - this.year);
-    /* const self = this;  enables this to be used in lower scope
-    self or that are common names
-    this is a pre es6 solution, now we use arrow functions
+    //  const self = this;  enables this to be used in lower scope
+    // self or that are common names
+    // this is a pre es6 solution, now we use arrow functions
 
     
-    };*/
+    // };
     // arrow functions use the this keyword of its parent scope
     const isMillennial = () => {
       console.log(this.year >= 1981 && this.year <= 1996);
@@ -288,3 +288,96 @@ var addArrow = (a, b) => {
 };
 
 addArrow(1, 2); // arguments will not be defined
+*/
+
+/*
+
+************************
+Primitives vs objects
+************************
+
+*/
+
+/*
+let age = 30;
+let oldAge = age;
+age = 31;
+
+console.log(oldAge, age);
+
+// age did not affect oldAge becuase it was already assigned.
+// let's look at a scenario using objects
+
+const me = {
+  name: 'jonas',
+  age: 30,
+};
+
+const friend = me;
+
+friend.age = 27;
+
+console.log('Friend:', friend);
+console.log('Me', me);
+
+// these will both log 27???
+
+// why does it work this way?
+
+// there are essentially two types of data in javascript and everything false into one or the other category
+*/
+
+/*
+
+******************
+Primitives vs objects in practice
+******************
+
+*/
+
+// primitive types
+let lastName = 'Williams';
+let oldLastName = lastName;
+lastName = 'Davis';
+console.log(lastName, oldLastName);
+
+// reminder objects stored in heap, primitives in stack
+
+// objects (reference types)
+const jessica = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+};
+
+const marriedJessica = jessica; // does not create new object, just holds reference to original object
+marriedJessica.lastName = 'Davis';
+console.log('Before Marriage:', jessica);
+console.log('after marriage:', marriedJessica);
+
+// what we cannot do is assign a new object to jessica because the address is what is "constant" the elements of the object are not constant and are stored in the heap
+// the address is stored in the call stack so that is why it is immutable when assigned with const
+
+// copying objects
+const jessica2 = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
+  family: ['Alice', 'Bob'],
+};
+
+const jessicaCopy = Object.assign({}, jessica2);
+// using this method creates a practical copy, not just another object referencing the same heap address
+// only creates a shallow copy, which makes nested objects will still reference the same address
+
+jessicaCopy.lastName = 'Davis';
+
+console.log('Before marriage:', jessica2);
+console.log('After Marriage:', jessicaCopy);
+
+jessicaCopy.family.push('Mary');
+jessicaCopy.family.push('John');
+console.log('Before marriage:', jessica2);
+console.log('After Marriage:', jessicaCopy);
+
+// a deep clone is difficult to achieve, you need to use an external library to do this kind of stuff
