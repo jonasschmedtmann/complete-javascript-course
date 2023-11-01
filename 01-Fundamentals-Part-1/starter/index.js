@@ -117,5 +117,10 @@ const day = "tuesday";
 // An operator is an expression because it always produces a value!
 
 const test = 5;
-const example = test === 5 ? "Yay" : "No";
+const example = test === 5 ? "Yay!" : "No!";
 // console.log(`Wow ${example}`);
+
+const sentence = `How I am feeling today: ${example}`;
+// console.log(sentence);
+
+// --------------------- JavScript Versions ------------------ //
