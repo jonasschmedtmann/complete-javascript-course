@@ -251,3 +251,12 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+
+// ------------------- Converting and Checking Numbers ----------- //
+
+// In JavaScript all numbers are represented internally as Floating point numbers regardless of if it's written as a decimal or not, and numbers are always stored in a binary format
+
+//Base 10 = 0 to 9
+//Binary base 2 = 0 1
+
+// console.log(23 === 23.0); // true
