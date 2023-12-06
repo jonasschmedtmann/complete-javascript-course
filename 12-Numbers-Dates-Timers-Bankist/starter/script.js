@@ -98,6 +98,11 @@ const calcMovementDate = function (date1, date2) {
 //   return dateFormatted;
 // };
 
+const formatNumber = function (num, locale, options) {
+  const formatted = new Intl.NumberFormat(locale, options).format(num);
+  return formatted;
+};
+
 // Display Movements
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
@@ -131,7 +136,10 @@ const displayMovements = function (acc, sort = false) {
       i + 1
     } ${type}</div>
     <div class="movements__date">${dateFormatted}</div>
-        <div class="movements__value">${mov}€</div>
+        <div class="movements__value">${formatNumber(mov, acc.locale, {
+          style: 'currency',
+          currency: acc.currency,
+        })}</div>
       </div>
     `;
 
@@ -141,19 +149,28 @@ const displayMovements = function (acc, sort = false) {
 
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${acc.balance}€`;
+  labelBalance.textContent = `${formatNumber(acc.balance, acc.locale, {
+    style: 'currency',
+    currency: acc.currency,
+  })}`;
 };
 
 const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${incomes}€`;
+  labelSumIn.textContent = `${formatNumber(incomes, acc.locale, {
+    style: 'currency',
+    currency: acc.currency,
+  })}`;
 
   const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(out)}€`;
+  labelSumOut.textContent = `${formatNumber(Math.abs(out), acc.locale, {
+    style: 'currency',
+    currency: acc.currency,
+  })}`;
 
   const interest = acc.movements
     .filter(mov => mov > 0)
@@ -163,7 +180,10 @@ const calcDisplaySummary = function (acc) {
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest}€`;
+  labelSumInterest.textContent = `${formatNumber(interest, acc.locale, {
+    style: 'currency',
+    currency: acc.currency,
+  })}`;
 };
 
 const createUsernames = function (accs) {
@@ -188,14 +208,40 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc);
 };
 
+const startLogoutTimer = function () {
+  //Set time to 5 minutes
+  let time = 300;
+
+  const tick = function () {
+    const min = `${Math.trunc(time / 60)}`.padStart(2, 0);
+    const sec = `${time % 60}`.padStart(2, 0);
+    //in each callback call, print the remaining time to UI
+    labelTimer.textContent = `${min}:${sec}`;
+
+    //When time expires (0s), stop timer and lgoout user
+    if (time === 0) {
+      clearInterval(timer);
+      labelWelcome.textContent = `Log in to get started`;
+      containerApp.style.opacity = 0;
+    }
+    //Decrease time
+    time--;
+  };
+
+  tick();
+
+  //call the timer every second
+  const timer = setInterval(tick, 1000);
+  return timer;
+};
 ///////////////////////////////////////
 // Event handlers
-let currentAccount;
+let currentAccount, timer;
 
 //FAKE ALWAYS IN
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 100;
+// currentAccount = account1;
+// updateUI(currentAccount);
+// containerApp.style.opacity = 100;
 
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
@@ -249,6 +295,11 @@ btnLogin.addEventListener('click', function (e) {
 
     // Update UI
     updateUI(currentAccount);
+
+    // Check if timer is running and if so, clear it
+
+    if (timer) clearInterval(timer);
+    timer = startLogoutTimer();
   }
 });
 
@@ -273,8 +324,15 @@ btnTransfer.addEventListener('click', function (e) {
     //Add transfer date
     currentAccount.movementsDates.push(new Date().toISOString());
     receiverAcc.movementsDates.push(new Date().toISOString());
+
+    //Reset timer
+    clearInterval(timer);
+    timer = startLogoutTimer();
+
     // Update UI
-    updateUI(currentAccount);
+    setTimeout(() => updateUI(currentAccount), 2500);
+
+    // updateUI(currentAccount);
   }
 });
 
@@ -289,8 +347,13 @@ btnLoan.addEventListener('click', function (e) {
 
     //Add transfer date
     currentAccount.movementsDates.push(new Date().toISOString());
+
+    //Reset timer
+    clearInterval(timer);
+    timer = startLogoutTimer();
+
     // Update UI
-    updateUI(currentAccount);
+    setTimeout(() => updateUI(currentAccount), 2500);
     console.log(currentAccount);
   }
   inputLoanAmount.value = '';
@@ -550,3 +613,64 @@ const days2 = calcDaysBetween(new Date(2037, 3, 14), new Date(2037, 3, 4));
 // const locale = navigator.language;
 
 // -------------- Internationalizing Numbers --------------- //
+//formats numbers
+const num = 3884764.23;
+
+const dateOptions = {
+  //percent / currency
+  style: 'currency',
+  //'mile-per-hour'
+  // unit: 'celsius',
+  currency: 'EUR',
+  // useGrouping: false,
+};
+
+// console.log(
+//   'US       ',
+//   new Intl.NumberFormat('en-US', dateOptions).format(num)
+// );
+// console.log(
+//   'Germany  ',
+//   new Intl.NumberFormat('de-DE', dateOptions).format(num)
+// );
+// console.log(
+//   'Syria    ',
+//   new Intl.NumberFormat('ar-SY', dateOptions).format(num)
+// );
+// console.log(
+//   navigator.language,
+//   new Intl.NumberFormat(navigator.language).format(num)
+// );
+
+// --------------- Timers: setTimeout ans setInterval ----------------- //
+//setTimout(callBack, millsecs, funcArgs) runs just once after a defined amount of time. Used to execute some code at some point in the future. This is async
+
+//1 second is 1,000 milliseconds
+
+const ingredients = ['mushrooms', 'feta'];
+
+// const pizzaDelivery = setTimeout(
+//   (ing1, ing2) =>
+//     console.log(`Here is your pizza! 🍕 with ${ing1} and ${ing2}`),
+//   3000,
+//   ...ingredients
+// );
+
+// console.log('Before setTimeout');
+
+// clearTimeout(timer) - Can cancel a timer as long as the full time has not past
+
+// if (ingredients.includes('spinach')) clearTimeout(pizzaDelivery);
+
+// setInterval(callBack, millimeters) continues to run until it is stopped
+
+// const clock = function () {
+//   console.log(
+//     new Intl.DateTimeFormat('en-US', {
+//       hour: 'numeric',
+//       minute: 'numeric',
+//       second: 'numeric',
+//     }).format(new Date())
+//   );
+// };
+// setInterval(clock, 1000);
