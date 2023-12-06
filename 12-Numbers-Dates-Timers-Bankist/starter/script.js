@@ -20,10 +20,10 @@ const account1 = {
     '2019-12-23T07:42:02.383Z',
     '2020-01-28T09:15:04.904Z',
     '2020-04-01T10:17:24.185Z',
-    '2020-05-08T14:11:59.604Z',
+    '2023-12-01T14:11:59.604Z',
     '2020-05-27T17:01:17.194Z',
-    '2020-07-11T23:36:17.929Z',
-    '2020-07-12T10:51:36.790Z',
+    '2023-12-02T10:36:17.929Z',
+    '2023-12-04T10:51:36.790Z',
   ],
   currency: 'EUR',
   locale: 'pt-PT', // de-DE
@@ -80,7 +80,25 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 /////////////////////////////////////////////////
 // Functions
+const calcMovementDate = function (date1, date2) {
+  const daysPast = Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
 
+  if (daysPast === 0) return 'Today';
+  if (daysPast === 1) return 'Yesterday';
+  if (daysPast <= 7) return `${daysPast} days ago`;
+};
+// const formatMovementDate = function (movement) {
+//   // const date = new Date(movement);
+//   // const year = date.getFullYear();
+//   // const month = `${date.getMonth() + 1}`.padStart(2, 0);
+//   // const dayOfTheMonth = `${date.getDate()}`.padStart(2, 0);
+
+//   const dateFormatted =
+//     calcMovementDate(date, new Date()) || `${dayOfTheMonth}/${month}/${year}`;
+//   return dateFormatted;
+// };
+
+// Display Movements
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
 
@@ -88,19 +106,31 @@ const displayMovements = function (acc, sort = false) {
     ? acc.movements.slice().sort((a, b) => a - b)
     : acc.movements;
 
+  // const options = {
+  //   // hour: 'numeric',
+  //   // minute: 'numeric',
+  //   day: 'numeric',
+  //   //numeric, long, 2-digit, numeric
+  //   month: 'numeric',
+  //   //2-digit
+  //   year: 'numeric',
+  //   //short, narrow
+  //   // weekday: 'long',
+  // };
+
   movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
-    const movTime = new Date(acc.movementsDates[i]);
-    const day = `${movTime.getDate()}`.padStart(2, 0);
-    const month = `${movTime.getMonth() + 1}`.padStart(2, 0);
-    const year = `${movTime.getFullYear()}`;
+    const movementDate = new Date(acc.movementsDates[i]);
+    const dateFormatted =
+      calcMovementDate(movementDate, new Date()) ||
+      new Intl.DateTimeFormat(acc.locale).format(movementDate);
 
     const html = `
       <div class="movements__row">
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-    <div class="movements__date">${`${day}/${month}/${year}`}</div>
+    <div class="movements__date">${dateFormatted}</div>
         <div class="movements__value">${mov}€</div>
       </div>
     `;
@@ -163,9 +193,9 @@ const updateUI = function (acc) {
 let currentAccount;
 
 //FAKE ALWAYS IN
-// currentAccount = account1;
-// updateUI(currentAccount);
-// containerApp.style.opacity = 100;
+currentAccount = account1;
+updateUI(currentAccount);
+containerApp.style.opacity = 100;
 
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
@@ -183,15 +213,35 @@ btnLogin.addEventListener('click', function (e) {
     }`;
     containerApp.style.opacity = 100;
 
+    //Intl API
     const now = new Date();
+    const options = {
+      hour: 'numeric',
+      minute: 'numeric',
+      day: 'numeric',
+      //numeric, long, 2-digit, numeric
+      month: 'numeric',
+      //2-digit
+      year: 'numeric',
+      //short, narrow
+      // weekday: 'long',
+    };
 
-    const day = `${now.getDate()}`.padStart(2, 0);
-    const month = `${now.getMonth() + 1}`.padStart(2, 0);
-    const fullYear = now.getFullYear();
-    const hour = `${now.getHours()}`.padStart(2, 0);
-    const minutes = `${now.getMinutes()}`.padStart(2, 0);
+    //getting the ISO language code from the user's browser with navigator.language
+    // const locale = navigator.language;
+    // console.log(locale);
+    labelDate.textContent = new Intl.DateTimeFormat(
+      currentAccount.locale,
+      options
+    ).format(now);
 
-    labelDate.textContent = `${day}/${month}/${fullYear}, ${hour}:${minutes}`;
+    // const day = `${now.getDate()}`.padStart(2, 0);
+    // const month = `${now.getMonth() + 1}`.padStart(2, 0);
+    // const fullYear = now.getFullYear();
+    // const hour = `${now.getHours()}`.padStart(2, 0);
+    // const minutes = `${now.getMinutes()}`.padStart(2, 0);
+
+    // labelDate.textContent = `${day}/${month}/${fullYear}, ${hour}:${minutes}`;
 
     // Clear input fields
     inputLoginUsername.value = inputLoginPin.value = '';
@@ -221,8 +271,8 @@ btnTransfer.addEventListener('click', function (e) {
     receiverAcc.movements.push(amount);
 
     //Add transfer date
-    currentAccount.movementsDates.push(new Date().toDateString());
-    receiverAcc.movementsDates.push(new Date().toDateString());
+    currentAccount.movementsDates.push(new Date().toISOString());
+    receiverAcc.movementsDates.push(new Date().toISOString());
     // Update UI
     updateUI(currentAccount);
   }
@@ -446,7 +496,7 @@ const now2 = new Date();
 
 // Working with dates
 
-const future = new Date(2024, 9, 14, 8, 30);
+// const future = new Date(2024, 9, 14, 8, 30);
 // console.log(future);
 //.getFullYear() - Called on the date object. Returns the year as a number. NEVER USE .getYear()
 // console.log(future.getFullYear());
@@ -472,3 +522,31 @@ const future = new Date(2024, 9, 14, 8, 30);
 // console.log(Date.now());
 
 // -------------- Operations with Dates -------------------- //
+
+const future = new Date(2024, 9, 14, 8, 30);
+
+//Calculating how many days have passed between 2 dates
+// console.log(Number(future)); // timestamp in milliseconds
+// console.log(future.getTime()); // timestamp in milliseconds
+// console.log(+future); // timestamp in milliseconds
+
+const calcDaysBetween = (date1, date2) =>
+  Math.abs(date2 - date1) / (1000 * 60 * 60 * 24);
+
+const days1 = calcDaysBetween(new Date(2023, 11, 10), new Date(2023, 11, 15));
+const days2 = calcDaysBetween(new Date(2037, 3, 14), new Date(2037, 3, 4));
+// console.log(days1);
+// console.log(days2);
+
+// ---------------- Internationalizing Dates -------------- //
+//Internationalization API - easily format numbers and strings according to different languages. It uses the Intl name space.
+// I call the DateTimeFormat method on it and it creates a formatter for that language and locale
+// ex: new Intl.DateTimeFormat("en-US")
+// I then can call the format method on it
+// new Intl.DateTimeFormat("en-US").format(value)
+
+// In many situations, it make sense to not define the locale manually, but to get it from the user's browser
+//getting the ISO language code from the user's browser with navigator.language
+// const locale = navigator.language;
+
+// -------------- Internationalizing Numbers --------------- //
