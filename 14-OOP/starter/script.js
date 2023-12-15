@@ -147,7 +147,7 @@ Person.prototype.species = 'Homo Sapien';
 // console.dir() - It is the way to see all the properties of a specified JavaScript object in console by which the developer can easily get the properties of the object.
 
 //HTML elements are objects too so all of this applies to them, from HTML Element to Element to Node
-const h1 = document.querySelector('h1');
+// const h1 = document.querySelector('h1');
 
 //functions are also objects so all of this applies to them too
 // console.dir(x => x + 1);
@@ -276,3 +276,297 @@ Person.hey = function () {
 // PersonCl.hey();
 
 //------------------- Object.create() --------------------------- //
+
+// Least used way of implementing prototypal inheritance
+
+// No constructor functions, no new keyword/operator, no prototype propert on construction function because there is no construction function, BUT there is still the idea with prototypal inheritance, instead I can use Object.create() to manually set the prototype of an object to any other object that I want
+
+//Creating the prototype with a regular object literal
+const PersonProto = {
+  calcAge() {
+    console.log(2024 - this.birthYear);
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+//This will return a brand new object empty object linked to the prototype that we created above and passed in
+const steven = Object.create(PersonProto);
+
+//I can set the properties like this. It works but it is not the cleanest way
+// steven.name = 'Steven';
+// steven.birthYear = 1989;
+
+steven.init('Steven', 1990);
+// steven.calcAge();
+// console.dir(steven.__proto__ === PersonProto);
+
+const sara = Object.create(PersonProto);
+sara.init('Sara', 1988);
+// console.log(sara);
+
+// -------- Inheritance Btw "Classes": Constructor Functions ------ //
+
+//Parent Class
+const Person2 = function (firstName, birthYear) {
+  this.firstName = firstName;
+  this.birthYear = birthYear;
+};
+
+Person2.prototype.calcAge = function () {
+  console.log(2024 - this.birthYear);
+};
+
+// Child Class
+function Student(firstName, birthYear, course) {
+  Person2.call(this, firstName, birthYear);
+
+  this.course = course;
+}
+
+//Linking prototypes to allow for class inheritance
+Student.prototype = Object.create(Person2.prototype);
+Student.prototype.constructor = Student;
+
+Student.prototype.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
+const mike = new Student('Mike', 1988, 'Computer Science');
+
+// mike.introduce();
+// mike.calcAge();
+
+// console.log(mike instanceof Student); //true
+// console.log(mike instanceof Person2); //true
+// Above the prototype chain will look like this.
+//null --> Object.prototype --> Person.prototype ---> Student.prototype
+
+// console.dir(Student.prototype);
+
+// -------- Inheritance Btw "Classes": ES6 Classes -------------- //
+class Person3 {
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
+    this.birthYear = birthYear;
+  }
+  calcAge() {
+    return 2024 - this.birthYear;
+  }
+
+  greet() {
+    console.log(`Hey ${this.fullName}! You are ${this.age} years old.`);
+  }
+
+  get age() {
+    const today = new Date().getFullYear();
+    return today - new Date(this.birthYear);
+  }
+
+  set fullName(name) {
+    if (name.includes(' ')) {
+      this._fullName = name;
+    } else {
+      alert('Please enter both FIRST and LAST name');
+      return;
+    }
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
+
+  static hey() {
+    console.dir(this);
+    console.log('Hey there!');
+  }
+}
+
+const armando = new Person3('Armando Vages', 1988);
+
+//Linking Student 3 as a child class of Person 3
+class Student3 extends Person3 {
+  constructor(fullName, birthYear, course) {
+    //super is the call to the constructor function of the parent class
+    //This super call has to happen first! Because this call to the super function is responsible for creating the this keyword in the subclass. I won't be able to add more properties to
+    super(fullName, birthYear);
+
+    this.course = course;
+  }
+  calcAge() {
+    return 2037 - this.birthYear;
+  }
+  introduce() {
+    console.log(`Hi! My name is ${this.fullName} and I study ${this.course}`);
+  }
+}
+
+//IF I do not want to add any new properties on top on what the parent class has, and I just want access to the methods or to override a method, then I don't even need to add a construction function with a super call in the ES6 class. The extends does that work linking the child class to the parent class.
+// const amanda = new Student3('Amanda Powers', 2012);
+// console.log(amanda.fullName);
+
+const amanda = new Student3('Amanda Powers', 1988, 'Computer Science');
+// amanda.greet();
+
+// amanda.introduce();
+// console.log(amanda.calcAge());
+
+// -------- Inheritance Btw "Classes": Object.create() ----------- //
+
+const PersonProto2 = {
+  calcAge() {
+    console.log(2024 - this.birthYear);
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+//creating and returning empty object and setting the prototype to the PersonProto2 object
+const bill = Object.create(PersonProto2);
+//calling the init function from bill's prototype object with name and birthyear to set these properties on the the bill object
+bill.init('Fang', 1989);
+// console.log(bill);
+
+// Returning an empty object and setting the prototype property/object of StudentProto to the PersonProto2 object. Creating the link in the prototype chain between instances of StudentProto to PersonProto2
+const StudentProto = Object.create(PersonProto2);
+
+// console.log(StudentProto.__proto__);
+
+//creating and returning an empty object with the prototype set the StudentProto
+const jay2 = Object.create(StudentProto);
+// console.log(jay2.__proto__.__proto__);
+
+StudentProto.init = function (firstName, birthYear, course) {
+  PersonProto2.init.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+jay2.init('Jay', 1990, 'Computer Science');
+// jay2.calcAge();
+
+// --------------- More with ES6 Classes ------------------------ //
+
+//Bankist Example
+
+class Account {
+  //The fields must be defined outside of the constructor and any methods
+
+  //1. Public Fields - these are on the instances, NOT on the prototype property. No need to declare with const or let. They are also referencable with the this keyword
+
+  locale = navigator.language;
+
+  //2. Private Fields
+  #movements = [];
+  //Because it is defined by input, I must declare it here and the redefine it in the constructor
+  #pin;
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    this.#pin = pin;
+
+    // Protected Proptery - This underscore is an fake encapsulation/privacy convention even though this does not make the propertt truly private. It does however alert to me and everyone on my team that this property below should not be manually manipulated outside of the class
+    // this._movements = [];
+    // this.locale = 'navigator.language';
+  }
+
+  //3. These are all Public methods
+  //This would be a more appropriate way that could be used to access movements without giving public access to the movements
+  getMovements() {
+    return this.#movements;
+  }
+
+  get balance() {
+    return this.#movements.reduce((mov, curr) => mov + curr, 0);
+  }
+
+  // Public Interface - The following two methods are considered our class's Interface - the part that is exposed to the public and the public uses to ineteract with the class. This can also be called the API
+  deposit(amount) {
+    if (typeof amount !== 'number') {
+      return;
+    }
+    this.#movements.push(amount);
+    return this;
+  }
+
+  withdraw(amount) {
+    if (typeof amount !== 'number') {
+      return;
+    }
+    //calling another method in the class from this method
+    this.deposit(-amount);
+    return this;
+  }
+  //A protected method, a method that is only supposed to be accessed internally, should not be part of the public API
+  // _approveLoan(amount) {
+  //   return true;
+  // }
+
+  #approveLoan(amount) {
+    return true;
+  }
+
+  requestLoan(amount) {
+    if (this.#approveLoan(amount)) {
+      this.deposit(amount);
+      console.log(`Loan approved`);
+      return this;
+    }
+  }
+
+  // static test = 'bob';
+}
+
+const account1 = new Account('Jonas', 'EUR', 1111);
+
+// console.log(account1);
+// account1.deposit(100);
+// console.log(account1.getMovements());
+
+// console.log(account1.#movements); // This will result in a syntax error that this is a private field and cannot be accessed outside of the class
+
+// account1.withdraw(1);
+// console.log(account1.deposit(99));
+
+// -------- Encapsulation: Protected Properties & Methods --------- //
+
+// Encapsulation: To keep some properties and methods private inside of the class so that they are not accessible outside of the class
+
+//These rest of the methods and properties are exposed to the public as part of the public interface or API
+
+//Two big reasons for Encapsulation and data privay:
+// 1. To prevent code from outside of the class from manipulating data inside of a class
+// 2. When we expose only a small interface/api consisting of only a few public methodss, then we can change all the other internal methods with more confidence because we can be sure that external code dos not rely on these private methods, so we can have more confidence that our code will not break when we make these internal changes
+
+//This is really a fake of encapsulation by using a convention
+
+// ------ Encapsulation: Private Class Fields and Methods --------- //
+
+// I can think of a "field" as a property that will be on all instances. Can also be called instance field
+
+// There are actually 8 fields and methods but going to cover 4
+
+//1. Public fields/ Public instance field
+//2. Private Fields
+//3. Public methods
+//4. Private methods
+//There is also the static version of all 4
+
+// -------------- Chaining Methods ------------------------- //
+//Can do the same in the methods of the class. To do this, all I need to do is return the object itself and the end of a method we want to be chainable
+
+//Chaining - usually for some method that sets a property. Returning this at the end of a method will ensyre that the entire instance object is resturned, allowing me to chain further methods on the result of calling the previous method
+
+// console.log(
+//   account1
+//     .deposit(300)
+//     .deposit(500)
+//     .withdraw(30)
+//     .requestLoan(2500)
+//     .withdraw(4000)
+//     .getMovements()
+// );
