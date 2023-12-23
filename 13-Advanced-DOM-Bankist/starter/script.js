@@ -26,7 +26,7 @@ document
   .addEventListener('click', () => cookieMessage.remove());
 
 // Styles, Attributes, Classes
-cookieMessage.style.width = '120%';
+cookieMessage.style.width = '100%';
 cookieMessage.style.backgroundColor = '#37383d';
 console.log(getComputedStyle(cookieMessage).color);
 cookieMessage.style.height =
@@ -305,7 +305,7 @@ const sectionObserver = new IntersectionObserver(
 
 allSections.forEach(section => {
   sectionObserver.observe(section);
-  //section.classList.add('section--hidden');
+  section.classList.add('section--hidden');
 });
 
 ///////////////////////////////////////
@@ -340,19 +340,17 @@ imgTargets.forEach(img => {
 const slides = document.querySelectorAll('.slide');
 const btnSliderLeft = document.querySelector('.slider__btn--left');
 const btnSliderRight = document.querySelector('.slider__btn--right');
+const dotsContainer = document.querySelector('.dots');
 let currentSlide = 0;
 
 const goToSlide = function (slide) {
   slides.forEach(
     (s, i) => (s.style.transform = `translateX(${(i - slide) * 100}%)`)
   );
+  currentSlide = slide;
+  updateDots();
 };
-
-// init slides
-goToSlide(0);
-
-btnSliderRight.addEventListener('click', function (e) {
-  e.preventDefault();
+const slideRight = function () {
   currentSlide++;
   if (currentSlide < slides.length) {
     goToSlide(currentSlide);
@@ -360,15 +358,57 @@ btnSliderRight.addEventListener('click', function (e) {
     currentSlide = 0;
     goToSlide(currentSlide);
   }
-});
-
-btnSliderLeft.addEventListener('click', function (e) {
-  e.preventDefault();
+};
+const slideLeft = function () {
   currentSlide--;
   if (currentSlide >= 0) {
     goToSlide(currentSlide);
   } else {
     currentSlide = slides.length - 1;
     goToSlide(currentSlide);
+  }
+};
+const createDots = function () {
+  slides.forEach((_, i) => {
+    dotsContainer.insertAdjacentHTML(
+      'beforeend',
+      `<button class="dots__dot" data-slide="${i}"></button>`
+    );
+  });
+};
+const updateDots = function () {
+  dotsContainer
+    .querySelector('.dots__dot--active')
+    ?.classList.remove('dots__dot--active');
+  dotsContainer
+    .querySelector(`[data-slide='${currentSlide}']`)
+    .classList.add('dots__dot--active');
+};
+// init slides
+createDots();
+goToSlide(0);
+
+btnSliderRight.addEventListener('click', function (e) {
+  e.preventDefault();
+  slideRight();
+});
+
+btnSliderLeft.addEventListener('click', function (e) {
+  e.preventDefault();
+  slideLeft();
+});
+
+document.addEventListener('keydown', function (e) {
+  e.key === 'ArrowRight' && slideRight();
+  e.key === 'ArrowLeft' && slideLeft();
+});
+
+// Dots implementation
+
+dotsContainer.addEventListener('click', function (e) {
+  e.preventDefault();
+  if (e.target.classList.contains('dots__dot')) {
+    goToSlide(e.target.dataset.slide);
+    updateDots();
   }
 });
