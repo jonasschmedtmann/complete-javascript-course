@@ -157,7 +157,21 @@ const PersonProto = {
     this.birthYear = birthYear;
   },
 };
+const StudentProto = Object.create(PersonProto);
+StudentProto.init = function (name, birthYear, course) {
+  PersonProto.init.call(this, name, birthYear);
+  this.course = course;
+};
+StudentProto.introduce = function () {
+  console.log(`Hi my name is ${this.name} and I study ${this.course}`);
+};
 const steven = Object.create(PersonProto);
+const jay = Object.create(StudentProto);
+
+jay.init('Jay', 1995, 'js');
+jay.calcAge();
+jay.introduce();
+
 steven.name = 'Steven';
 steven.birthYear = 2002;
 steven.calcAge();
@@ -261,3 +275,113 @@ GOOD LUCK 😀
 //  if (e.key == 'ArrowUp') tesla.accelerate();
 //  if (e.key === 'ArrowDown') tesla.brake();
 //});
+
+class idAccount {
+  // 1) Public Fields
+  local = navigator.language;
+  // 2) Private Fields
+  #movements = [];
+  #pin;
+
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    this.#pin = pin;
+  }
+  // 3) Public Methods
+  getMovements() {
+    return this.#movements;
+  }
+  deposit(amount) {
+    this.#movements.push(amount);
+    return this;
+  }
+  withdraw(amount) {
+    this.#movements.push(-amount);
+    return this;
+  }
+  requestLoan(amount) {
+    if (this._approveLoan(amount)) {
+      this.deposit(amount);
+      console.log(`Loan Approved...`);
+    }
+  }
+  static helper() {
+    console.log('This is a static function for the object.');
+  }
+  // 4) Private Methods
+  _approveLoan(amount) {
+    return true;
+  }
+}
+
+const acc1 = new idAccount('Josh', 'USD', 4444);
+acc1.deposit(100);
+acc1.withdraw(50);
+acc1.deposit(1).deposit(2).withdraw(3);
+acc1.requestLoan(100);
+console.log(acc1.getMovements());
+
+///////////////////////////////////////
+// Coding Challenge #4
+
+/* 
+1. Re-create challenge #3, but this time using ES6 classes: create an 'EVCl' 
+child class of the 'CarCl' class
+2. Make the 'charge' property private;
+3. Implement the ability to chain the 'accelerate' and 'chargeBattery' methods 
+of this class, and also update the 'brake' method in the 'CarCl' class. They 
+experiment with chining!
+
+DATA CAR 1: 'Rivian' going at 120 km/h, with a charge of 23%
+
+GOOD LUCK 😀
+*/
+
+class idCar {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+  accelerate() {
+    this.speed += 10;
+    console.log(`Accelerating to ${this.speed}km/h`);
+  }
+  brake() {
+    this.speed -= 5;
+    console.log(`Braking to ${this.speed}km/h`);
+    return this;
+  }
+  get speedUS() {
+    return this.speed / 1.6;
+  }
+  set speedUS(speed) {
+    this.speed = speed * 1.6;
+  }
+}
+class idEV extends idCar {
+  #charge;
+  constructor(make, speed, charge) {
+    super(make, speed);
+    this.#charge = charge;
+  }
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo;
+    return this;
+  }
+  accelerate() {
+    this.speed += 20;
+    this.#charge -= 1;
+    console.log(
+      `${this.make} going at ${this.speed}km/h, whis a charge of ${
+        this.#charge
+      }%`
+    );
+    return this;
+  }
+}
+const rivian = new idEV('Rivian', 120, 23);
+rivian.accelerate().brake().accelerate();
+console.log(rivian.speedUS);
+rivian.speedUS = 70;
+console.log(rivian.speedUS);
