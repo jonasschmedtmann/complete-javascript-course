@@ -280,11 +280,13 @@ const slider = function () {
     e.key === 'ArrowRight' && nextSlide();
   });
 
-  dotContainer.addEventListener('click', function (e) {
-    if (e.target.classList.contains('dots__dot')) {
-      const { slide } = e.target.dataset;
+  // * Here is my advice to change the curslide update because it fails to update the curslide which creates a bug of double clicking
+  dotContainer.addEventListener("click", function (e) {
+    if (e.target.classList.contains("dots__dot")) {
+      const {slide} = e.target.dataset;
+      curSlide = Number(slide); // Update curSlide here
       goToSlide(slide);
-      activateDot(slide);
+      activateDot(curSlide);
     }
   });
 };
