@@ -1,3 +1,4 @@
 let js = "amazing";
-if (js === "amazing") alert("JavaScript is Fun");
-console.log(20 + 13 + 200);
+let firstName = "Surya Narayana"
+console.log(firstName);
+console.log(23);
