@@ -42,5 +42,8 @@ let yearsUntilRetirement = (dob, firstName) => {
     const age = 2023 - dob;
     return age > 65 ? `Hey ${firstName}..!Retired Person since ${age - 65} ` : `Hey ${firstName}...! Your going to retire after ${65 - age}`;
 }
+
 console.log(yearsUntilRetirement(2003, "Surya"));
+const friend = ['Michael', 'Steven', 'Peter']
+
 
