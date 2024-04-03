@@ -149,6 +149,75 @@ console.log(dan1.age);
 console.log(dan1.getSummary());
 */
 
-for (let rep = 1; rep <= 10; rep++) {
-  console.log(`Lifting weights repetition ${rep}`);
+// for (let rep = 1; rep <= 10; rep++) {
+//   console.log(`Lifting weights repetition ${rep}`);
+// }
+/*
+const dan = [
+  "Dan",
+  "Bekenstein",
+  2024 - 1994,
+  "Product Manager",
+  ["Tim", "Justin", "Greg"],
+  true,
+];
+
+const types = [];
+
+for (let i = 0; i < dan.length; i++) {
+  console.log(dan[i], typeof dan[i]);
+
+  // types[i] = typeof dan[i];
+  types.push(typeof dan[i]);
+}
+
+console.log(types);
+
+const years = [1991, 2007, 1969, 2020];
+const ages = [];
+
+for (let i = 0; i < years.length; i++) {
+  ages.push(2024 - years[i]);
+}
+console.log(years, ages);
+
+
+const dan = [
+  "Dan",
+  "Bekenstein",
+  2024 - 1994,
+  "Product Manager",
+  ["Tim", "Justin", "Greg"],
+];
+
+for (let i = dan.length - 1; i >= 0; i--) {
+  console.log(dan[i]);
+}
+
+for (let exercise = 1; exercise < 4; exercise++) {
+  console.log(`----Starting exercise---- ${exercise}`);
+
+  for (let rep = 1; rep < 6; rep++) {
+    console.log(`Lifting weight repetition ${rep}`);
+  }
+}
+*/
+
+// for (let rep = 1; rep <= 10; rep++) {
+//   console.log(`Lifting weights repetition ${rep}`);
+// }
+
+// let rep = 1;
+// while (rep <= 10) {
+//   console.log(`Lifting weights repetition ${rep}`);
+//   rep++;
+// }
+
+let dice = Math.trunc(Math.random() * 6) + 1;
+// console.log(dice);
+
+while (dice != 6) {
+  console.log(`You rolled a ${dice}`);
+  dice = Math.trunc(Math.random() * 6) + 1;
+  if (dice === 6) console.log("Loop is about to end...");
 }
