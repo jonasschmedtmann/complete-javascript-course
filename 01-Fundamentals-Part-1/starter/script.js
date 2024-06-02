@@ -1,4 +1,4 @@
-// ---------------- Lesson 9 --------------------
+/* // ---------------- Lesson 9 --------------------
 
 let js = "amazing";
 // console.log(40 + 8 + 23);
@@ -80,6 +80,76 @@ console.log(year);
 console.log(typeof year);
 
 year = 1991;
-console.log(typeof year);
+console.log(typeof year); */
 
 // ------------ 12- LET,CONST,VAR -----------------
+
+let age = 39;
+age = 40; // when we need to mutate a variable we use LET keyword...
+
+// const birthYear = 1991;
+birthYear = 1990; // TypeError: Assignment to constant variable // Immutable...
+let year; // let because first value undefined. And initial value changed..
+// const job ; // Missing initializer in const declaration , not legal
+
+// Mutate variable values is dangerous that's why default we use CONST
+
+var job = "programmer";
+job = "teacher";
+// console.log(job); // let is block scoped and var is function scoped.
+
+// Never use var keyword... Prior ES6 default keyword but not now...
+
+lastName = "Ozdemir";
+// console.log(lastName); // We didn't use var,let,const etc... Still worked Is there any problem...
+
+// Pretty terrible idea... Global scope is not intended.....
+// The problem is the more variables you have the more chance to have some semantical issues which are really hard and time consuming to debug.
+
+// Limiting the scope of variables is a very good practice.
+
+// ------------- 13- BASIC OPERATORS ----------------
+
+/* const now = 2037;
+const ageJonas = now - 1991;
+const ageSarah = now - 2018;
+console.log(ageJonas, ageSarah);
+
+console.log(ageJonas * 2, ageJonas / 10, 2 ** 3);
+// 2 ** 3 means 2 to the power of 3 = 2 * 2 * 2
+
+const firstName = "Jonas";
+const lastName = "Schmedtmann";
+console.log(firstName + " " + lastName);
+
+let x = 10 + 5;
+x += 10; // x = x + 10
+x *= 4; // x = x* 4
+x++; // x = x + 1
+x--; // x = x-1
+x--; // x = x-1
+console.log(x);
+
+// Comparison Operators
+console.log(ageJonas > ageSarah);
+console.log(ageSarah >= 10);
+console.log(ageSarah <= 10);
+
+const isFullAge = ageSarah >= 18;
+console.log(isFullAge); */
+
+// ------------- 14- OPERATOR PRECEDENCE ----------------
+
+const now = 2037;
+const ageJonas = now - 1991;
+const ageSarah = now - 2018;
+
+// console.log(now - 1991 > now - 2018);
+// console.log(25 - 10 - 5); // LTR(Left to right)
+let x, y;
+// x = y = 25 - 10 - 5; // If assignment operator process Left to Right x = y --> y undefined
+// console.log(x, y);
+
+const averageAge = ageJonas + ageSarah / 2; // use parenthesis ...
+const averageAgeWithParenthesisForPrecedence = (ageJonas + ageSarah) / 2;
+// console.log(ageJonas, ageSarah, averageAge, averageAgeWithParenthesisForPrecedence);
