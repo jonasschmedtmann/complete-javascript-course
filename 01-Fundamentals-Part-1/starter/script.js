@@ -84,23 +84,23 @@ console.log(typeof year); */
 
 // ------------ 12- LET,CONST,VAR -----------------
 
-let age = 39;
-age = 40; // when we need to mutate a variable we use LET keyword...
+// let age = 39;
+// age = 40; // when we need to mutate a variable we use LET keyword...
 
 // const birthYear = 1991;
-birthYear = 1990; // TypeError: Assignment to constant variable // Immutable...
-let year; // let because first value undefined. And initial value changed..
+// birthYear = 1990; // TypeError: Assignment to constant variable // Immutable...
+// let year; // let because first value undefined. And initial value changed..
 // const job ; // Missing initializer in const declaration , not legal
 
 // Mutate variable values is dangerous that's why default we use CONST
 
-var job = "programmer";
-job = "teacher";
+// var job = "programmer";
+// job = "teacher";
 // console.log(job); // let is block scoped and var is function scoped.
 
 // Never use var keyword... Prior ES6 default keyword but not now...
 
-lastName = "Ozdemir";
+// lastName = "Ozdemir";
 // console.log(lastName); // We didn't use var,let,const etc... Still worked Is there any problem...
 
 // Pretty terrible idea... Global scope is not intended.....
@@ -140,9 +140,9 @@ console.log(isFullAge); */
 
 // ------------- 14- OPERATOR PRECEDENCE ----------------
 
-const now = 2037;
-const ageJonas = now - 1991;
-const ageSarah = now - 2018;
+// const now = 2037;
+// const ageJonas = now - 1991;
+// const ageSarah = now - 2018;
 
 // console.log(now - 1991 > now - 2018);
 // console.log(25 - 10 - 5); // LTR(Left to right)
@@ -150,6 +150,45 @@ let x, y;
 // x = y = 25 - 10 - 5; // If assignment operator process Left to Right x = y --> y undefined
 // console.log(x, y);
 
-const averageAge = ageJonas + ageSarah / 2; // use parenthesis ...
-const averageAgeWithParenthesisForPrecedence = (ageJonas + ageSarah) / 2;
+// const averageAge = ageJonas + ageSarah / 2; // use parenthesis ...
+// const averageAgeWithParenthesisForPrecedence = (ageJonas + ageSarah) / 2;
 // console.log(ageJonas, ageSarah, averageAge, averageAgeWithParenthesisForPrecedence);
+
+// ------------- 17 - Strings and Template Literals ----------------
+
+/* const firstName = "Jonas";
+const job = "teacher";
+const birthYear = 1991;
+const year = 2037;
+
+const jonas = "I'm " + firstName + ", a " + (year - birthYear) + " years old " + job + "!";
+console.log(jonas);
+
+const jonasNew = `I'm ${firstName},a ${year - birthYear} years old ${job} !`;
+console.log(jonasNew);
+
+console.log("String\n hello\n heey");
+console.log(`String
+multiple
+lines`); */
+
+// ------------- 18 - Taking Decisions ----------------
+const age = 15;
+const isOldEnough = age >= 18;
+
+if (isOldEnough) {
+  console.log("Sarah can start driving license");
+} else {
+  const yearsLeft = 18 - age;
+  console.log(`Sarah is too young. Wait another ${yearsLeft} years`);
+}
+
+const birthYear = 2024;
+
+let century;
+if (birthYear <= 2000) {
+  century = 20;
+} else {
+  century = 21;
+}
+console.log(century);
