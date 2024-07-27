@@ -1,7 +1,6 @@
 function bmi(mass, height) {
   return mass / height ** 2;
 }
-
 console.log(bmi(78, 1.69));
 console.log("Break\nBreak\nBreak");
 let mark = {

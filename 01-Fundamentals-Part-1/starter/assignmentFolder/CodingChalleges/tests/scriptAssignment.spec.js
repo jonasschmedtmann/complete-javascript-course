@@ -1,4 +1,4 @@
-const bmi = require("../scriptAssignment.js");
+const bmi = require("../codingChallenge_1.js");
 
 describe("BMI Function", function () {
   test("deviding weight by 2 times the height,", function () {
