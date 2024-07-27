@@ -1,34 +1,26 @@
-let js = 'amazing';
-console.log(40+8+23-10);
+function bmi(mass, height) {
+  return mass / height ** 2;
+}
+console.log(bmi(78, 1.69));
+let mark = {
+  mass: 78,
+  height: 1.69,
+  bmi: function () {
+    return (bmi = this.mass / this.height ** 2);
+  },
+};
+console.log(mark.bmi());
 
-console.log("Jonas");
-console.log('23');
+let john = {
+  mass: 92,
+  height: 1.95,
+  bmi: function () {
+    return (bmi = this.mass / this.height ** 2);
+  },
+};
+console.log(john.bmi());
 
+let markHigherBMI = mark.bmi() > john.bmi();
+console.log(markHigherBMI);
 
-let firstName = "Jonas";
-let firstNamePerson;
-let first_name_person;
-
-console.log(firstName);
-console.log(firstName);
-console.log(firstName);
-
-let threeyears = 3;
-console.log(threeyears);
-
-console.log(Math.PI);
-
-let myFIrstJob = "Programmer";
-let myCurrentJob ='Teacher';
-
-console.log(myCurrentJob);
-console.log('BREAK\n',10)
-
-
-let country = 'USA';
-let continent = 'NA';
-let population = 100;
-
-console.log(country);
-console.log(continent);
-console.log(population);
+module.exports = bmi;

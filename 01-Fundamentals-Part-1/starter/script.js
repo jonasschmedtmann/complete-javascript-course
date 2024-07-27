@@ -1,4 +1,4 @@
-let js = 'amazing';
+/* let js = 'amazing';
 console.log(40+8+23-10);
 
 console.log("Jonas");
@@ -32,11 +32,46 @@ let population = 100;
 console.log(country);
 console.log(continent);
 console.log(population);
+console.log('BREAAAAAAAK\n',10)
+
 
 let myCountry = function(countryy){
 if (country === 'USA'){
-    return console.log(true)
-}}
-/* console.log(myCountry("USA")); */
-
+    return console.log(true);
+}};
 myCountry('USA');
+let javascriptIsFun = false;
+console.log(typeof javascriptIsFun);
+
+javascriptIsFun = String(10);
+console.log(javascriptIsFun);
+console.log(typeof javascriptIsFun);
+
+let undie;
+console.log(undie);
+console.log(typeof undie);
+
+undie = 'defined';
+console.log(undie);
+console.log(typeof undie);
+console.log(typeof null); */
+
+/* const hammer = "HAMMMERRR";
+console.log(hammer);
+
+var job = "programmer";
+job = "teacher";
+console.log(job);
+
+lastName = "Hesse";
+console.log(lastName);
+ */
+
+const currentYear = 2024;
+const agePhil = currentYear - 1995;
+const ageEmily = currentYear - 1993;
+console.log(currentYear - 1995 > currentYear - 1993);
+
+let x, y;
+x = y = 25 - 10 - 5;
+console.log(x, y);
