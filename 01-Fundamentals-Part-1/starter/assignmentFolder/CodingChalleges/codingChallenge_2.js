@@ -9,7 +9,8 @@ let mark = {
   mass: 78,
   height: 1.69,
   bmi: function () {
-    return (bmi = this.mass / this.height ** 2);
+    bmi = this.mass / this.height ** 2;
+    return bmi.toFixed(2);
   },
 };
 
@@ -18,7 +19,8 @@ let john = {
   mass: 92,
   height: 1.95,
   bmi: function () {
-    return (bmi = this.mass / this.height ** 2);
+    bmi = this.mass / this.height ** 2;
+    return bmi.toFixed(2);
   },
 };
 
