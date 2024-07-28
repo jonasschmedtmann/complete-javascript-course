@@ -9,10 +9,10 @@ class person {
   };
 }
 
-/* let mark = new person("Mark", 78, 1.69);
-let john = new person("John", 92, 1.95); */
+let mark = new person("Mark", 78, 1.69);
+let john = new person("John", 92, 1.95);
 
-/* if (mark.bmi() > john.bmi()) {
+if (mark.bmi() > john.bmi()) {
   return console.log(
     `${mark.name}'s BMI (${mark.bmi()}) is higher than ${
       john.name
@@ -24,6 +24,6 @@ let john = new person("John", 92, 1.95); */
       mark.name
     }'s (${mark.bmi()})!`
   );
-} */
+}
 
 module.exports = person;

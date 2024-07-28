@@ -67,7 +67,7 @@ lastName = "Hesse";
 console.log(lastName);
  */
 
-const currentYear = 2024;
+/* const currentYear = 2024;
 const agePhil = currentYear - 1995;
 const ageEmily = currentYear - 1993;
 console.log(currentYear - 1995 > currentYear - 1993);
@@ -75,3 +75,27 @@ console.log(currentYear - 1995 > currentYear - 1993);
 let x, y;
 x = y = 25 - 10 - 5;
 console.log(x, y);
+ */
+
+const day = "yaa";
+switch (day) {
+  case "monday":
+    console.log("plan course structure");
+    console.log("Go to coding meetup");
+    break;
+  case "tuesday":
+    console.log("Prepare theory videos");
+    break;
+  case "wdnesday":
+  case "thursday":
+    console.log("Write code examples");
+  case "friday":
+    console.log("Record videos");
+    break;
+  case "saturday":
+  case "sunday":
+    console.log("Enjoy the weekend!");
+    break;
+  default:
+    console.log("Not a valid day!");
+}
