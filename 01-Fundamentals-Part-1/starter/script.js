@@ -77,7 +77,7 @@ x = y = 25 - 10 - 5;
 console.log(x, y);
  */
 
-const day = "yaa";
+/* const day = "friday";
 switch (day) {
   case "monday":
     console.log("plan course structure");
@@ -99,3 +99,21 @@ switch (day) {
   default:
     console.log("Not a valid day!");
 }
+ */
+
+const age = 23;
+age >= 18 ? console.log("beer time") : console.log("water time");
+
+const drink = age >= 18 ? "beer time" : "water time";
+console.log(`I like to drink ${drink}`);
+
+const bill = 275;
+
+/* Write your code below. Good luck! 🙂 */
+let tip = bill > 50 && bill < 300 ? bill * 0.15 : bill * 0.2;
+
+totalValue = bill + tip;
+
+console.log(
+  `The Bill was ${bill}, the tip was ${tip} and the total value was ${totalValue}.`
+);
