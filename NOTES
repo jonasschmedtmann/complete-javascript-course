@@ -1,0 +1,9 @@
+console.log(typeof true);
+// Gives the type of a variable
+
+
+firstname = "Bogdan";
+const jonasnew = `I'm ${firstname}`;
+// Use `` saves time, no need to use operators for strings, and dont bother with spaces. 
+
+\n\ to skip to the next line or just use `` and enter
