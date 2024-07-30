@@ -3,7 +3,120 @@ console.log(typeof true);
 
 
 firstname = "Bogdan";
-const jonasnew = `I'm ${firstname}`;
+const jonasnew = `I'm ${firstname}, i am 20 yo`;
 // Use `` saves time, no need to use operators for strings, and dont bother with spaces. 
 
 \n\ to skip to the next line or just use `` and enter
+
+
+/* 5 falsy values : 0, '', undefined, null, NaN +(false) all of them become false when converted to boolean. Any other value will be ocnverted to true.
+For example 
+const money = 0 
+if (money){
+    console.log('hello')
+} else {
+    console.log('this will be console logged since money = 0 = false')
+}
+*/
+
+/* loose equality operator '18' == 18 will return true, while '18' === 18 returns false 
+const favourite = Number(prompt("what's your fav number ? "));
+
+console.log(favourite);
+console.log(typeof favourite);
+
+if (favourite === 23) {
+	console.log("cool 23 is great");
+}
+
+
+!== operator for not equal
+ */
+
+
+//Logic operators : 
+&& for AND 
+|| for OR
+! for Opposit
+
+
+//THE SWITCH STATEMENT,  allows to write faster than if,  else if, else...
+
+const day = 'monday'
+
+switch(day){
+    case 'monday':
+        console.log('this will print out if monday, use break otherwise it will just go on and on')
+        break
+    case 'tuesday':
+    case 'wednesday':
+        console.log('this will printout if tuesday or wednesday')
+    case 'thursday....'
+}
+
+//CONDITIONAL (TERNARY) OPERATOR
+const age = 23
+const drink = age >= 18 ? 'wine' : 'water'
+
+console.log(I like to drink ${age >= 18 ? 'wine' : 'water'})
+
+
+// to avoid hidden erors write this on the first line of every js file 
+'use strict'
+
+
+
+//////FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS //////
+
+//CREATE A FUNCTION (this way you can call this function even before declaring it)
+function logger(name) {
+	return `Hello ${name}`;
+}
+const sentence = logger("Bogdan");
+console.log(sentence);
+
+//FUNCTION EXPRESSION (need to store it in variable since it produce a value) (cannont call it before defining it)
+const calcAge = function (birthyear) {
+    return 2037 - birthyear;
+}
+const age = calcAge(1991);
+console.log(age);
+
+//ARROW FUNCTION (also expression function), (use parantheses for multiple parameters)
+const calcage2 = birthyear => 2037 - birthyear;
+const age2 = calcage2(1991)
+console.log(age2)
+
+// 3 types tgether 
+
+function calcAge(birthyear){
+    return 2037 - birthyear;
+}
+
+ const calcAge = function (birthyear){
+    return 2037 - birthyear;
+ }
+
+ const calcAge = birthyear => 2037 - birthyear;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
