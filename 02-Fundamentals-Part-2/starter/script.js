@@ -1,5 +1,7 @@
 "use strict";
 
-const calcage2 = (birthyear) => 2037 - birthyear;
-const age = calcage2(1991);
-console.log(age);
+let rep = 1; //should create it outside and before the loop
+while (rep <= 10) {
+	console.log(rep);
+	rep++;
+}

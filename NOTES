@@ -66,7 +66,7 @@ console.log(I like to drink ${age >= 18 ? 'wine' : 'water'})
 
 
 
-//////FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS //////
+//////FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS//////
 
 //CREATE A FUNCTION (this way you can call this function even before declaring it)
 function logger(name) {
@@ -89,16 +89,136 @@ console.log(age2)
 
 // 3 types tgether 
 
+
 function calcAge(birthyear){
     return 2037 - birthyear;
 }
+
 
  const calcAge = function (birthyear){
     return 2037 - birthyear;
  }
 
+
  const calcAge = birthyear => 2037 - birthyear;
 
+
+
+////// ARRAYS ARRAYS ARRAYS ARRAYS ARRAYS ARRAYS ARRAYS ARRAYS ARRAYS ARRAYS ARRAYS ARRAYS //////
+
+const numbers = [1,2,3,4] 
+
+const years = new Array(1,2,3,4); //creation of new array using function
+
+const length = years.length // get the length of an array
+
+//ARRAY METHODS
+
+years.push(2024)  // adds an element to the array 
+years.unshift(1995) // adds an element at the beggining of the array
+years.pop() // removes the last element of an array
+years.shift() // removes the first element of an array
+
+years.indexOf(2024) // returns the index of the searched element, if not, returns -1 
+
+years.includes(2024) // returns a bollean value 
+
+
+//////OBJECTS OBJECTS OBJECTS OBJECTS OBJECTS OBJECTS OBJECTS OBJECTS OBJECTS OBJECTS //////
+
+const jonas = {
+    firstname : 'jonas'
+    lastname : 'shemd'
+    age : 2037-1991
+    job : 'teacher'
+}
+
+jonas.lastname //returns shemd, the value of the key
+jonas['lastname'] // returns shemd, but to be used in functions since you can insert into [  ]  for example :
+const nameKey = 'Name'
+console.log(jonas['first'+nameKey])
+
+jonas.location = 'Portugal'; // adding new keys/values to the object
+jonas['location2'] = 'France'; // adding new keys/values to the object
+
+
+
+const jonas = {
+    firstname : 'Jonas',
+    lastname : 'Shmed',
+    calcAge : function (birthyear){
+        return 2037-birthyear
+    }
+};
+console.log(jonas.calcAge(1991)); // dot method
+console.log(jonas["calcAge"](1991)); //bracket method
+
+//in the next example we use this that references the object itself 
+const jonas = {
+    firstname : 'Jonas',
+    lastname : 'Shmed',
+    birthyear : '1991',
+    calcAge : function (){
+        console.log(this) // just to see the objec, no need to write
+        return 2037 - this.birthyear //this applies to jonas object  === this
+    }
+};
+console.log(jonas.calcAge()); 
+
+//here we will store the result of a function inside of a keyword age
+const jonas = {
+    firstname : 'Jonas',
+    lastname : 'Shmed',
+    birthyear : '1991',
+
+    calcAge : function (){ // function that calculates the age
+        
+        this.age =  2037 - this.birthyear //calculating the age and storing it in this.age
+        
+        return this.age
+    }
+};
+console.log(jonas.calcAge()); // when we call the function, the keyword age is created with its value, otherwise it doenst exist
+
+
+
+//////LOOPS LOOPS LOOPS LOOPS LOOPS LOOPS LOOPS LOOPS LOOPS LOOPS //////
+
+//FOR LOOP 
+
+//loop that goes from 1 to 10
+for (let rep = 1; rep <= 10; rep++) {
+	console.log(rep);
+} 
+
+for(let i = 0 ; i < years.length ;i++) // tip : no need to use -1 since we use smaller operator
+
+//CONTINUE
+
+for (let rep = 1; rep <= 10; rep++) {
+	if (rep === 3) continue;
+	console.log(rep);
+}
+
+//BREAK
+for (let rep = 1; rep <= 10; rep++) {
+	if (rep === 3) break;
+	console.log(rep);
+}
+
+//LOOPING BACKWARDS
+
+for (let i = myarray.length - 1; i>=0; i--){
+    console.log(i)
+}
+
+//WHILE LOOP
+
+let rep = 1 //should create it outside and before the loop
+while (rep <= 10){
+    console.log(rep);
+    rep++
+}
 
 
 
