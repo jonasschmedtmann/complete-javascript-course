@@ -22,20 +22,52 @@ console.log(document.querySelector('.guess').value); */
   }
 }; */
 
-let secretNumber = Math.trunc(Math.random() * 20) + 1;
+const secretNumber = Math.trunc(Math.random() * 20) + 1;
+let score = 20;
+let highScore = 0;
 document.querySelector('.number').textContent = secretNumber;
+document.querySelector('.score').textContent = score;
+document.querySelector('.highscore').textContent = highScore;
 
 document.querySelector('.check').addEventListener('click', function () {
   const guess = Number(document.querySelector('.guess').value);
   console.log(guess, typeof guess);
 
-  if (!guess || guess < 0 || guess > 20) {
-    document.querySelector('.message').textContent = 'Bad Guess;Invalid!!!';
+  if (!guess) {
+    if (score > 1) {
+      document.querySelector('.message').textContent = 'Bad Guess;Invalid!!!';
+      score--;
+      document.querySelector('.score').textContent = score;
+    } else {
+      document.querySelector('.message').textContent = 'YOU LOSE!!!';
+      document.querySelector('.score').textContent = 0;
+    }
+  } else if (guess < 0 || guess > 20) {
+    document.querySelector('.message').textContent = 'No tricks, Goodbye!!!!';
+    setTimeout(() => {
+      window.close();
+    }, 2000);
   } else if (guess === secretNumber) {
     document.querySelector('.message').textContent = 'Correct Number!';
+    highScore = score;
+    document.querySelector('.highscore').textContent = highScore;
   } else if (guess > secretNumber) {
-    document.querySelector('.message').textContent = 'Too high!';
+    if (score > 1) {
+      document.querySelector('.message').textContent = 'Too high!';
+      score--;
+      document.querySelector('.score').textContent = score;
+    } else {
+      document.querySelector('.message').textContent = 'YOU LOSE!!!';
+      document.querySelector('.score').textContent = 0;
+    }
   } else if (guess < secretNumber) {
-    document.querySelector('.message').textContent = 'Too low!';
+    if (score > 1) {
+      document.querySelector('.message').textContent = 'Too low!';
+      score--;
+      document.querySelector('.score').textContent = score;
+    } else {
+      document.querySelector('.message').textContent = 'YOU LOSE!!!';
+      document.querySelector('.score').textContent = 0;
+    }
   }
 });
