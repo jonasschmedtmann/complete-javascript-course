@@ -57,6 +57,7 @@ p {
 /* CLASSES TO MAKE MODAL WORK */
 .hidden {
   display: none;
+  filter: blur(0);
 }
 
 .modal {
