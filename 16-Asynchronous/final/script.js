@@ -41,7 +41,7 @@ const getJSON = function (url, errorMsg = 'Something went wrong') {
 
 const getCountryData = function (country) {
   const request = new XMLHttpRequest();
-  request.open('GET', `https://restcountries.eu/rest/v2/name/${country}`);
+  request.open('GET', `https://restcountries.com/v2/name/${country}`);
   request.send();
 
   request.addEventListener('load', function () {
@@ -79,7 +79,7 @@ getCountryData('germany');
 const getCountryAndNeighbour = function (country) {
   // AJAX call country 1
   const request = new XMLHttpRequest();
-  request.open('GET', `https://restcountries.eu/rest/v2/name/${country}`);
+  request.open('GET', `https://restcountries.com/v2/name/${country}`);
   request.send();
 
   request.addEventListener('load', function () {
@@ -132,7 +132,7 @@ setTimeout(() => {
 // Throwing Errors Manually
 
 // const getCountryData = function (country) {
-//   fetch(`https://restcountries.eu/rest/v2/name/${country}`)
+//   fetch(`https://restcountries.com/v2/name/${country}`)
 //     .then(function (response) {
 //       console.log(response);
 //       return response.json();
@@ -145,7 +145,7 @@ setTimeout(() => {
 
 // const getCountryData = function (country) {
 //   // Country 1
-//   fetch(`https://restcountries.eu/rest/v2/name/${country}`)
+//   fetch(`https://restcountries.com/v2/name/${country}`)
 //     .then(response => {
 //       console.log(response);
 
@@ -183,7 +183,7 @@ setTimeout(() => {
 const getCountryData = function (country) {
   // Country 1
   getJSON(
-    `https://restcountries.eu/rest/v2/name/${country}`,
+    `https://restcountries.com/v2/name/${country}`,
     'Country not found'
   )
     .then(data => {
@@ -226,8 +226,8 @@ Here are your tasks:
 
 PART 1
 1. Create a function 'whereAmI' which takes as inputs a latitude value (lat) and a longitude value (lng) (these are GPS coordinates, examples are below).
-2. Do 'reverse geocoding' of the provided coordinates. Reverse geocoding means to convert coordinates to a meaningful location, like a city and country name. Use this API to do reverse geocoding: https://geocode.xyz/api.
-The AJAX call will be done to a URL with this format: https://geocode.xyz/52.508,13.381?geoit=json. Use the fetch API and promises to get the data. Do NOT use the getJSON function we created, that is cheating 😉
+2. Do 'reverse geocoding' of the provided coordinates. Reverse geocoding means to convert coordinates to a meaningful location, like a city and country name. Use this API to do reverse geocoding: https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}.
+The AJAX call will be done to a URL with this format: https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=52.508&longitude=13.381. Use the fetch API and promises to get the data. Do NOT use the getJSON function we created, that is cheating 😉
 3. Once you have the data, take a look at it in the console to see all the attributes that you recieved about the provided location. Then, using this data, log a messsage like this to the console: 'You are in Berlin, Germany'
 4. Chain a .catch method to the end of the promise chain and log errors to the console
 5. This API allows you to make only 3 requests per second. If you reload fast, you will get this error with code 403. This is an error with the request. Remember, fetch() does NOT reject the promise in this case. So create an error to reject the promise yourself, with a meaningful error message.
@@ -245,16 +245,16 @@ GOOD LUCK 😀
 
 /*
 const whereAmI = function (lat, lng) {
-  fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`)
+  fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`)
     .then(res => {
       if (!res.ok) throw new Error(`Problem with geocoding ${res.status}`);
       return res.json();
     })
     .then(data => {
       console.log(data);
-      console.log(`You are in ${data.city}, ${data.country}`);
+      console.log(`You are in ${data.city}, ${data.countryCode}`);
 
-      return fetch(`https://restcountries.eu/rest/v2/name/${data.country}`);
+      return fetch(`https://restcountries.com/v2/name/${data.country}`);
     })
     .then(res => {
       if (!res.ok) throw new Error(`Country not found (${res.status})`);
@@ -355,7 +355,7 @@ const whereAmI = function () {
     .then(pos => {
       const { latitude: lat, longitude: lng } = pos.coords;
 
-      return fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+      return fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`);
     })
     .then(res => {
       if (!res.ok) throw new Error(`Problem with geocoding ${res.status}`);
@@ -363,9 +363,9 @@ const whereAmI = function () {
     })
     .then(data => {
       console.log(data);
-      console.log(`You are in ${data.city}, ${data.country}`);
+      console.log(`You are in ${data.city}, ${data.countryCode}`);
 
-      return fetch(`https://restcountries.eu/rest/v2/name/${data.country}`);
+      return fetch(`https://restcountries.com/v2/name/${data.countryCode}`);
     })
     .then(res => {
       if (!res.ok) throw new Error(`Country not found (${res.status})`);
@@ -462,7 +462,7 @@ const getPosition = function () {
   });
 };
 
-// fetch(`https://restcountries.eu/rest/v2/name/${country}`).then(res => console.log(res))
+// fetch(`https://restcountries.com/v2/name/${country}`).then(res => console.log(res))
 
 const whereAmI = async function () {
   try {
@@ -471,7 +471,7 @@ const whereAmI = async function () {
     const { latitude: lat, longitude: lng } = pos.coords;
 
     // Reverse geocoding
-    const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+    const resGeo = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`);
     if (!resGeo.ok) throw new Error('Problem getting location data');
 
     const dataGeo = await resGeo.json();
@@ -479,7 +479,7 @@ const whereAmI = async function () {
 
     // Country data
     const res = await fetch(
-      `https://restcountries.eu/rest/v2/name/${dataGeo.country}`
+      `https://restcountries.com/v2/name/${dataGeo.countryCode}`
     );
     
     // BUG in video:
@@ -525,13 +525,13 @@ const whereAmI = async function () {
     const { latitude: lat, longitude: lng } = pos.coords;
 
     // Reverse geocoding
-    const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+    const resGeo = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`);
     if (!resGeo.ok) throw new Error('Problem getting location data');
     const dataGeo = await resGeo.json();
 
     // Country data
     const res = await fetch(
-      `https://restcountries.eu/rest/v2/name/${dataGeo.country}`
+      `https://restcountries.com/v2/name/${dataGeo.country}`
     );
     if (!resGeo.ok) throw new Error('Problem getting country');
     const data = await res.json();
@@ -572,20 +572,20 @@ console.log('1: Will get location');
 const get3Countries = async function (c1, c2, c3) {
   try {
     // const [data1] = await getJSON(
-    //   `https://restcountries.eu/rest/v2/name/${c1}`
+    //   `https://restcountries.com/v2/name/${c1}`
     // );
     // const [data2] = await getJSON(
-    //   `https://restcountries.eu/rest/v2/name/${c2}`
+    //   `https://restcountries.com/v2/name/${c2}`
     // );
     // const [data3] = await getJSON(
-    //   `https://restcountries.eu/rest/v2/name/${c3}`
+    //   `https://restcountries.com/v2/name/${c3}`
     // );
     // console.log([data1.capital, data2.capital, data3.capital]);
 
     const data = await Promise.all([
-      getJSON(`https://restcountries.eu/rest/v2/name/${c1}`),
-      getJSON(`https://restcountries.eu/rest/v2/name/${c2}`),
-      getJSON(`https://restcountries.eu/rest/v2/name/${c3}`),
+      getJSON(`https://restcountries.com/v2/name/${c1}`),
+      getJSON(`https://restcountries.com/v2/name/${c2}`),
+      getJSON(`https://restcountries.com/v2/name/${c3}`),
     ]);
     console.log(data.map(d => d[0].capital));
   } catch (err) {
@@ -600,9 +600,9 @@ get3Countries('portugal', 'canada', 'tanzania');
 // Promise.race
 (async function () {
   const res = await Promise.race([
-    getJSON(`https://restcountries.eu/rest/v2/name/italy`),
-    getJSON(`https://restcountries.eu/rest/v2/name/egypt`),
-    getJSON(`https://restcountries.eu/rest/v2/name/mexico`),
+    getJSON(`https://restcountries.com/v2/name/italy`),
+    getJSON(`https://restcountries.com/v2/name/egypt`),
+    getJSON(`https://restcountries.com/v2/name/mexico`),
   ]);
   console.log(res[0]);
 })();
@@ -616,7 +616,7 @@ const timeout = function (sec) {
 };
 
 Promise.race([
-  getJSON(`https://restcountries.eu/rest/v2/name/tanzania`),
+  getJSON(`https://restcountries.com/v2/name/tanzania`),
   timeout(5),
 ])
   .then(res => console.log(res[0]))

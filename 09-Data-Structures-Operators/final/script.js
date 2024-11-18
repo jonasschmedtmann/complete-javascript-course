@@ -124,7 +124,7 @@ document.querySelector('button').addEventListener('click', function () {
 
 /*
 ///////////////////////////////////////
-// Working With Strings - Part 2
+// Working With Strings - Part 3
 
 // Split and join
 console.log('a+very+nice+string'.split('+'));
@@ -210,7 +210,9 @@ const announcement =
   'All passengers come to boarding door 23. Boarding door 23!';
 
 console.log(announcement.replace('door', 'gate'));
-// console.log(announcement.replaceAll('door', 'gate'));
+console.log(announcement.replaceAll('door', 'gate'));
+
+// Alternative solution to replaceAll with regular expression
 console.log(announcement.replace(/door/g, 'gate'));
 
 // Booleans

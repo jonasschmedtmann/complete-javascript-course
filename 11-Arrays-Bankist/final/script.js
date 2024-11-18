@@ -154,7 +154,7 @@ btnLogin.addEventListener('click', function (e) {
     labelWelcome.textContent = `Welcome back, ${
       currentAccount.owner.split(' ')[0]
     }`;
-    containerApp.style.opacity = 100;
+    containerApp.style.opacity = 1;
 
     // Clear input fields
     inputLoginUsername.value = inputLoginPin.value = '';
@@ -624,7 +624,7 @@ console.log(movements);
 const arr = [1, 2, 3, 4, 5, 6, 7];
 console.log(new Array(1, 2, 3, 4, 5, 6, 7));
 
-// Emprty arrays + fill method
+// Empty arrays + fill method
 const x = new Array(7);
 console.log(x);
 // console.log(x.map(() => 5));
@@ -675,7 +675,7 @@ const numDeposits1000 = accounts
 
 console.log(numDeposits1000);
 
-// Prefixed ++ oeprator
+// Prefixed ++ operator
 let a = 10;
 console.log(++a);
 console.log(a);
@@ -697,17 +697,17 @@ console.log(deposits, withdrawals);
 // 4.
 // this is a nice title -> This Is a Nice Title
 const convertTitleCase = function (title) {
-  const capitzalize = str => str[0].toUpperCase() + str.slice(1);
+  const capitalize = str => str[0].toUpperCase() + str.slice(1);
 
   const exceptions = ['a', 'an', 'and', 'the', 'but', 'or', 'on', 'in', 'with'];
 
   const titleCase = title
     .toLowerCase()
     .split(' ')
-    .map(word => (exceptions.includes(word) ? word : capitzalize(word)))
+    .map(word => (exceptions.includes(word) ? word : capitalize(word)))
     .join(' ');
 
-  return capitzalize(titleCase);
+  return capitalize(titleCase);
 };
 
 console.log(convertTitleCase('this is a nice title'));

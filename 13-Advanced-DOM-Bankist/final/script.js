@@ -282,9 +282,12 @@ const slider = function () {
 
   dotContainer.addEventListener('click', function (e) {
     if (e.target.classList.contains('dots__dot')) {
-      const { slide } = e.target.dataset;
-      goToSlide(slide);
-      activateDot(slide);
+      // BUG in v2: This way, we're not keeping track of the current slide when clicking on a slide
+      // const { slide } = e.target.dataset;
+
+      curSlide = Number(e.target.dataset.slide);
+      goToSlide(curSlide);
+      activateDot(curSlide);
     }
   });
 };
