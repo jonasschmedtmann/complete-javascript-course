@@ -1,36 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Pig Game</title>
-  </head>
-  <body>
-    <main>
-      <section class="player player--0 player--active">
-        <h2 class="name" id="name--0">Player 1</h2>
-        <p class="score" id="score--0">43</p>
-        <div class="current">
-          <p class="current-label">Current</p>
-          <p class="current-score" id="current--0">0</p>
-        </div>
-      </section>
-      <section class="player player--1">
-        <h2 class="name" id="name--1">Player 2</h2>
-        <p class="score" id="score--1">24</p>
-        <div class="current">
-          <p class="current-label">Current</p>
-          <p class="current-score" id="current--1">0</p>
-        </div>
-      </section>
 
-      <img src="dice-5.png" alt="Playing dice" class="dice" />
-      <button class="btn btn--new">🔄 New game</button>
-      <button class="btn btn--roll">🎲 Roll dice</button>
-      <button class="btn btn--hold">📥 Hold</button>
-    </main>
-    <script src="script.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Pig Game</title>
+</head>
+
+<body>
+  <main>
+    <section class="player player--0 player--active">
+      <h2 class="name" id="name--0">Player 1</h2>
+      <p class="score" id="score--0"></p>
+      <div class="current">
+        <p class="current-label">Current</p>
+        <p class="current-score" id="current--0"></p>
+      </div>
+    </section>
+    <section class="player player--1">
+      <h2 class="name" id="name--1">Player 2</h2>
+      <p class="score" id="score--1"></p>
+      <div class="current">
+        <p class="current-label">Current</p>
+        <p class="current-score" id="current--1"></p>
+      </div>
+    </section>
+
+    <img src="dice-5.png" alt="Playing dice" class="dice" />
+    <button class="btn btn--new">🔄 New game</button>
+    <button class="btn btn--roll">🎲 Roll dice</button>
+    <button class="btn btn--hold">📥 Hold</button>
+    <button class="btn btn--rules">📖 Rules</button>
+  </main>
+
+  <div class="rules-modal">
+    <button class="close-modal">&times;</button>
+    <ul>
+      <h4>🎲 ROLL DICE</h4>
+      <li>
+        Generates random dice roll and adds roll amount to current score
+      </li></br>
+      <h4>📥 HOLD</h4>
+      <li>
+        Add your current score to your overall score and switch turns
+      </li></br>
+      <h4 style="color: rgb(255, 40, 40);">The Catch ☠️</h4>
+      <li>
+        If you roll a 1, your current score will be set to 0 and your turn will be over
+      </li></br>
+      <h4 style="color: limegreen;">WIN 🎉</h4>
+      <li>
+        First player to accumulate an overall score of 100 points wins the game!
+      </li>
+    </ul>
+  </div>
+  <script src="script.js"></script>
+</body>
+
 </html>
