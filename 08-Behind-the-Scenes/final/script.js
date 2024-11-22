@@ -175,59 +175,49 @@ addArrow(2, 5, 8);
 
 
 ///////////////////////////////////////
-// Objects vs. primitives
-let age = 30;
-let oldAge = age;
-age = 31;
-console.log(age);
-console.log(oldAge);
+// Object References in Practice (Shallow vs. Deep Copies)
 
-const me = {
-  name: 'Jonas',
-  age: 30,
+const jessica1 = {
+  firstName: 'Jessica',
+  lastName: 'Williams',
+  age: 27,
 };
-const friend = me;
-friend.age = 27;
-console.log('Friend:', friend);
-console.log('Me', me);
 
+function marryPerson(originalPerson, newLastName) {
+  originalPerson.lastName = newLastName;
+  return originalPerson;
+}
 
-///////////////////////////////////////
-// Primitives vs. Objects in Practice
+const marriedJessica = marryPerson(jessica1, 'Davis');
 
-// Primitive types
-let lastName = 'Williams';
-let oldLastName = lastName;
-lastName = 'Davis';
-console.log(lastName, oldLastName);
+// const marriedJessica = jessica1;
+// marriedJessica.lastName = 'Davis';
 
-// Reference types
+console.log('Before:', jessica1);
+console.log('After:', marriedJessica);
+
 const jessica = {
   firstName: 'Jessica',
   lastName: 'Williams',
   age: 27,
-};
-const marriedJessica = jessica;
-marriedJessica.lastName = 'Davis';
-console.log('Before marriage:', jessica);
-console.log('After marriage: ', marriedJessica);
-// marriedJessica = {};
-
-// Copying objects
-const jessica2 = {
-  firstName: 'Jessica',
-  lastName: 'Williams',
-  age: 27,
-  family: ['Alice', 'Bob'],
+  familiy: ['Alice', 'Bob'],
 };
 
-const jessicaCopy = Object.assign({}, jessica2);
+// Shallow copy
+const jessicaCopy = { ...jessica };
 jessicaCopy.lastName = 'Davis';
 
-jessicaCopy.family.push('Mary');
-jessicaCopy.family.push('John');
+// jessicaCopy.familiy.push('Mary');
+// jessicaCopy.familiy.push('John');
 
-console.log('Before marriage:', jessica2);
-console.log('After marriage: ', jessicaCopy);
+// console.log('Before:', jessica);
+// console.log('After:', jessicaCopy);
+
+// Deep copy/clone
+const jessicaClone = structuredClone(jessica);
+jessicaClone.familiy.push('Mary');
+jessicaClone.familiy.push('John');
+
+console.log('Original:', jessica);
+console.log('Clone:', jessicaClone);
 */
-
