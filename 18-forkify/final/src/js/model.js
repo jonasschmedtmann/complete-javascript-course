@@ -29,6 +29,27 @@ const createRecipeObject = function (data) {
   };
 };
 
+// Here I made some changes for the createRecipeObjec and add simple if statement which can be really helpful for the catching error if something didnt download in a proper way. See code below, please
+const createRecipeObject = function (data) {
+    console.log(data);
+    if (!data || !data.data || !data.data.recipe) {
+        console.error('Invalid data structure: ', data);
+        return;
+    }
+    const {recipe} = data.data;
+    return {
+        id: recipe.id,
+        title: recipe.title,
+        publisher: recipe.publisher,
+        sourceUrl: recipe.source_url,
+        image: recipe.image_url,
+        servings: recipe.servings,
+        cookingTime: recipe.cooking_time,
+        ingredients: recipe.ingredients,
+        ...(recipe.key && {key: recipe.key})
+    };
+};
+
 export const loadRecipe = async function (id) {
   try {
     const data = await AJAX(`${API_URL}${id}?key=${KEY}`);
