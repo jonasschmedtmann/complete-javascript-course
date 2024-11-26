@@ -58,7 +58,6 @@ console.log(age1, age2);
 
 ///////////////////////////////////////
 // Arrow functions
-
 const calcAge3 = birthYeah => 2037 - birthYeah;
 const age3 = calcAge3(1991);
 console.log(age3);
