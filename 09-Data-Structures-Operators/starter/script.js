@@ -27,3 +27,131 @@ const restaurant = {
     },
   },
 };
+
+//Coding challenge 1
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+
+const [ players1, players2] = game.players;
+
+console.log(players1, players2);
+
+const [gk, ...fieldPlayers] = players1;
+
+const allPlayers = [...players1, ...players2];
+
+const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+
+const { team1, x: draw, team2} = game.odds;
+console.log(team1, draw, team2)
+
+function printGoals(...number) {
+  const scores = number.length;
+  for (let i = 0; i < scores; i++) {
+    console.log(`${number[i]}, ${scores} goals were scored`);
+  }
+}
+printGoals('Davies', 'Muller', 'Lewandowski','Kimmich');
+
+(team1 < team2) && console.log(team1);
+
+//coding challenge 2
+
+for (const [key, val] of game.scored.entries()) {
+  console.log(`Goal ${key+1}: ${val}`);
+}
+
+let sum = 0;
+let length = Object.entries(game.odds).length;
+for (const odd of Object.values(game.odds)) {
+  sum += odd; 
+}
+console.log(sum/length);
+
+for (const [team, odd] of Object.entries(game.odds)) {
+  const teamStr = (game[team]) ? `victory ${game[team]}` : `draw`;
+  console.log(`Odd of ${teamStr}: ${odd}`);
+}
+
+//coding challenge 3
+
+const gameEvents = new Map([
+  [17, '⚽ GOAL'],
+  [36, '� Substitution'],
+  [47, '⚽ GOAL'],
+  [61, '� Substitution'],
+  [64, '� Yellow card'],
+  [69, '� Red card'],
+  [70, '� Substitution'],
+  [72, '� Substitution'],
+  [76, '⚽ GOAL'],
+  [80, '⚽ GOAL'],
+  [92, '� Yellow card'],
+]);
+console.log(gameEvents.values());
+const events = [...new Set(gameEvents.values())];
+console.log(events);
+
+gameEvents.delete(64);
+console.log(gameEvents)
+
+console.log(`An event happened, on average, every ${90 / gameEvents.size} minutes`)
+
+for (const [time, event] of gameEvents) {
+  const statement = time <= 45 ? '[FIRST HALF]' : '[SECOND HALF]';
+  console.log(`${statement} ${time}: ${event} `);
+}
+
+//coding challenge 4
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+document.querySelector('button').addEventListener('click', conversion);
+
+function conversion () {
+  const text = document.querySelector('textarea').value;
+  const arr = text.split('\n');
+  for (const [counter, name] of arr.entries()) {
+    const [first, second] = name.replaceAll(" ", "").split("_");
+    const output = first.toLowerCase() + second[0].toUpperCase() + second.slice(1).toLowerCase();
+    console.log(output.padEnd(20," ") + "*".repeat(counter + 1));
+  }
+}
