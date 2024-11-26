@@ -54,13 +54,13 @@ btnScrollTo.addEventListener('click', function (e) {
 
   // Scrolling
   // window.scrollTo(
-  //   s1coords.left + window.pageXOffset,
-  //   s1coords.top + window.pageYOffset
+  //   s1coords.left + (window.scrollY || window.pageYOffSet), //pageXOffset is deprecated
+  //   s1coords.top + (window.scrollY || window.pageYOffSet) //pageYOffset is deprecated
   // );
 
   // window.scrollTo({
-  //   left: s1coords.left + window.pageXOffset,
-  //   top: s1coords.top + window.pageYOffset,
+  //   left: s1coords.left + (window.scrollX || window.pageXOffSet), //pageXOffset is deprecated
+  //   top: s1coords.top + (window.scrollY || window.pageYOffSet), //pageYOffset is deprecated
   //   behavior: 'smooth',
   // });
 
