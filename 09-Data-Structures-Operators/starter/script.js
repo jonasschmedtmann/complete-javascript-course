@@ -11,6 +11,9 @@ const restaurant = {
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+  ingredient: function (ing1, ing2, ing3) {
+    console.log(`Let get the ingredient of menu ${ing1}, ${ing2}, ${ing3}`)
+  },
 
   openingHours: {
     thu: {
@@ -27,3 +30,27 @@ const restaurant = {
     },
   },
 };
+
+
+const oldArr = ['olusola', 'David', 'Eagle']
+const newArr = [...oldArr, 'Ibukunoluwa', 'Hannah']
+
+const mergeArr = [...oldArr, ...newArr]
+console.log(mergeArr)
+
+const str = oldArr[0]
+const letter = [...str]
+console.log(letter)
+
+
+// const ingredients = [
+//   prompt('The pasta ingridient1'),
+//   prompt('ingrdient2'),
+//   prompt('ingrdient3')
+// ]
+
+//console.log(restaurant.ingredient(...ingredients));
+
+
+  console.log(false || undefined)
+  console.log(null || undefined)
