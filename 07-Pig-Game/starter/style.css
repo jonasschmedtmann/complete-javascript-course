@@ -165,3 +165,12 @@ main {
   font-weight: 700;
   color: #c7365f;
 }
+
+.dice {
+  opacity: 1;
+  transition: all 0.5s linear;
+}
+
+.hidden {
+  opacity: 0;
+}
