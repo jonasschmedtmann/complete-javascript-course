@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(151, 228, 247);
+  font-family: Arial;
+  font-size: 20px;
+  padding: 40px;
+}
+
+h1 {
+  font-size: 40px;
+  padding-bottom: 15px;
+}
+
+h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+.first {
+  color: rgb(234, 255, 0);
+}
+
+#your-name {
+  background-color: rgb(226, 43, 189);
+  border: 5px solid #444;
+  width: 350px;
+  padding: 25px;
+  margin-top: 20px;
+}
+
+input,
+button {
+  padding: 10px;
+  font-size: 16px;
+}
+
+a {
+  background-color: aliceblue;
+}
+
+#dan-image {
+  width: 450px;
+}
+
+#your-name h2 {
+  color: rgb(43, 226, 61);
+}
