@@ -162,3 +162,11 @@ main {
 .hidden {
   display: none;
 }
+.player--winner {
+  background-color: #2f2f2f;
+}
+
+.player--winner .name {
+  font-weight: 700;
+  color: #c7365f;
+}
