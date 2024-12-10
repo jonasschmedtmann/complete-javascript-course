@@ -2,6 +2,7 @@
 ////////////////////////////////////
 // Linking a JavaScript File
 let js = "amazing";
+let x = 5;
 console.log(40 + 8 + 23 - 10);
 
 ////////////////////////////////////
