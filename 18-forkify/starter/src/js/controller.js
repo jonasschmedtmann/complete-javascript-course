@@ -8,6 +8,7 @@ const timeout = function (s) {
   });
 };
 
-// https://forkify-api.herokuapp.com/v2
+// NEW API URL (instead of the one shown in the video)
+// https://forkify-api.jonas.io
 
 ///////////////////////////////////////

@@ -30,7 +30,7 @@ There is also a the [updates-and-fixes](https://github.com/jonasschmedtmann/comp
 - [Bankist](https://bankist.netlify.app/) (Arrays, Numbers, Dates, Timers. Fake "log in" with user `js` and PIN `1111`)
 - [Bankist Site](https://bankist-dom.netlify.app/) (Advanced DOM and Events)
 - [Mapty](https://mapty.netlify.app/) (OOP, Geolocation, Project planning)
-- [forkify](https://forkify-v2.netlify.app/) (Final advanced project)
+- [forkify](https://forkify-v2.jonas.io/) (Final advanced project)
 
 ### Q5: Videos don't load, can you fix it?
 
