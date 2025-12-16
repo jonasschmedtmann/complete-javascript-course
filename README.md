@@ -4,7 +4,7 @@ This branch of the repo contains starter files and final code for all sections a
 
 Use starter code to start each section, and **final code to compare it with your own code whenever something doesn't work**!
 
-There is also a the [updates-and-fixes](https://github.com/jonasschmedtmann/complete-javascript-course/tree/updates-and-fixes) branch which is kept up-to-date with **latest package updates and important bugfixes 🐛**
+There is also the [updates-and-fixes](https://github.com/jonasschmedtmann/complete-javascript-course/tree/updates-and-fixes) branch which is kept up-to-date with **latest package updates and important bugfixes 🐛**
 
 🚨 **_Please read the following Frequently Asked Questions (FAQ) carefully before starting the course_** 🚨
 
