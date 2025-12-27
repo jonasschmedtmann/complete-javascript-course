@@ -793,6 +793,7 @@ for (let i = 0; i < books.length; i++) {
 console.log(books);
 */
 
+/*
 // Challenge 1 - Section 9
 const game = {
   team1: "Bayern Munich",
@@ -852,3 +853,24 @@ console.log((team1 < team2 && "Team 1 is more likely to win") || (team2 < team1 
 // * Jonas solution
 team1 < team2 && console.log("Team 1 is more likely to win");
 team2 < team1 && console.log("Team 2 is more likely to win");
+*/
+
+// Assignment 31 - Looping Arrays: The for-of Loop
+// 1
+let pageSum = 0;
+for (const { pages } of books) {
+  pageSum += pages;
+}
+console.log(pageSum);
+
+// 2
+const allAuthors = [];
+for (const { author } of books) {
+  typeof author === "string" ? allAuthors.push(author) : allAuthors.push(...author);
+}
+console.log(allAuthors);
+
+// 3
+for (const [index, author] of allAuthors.entries()) {
+  console.log(`${index + 1}. ${author}`);
+}
