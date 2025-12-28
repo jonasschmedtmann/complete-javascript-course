@@ -855,6 +855,7 @@ team1 < team2 && console.log("Team 1 is more likely to win");
 team2 < team1 && console.log("Team 2 is more likely to win");
 */
 
+/*
 // Assignment 31 - Looping Arrays: The for-of Loop
 // 1
 let pageSum = 0;
@@ -874,3 +875,28 @@ console.log(allAuthors);
 for (const [index, author] of allAuthors.entries()) {
   console.log(`${index + 1}. ${author}`);
 }
+*/
+
+// Assignment 32 - Looping Arrays: The for-of Loop
+// 1
+const bookData = [
+  ["title", "Computer Networking: A Top-Down Approach"],
+  ["author", ["James F. Kurose", "Keith W. Ross"]],
+  ["publisher", "Addison Wesley"],
+];
+// Do the rest
+const newBook = {
+  [bookData[0][0]]: bookData[0][1],
+  [bookData[1][0]]: bookData[1][1],
+  [bookData[2][0]]: bookData[2][1],
+};
+console.log(newBook);
+
+// 2
+const pages = 880;
+const newBook2 = {
+  title: "The C Programming Language",
+  author: ["Brian W. Kernighan", "Dennis M. Ritchie"],
+  pages,
+};
+console.log(newBook2);
