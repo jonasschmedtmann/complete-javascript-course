@@ -903,6 +903,7 @@ const newBook2 = {
 console.log(newBook2);
 */
 
+/*
 // Assignment 33 - Optional Chaining (?.)
 const pages = 880;
 const newBook2 = {
@@ -917,3 +918,21 @@ function getFirstKeyword(book) {
 
 console.log(getFirstKeyword(books[0]));
 console.log(getFirstKeyword(newBook2));
+*/
+
+// Assignment 34 - Looping Objects: Object Keys, Values and Entries
+const entries = [];
+
+for (const key of Object.keys(books[0].thirdParty.goodreads)) {
+  entries.push([key]);
+}
+
+for (const [index, value] of Object.values(books[0].thirdParty.goodreads).entries()) {
+  entries[index].push(value);
+}
+
+console.log(entries);
+
+const entries2 = Object.entries(books[0].thirdParty.goodreads);
+
+console.log(entries2);
