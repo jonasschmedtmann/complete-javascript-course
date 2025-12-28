@@ -920,6 +920,7 @@ console.log(getFirstKeyword(books[0]));
 console.log(getFirstKeyword(newBook2));
 */
 
+/*
 // Assignment 34 - Looping Objects: Object Keys, Values and Entries
 const entries = [];
 
@@ -936,3 +937,66 @@ console.log(entries);
 const entries2 = Object.entries(books[0].thirdParty.goodreads);
 
 console.log(entries2);
+*/
+
+// Challenge 2 - Section 9
+const game = {
+  team1: "Bayern Munich",
+  team2: "Borrussia Dortmund",
+  players: [
+    ["Neuer", "Pavard", "Martinez", "Alaba", "Davies", "Kimmich", "Goretzka", "Coman", "Muller", "Gnarby", "Lewandowski"],
+    ["Burki", "Schulz", "Hummels", "Akanji", "Hakimi", "Weigl", "Witsel", "Hazard", "Brandt", "Sancho", "Gotze"],
+  ],
+  score: "4:0",
+  scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
+  date: "Nov 9th, 2037",
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+
+// 1
+for (const [goal, player] of game.scored.entries()) {
+  console.log(`Goal ${goal + 1}: ${player}`);
+}
+
+// 2
+const odds = Object.values(game.odds);
+let average = 0;
+for (const odd of odds) {
+  average += odd;
+}
+average /= odds.length;
+console.log(average);
+
+// 3
+for (const [team, odd] of Object.entries(game.odds)) {
+  console.log(`Odd of ${team === "x" ? "draw" : `victory ${game[team]}`}: ${odd}`);
+}
+
+// 4 (Bonus)
+// * My solution
+const scorers = {};
+for (const player of game.scored) {
+  if (scorers[player]) {
+    continue;
+  } else {
+    let repeats = 0;
+    for (const player2 of game.scored) {
+      if (player === player2) {
+        repeats++;
+      }
+    }
+    scorers[player] = repeats;
+  }
+}
+console.log(scorers);
+
+// * Jonas solution
+const scorers2 = {};
+for (const player of game.scored) {
+  scorers2[player] ? scorers2[player]++ : (scorers2[player] = 1); // ! Very very very important
+}
+console.log(scorers2);
