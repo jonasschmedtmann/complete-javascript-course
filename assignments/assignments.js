@@ -877,6 +877,7 @@ for (const [index, author] of allAuthors.entries()) {
 }
 */
 
+/*
 // Assignment 32 - Looping Arrays: The for-of Loop
 // 1
 const bookData = [
@@ -900,3 +901,19 @@ const newBook2 = {
   pages,
 };
 console.log(newBook2);
+*/
+
+// Assignment 33 - Optional Chaining (?.)
+const pages = 880;
+const newBook2 = {
+  title: "The C Programming Language",
+  author: ["Brian W. Kernighan", "Dennis M. Ritchie"],
+  pages,
+};
+
+function getFirstKeyword(book) {
+  return book.keywords?.[0];
+}
+
+console.log(getFirstKeyword(books[0]));
+console.log(getFirstKeyword(newBook2));
