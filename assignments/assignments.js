@@ -1060,6 +1060,7 @@ console.log(bookMap.size);
 bookMap.has("author") && console.log("The author of the book is known");
 */
 
+/*
 // Assignment 37 - Maps: Iteration
 // 1
 const firstBookMap = new Map(Object.entries(books[0]));
@@ -1068,4 +1069,38 @@ console.log(firstBookMap);
 // 2
 for (const [key, value] of firstBookMap) {
   if (typeof value === "number") console.log(key);
+}
+*/
+
+// Challenge 3 - Section 9
+const gameEvents = new Map([
+  [17, "⚽ GOAL"],
+  [36, "🔁 Substitution"],
+  [47, "⚽ GOAL"],
+  [61, "🔁 Substitution"],
+  [64, "🔶 Yellow card"],
+  [69, "🔴 Red card"],
+  [70, "🔁 Substitution"],
+  [72, "🔁 Substitution"],
+  [76, "⚽ GOAL"],
+  [80, "⚽ GOAL"],
+  [92, "🔶 Yellow card"],
+]);
+
+// 1
+const events = [...new Set(gameEvents.values())];
+// const events = [...new Set([...gameEvents.values()])]; // ! Not this way
+// console.log(gameEvents.values());
+console.log(events);
+
+// 2
+gameEvents.delete(64);
+console.log(gameEvents);
+
+// 3
+console.log(`An event happened, on average, every ${90 / gameEvents.size} minutes`);
+
+// 4
+for (const [minute, event] of gameEvents) {
+  console.log(`[${minute < 45 ? "FIRST" : "SECOND"} HALF] ${minute}: ${event}`);
 }
