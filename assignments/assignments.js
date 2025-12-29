@@ -1003,6 +1003,7 @@ for (const player of game.scored) {
 console.log(scorers2);
 */
 
+/*
 // Assignment 35 - Sets
 // 1
 const allKeywords = [];
@@ -1033,3 +1034,26 @@ console.log(uniqueKeywordsArr);
 // 6
 uniqueKeywords.clear();
 console.log(uniqueKeywords);
+*/
+
+// Assignment 36 - Maps: Fundamentals
+// 1
+const bookMap = new Map();
+bookMap.set("title", "Clean Code");
+bookMap.set("author", "Robert C. Martin");
+console.log(bookMap);
+
+// 2
+bookMap.set("pages", 464);
+console.log(bookMap);
+
+// 3
+const title = bookMap.get("title");
+const author = bookMap.get("author");
+console.log(`${title} by ${author}`);
+
+// 4
+console.log(bookMap.size);
+
+// 5
+bookMap.has("author") && console.log("The author of the book is known");
