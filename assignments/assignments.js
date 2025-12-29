@@ -939,6 +939,7 @@ const entries2 = Object.entries(books[0].thirdParty.goodreads);
 console.log(entries2);
 */
 
+/*
 // Challenge 2 - Section 9
 const game = {
   team1: "Bayern Munich",
@@ -1000,3 +1001,35 @@ for (const player of game.scored) {
   scorers2[player] ? scorers2[player]++ : (scorers2[player] = 1); // ! Very very very important
 }
 console.log(scorers2);
+*/
+
+// Assignment 35 - Sets
+// 1
+const allKeywords = [];
+for (const book of books) {
+  allKeywords.push(...book.keywords);
+}
+console.log(allKeywords);
+
+// 2
+const uniqueKeywords = new Set(allKeywords);
+console.log(uniqueKeywords);
+
+// 3
+// uniqueKeywords.add("coding","science"); // ! That will add "coding" only.
+// console.log(uniqueKeywords.has("science"));
+uniqueKeywords.add("coding");
+uniqueKeywords.add("science");
+console.log(uniqueKeywords);
+
+// 4
+uniqueKeywords.delete("business");
+console.log(uniqueKeywords);
+
+// 5
+const uniqueKeywordsArr = [...uniqueKeywords];
+console.log(uniqueKeywordsArr);
+
+// 6
+uniqueKeywords.clear();
+console.log(uniqueKeywords);
