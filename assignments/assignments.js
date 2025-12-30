@@ -1072,6 +1072,7 @@ for (const [key, value] of firstBookMap) {
 }
 */
 
+/*
 // Challenge 3 - Section 9
 const gameEvents = new Map([
   [17, "⚽ GOAL"],
@@ -1104,3 +1105,22 @@ console.log(`An event happened, on average, every ${90 / gameEvents.size} minute
 for (const [minute, event] of gameEvents) {
   console.log(`[${minute < 45 ? "FIRST" : "SECOND"} HALF] ${minute}: ${event}`);
 }
+*/
+
+// Assignment 38 - Working with Strings - Part 1
+// 1
+console.log(books[0].ISBN[6], books[0].ISBN[4], books[0].ISBN[9], books[0].ISBN[8]);
+
+// 2
+const quote = "A computer once beat me at chess, but it was no match for me at kick boxing";
+console.log(quote.indexOf("chess"));
+
+// 3
+console.log(quote.slice(quote.lastIndexOf(" ") + 1));
+
+// 4
+function isContributor(author) {
+  console.log(author.lastIndexOf("(Contributor)") !== -1);
+}
+isContributor("Julie Sussman (Contributor)");
+isContributor("Robert Sedgewick");
