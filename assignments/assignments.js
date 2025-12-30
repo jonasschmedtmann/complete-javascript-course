@@ -1127,6 +1127,7 @@ isContributor("Julie Sussman (Contributor)");
 isContributor("Robert Sedgewick");
 */
 
+/*
 // Assignment 39 - Working with Strings - Part 2
 // 1
 function normalizeAuthorName(name) {
@@ -1153,3 +1154,41 @@ function logBookTheme(title) {
     console.log("This book is about some systems, but definitely not about operating systems");
   }
 }
+*/
+
+// Assignment 40 - Working with Strings - Part 3
+// 1
+function logBookCategories(categories) {
+  const cats = categories.split(";");
+  for (const cat of cats) console.log(cat);
+}
+const bookCategories = "science;computing;computer science;algorithms;business;operating systems;networking;electronics";
+logBookCategories(bookCategories);
+
+// 2
+function getKeywordsAsString(books) {
+  const keywordsSet = new Set();
+  for (const book of books) {
+    for (const keyword of book.keywords) {
+      keywordsSet.add(keyword);
+    }
+  }
+  return [...keywordsSet].join(";");
+}
+console.log(getKeywordsAsString(books));
+
+// 3
+function logBookChapters(bookChapters) {
+  for (const [title, page] of bookChapters) {
+    console.log(`${title.padEnd(20, "-")} ${page}`);
+    // console.log(title.padEnd(20, "-") + " " + page); // ! Or this way
+  }
+}
+const bookChapters = [
+  ["The Basics", 14],
+  ["Sorting", 254],
+  ["Searching", 372],
+  ["Graphs", 526],
+  ["Strings", 706],
+];
+logBookChapters(bookChapters);
