@@ -1156,6 +1156,7 @@ function logBookTheme(title) {
 }
 */
 
+/*
 // Assignment 40 - Working with Strings - Part 3
 // 1
 function logBookCategories(categories) {
@@ -1192,3 +1193,19 @@ const bookChapters = [
   ["Strings", 706],
 ];
 logBookChapters(bookChapters);
+*/
+
+// Challenge 4 - Section 9
+document.body.append(document.createElement("textarea"));
+document.body.append(document.createElement("button"));
+
+document.querySelector("button").addEventListener("click", () => {
+  const text = document.querySelector("textarea").value;
+  const variableNames = text.split("\n");
+  for (const [index, variableName] of variableNames.entries()) {
+    const splittedName = variableName.trim().toLowerCase().split("_");
+    const [firstPart, secondPart] = splittedName;
+    const camelCaseVersion = firstPart + secondPart.replace(secondPart[0], secondPart[0].toUpperCase());
+    console.log(camelCaseVersion.padEnd(20, " ") + "✅".repeat(index + 1));
+  }
+});
