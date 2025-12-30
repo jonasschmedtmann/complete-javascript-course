@@ -1107,6 +1107,7 @@ for (const [minute, event] of gameEvents) {
 }
 */
 
+/*
 // Assignment 38 - Working with Strings - Part 1
 // 1
 console.log(books[0].ISBN[6], books[0].ISBN[4], books[0].ISBN[9], books[0].ISBN[8]);
@@ -1124,3 +1125,31 @@ function isContributor(author) {
 }
 isContributor("Julie Sussman (Contributor)");
 isContributor("Robert Sedgewick");
+*/
+
+// Assignment 39 - Working with Strings - Part 2
+// 1
+function normalizeAuthorName(name) {
+  const n = name.toLowerCase().trim();
+  const fName = n.slice(0, n.indexOf(" "));
+  const lName = n.includes("(contributor)") ? n.slice(n.indexOf(" ") + 1, n.lastIndexOf(" ")) : n.slice(n.indexOf(" ") + 1);
+  const newName = `${fName[0].toUpperCase()}${fName.slice(1)} ${lName[0].toUpperCase()}${lName.slice(1)}`;
+  return newName;
+}
+console.log(normalizeAuthorName("  JuliE sussMan (Contributor)"));
+
+// 2
+const newBookTitle = books[1].title.replace("Programs", "Software");
+console.log(newBookTitle);
+
+// 3
+function logBookTheme(title) {
+  title = title.toLowerCase();
+  if (title.startsWith(computer)) {
+    console.log("This book is about computers");
+  } else if (title.includes("algorithms") && title.includes("structures")) {
+    console.log("This book is about algorithms and data structures");
+  } else if (title.endsWith("system") && title.endsWith("systems") && !title.includes("operating")) {
+    console.log("This book is about some systems, but definitely not about operating systems");
+  }
+}
