@@ -1195,6 +1195,7 @@ const bookChapters = [
 logBookChapters(bookChapters);
 */
 
+/*
 // Challenge 4 - Section 9
 document.body.append(document.createElement("textarea"));
 document.body.append(document.createElement("button"));
@@ -1209,3 +1210,37 @@ document.querySelector("button").addEventListener("click", () => {
     console.log(camelCaseVersion.padEnd(20, " ") + "✅".repeat(index + 1));
   }
 });
+*/
+
+// String Methods Practice
+const flights = "_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30";
+
+const splittedFlights = flights.split("+");
+
+const extractCode = str => str.slice(0, 3).toUpperCase();
+
+// * My solution
+for (const flight of splittedFlights) {
+  const splittedFlight = flight.split(";");
+
+  const first = splittedFlight[0].slice(1).split("_").join(" ");
+  // if (first.startsWith("Delayed")) first = "🔴 " + first; // ! Do this using ternary operator in the logged message instead of mutating the variable itself.
+
+  const second = extractCode(splittedFlight[1]);
+  // const second = splittedFlight[1].slice(0, 3).toUpperCase(); // ! DRY
+
+  const third = extractCode(splittedFlight[2]);
+  // const third = splittedFlight[2].slice(0, 3).toUpperCase(); // ! DRY
+
+  const forth = splittedFlight[3].split(":").join("h");
+
+  console.log(`${first.startsWith("Delayed") ? "🔴 " : ""}${first} from ${second} to ${third} (${forth})`.padStart(44));
+}
+
+// * Another Solution
+
+for (const flight of splittedFlights) {
+  const [first, second, third, forth] = flight.split(";");
+
+  console.log(`${first.startsWith("_Delayed") ? "🔴 " : ""}${first.slice(1).split("_").join(" ")} from ${extractCode(second)} to ${extractCode(third)} (${forth.split(":").join("h")})`.padStart(44));
+}
