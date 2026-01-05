@@ -1247,6 +1247,7 @@ for (const flight of splittedFlights) {
 }
 */
 
+/*
 // Challenge 1 - Section 10
 const poll = {
   question: "What is your favourite programming language?",
@@ -1280,3 +1281,14 @@ poll.displayResults.call({ answers: [5, 2, 3] });
 poll.displayResults.call({ answers: [5, 2, 3] }, "string");
 poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] });
 poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, "string");
+*/
+
+// Challenge 2 - Section 10
+(function () {
+  const header = document.querySelector("h1");
+  header.style.color = "red";
+  document.body.addEventListener("click", () => {
+    header.style.color = "blue";
+    console.log(header);
+  });
+})();
