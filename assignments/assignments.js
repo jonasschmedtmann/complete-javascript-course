@@ -1283,6 +1283,7 @@ poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] });
 poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, "string");
 */
 
+/*
 // Challenge 2 - Section 10
 (function () {
   const header = document.querySelector("h1");
@@ -1292,3 +1293,18 @@ poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, "string");
     console.log(header);
   });
 })();
+*/
+
+// Challenge 1 - Section 11
+function checkDogs(dogsJulia, dogsKate) {
+  const dogsJuliaFixed = dogsJulia.slice();
+  dogsJuliaFixed.splice(0, 1);
+  dogsJuliaFixed.splice(-2);
+  console.log(dogsJuliaFixed);
+  const dogsBoth = dogsJuliaFixed.concat(dogsKate);
+  dogsBoth.forEach((dog, i) => {
+    console.log(`Dog number ${i + 1} is ${dog >= 3 ? `an adult, and is ${dog} years old` : "still a puppy 🐶"}`);
+  });
+}
+checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
