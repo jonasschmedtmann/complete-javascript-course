@@ -1299,6 +1299,7 @@ checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
 */
 
+/*
 // Challenge 2 - Section 11
 function calcAverageHumanAge(ages) {
   const humanAges = ages.map(age => (age <= 2 ? age * 2 : 16 + age * 4));
@@ -1307,5 +1308,16 @@ function calcAverageHumanAge(ages) {
   const averageAges = adultDogs.reduce((acc, age, _, arr) => acc + age / arr.length, 0); // ! Another beautiful way to calculate the average
   return averageAges;
 }
+console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
+*/
+
+// Challenge 3 - Section 11
+const calcAverageHumanAge = ages =>
+  ages
+    .map(age => (age <= 2 ? age * 2 : 16 + age * 4))
+    .filter(age => age >= 18)
+    .reduce((acc, age, _, arr) => acc + age / arr.length, 0);
+
 console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
 console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
