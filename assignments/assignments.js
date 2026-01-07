@@ -1295,6 +1295,7 @@ poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, "string");
 })();
 */
 
+/*
 // Challenge 1 - Section 11
 function checkDogs(dogsJulia, dogsKate) {
   const dogsJuliaFixed = dogsJulia.slice();
@@ -1308,3 +1309,15 @@ function checkDogs(dogsJulia, dogsKate) {
 }
 checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
+*/
+
+// Challenge 2 - Section 11
+function calcAverageHumanAge(ages) {
+  const humanAges = ages.map(age => (age <= 2 ? age * 2 : 16 + age * 4));
+  const adultDogs = humanAges.filter(age => age >= 18);
+  // const averageAges = adultDogs.reduce((acc, age) => acc + age) / adultDogs.length;
+  const averageAges = adultDogs.reduce((acc, age, _, arr) => acc + age / arr.length, 0); // ! Another beautiful way to calculate the average
+  return averageAges;
+}
+console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
